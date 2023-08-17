@@ -69,7 +69,7 @@ text-decoration:none;}
     color: rgb(51, 51, 51);
 }
 .side_cart_menu{
-    position: fixed;
+    
     width: 300px;
     border: 2px solid #eee;
     background: #fff;

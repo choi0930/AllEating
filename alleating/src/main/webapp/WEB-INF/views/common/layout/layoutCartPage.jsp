@@ -59,7 +59,7 @@ border:0px solid #bcbcbc;
 }
 
 #sidebar-left{
-margin: 10px 0px 10px 10px;
+margin: 110px 0px 10px 10px;
 width:210px;
 height:700px;
 padding:5px;

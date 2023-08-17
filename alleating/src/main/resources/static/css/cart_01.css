@@ -8,10 +8,9 @@
 }
 
 .cart-text01 {
-		text-align:center;
-        position:relative;
-        left: 131px;
-        padding:50px;
+	text-align: center;
+    margin-bottom: -2px;
+    padding-top: 75px;
 }
 
 #cart-ch{
@@ -21,6 +20,10 @@
     margin-bottom: 9px;
     padding-right: 6px;
     flex-direction: row-reverse;
+}
+
+#cart-ch input{
+	margin-right: 5px;
 }
 
 .cart-text02{

@@ -1,4 +1,4 @@
-package com.spring.alleating.owner.controller;
+package com.spring.alleating.owner.product.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
