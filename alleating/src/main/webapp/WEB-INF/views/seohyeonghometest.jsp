@@ -9,10 +9,9 @@
 <html>
 <head>
 
-<title>상품 목록 페이지</title>
 </head>
 <body>
-??집??
+  Hello It's Home Test!!!
 </body>
 </html>
 
