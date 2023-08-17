@@ -220,34 +220,34 @@ $(document).ready(function(){
 });
 
 function fn_loginGO(){
-	if($('.joinCheck').val() == 'owner'){
 		var owner_name = document.getElementById('companyName').value;
 		var owner_num = document.getElementById('companyNum').value;
 		var owner_tel1 = document.getElementById('companyTel1').value;
 		var owner_tel2 = document.getElementById('companyTel2').value;
 		var owner_tel3 = document.getElementById('companyTel3').value;
-
-		if(owner_name=="" || owner_name.length == 0){
+	
+	if($('.joinCheck').val() == 'owner'){
+		if(owner_name==""){
 			alert('사업장명을 입력해주세요');
 			owner_name.focus();
 			return false;
 		}
-		if(owner_num=="" || owner_num.length == 0){
+		if(owner_num==""){
 			alert('사업장 번호를 입력해주세요');
 			owner_num.focus();
 			return false;
 		}
-		if(owner_tel1=="" || owner_tel1.length == 0){
+		if(owner_tel1==""){
 			alert('사업장 번호를 입력해주세요');
 			owner_tel1.focus();
 			return false;
 		}
-		if(owner_tel2=="" || owner_tel2.length == 0){
+		if(owner_tel2==""){
 			alert('사업장 번호를 입력해주세요');
 			owner_tel2.focus();
 			return false;
 		}
-		if(owner_tel3=="" || owner_tel3.length == 0){
+		if(owner_tel3==""){
 			alert('사업장 번호를 입력해주세요');
 			owner_tel3.focus();
 			return false;

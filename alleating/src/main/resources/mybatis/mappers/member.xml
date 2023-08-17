@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.spring.alleating.member.dao.MemberDAO">
+
+	<resultMap id="memResult" type="memberVO">
+		<result property="id" column="id" />
+		<result property="pwd" column="pwd" />
+		<result property="join_type" column="join_type" />
+		<result property="name" column="name" />
+		<result property="email" column="email" />
+		<result property="hp1" column="hp1" />
+		<result property="hp2" column="hp2" />
+		<result property="hp3" column="hp3" />
+		<result property="zipcode" column="zipcode" />
+		<result property="address" column="address" />
+		<result property="address2" column="address2" />
+		<result property="address_detail" column="address_detail" />
+		<result property="gender" column="gender"/>
+		<result property="birth_year" column="birth_year"/>
+		<result property="birth_month" column="birth_month"/>
+		<result property="birth_day" column="birth_day"/>
+		<result property="sms_yn" column="sms_yn"/>
+		<result property="email_yn" column="email_yn"/>
+		<result property="member_grade" column="member_grade"/>
+		<result property="del_yn" column="del_yn"/>
+		<result property="owner_name" column="owner_name"/>
+		<result property="owner_num" column="owner_num"/>
+		<result property="owner_tel1" column="owner_tel1"/>
+		<result property="owner_tel2" column="owner_tel2"/>
+		<result property="owner_tel3" column="owner_tel3"/>
+		<result property="joinDate" column="joinDate"/>
+		<result property="personalInformation" column="personalInformation"/>
+	</resultMap>
+		
+	<!-- insert -->
+	<insert id="insertMember" parameterType="java.util.Map">
+ 		
+ 			insert into member(
+ 			id, 
+ 			pwd, 
+ 			join_type,
+ 			name,
+ 			email,
+ 			hp1,
+ 			hp2,
+ 			hp3,
+ 			zipcode,
+ 			address,
+ 			address2,
+ 			address_detail,
+ 			gender,
+ 			<if test="birth_year != null">
+ 				birth_year,
+ 			</if>
+ 			
+ 		
+	</insert>
+</mapper>
