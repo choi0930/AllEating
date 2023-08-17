@@ -10,11 +10,10 @@
 <head>
 
 <title>상품 목록 페이지</title>
-<link href="${contextPath}/css/product_01.css" rel="stylesheet" type="text/css" />
-<script src="http://code.jquery.com/jquery-lastest.js"></script>
+
 </head>
 <body>
-test
+asdfasfd
 
 </body>
 </html>
