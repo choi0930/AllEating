@@ -1,0 +1,55 @@
+
+
+    .paycomplete-main{
+        padding-top: 150px;
+        padding-bottom:150px;
+    display: flex;
+    align-items: center;
+    align-content: flex-end;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    }
+
+.paycomplete-box{
+    padding-top: 100px;
+    display: flex;
+    border: navy 3px solid;
+    width: 700px;
+    height: 400px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.paycomplete-ordernum{
+    color:#EF6C33;
+    font-size: 20px;
+}
+
+.paycomplete-next{
+    display:flex;
+}
+.paycomplete-next-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top:170px;
+    padding-left:350px;
+}
+
+.paycomplete-next-text-2{
+font-size: 20px;
+    color: rgb(128, 128, 128);
+    display: flex;
+    padding-top: 120px;
+    padding-left: 300px;
+    align-items: center;
+    
+}
+.triangle-button {border:none;
+   background-color:#FFFFFF;
+}
+.paycomplete-next-text-2 h6{
+    font-size: 15px;
+}
+
+a{padding-top: 12px;}

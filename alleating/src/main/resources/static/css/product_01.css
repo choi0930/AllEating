@@ -1,0 +1,97 @@
+
+    *{
+    }
+.product-detail-list{
+    width:840px;
+    padding-bottom:500px;
+}
+
+.productview{
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.product1, .product2, .product3{
+    display:flex;
+}
+.producttotalnum{
+    padding-top: 70px;
+    padding-bottom: 100px;
+    padding-left: 50px;
+}
+
+.product1, .product2, .product3{
+    padding-bottom: 50px;
+}
+
+.productpaging{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 36px;
+}
+.productpageing-2:first-of-type{
+    border-left: 1px solid rgb(221, 221, 221);
+}
+.productpaging-2{
+    
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-top: 1px solid rgb(221, 221, 221);
+    border-right: 1px solid rgb(221, 221, 221);
+    border-bottom: 1px solid rgb(221, 221, 221);
+    border-left: 1px solid rgb(221, 221, 221);
+    border-image: initial;
+
+    cursor: pointer;
+    
+}
+.productpaging-3{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-top: 1px solid rgb(221, 221, 221);
+    border-right: 1px solid rgb(221, 221, 221);
+    border-bottom: 1px solid rgb(221, 221, 221);
+    border-left: 1px solid rgb(221, 221, 221);
+    border-image: initial;
+    border-left: none;
+    cursor: pointer;
+    background-color: rgb(247, 247, 247);
+    color: navy;
+}
+a{background-color: transparent;
+    text-decoration: none;
+    color: inherit;}
+
+    .product1-1, .product1-2, .product1-3{
+        padding-right:50px;
+    }
+    .product2-1, .product2-2, .product2-3{
+        padding-right:50px;
+    }
+    .product3-1, .product3-2, .product3-3{
+        padding-right:50px;
+    }
+
+    .product-text {
+    padding-top: 5px;
+}
+
+.producttotalnumber
+{    border-bottom: navy 3px solid;
+    padding-bottom: 15px;}
+

@@ -1,0 +1,214 @@
+/*헤더 부분(최현진)*/
+
+a{
+        text-decoration:none;
+        color: black;
+ }
+ ul{	padding-left: 0px;
+ margin-bottom: 0px;
+	  list-style: none;
+}
+#header_ul
+{
+    display: inline-block;   
+}
+.allEating_header{
+	width: 1050px;
+	margin: 0 auto;
+	position: relative;
+	
+}
+
+#header_top{
+	position: absolute;
+	top:0px;
+	right: 0px;
+	display: flex;
+	font-size: 12px;
+	align-items: center;	
+}
+
+.header_top_bar{
+	width: 1px;
+    height: 13px;
+    margin: 0px 12px;
+    background-color: rgb(217, 217, 217);
+}
+#header_top_join{
+	color:#EF6C33;
+}
+#header_top_center{
+	display: none;
+}
+#header_top_center{
+	position: absolute;
+    right: 0px;
+    top: 34px;
+    width: 130px;
+    padding: 3px 9px;
+    font-size: 12px;
+    border: 1px solid rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
+}
+#header_middle{
+	height: 100px;
+    padding-top: 36px;
+}
+#header_logo_img{
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+    height: 63px;
+}
+#header_search_box{
+	 display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    position: absolute;
+    left: 325px;
+    top: -55px;
+    width: 400px;
+    height: 48px;
+    padding-left: 14px;
+    border: 1px solid #000060;
+    border-radius: 6px;
+    background-color:white;
+    box-shadow: rgb(247, 247, 247) 0px 0px 0px 1px inset;
+}
+#header_search_input{
+	width: 300px;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+#search_icon{
+	/*position: relative;*/
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    bottom: 3px;
+ 	cursor:pointer;
+}
+.header_button_group{
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: absolute;
+    right: -6px;
+    top: -49px;
+}
+#user_icon{
+	display: block;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+#wish_icon{
+	display: block;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    }
+#cart_icon{
+	display: block;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+     margin-left: 20px;
+}
+#header{
+	min-width: 1050px;
+    letter-spacing: -0.3px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 3px 4px 0px;
+    width: 100%;
+    z-index: 10;
+}
+
+#fix_header{
+	    position: relative;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 1050px;
+    height: 56px;
+    margin: 0px auto;
+    margin-top: 9px;
+}
+
+#cate_header{
+	    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+}
+#cate_img{
+	width: 16px;
+    margin-right: 20px;
+}
+#cate_text{
+	font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+}
+#header_ul{
+	display: flex;
+    margin-left: 30px;
+}
+.header_nav{
+	display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 150px;
+    height: 55px;
+   	padding-top: 18px;
+    line-height: 20px;
+    text-align: center;
+}
+#header_box{
+	width: 140px;
+	height: 32px;
+    padding: 6px 16px;
+}
+#header_categroy{
+	position: relative;
+}
+#hide_cate{
+	z-index:2;
+	width: 165px;
+	position: absolute;
+	
+	left: 0px;;
+	background-color: white;
+	border: 1px solid gainsboro;
+}
+
+.categroy{
+	padding: 10px;
+	font-size: 14px;
+}
+.big_categroy{
+	position: relative;
+}
+.small_categroy{
+	display:none;
+	z-index:1;
+	position: absolute;
+    left: 163px;
+    top: -1px;
+    width: 200px;
+    height: 339px;
+    background-color:rgb(247, 247, 247);
+    border: 1px solid gainsboro;
+    animation: 0.5s linear 0s 1 normal none running animation-plwpox;
+}
+
+#water_categroy, #hide_cate, #noodle_categroy, #salad_categroy, #mainFood_categroy, #meat_categroy, #fish_categroy, #fruit_categroy, #vagetable_categroy{
+	display: none;
+}

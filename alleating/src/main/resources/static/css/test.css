@@ -1,0 +1,157 @@
+* 
+{
+    padding: 0;
+    margin: 0;
+}
+
+.newgoods{
+	text-align: center;
+	margin-top:15px;
+	padding-top:35px;
+}
+
+.main-mid 
+{
+    width: 1050px;
+    margin:0 auto;
+    text-align:center;
+}
+
+#menu-title1 
+{
+    text-align: center;
+    color: #0C4A60;
+}
+
+#menu-title2 
+{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#menu-title3 
+{
+    text-align: center;
+    color: #0C4A60;
+}
+
+.category1 
+{
+    width: 1050px;
+    height: 520px;
+    margin-left: 130px;
+    padding-top: 20px;
+    margin-bottom: 100px;
+}
+
+.image-container2{
+	width:1050px;
+	display: flex;
+	margin-top: -38px;
+	margin-bottom: 15px;
+	
+}  
+
+ .image-container2 img {
+
+    display: inline-block;
+    vertical-align: middle;
+    width: 330px;
+    height: 330px;
+    margin:10px;
+}
+
+
+.image-container3{
+	width:1050px;
+	display: flex;
+	margin-bottom: 15px;
+	
+}  
+
+ .image-container3 img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 240px;
+    height: 320px;
+    margin:10px;
+}
+
+.text-container2{
+    display: flex;
+  }
+  
+#context{
+	display: flex;
+}
+
+.product-container {
+     
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+.product-image {
+    width: 250px;
+    height: 320px;
+    border: 1px solid #ccc;
+    margin: 5px;
+}
+    
+.qwerqwer{
+	padding: 5px;
+}    
+    
+.image-container{
+	width:1050px;
+	display: flex;
+	flex-direction: row;
+    justify-content: space-around;
+}  
+
+.image-container img{
+	margin:5px;
+}
+  
+.text-line{
+text-decoration: line-through
+}
+
+.cccc{
+	display: flex;
+}
+        
+.rmf{
+	width: 330px;
+	
+}
+        
+.btn-outline-secondary {
+    --bs-btn-color: #0C4A60;
+    --bs-btn-border-color: #0C4A60;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #0C4A60;
+    --bs-btn-hover-border-color: #0C4A60;
+    --bs-btn-focus-shadow-rgb: 108,117,125;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0C4A60;
+    --bs-btn-active-border-color: #0C4A60;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #0C4A60;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #0C4A60;
+    --bs-gradient: none;
+}
+
+
+.btn3{
+	position: relative;
+    bottom: 38px;
+    text-align: right;
+    right: 11px;
+}  
+
+.test2{
+	text-align: left;
+	margin-left: 10px;
+}     

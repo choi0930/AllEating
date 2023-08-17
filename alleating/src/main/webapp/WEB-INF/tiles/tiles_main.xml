@@ -1,0 +1,63 @@
+
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration  2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+<definition name="baseLayout" template="/WEB-INF/views/common/layout/layout.jsp">
+<put-attribute name="title" value=""/>
+<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/> 
+<put-attribute name="body" value=""/>
+<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+<put-attribute name="quickMenu" value="/WEB-INF/views/common/quickMenu.jsp" />
+</definition>
+
+<definition name="baseLayout2" template="/WEB-INF/views/common/layout/layout2.jsp">
+<put-attribute name="title" value=""/>
+<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+<put-attribute name="side" value="/WEB-INF/views/common/sideMenu.jsp"/>  
+<put-attribute name="body" value=""/>
+<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+<put-attribute name="quickMenu" value="/WEB-INF/views/common/quickMenu.jsp" />
+</definition>
+
+<definition name="baseLayoutMainPage" template="/WEB-INF/views/common/layout/layoutMainPage.jsp">
+<put-attribute name="title" value=""/>
+<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>  
+<put-attribute name="body" value=""/>
+<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+<put-attribute name="quickMenu" value="/WEB-INF/views/common/quickMenu.jsp" />
+</definition>
+
+<definition name="baseLayoutCartPage" template="/WEB-INF/views/common/layout/layoutCartPage.jsp">
+<put-attribute name="title" value=""/>
+<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>  
+<put-attribute name="side" value="/WEB-INF/views/common/sideMenu.jsp"/>
+<put-attribute name="body" value=""/>
+<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+<put-attribute name="quickMenu" value="/WEB-INF/views/common/quickMenu.jsp" />
+</definition>
+
+<definition name="baseLayoutProduct" template="/WEB-INF/views/common/layout/layoutProduct.jsp">
+<put-attribute name="title" value=""/>
+<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+<put-attribute name="categoryGroup" value="/WEB-INF/views/common/categoryBtn.jsp"/>
+<put-attribute name="side" value="/WEB-INF/views/common/sideMenu.jsp"/>  
+<put-attribute name="body" value=""/>
+<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+<put-attribute name="quickMenu" value="/WEB-INF/views/common/quickMenu.jsp" />
+</definition>
+
+<definition name="/main" extends="baseLayoutMainPage">
+<put-attribute name="title" value="메인페이지"/>
+<put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>      
+</definition>
+
+
+<definition name="/test" extends="baseLayout">
+<put-attribute name="title" value="test"/>
+<put-attribute name="body" value="/WEB-INF/views/product/test.jsp"/>      
+</definition>
+
+
+</tiles-definitions>

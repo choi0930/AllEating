@@ -1,0 +1,56 @@
+
+    
+    *{
+margin: 0;}
+
+h5{
+    color:#454545;
+}
+
+.pwdchangeresult{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pwdchangeresult-detail{
+    padding-top:50px;
+    text-align: center;
+}
+
+.pwdchangeresult-title{
+    padding-bottom:10px;
+}
+
+
+
+.pwdchangeresult{
+    display:flex;
+    justify-content: space-evenly;
+    padding: 50px 0 150px 0;
+}
+.pwdchangeresultbutton{font-weight: 500;
+    display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 150px;
+    height: 52px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #000066;
+    border: 0 none;
+
+    }
+
+    .pwdchangeform{
+        padding-top:50px;
+    }
+
+    
+    #pwdchangeform-2, #pwdchangeform-3{
+        width:350px;
+    }
+    .pwdchange-title{
+          padding-top: 150px;
+    }
+    

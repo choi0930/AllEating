@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration  2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="/myPage/myPage_01" extends="baseLayout2">
+		<put-attribute name="title" value="마이페이지 주문내역"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_01.jsp"/>      
+	</definition>
+	
+	<definition name="/myPage/myPage_02" extends="baseLayout2">
+		<put-attribute name="title" value="마이페이지 주문내역 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_02.jsp"/>      
+	</definition>
+	
+	<definition name="/myPage/myPage_05" extends="baseLayout2">
+		<put-attribute name="title" value="마이페이지 찜한상품"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_05.jsp"/>      
+	</definition>
+</tiles-definitions>

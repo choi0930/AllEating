@@ -1,0 +1,64 @@
+
+    
+    *{
+margin: 0;}
+.findid-detail{
+    text-align: center;
+}
+.findid-title{
+    padding-top:150px;
+}
+.fillinid{
+    border-top-style:1px navy;
+    border-right-style:1px navy;
+    border-bottom-style:1px navy;
+    border-left-style:1px navy;
+  
+}
+
+
+.findid-detail{
+    padding-bottom:50px;
+}
+
+.findform{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#findform-2{
+    width:500px;
+    display: flex;
+}
+#findform-3{
+    width:500px;
+    display: flex;
+}
+
+.findid-next{
+    padding-top:50px;
+    padding-bottom: 150px;
+
+}
+ .findbutton{font-weight: 500;
+    display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100px;
+    height: 52px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #000066;
+    border: 0 none;
+    float:right;
+    }
+
+.findbutton-text{
+
+}
+  
+
+
+    

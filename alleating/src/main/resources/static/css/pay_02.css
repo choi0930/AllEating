@@ -1,0 +1,102 @@
+  /*결제창*/
+  .payTwoPageInline{
+            display:inline-block;
+        }
+        .payDeliveryInfo{
+            display: flex;
+            align-items: center;
+            
+            padding: 10px 10px 10px 10px;
+        }
+        .payTwoTitleText{
+            
+            font-size: 16px;
+            font-weight: bold;
+           
+        }
+        .deliveryAddressText{
+            margin-left: 168px;
+        }
+        .payTwoInput{
+            width: 400px;
+            height: 46px;
+            margin-left: 50px;
+        }
+        .dliveryRequest_select{
+            display: inline;
+            margin-left: 40px;
+            height: 46px;
+            width: 120px;
+        }
+        .payTwoText{
+            margin-left: 70px;
+        }
+        .payTwoSeationText{
+            font-size: 30px;
+            font-weight: bold;
+            border-bottom: 2px solid #0C4A60;
+        }
+        .payTwoProduct{
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            justify-content: space-between;
+        }
+        .payTwoborderTop{
+            border-top: 1px solid #e0e0e0;
+        }
+        #payTwoOrderName{
+            margin-left: 96px;
+        }
+        .payTwoOrderInfo{
+            margin-left: 112px;
+        }
+        .payTwoQty{
+            height: 36px;
+        }
+        .paySaleInfo,.payOptionInfo,.payProductInfo,.payTwoDeliberyInfoMain{
+            margin-bottom: 22px;
+        }
+        .payTwoPoint{
+            
+            margin-left: 200px;
+            
+        }
+        #payUsePointInput{
+            display: inline;
+            width: 70px;
+            height: 30px;
+            margin-left: 15px;
+        }
+        .payTwoPriceText{
+           
+           margin-left: 290px;
+            
+        }
+        .payTwoSalePriceText{
+            
+            margin-left: 283px;
+        }
+        .payTwoCouponBtn{
+            margin-left: 20px;
+        }
+        .payTwoUsePoint{
+            margin-left: 90px;
+        }
+        #payTwoLastbtn{
+            border: none;
+   		 	display: block;
+    		width: 100%;
+    		min-height: 70px;
+    		height: auto;
+    		background: #EF6C33;
+    		color: #fff;
+   			font-size: 21px;
+    		letter-spacing: -0.3px;
+    		line-height: 1.2;
+        }
+        #payTwoLastbtn:hover{
+			background-color: black;
+		}
+        .payTwoPage{
+            margin:10px 0px;
+        }

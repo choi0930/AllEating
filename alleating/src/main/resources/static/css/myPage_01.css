@@ -1,0 +1,103 @@
+
+    .orderlist-main{
+        width:840px;
+    }
+.orderlistview{
+    display:flex;
+    align-items: center;
+    padding-top: 70px;
+    border-bottom: #ABDFF1 3px solid;
+    padding-left: 20px;
+     padding-bottom: 10px;
+     
+}
+.orderlistview-2{
+    width:200px;}
+.orderlistview-3{
+    width:400px;
+    margin-left: -60px;
+    padding-top: 4px;
+}
+.orderlisttext{
+    font-size: 15px;
+    color: #d1d1e0;
+}
+.orderlist-detail-next{
+display:flex;
+    padding-left: 500px;
+    align-items: center;}
+.orderlistview-under{
+display: flex;
+    justify-content: space-around;
+    padding-top:10px;}
+    
+    .orderlist-time {
+ 
+}
+    
+   .triangle-button {border:none;
+   background-color:#FFFFFF;
+   
+   }
+   .order-period-select {
+ 
+    padding-left: 140px;
+   
+}
+   select {
+    word-wrap: normal;
+    width: 90px;
+}
+
+.product-order-pic {
+    padding-top: 5px;
+}
+
+.product-order {
+    padding-left: 20px;
+    padding-top: 30px;
+}
+.product-order{
+display:flex;}
+   
+   .product-order-line {
+    padding-left: 20px;
+}
+
+.dlcss{
+align-items: flex-start;
+    display: flex;
+    margin-bottom: -4px;
+}
+
+dd{
+padding-left: 15px;}
+   
+   .orderview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: stretch;
+    align-items: center;
+     padding-left: 220px;
+}
+   
+   .orderview-2 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.orderview-3 {
+    padding-left: 10px;
+}
+   
+   
+   .order-refund{
+   display:flex;}
+   
+#order-refund-button {
+    height: 40px;
+    width: 100px;
+}
+
