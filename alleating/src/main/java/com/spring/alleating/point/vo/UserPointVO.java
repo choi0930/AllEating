@@ -1,5 +1,5 @@
 package com.spring.alleating.point.vo;
 
-public class userPointHistoryVO {
+public class UserPointVO {
 
 }
