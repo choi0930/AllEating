@@ -24,6 +24,8 @@
 }
 
 .cart-text02{
+	 display: flex;
+    justify-content: space-between;
     border-top: 4px solid #0C4A60;
     border-bottom: 4px solid #0C4A60;
     padding: 7px;
@@ -45,6 +47,13 @@
 	display: flex;
     justify-content: space-around;
     margin: 9px;
+}
+
+#cartShowBtn, #cartHideBtn {
+	border:none;
+	background-color:#FFFFFF;
+	
+	
 }
 
 .choice-8{

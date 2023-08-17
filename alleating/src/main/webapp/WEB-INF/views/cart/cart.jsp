@@ -10,7 +10,7 @@ request.setCharacterEncoding("utf-8"); %>
     <meta charset="UTF-8" />
     <title>장바구니</title>
     <script type="text/javascript">
-      function checkAll() {
+/*       function checkAll() {
         if (document.getElementById("all").checked == true) {
           //id 를 사용하여 하나의 객체만을 호출
           for (var i = 0; i < 3; i++)
@@ -21,18 +21,44 @@ request.setCharacterEncoding("utf-8"); %>
             document.getElementsByName("checkBox")[i].checked = false;
         }
       }
+ */
+      
+  $(function(){
+	  
+	  $('#cartShowBtn').hide();
 
-      var bDisplay = true;
+  $('#cartShowBtn').click(function() {
+	  $('#cartHideBtn').show();
+	 /*  $('#cartShowDiv').show(); */
+      $('#cartShowBtn').hide();
+    /*   $('#cartShowDiv').fadeIn(5000)
+       $('#cartShowDiv').delay(5000) */
+      // goodsBtn을 클릭하면 goodsDiv를 보여줘라
+   
+      $('#cartShowDiv').slideDown(500);
+      
+  })
+   
+  $('#cartHideBtn').click(function() {
+	  $('#cartShowBtn').show();
+	/*   $('#cartShowDiv').hide(); */
+	  $('#cartHideBtn').hide();
+	  $('#cartShowDiv').slideUp(500);
+     
+      // goodsBtn을 클릭하면 goodsDiv를 숨겨라
+   
+  })
+   });
+ 
+ 
+ /* $("div").fadeIn(1000).delay(1000).fadeOut(1000); */
+ 
+/*  fadein 나타남 fadeout 사라짐 */
+  </script>
 
-      function doDisplay() {
-        var con = document.getElementById("myDIV");
-        if (con.style.display == "none") {
-          con.style.display = "block";
-        } else {
-          con.style.display = "none";
-        }
-      }
-    </script>
+      
+     
+   
   </head>
   <body>
     <div class="cart-main">
@@ -44,10 +70,18 @@ request.setCharacterEncoding("utf-8"); %>
         <a href="#">전체선택</a>
         <input type="checkbox" id="all" name="all" />
       </div>
-      <div class="cart-text02">예약 배송 상품: 1개</div>
+     
+      <div class="cart-text02">예약 배송 상품: 1개
+      <div class="cartresult"> 
+      <button type="button" id="cartShowBtn"><img src="${ContextPath }/img/image_icon/down.png" width="20px" height="20px" ></button>
+     
+       <button type="button" id="cartHideBtn"><img src="${ContextPath }/img/image_icon/up.png" width="20px" height="20px"></button>
+      </div>
+      </div>
       <div>
         <div>
-          <div class="cart-info">
+         <div >
+          <div class="cart-info" id="cartShowDiv" >
             <input type="checkbox" name="checkBox" />
             <img
               class="cart-image"
@@ -81,6 +115,8 @@ request.setCharacterEncoding("utf-8"); %>
           <div class="cart-cost">
             <h4>13,990원 + 3,000원 = 16,990원</h4>
           </div>
+          
+         </div> 
           <div class="cart-text02">택배 배송 상품: 0개</div>
         </div>
       </div>
