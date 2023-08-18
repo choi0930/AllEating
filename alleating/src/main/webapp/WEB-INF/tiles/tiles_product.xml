@@ -17,6 +17,11 @@
 <put-attribute name="body" value="/WEB-INF/views/product/product_01.jsp"/>      
 </definition>
 
+<definition name="/product/search_01" extends="baseLayoutMainPage">
+<put-attribute name="title" value="검색 결과페이지"/>
+<put-attribute name="banner" value="/WEB-INF/views/common/searchKeyWord.jsp"/>
+<put-attribute name="body" value="/WEB-INF/views/product/search.jsp"/>      
+</definition>
 
 
 </tiles-definitions>
