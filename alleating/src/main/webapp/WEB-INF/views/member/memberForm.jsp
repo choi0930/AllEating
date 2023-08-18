@@ -223,45 +223,48 @@ $(document).ready(function(){
 	});
 });
 
+
+//이메일 인증번호 확인
+function fn_checkEamil(){
+	$('#checkEamil').css('display', 'block');
+}
+//유효성 검사
 function fn_loginGO(object){
-	
-	if($('.joinCheck').val() == 'owner'){
+	var joinType = $('.joinCheck:checked').val()
+	if(joinType == 'owner'){
 		if($('#companyName').val()==""){
 			alert('사업장명을 입력해주세요');
-			owner_name.focus();
+			$('#companyName').focus();
 			return false;
 		}
 		if($('#companyNum').val()==""){
 			alert('사업장 번호를 입력해주세요');
-			owner_num.focus();
+			$('#companyNum').focus();
 			return false;
 		}
 		if($('#companyTel1').val()==""){
 			alert('사업장 전화번호를 입력해주세요');
-			owner_tel1.focus();
+			$('#companyTel1').focus();
 			return false;
 		}
 		if($('#companyTel2').val()==""){
 			alert('사업장 전화번호를 입력해주세요');
-			owner_tel2.focus();
+			$('#companyTel2').focus();
 			return false;
 		}
 		if($('#companyTel3').val()==""){
 			alert('사업장 전화번호를 입력해주세요');
-			owner_tel3.focus();
+			$('#companyTel3').focus();
 			return false;
 		}
 	}
-	if($('#userId').val == ''){
+	if($('#userId').val == ""){
 		alert('아이디를 입력해주세요');
 		$('#userId').focus();
 		return false;
 	}
+
 	object.submit();
-}
-//이메일 인증번호 확인
-function fn_checkEamil(){
-	$('#checkEamil').css('display', 'block');
 }
 </script>
 <link href="${contextPath}/css/join.css" rel="stylesheet" type="text/css" />
@@ -272,7 +275,7 @@ function fn_checkEamil(){
 </head>
 <body class="d-flex flex-column min-vh-100">
 <div class="input-form">
-<form method="post" action="${contextPath }/member/join.do">
+<form method="post" action="${contextPath}/member/join.do">
 <div id="join_input">
 	<div id="join_title">회원가입</div>
 	<div id="join_Basic_input_text">
@@ -651,7 +654,7 @@ function fn_checkEamil(){
 	</div>
 	</div><!--이용약관 동의 끝-->
 	<div class="form_end">
-		<button class="join_end_btn" onclick="fn_loginGO(this.form)">
+		<button type="button" class="join_end_btn" onclick="fn_loginGO(this.form)">
 			<span id="join_btn_text">가입하기</span>
 		</button>
 	</div>
