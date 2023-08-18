@@ -13,9 +13,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       }
       #footer div {
         display: inline-block; /* 가로로 나열하기 위해 block레벨 요소를 inline-block레벨로 전환 */
-        margin-left: 90px;
+      
         position: relative;
-        right: 43px;
+       
         text-align: LEFT;
       }
       #address {
@@ -43,10 +43,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       .footerlogo {
         bottom: 54px;
       }
+      #footer2{
+        width: 1050px;
+      }
     </style>
   </head>
 
   <body>
+    <div id="footer2">
     <div id="footer">
       <div class="footerlogo">
         <img
@@ -98,5 +102,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         />
       </div>
     </div>
+  </div>
   </body>
 </html>

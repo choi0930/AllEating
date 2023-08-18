@@ -33,10 +33,17 @@
 		<result property="joinDate" column="joinDate"/>
 		<result property="personalInformation" column="personalInformation"/>
 	</resultMap>
-		
+	<!-- select -->
+	<select id = "selectByIdAndPwd" parameterType="java.util.Map" resultMap="memResult">
+		select * from member where id = #{id} and pwd = #{pwd}
+	</select>
+	
+	<select id="selectById" parameterType="String" resultType="int">
+		select count(*) from member where id = #{id}
+	</select>
+	
 	<!-- insert -->
 	<insert id="insertMember" parameterType="java.util.Map">
- 		
  			insert into member(
  			id, 
  			pwd, 
@@ -51,11 +58,47 @@
  			address2,
  			address_detail,
  			gender,
- 			<if test="birth_year != null">
- 				birth_year,
- 			</if>
- 			
- 			
- 		
+ 			birth_year,
+ 			birth_month,
+ 			birth_day,
+ 			sms_yn,
+ 			email_yn,
+ 			member_grade,
+ 			owner_name,
+ 			owner_num,
+ 			owner_tel1,
+ 			owner_tel2,
+ 			owner_tel3,
+ 			personalInformation
+ 			) values(
+ 				#{id}, 
+ 				#{pwd}, 
+ 				#{join_type}, 
+ 				#{name}, 
+ 				#{email}, 
+ 				#{hp1}, 
+ 				#{hp2}, 
+ 				#{hp3}, 
+ 				#{zipcode}, 
+ 				#{address}, 
+ 				#{address2}, 
+ 				#{address_detail}, 
+ 				#{gender}, 
+ 				#{birth_year},
+ 				#{birth_month},
+ 				#{birth_day},
+ 				#{sms_yn},
+ 				#{email_yn},
+ 				<choose>
+ 					<when test="join_type == 'user'">'base',</when>
+ 					<otherwise>null,</otherwise>
+ 				</choose>
+ 				#{owner_name},
+ 				#{owner_num},
+ 				#{owner_tel1},
+ 				#{owner_tel2},
+ 				#{owner_tel3},
+ 				#{personalInformation}
+ 			)
 	</insert>
 </mapper>

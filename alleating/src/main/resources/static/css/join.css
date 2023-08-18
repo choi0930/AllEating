@@ -236,7 +236,9 @@ input[type='number']::-webkit-inner-spin-button {
 	font-weight: 500;
     letter-spacing: -2px;
 }
-
+#checkEamil{
+	display:none;
+}
 .ownerInfo{
 		display: none;
 	}
