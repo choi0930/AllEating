@@ -8,8 +8,8 @@ import com.spring.alleating.coupon.vo.CouponVO;
 
 @Controller("adminCouponController")
 public class AdminCouponControllerImpl {
-	@Autowired
-	AdminCouponService adminCouponService;
+	
+	
 	@Autowired
 	CouponVO couponVO;
 }
