@@ -101,7 +101,9 @@ $(function(){$('.header_nav').hover(
     }
   );
 });
-  
+  function fn_checkLogin(){
+    alert("로그인해주세요");
+  }
     </script>
   </head>
   <body>
@@ -159,9 +161,19 @@ $(function(){$('.header_nav').hover(
       <div class="allEating_header">
         <div class="header_button_group">
           <div>
-            <a href="#" id="user_icon">
-              <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
-            </a>
+            <c:choose>
+              <c:when test="${loginMember.join_type == 'user'}">
+                <a href="${contexPath}/myPage/myPage_01.do" id="user_icon">
+                  <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
+                </a>
+              </c:when>
+              <c:otherwise>
+                <a href="#" id="user_icon">
+                  <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
+                </a>
+              </c:otherwise>
+            </c:choose>
+            
           </div>
           <div>
             <a href="#" id="wish_icon">
