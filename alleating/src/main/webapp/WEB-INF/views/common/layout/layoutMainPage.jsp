@@ -44,16 +44,9 @@ margin: 0px auto;
 border:0px solid #bcbcbc;
 }
 
-#sidebar-left{
-width:20%;
-height:700px;
-padding:5px;
-float: left;
-background-color:#FFFFFF;
-border: 0px solid #bcbcbc;
-font-size:10px;}
+
 #content{
-width:80%;
+width:100%;
 padding:5px;
 
 float:left;

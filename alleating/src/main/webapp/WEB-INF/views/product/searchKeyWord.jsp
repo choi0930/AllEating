@@ -9,12 +9,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <style>
         #search_keyWord{
           width: 1050px;
-          margin: 0 auto;
+          margin: 50px auto;
+          text-align: center;
         }
         #search_keyWord_text{
           font-size: 30px;
-          font-weight:bold;
-          text-align: center;
+          font-weight:800;
           margin-top: 50px;
           line-height: 35px;
         }

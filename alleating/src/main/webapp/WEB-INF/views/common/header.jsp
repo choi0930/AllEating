@@ -104,6 +104,11 @@ $(function(){$('.header_nav').hover(
   function fn_checkLogin(){
     alert("로그인 후 이용 가능합니다.");
   }
+  function fn_searchDO(){
+    var searchKeyWord = document.getElementById('header_search_input').value;
+    console.log(searchKeyWord);
+    location.href="/product/search_01.do?searchWord="+searchKeyWord;
+  }
     </script>
   </head>
   <body>
@@ -155,7 +160,7 @@ $(function(){$('.header_nav').hover(
       <div class="allEating_header">
         <div id="header_search_box">
             <input type="text" id="header_search_input"/>
-            <a href="#" id="search_icon"><img src="${contextPath}/img/headerImg/icon/free-icon-search.png" width="26px" height="26px"></a>
+            <a href="javascript:fn_searchDO()" id="search_icon"><img src="${contextPath}/img/headerImg/icon/free-icon-search.png" width="26px" height="26px"></a>
         </div>
       </div>
       <div class="allEating_header">
