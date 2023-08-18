@@ -1,5 +1,8 @@
 package com.spring.alleating.admin.coupon.dao;
 
-public class AdminCouponDAOImpl {
+import org.springframework.stereotype.Repository;
+
+@Repository("adminCouponDAO")
+public class AdminCouponDAOImpl implements AdminCouponDAO {
 
 }
