@@ -19,4 +19,9 @@
 		<put-attribute name="title" value="마이페이지 찜한상품"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_05.jsp"/>      
 	</definition>
+	
+	<definition name="/myPage/productCancelForm" extends="baseLayout2">
+		<put-attribute name="title" value="마이페이지 주문취소"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/productCancelForm.jsp"/>      
+	</definition>
 </tiles-definitions>

@@ -11,28 +11,49 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller("myPagecontroller")
 public class MyPageControllerImpl {
+	
 	@RequestMapping(value="/myPage/myPage_01.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPageMain(HttpServletRequest request, HttpServletResponse response)throws Exception {
-		
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
-		String viewName = (String) request.getAttribute("viewName");
-		
+		String viewName = (String) request.getAttribute("viewName");	
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
 	@RequestMapping(value="/myPage/myPage_02.do", method = {RequestMethod.GET, RequestMethod.POST})
+
 	public ModelAndView myPage_02(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
 	@RequestMapping(value="/myPage/myPage_05.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPage_05(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/myPage/productCancel.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView productCancel(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/myPage/*Form.do", method = {RequestMethod.GET})
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);

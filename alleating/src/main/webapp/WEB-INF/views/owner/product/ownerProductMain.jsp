@@ -58,7 +58,8 @@ request.setCharacterEncoding("utf-8"); %>
   <body>
     <div class="ownermain">
       <div class="ownertext01"><h4>상품등록</h4></div>
-      <form action="${contextPath}/owner/addproduct.do" method="post">
+      <form action="${contextPath}/owner/addproduct.do" method="post" encType="multipart/form-data">
+         <input type="hidden" name="deliveryType" value="normal"/>
         <div class="ownertext02">
           <div class="op01">
             <div class="fixed_join">상품종류</div>
@@ -66,18 +67,18 @@ request.setCharacterEncoding("utf-8"); %>
               <select id="uclass">
                 <option selected>상품분류 선택</option>
                 <optgroup label="채소">
-                  <option value="so">친환경</option>
-                  <option value="so">고구마 · 감자 · 당근</option>
-                  <option value="so">시금치 · 쌈채소 · 나물</option>
-                  <option value="so">브로콜리 · 파프리카 · 양배추</option>
-                  <option value="so">양파 · 대파 · 마늘 · 배추</option>
-                  <option value="so">오이 · 호박 · 고추</option>
-                  <option value="so">콩나물 · 버섯</option>
-                  <option value="so"></option>
+                  <option value="901001">친환경</option>
+                  <option value="901002">고구마 · 감자 · 당근</option>
+                  <option value="901003">시금치 · 쌈채소 · 나물</option>
+                  <option value="901004">브로콜리 · 파프리카 · 양배추</option>
+                  <option value="901005">양파 · 대파 · 마늘 · 배추</option>
+                  <option value="901006">오이 · 호박 · 고추</option>
+                  <option value="901007">콩나물 · 버섯</option>
+                  <option value="901008"></option>
                 </optgroup>
 
                 <optgroup label="과일 · 견과 · 쌀">
-                  <option value="so">국산과일</option>
+                  <option value="902">국산과일</option>
                   <option value="so">수입과일</option>
                   <option value="so">쌀 · 잡곡</option>
                   <option value="so">견과류</option>
@@ -149,6 +150,7 @@ request.setCharacterEncoding("utf-8"); %>
             <div class="nonebox"></div>
           </div>
           <div class="op01">
+       
             <div class="fixed_join">상품이름</div>
             <div class="ownerbox">
               <input name="onwerproduct_name" type="text" size="20" />
@@ -232,6 +234,7 @@ request.setCharacterEncoding("utf-8"); %>
               </div>
             </div>
           </div>
+        </div>
         </div>
         <div class="form_end">
           <button class="join_end_btn" onclick="fn_loginGO()">

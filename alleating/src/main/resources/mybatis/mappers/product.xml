@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.spring.alleating.product.dao.productDAO">
+
+	<resultMap id="productResult" type="productVO">
+		<result property="jointype" column="jointype" />
+		<result property="productId" column="productId" />
+		<result property="deliveryType" column="deliveryType" />
+		<result property="deliveryPrice" column="deliveryPrice" />
+		<result property="cateCode" column="cateCode" />
+		<result property="productName" column="productName" />
+		<result property="productPrice" column="productPrice" />
+		<result property="productDiscount" column="productDiscount" />
+		<result property="productSalesPrice" column="productSalesPrice" />
+		<result property="productUnit" column="productUnit" />
+		<result property="productPackType" column="productPackType" />
+		<result property="productWeight" column="productWeight" />
+		<result property="productOrigin" column="productOrigin"/>
+		<result property="productTotal" column="productTotal"/>
+		<result property="productExpireDate" column="productExpireDate"/>
+		<result property="productStatus" column="productStatus"/>
+		<result property="productBrand" column="productBrand"/>
+		<result property="productContentTitle" column="productContentTitle"/>
+		<result property="productContent" column="productContent"/>
+		<result property="creDate" column="creDate"/>
+		
+	</resultMap>
+	<!-- select -->
+
+	
+	<select id="selectByproductId" parameterType="String" resultType="int">
+		select * from product where productId = #{productId}
+	</select>
+	
+	<!-- insert -->
+	<insert id="insertProduct" parameterType="java.util.Map">
+ 			insert into product(
+ 			join_type, 
+ 			productId, 
+ 			deliveryType,
+ 			deliveryPrice,
+ 			cateCode,
+ 			productName,
+ 			productPrice,
+ 			productDiscount,
+ 			productSalesPrice,
+ 			productUnit,
+ 			productPackType,
+ 			productWeight,
+ 			productOrigin,
+ 			productTotal,
+ 			productExpireDate,
+ 			
+ 			productBrand,
+ 			productContentTitle,
+ 			productContent,
+ 			creDate
+ 			) values(
+ 				#{join_type}, 
+ 				#{productId}, 
+ 				#{deliveryType}, 
+ 				#{deliveryPrice}, 
+ 				#{productPrice}, 
+ 				#{cateCode}, 
+ 				#{productName}, 
+ 				#{productPrice}, 
+ 				#{productDiscount}, 
+ 				#{productSalesPrice}, 
+ 				#{productUnit}, 
+ 				#{productPackType}, 
+ 				#{productWeight}, 
+ 				#{productOrigin},
+ 				#{productTotal},
+ 				#{productExpireDate},
+ 			
+ 				#{productBrand},
+ 				#{productContentTitle},
+ 				#{productContent},
+ 				#{creDate})
+ 						
+	</insert>
+</mapper>
