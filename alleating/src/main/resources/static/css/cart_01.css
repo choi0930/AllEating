@@ -29,8 +29,8 @@
 .cart-text02{
 	 display: flex;
     justify-content: space-between;
-    border-top: 4px solid #0C4A60;
-    border-bottom: 4px solid #0C4A60;
+    border-top: 4px solid #000060;
+    border-bottom: 4px solid #000060;
     padding: 7px;
     margin-top: 17px;
 }
@@ -46,19 +46,33 @@
 	padding: 17px;
 }	
 
-.cart-info{
+#cart-info{
+	display: flex;
+    justify-content: space-around;
+    margin: 9px;
+}
+#cart-info2{
 	display: flex;
     justify-content: space-around;
     margin: 9px;
 }
 
+    #cart-info-all2{border-bottom: 4px soild #000060;}
+
 #cartShowBtn, #cartHideBtn {
 	border:none;
-	background-color:#FFFFFF;
-	
-	
+	background-color:#FFFFFF;	
+}
+#generalcartShowBtn, #generalcartHideBtn {
+	border:none;
+	background-color:#FFFFFF;	
 }
 
+.cartblank{
+	padding-top:30px;
+	border-bottom:4px solid #000060;
+	
+}
 .choice-8{
 display: flex;
     display: flex;
@@ -70,7 +84,7 @@ display: flex;
     right: 96px;
     }
     
-.choice-9{
+.cart-count{
     display: inline-flex;
     flex-direction: row;
     -webkit-box-align: center;
@@ -80,7 +94,12 @@ display: flex;
     border-radius: 3px;
 }
 
-.choicebutton-down{
+.cart-count img{
+padding-top: 5px;
+    padding-left: 5px;
+        background-color: white;
+}
+.cartbutton-down{
 display: inline-flex;
     width: 28px;
     height: 28px;
@@ -93,7 +112,7 @@ display: inline-flex;
     vertical-align: top;
 }
     
-.choice-10{    display: inline-flex;
+.inp{    display: inline-flex;
     overflow: hidden;
     white-space: nowrap;
     -webkit-box-pack: center;
@@ -105,9 +124,14 @@ display: inline-flex;
     width: 31px;
     height: 28px;
     line-height: 28px;
+    border:0;
 }    
 
-.choicebutton-up{
+.inp:focus{
+    border-color:#0982f0;
+    outline: none;
+}
+.cartbutton-up{
 display: inline-flex;
     width: 28px;
     height: 28px;
@@ -116,7 +140,6 @@ display: inline-flex;
     color: transparent;
     background-size: cover;
     background-color: transparent;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xNiAxMHY0aDR2MmgtNHY0aC0ydi00aC00di0yaDR2LTRoMnoiIGZpbGw9IiMzMzMiIGZpbGwtcnVsZT0ibm9uemVybyIvPgo8L3N2Zz4K);
     vertical-align: top;
     }
     
