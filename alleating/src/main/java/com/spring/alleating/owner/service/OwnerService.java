@@ -1,5 +1,11 @@
 package com.spring.alleating.owner.service;
 
-public interface OwnerService {
+import java.util.Map;
 
+import org.springframework.dao.DataAccessException;
+
+
+
+public interface OwnerService {
+	
 }
