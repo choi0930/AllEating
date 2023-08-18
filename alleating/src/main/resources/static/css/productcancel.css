@@ -1,0 +1,86 @@
+.proC{
+	margin-left: 15px;
+	margin-top: 38px;
+}
+
+.cancel_01{
+	display: flex;
+    margin-top: 13px;
+	
+}
+
+.qwe{
+	margin-top: 15px;
+    margin-left: 9px;
+}
+
+.text01{
+	border-bottom: 2px solid rgb(51, 51, 51);
+}
+
+#asd{
+	margin-bottom: 0px;
+}
+
+.reason{
+	margin-top: 38px
+}
+
+#uclass{
+	font-size: 20px;
+}
+
+.text02{
+	margin-top: 7px;
+}
+
+#text03{
+  font-size: 18px;
+  background-color: #8b8b8b1c;
+  resize: none;
+  color: black;
+  border: none;
+  border-bottom: 2px solid #0000007e;
+  outline: none;
+}
+
+.join_censel_btn{
+   display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 240px;
+    height: 56px;
+    border-radius: 3px;
+    color: #000000;
+    background-color: #ffffff;
+    border: 2px solid rgb(51, 51, 51);
+    }
+
+.join_end_btn{
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 240px;
+    height: 56px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: #000060;
+    border: 0px none;
+    }
+    
+ .form_end {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-top: 1px solid rgb(247, 247, 247);
+    padding: 40px 0px;
+}
+
+.text04{
+	display: flex;
+    justify-content: space-evenly;
+}
+
+
