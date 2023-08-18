@@ -167,6 +167,16 @@ $(function(){$('.header_nav').hover(
                   <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
                 </a>
               </c:when>
+               <c:when test="${loginMember.join_type == 'owner'}">
+                <a href="${contexPath}/owner/productMain.do" id="user_icon">
+                  <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
+                </a>
+              </c:when>
+               <c:when test="${loginMember.join_type == 'admin'}">
+                <a href="${contexPath}/admin/productMain.do" id="user_icon">
+                  <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
+                </a>
+              </c:when>
               <c:otherwise>
                 <a href="#" id="user_icon">
                   <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
