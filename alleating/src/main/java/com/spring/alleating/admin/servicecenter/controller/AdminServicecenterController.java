@@ -1,5 +1,5 @@
 package com.spring.alleating.admin.servicecenter.controller;
 
-public interface adminServicecenterController {
+public interface AdminServicecenterController {
 
 }

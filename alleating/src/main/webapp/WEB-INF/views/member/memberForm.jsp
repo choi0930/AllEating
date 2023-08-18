@@ -87,8 +87,8 @@
 	
 	$('#userId').keyup(function(){
 		if(userIdCheck.test($('#userId').val())){
-			$('#idCheckMessage').hide();
-			$('#join_id_ex').show();
+			$('#idCheckMessage').removeClass("redText");
+			$('#idCheckMessage').addClass("greenText");
 		}else{
 			$('#join_id_ex').hide();
 			$('#idCheckMessage').show();
@@ -99,8 +99,9 @@
 	$('#pwdCheckMessage').hide();
 	$('#pwd1').keyup(function(){
 		if(passwdCheck.test($('#pwd1').val())){
-			$('#pwdCheckMessage').hide();
-			$('#join_pwd_ex').show();
+			$('#pwdCheckMessage').removeClass("redText");
+			$('#pwdCheckMessage').addClass("greenText");
+			
 		}else{
 			$('#join_pwd_ex').hide();
 			$('#pwdCheckMessage').show();
@@ -123,16 +124,19 @@
 	});
 });
 function fn_checkId(){ //아이디 중복체크
-	var contextPath = getContextPath();
 	var _id = $("#userId").val();
 	if(_id==''){
 		alert("아이디를 입릭하세요");
 		return false;
 	}
+	if(!userIdCheck.test($('#userId').val())){
+		alert("6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합 해주세요");
+		return false;
+	}
 	$.ajax({
 		type:"post",
 		async:true,
-		url:"/member/checkId.do",
+		url:"${contextPath}/member/checkId.do",
 		dataType:"text",
 		data:{id:_id},
 		success:function(data, textStatus){
@@ -219,7 +223,7 @@ $(document).ready(function(){
 	});
 });
 
-function fn_loginGO(){
+function fn_loginGO(object){
 		var owner_name = document.getElementById('companyName').value;
 		var owner_num = document.getElementById('companyNum').value;
 		var owner_tel1 = document.getElementById('companyTel1').value;
@@ -227,47 +231,50 @@ function fn_loginGO(){
 		var owner_tel3 = document.getElementById('companyTel3').value;
 	
 	if($('.joinCheck').val() == 'owner'){
-		if(owner_name==""){
+		if($('#companyName').val()==""){
 			alert('사업장명을 입력해주세요');
 			owner_name.focus();
 			return false;
 		}
-		if(owner_num==""){
+		if($('#companyNum').val()==""){
 			alert('사업장 번호를 입력해주세요');
 			owner_num.focus();
 			return false;
 		}
-		if(owner_tel1==""){
-			alert('사업장 번호를 입력해주세요');
+		if($('#companyTel1').val()==""){
+			alert('사업장 전화번호를 입력해주세요');
 			owner_tel1.focus();
 			return false;
 		}
-		if(owner_tel2==""){
-			alert('사업장 번호를 입력해주세요');
+		if($('#companyTel2').val()==""){
+			alert('사업장 전화번호를 입력해주세요');
 			owner_tel2.focus();
 			return false;
 		}
-		if(owner_tel3==""){
-			alert('사업장 번호를 입력해주세요');
+		if($('#companyTel3').val()==""){
+			alert('사업장 전화번호를 입력해주세요');
 			owner_tel3.focus();
 			return false;
 		}
 
 	}
-	location.href="${contextPath}/member/loginForm.do"
+
+	object.submit();
+}
+//이메일 인증번호 확인
+function fn_checkEamil(){
+	$('#checkEamil').css('display', 'block');
 }
 </script>
 <link href="${contextPath}/css/join.css" rel="stylesheet" type="text/css" />
 <style>
 	
-	#checkEamil{
-		display: none;
-	}
+	
 </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
 <div class="input-form">
-<form method="post" action="${contextPath }/member/addMember.do">
+<form method="post" action="${contextPath }/member/join.do">
 <div id="join_input">
 	<div id="join_title">회원가입</div>
 	<div id="join_Basic_input_text">
@@ -337,9 +344,10 @@ function fn_loginGO(){
 			</div>
 			<span class="conditionText" id="join_id_ex">6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합</span>
 			<div id="idCheckMessage"></div>
+			<div id="idCheckMessage2"></div>
 		</div>
 		<div class="form_button_box">
-			<button class="btn btn-outline-secondary" type="button" id="idCheckBtn" onclick=" fn_checkId();">ID중복확인</button>
+			<button class="btn btn-outline-secondary" type="button" id="idCheckBtn" onclick="fn_checkId();">ID중복확인</button>
 		</div>
 	</div>
 <!--비밀번호-->
@@ -423,7 +431,7 @@ function fn_loginGO(){
 	</div>
 	<div id="checkEamil">
 	<!--이메일 인증-->
-	<div class="form_info" id="emailNumCheckBok">
+	<div class="form_info" id="emailNumCheckBox">
 		<div class="form_label_box">
 			<label class="form_label">인증번호 확인</label>
 			<span class="redText">*</span>
@@ -435,7 +443,7 @@ function fn_loginGO(){
 			<span class="hideConditionText"></span>
 		</div>
 		<div class="form_button_box">
-			<button class="btn btn-info" type="button" id="idCheckEmailNumBtn" onclick=" fn_checkNum();"><span class="emailNumBtn">인증번호 확인</span></button>
+			<button class="btn btn-info" type="button" id="idCheckEmailNumBtn" onclick="fn_checkNum();"><span class="emailNumBtn">인증번호 확인</span></button>
 		</div>
 	</div>
 	</div>
@@ -481,7 +489,8 @@ function fn_loginGO(){
 	<!--주소-->
 	<div class="form_info">
 		<div class="form_label_box">
-			<label class="form_label">주소</label>
+			<label class="form_label user_address">주소</label>
+			<label class="form_label owner_address">주소</label>
 			<span class="redText">*</span>
 		</div>
 		<div class="form_value_box">
@@ -508,7 +517,7 @@ function fn_loginGO(){
 		<div class="form_value_box">
 			<div class="form_input_box">
 				<input type="text" class="form-control join_input_box2" id="sample6_extraAddress" name="address2" placeholder="참고항목">
-				<input type="text" class="form-control join_input_box2" id="sample6_detailAddress" name="addressDetail" placeholder="상세주소">
+				<input type="text" class="form-control join_input_box2" id="sample6_detailAddress" name="address_detail" placeholder="상세주소">
 			</div>
 		</div>
 	</div>
@@ -597,7 +606,7 @@ function fn_loginGO(){
 				</div>
 				<div class="form_agree_box">
 					<label class="form-check-label form_check_label">
-						<input type="checkbox" class="form-check-input testCheck" name="personalInformation"/><!--개인정보 수집 이용 동의 (선택)-->
+						<input type="checkbox" class="form-check-input testCheck" name="personalInformation" value="Y"/><!--개인정보 수집 이용 동의 (선택)-->
 						<div class="form_label_text">
 							<span>개인정보 수집·이용 동의</span>
 							<span>(선택)</span>
@@ -619,13 +628,13 @@ function fn_loginGO(){
 				<div class="form_agree_box2"style="padding-left: 100px;">
 					<div class="form_yn_agree">
 						<label >
-							<input type="checkbox" class="form-check-input testCheck testCheck2" name="sms_yn" value="y"/><!--SMS 수신동의 (선택)-->
+							<input type="checkbox" class="form-check-input testCheck testCheck2" name="sms_yn" value="Y"/><!--SMS 수신동의 (선택)-->
 							<span>SMS</span>
 						</label>
 					</div>
 					<div class="form_yn_agree">
 						<label >
-							<input type="checkbox" class="form-check-input testCheck  testCheck2" name="email_yn" value="y"/><!--이메일 수신 동의 (선택)-->
+							<input type="checkbox" class="form-check-input testCheck  testCheck2" name="email_yn" value="Y"/><!--이메일 수신 동의 (선택)-->
 							<span>이메일</span>
 						</label>
 					</div>
@@ -644,7 +653,7 @@ function fn_loginGO(){
 	</div>
 	</div><!--이용약관 동의 끝-->
 	<div class="form_end">
-		<button class="join_end_btn" onclick="fn_loginGO()">
+		<button class="join_end_btn" onclick="fn_loginGO(this.form)">
 			<span id="join_btn_text">가입하기</span>
 		</button>
 	</div>

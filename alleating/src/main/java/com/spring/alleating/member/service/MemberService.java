@@ -1,5 +1,13 @@
 package com.spring.alleating.member.service;
 
-public interface MemberService {
+import java.util.Map;
 
+import org.springframework.dao.DataAccessException;
+
+import com.spring.alleating.member.vo.MemberVO;
+
+public interface MemberService {
+	public void addMember(Map<String, String> memberInfo)throws DataAccessException;
+	public MemberVO login(Map<String, String> loginMember)throws DataAccessException;
+	public int selectById(String id)throws DataAccessException;
 }

@@ -106,10 +106,37 @@ $(function(){$('.header_nav').hover(
   </head>
   <body>
     <div class="allEating_header"> <!--카테고리 위쪽 메뉴들 그룹-->
-      <div id="header_top"> <!--우측 상단 메뉴-->
-        <a href="${contextPath}/member/join.do" id="header_top_join">회원가입</a>
+      <div id="header_top"> <!--헤더 우측 상단 메뉴-->
+        <c:choose>
+          <c:when test="${isLoginON == true and loginMember != null}"><!--로그인 했을때-->
+            <c:choose>
+              <c:when test="${loginMember.join_type == 'user' and loginMember.member_grade == 'base'}"> <!--일반회원 로그인-->
+                <span id="header_top_join"><span class="textColor2">일반 회원</span> ${loginMember.name}님 반갑습니다!</span>
+              </c:when>
+              <c:when test="${loginMember.join_type == 'user' and loginMember.member_grade == 'vip'}"> <!--VIP회원 로그인-->
+                <span id="header_top_join"><span class="textColor2">VIP 회원</span> ${loginMember.name}님 반갑습니다!</span>
+              </c:when>
+              <c:when test="${loginMember.join_type == 'owner'}"> <!--사업자회원 로그인-->
+                <span id="header_top_join"><span class="textColor2">사업자 회원</span> ${loginMember.name}님 반갑습니다!</span>
+              </c:when>
+              <c:when test="${loginMember.join_type == 'admin'}"> <!--관리자회원 로그인-->
+                <span id="header_top_join"><span class="textColor2">관리자 회원</span>${loginMember.name}님 반갑습니다!</span>
+              </c:when>
+            </c:choose>
+          </c:when>
+          <c:otherwise><!--로그인 정보가 없을때-->
+            <a href="${contextPath}/member/memberForm.do" id="header_top_join">회원가입</a>
+          </c:otherwise>
+        </c:choose>
         <div class="header_top_bar"></div> <!--일자 바-->
-        <a href="${contextPath}/member/loginForm.do">로그인</a>
+        <c:choose>
+            <c:when test="${isLoginON == true and loginMember != null}"><!--로그인 했을때-->
+              <a href="${contextPath}/member/logOut.do">로그아웃</a>
+            </c:when>
+            <c:otherwise><!--로그인 정보가 없을때-->
+              <a href="${contextPath}/member/loginForm.do">로그인</a>
+            </c:otherwise>
+        </c:choose>
         <div class="header_top_bar"></div> <!--일자 바-->
         <a href="#">고객센터</a>
       </div>
