@@ -95,7 +95,7 @@ request.setCharacterEncoding("utf-8"); %>
 	
 	//이메일 sms 수신동의 전체 체크
 	$(document).ready(function(){
-		var part = $('individual_cart_checkbox').length;
+		var part = $('.individual_cart_checkbox').length;
 	//전체 체크박스 클릭
 		$("#cart-all-check").click(function() {
 			if ($("#cart-all-check").prop("checked")) {

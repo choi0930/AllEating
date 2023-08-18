@@ -224,11 +224,6 @@ $(document).ready(function(){
 });
 
 function fn_loginGO(object){
-		var owner_name = document.getElementById('companyName').value;
-		var owner_num = document.getElementById('companyNum').value;
-		var owner_tel1 = document.getElementById('companyTel1').value;
-		var owner_tel2 = document.getElementById('companyTel2').value;
-		var owner_tel3 = document.getElementById('companyTel3').value;
 	
 	if($('.joinCheck').val() == 'owner'){
 		if($('#companyName').val()==""){
@@ -256,9 +251,12 @@ function fn_loginGO(object){
 			owner_tel3.focus();
 			return false;
 		}
-
 	}
-
+	if($('#userId').val == ''){
+		alert('아이디를 입력해주세요');
+		$('#userId').focus();
+		return false;
+	}
 	object.submit();
 }
 //이메일 인증번호 확인

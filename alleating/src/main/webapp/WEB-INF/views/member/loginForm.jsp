@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"  isELIgnored="false" %>
 <%
-    request.setCharacterEncoding("utf-8");
-    %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+request.setCharacterEncoding("utf-8");
+%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/> 
 <!DOCTYPE html>
 <html>
@@ -167,16 +168,15 @@ pageEncoding="UTF-8"  isELIgnored="false" %>
 
 </head>
 <body>
-	<c:choose>
-		<c:when test="${result eq 'loginFailed'}">
-			<script>
-				
-				window.onload = function() {
-					alert("아이디나 비밀번호가 틀립니다. 다시 로그인 하세요!");
-				}
-			</script>
-		</c:when>
-	</c:choose>
+	<script type="text/javascript">
+  
+		var failed = new URLSearchParams(window.location.search).get('result');
+		
+		if (failed === 'loginFailed') {
+		  alert('로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.');
+		}
+	  
+	  </script>
 <div align="center" class="to">
 <img src ="${contextPath}/img/image_logo/alleating_logo_background_X.png" style = "width:200px; height:150px;"/>
 	<!--<div id="loginTitle">로그인</div>-->
