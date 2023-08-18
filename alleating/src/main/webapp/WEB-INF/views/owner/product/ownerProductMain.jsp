@@ -31,12 +31,14 @@ request.setCharacterEncoding("utf-8"); %>
             "<br>" +
             "<input type='file' name='main_image' id='f_main_image' onchange='readURL(this, \"#preview" + cnt + "\")'/>" +
             "<img id='preview" + cnt + "' src='#' width='200' height='200' />"
+            +"<br>" 
           );
         } else {
           $("#d_file").append(
             "<br>" +
             "<input type='file' name='detail_image" + cnt + "' onchange='readURL(this, \"#preview" + cnt + "\")'/>" +
             "<img id='preview" + cnt + "' src='#' width='200' height='200' />"
+            +"<br>" 
           );
         }
         cnt++;
@@ -219,11 +221,11 @@ request.setCharacterEncoding("utf-8"); %>
             <div>
               <div class="op02">
                 <div class="op03">
-                <div class="op04">메인 이미지</div>
-                  <div><input type="file" name="imageFileName" id="imgInp" onchange = "readURL(this, '#preview');" /></div>
+                <div class="op04">메인 이미지 <br>
+                  <input type="file" name="imageFileName" id="imgInp" onchange = "readURL(this, '#preview');" /></div>
                   <div><img id = "preview" src ="#" width= 200 height=200 /></div>
                 </div> 
-                  <div>상세 이미지<input type="button"  value="파일 추가" onClick="fn_addFile()"/></div>
+                  <div class="op06"><input type="button" id="opbt" value="파일 추가" onClick="fn_addFile()"/> 상세 이미지</div>
                           
               <div>
                 <div id="d_file"></div>
