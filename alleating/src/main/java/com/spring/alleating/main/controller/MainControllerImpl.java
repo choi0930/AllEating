@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller ("mainController")
-	public class MainControllerImpl {
-		@RequestMapping(value= "/main.do", method = RequestMethod.GET)
-		public ModelAndView main(HttpServletRequest request, HttpServletResponse response) {
-
-			
+	public class MainControllerImpl implements MainController {
+	@Override	
+	@RequestMapping(value= "/main.do", method = RequestMethod.GET)
+		public ModelAndView main(HttpServletRequest request, HttpServletResponse response)throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			System.out.println(viewName); 
 			
