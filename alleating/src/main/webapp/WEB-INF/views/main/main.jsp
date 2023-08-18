@@ -9,9 +9,6 @@ request.setCharacterEncoding("utf-8"); %>
   <head>
     <meta charset="UTF-8" />
     <title>main.jsp</title>
-    <script src="http://code.jquery.com/jquery-lastest.js"></script>
-  </head>
-  <body>
     <style>
       .btn:hover {
         color: var(--bs-btn-hover-color);
@@ -19,15 +16,10 @@ request.setCharacterEncoding("utf-8"); %>
         border-color: #0c4a60;
       }
     </style>
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="UTF-8" />
-        <title>main.jsp</title>
-        <script src="http://code.jquery.com/jquery-lastest.js"></script>
-      </head>
-      <body>
-        
+  </head>
+  <body>
+    
+  
     
         <div class="main-mid">
           <!------ 카테고리 첫 번째 시작점 ------>
