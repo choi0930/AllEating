@@ -102,7 +102,7 @@ $(function(){$('.header_nav').hover(
   );
 });
   function fn_checkLogin(){
-    alert("로그인해주세요");
+    alert("로그인 후 이용 가능합니다.");
   }
     </script>
   </head>
@@ -178,7 +178,7 @@ $(function(){$('.header_nav').hover(
                 </a>
               </c:when>
               <c:otherwise>
-                <a href="#" id="user_icon">
+                <a href="javascript:fn_checkLogin()" id="user_icon">
                   <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
                 </a>
               </c:otherwise>

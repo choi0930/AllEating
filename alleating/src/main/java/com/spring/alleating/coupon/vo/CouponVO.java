@@ -1,5 +1,5 @@
 package com.spring.alleating.coupon.vo;
 
-public class couponVO {
+public class CouponVO {
 
 }
