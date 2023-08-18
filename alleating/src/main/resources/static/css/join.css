@@ -242,3 +242,6 @@ input[type='number']::-webkit-inner-spin-button {
 .ownerInfo{
 		display: none;
 	}
+	.owner_address{
+		display:none;
+	}

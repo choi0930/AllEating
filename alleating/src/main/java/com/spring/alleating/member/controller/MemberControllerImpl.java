@@ -147,7 +147,7 @@ public class MemberControllerImpl implements MemberController {
 	
 	//폼 이동
 	@RequestMapping(value="/member/*Form.do", method = {RequestMethod.GET})
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);

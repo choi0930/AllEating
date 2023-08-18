@@ -176,10 +176,13 @@ function fn_ownerInfoShow(){
 	if(joinType == 'owner'){
 		$('.ownerInfo').css('display','block');
 		$('.ownerInfoValue').attr('disabled', false);
+		$('.owner_address').css('display','block');
+		$('.user_address').css('display','none');
 	} else {
 		$('.ownerInfo').css('display','none');
 		$('.ownerInfoValue').attr('disabled', true);
 		$('.ownerInfoValue').val("");
+		$('.owner_address').css('display','none');
 	}	
 }
 
@@ -229,42 +232,155 @@ function fn_checkEamil(){
 	$('#checkEamil').css('display', 'block');
 }
 //유효성 검사
-function fn_loginGO(object){
+function fn_loginGO(){
 	var joinType = $('.joinCheck:checked').val()
+	
 	if(joinType == 'owner'){
 		if($('#companyName').val()==""){
 			alert('사업장명을 입력해주세요');
+			setTimeout(function(){
 			$('#companyName').focus();
 			return false;
+			});
 		}
 		if($('#companyNum').val()==""){
 			alert('사업장 번호를 입력해주세요');
+			setTimeout(function(){
 			$('#companyNum').focus();
+			});
 			return false;
 		}
 		if($('#companyTel1').val()==""){
 			alert('사업장 전화번호를 입력해주세요');
+			setTimeout(function(){
 			$('#companyTel1').focus();
+			});
 			return false;
 		}
 		if($('#companyTel2').val()==""){
 			alert('사업장 전화번호를 입력해주세요');
+			setTimeout(function(){
 			$('#companyTel2').focus();
+			});
 			return false;
 		}
 		if($('#companyTel3').val()==""){
 			alert('사업장 전화번호를 입력해주세요');
+			setTimeout(function(){
 			$('#companyTel3').focus();
+		});
 			return false;
 		}
 	}
-	if($('#userId').val == ""){
-		alert('아이디를 입력해주세요');
-		$('#userId').focus();
-		return false;
-	}
+		if($('#userId').val() == ""){
+			alert('아이디를 입력해주세요');
+			setTimeout(function(){
+			$('#userId').focus();
+			});
+			return false;
+		}
+		if($('#pwd1').val() == ""){
+			alert('비밀번호를 입력해주세요');
+			setTimeout(function(){
+			$('#pwd1').focus();
+		});
+			return false;
+		}
+		if($('#pwd2').val() == ""){
+			alert('비밀번호확인을 입력해주세요');
+			setTimeout(function(){
+			$('#pwd2').focus();
+			});
+			return false;
+		}
+		
+		if($('#join_name').val() == ""){
+			alert('이름을 입력해주세요');
+			setTimeout(function(){
+				$('#join_name').focus();
+			});
+			return false;
+		}
+		if($('#userEmail').val() == ""){
+			alert('이메일을 입력해주세요');
+			setTimeout(function(){
+			$('#userEmail').focus();
+			});
+			return false;
+		}	
+		if($('#selects').val() == ""){
+			alert('이메일을 입력해주세요');
+			setTimeout(function(){
+			$('#selects').focus();
+			});
+			return false;
+		}
+		if($('#email_check').val() == ""){
+			alert('이메일 인증을 해주세요');
+			setTimeout(function(){
+			$('#email_check').focus();
+			});
+			return false;
+		}
+		if($('#hp1').val() == ""){
+			alert('전화번호를 입력해주세요');
+			setTimeout(function(){
+			$('#hp1').focus();
+			});
+			return false;
+		}
+		if($('#hp2').val() == ""){
+			alert('전화번호를 입력해주세요');
+			setTimeout(function(){
+			$('#hp2').focus();
+			});
+			return false;
+		}
+		if($('#hp3').val() == ""){
+			alert('전화번호를 입력해주세요');
+			setTimeout(function(){
+			$('#hp3').focus();
+			});
+			return false;
+		}
+		if($('#sample6_postcode').val() == ""){
+			alert('주소를 입력해주세요');
+			setTimeout(function(){
+			$('.addressBtn').focus();
+			});
+			return false;
+		}
+		
+		if($('#sample6_detailAddress').val() == ""){
+			alert('상세주소를 입력해주세요');
+			setTimeout(function(){
+			$('#sample6_detailAddress').focus();
+		});
+			return false;
+		}
+		if(document.getElementById('check1')== false){
+			alert('이용약관 동의를 체크해주세요');
+			setTimeout(function(){
+			$('#check1').focus();
+		});
+			return false;
+		}
+		if(document.getElementById('check2')== false){
+			alert('이용약관 동의를 체크해주세요');
+			setTimeout(function(){
+			$('#check2').focus();
+			});
+			return false;
+		}
+		if(document.getElementById('check3')== false){
+			alert('개인정보 수집 이용·동의를 체크해주세요');
+			setTimeout(function(){
+			$('#check3').focus();
+		});
+			return false;
+		}
 
-	object.submit();
+	document.joinForm.submit();
 }
 </script>
 <link href="${contextPath}/css/join.css" rel="stylesheet" type="text/css" />
@@ -275,7 +391,7 @@ function fn_loginGO(object){
 </head>
 <body class="d-flex flex-column min-vh-100">
 <div class="input-form">
-<form method="post" action="${contextPath}/member/join.do">
+<form name = "joinForm" method="post" action="${contextPath}/member/join.do">
 <div id="join_input">
 	<div id="join_title">회원가입</div>
 	<div id="join_Basic_input_text">
@@ -407,7 +523,7 @@ function fn_loginGO(object){
 				<div class="input-group">
 					<input type="text" name="email1" id="userEmail" class="form_input form_email form-control join_input_box2" required/>
 					<span class="input-group-text">@</span> 
-					<input type="text" name="email2" id="selects"class="form_input form_email form-control join_input_box2" required="required"/>
+					<input type="text" name="email2" id="selects" class="form_input form_email form-control join_input_box2" required="required"/>
 				
 					<select name ="email3" id="email_select" class="form-select" onchange="fn_select();">
 						<option value="choose">이메일 선택</option>
@@ -456,11 +572,11 @@ function fn_loginGO(object){
 		</div>
 		<div class="form_value_box">
 			<div class="form_input_box">
-				<input type="text" class="form-control phone join_input_box2" name="hp1" maxlength='3' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+				<input type="text" class="form-control phone join_input_box2" name="hp1" id="hp1" maxlength='3' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
 				-
-				<input type="text" class="form-control phone join_input_box2" name="hp2" maxlength='4' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+				<input type="text" class="form-control phone join_input_box2" name="hp2" id="hp2" maxlength='4' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
 				-
-				<input type="text" class="form-control phone join_input_box2" name="hp3" maxlength='4' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+				<input type="text" class="form-control phone join_input_box2" name="hp3" id="hp3" maxlength='4' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
 			</div>
 			<span class="hideConditionText redText">전화번호를 입력해주세요</span>
 		</div>
@@ -490,14 +606,13 @@ function fn_loginGO(object){
 	<!--주소-->
 	<div class="form_info">
 		<div class="form_label_box">
-			<label class="form_label user_address">주소</label>
-			<label class="form_label owner_address">주소</label>
-			<span class="redText">*</span>
+			<label class="form_label user_address">주소<span class="redText">*</span></label>
+			<label class="form_label owner_address">사업장 주소<span class="redText">*</span></label>
 		</div>
 		<div class="form_value_box">
 			<div class="form_input_box">
-				<input type="text" class="form-control phone join_input_box2" id="sample6_postcode" name = "zipcode" placeholder="우편번호">
-				<button class="btn btn-outline-secondary" type="button" id="idCheckBtn" onclick="sample6_execDaumPostcode()">우편번호 찾기</button>
+				<input type="text" class="form-control phone join_input_box2" id="sample6_postcode" name = "zipcode" placeholder="우편번호" readonly>
+				<button class="btn btn-outline-secondary addressBtn" type="button" id="idCheckBtn" onclick="sample6_execDaumPostcode()">우편번호 찾기</button>
 			</div>
 		</div>
 		<div class="form_button_box"></div>
@@ -507,7 +622,7 @@ function fn_loginGO(object){
 		<div class="form_label_box"></div>
 		<div class="form_value_box">
 			<div class="form_input_box">
-				<input type="text" class="form-control join_input_box2" id="sample6_address" name="address" placeholder="주소"><br>
+				<input type="text" class="form-control join_input_box2" id="sample6_address" name="address" placeholder="주소" readonly><br>
 			</div>
 		</div>
 		<div class="form_button_box"></div>
@@ -517,8 +632,8 @@ function fn_loginGO(object){
 		<div class="form_label_box"></div>
 		<div class="form_value_box">
 			<div class="form_input_box">
-				<input type="text" class="form-control join_input_box2" id="sample6_extraAddress" name="address2" placeholder="참고항목">
 				<input type="text" class="form-control join_input_box2" id="sample6_detailAddress" name="address_detail" placeholder="상세주소">
+				<input type="text" class="form-control join_input_box2" id="sample6_extraAddress" name="address2" placeholder="참고항목" readonly>
 			</div>
 		</div>
 	</div>
@@ -583,7 +698,7 @@ function fn_loginGO(object){
 				</div>
 				<div class="form_agree_box">
 					<label class="form-check-label form_check_label">
-						<input type="checkbox" class="form-check-input testCheck"/><!--이용약관 동의(필수)-->
+						<input type="checkbox" id="check1"  class="form-check-input testCheck" required/><!--이용약관 동의(필수)-->
 						<div class="form_label_text">
 							<span>이용약관 동의</span>
 							<span>(필수)</span>
@@ -595,7 +710,7 @@ function fn_loginGO(object){
 				</div>
 				<div class="form_agree_box">
 					<label class="form-check-label form_check_label">
-						<input type="checkbox" class="form-check-input testCheck"/><!--개인정보 수집 이용 동의(필수)-->
+						<input type="checkbox" id="check3" class="form-check-input testCheck" required/><!--개인정보 수집 이용 동의(필수)-->
 						<div class="form_label_text">
 							<span>개인정보 수집·이용 동의</span>
 							<span>(필수)</span>
@@ -642,7 +757,7 @@ function fn_loginGO(object){
 				</div>
 				<div class="form_agree_box">
 					<label class="form-check-label form_check_label">
-						<input type="checkbox" class="form-check-input testCheck"/><!--14세이상 체크 (필수)-->
+						<input type="checkbox" id="check2"  class="form-check-input testCheck" required/><!--14세이상 체크 (필수)-->
 						<div class="form_label_text">
 							<span>본인은 만14세 이상입니다.</span>
 							<span>(필수)</span>
@@ -654,7 +769,7 @@ function fn_loginGO(object){
 	</div>
 	</div><!--이용약관 동의 끝-->
 	<div class="form_end">
-		<button type="button" class="join_end_btn" onclick="fn_loginGO(this.form)">
+		<button type="button" class="join_end_btn" onclick="fn_loginGO()">
 			<span id="join_btn_text">가입하기</span>
 		</button>
 	</div>
