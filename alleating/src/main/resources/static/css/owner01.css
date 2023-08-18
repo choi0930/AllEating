@@ -82,3 +82,20 @@ margin-left: 17px;
     border-top: 1px solid rgb(247, 247, 247);
     padding: 40px 0px;
 }
+
+#imgInp{
+	margin-top: 33px;
+}
+
+.op03{
+	display:flex;
+	margin-top: 35px;
+}
+
+.op06{
+	margin-top: 64px;
+}
+
+#opbt{
+	width: 103px;
+}
