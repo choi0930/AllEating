@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="com.spring.alleating.product.dao.productDAO">
+ <mapper namespace="com.spring.alleating.owner.product.dao.OwnerProductDAO">
 
 	<resultMap id="productResult" type="productVO">
 		
@@ -80,7 +80,7 @@
 	
 	
 	
-	<insert id="insertProductImg" parameterType="productImgVO"   >
+	<insert id="insertProductImg" parameterType="productImgVO">
 	    <![CDATA[
 		   insert into product_img (imgId, productId, fileName, img_type, creDate, reg_id)
 		   values(#{imgId}, #{productId}, #{fileName}, #{img_type}, #{creDate}, #{reg_id} )
