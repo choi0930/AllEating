@@ -58,7 +58,7 @@ request.setCharacterEncoding("utf-8"); %>
   <body>
     <div class="ownermain">
       <div class="ownertext01"><h4>상품등록</h4></div>
-      <form action="${contextPath}/owner/addproduct.do" method="post" encType="multipart/form-data">
+      <form action="${contextPath}/owner/addNewProduct.do" method="post" encType="multipart/form-data">
          <input type="hidden" name="deliveryType" value="normal"/>
         <div class="ownertext02">
           <div class="op01">
