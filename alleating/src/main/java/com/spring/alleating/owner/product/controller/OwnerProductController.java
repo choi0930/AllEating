@@ -12,8 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface OwnerProductController {
+	public ResponseEntity addNewProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
+	
+	public void  addNewProductImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
+
+}
+
 	
 
-	public ResponseEntity addProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
-	
-}

@@ -3,21 +3,29 @@ package com.spring.alleating.product.vo;
 import java.sql.Date;
 
 public class ProductImgVO {
-	private String imgId;
-	private String productId;
+	private int imgId;
+	private int productId;
 	private String fileName;
 	private String img_type;
 	private Date creDate;
-	public String getImgId() {
+	private String reg_id;
+	
+	public String getReg_id() {
+		return reg_id;
+	}
+	public void setReg_id(String reg_id) {
+		this.reg_id = reg_id;
+	}
+	public int getImgId() {
 		return imgId;
 	}
-	public void setImgId(String imgId) {
+	public void setImgId(int imgId) {
 		this.imgId = imgId;
 	}
-	public String getProductId() {
+	public int getProductId() {
 		return productId;
 	}
-	public void setProductId(String productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 	public String getFileName() {

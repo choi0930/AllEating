@@ -30,12 +30,10 @@
 	<!-- select -->
 
 	
-	<select id="selectByproductId" parameterType="String" resultType="int">
-		select * from product where productId = #{productId}
-	</select>
+
 	
 	<!-- insert -->
-	<insert id="insertProduct" parameterType="java.util.Map">
+	<insert id="insertNewProduct" parameterType="java.util.Map">
  			insert into product(
  			join_type, 
  			productId, 
@@ -78,7 +76,18 @@
  				#{productBrand},
  				#{productContentTitle},
  				#{productContent},
- 				#{creDate})
+ 				now())
  						
 	</insert>
+	
+	
+	
+	<insert id="insertProductImageFile" parameterType="productImgVO"   >
+	    <![CDATA[
+		   insert into product_img (imgId, productId, fileName, img_type, creDate, reg_id)
+		   values(#{imgId}, #{productId}, #{fileName}, #{img_type}, now(), #{reg_id} )
+		]]>
+	</insert> 
+	
+	
 </mapper>

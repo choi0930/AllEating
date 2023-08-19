@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class ProductVO {
 
 	private String join_type;
-	private String productId;
+	private int productId;
 	private String deliveryType;
 	private int deliveryPrice;
 	private String cateCode;
@@ -33,10 +33,10 @@ public class ProductVO {
 	public void setJoin_type(String join_type) {
 		this.join_type = join_type;
 	}
-	public String getProductId() {
+	public int getProductId() {
 		return productId;
 	}
-	public void setProductId(String productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 	public String getDeliveryType() {
@@ -147,6 +147,7 @@ public class ProductVO {
 	public void setCredate(Date credate) {
 		this.credate = credate;
 	}
+	
 	
 }
 
