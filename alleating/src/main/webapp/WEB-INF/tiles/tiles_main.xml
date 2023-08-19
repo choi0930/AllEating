@@ -56,9 +56,10 @@
 </definition>
 
 
-<definition name="/test" extends="baseLayout">
+<definition name="/test" extends="baseLayoutMainPage">
 <put-attribute name="title" value="test"/>
-<put-attribute name="body" value="/WEB-INF/views/product/test.jsp"/>      
+<put-attribute name="banner" value="/WEB-INF/views/common/mainBanner.jsp"/>
+<put-attribute name="body" value="/WEB-INF/views/choiHomeTest.jsp"/>      
 </definition>
 
 

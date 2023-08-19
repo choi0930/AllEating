@@ -54,6 +54,7 @@ background-color:#FFFFFF;
 border: 0px solid #bcbcbc;
 font-size:10px;}
 #content{
+    margin-top:50px;
 width:80%;
 padding:5px;
 
