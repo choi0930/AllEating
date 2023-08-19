@@ -59,14 +59,14 @@ request.setCharacterEncoding("utf-8"); %>
     <div class="ownermain">
       <div class="ownertext01"><h4>상품등록</h4></div>
       <form action="${contextPath}/owner/addNewProduct.do" method="post" encType="multipart/form-data">
-         <input type="hidden" name="deliveryType" value="normal"/>
-         <input type="hidden" name="join_type" value="owner"/>
-         <input type="hidden" name="deliveryPrice" value="3000"/>
+         <input type="hidden" id="deliveryType" name="deliveryType" value="normal"/>
+         <input type="hidden" id="join_type"  name="join_type" value="owner"/>
+         <input type="hidden" id="deliveryPrice" name="deliveryPrice" value="3000"/>
         <div class="ownertext02">
           <div class="op01">
             <div class="fixed_join">상품종류</div>
             <div class="ownerbox">
-              <select id="uclass" name="cateCode">
+              <select id="cateCode" name="cateCode">
                 <option selected>상품분류 선택</option>
                 <optgroup label="채소">
                   <option value="901001">친환경</option>
@@ -80,81 +80,81 @@ request.setCharacterEncoding("utf-8"); %>
                 </optgroup>
 
                 <optgroup label="과일 · 견과 · 쌀">
-                  <option value="902">국산과일</option>
-                  <option value="so">수입과일</option>
-                  <option value="so">쌀 · 잡곡</option>
-                  <option value="so">견과류</option>
-                  <option value="so">간편과일</option>
-                  <option value="so"></option>
+                  <option value="902001">국산과일</option>
+                  <option value="902002">수입과일</option>
+                  <option value="902003">쌀 · 잡곡</option>
+                  <option value="902004">견과류</option>
+                  <option value="902005">간편과일</option>
+                  <option value="902006"></option>
                 </optgroup>
 
                 <optgroup label="수산 · 해산 · 건어물">
-                  <option value="so">생선류</option>
-                  <option value="so">반건류</option>
-                  <option value="so">오징어 · 낙지 · 문어</option>
-                  <option value="so">새우 · 게 · 랍스터</option>
-                  <option value="so">해산물 · 조개류</option>
-                  <option value="so">김 · 미역 · 해조류</option>
-                  <option value="so">건어물 · 다시팩</option>
-                  <option value="so"></option>
+                  <option value="903001">생선류</option>
+                  <option value="903002">반건류</option>
+                  <option value="903003">오징어 · 낙지 · 문어</option>
+                  <option value="903004">새우 · 게 · 랍스터</option>
+                  <option value="903005">해산물 · 조개류</option>
+                  <option value="903006">김 · 미역 · 해조류</option>
+                  <option value="903007">건어물 · 다시팩</option>
+                  <option value="903008"></option>
                 </optgroup>
 
                 <optgroup label="정육 · 계란">
-                  <option value="so">국내산 · 소고기</option>
-                  <option value="so">수입산 · 소고기</option>
-                  <option value="so">돼지고기</option>
-                  <option value="so">닭 · 오리고기</option>
-                  <option value="so">양고기</option>
-                  <option value="so">양념육 · 돈까스</option>
-                  <option value="so">계란류</option>
-                  <option value="so"></option>
+                  <option value="904001">국내산 · 소고기</option>
+                  <option value="904002">수입산 · 소고기</option>
+                  <option value="904003">돼지고기</option>
+                  <option value="904004">닭 · 오리고기</option>
+                  <option value="904005">양고기</option>
+                  <option value="904006">양념육 · 돈까스</option>
+                  <option value="904007">계란류</option>
+                  <option value="904008"></option>
                 </optgroup>
 
                 <optgroup label="국 · 반찬 · 메인요리">
-                  <option value="so">국 · 탕 · 찌개</option>
-                  <option value="so">밀키트 · 메인요리</option>
-                  <option value="so">밑반찬</option>
-                  <option value="so">김치 · 젓갈 · 장류</option>
-                  <option value="so">베이컨 · 햄 · 통조림</option>
-                  <option value="so">두부 · 어묵 · 부침개</option>
-                  <option value="so"></option>
+                  <option value="905001">국 · 탕 · 찌개</option>
+                  <option value="905002">밀키트 · 메인요리</option>
+                  <option value="905003">밑반찬</option>
+                  <option value="905004">김치 · 젓갈 · 장류</option>
+                  <option value="905005">베이컨 · 햄 · 통조림</option>
+                  <option value="905006">두부 · 어묵 · 부침개</option>
+                  <option value="905007"></option>
                 </optgroup>
 
                 <optgroup label="샐러드 · 간편식">
-                  <option value="so">샐러드 · 닭가슴살</option>
-                  <option value="so">도시락 · 밥류</option>
-                  <option value="so">파스타 · 면류</option>
-                  <option value="so">떡볶이 · 튀김 · 순대</option>
-                  <option value="so">폭립 · 떡갈비 · 안주</option>
-                  <option value="so">죽 · 스프 · 카레</option>
-                  <option value="so">선식 · 시리얼</option>
-                  <option value="so"></option>
+                  <option value="906001">샐러드 · 닭가슴살</option>
+                  <option value="906002">도시락 · 밥류</option>
+                  <option value="906003">파스타 · 면류</option>
+                  <option value="906004">떡볶이 · 튀김 · 순대</option>
+                  <option value="906005">폭립 · 떡갈비 · 안주</option>
+                  <option value="906006">죽 · 스프 · 카레</option>
+                  <option value="906007">선식 · 시리얼</option>
+                  <option value="906008"></option>
                 </optgroup>
 
                 <optgroup label="면 · 양념 · 오일">
-                  <option value="so">파스타 · 면류</option>
-                  <option value="so">식초 · 소스 · 드레싱</option>
-                  <option value="so">양념 · 액젓 · 장류</option>
-                  <option value="so">식용유 · 참기름 · 오일</option>
-                  <option value="so">소금 · 설탕 · 향신료</option>
-                  <option value="so">밀가루 · 가루 · 믹스</option>
-                  <option value="so"></option>
+                  <option value="907001">파스타 · 면류</option>
+                  <option value="907002">식초 · 소스 · 드레싱</option>
+                  <option value="907003">양념 · 액젓 · 장류</option>
+                  <option value="907004">식용유 · 참기름 · 오일</option>
+                  <option value="907005">소금 · 설탕 · 향신료</option>
+                  <option value="907006">밀가루 · 가루 · 믹스</option>
+                  <option value="907007"></option>
                 </optgroup>
 
                 <optgroup label="생수 · 음료 · 우유 · 커피">
-                  <option value="so">생수 · 탄산수</option>
-                  <option value="so">음료 · 주스</option>
-                  <option value="so">우유 · 두유 · 요거트</option>
-                  <option value="so">커피</option>
+                  <option value="908001">생수 · 탄산수</option>
+                  <option value="908002">음료 · 주스</option>
+                  <option value="908003">우유 · 두유 · 요거트</option>
+                  <option value="908004">커피</option>
                 </optgroup>
               </select>
             </div>
             <div class="nonebox"></div>
           </div> 
           <div class="op01">
-            <div class="fixed_join" name="productBrand">브랜드명</div>
+            <div class="fixed_join" >브랜드명</div>
             <div class="ownerbox">
-              <input name="onwerproduct_brand" type="text" size="20" />
+              <input id="productBrand" name="productBrand" type="text" size="20" />
             </div>
 
           </div>   
@@ -163,16 +163,16 @@ request.setCharacterEncoding("utf-8"); %>
 
           <div class="op01">
        
-            <div class="fixed_join" name="productName">상품이름</div>
+            <div class="fixed_join" >상품이름</div>
             <div class="ownerbox">
-              <input name="onwerproduct_name" type="text" size="20" />
+              <input id="productName" name="productName" type="text" size="20" />
             </div>
             <div class="nonebox"></div>
           </div>
           <div class="op01">
-            <div class="fixed_join" name="productPrice">상품가격</div>
+            <div class="fixed_join" >상품가격</div>
             <div class="ownerbox">
-              <input name="onwerproduct_price" type="text" size="20" />
+              <input id="productPrice" name="productPrice" type="text" size="20" />
             </div>
             <div class="dodo"> 원
               <input type="checkbox" name="checkBox" id="salecb" />할인율 입력
@@ -181,20 +181,20 @@ request.setCharacterEncoding("utf-8"); %>
           <div class="op10">
              <div class="fixed_join">할인율</div>
                 <div class="ownerbox">
-                 <input name="onwerproduct_unit" id="saletd" type="text" name="productDiscount" size="20"/>
+                 <input name="onwerproduct_unit" id="productDiscount" type="text" name="productDiscount" size="20"/>
                 </div>
                  <div class="dodo">%</div>  
           </div> 
           <div class="op01">
-            <div class="fixed_join" name="productUnit">판매단위</div>
+            <div class="fixed_join" >판매단위</div>
             <div class="ownerbox">
-              <input name="onwerproduct_unit" type="text" size="20" />
+              <input id="productUnit" name="productUnit" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join" name="productPackType">포장타입</div>
+            <div class="fixed_join" >포장타입</div>
             <div class="ownerbox">
-              <select id="uclass">
+              <select id="productPackType" name="productPackType">
                 <option value="qwe">냉동</option>
                 <option value="qwe">냉장</option>
                 <option value="qwe">상온</option>
@@ -202,44 +202,44 @@ request.setCharacterEncoding("utf-8"); %>
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join" name="productWeight">중량/용량</div>
+            <div class="fixed_join" >중량/용량</div>
             <div class="ownerbox">
-              <input name="onwerproduct_weight" type="text" size="20" />
+              <input id="productWeight"name="productWeight" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
             <div class="fixed_join" name="productOrigin">원산지</div>
             <div class="ownerbox">
-              <input name="onwerproduct_origin" type="text" size="20" />
+              <input id="productOrigin" name="productOrigin" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
             <div class="fixed_join" name="productTotal">총수량</div>
 
             <div class="ownerbox">
-              <input name="onwerproduct_quantity" type="text" size="20" />
+              <input id="productTotal" name="productTotal" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join" name="productExpireDate">유통기한</div>
+            <div class="fixed_join" >유통기한</div>
             <div class="ownerbox">
-              <input name="onwerproduct_expiration" type="text" size="20" />
+              <input id="productExpireDate" name="productExpireDate" type="text" size="20" />
             </div>
             <div class="dodo">일</div>
           </div>
 
           <div class="op01">
-            <div class="fixed_join" name="productContentType">소제목</div>
+            <div class="fixed_join" >소제목</div>
             <div class="ownerbox">
-              <input name="onwerproduct_productContentType" type="text" size="20" />
+              <input id="productContentType" name="productContentType" type="text" size="20" />
             </div>
         
           </div>
   
           <div class="op01">
-            <div class="fixed_join" name="productContent">내용</div>
+            <div class="fixed_join" >내용</div>
             <div class="ownerbox">
-              <input name="onwerproduct_productContent" type="text" size="20" />
+              <input id="productContent" name="productContent" type="text" size="20" />
             </div>
 
 
@@ -253,7 +253,7 @@ request.setCharacterEncoding("utf-8"); %>
               <div class="op02">
                 <div class="op03">
                 <div class="op04">메인 이미지 <br>
-                  <input type="file" name="imageFileName" id="imgInp" onchange = "readURL(this, '#preview');" /></div>
+                  <input type="file" name="imageFileName" id="imageFileName" onchange = "readURL(this, '#preview');" /></div>
                   <div><img id = "preview" src ="#" width= 200 height=200 /></div>
                 </div> 
                   <div class="op06"><input type="button" id="opbt" value="파일 추가" onClick="fn_addFile()"/> 상세 이미지</div>
