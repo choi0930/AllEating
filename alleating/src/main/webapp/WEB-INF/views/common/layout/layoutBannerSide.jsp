@@ -45,7 +45,7 @@ border:0px solid #bcbcbc;
 }
 
 #sidebar-left{
-    margin-top: 10px;
+    margin-top: 50px;
 width:20%;
 height:700px;
 padding:5px;
@@ -83,6 +83,9 @@ background-color:#E1DDDB;}
     height: 1000px;
     border-color: #0C4A60;
 }
+#banner{
+    margin-top: 70px;
+}
 </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
@@ -95,8 +98,8 @@ background-color:#E1DDDB;}
         <tiles:insertAttribute name="header"/>
     </div>
     <div id="layouts">
-        <div id="category-btn">
-            <tiles:insertAttribute name="categoryGroup"/>
+        <div id="banner">
+            <tiles:insertAttribute name="banner"/>
         </div>
         <div id="contentLayout">
             <div id="sidebar-left">

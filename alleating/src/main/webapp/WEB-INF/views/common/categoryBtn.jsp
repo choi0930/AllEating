@@ -63,7 +63,7 @@
     #btn_category_group_title{
         width: 500px;
         margin: 0 auto;
-        margin-top: 50px;
+       
         font-weight: 500;
         font-size: 28px;
         color: rgb(51, 51, 51);

@@ -10,6 +10,11 @@
 <head>
 <meta charset="UTF-8">
 <title>배송 정보</title>
+<script>
+  function fn_goPay_02(){
+    location.href="/order/pay_02.do";
+  }
+</script>
 </head>
 
 <body>
@@ -32,21 +37,21 @@
       <tr>
         <td>10:00~16:00</td>
         <td rowspan="3">예약 마감</td>
-        <td><input type="checkbox" name="checkBox" />예약가능</td>
-        <td><input type="checkbox" name="checkBox" />예약가능</td>
-        <td><input type="checkbox" name="checkBox" />예약가능</td>
+        <td><input type="radio" name="checkBox" />예약가능</td>
+        <td><input type="radio" name="checkBox" />예약가능</td>
+        <td><input type="radio" name="checkBox" />예약가능</td>
       </tr>
       <tr>
         <td>15:00~19:00</td>
-        <td><input type="checkbox" name="checkBox" />예약가능</td>
-        <td><input type="checkbox" name="checkBox" />예약가능</td>
-        <td><input type="checkbox" name="checkBox" />예약가능</td>
+        <td><input type="radio" name="checkBox" />예약가능</td>
+        <td><input type="radio" name="checkBox" />예약가능</td>
+        <td><input type="radio" name="checkBox" />예약가능</td>
       </tr>
       <tr>
         <td>17:00~21:00</td>
-        <td><input type="checkbox" name="checkBox" />예약가능</td>
-        <td><input type="checkbox" name="checkBox" />예약가능</td>
-        <td><input type="checkbox" name="checkBox" />예약가능</td>
+        <td><input type="radio" name="checkBox" />예약가능</td>
+        <td><input type="radio" name="checkBox" />예약가능</td>
+        <td><input type="radio" name="checkBox" />예약가능</td>
       </tr>
      </table>     
     </div>
@@ -88,7 +93,7 @@
           </div>
      </div>
    <div class="dvbtbox">      
-   <button type="button" class="pay_01LastBtn">
+   <button type="button" class="pay_01LastBtn" onclick="fn_goPay_02()">
             주문하기
    </button>
    </div>       

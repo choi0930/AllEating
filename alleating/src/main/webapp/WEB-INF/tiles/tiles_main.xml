@@ -39,10 +39,10 @@
 <put-attribute name="quickMenu" value="/WEB-INF/views/common/quickMenu.jsp" />
 </definition>
 
-<definition name="baseLayoutProduct" template="/WEB-INF/views/common/layout/layoutProduct.jsp">
+<definition name="baseLayoutBannerSide" template="/WEB-INF/views/common/layout/layoutBannerSide.jsp">
 <put-attribute name="title" value=""/>
 <put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
-<put-attribute name="categoryGroup" value="/WEB-INF/views/common/categoryBtn.jsp"/>
+<put-attribute name="banner" value=""/>
 <put-attribute name="side" value="/WEB-INF/views/common/sideMenu.jsp"/>  
 <put-attribute name="body" value=""/>
 <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
