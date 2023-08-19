@@ -39,12 +39,4 @@ import com.spring.alleating.product.vo.ProductImgVO;
 			return fileList;
 		}
 		
-		private void deleteFile(String fileName) {
-			File file =new File(PRODUCT_IMAGE_REPO_PATH+"\\"+fileName);
-			try{
-				file.delete();
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
 }
