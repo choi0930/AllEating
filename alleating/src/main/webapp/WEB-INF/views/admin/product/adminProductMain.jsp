@@ -9,6 +9,25 @@
 <html>
 <head>
     <title>관리자 상품관리 페이지</title>
+    <script>
+        $(document).ready(function(){
+  
+  $('ul.tabs li').click(function(){
+    var tab_id = $(this).attr('data-tab');
+
+    $('ul.tabs li').removeClass('active');
+    $('.tab-content').removeClass('active');
+
+    $(this).addClass('active');
+    $("#"+tab_id).addClass('active');
+  })
+
+})
+
+function fn_goAddProduct(){
+    location.href="/admin/adminAddProductForm.do";
+}
+    </script>
     <style>
         /* 탭 스타일 */
         .tabs {
@@ -37,23 +56,6 @@
             width: 840px;
             margin: 0 auto;
         }
-    </style>
-    <script>
-        $(document).ready(function(){
-  
-  $('ul.tabs li').click(function(){
-    var tab_id = $(this).attr('data-tab');
-
-    $('ul.tabs li').removeClass('active');
-    $('.tab-content').removeClass('active');
-
-    $(this).addClass('active');
-    $("#"+tab_id).addClass('active');
-  })
-
-})
-    </script>
-    <style>
         .adminProductMain_status{
 
             display: flex;
@@ -157,7 +159,7 @@
                                 <option selected>전체</option>
                                 <option>판매중</option>
                                 <option>판매종료</option>
-                                <option>판매종료</option>
+                                <option>승인요청</option>
                             </select>
                         </div>
                     </div>
@@ -209,7 +211,7 @@
                                 <td><div class="overflowText">[AllEating]저탄소 샤인머스캣</div></td>
                                 <td>50,000원</td>
                                 <td class="redText">40,000원</td>
-                                <td >상품승인요청</td>
+                                <td >승인요청</td>
                                 <td >올잇팅</td>
                                 <td>2023-08-10</td>
                             </tr> 
@@ -218,7 +220,7 @@
                                 <td><div class="overflowText">[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣</div></td>
                                 <td>50,000원</td>
                                 <td class="redText">40,000원</td>
-                                <td>상품승인요청</td>
+                                <td>승인요청</td>
                                 <td>올잇팅</td>
                                 <td>2023-08-10</td>
                             </tr> 
@@ -259,7 +261,7 @@
         </div>
         <div id="tab-2" class="tab-content ${selectedTab == 'tab-2' ? 'active' : ''}">
             <div class="tab_contents">
-                <button id="addProduct_BTN">등록하기</button>
+                <button id="addProduct_BTN" onclick="fn_goAddProduct()">등록하기</button>
                 <div class="adminProductMain_searchBarArea"> <!--상품관리 상단-->
                     <div class="adminProductMain_status"><!--상품관리 판매상태 선택 select박스-->
                         <div class="statusText">

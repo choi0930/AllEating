@@ -8,5 +8,8 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/product/adminProductMain.jsp"/>      
 	</definition>
 	
-	
+	<definition name="/admin/adminAddProductForm" extends="baseLayout2">
+		<put-attribute name="title" value="관리자 상품 추가페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/product/adminAddProductForm.jsp"/>      
+	</definition>
 </tiles-definitions>
