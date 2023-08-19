@@ -45,6 +45,7 @@ border:0px solid #bcbcbc;
 }
 
 #sidebar-left{
+    margin-top:50px;
 width:20%;
 height:700px;
 padding:5px;

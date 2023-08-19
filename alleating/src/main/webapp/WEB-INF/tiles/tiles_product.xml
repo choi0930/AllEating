@@ -12,8 +12,9 @@
 </definition>
 
 
-<definition name="/product/product_01" extends="baseLayoutProduct">
+<definition name="/product/product_01" extends="baseLayoutBannerSide">
 <put-attribute name="title" value="목록 상세페이지"/>
+<put-attribute name="banner" value="/WEB-INF/views/common/categoryBtn.jsp"/>
 <put-attribute name="body" value="/WEB-INF/views/product/product_01.jsp"/>      
 </definition>
 

@@ -5,23 +5,27 @@
 "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	<definition name="/myPage/myPage_01" extends="baseLayout2">
+	<definition name="/myPage/myPage_01" extends="baseLayoutBannerSide">
 		<put-attribute name="title" value="마이페이지 주문내역"/>
+		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_01.jsp"/>      
 	</definition>
 	
-	<definition name="/myPage/myPage_02" extends="baseLayout2">
+	<definition name="/myPage/myPage_02" extends="baseLayoutBannerSide">
 		<put-attribute name="title" value="마이페이지 주문내역 상세페이지"/>
+		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_02.jsp"/>      
 	</definition>
 	
-	<definition name="/myPage/myPage_05" extends="baseLayout2">
+	<definition name="/myPage/myPage_05" extends="baseLayoutBannerSide">
 		<put-attribute name="title" value="마이페이지 찜한상품"/>
+		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_05.jsp"/>      
 	</definition>
 	
-	<definition name="/myPage/productCancelForm" extends="baseLayout2">
+	<definition name="/myPage/productCancelForm" extends="baseLayoutBannerSide">
 		<put-attribute name="title" value="마이페이지 주문취소"/>
+		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/productCancelForm.jsp"/>      
 	</definition>
 </tiles-definitions>
