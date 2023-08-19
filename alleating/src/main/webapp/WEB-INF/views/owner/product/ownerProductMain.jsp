@@ -253,8 +253,7 @@ request.setCharacterEncoding("utf-8"); %>
               <div class="op02">
                 <div class="op03">
                 <div class="op04">메인 이미지 <br>
-                  <input type="file" name="imageFileName" id="imageFileName" onchange = "readURL(this, '#preview');" /></div>
-                  <div><img id = "preview" src ="#" width= 200 height=200 /></div>
+                  
                 </div> 
                   <div class="op06"><input type="button" id="opbt" value="파일 추가" onClick="fn_addFile()"/> 상세 이미지</div>
                           
