@@ -89,6 +89,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			int productId = ownerProductService.addNewProduct(newProductMap);
+			System.out.println(productId);
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ProductImgVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getFileName();
@@ -98,7 +99,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 				}
 			}
 			message= "<script>";
-			message += " alert('새상품을 추가했습니다.');";
+			message += " alert('상품이 등록되었습니다.');";
 			message +=" location.href='"+multipartRequest.getContextPath()+"/owner/productMain.do';";
 			message +=("</script>");
 		}catch(Exception e) {

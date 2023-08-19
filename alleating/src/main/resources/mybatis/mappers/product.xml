@@ -5,7 +5,7 @@
  <mapper namespace="com.spring.alleating.product.dao.productDAO">
 
 	<resultMap id="productResult" type="productVO">
-		<result property="jointype" column="jointype" />
+		
 		<result property="productId" column="productId" />
 		<result property="deliveryType" column="deliveryType" />
 		<result property="deliveryPrice" column="deliveryPrice" />
@@ -25,17 +25,14 @@
 		<result property="productContentTitle" column="productContentTitle"/>
 		<result property="productContent" column="productContent"/>
 		<result property="creDate" column="creDate"/>
-		
+		<result property="name" column="name"/>
+		<result property="jointype" column="jointype" />
 	</resultMap>
 	<!-- select -->
-
-	
-
 	
 	<!-- insert -->
 	<insert id="insertNewProduct" parameterType="java.util.Map">
  			insert into product(
- 			join_type, 
  			productId, 
  			deliveryType,
  			deliveryPrice,
@@ -50,13 +47,13 @@
  			productOrigin,
  			productTotal,
  			productExpireDate,
- 			
  			productBrand,
  			productContentTitle,
  			productContent,
- 			creDate
+ 			creDate,
+ 			name,
+ 			join_type
  			) values(
- 				#{join_type}, 
  				#{productId}, 
  				#{deliveryType}, 
  				#{deliveryPrice}, 
@@ -72,20 +69,21 @@
  				#{productOrigin},
  				#{productTotal},
  				#{productExpireDate},
- 			
  				#{productBrand},
  				#{productContentTitle},
  				#{productContent},
- 				now())
+ 				#{creDate},
+ 				 #{name},
+ 				#{join_type} )
  						
 	</insert>
 	
 	
 	
-	<insert id="insertProductImageFile" parameterType="productImgVO"   >
+	<insert id="insertProductImg" parameterType="productImgVO"   >
 	    <![CDATA[
 		   insert into product_img (imgId, productId, fileName, img_type, creDate, reg_id)
-		   values(#{imgId}, #{productId}, #{fileName}, #{img_type}, now(), #{reg_id} )
+		   values(#{imgId}, #{productId}, #{fileName}, #{img_type}, #{creDate}, #{reg_id} )
 		]]>
 	</insert> 
 	

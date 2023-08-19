@@ -26,35 +26,43 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 		double num = Math.random();
 		int productId = (int)(num * 899999);
 		
+		int productPrice = (int) newProductMap.get("productPrice");
+		int productDiscount =(int) newProductMap.get("productDiscount"); 
+		double productSalesPrice = productPrice * (productDiscount / 100.0);
+		
+		String name= (String) newProductMap.get("id");
+	
+		
+		newProductMap.put("productPrice", productPrice);
+		newProductMap.put("productDiscount", productDiscount);
+		newProductMap.put("productSalesPrice", productSalesPrice);
+		newProductMap.put("name", name);
+		
+				
 		ownerProductDAO.insertNewProduct(newProductMap);
-		ArrayList<ProductImgVO> imageFileList = (ArrayList)newProductMap.get("imageFileList");
+		ArrayList<ProductImgVO> imageFileList = (ArrayList<ProductImgVO>)newProductMap.get("imageFileList");
 		for(ProductImgVO productImgVO : imageFileList) {
 			productImgVO.setProductId(productId);
 		}
-	
 		
 		
-		ownerProductDAO.insertProductImageFile(imageFileList);
+		ownerProductDAO.insertProductImg(imageFileList);
 		return productId;
 	}
 	
 	
-	@Override
-	public Map productDetail(int productId) throws Exception {
-		Map productMap = new HashMap();
-		ProductVO productVO=ownerProductDAO.selectProductDetail(productId);
-		List imageFileList =ownerProductDAO.selectProductImageFileList(productId);
-		productMap.put("product", productVO);
-		productMap.put("imageFileList", imageFileList);
-		return productMap;
-	}
-	
-	@Override
-	public List productImageFile(int productId) throws Exception{
-		List imageList =ownerProductDAO.selectProductImageFileList(productId);
-		return imageList;
-	}
-	
+	/*
+	 * @Override public Map productDetail(int productId) throws Exception { Map
+	 * productMap = new HashMap(); ProductVO
+	 * productVO=ownerProductDAO.selectProductDetail(productId); List imageFileList
+	 * =ownerProductDAO.selectProductImageFileList(productId);
+	 * productMap.put("product", productVO); productMap.put("imageFileList",
+	 * imageFileList); return productMap; }
+	 * 
+	 * @Override public List productImageFile(int productId) throws Exception{ List
+	 * imageList =ownerProductDAO.selectProductImageFileList(productId); return
+	 * imageList; }
+	 */
 
 	
 	
@@ -65,7 +73,7 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	
 	@Override
 	public void addNewProductImg(List imageFileList) throws Exception {
-		ownerProductDAO.insertProductImageFile(imageFileList);
+		ownerProductDAO.insertProductImg(imageFileList);
 		
 	}
 

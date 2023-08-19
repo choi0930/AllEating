@@ -14,7 +14,10 @@ import com.spring.alleating.product.vo.ProductVO;
 @Repository("ownerproductDAO")
 public interface OwnerProductDAO {
 	public int insertNewProduct(Map newProductMap) throws DataAccessException;
-	public void insertProductImageFile(List fileList)  throws DataAccessException;
-	public ProductVO selectProductDetail(int productId) throws DataAccessException;
-	public List selectProductImageFileList(int productId) throws DataAccessException;
+	public void insertProductImg(List fileList)  throws DataAccessException;
+	/*
+	 * public ProductVO selectProductDetail(int productId) throws
+	 * DataAccessException; public List selectProductImageFileList(int productId)
+	 * throws DataAccessException;
+	 */
 }

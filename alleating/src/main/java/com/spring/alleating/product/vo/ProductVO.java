@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component("productVO")
 public class ProductVO {
 
-	private String join_type;
+	
 	private int productId;
 	private String deliveryType;
 	private int deliveryPrice;
@@ -27,6 +27,16 @@ public class ProductVO {
 	private String productContentTitle;
 	private String productContent;
 	private Date credate;
+    private String name;
+    private String join_type;
+    
+    
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getJoin_type() {
 		return join_type;
 	}

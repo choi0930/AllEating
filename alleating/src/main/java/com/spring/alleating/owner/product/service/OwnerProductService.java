@@ -9,8 +9,11 @@ import org.springframework.dao.DataAccessException;
 
 public interface OwnerProductService {
 	public int  addNewProduct(Map newProductMap) throws Exception;
-	public Map productDetail(int productId) throws Exception;
-	public List productImageFile(int productId) throws Exception;
+
+	/*
+	 * public Map productDetail(int productId) throws Exception; public List
+	 * productImageFile(int productId) throws Exception;
+	 */
 	public void addNewProductImg(List imageFileList) throws Exception;
 	
 	

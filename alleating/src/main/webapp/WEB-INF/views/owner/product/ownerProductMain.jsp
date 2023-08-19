@@ -60,11 +60,13 @@ request.setCharacterEncoding("utf-8"); %>
       <div class="ownertext01"><h4>상품등록</h4></div>
       <form action="${contextPath}/owner/addNewProduct.do" method="post" encType="multipart/form-data">
          <input type="hidden" name="deliveryType" value="normal"/>
+         <input type="hidden" name="join_type" value="owner"/>
+         <input type="hidden" name="deliveryPrice" value="3000"/>
         <div class="ownertext02">
           <div class="op01">
             <div class="fixed_join">상품종류</div>
             <div class="ownerbox">
-              <select id="uclass">
+              <select id="uclass" name="cateCode">
                 <option selected>상품분류 선택</option>
                 <optgroup label="채소">
                   <option value="901001">친환경</option>
@@ -148,17 +150,27 @@ request.setCharacterEncoding("utf-8"); %>
               </select>
             </div>
             <div class="nonebox"></div>
-          </div>
+          </div> 
+          <div class="op01">
+            <div class="fixed_join" name="productBrand">브랜드명</div>
+            <div class="ownerbox">
+              <input name="onwerproduct_brand" type="text" size="20" />
+            </div>
+
+          </div>   
+
+
+
           <div class="op01">
        
-            <div class="fixed_join">상품이름</div>
+            <div class="fixed_join" name="productName">상품이름</div>
             <div class="ownerbox">
               <input name="onwerproduct_name" type="text" size="20" />
             </div>
             <div class="nonebox"></div>
           </div>
           <div class="op01">
-            <div class="fixed_join">상품가격</div>
+            <div class="fixed_join" name="productPrice">상품가격</div>
             <div class="ownerbox">
               <input name="onwerproduct_price" type="text" size="20" />
             </div>
@@ -169,18 +181,18 @@ request.setCharacterEncoding("utf-8"); %>
           <div class="op10">
              <div class="fixed_join">할인율</div>
                 <div class="ownerbox">
-                 <input name="onwerproduct_unit" id="saletd" type="text" size="20"/>
+                 <input name="onwerproduct_unit" id="saletd" type="text" name="productDiscount" size="20"/>
                 </div>
                  <div class="dodo">%</div>  
           </div> 
           <div class="op01">
-            <div class="fixed_join">판매단위</div>
+            <div class="fixed_join" name="productUnit">판매단위</div>
             <div class="ownerbox">
               <input name="onwerproduct_unit" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join">포장타입</div>
+            <div class="fixed_join" name="productPackType">포장타입</div>
             <div class="ownerbox">
               <select id="uclass">
                 <option value="qwe">냉동</option>
@@ -190,31 +202,48 @@ request.setCharacterEncoding("utf-8"); %>
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join">중량/용량</div>
+            <div class="fixed_join" name="productWeight">중량/용량</div>
             <div class="ownerbox">
               <input name="onwerproduct_weight" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join">원산지</div>
+            <div class="fixed_join" name="productOrigin">원산지</div>
             <div class="ownerbox">
               <input name="onwerproduct_origin" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join">총수량</div>
+            <div class="fixed_join" name="productTotal">총수량</div>
 
             <div class="ownerbox">
               <input name="onwerproduct_quantity" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join">유통기한</div>
+            <div class="fixed_join" name="productExpireDate">유통기한</div>
             <div class="ownerbox">
               <input name="onwerproduct_expiration" type="text" size="20" />
             </div>
             <div class="dodo">일</div>
           </div>
+
+          <div class="op01">
+            <div class="fixed_join" name="productContentType">소제목</div>
+            <div class="ownerbox">
+              <input name="onwerproduct_productContentType" type="text" size="20" />
+            </div>
+        
+          </div>
+  
+          <div class="op01">
+            <div class="fixed_join" name="productContent">내용</div>
+            <div class="ownerbox">
+              <input name="onwerproduct_productContent" type="text" size="20" />
+            </div>
+
+
+
         </div>
 
         <div class="tab_content" id="tab7">
@@ -232,10 +261,26 @@ request.setCharacterEncoding("utf-8"); %>
               <div>
                 <div id="d_file"></div>
               </div>
+
+           
+
             </div>
+
+
+
           </div>
         </div>
         </div>
+
+
+
+        
+        
+        </div>
+
+
+
+
         <div class="form_end">
           <button class="join_end_btn" onclick="fn_loginGO()">
             <span id="join_btn_text">등록하기</span>
