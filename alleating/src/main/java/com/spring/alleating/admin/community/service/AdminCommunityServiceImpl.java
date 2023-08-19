@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.alleating.admin.community.dao.AdminCommunityDAO;
 
-@Service("adminCommunityService")
 public class AdminCommunityServiceImpl {
-	@Autowired
-	AdminCommunityDAO adminCommunityDAO;
+
 	
 }

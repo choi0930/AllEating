@@ -24,5 +24,14 @@ public class AdminProductControllerImpl implements AdminProductController {
 		mav.setViewName(viewName);
 		return mav;
 	}
-
+	
+	@RequestMapping(value="/admin/*Form.do",method = RequestMethod.GET)
+	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		HttpSession session = request.getSession();
+		session.setAttribute("selectedTab", "tab-2");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
 }
