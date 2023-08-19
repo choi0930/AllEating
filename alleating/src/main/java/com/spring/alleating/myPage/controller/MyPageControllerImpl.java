@@ -52,6 +52,26 @@ public class MyPageControllerImpl {
 		return mav;
 	}
 	
+	@RequestMapping(value="/myPage/productExchange.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView productExchange(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/myPage/productReturn.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView productReturn(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 	@RequestMapping(value="/myPage/*Form.do", method = {RequestMethod.GET})
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");

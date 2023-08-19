@@ -12,7 +12,7 @@ request.setCharacterEncoding("utf-8"); %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>main.jsp</title>
+    <title>취소 신청</title>
   </head>
   <body>
     <div class="proC">
