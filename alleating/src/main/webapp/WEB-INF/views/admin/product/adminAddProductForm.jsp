@@ -53,12 +53,16 @@ request.setCharacterEncoding("utf-8"); %>
       reader.readAsDataURL(input.files[0]);
     }
   }
+
+  function fn_addAdminProduct(){
+    
+  }
     </script>
   </head>
   <body>
     <div class="ownermain">
       <div class="ownertext01"><h4>상품등록</h4></div>
-      <form action="${contextPath}/owner/addNewProduct.do" method="post" encType="multipart/form-data">
+      <form action="${contextPath}/admin/addNewProduct.do" method="post" encType="multipart/form-data">
          <input type="hidden" name="deliveryType" value="reserve"/>
          <input type="hidden" name="join_type" value="admin"/>
          <input type="hidden" name="deliveryPrice" value="3000"/>
@@ -245,10 +249,11 @@ request.setCharacterEncoding("utf-8"); %>
             <div>
               <div class="op02">
                 <div class="op03">
+                  <!--
                 <div class="op04">메인 이미지 <br>
                   <input type="file" name="fileName" id="imgInp" onchange = "readURL(this, '#preview');" /></div>
                   <div><img id = "preview" src ="#" width= 200 height=200 /></div>
-                </div> 
+                </div>--> 
                   <div class="op06"><input type="button" id="opbt" value="파일 추가" onClick="fn_addFile()"/> 상세 이미지</div>
                           
               <div>
@@ -275,7 +280,7 @@ request.setCharacterEncoding("utf-8"); %>
 
 
         <div class="form_end">
-          <button class="join_end_btn" onclick="fn_loginGO()">
+          <button class="join_end_btn" onclick="fn_addAdminProduct()">
             <span id="join_btn_text">등록하기</span>
           </button>
         </div>
