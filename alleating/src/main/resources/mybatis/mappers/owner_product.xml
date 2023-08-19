@@ -80,7 +80,7 @@
 	
 	
 	
-	<insert id="insertProductImg" parameterType="productImgVO"   >
+	<insert id="insertProductImg" parameterType="productImgVO">
 	    <![CDATA[
 		   insert into product_img (imgId, productId, fileName, img_type, creDate, reg_id)
 		   values(#{imgId}, #{productId}, #{fileName}, #{img_type}, #{creDate}, #{reg_id} )

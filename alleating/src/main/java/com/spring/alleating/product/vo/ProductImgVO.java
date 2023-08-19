@@ -5,7 +5,6 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 @Component("productImgVO")
-
 public class ProductImgVO {
 	private int imgId;
 	private int productId;

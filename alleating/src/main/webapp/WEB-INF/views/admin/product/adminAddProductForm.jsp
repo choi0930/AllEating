@@ -195,44 +195,44 @@ request.setCharacterEncoding("utf-8"); %>
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join" name="productWeight">중량/용량</div>
+            <div class="fixed_join">중량/용량</div>
             <div class="ownerbox">
-              <input name="onwerproduct_weight" type="text" size="20" />
+              <input  name="productWeight" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join" name="productOrigin">원산지</div>
+            <div class="fixed_join" >원산지</div>
             <div class="ownerbox">
-              <input name="onwerproduct_origin" type="text" size="20" />
+              <input name="productOrigin" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join" name="productTotal">총수량</div>
+            <div class="fixed_join" >총수량</div>
 
             <div class="ownerbox">
-              <input name="onwerproduct_quantity" type="text" size="20" />
+              <input name="productTotal" type="text" size="20" />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join" name="productExpireDate">유통기한</div>
+            <div class="fixed_join" >유통기한</div>
             <div class="ownerbox">
-              <input name="onwerproduct_expiration" type="text" size="20" />
+              <input name="productExpireDate" type="text" size="20" />
             </div>
             <div class="dodo">일</div>
           </div>
 
           <div class="op01">
-            <div class="fixed_join" name="productContentType">소제목</div>
+            <div class="fixed_join" >소제목</div>
             <div class="ownerbox">
-              <input name="onwerproduct_productContentType" type="text" size="20" />
+              <input name="productContentTitle" type="text" size="20" />
             </div>
         
           </div>
   
           <div class="op01">
-            <div class="fixed_join" name="productContent">내용</div>
+            <div class="fixed_join">내용</div>
             <div class="ownerbox">
-              <input name="onwerproduct_productContent" type="text" size="20" />
+              <input name="productContent" type="text" size="20" />
             </div>
 
 
@@ -246,7 +246,7 @@ request.setCharacterEncoding("utf-8"); %>
               <div class="op02">
                 <div class="op03">
                 <div class="op04">메인 이미지 <br>
-                  <input type="file" name="imageFileName" id="imgInp" onchange = "readURL(this, '#preview');" /></div>
+                  <input type="file" name="fileName" id="imgInp" onchange = "readURL(this, '#preview');" /></div>
                   <div><img id = "preview" src ="#" width= 200 height=200 /></div>
                 </div> 
                   <div class="op06"><input type="button" id="opbt" value="파일 추가" onClick="fn_addFile()"/> 상세 이미지</div>
