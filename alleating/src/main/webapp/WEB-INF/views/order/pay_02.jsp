@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <title>main.jsp</title>
 
-  
+
 </head>
 <body>
  <!-- Modal -->
@@ -186,6 +186,26 @@
     <div>
         <button id="payTwoLastbtn"><span>결제하기</span></button>
     </div>
+    <div id="payment-widget"> </div>
+    <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+    <script>
+        const paymentWidget = PaymentWidget(
+           //토스 페이먼츠 testKey 자리
+            PaymentWidget.ANONYMOUS
+        )
+        paymentWidget.renderPaymentMethods("#payment-widget","100")
+        const button = document.getElementById("payTwoLastbtn");
+        button.addEventListener("click", function(){
+            paymentWidget.requestPayment({
+                amount: "100",
+                orderId: "1000040",
+                orderName:"choi",
+                customerName:"choi",
+                successUrl:window.location.origin+"/test.do",
+                failUrl: window.location.origin+"/main.do"
+            })
+        })
+    </script>
 </div>
 </body>
 </html>

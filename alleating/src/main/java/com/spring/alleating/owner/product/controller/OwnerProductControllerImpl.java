@@ -39,7 +39,6 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	private OwnerProductService ownerProductService;
 	@Autowired
 	private ProductVO productVO;
-
 	
 	@RequestMapping(value="/owner/productMain.do", method = RequestMethod.GET)
 	public ModelAndView ownerProductMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -99,7 +98,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 				}
 			}
 			message= "<script>";
-			message += " alert('»óÇ°ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.');";
+			message += " alert('ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.');";
 			message +=" location.href='"+multipartRequest.getContextPath()+"/owner/productMain.do';";
 			message +=("</script>");
 		}catch(Exception e) {
@@ -112,7 +111,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			}
 			
 			message= "<script>";
-			message += " alert('¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä');";
+			message += " alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½');";
 			message +=" location.href='"+multipartRequest.getContextPath()+"/owner/productMain.do';";
 			message +=("</script>");
 			e.printStackTrace();

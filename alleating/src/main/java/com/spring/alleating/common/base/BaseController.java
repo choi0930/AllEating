@@ -20,7 +20,7 @@ import com.spring.alleating.product.vo.ProductImgVO;
 			while(fileNames.hasNext()){
 				ProductImgVO productImgVO =new ProductImgVO();
 				String fileName = fileNames.next();
-				productImgVO.setImg_type(fileName);
+				productImgVO.setFileType(fileName);
 				MultipartFile mFile = multipartRequest.getFile(fileName);
 				String originalFileName=mFile.getOriginalFilename();
 				productImgVO.setFileName(originalFileName);
@@ -28,12 +28,12 @@ import com.spring.alleating.product.vo.ProductImgVO;
 				
 				File file = new File(PRODUCT_IMAGE_REPO_PATH +"\\"+ fileName);
 				if(mFile.getSize()!=0){ //File Null Check
-					if(! file.exists()){ //°æ·Î»ó¿¡ ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì
-						if(file.getParentFile().mkdirs()){ //°æ·Î¿¡ ÇØ´çÇÏ´Â µð·ºÅä¸®µéÀ» »ý¼º
-								file.createNewFile(); //ÀÌÈÄ ÆÄÀÏ »ý¼º
+					if(! file.exists()){ //ï¿½ï¿½Î»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+						if(file.getParentFile().mkdirs()){ //ï¿½ï¿½Î¿ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+								file.createNewFile(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						}
 					}
-					mFile.transferTo(new File(PRODUCT_IMAGE_REPO_PATH +"\\"+"temp"+ "\\"+originalFileName)); //ÀÓ½Ã·Î ÀúÀåµÈ multipartFileÀ» ½ÇÁ¦ ÆÄÀÏ·Î Àü¼Û
+					mFile.transferTo(new File(PRODUCT_IMAGE_REPO_PATH +"\\"+"temp"+ "\\"+originalFileName)); //ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ multipartFileï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½
 				}
 			}
 			return fileList;
