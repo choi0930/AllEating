@@ -160,13 +160,48 @@ function fn_checkId(){ //아이디 중복체크
 }
 
 
-
-
+//넘어오는 이메일 인증번호
+var emailCheckNum;
 //이메일 인증번호 확인
 function fn_checkEamil(){
+	var email1 = $('#userEmail').val();
+	var email2 = $('#selects').val();
+	var userEmail = email1+'@'+email2;
+
+	$.ajax({
+		type:"post",
+		async:true,
+		url:"${contextPath}/member/sendEmail.do",
+		dataType:"Json",
+		data:{email : userEmail},
+		success:function(data){
+			alert('인증번호를 발송했습니다');
+			emailCheckNum = data.number;
+			console.log(data);
+		
+		},
+		error:function(data){
+			alert("에러가 발생했습니다.");
+		},
+		complete:function(data){
+			
+		}
+	});
 	$('#checkEamil').css('display', 'block');
 }
-
+//인증번호 확인
+function fn_checkNum(){
+	var mailCeck = $('#email_check').val();
+	if(mailCeck == emailCheckNum){
+		$('#mailCecked').text("인증번호 확인 완료");
+		$('#mailCecked').removeClass();
+		$('#mailCecked').addClass('greenText');
+	}else{
+		$('#mailCecked').text("인증번호가 틀렸습니다.");
+		$('#mailCecked').removeClass();
+		$('#mailCecked').addClass('redText');
+	}
+}
 </script>
 <link href="${contextPath}/css/join.css" rel="stylesheet" type="text/css" />
 <style>
@@ -342,10 +377,10 @@ function fn_checkEamil(){
 			<div class="form_input_box">
 				<input type="text" class="form-control join_input_box"  id="email_check" name="emailCheck" placeholder="인증번호 6자리를 입력해주세요"/>
 			</div>
-			<span class="hideConditionText"></span>
+			<div id="mailCecked"></div>
 		</div>
 		<div class="form_button_box">
-			<button class="btn btn-info" type="button" id="idCheckEmailNumBtn" onclick="fn_checkNum();"><span class="emailNumBtn">인증번호 확인</span></button>
+			<button class="btn btn-info" type="button" id="idCheckEmailNumBtn" onclick="fn_checkNum()"><span class="emailNumBtn">인증번호 확인</span></button>
 		</div>
 	</div>
 	</div>

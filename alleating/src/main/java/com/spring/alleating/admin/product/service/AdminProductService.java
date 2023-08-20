@@ -6,6 +6,6 @@ import org.springframework.dao.DataAccessException;
 
 
 public interface AdminProductService {
-	public Map selectAllProduct(Map info)throws DataAccessException;
+	public Map selectAllProduct(Map dataMap)throws DataAccessException;
 	public int addProduct(Map productInfo)throws DataAccessException;
 }
