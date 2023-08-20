@@ -27,15 +27,16 @@ public class ProductVO {
 	private String productContentTitle;
 	private String productContent;
 	private Date credate;
-    private String name;
+    private String reg_id;
     private String join_type;
     
     
-	public String getName() {
-		return name;
+	
+	public String getReg_id() {
+		return reg_id;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setReg_id(String reg_id) {
+		this.reg_id = reg_id;
 	}
 	public String getJoin_type() {
 		return join_type;
