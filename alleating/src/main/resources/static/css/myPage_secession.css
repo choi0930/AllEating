@@ -1,0 +1,78 @@
+.proW {
+	display: flex;
+    align-items: center;
+    margin-top: 70px;
+    margin-left: 16px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.text01 {
+	margin-left: 176px;
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+
+.join_censel_btn {
+   display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 240px;
+    height: 56px;
+    border-radius: 3px;
+    color: #000000;
+    background-color: #ffffff;
+    border: 2px solid rgb(51, 51, 51);
+}
+
+.join_end_btn {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 240px;
+    height: 56px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: #000060;
+    border: 0px none;
+}
+    
+.form_end {
+    border-top: 1px solid rgb(247, 247, 247);
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.edit01 {
+	display: flex;
+    border-bottom: #ABDFF1 3px solid;
+    border-top: #ABDFF1 3px solid;
+    height: 340px;
+    justify-content: center;
+ }
+ 
+ .text02{ 
+	 margin-top: 65px;
+ }
+ 
+ .edit03{
+	 margin-top: 62px;
+    margin-left: 43px;
+ }
+ 
+ .text03{
+	position: relative;
+    bottom: 106px;
+    right: 18px;
+    resize: none;
+ }
+ 
+ .text04{
+	 display: flex;
+     justify-content: space-evenly;
+ }
+ 

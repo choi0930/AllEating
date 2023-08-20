@@ -23,10 +23,29 @@ public class MyPageControllerImpl {
 	}
 	
 	@RequestMapping(value="/myPage/myPage_02.do", method = {RequestMethod.GET, RequestMethod.POST})
-
 	public ModelAndView myPage_02(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/myPage/myPage_03.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView myPage_03(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/myPage/myPage_04.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView myPage_04(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
@@ -34,6 +53,36 @@ public class MyPageControllerImpl {
 	
 	@RequestMapping(value="/myPage/myPage_05.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPage_05(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/myPage/myPage_edit.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView myPage_edit(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/myPage/myPage_secession.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView myPage_secession(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/myPage/myPage_address.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView myPage_address(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
 		String viewName = (String) request.getAttribute("viewName");
