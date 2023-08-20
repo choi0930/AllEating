@@ -9,8 +9,8 @@
 <html>
 <head>
 
-<title>상품 목록 페이지</title>
-<link href="${contextPath}/css/product_01.css" rel="stylesheet" type="text/css" />
+<title>신상품 목록  페이지</title>
+<link href="${contextPath}/css/other_product.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -20,64 +20,140 @@
 
     
         <div class="producttotalnum">
-            <h3 class="producttotalnumber">총 9개</h3>
+            <h3 class="producttotalnumber">총 12개</h3>
         </div>
         
 
 <div class="productview">
-<div class="product1">
-<div class="product1-1">
-<img src="${contextPath}/img/image_food/shinemuscat.jpg" width="200px" height="200px">
-<div class="product-text">저탄소 샤인머스캣<img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
-<div class="product-text">13,990원</div>
-</div>
-<div class="product1-2">
-    <img src="${contextPath}/img/image_food/peach.jpg" width="200px" height="200px">
+ <div class="productview-list">
+    <a href="#" class="product-next">
+  <div class="productview-list-preview">
+   <img src="${contextPath}/img/image_food/shinemuscat.jpg" width="250px" height="320px">
+   <div class="product-text">예약배송 <img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
+   <div class="product-text">[All Eating]</div>
+   <div class="product-text">저탄소 샤인머스캣</div>
+   <div class="product-text">13,990원</div></a>
+    <a href="#" class="product-review">
+     <div class="product-text">후기</div>
+    </a>
+  </div>
+  <a href="#" class="product-next">
+  <div class="productview-list-preview">
+    <img src="${contextPath}/img/image_food/peach.jpg" width="250px" height="320px">
+    <div class="product-text">일반배송</div>
     <div class="product-text">천중도 백도 복숭아</div>
-    <div class="product-text">18,900원</div>
+    <div class="product-text">18,900원</div></a>
+    <a href="#" class="product-review">
+        <div class="product-text">후기</div>
+       </a>
     </div>
-    <div class="product1-3">
-        <img src="${contextPath}/img/image_food/muskmelon.jpg" width="200px" height="200px">
+    <a href="#" class="product-next">
+ <div class="productview-list-preview">
+        <img src="${contextPath}/img/image_food/muskmelon.jpg" width="250px" height="320px">
         <div class="product-text">머스크 멜론 1.2kg</div> 
         <div class="product-text">10,000원</div>
-        </div>
+        <a href="#" class="product-review"></a>
+            <div class="product-text">후기</div>
+           </a>
+  </div>
+
+
+  
+  <a href="#" class="product-next">
+  <div class="productview-list-preview">
+    <img src="${contextPath}/img/image_food/shinemuscat.jpg" width="250px" height="320px">
+    <div class="product-text">예약배송 <img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
+    <div class="product-text">[All Eating]</div>
+    <div class="product-text">저탄소 샤인머스캣</div>
+    <div class="product-text">13,990원</div></a>
+    <a href="#" class="product-review">
+        <div class="product-text">후기</div>
+       </a>
+   </div>
 </div>
 
-<div class="product2">
-    <div class="product2-1">
-        
-    <img src="${contextPath}/img/image_food/mandarin.jpg" width="200px" height="200px" >
+<div class="productview-list">
+    <a href="#" class="product-next">
+    <div class="productview-list-preview">
+    <img src="${contextPath}/img/image_food/mandarin.jpg" width="250px" height="320px" >
     <div class="product-text">당도 선별 GAP 하우스 감귤 1kg</div>
-    <div class="product-text">14,900원</div>
+    <div class="product-text">14,900원</div></a>
+    <a href="#" class="product-review">
+        <div class="product-text">후기</div>
+       </a>
     </div>
-    <div class="product2-2">
-        <img src="${contextPath}/img/image_food/blueberry.jpg" width="200px" height="200px">
+    <a href="#" class="product-next">
+    <div class="productview-list-preview">
+        <img src="${contextPath}/img/image_food/blueberry.jpg" width="250px" height="320px">
         <div class="product-text">국산 블루베리 100g</div>
-        <div class="product-text">6,900원</div>
+        <div class="product-text">6,900원</div></a>
+        <a href="#" class="product-review">
+            <div class="product-text">후기</div>
+           </a>
         </div>
-        <div class="product2-3">
-            <img src="${contextPath}/img/image_food/icestrawberry.jpg" width="200px" height="200px">
+        <a href="#" class="product-next">
+        <div class="productview-list-preview">
+            <img src="${contextPath}/img/image_food/icestrawberry.jpg" width="250px" height="320px">
             <div class="product-text">냉동 딸기 1kg</div>
-            <div class="product-text">7,950원</div>
+            <div class="product-text">7,950원</div></a>
+            <a href="#" class="product-review">
+                <div class="product-text">후기</div>
+               </a>
             </div>
-    </div>
 
-    <div class="product3">
-        <div class="product3-1">
-        <img src="${contextPath}/img/image_food/koreamelon.jpg" width="200px" height="200px">
-        <div class="product-text">성주 참외 1.5kg (4~7개입)</div>
-        <div class="product-text">18,900원</div>
-        </div>
-        <div class="product3-2">
-            <img src="${contextPath}/img/image_food/grape.jpg" width="200px" height="200px">
-            <div class="product-text">GAP 거봉 포도 450g</div>
-            <div class="product-text">11,900원</div>
-            </div>
-            <div class="product1-3">
-                <img src="${contextPath}/img/image_food/apple.jpg" width="200px" height="200px">
-                <div class="product-text">썸머킹 사과 1.3kg (4-8개입)</div>
-                <div class="product-text">17,900원</div>
+            <a href="#" class="product-next">
+                <div class="productview-list-preview">
+                 <img src="${contextPath}/img/image_food/shinemuscat.jpg" width="250px" height="320px">
+                 <div class="product-text">예약배송 <img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
+                 <div class="product-text">[All Eating]</div>
+                 <div class="product-text">저탄소 샤인머스캣</div>
+                 <div class="product-text">13,990원</div></a>
+                  <a href="#" class="product-review">
+                   <div class="product-text">후기</div>
+                  </a>
                 </div>
+
+    </div>
+    <a href="#" class="product-next">
+    <div class="productview-list">
+        <div class="productview-list-preview">
+        <img src="${contextPath}/img/image_food/koreamelon.jpg" width="250px" height="320px">
+        <div class="product-text">성주 참외 1.5kg (4~7개입)</div>
+        <div class="product-text">18,900원</div></a>
+        <a href="#" class="product-review">
+            <div class="product-text">후기</div>
+           </a>
+        </div>
+        <a href="#" class="product-next">
+        <div class="productview-list-preview">
+            <img src="${contextPath}/img/image_food/grape.jpg" width="250px" height="320px">
+            <div class="product-text">GAP 거봉 포도 450g</div>
+            <div class="product-text">11,900원</div></a>
+            <a href="#" class="product-review">
+                <div class="product-text">후기</div>
+               </a>
+            </div>
+            <a href="#" class="product-next">
+            <div class="productview-list-preview">
+                <img src="${contextPath}/img/image_food/apple.jpg"  width="250px" height="320px">
+                <div class="product-text">썸머킹 사과 1.3kg (4-8개입)</div>
+                <div class="product-text">17,900원</div></a>
+                <a href="#" class="product-review">
+                    <div class="product-text">후기</div>
+                   </a>
+                </div>
+
+                <a href="#" class="product-next">
+                    <div class="productview-list-preview">
+                     <img src="${contextPath}/img/image_food/shinemuscat.jpg" width="250px" height="320px">
+                     <div class="product-text">예약배송 <img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
+                     <div class="product-text">[All Eating]</div>
+                     <div class="product-text">저탄소 샤인머스캣</div>
+                     <div class="product-text">13,990원</div></a>
+                      <a href="#" class="product-review">
+                       <div class="product-text">후기</div>
+                      </a>
+                    </div>
         </div>
 
   

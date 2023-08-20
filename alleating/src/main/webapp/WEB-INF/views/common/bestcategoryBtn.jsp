@@ -40,8 +40,9 @@
     .btn_category_group .btn_category{
         border-left: 2px solid #f3f5f7;
         border-right: 2px solid #f3f5f7;
+        
         border-top: none;
-        border-bottom:none ;
+        border-bottom:2px solid #f3f5f7;
         border-radius: 0;
         -webkit-box-flex: 1;
         -ms-flex: 1;
@@ -74,15 +75,23 @@
 </style>
 </head>
 <body>
-    <div id="btn_category_group_title">과일·견과·쌀</div>
+    <div id="btn_category_group_title">베스트</div>
     <div class="btn_category_container">
         <div class="btn_category_group">
             <button class="btn_category">전체</button>
-            <button class="btn_category">국산과일</button>
-            <button class="btn_category">수입과일</button>
-            <button class="btn_category">쌀·잡곡</button>
-            <button class="btn_category">견과류</button>
-            <button class="btn_category">간편과일</button>
+            <button class="btn_category">채소</button>
+            <button class="btn_category">과일·견과·쌀</button>
+            <button class="btn_category">수산·해산·건어물</button>
+            <button class="btn_category">정육·계란</button>
+        </div>
+        <div class="btn_category_group">
+            <button class="btn_category">국·반찬·메인요리</button>
+            <button class="btn_category">샐러드·간편식</button>
+            <button class="btn_category">면·양념·요리</button>
+            <button class="btn_category">생수·음료·커피</button>
+            <button class="btn_category" disabled></button>
+        </div>
+
         </div>
     </div>
 </body>

@@ -24,5 +24,16 @@
 <put-attribute name="body" value="/WEB-INF/views/product/search.jsp"/>      
 </definition>
 
+<definition name="/product/new_product_01" extends="baseLayoutMainPage">
+<put-attribute name="title" value="신상품 목록 상세페이지"/>
+<put-attribute name="banner" value="/WEB-INF/views/common/salecategoryBtn.jsp"/>
+<put-attribute name="body" value="/WEB-INF/views/product/new_product_01.jsp"/>      
+</definition>
+
+<definition name="/product/best_product_01" extends="baseLayoutMainPage">
+<put-attribute name="title" value="베스트 목록 상세페이지"/>
+<put-attribute name="banner" value="/WEB-INF/views/common/bestcategoryBtn.jsp"/>
+<put-attribute name="body" value="/WEB-INF/views/product/best_product_01.jsp"/>      
+</definition>
 
 </tiles-definitions>
