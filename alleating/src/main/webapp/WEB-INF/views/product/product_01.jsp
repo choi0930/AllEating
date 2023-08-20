@@ -19,7 +19,7 @@
   <div class = "all-product-detail-list-main">
 
     <div class="product-top">
-        <div class="all-producttotalnum">총 9개</div>
+        <div class="all-producttotalnum">총 9개 왜 안 돼</div>
         <div id="search_01_toptext">
             <div>
                 <a href="#">낮은가격순</a>
