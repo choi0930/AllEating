@@ -54,5 +54,28 @@ public class ProductControllerImpl implements ProductController{
 		return mav;
 	}
 	
-	
+	@Override
+	@RequestMapping(value= "/product/new_product_01.do", method = RequestMethod.GET)
+	public ModelAndView new_product_01(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		
+		
+		String viewName = (String)request.getAttribute("viewName");
+		System.out.println(viewName); 
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName); //add
+		return mav;
+	}
+	@Override
+	@RequestMapping(value= "/product/best_product_01.do", method = RequestMethod.GET)
+	public ModelAndView best_product_01(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		
+		
+		String viewName = (String)request.getAttribute("viewName");
+		System.out.println(viewName); 
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName); //add
+		return mav;
+	}
 }
