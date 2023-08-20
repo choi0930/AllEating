@@ -39,6 +39,13 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 	@Autowired
 	private ProductImgVO productImgVO;
 	
+	@Override
+	public ModelAndView listProducts(Map<String, String> dataMap, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		return null;
+	}
+
 	@Override //상품관리 페이지 첫 진입
 	@RequestMapping(value="/admin/productMain.do", method = RequestMethod.GET)
 	public ModelAndView adminProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {

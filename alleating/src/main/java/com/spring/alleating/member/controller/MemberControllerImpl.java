@@ -1,6 +1,7 @@
 package com.spring.alleating.member.controller;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.alleating.mail.service.EmailService;
 import com.spring.alleating.member.service.MemberService;
 import com.spring.alleating.member.vo.MemberVO;
 
@@ -23,7 +26,8 @@ public class MemberControllerImpl implements MemberController {
 	
 	@Autowired
 	private MemberService memberService;
-	
+	@Autowired
+	private EmailService emailService;
 	@Autowired
 	private MemberVO memberVO;
 	
@@ -145,6 +149,16 @@ public class MemberControllerImpl implements MemberController {
 	}
 	
 	
+	@Override
+	@RequestMapping(value="/member/sendEmail.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> sendEmail(@RequestParam("email") String email, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int number = emailService.sendMail(email);
+		Map<String, Object> response1 = new HashMap<>();
+		response1.put("number", number);
+		return response1;
+	}
+
 	//폼 이동
 	@RequestMapping(value="/member/*Form.do", method = {RequestMethod.GET})
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {

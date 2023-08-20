@@ -4,7 +4,15 @@
     
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-    
+    <c:choose>
+		<c:when test="${total%30 == 0}">
+			<c:set var="totals2" value="${total/30}" />
+		</c:when>	
+		<c:otherwise>
+			<c:set var="totals2" value="${total/30+1}" />
+		</c:otherwise>
+	</c:choose>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -354,7 +362,7 @@ function fn_goAddProduct(){
                     </table>
                 </div>
                 <c:choose>
-                    <c:when test="${total>=40}">
+                    <c:when test="${total>=300}">
                         <div id="page_wrap">
                             <c:forEach   var="page" begin="1" end="10" step="1" >
                                 <c:if test="${section >1 && page==1 }">
@@ -367,7 +375,7 @@ function fn_goAddProduct(){
                              </c:forEach> 
                        </div>	
                     </c:when>
-                       <c:when test="${total<40}">
+                       <c:when test="${total<300}">
                         <c:forEach   var="page" begin="1" end="${totals2}" step="1" >
                             <c:choose>
                                 <c:when test="${page==pageNum}">

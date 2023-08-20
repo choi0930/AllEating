@@ -1,6 +1,8 @@
 package com.spring.alleating.admin.product.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.alleating.admin.product.dao.AdminProductDAO;
 import com.spring.alleating.product.vo.ProductImgVO;
+import com.spring.alleating.product.vo.ProductVO;
 
 @Service("adminProductService")
 public class AdminProductServiceImpl implements AdminProductService {
@@ -16,9 +19,15 @@ public class AdminProductServiceImpl implements AdminProductService {
 	private AdminProductDAO adminProductDAO;
 	
 	@Override
-	public Map selectAllProduct(Map info) throws DataAccessException {
+	public Map selectAllProduct(Map dataMap) throws DataAccessException {
+		Map productMap = new HashMap<>();
+		String join_type = (String) dataMap.get("join_type");
+		List<ProductVO> productList = adminProductDAO.selectProduct(dataMap);
+		int total = adminProductDAO.selectTotalProduct(join_type);
 		
-		return null;
+		productMap.put("productList", productList);
+		productMap.put("total", total);
+		return productMap;
 	}
 
 	@Override
