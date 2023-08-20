@@ -66,6 +66,7 @@ request.setCharacterEncoding("utf-8"); %>
          <input type="hidden" name="deliveryType" value="reserve"/>
          <input type="hidden" name="join_type" value="admin"/>
          <input type="hidden" name="deliveryPrice" value="3000"/>
+         
         <div class="ownertext02">
           <div class="op01">
             <div class="fixed_join">상품종류</div>
@@ -172,7 +173,7 @@ request.setCharacterEncoding("utf-8"); %>
               <input name="productPrice" type="text" size="20" />
             </div>
             <div class="dodo"> 원
-              <input type="checkbox" name="checkBox" id="salecb" />할인율 입력
+              <input type="checkbox" name="discount" id="salecb"  value="y"/>할인율 입력
             </div>
           </div>
           <div class="op10">
@@ -192,9 +193,9 @@ request.setCharacterEncoding("utf-8"); %>
             <div class="fixed_join">포장타입</div>
             <div class="ownerbox">
               <select id="uclass" name="productPackType">
-                <option value="qwe">냉동</option>
-                <option value="qwe">냉장</option>
-                <option value="qwe">상온</option>
+                <option value="냉동">냉동</option>
+                <option value="냉장">냉장</option>
+                <option value="상온">상온</option>
               </select>
             </div>
           </div>

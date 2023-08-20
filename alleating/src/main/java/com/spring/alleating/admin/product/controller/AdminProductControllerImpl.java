@@ -1,5 +1,6 @@
 package com.spring.alleating.admin.product.controller;
 
+import java.io.File;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,23 +66,59 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 			String value=multipartRequest.getParameter(name);
 			newProductMap.put(name,value);
 		}
+		
 		HttpSession session = multipartRequest.getSession();
-		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember"); //세션에서 로그인한 사람의 정보가 담긴 memberVO객체 가져옴
 		String reg_id = memberVO.getId();
-		String name = memberVO.getName();
+		String join_type = memberVO.getJoin_type();
 		
-		List<ProductImgVO> imageFileList = upload(multipartRequest);
-		if(imageFileList != null && imageFileList.size() != 0) {
-			for(ProductImgVO imageFileVO : imageFileList) {
-				imageFileVO.setReg_id(reg_id);
+		newProductMap.put("reg_id", reg_id);//제품 등록자 id 입력
+		newProductMap.put("join_type", join_type); //제품 등록자가 관리자등급인지 사업자 등급인지 입력
+	
+		 List<ProductImgVO> imageFileList = upload(multipartRequest); 
+		 if(imageFileList != null && imageFileList.size() != 0) { 
+			 for(ProductImgVO productImgVO : imageFileList) { 
+				 productImgVO.setReg_id(reg_id); 
+				 }
+			newProductMap.put("imageFileList", imageFileList); 
+		 }
+		
+		
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		try {
+			int productId = adminProductService.addProduct(newProductMap);
+			String cateCode = (String) newProductMap.get("cateCode");
+			if(imageFileList !=null && imageFileList.size() != 0) {
+				for(ProductImgVO productImgVO:imageFileList) {
+					fileName = productImgVO.getFileName();
+					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+fileName);
+					File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId);
+					FileUtils.moveFileToDirectory(srcFile, destDir, true);
+				}
 			}
-			newProductMap.put("imageFileList", imageFileList);
+			message= "<script>";
+			message += " alert('새로운 상품을 등록했습니다');";
+			message +=" location.href='"+multipartRequest.getContextPath()+"/admin/productMain.do?selectedTab=tab-2';";
+			message +=("</script>");
+		} catch (Exception e) {
+			e.printStackTrace();
+			if(imageFileList !=null && imageFileList.size() != 0) {
+				for(ProductImgVO productImgVO:imageFileList) {
+					fileName = productImgVO.getFileName();
+					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+fileName);
+					srcFile.delete();
+					}
+				}
+			message= "<script>";
+			message += " alert('등록실패');";
+			message +=" location.href='"+multipartRequest.getContextPath()+"/admin/adminAddProductForm.do;";
+			message +=("</script>");
 		}
-		
-		
-		
-		
-		return null;
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
 	
 	//폼이동
