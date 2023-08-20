@@ -9,7 +9,7 @@ public class ProductImgVO {
 	private int imgId;
 	private int productId;
 	private String fileName;
-	private String img_type;
+	private String fileType;
 	private Date creDate;
 	private String reg_id;
 	
@@ -37,11 +37,12 @@ public class ProductImgVO {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	public String getImg_type() {
-		return img_type;
+	
+	public String getFileType() {
+		return fileType;
 	}
-	public void setImg_type(String img_type) {
-		this.img_type = img_type;
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
 	}
 	public Date getCreDate() {
 		return creDate;
