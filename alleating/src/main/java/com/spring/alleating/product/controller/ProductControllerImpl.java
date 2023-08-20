@@ -78,4 +78,18 @@ public class ProductControllerImpl implements ProductController{
 		mav.setViewName(viewName); //add
 		return mav;
 	}
+	
+	@Override
+	@RequestMapping(value= "/product/sale_product_01.do", method = RequestMethod.GET)
+	public ModelAndView sale_product_01(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "sale_product_01");
+		
+		String viewName = (String)request.getAttribute("viewName");
+		System.out.println(viewName); 
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName); //add
+		return mav;
+	}
 }

@@ -36,4 +36,11 @@
 <put-attribute name="body" value="/WEB-INF/views/product/best_product_01.jsp"/>      
 </definition>
 
+<definition name="/product/sale_product_01" extends="baseLayoutBannerSide">
+<put-attribute name="title" value="할인 상품 목록 상세페이지"/>
+<put-attribute name="body" value="/WEB-INF/views/product/sale_product_01.jsp"/>      
+</definition>
+
+
+
 </tiles-definitions>

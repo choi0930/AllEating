@@ -334,6 +334,27 @@ text-decoration:none;}
                         </a>
                     </li>
                 </ul>
+                <!-- 커뮤니티 - 리뷰 -->
+            </c:when>
+            <c:when test="${side_menuType == 'review_01'}">
+                <div class="side_title">커뮤니티</div>
+                <ul class="side_menu_subheading">
+                    <li class="side_tap">
+                        <a class="side_aTag" href="#">레시피
+                            <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
+                        </a>
+                    </li>
+                    <li class="side_tap"> 
+                        <a class="side_aTag" href="#">리뷰
+                            <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
+                        </a>
+                    </li>
+                    <li class="side_tap">
+                        <a class="side_aTag" href="#">이벤트
+                            <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
+                        </a>
+                    </li>
+                </ul>
             </c:when>
             <c:when test="${side_menuType == 'product_01'}">
             <!--목록 상세페이지 필터-->    
@@ -442,6 +463,70 @@ text-decoration:none;}
                         </div>
                     </div>
                 </div>
+            </c:when>
+            <c:when test="${side_menuType == 'sale_product_01'}">
+            <!--할인 목록 상세페이지 필터-->    
+            <div>
+            <div class="side_product_title">필터</div>
+            <div class="side_bar"></div>
+            <div class="side_product_title">브랜드</div>
+                <ul>
+                    <li class="side_filter">
+                        <label >
+							<input type="checkbox" class="form-check-input" name="sms_yn" />
+							<span class="side_font_size">달콤트리</span>
+						</label>
+                    </li>
+                    <li class="side_filter"> 
+                        <label >
+							<input type="checkbox" class="form-check-input" name="sms_yn" />
+							<span class="side_font_size">귤림원</span>
+						</label>
+                    </li>
+                    <li class="side_filter">
+                        <label >
+							<input type="checkbox" class="form-check-input" name="sms_yn" />
+							<span class="side_font_size">스위프리</span>
+						</label>
+                    </li>
+                    <li class="side_filter">
+                        <label >
+							<input type="checkbox" class="form-check-input" name="sms_yn" />
+							<span class="side_font_size">올프레쉬</span>
+						</label>
+                    </li>
+                </ul>
+                <div class="side_bar"></div>
+                <div class="side_product_title">가격</div>
+                <ul>
+                    <li class="side_filter">
+                        <label >
+							<input type="checkbox" class="form-check-input" name="sms_yn" />
+							<span class="side_font_size">5,000미만</span>
+						</label>
+                    </li>
+                    <li class="side_filter">
+                        <label >
+							<input type="checkbox" class="form-check-input" name="sms_yn" />
+							<span class="side_font_size">5,000~10,000원 미만</span>
+						</label>
+                    </li>
+                    <li class="side_filter">
+                        <label >
+							<input type="checkbox" class="form-check-input" name="sms_yn" />
+							<span class="side_font_size">10,000~20,000원 미만</span>
+						</label>
+                    </li>
+                </ul>
+                <div class="side_flex">
+                    <input type="text" name="startPrice" class="side_price_input">
+                    <span id="side_fontSize">~</span>
+                    <input type="text" name="endPrice"  class="side_price_input">
+                    <a href="#" id="filter_price"></a>
+                   
+                </div>
+                <span id="filter_price_text">검색</span>
+            </div>
             </c:when>
         </c:choose>
     </div>

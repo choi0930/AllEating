@@ -6,6 +6,7 @@
  <configuration>
  	<mappers>
 	 	<mapper resource = "mybatis/mappers/member.xml" />
+	 		<!-- <mapper resource = "mybatis/mappers/community.xml" /> -->
 	 	<mapper resource = "mybatis/mappers/owner_product.xml" />
 	 	<mapper resource = "mybatis/mappers/admin_product.xml" />
 	 </mappers>
