@@ -51,16 +51,6 @@ public class MyPageControllerImpl {
 		return mav;
 	}
 	
-	@RequestMapping(value="/myPage/myPage_05.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView myPage_05(HttpServletRequest request, HttpServletResponse response)throws Exception {
-		HttpSession session = request.getSession();
-		session.setAttribute("side_menuType", "my_page");
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
-	}
-	
 	@RequestMapping(value="/myPage/myPage_review.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPage_review(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();
@@ -80,6 +70,17 @@ public class MyPageControllerImpl {
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
+	@RequestMapping(value="/myPage/myPage_reserves.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView myPage_reserves(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 	
 	@RequestMapping(value="/myPage/myPage_secession.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPage_secession(HttpServletRequest request, HttpServletResponse response)throws Exception {

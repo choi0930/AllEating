@@ -194,22 +194,22 @@ text-decoration:none;}
                         </a>
                     </li>
                     <li class="side_tap"> 
-                        <a class="side_aTag" href="${contextPath}/myPage/myPage_05.do">상품 후기
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_review.do">상품 후기
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="#">찜한 상품
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_03.do">찜한 상품
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="#">상품 문의
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_04.do">상품 문의
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="#">적립금
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_reserves.do">적립금
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
@@ -219,17 +219,17 @@ text-decoration:none;}
                         </a>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="#">개인 정보 수정
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_edit.do">개인 정보 수정
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="#">주문 내역
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_review.do">1:1 문의하기
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="#">배송지 관리
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_address.do">배송지 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>

@@ -1,0 +1,48 @@
+.proW {
+	display: flex;
+    align-items: center;
+    margin-top: 70px;
+    margin-left: 16px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.pwant{
+	display: flex;
+}
+
+.text002{
+	font-size: 12px;
+    margin-top: 10px;
+}
+
+.review01{
+	width: 442px;
+}
+
+.review02{
+	margin-top: 64px;
+}
+
+
+.title{
+	border: none;
+	border-bottom: #ABDFF1 3px solid;
+    border-top: #ABDFF1 3px solid;
+}
+
+#title01{
+	width: 150px;
+}
+
+#title02{
+	width: 450px;
+}
+
+#title03{
+	width: 125px;
+}
+
+#title001{
+	border: none;
+}

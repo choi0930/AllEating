@@ -44,7 +44,7 @@
     border-top: 1px solid rgb(247, 247, 247);
 }
 
-#title{
+.title{
 	border: none;
 	border-bottom: #ABDFF1 3px solid;
     border-top: #ABDFF1 3px solid;
@@ -60,4 +60,8 @@
 
 #title03{
 	width: 125px;
+}
+
+#title001{
+	border: none;
 }

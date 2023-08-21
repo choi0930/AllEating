@@ -29,17 +29,18 @@
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_04.jsp"/>      
 	</definition>
 	
-	<definition name="/myPage/myPage_05" extends="baseLayoutBannerSide">
-		<put-attribute name="title" value="마이페이지 찜한상품"/>
-		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_05.jsp"/>      
-	</definition>
-	
 	<definition name="/myPage/myPage_edit" extends="baseLayoutBannerSide">
 		<put-attribute name="title" value="마이페이지 개인정보수정"/>
 		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_edit.jsp"/>      
 	</definition>
+	
+	<definition name="/myPage/myPage_reserves" extends="baseLayoutBannerSide">
+		<put-attribute name="title" value="마이페이지 적립금"/>
+		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_reserves.jsp"/>      
+	</definition>
+	
 	
 	<definition name="/myPage/myPage_secession" extends="baseLayoutBannerSide">
 		<put-attribute name="title" value="마이페이지 탈퇴하기"/>
