@@ -3,6 +3,10 @@ pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<c:set var="productVO" value="${productInfo.productVO}" /><!--상품정보-->
+<c:set var="productImgList" value="${productInfo.productImgList}" /><!--이미지리스트-->
+
+
 <link href="${contextPath}/css/test.css" rel="stylesheet" type="text/css" />
 <!DOCTYPE html>
 <html>
