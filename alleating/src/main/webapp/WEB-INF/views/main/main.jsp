@@ -71,7 +71,7 @@ request.setCharacterEncoding("utf-8"); %>
           <div id="menu-title2">
             <h3 class="newgoods">All Eating의 추천 recipe</h3>
             <div class="btn3">
-              <button type="button" class="btn btn-outline-secondary">
+              <button type="button" class="btn btn-outline-secondary" onclick="location.href='${ContextPath }/community/review_01.do'">
                 커뮤니티 바로가기
               </button>
             </div>
@@ -136,6 +136,7 @@ request.setCharacterEncoding("utf-8"); %>
               <div class="text-line">9,000원</div>
             </div>
           </div>
+        </div>
         </div>
         </div>
   </body>
