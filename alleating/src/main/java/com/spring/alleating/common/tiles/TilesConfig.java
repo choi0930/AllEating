@@ -13,7 +13,8 @@ public class TilesConfig{
 	final TilesConfigurer configurer = new TilesConfigurer();
 	configurer.setDefinitions(new String[] {"WEB-INF/tiles/tiles_main.xml","WEB-INF/tiles/tiles_product.xml",
 			"WEB-INF/tiles/tiles_member.xml","WEB-INF/tiles/tiles_myPage.xml","WEB-INF/tiles/tiles_admin.xml",
-			"WEB-INF/tiles/tiles_owner.xml","WEB-INF/tiles/tiles_cart.xml","WEB-INF/tiles/tiles_order.xml","WEB-INF/tiles/tiles_community.xml"});
+			"WEB-INF/tiles/tiles_owner.xml","WEB-INF/tiles/tiles_cart.xml","WEB-INF/tiles/tiles_order.xml","WEB-INF/tiles/tiles_community.xml",
+});
     configurer.setCheckRefresh(true);
     return configurer;
     
