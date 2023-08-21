@@ -127,6 +127,14 @@ request.setCharacterEncoding("utf-8");
 	}
 	</style>
 <script>
+
+document.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) { // Enter 키의 keyCode는 13입니다.
+      fn_loginDO(); // 로그인 함수 호출
+    }
+  });
+  
+
 	function fn_loginDO(){
 		var _id = $('#floatingInput').val();
 		var _pwd = $('#floatingPassword').val();
@@ -169,6 +177,7 @@ request.setCharacterEncoding("utf-8");
 </head>
 <body>
 	<script type="text/javascript">
+
   
 		var failed = new URLSearchParams(window.location.search).get('result');
 		

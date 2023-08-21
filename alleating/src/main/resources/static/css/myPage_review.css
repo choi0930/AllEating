@@ -55,7 +55,7 @@
 }
 
 .qwe{
-	width: 577px;
+	width: 528px;
 	margin-left: 12px;
 }
 
@@ -73,6 +73,24 @@
 }
 
 .join_censel_btn{
-	border: none;
-    background-color: #ffffff;
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 110px;
+    height: 33px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: #000060;
+    border: 0px none;
+    }
+    
+.form_end{
+	margin-left: 30px;
+}
+
+.detail_01{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
