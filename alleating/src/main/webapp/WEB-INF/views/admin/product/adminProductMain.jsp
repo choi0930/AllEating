@@ -7,15 +7,11 @@
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
     <c:set var="productAdminProductList" value="${productMap.productAdminProductList}" />
     <c:set var="total" value="${productMap.total}" />
-    <c:choose>
-        <c:when test="${total % 30 == 0}">
-            <c:set var="totals2" value="${total / 30}" />
-        </c:when>	
-        <c:otherwise>
-            <c:set var="totals2" value="${total / 30 + 1}" />
-        </c:otherwise>
-    </c:choose>
-    <fmt:parseNumber var="totalsParsed" value="${totals2}" integerOnly="true" />
+    <c:set var="ownerProductList" value="${productMap.ownerProductList}" />
+    <c:set var="total2" value="${productMap.total2}" />
+    <c:set var="ownerNameList" value="${productMap.ownerNameList}" />
+    
+       
 <!DOCTYPE html>
 <html>
 <head>
@@ -209,67 +205,82 @@ function fn_goAddProduct(){
                             </tr>
                         </thead>
                         <tbody>
-                            <tr onclick="location.href='/test.do?'" style="cursor: pointer;">
-                                <td >100483</td>
-                                <td ><div class="overflowText">[AllEating]저탄소 샤인머스캣</div></td>
-                                <td >50,000</td>
-                                <td >없음</td>
-                                <td >판매중</td>
-                                <td >올잇팅</td>
-                                <td >2023-08-10</td>
-                                
-                            </tr> 
-                       
-                            <tr onclick="location.href='/test.do?'" style="cursor: pointer;">
-                                <td>100483</td>
-                                <td><div class="overflowText">[AllEating]저탄소 샤인머스캣</div></td>
-                                <td>50,000원</td>
-                                <td class="redText">40,000원</td>
-                                <td >승인요청</td>
-                                <td >올잇팅</td>
-                                <td>2023-08-10</td>
-                            </tr> 
-                            <tr onclick="location.href='/test.do?'" style="cursor: pointer;">
-                                <td>100483</td>
-                                <td><div class="overflowText">[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣</div></td>
-                                <td>50,000원</td>
-                                <td class="redText">40,000원</td>
-                                <td>승인요청</td>
-                                <td>올잇팅</td>
-                                <td>2023-08-10</td>
-                            </tr> 
+                            <c:forEach var="owner" items="${ownerProductList}">
+                                <tr onclick="location.href='/admin/productDetail.do?productId=${owner.productId}'" style="cursor: pointer;">
+                                    <td >${owner.productId}</td>
+                                    <td ><div class="overflowText">[${owner.productBrand}]${owner.productName}</div></td>
+                                    <td ><fmt:formatNumber value="${owner.productPrice}" type="number" /></td>
+                                        <c:choose>
+                                            <c:when test="${owner.productDiscount == 0}">
+                                                <td>없음</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td>${owner.productDiscount}%</td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${owner.productStatus == 'sale'}">
+                                                <td>판매중</td>
+                                            </c:when>
+                                            <c:when test="${owner.productStatus == 'sales_end'}">
+                                                <td>판매종료</td>
+                                            </c:when>
+                                            <c:when test="${owner.productStatus == 'approval_request'}">
+                                                <td>승인요청</td>
+                                            </c:when>
+                                            <c:when test="${owner.productStatus == 'declined'}">
+                                                <td>승인거절</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td>품절</td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    <td>
+                                        <c:set var="stopIteration" value="false" />
+
+                                        <c:forEach var="member" items="${ownerNameList}">
+                                            <c:if test="${stopIteration == false}">
+                                                <c:if test="${member.id == owner.reg_id}">
+                                                    ${member.owner_name}
+                                                    <c:set var="stopIteration" value="true" />
+                                                </c:if>
+                                            </c:if>
+                                        </c:forEach>
+                                    </td>
+                                    <td>${owner.creDate}</td>
+                                </tr> 
+                            </c:forEach>
                         </tbody>
-                        
                     </table>
                 </div><!--사업자가 등록한 상품 목록-->
 
                 <div class="pageBottom">
-                    <c:if test="${total != null }">
+                    <c:if test="${total2 != null }">
                         <c:choose>
-                            <c:when test="${total > 150 }">
-                                <c:forEach var="page" begin="1" end="${(total/15)+1}" step="1">
+                            <c:when test="${total2 > 150 }">
+                                <c:forEach var="page" begin="1" end="${(total2/15)+1}" step="1">
                                     <c:if test="${section >1 && page==1 }">
-                                        <a class="no-uline" href="#">&nbsp; pre</a>
+                                        <a class="no-uline" href="${contextPath}/admin/productMain.do?section=${section-1}&pageNum=${(section-1)*10 +1}">&nbsp; pre</a>
                                     </c:if>
-                                    <a class="no-uline" href="#">${(section-1)*15 + page }</a>
-                                    <c:if test="${page == (total/15)+1 }">
-                                        <a class="no-uline" href="#">&nbsp; next</a>							
+                                    <a class="no-uline" href="${contextPath }/admin/productMain.do?section=${section}&pageNum=${page}">${(section-1)*15 + page }</a>
+                                    <c:if test="${page == (total2/15)+1 }">
+                                        <a class="no-uline" href="${contextPath }/admin/productMain.do?section=${section+1}&pageNum=${section*10+1 }">&nbsp; next</a>							
                                     </c:if>						
                                 </c:forEach>
                             </c:when>
-                            <c:when test="${total == 150 }">
+                            <c:when test="${total2 == 150 }">
                                 <c:forEach var="page" begin="1" end="10" step="1">
-                                    <a class="no-uline" href="#">${page }</a>
+                                    <a class="no-uline" href="${contextPath }/admin/productMain.do?section=${section }&pageNum=${page }">${page }</a>
                                 </c:forEach>
                             </c:when>
-                            <c:when test="${total < 150 }">
-                                <c:forEach var="page" begin="1" end="${(total/15)+1}" step="1">
+                            <c:when test="${total2 < 150 }">
+                                <c:forEach var="page" begin="1" end="${(total2/15)+1}" step="1">
                                     <c:choose>
                                         <c:when test="${page==pageNum }">
-                                            <a class="sel-page" href="#">${page }</a>
+                                            <a class="sel-page" href="${contextPath }/admin/productMain.do?section=${section-1}&pageNum=${page}">${page }</a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a class="no-uline" href="#">${page }</a>
+                                            <a class="no-uline" href="${contextPath }/admin/productMain.do?section=${section+1}&pageNum=${page }">${page }</a>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>
@@ -331,7 +342,7 @@ function fn_goAddProduct(){
                             <tr>
                                 <td class="productDetailGOlink" ><a href="${contextPath}/admin/productDetail.do?productId=${adminProduct.productId}"> ${adminProduct.productId}</a></td>
                                 <td class="productDetailGOlink"><div class="overflowText">[${adminProduct.productBrand}]${adminProduct.productName}</div></td>
-                                <td class="productDetailGOlink">${adminProduct.productPrice}</td>
+                                <td class="productDetailGOlink"><fmt:formatNumber value="${adminProduct.productPrice}" type="number" /></td>
                                 <c:choose>
                                     <c:when test="${adminProduct.productDiscount == 0}">
                                         <td class="productDetailGOlink">없음</td>

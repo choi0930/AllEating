@@ -116,7 +116,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			}
 			message= "<script>";
 			message += " alert('새로운 상품등록 요청하였습니다.');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/main.do';";
+			message +=" location.href='"+multipartRequest.getContextPath()+"/owner/ownerProductList.do';";
 			message +=("</script>");
 		}catch(Exception e) {
 			if(imageFileList!=null && imageFileList.size()!=0) {
@@ -129,7 +129,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			
 			message= "<script>";
 			message += " alert('요청 실패');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/main.do';";
+			message +=" location.href='"+multipartRequest.getContextPath()+"/owner/ownerProductList.do';";
 			message +=("</script>");
 			e.printStackTrace();
 		}

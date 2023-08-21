@@ -22,14 +22,29 @@ public class AdminProductServiceImpl implements AdminProductService {
 	@Override
 	public Map selectAllProduct(Map dataMap) throws DataAccessException {
 		Map productMap = new HashMap<>();
+		
 		String join_type = "admin";
 		dataMap.put("join_type", join_type);
 		List<ProductVO> productAdminProductList = adminProductDAO.selectProduct(dataMap);
 		int total = adminProductDAO.selectTotalProduct(join_type);
-		System.out.println(productAdminProductList.size());
-		System.out.println(total);
+		
+		join_type = "owner";
+		dataMap.put("join_type", join_type);
+		List<ProductVO> ownerProductList  = adminProductDAO.selectProduct(dataMap);
+		int total2 = adminProductDAO.selectTotalProduct(join_type);
+		
+		List<MemberVO>ownerNameList = new ArrayList<MemberVO>();
+		for(ProductVO vo : ownerProductList) {
+			String reg_id = vo.getReg_id();
+			MemberVO memberVO = adminProductDAO.selectMemberByRegId(reg_id);
+			ownerNameList.add(memberVO);
+		}
+		
 		productMap.put("productAdminProductList", productAdminProductList);
 		productMap.put("total", total);
+		productMap.put("ownerProductList", ownerProductList);
+		productMap.put("total2", total2);
+		productMap.put("ownerNameList", ownerNameList);
 		return productMap;
 	}
 
