@@ -34,6 +34,7 @@ runtimeOnly  'mysql:mysql-connector-java:8.0.25'
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
 implementation 'org.springframework.boot:spring-boot-starter-mail:2.2.0.RELEASE'
 
+
 }
 
 tasks.named('test') {
