@@ -1,0 +1,78 @@
+.proW {
+	display: flex;
+    align-items: center;
+    margin-top: 70px;
+    margin-left: 16px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.pwant{
+	display: flex;
+    border-bottom: #ABDFF1 3px solid;
+}
+
+.review01{
+	width: 393px;
+}
+
+.review02{
+	margin-top: 64px;
+}
+
+ /* 탭 스타일 */
+        .tabs {
+            list-style: none;
+            padding: 0;
+        }
+        .tab-link {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid #000060;
+            margin-right: 5px;
+        }
+        .tab-link.active {
+            background-color: #E1DDDB;
+        }
+        /* 탭 컨텐츠 스타일 */
+        .tab-content {
+            display: none;
+        
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tabContainer{
+            width: 840px;
+            margin: 0 auto;
+        }
+ 
+ 
+ 
+ #asd{
+	margin-bottom: 0px;
+}
+
+.qwe{
+	width: 577px;
+	margin-left: 12px;
+}
+
+.text04{
+	text-align: center;
+    width: 155px;
+}
+ 
+.want_02{
+	display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 17px;
+    padding-top: 20px;
+}
+
+.join_censel_btn{
+	border: none;
+    background-color: #ffffff;
+}

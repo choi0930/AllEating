@@ -26,11 +26,11 @@ public class EmailService {
 		try {
 			message.setFrom(senderEmail);
 			message.setRecipients(MimeMessage.RecipientType.TO, email);
-			message.setSubject("이메일 인증");
+			message.setSubject("�씠硫붿씪 �씤利�");
 			String body="";
-			body+="<h3>"+ "요청하신 인증 번호입니다."+"</h3>";
+			body+="<h3>"+ "�슂泥��븯�떊 �씤利� 踰덊샇�엯�땲�떎."+"</h3>";
 			body+="<h1>"+ number+"</h1>";
-			body+="<h3>"+ "감사합니다"+"</h3>";
+			body+="<h3>"+ "媛먯궗�빀�땲�떎"+"</h3>";
 			message.setText(body,"UTF-8","html");
 		} catch (Exception e) {
 			e.printStackTrace();
