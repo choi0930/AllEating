@@ -3,7 +3,6 @@ package com.spring.alleating.owner.product.controller;
 import java.io.File;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -19,9 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -72,7 +68,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	public ResponseEntity addNewProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String imageFileName=null;
+		String fileName=null;
 		
 		Map newProductMap = new HashMap();
 		Enumeration enu=multipartRequest.getParameterNames();
@@ -88,7 +84,9 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		String reg_id = memberVO.getId();
-		
+		String join_type = memberVO.getJoin_type();
+		newProductMap.put("reg_id", reg_id);//제품 등록자 id 입력
+		newProductMap.put("join_type", join_type); //제품 등록자가 관리자등급인지 사업자 등급인지 입력
 		
 		List<ProductImgVO> imageFileList =upload(multipartRequest);
 		if(imageFileList!= null && imageFileList.size()!=0) {
@@ -104,31 +102,31 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			int productId = ownerProductService.addNewProduct(newProductMap);
-			System.out.println(productId);
+			String cateCode = (String) newProductMap.get("cateCode");
 			if(imageFileList!=null && imageFileList.size()!=0) {
-				for(ProductImgVO  imageFileVO:imageFileList) {
-					imageFileName = imageFileVO.getFileName();
-					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
-					File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+ imageFileName);
+				for(ProductImgVO  productImgVO:imageFileList) {
+					fileName = productImgVO.getFileName();
+					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+fileName);
+					File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId);
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
 				}
 			}
 			message= "<script>";
-			message += " alert('��ǰ�� ��ϵǾ����ϴ�.');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/owner/productMain.do';";
+			message += " alert('새로운 상품등록 요청하였습니다.');";
+			message +=" location.href='"+multipartRequest.getContextPath()+"/main.do';";
 			message +=("</script>");
 		}catch(Exception e) {
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ProductImgVO  productImgVO:imageFileList) {
-					imageFileName = productImgVO.getFileName();
-					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+					fileName = productImgVO.getFileName();
+					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+fileName);
 					srcFile.delete();
 				}
 			}
 			
 			message= "<script>";
-			message += " alert('������ �߻��߽��ϴ�. �ٽ� �õ��� �ּ���');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/owner/productMain.do';";
+			message += " alert('요청 실패');";
+			message +=" location.href='"+multipartRequest.getContextPath()+"/main.do';";
 			message +=("</script>");
 			e.printStackTrace();
 		}
@@ -141,60 +139,57 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	
 	
 
-	@Override
-	@RequestMapping(value="/owner/addNewProductImg.do" ,method={RequestMethod.POST})
-	public void addNewProductImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
-			throws Exception {
-		System.out.println("addNewProductImg");
-		multipartRequest.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		String imageFileName=null;
-		
-		Map productMap = new HashMap();
-		Enumeration enu=multipartRequest.getParameterNames();
-		while(enu.hasMoreElements()){
-			String name=(String)enu.nextElement();
-			String value=multipartRequest.getParameter(name);
-			productMap.put(name,value);
-		}
-		
-		HttpSession session = multipartRequest.getSession();
-		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
-		String reg_id = memberVO.getId();
-		
-		List<ProductImgVO> imageFileList=null;
-		int productId=0;
-		try {
-			imageFileList =upload(multipartRequest);
-			if(imageFileList!= null && imageFileList.size()!=0) {
-				for(ProductImgVO productImgVO : imageFileList) {
-					productId = Integer.parseInt((String)productMap.get("productId"));
-					productImgVO.setProductId(productId);
-					productImgVO.setReg_id(reg_id);
-				}
-				
-			   ownerProductService.addNewProductImg(imageFileList);
-				for(ProductImgVO  productImgVO:imageFileList) {
-					imageFileName = productImgVO.getFileName();
-					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
-					File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+ imageFileName);
-					FileUtils.moveFileToDirectory(srcFile, destDir,true);
-				}
-			}
-		}catch(Exception e) {
-			if(imageFileList!=null && imageFileList.size()!=0) {
-				for(ProductImgVO  productImgVO:imageFileList) {
-					imageFileName = productImgVO.getFileName();
-					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
-					srcFile.delete();
-				}
-			}
-			e.printStackTrace();
-		}
+	/*
+	 * @Override
+	 * 
+	 * @RequestMapping(value="/owner/addNewProductImg.do"
+	 * ,method={RequestMethod.POST}) public void
+	 * addNewProductImg(MultipartHttpServletRequest multipartRequest,
+	 * HttpServletResponse response) throws Exception {
+	 * System.out.println("addNewProductImg");
+	 * multipartRequest.setCharacterEncoding("utf-8");
+	 * response.setContentType("text/html; charset=utf-8"); String fileName=null;
+	 * 
+	 * Map productMap = new HashMap(); Enumeration
+	 * enu=multipartRequest.getParameterNames(); while(enu.hasMoreElements()){
+	 * String name=(String)enu.nextElement(); String
+	 * value=multipartRequest.getParameter(name); productMap.put(name,value); }
+	 * 
+	 * HttpSession session = multipartRequest.getSession(); MemberVO memberVO =
+	 * (MemberVO) session.getAttribute("loginMember"); String reg_id =
+	 * memberVO.getId(); String join_type = memberVO.getJoin_type();
+	 * 
+	 * productMap.put("reg_id", reg_id); productMap.put("join_type", join_type);
+	 * List<ProductImgVO> imageFileList =upload(multipartRequest);
+	 * if(imageFileList!= null && imageFileList.size()!=0) { for(ProductImgVO
+	 * productImgVO : imageFileList) { productImgVO.setReg_id(reg_id); }
+	 * productMap.put("imageFileList", imageFileList);
+	 * 
+	 * 
+	 * try {
+	 * 
+	 * 
+	 * 
+	 * ownerProductService.addNewProductImg(imageFileList); for(ProductImgVO
+	 * productImgVO:imageFileList) { imageFileName = productImgVO.getFileName();
+	 * File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+	 * File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+ imageFileName);
+	 * FileUtils.moveFileToDirectory(srcFile, destDir,true); } } }catch(Exception e)
+	 * { if(imageFileList!=null && imageFileList.size()!=0) { for(ProductImgVO
+	 * productImgVO:imageFileList) { imageFileName = productImgVO.getFileName();
+	 * File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+	 * srcFile.delete(); } } e.printStackTrace(); } }
+	 */
+
+	
+
+	//폼이동
+	@RequestMapping(value="/owner/*Form.do",method = RequestMethod.GET)
+	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
 	}
-
-	
-
-	
 
 }

@@ -61,6 +61,16 @@ public class MyPageControllerImpl {
 		return mav;
 	}
 	
+	@RequestMapping(value="/myPage/myPage_review.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView myPage_review(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 	@RequestMapping(value="/myPage/myPage_edit.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPage_edit(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();

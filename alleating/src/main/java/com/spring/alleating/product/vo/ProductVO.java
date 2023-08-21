@@ -26,7 +26,7 @@ public class ProductVO {
 	private String productBrand;
 	private String productContentTitle;
 	private String productContent;
-	private Date credate;
+	private Date creDate;
     private String reg_id;
     private String join_type;
     
@@ -152,13 +152,13 @@ public class ProductVO {
 	public void setProductContent(String productContent) {
 		this.productContent = productContent;
 	}
-	public Date getCredate() {
-		return credate;
+	public Date getCreDate() {
+		return creDate;
 	}
-	public void setCredate(Date credate) {
-		this.credate = credate;
+	public void setCreDate(Date creDate) {
+		this.creDate = creDate;
 	}
-	
+
 	
 }
 

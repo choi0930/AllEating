@@ -4,6 +4,8 @@
     
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+    <c:set var="productAdminProductList" value="${productMap['productAdminProductList']}" />
+    <c:set var="total" value="${productMap['total']}" />
     <c:choose>
 		<c:when test="${total%30 == 0}">
 			<c:set var="totals2" value="${total/30}" />
@@ -315,13 +317,31 @@ function fn_goAddProduct(){
                             </tr>
                         </thead>
                         <tbody>
+                        <c:forEach var="adminProduct" items="${productAdminProductList}">
                             <tr>
-                                <td class="productDetailGOlink">100483</td>
-                                <td class="productDetailGOlink"><div class="overflowText">[AllEating]저탄소 샤인머스캣</div></td>
-                                <td class="productDetailGOlink">50,000</td>
-                                <td class="productDetailGOlink">없음</td>
-                                <td class="productDetailGOlink">판매중</td>
-                                <td class="productDetailGOlink">2023-08-10</td>
+                                <td class="productDetailGOlink">${adminProduct.productId}</td>
+                                <td class="productDetailGOlink"><div class="overflowText">[${adminProduct.productBrand}]${adminProduct.productName}</div></td>
+                                <td class="productDetailGOlink">${adminProduct.productPrice}</td>
+                                <c:choose>
+                                    <c:when test="${adminProduct.productDiscount == 0}">
+                                        <td class="productDetailGOlink">없음</td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td class="productDetailGOlink">${adminProduct.productDiscount}%</td>
+                                    </c:otherwise>
+                                </c:choose>
+                                <c:choose>
+                                    <c:when test="${adminProduct.productStatus == 'sale'}">
+                                        <td class="productDetailGOlink">판매중</td>
+                                    </c:when>
+                                    <c:when test="${adminProduct.productStatus == 'sales_end'}">
+                                        <td class="productDetailGOlink">판매종료</td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td class="productDetailGOlink">품절</td>
+                                    </c:otherwise>
+                                </c:choose>
+                                <td class="productDetailGOlink">${adminProduct.creDate}</td>
                                 <td>
                                     <div class="productTable_btn_group">
                                             <a href="#">수정하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
@@ -329,34 +349,7 @@ function fn_goAddProduct(){
                                     </div>
                                 </td>
                             </tr> 
-                            <tr>
-                                <td class="productDetailGOlink">100483</td>
-                                <td class="productDetailGOlink"><div class="overflowText">[AllEating]저탄소 샤인머스캣</div></td>
-                                <td class="productDetailGOlink">50,000원</td>
-                                <td class="productDetailGOlink redText">40,000원</td>
-                                <td class="productDetailGOlink">판매중</td>
-                                <td class="productDetailGOlink">2023-08-10</td>
-                                <td>
-                                    <div class="productTable_btn_group">
-                                        <a href="#">수정하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
-                                        <a href="#">삭제하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
-                                    </div>
-                                </td>
-                            </tr> 
-                            <tr>
-                                <td class="productDetailGOlink">100483</td>
-                                <td class="productDetailGOlink"><div class="overflowText">[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣[AllEating]저탄소 샤인머스캣</div></td>
-                                <td class="productDetailGOlink">50,000원</td>
-                                <td class="productDetailGOlink redText">40,000원</td>
-                                <td class="productDetailGOlink">판매종료</td>
-                                <td class="productDetailGOlink">2023-08-10</td>
-                                <td>
-                                    <div class="productTable_btn_group">
-                                        <a href="#">수정하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
-                                        <a href="#">삭제하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
-                                    </div>
-                                </td>
-                            </tr> 
+                        </c:forEach>
                         </tbody>
                         
                     </table>
@@ -375,7 +368,7 @@ function fn_goAddProduct(){
                              </c:forEach> 
                        </div>	
                     </c:when>
-                       <c:when test="${total<300}">
+                       <c:when test="${total < 300}">
                         <c:forEach   var="page" begin="1" end="${totals2}" step="1" >
                             <c:choose>
                                 <c:when test="${page==pageNum}">
@@ -385,14 +378,13 @@ function fn_goAddProduct(){
                                     <a href="${contextPath}/member/listMembers.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
                                 </c:otherwise>
                             </c:choose>
-                            
                         </c:forEach>
                     </c:when>
                 </c:choose>
             </div>
         </div>
     </div>
-   
+   ${totals2}
 </body>
 </html>
 
