@@ -71,6 +71,16 @@ public class MyPageControllerImpl {
 		return mav;
 	}
 	
+	@RequestMapping(value="/myPage/myPage_edit02.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView myPage_edit02(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 	@RequestMapping(value="/myPage/myPage_reserves.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPage_reserves(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();
@@ -101,6 +111,17 @@ public class MyPageControllerImpl {
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
+	@RequestMapping(value="/myPage/myPage_coupon.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView myPage_coupon(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 	
 	@RequestMapping(value="/myPage/productCancel.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView productCancel(HttpServletRequest request, HttpServletResponse response)throws Exception {

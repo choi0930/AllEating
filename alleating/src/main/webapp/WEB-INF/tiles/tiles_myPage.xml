@@ -30,7 +30,7 @@
 	</definition>
 	
 	<definition name="/myPage/myPage_edit" extends="baseLayoutBannerSide">
-		<put-attribute name="title" value="마이페이지 개인정보수정"/>
+		<put-attribute name="title" value="마이페이지 비밀번호확인"/>
 		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_edit.jsp"/>      
 	</definition>
@@ -41,6 +41,17 @@
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_reserves.jsp"/>      
 	</definition>
 	
+	<definition name="/myPage/myPage_coupon" extends="baseLayoutBannerSide">
+		<put-attribute name="title" value="마이페이지 쿠폰"/>
+		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_coupon.jsp"/>      
+	</definition>
+	
+	<definition name="/myPage/myPage_edit02" extends="baseLayoutBannerSide">
+		<put-attribute name="title" value="마이페이지 개인정보수정"/>
+		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_edit02.jsp"/>      
+	</definition>
 	
 	<definition name="/myPage/myPage_secession" extends="baseLayoutBannerSide">
 		<put-attribute name="title" value="마이페이지 탈퇴하기"/>
