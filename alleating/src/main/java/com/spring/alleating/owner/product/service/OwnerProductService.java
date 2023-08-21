@@ -14,7 +14,7 @@ public interface OwnerProductService {
 	 * public Map productDetail(int productId) throws Exception; public List
 	 * productImageFile(int productId) throws Exception;
 	 */
-	public void addNewProductImg(List imageFileList) throws Exception;
+	//public void addNewProductImg(List imageFileList) throws Exception;
 	
 	
 }

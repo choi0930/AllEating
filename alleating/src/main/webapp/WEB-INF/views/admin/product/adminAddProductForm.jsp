@@ -63,9 +63,7 @@ request.setCharacterEncoding("utf-8"); %>
     <div class="ownermain">
       <div class="ownertext01"><h4>상품등록</h4></div>
       <form action="${contextPath}/admin/addNewProduct.do" method="post" encType="multipart/form-data">
-         <input type="hidden" name="deliveryType" value="reserve"/>
-         <input type="hidden" name="join_type" value="admin"/>
-         <input type="hidden" name="deliveryPrice" value="3000"/>
+         
          
         <div class="ownertext02">
           <div class="op01">

@@ -191,6 +191,7 @@
     <script>
         const paymentWidget = PaymentWidget(
            //토스 페이먼츠 testKey 자리
+           "test_ck_ORzdMaqN3wo9Ekv1XgN35AkYXQGw",
             PaymentWidget.ANONYMOUS
         )
         paymentWidget.renderPaymentMethods("#payment-widget","100")

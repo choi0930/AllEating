@@ -12,6 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface AdminProductController {
 	public ModelAndView listProducts(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
-	public ModelAndView adminProduct(HttpServletRequest request, HttpServletResponse response)throws Exception;
+	public ModelAndView adminProduct(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ResponseEntity addProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)throws Exception;
 }
