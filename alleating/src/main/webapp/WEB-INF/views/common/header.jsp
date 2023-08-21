@@ -217,16 +217,16 @@ $(function(){$('.header_nav').hover(
               <div class="big_categroy">
                 <ul>
                   <li class="categroy" id="vegetable">
-                  <a href="#"><img src="${contextPath}/img/headerImg/categroy_icon/vegetable.png"  width="20px" height="20px"  style="margin-right: 5px;"/> 채소</a>
+                  <a href="${contextPath}/product/product_01.do?category='901'"><img src="${contextPath}/img/headerImg/categroy_icon/vegetable.png"  width="20px" height="20px"  style="margin-right: 5px;"/> 채소</a>
                   <div class="small_categroy" id="vegetable_categroy">
                     <ul>
-                      <li class="categroy"><a href="#">친환경</a></li>
-                      <li class="categroy"><a href="#">고구마·감자·당근</a></li>
-                      <li class="categroy"><a href="#">시금치·쌈채소·나물</a></li>
-                      <li class="categroy"><a href="#">브로콜리·파프리카·양베추</a></li>
-                      <li class="categroy"><a href="#">양파·대파·마늘·배추</a></li>
-                      <li class="categroy"><a href="#">오이·호박·고추</a></li>
-                      <li class="categroy"><a href="#">콩나물·버섯</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode=901001">친환경</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode=901002">고구마·감자·당근</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode='901003'">시금치·쌈채소·나물</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode='901004'">브로콜리·파프리카·양베추</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode='901005'">양파·대파·마늘·배추</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode='901006'">오이·호박·고추</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode='901007'">콩나물·버섯</a></li>
                     </ul>
                   </div> 
                   </li>
