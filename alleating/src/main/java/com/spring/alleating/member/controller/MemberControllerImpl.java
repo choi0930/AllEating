@@ -31,7 +31,7 @@ public class MemberControllerImpl implements MemberController {
 	@Autowired
 	private MemberVO memberVO;
 	
-	@Override //회원가입
+	@Override //�쉶�썝媛��엯 가나다라마바사아자차카
 	@RequestMapping(value="/member/join.do", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView addMember(Map<String, String> memberInfo, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -46,7 +46,7 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 	
-	@Override //로그인
+	@Override //濡쒓렇�씤
 	@RequestMapping(value="/member/login.do", method = {RequestMethod.POST})
 	public ModelAndView login(Map<String, String> loginMemberInfo, RedirectAttributes rAttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -73,7 +73,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 	
 	
-	@Override //로그아웃
+	@Override //濡쒓렇�븘�썐
 	@RequestMapping(value="/member/logOut.do", method = RequestMethod.GET)
 	public ModelAndView logOut(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -85,7 +85,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	
-	@Override //아이디 중복 체크
+	@Override //�븘�씠�뵒 以묐났 泥댄겕
 	@RequestMapping(value="/member/checkId.do", method=RequestMethod.POST) 
 	public void checkId(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int result = memberService.selectById(id);
@@ -94,14 +94,14 @@ public class MemberControllerImpl implements MemberController {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		if(result>0) {
-			System.out.println("중복");
+			System.out.println("以묐났");
 			out.print("no-usable");
 		}else {
 			out.print("usable");
 		}
 	}
 
-	@Override //아이디찾기 
+	@Override //�븘�씠�뵒李얘린 
 	@RequestMapping(value="/member/find_id_01.do", method = RequestMethod.GET)
 	public ModelAndView find_id_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
 
@@ -124,7 +124,7 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName); //add
 		return mav;
 	}
-	@Override //비밀번호 찾기
+	@Override //鍮꾨�踰덊샇 李얘린
 	@RequestMapping(value= "/member/find_pwd_01.do", method = RequestMethod.GET)
 	public ModelAndView find_pwd_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
 
@@ -148,7 +148,7 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 	
-	
+
 	@Override
 	@RequestMapping(value="/member/sendEmail.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -159,7 +159,7 @@ public class MemberControllerImpl implements MemberController {
 		return response1;
 	}
 
-	//폼 이동
+	//�뤌 �씠�룞
 	@RequestMapping(value="/member/*Form.do", method = {RequestMethod.GET})
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
