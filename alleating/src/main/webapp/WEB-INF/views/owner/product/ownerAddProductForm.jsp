@@ -216,7 +216,7 @@ request.setCharacterEncoding("utf-8"); %>
             <div class="ownerbox">
               <input name="productExpireDate" type="text" size="20" />
             </div>
-            <div class="dodo">일</div>
+            <div class="dodo"></div>
           </div>
 
           <div class="op01">
@@ -275,6 +275,7 @@ request.setCharacterEncoding("utf-8"); %>
             <span id="join_btn_text">등록하기</span>
           </button>
         </div>
+       </div> 
       </form>
     </div>
   </body>

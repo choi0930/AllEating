@@ -246,7 +246,8 @@ function fn_goAddProduct(){
                                 <td><c:choose >
 	                             <c:when test="${ownerProduct.productStatus eq 'approval_request'}"> 승인 요청 </c:when>
 	                             <c:when test="${ownerProduct.productStatus eq 'declined'}"> 승인 거절 </c:when>
-	                             <c:when test="${ownerProduct.productStatus eq 'sale'}"> 판매 종료 </c:when>
+	                             <c:when test="${ownerProduct.productStatus eq 'sale'}"> 판매중</c:when>
+	                             <c:when test="${ownerProduct.productStatus eq 'sales_end'}"> 판매중</c:when>
 	                             <c:when test="${ownerProduct.productStatus eq 'sold_out'}"> 품절 </c:when>
 	                            </c:choose></td>
                                 <td><button type="button" class="product_mod_btn">수정</button>

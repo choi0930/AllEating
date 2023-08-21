@@ -150,7 +150,7 @@ function fn_goAddProduct(){
             border-radius: 6px;
             margin: 0px 730px;
         }
-        .product_mod_btn{
+        .product_apply_btn{
         width: 50px;
             height: 30px;
         background-color: #000060;
@@ -158,13 +158,7 @@ function fn_goAddProduct(){
         border-radius: 3px;
         color:white;
         }
-        .product_del_btn{
-        width: 50px;
-            height: 30px;
-        background-color: #FFFFFF;
-        border: 2px solid #F3F4F5;
-        border-radius: 3px;
-        }
+        
         
     </style>
     <script>
@@ -199,7 +193,6 @@ function fn_goAddProduct(){
                                 <option>반품 진행중</option>
                                 <option>반품 완료</option>
                                 <option>주문 취소</option>
-                                   
                             </select>
                         </div>
                     </div>
@@ -225,13 +218,14 @@ function fn_goAddProduct(){
                     <table class="table adminProductTable table-hover">
                         <thead class="table-dark">
                             <tr onclick="location.href='/test.do?'" style="cursor: pointer;">
-                                <td >상품ID</td>
-                                <td >등록일</td>
+                                <td >주문 번호</td>
+                                <td >ID</td>
                                 <td >상품명</td>
-                                <td >정가</td>
-                                <td >할인가</td>
-                                <td >판매상태</td>
-                                <td >선택</td>
+                                <td >수량</td>
+                                <td >수취자</td>
+                                <td >배송 주소</td>
+                                <td >주문 일자</td>
+                                <td >배송 상태</td>
                                 
                             </tr>
                         </thead>
@@ -239,25 +233,41 @@ function fn_goAddProduct(){
                         
                         
                         <tbody>
-                        <c:forEach var ="ownerProduct" items="${ownerProductList }">
+                        <c:forEach var ="ownerOrder" items="${ownerOrderList }">
                             <tr onclick="location.href='/test.do?'" style="cursor: pointer;">
-                                 <td >${ownerProduct.productId}</td>
-                                <td >${ownerProduct.creDate}</td>
+                                 <td >${ownerProduct.orderId}</td>
+                                <td >${ownerProduct.id}</td>
                                 <td >${ownerProduct.productName}</td>
-                                <td >${ownerProduct.productPrice}</td>
-                                <td >${ownerProduct.productSalesPrice}</td>
+                                <td >${ownerProduct.productQty}개</td>
+                                <td >${ownerProduct.receiverName}개</td>
+                                <td >${ownerProduct.address}${ownerProduct.address2}${ownerProduct.addressDetail}</td>
+                                <td >${ownerProduct.payDate}</td>
+                                <td ><select onchange="fn_productSelect()">
+                                <option selected>전체</option>
+                                <option>배송 준비중</option>
+                                <option>배송중</option>
+                                <option>배송 완료</option>
+                                <option>교환 접수</option>
+                                <option>교환 진행중</option>
+                                <option>교환 완료</option>
+                                <option>반품 접수</option>
+                                <option>반품 진행중</option>
+                                <option>반품 완료</option>
+                                <option>주문 취소</option>
+                            </select></td>
+                            <td><button type="button" class="product_apply_btn">적용</button>
+                            
                                 
                                 
                                 
                                 
-                                <td><c:choose >
+                               <%--  <td><c:choose >
 	                             <c:when test="${ownerProduct.productStatus eq 'approval_request'}"> 승인 요청 </c:when>
 	                             <c:when test="${ownerProduct.productStatus eq 'declined'}"> 승인 거절 </c:when>
 	                             <c:when test="${ownerProduct.productStatus eq 'sale'}"> 판매 종료 </c:when>
 	                             <c:when test="${ownerProduct.productStatus eq 'sold_out'}"> 품절 </c:when>
-	                            </c:choose></td>
-                                <td><button type="button" class="product_mod_btn">수정</button>
-                                <button type="button" class="product_del_btn">삭제</button></td>
+	                            </c:choose></td> --%>
+                             
                                
                             </tr> 
                             </c:forEach>
