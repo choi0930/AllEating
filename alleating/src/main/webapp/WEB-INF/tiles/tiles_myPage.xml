@@ -53,6 +53,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_address.jsp"/>      
 	</definition>
 	
+	<definition name="/myPage/myPage_review" extends="baseLayoutBannerSide">
+		<put-attribute name="title" value="마이페이지 상품후기"/>
+		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_review.jsp"/>      
+	</definition>
+	
 	<definition name="/myPage/productCancelForm" extends="baseLayoutBannerSide">
 		<put-attribute name="title" value="마이페이지 주문취소"/>
 		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
