@@ -32,7 +32,7 @@
 		<result property="productId" column="productId" />
 		<result property="reg_id" column="reg_id" />
 		<result property="fileName" column="fileName" />
-		<result property="img_type" column="img_type" />
+		<result property="fileType" column="img_type" />
 		<result property="creDate" column="creDate" />
 	</resultMap>
 	
@@ -50,7 +50,21 @@
 		select count(*) from product where join_type = #{join_type}
 		]]>
 	</select>
-	
+	<select id="selectProductDetail" resultMap="productResult" parameterType="String">
+		<![CDATA[
+		select * from product where productId = #{productId}
+		]]>
+	</select>
+	<select id="selectProductDetailImage" resultMap="productImgResult" parameterType="String">
+		<![CDATA[
+		select * from product_img where productId = #{productId}
+		]]>
+	</select>
+	<select id="selectMemberByRegId" resultType="memberVO" parameterType="String">
+		<![CDATA[
+			select name, owner_name from member where id = #{reg_id}
+		]]>
+	</select>
 	<insert id="insertNewProduct" parameterType="java.util.Map">
 		<selectKey resultType="String" keyProperty="productId"
 			order="BEFORE">

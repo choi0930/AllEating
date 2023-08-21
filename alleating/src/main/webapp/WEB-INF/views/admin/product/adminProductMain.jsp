@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-    <c:set var="productAdminProductList" value="${productMap['productAdminProductList']}" />
-    <c:set var="total" value="${productMap['total']}" />
+    <c:set var="productAdminProductList" value="${productMap.productAdminProductList}" />
+    <c:set var="total" value="${productMap.total}" />
     <c:choose>
-		<c:when test="${total%30 == 0}">
-			<c:set var="totals2" value="${total/30}" />
-		</c:when>	
-		<c:otherwise>
-			<c:set var="totals2" value="${total/30+1}" />
-		</c:otherwise>
-	</c:choose>
-	
+        <c:when test="${total % 30 == 0}">
+            <c:set var="totals2" value="${total / 30}" />
+        </c:when>	
+        <c:otherwise>
+            <c:set var="totals2" value="${total / 30 + 1}" />
+        </c:otherwise>
+    </c:choose>
+    <fmt:parseNumber var="totalsParsed" value="${totals2}" integerOnly="true" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,7 +145,10 @@ function fn_goAddProduct(){
             position: relative;
           
         }
-    
+        .pageBottom{
+            width: 600px;
+            margin: 0 auto;
+        }
     </style>
     <script>
 
@@ -239,34 +243,40 @@ function fn_goAddProduct(){
                     </table>
                 </div><!--사업자가 등록한 상품 목록-->
 
-                <c:choose>
-                    <c:when test="${total>=40}">
-                        <div id="page_wrap">
-                            <c:forEach   var="page" begin="1" end="10" step="1" >
-                                <c:if test="${section >1 && page==1 }">
-                                     <a href="${contextPath}/member/listMembers.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;pre &nbsp;</a>
-                                </c:if>
-                                     <a href="${contextPath}/member/listMembers.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
-                                <c:if test="${page ==10 }">
-                                     <a href="${contextPath}/member/listMembers.do?section=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
-                                </c:if> 
-                             </c:forEach> 
-                       </div>	
-                    </c:when>
-                       <c:when test="${total<40}">
-                        <c:forEach   var="page" begin="1" end="${totals2}" step="1" >
-                            <c:choose>
-                                <c:when test="${page==pageNum}">
-                                    <a href="${contextPath}/member/listMembers.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a href="${contextPath}/member/listMembers.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
-                                </c:otherwise>
-                            </c:choose>
-                            
-                        </c:forEach>
-                    </c:when>
-                </c:choose>
+                <div class="pageBottom">
+                    <c:if test="${total != null }">
+                        <c:choose>
+                            <c:when test="${total > 150 }">
+                                <c:forEach var="page" begin="1" end="${(total/15)+1}" step="1">
+                                    <c:if test="${section >1 && page==1 }">
+                                        <a class="no-uline" href="#">&nbsp; pre</a>
+                                    </c:if>
+                                    <a class="no-uline" href="#">${(section-1)*15 + page }</a>
+                                    <c:if test="${page == (total/15)+1 }">
+                                        <a class="no-uline" href="#">&nbsp; next</a>							
+                                    </c:if>						
+                                </c:forEach>
+                            </c:when>
+                            <c:when test="${total == 150 }">
+                                <c:forEach var="page" begin="1" end="10" step="1">
+                                    <a class="no-uline" href="#">${page }</a>
+                                </c:forEach>
+                            </c:when>
+                            <c:when test="${total < 150 }">
+                                <c:forEach var="page" begin="1" end="${(total/15)+1}" step="1">
+                                    <c:choose>
+                                        <c:when test="${page==pageNum }">
+                                            <a class="sel-page" href="#">${page }</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="no-uline" href="#">${page }</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </c:when>
+                        </c:choose>
+                    </c:if> 
+                </div>
             </div>
         </div>
         <div id="tab-2" class="tab-content ${selectedTab == 'tab-2' ? 'active' : ''}">
@@ -319,7 +329,7 @@ function fn_goAddProduct(){
                         <tbody>
                         <c:forEach var="adminProduct" items="${productAdminProductList}">
                             <tr>
-                                <td class="productDetailGOlink">${adminProduct.productId}</td>
+                                <td class="productDetailGOlink" ><a href="${contextPath}/admin/productDetail.do?productId=${adminProduct.productId}"> ${adminProduct.productId}</a></td>
                                 <td class="productDetailGOlink"><div class="overflowText">[${adminProduct.productBrand}]${adminProduct.productName}</div></td>
                                 <td class="productDetailGOlink">${adminProduct.productPrice}</td>
                                 <c:choose>
@@ -354,37 +364,44 @@ function fn_goAddProduct(){
                         
                     </table>
                 </div>
-                <c:choose>
-                    <c:when test="${total>=300}">
-                        <div id="page_wrap">
-                            <c:forEach   var="page" begin="1" end="10" step="1" >
-                                <c:if test="${section >1 && page==1 }">
-                                     <a href="${contextPath}/member/listMembers.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;pre &nbsp;</a>
-                                </c:if>
-                                     <a href="${contextPath}/member/listMembers.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
-                                <c:if test="${page ==10 }">
-                                     <a href="${contextPath}/member/listMembers.do?section=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
-                                </c:if> 
-                             </c:forEach> 
-                       </div>	
-                    </c:when>
-                       <c:when test="${total < 300}">
-                        <c:forEach   var="page" begin="1" end="${totals2}" step="1" >
-                            <c:choose>
-                                <c:when test="${page==pageNum}">
-                                    <a href="${contextPath}/member/listMembers.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a href="${contextPath}/member/listMembers.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </c:when>
-                </c:choose>
+                <div class="pageBottom">
+                    <c:if test="${total != null }">
+                        <c:choose>
+                            <c:when test="${total > 150 }">
+                                <c:forEach var="page" begin="1" end="${(total/15)+1}" step="1">
+                                    <c:if test="${section >1 && page==1 }">
+                                        <a class="no-uline" href="#">&nbsp; pre</a>
+                                    </c:if>
+                                    <a class="no-uline" href="#">${(section-1)*15 + page }</a>
+                                    <c:if test="${page == (total/15)+1 }">
+                                        <a class="no-uline" href="#">&nbsp; next</a>							
+                                    </c:if>						
+                                </c:forEach>
+                            </c:when>
+                            <c:when test="${total == 150 }">
+                                <c:forEach var="page" begin="1" end="10" step="1">
+                                    <a class="no-uline" href="#">${page }</a>
+                                </c:forEach>
+                            </c:when>
+                            <c:when test="${total < 150 }">
+                                <c:forEach var="page" begin="1" end="${(total/15)+1}" step="1">
+                                    <c:choose>
+                                        <c:when test="${page==pageNum }">
+                                            <a class="sel-page" href="#">${page }</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="no-uline" href="#">${page }</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </c:when>
+                        </c:choose>
+                    </c:if> 
+                </div>
             </div>
         </div>
     </div>
-   ${totals2}
+   
 </body>
 </html>
 

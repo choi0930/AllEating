@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.spring.alleating.admin.product.dao.AdminProductDAO;
+import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.product.vo.ProductImgVO;
 import com.spring.alleating.product.vo.ProductVO;
 
@@ -66,6 +67,22 @@ public class AdminProductServiceImpl implements AdminProductService {
 		}
 		
 		return productId;
+	}
+
+	@Override
+	public Map selectProductDetail(String productId) throws DataAccessException {
+		ProductVO vo =  adminProductDAO.selectProductDetail(productId);
+		List<ProductImgVO> list =  adminProductDAO.selectProductDetailImage(productId);
+		String reg_id = vo.getReg_id();
+		MemberVO vo3 = adminProductDAO.selectMemberByRegId(reg_id);
+		Map productInfo = new HashMap();
+		
+		productInfo.put("productVO", vo);
+		productInfo.put("productImgList", list);
+		System.out.println(list.size());
+		productInfo.put("memberVO", vo3);
+		
+		return productInfo;
 	}
 	
 	

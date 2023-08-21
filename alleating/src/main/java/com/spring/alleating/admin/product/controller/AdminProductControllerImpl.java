@@ -147,6 +147,22 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		return resEntity;
 	}
 	
+	
+	
+	@Override
+	@RequestMapping(value="/admin/productDetail.do", method = RequestMethod.GET)
+	public ModelAndView productDetail(String productId, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		Map productInfo = new HashMap<>();
+		productInfo = adminProductService.selectProductDetail(productId);
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("productInfo", productInfo);
+		mav.setViewName(viewName);
+		
+		return mav;
+	}
+
 	//폼이동
 	@RequestMapping(value="/admin/*Form.do",method = RequestMethod.GET)
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{
