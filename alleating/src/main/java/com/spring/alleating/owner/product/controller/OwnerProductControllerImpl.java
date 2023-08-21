@@ -53,8 +53,11 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	@Override
 	@RequestMapping(value= "/owner/ownerProductList.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView ownerProductList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "owner_page");
+
 		String viewName = (String)request.getAttribute("viewName");
-		List ownerProductList = ownerProductService.ownerProductList();
+		List<ProductVO> ownerProductList = ownerProductService.ownerProductList();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("ownerProductList", ownerProductList);
 		return mav;

@@ -173,8 +173,7 @@ function fn_goAddProduct(){
 </head>
 <body>
     <div class="tabContainer">
-     <a href="${ContextPath }/owner/ownerAddProductForm.do">
-      <input class="ownerProductMain_addBTN" type="button" value="등록"></a>
+     
         <ul class="tabs">
           
             
@@ -182,17 +181,25 @@ function fn_goAddProduct(){
 
         <div id="tab-1" class="tab-content active">
             <div class="tab_contents">
-                <div class="adminProductMain_searchBarArea"> <!--상품관리 상단-->
-                    <div class="adminProductMain_status"><!--상품관리 판매상태 선택 select박스-->
+                <div class="adminProductMain_searchBarArea"> <!--배송관리 상단-->
+                    <div class="adminProductMain_status"><!--배송관리 배송상태 선택 select박스-->
                         <div class="statusText">
-                            판매 상태
+                            배송 상태
                         </div>
                         <div>
                             <select onchange="fn_productSelect()">
                                 <option selected>전체</option>
-                                <option>판매중</option>
-                                <option>판매종료</option>
-                                <option>승인요청</option>
+                                <option>배송 준비중</option>
+                                <option>배송중</option>
+                                <option>배송 완료</option>
+                                <option>교환 접수</option>
+                                <option>교환 진행중</option>
+                                <option>교환 완료</option>
+                                <option>반품 접수</option>
+                                <option>반품 진행중</option>
+                                <option>반품 완료</option>
+                                <option>주문 취소</option>
+                                   
                             </select>
                         </div>
                     </div>

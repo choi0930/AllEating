@@ -20,5 +20,5 @@ public interface OwnerProductDAO {
 	 * DataAccessException; public List selectProductImageFileList(int productId)
 	 * throws DataAccessException;
 	 */
-	public List selectAllOwnerList() throws Exception;
+	public List<ProductVO> selectAllOwnerProductList() throws Exception;
 }

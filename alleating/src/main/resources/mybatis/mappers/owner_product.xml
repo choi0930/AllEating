@@ -37,9 +37,9 @@
 		<result property="creDate" column="creDate" />
 	</resultMap>
 	<!-- select -->
-	<select id="selectAllOwnerList" resultMap="productResult">
+	<select id="selectAllOwnerProductList" resultMap="productResult">
 	<![CDATA[
- select * from product
+ select * from product where join_type='owner'
  
 ]]>
 	</select>

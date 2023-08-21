@@ -76,7 +76,7 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 
 	@Override
 	public List<ProductVO> ownerProductList() throws Exception {
-		List<ProductVO> ownerProductList = ownerProductDAO.selectAllOwnerList();
+		List<ProductVO> ownerProductList = ownerProductDAO.selectAllOwnerProductList();
 		return ownerProductList;
 	}
 
