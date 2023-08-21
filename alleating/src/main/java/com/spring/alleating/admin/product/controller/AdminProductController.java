@@ -14,4 +14,5 @@ public interface AdminProductController {
 	public ModelAndView listProducts(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView adminProduct(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ResponseEntity addProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)throws Exception;
+	public ModelAndView productDetail(@RequestParam("productId") String productId, HttpServletRequest request, HttpServletResponse response)throws Exception;
 }
