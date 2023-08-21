@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.alleating.product.vo.ProductVO;
 
 @Mapper
-@Repository("ownerproductDAO")
+@Repository("ownerProductDAO")
 public interface OwnerProductDAO {
 	public int insertNewProduct(Map newProductMap) throws DataAccessException;
 	public void insertProductImg(List fileList)  throws DataAccessException;
@@ -20,4 +20,5 @@ public interface OwnerProductDAO {
 	 * DataAccessException; public List selectProductImageFileList(int productId)
 	 * throws DataAccessException;
 	 */
+	public List selectAllOwnerList() throws Exception;
 }

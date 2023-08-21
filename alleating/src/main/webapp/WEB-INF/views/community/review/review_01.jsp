@@ -21,6 +21,10 @@
     }
     .review_top {
     display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #000060;
+    padding-bottom: 15px;
+    align-items: center;
 }
 </style>
 <link href="${contextPath}/css/product_01.css" rel="stylesheet" type="text/css" />

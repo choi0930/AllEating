@@ -64,19 +64,22 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	 * imageList; }
 	 */
 
-	
-	
-	
 
-
-
-	
 	@Override
 	public void addNewProductImg(List imageFileList) throws Exception {
 		ownerProductDAO.insertProductImg(imageFileList);
 		
 	}
 
+
+	@Override
+	public List<ProductVO> ownerProductList() throws Exception {
+		List<ProductVO> ownerProductList = ownerProductDAO.selectAllOwnerList();
+		return ownerProductList;
+	}
+
+
+	
 
 	/*
 	 * @Override public int addProduct(Map productMap) throws Exception {

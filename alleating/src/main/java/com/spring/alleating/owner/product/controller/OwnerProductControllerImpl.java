@@ -51,6 +51,22 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	}
 
 	
+	
+	
+//사업자 상품관리 리스트
+	@Override
+	@RequestMapping(value= "/owner/ownerProductList.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView ownerProductList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		List ownerProductList = ownerProductService.ownerProductList();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("ownerProductList", ownerProductList);
+		return mav;
+	}
+
+
+
+
 
 	@RequestMapping(value="/owner/addNewProduct.do" ,method={RequestMethod.POST})
 	public ResponseEntity addNewProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {

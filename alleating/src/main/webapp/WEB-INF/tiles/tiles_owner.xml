@@ -9,5 +9,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/owner/product/ownerProductMain.jsp"/>      
 	</definition>
 	
+	<definition name="/owner/ownerProductList" extends="baseLayout2">
+		<put-attribute name="title" value="사업자 상품관리 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/owner/product/ownerProductList.jsp"/>      
+	</definition>
+	
 	
 </tiles-definitions>

@@ -29,6 +29,12 @@
 		<result property="jointype" column="jointype" />
 	</resultMap>
 	<!-- select -->
+	<select id="selectAllOwnerList" resultMap="productResult">
+	<![CDATA[
+ select * from product
+ 
+]]>
+	</select>
 	
 	<!-- insert -->
 	<insert id="insertNewProduct" parameterType="java.util.Map">
