@@ -214,7 +214,7 @@ text-decoration:none;}
                         </a>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="#">쿠폰
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_coupon.do">쿠폰
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
