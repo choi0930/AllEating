@@ -80,6 +80,12 @@ request.setCharacterEncoding("utf-8"); %>
             </li>
             <li>
               <div class="productdetail_flex">
+                <div>브랜드</div>
+                <div>${productVO.productBrand}</div>
+              </div>
+            </li>
+            <li>
+              <div class="productdetail_flex">
                 <div>상품이름</div>
                 <div>${productVO.productName}</div>
               </div>

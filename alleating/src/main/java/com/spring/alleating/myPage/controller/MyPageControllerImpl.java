@@ -55,6 +55,7 @@ public class MyPageControllerImpl {
 	public ModelAndView myPage_review(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
+		session.setAttribute("selectedTab", "tab-1");
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
