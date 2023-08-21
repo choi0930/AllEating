@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,13 +49,31 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 
 	@Override //상품관리 페이지 첫 진입
 	@RequestMapping(value="/admin/productMain.do", method = RequestMethod.GET)
-	public ModelAndView adminProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView adminProduct(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "admin_page");
 		session.setAttribute("selectedTab", "tab-1");
+		String section = dataMap.get("section");
+		String pageNum = dataMap.get("pageNum");
+		
+		Map<String,Object> condMap=new HashMap<String,Object>();
+		if(section== null) {
+			section = "1";
+		}
+		
+		if(pageNum== null) {
+			pageNum = "1";
+		}
+		condMap.put("section",section);
+		condMap.put("pageNum",pageNum);
+		
+		Map productMap = new HashMap();
+		productMap = adminProductService.selectAllProduct(condMap);
+		
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("productMap", productMap);
 		mav.setViewName(viewName);
 		return mav;
 	}

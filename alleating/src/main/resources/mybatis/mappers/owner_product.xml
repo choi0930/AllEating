@@ -5,7 +5,6 @@
  <mapper namespace="com.spring.alleating.owner.product.dao.OwnerProductDAO">
 
 	<resultMap id="productResult" type="productVO">
-		
 		<result property="productId" column="productId" />
 		<result property="deliveryType" column="deliveryType" />
 		<result property="deliveryPrice" column="deliveryPrice" />
@@ -25,67 +24,93 @@
 		<result property="productContentTitle" column="productContentTitle"/>
 		<result property="productContent" column="productContent"/>
 		<result property="creDate" column="creDate"/>
-		<result property="name" column="name"/>
-		<result property="jointype" column="jointype" />
+		<result property="reg_id" column="reg_id"/>
+		<result property="join_type" column="join_type" />
+	</resultMap>
+	
+	<resultMap id="productImgResult" type="productImgVO">
+		<result property="imgId" column="imgId" />
+		<result property="productId" column="productId" />
+		<result property="reg_id" column="reg_id" />
+		<result property="fileName" column="fileName" />
+		<result property="img_type" column="img_type" />
+		<result property="creDate" column="creDate" />
 	</resultMap>
 	<!-- select -->
 	
 	<!-- insert -->
-	<insert id="insertNewProduct" parameterType="java.util.Map">
- 			insert into product(
- 			productId, 
- 			deliveryType,
- 			deliveryPrice,
- 			cateCode,
- 			productName,
- 			productPrice,
- 			productDiscount,
- 			productSalesPrice,
- 			productUnit,
- 			productPackType,
- 			productWeight,
- 			productOrigin,
- 			productTotal,
- 			productExpireDate,
- 			productBrand,
- 			productContentTitle,
- 			productContent,
- 			creDate,
- 			name,
- 			join_type
- 			) values(
- 				#{productId}, 
- 				#{deliveryType}, 
- 				#{deliveryPrice}, 
- 				#{productPrice}, 
- 				#{cateCode}, 
- 				#{productName}, 
- 				#{productPrice}, 
- 				#{productDiscount}, 
- 				#{productSalesPrice}, 
- 				#{productUnit}, 
- 				#{productPackType}, 
- 				#{productWeight}, 
- 				#{productOrigin},
- 				#{productTotal},
- 				#{productExpireDate},
- 				#{productBrand},
- 				#{productContentTitle},
- 				#{productContent},
- 				#{creDate},
- 				 #{name},
- 				#{join_type} )
- 						
+<insert id="insertNewProduct" parameterType="java.util.Map">
+		<selectKey resultType="String" keyProperty="productId"
+			order="BEFORE">
+			select ifnull(max(productId),0)+1 from product
+		</selectKey>
+		<![CDATA[
+		insert into product(
+							productId,
+							deliveryType,
+							deliveryPrice,
+							cateCode,
+							productName,
+							productPrice,
+							productDiscount,
+							productSalesPrice,
+							productUnit,
+							productPackType,
+							productWeight,
+							productOrigin,
+							productTotal,
+							productExpireDate,
+							productBrand,
+							productContentTitle,
+							productContent,
+							reg_id,
+							join_type)
+							values(
+							#{productId},
+							#{deliveryType},
+							#{deliveryPrice},
+							#{cateCode},
+							#{productName},
+							#{productPrice},
+							#{productDiscount},
+							#{productSalesPrice},
+							#{productUnit},
+							#{productPackType},
+							#{productWeight},
+							#{productOrigin},
+							#{productTotal},
+							#{productExpireDate},
+							#{productBrand},
+							#{productContentTitle},
+							#{productContent},
+							#{reg_id},
+							#{join_type}
+							)
+			]]>
 	</insert>
 	
 	
 	
-	<insert id="insertProductImg" parameterType="productImgVO">
-	    <![CDATA[
-		   insert into product_img (imgId, productId, fileName, img_type, creDate, reg_id)
-		   values(#{imgId}, #{productId}, #{fileName}, #{img_type}, #{creDate}, #{reg_id} )
-		]]>
-	</insert> 
+	<insert id="insertProductImageFile" parameterType="productImgVO">
+		
+		<selectKey resultType="int" keyProperty="imgId"
+			order="BEFORE">
+			select ifnull(max(imgId),0)+1 from product_img
+		</selectKey>
+	 
+		   insert into product_img (imgId,
+		                                     productId,
+									         fileName,
+											 fileType,
+											 reg_id)
+											 values
+											 (#{imgId},
+											 #{productId},
+											 #{fileName},
+											 #{fileType},
+											 #{reg_id} )
 	
+		
+	</insert>
 	
 </mapper>

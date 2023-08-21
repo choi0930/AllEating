@@ -36,10 +36,10 @@
 		<result property="creDate" column="creDate" />
 	</resultMap>
 	
-	<select id="selectProduct" parameterType="java.util.Map">
+	<select id="selectProduct" resultMap="productResult" parameterType="java.util.Map">
 		<![CDATA[
-		select result.* form
-		(select (@rowNum := @rowNum+1) as recNum, p.* form
+		select result.* from
+		(select (@rowNum := @rowNum+1) as recNum, p.* from
 			(select *,(@rowNum:=0) from product where join_type = #{join_type} 
 			order by creDate desc) as p) as result
 			where recNum BETWEEN (#{section}-1)*100 + (#{pageNum}-1)*30 + 1 AND (#{section}-1)*100 + (#{pageNum})*30;
@@ -47,7 +47,7 @@
 	</select>
 	<select id="selectTotalProduct" resultType="int" parameterType="String">
 		<![CDATA[
-		select count(productId) from product where join_type = #{join_type}
+		select count(*) from product where join_type = #{join_type}
 		]]>
 	</select>
 	

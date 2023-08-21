@@ -4,9 +4,9 @@
 "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	<definition name="/owner/productMain" extends="baseLayout2">
-		<put-attribute name="title" value="사업자 상품관리 페이지"/>
-		<put-attribute name="body" value="/WEB-INF/views/owner/product/ownerProductMain.jsp"/>      
+	<definition name="/owner/ownerAddProductForm" extends="baseLayout2">
+		<put-attribute name="title" value="사업자 상품추가 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/owner/product/ownerAddProductForm.jsp"/>      
 	</definition>
 	
 	
