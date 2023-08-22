@@ -30,7 +30,7 @@ request.setCharacterEncoding("utf-8"); %>
       <form
         name="editpwd"
         method="post"
-        action="${contextPath}/myPage/myPage_edit.do"
+        action="${contextPath}/myPage/myPage_edit02.do"
       >
         <div class="edit01">
           <div class="edit02">
@@ -50,7 +50,10 @@ request.setCharacterEncoding("utf-8"); %>
         </div>
         <div class="text04">
           <div class="form_end">
-            <button class="join_end_btn" onclick="fn_loginGO()">
+            <button
+              class="join_end_btn"
+              onclick="location.href='${contextPath}/member/modMember.do?id=${member.id}'"
+            >
               <span id="join_btn2_text">확인하기</span>
             </button>
           </div>

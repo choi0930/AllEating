@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -150,6 +151,33 @@ public class MemberControllerImpl implements MemberController {
 	
 
 	@Override
+	@RequestMapping(value = "/member/modMember.do", method = RequestMethod.GET)
+	public ModelAndView modMember(@RequestParam("id") String id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		System.out.println("Call modMember-method of control");
+		request.setCharacterEncoding("utf-8");
+		String viewName = (String) request.getAttribute("viewName");
+		System.out.println("viewName: " + viewName);
+		MemberVO memberVO = memberService.modMember(id);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("member", memberVO);
+		mav.setViewName(viewName);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value = "/member/updateMember.do", method = RequestMethod.POST)
+	public ModelAndView updateMember(@ModelAttribute("member") MemberVO member, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		System.out.println("Call updateMember-method of control");
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = memberService.updateMember(member);
+		ModelAndView mav = new ModelAndView("redirect:/main.do");
+		return mav;
+	}
+
+	@Override
 	@RequestMapping(value="/member/sendEmail.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> sendEmail(@RequestParam("email") String email, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -167,4 +195,5 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName);
 		return mav;
 	}
+
 }

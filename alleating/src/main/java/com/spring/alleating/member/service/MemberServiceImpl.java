@@ -44,5 +44,17 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
+	@Override
+	public MemberVO modMember(String id) throws DataAccessException {
+		MemberVO memberVO = new MemberVO();
+		memberVO = memberDAO.selectMemberById(id);
+		return memberVO;
+	}
+
+	@Override
+	public int updateMember(MemberVO member) throws DataAccessException {
+		return memberDAO.updateMember(member);
+	}
+	
 	
 }

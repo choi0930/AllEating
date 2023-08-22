@@ -6,11 +6,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <head>
     <meta charset="UTF-8" />
     <title>메인 베너 이미지</title>
-    <style>
-      
-    </style>
   </head>
-
   <body>
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
       <div class="carousel-indicators">

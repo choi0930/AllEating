@@ -191,6 +191,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         }
       }
 
+      function fn_sub(obj) {
+        //document.getElementById("i_id").disabled=false;
+        obj.submit();
+      }
+
       //이메일 sms 수신동의 전체 체크
       $(document).ready(function () {
         //전체 체크박스 클릭
@@ -243,7 +248,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <form
         name="joinForm"
         method="post"
-        action="${contextPath}/member/join.do"
+        action="${contextPath}/member/updateMember.do"
       >
         <div id="join_input">
           <div id="join_title">개인 정보 수정</div>
@@ -260,6 +265,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   class="form-control join_input_box"
                   id="userId"
                   name="id"
+                  value="${member.id}"
                   readonly
                 />
               </div>
@@ -280,6 +286,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   class="form-control join_input_box"
                   id="pwd1"
                   name="pwd"
+                  value="${member.pwd}"
                   placeholder="비밀번호를 입력해주세요"
                 />
               </div>
@@ -681,7 +688,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </div>
           <!--이용약관 동의 끝-->
           <div class="form_end">
-            <button type="button" class="join_end_btn" onclick="fn_loginGO()">
+            <button
+              type="button"
+              class="join_end_btn"
+              onclick="fn_sub(this.form)"
+            >
               <span id="join_btn_text">수정하기</span>
             </button>
           </div>
