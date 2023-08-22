@@ -30,16 +30,16 @@ margin:0 auto;}
 font-size:5px;
 color:#d1d1e0;
 font-family: 'Noto Sans KR', sans-serif;}
-.listcss-sale{
+.sale_text_1{
 color:#EF6C33;
 font-weight:bold;
 }
-.listcss-price{
+.sale_text_2{
 color:#d1d1e0;
  text-decoration: line-through;
 }
 
-.listcss-4{
+.sale_result{
 font-weight:bold;
 }
 .listcss-5{

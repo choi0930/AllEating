@@ -37,14 +37,20 @@
 	</resultMap>
 	
 	<!-- SELECT -->
-	<select id="selectUserProductDetail" resultMap="productResult" parameterType="String">
+	<select id="selectUserProductDetail" resultMap="productResult" parameterType="int">
 		<![CDATA[
 		select * from product where productId = #{productId}
 		]]>
 	</select>
-	<select id="selectUserProductDetailImage" resultMap="productImgResult" parameterType="String">
+	<select id="selectUserProductDetailImage" resultMap="productImgResult" parameterType="int">
 		<![CDATA[
 		select * from product_img where productId = #{productId}
+		]]>
+	</select>
+	
+	<select id="selectUserByRegId" resultType="memberVO" parameterType="String">
+		<![CDATA[
+			select id, name, owner_name from member where id = #{reg_id}
 		]]>
 	</select>
 	

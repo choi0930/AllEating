@@ -6,6 +6,7 @@
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
     <c:set var="userProductVO" value="${userProductInfo.userProductVO}" /><!--상품정보-->
 <c:set var="userProductImglist" value="${userProductInfo.userProductImglist}" /><!--이미지리스트-->
+<c:set var="userVO" value="${userProductInfo.userVO}" /><!--사업자리스트-->
     
 <!DOCTYPE html>
 <html>
@@ -32,21 +33,50 @@ function doDisplay(){
 
 </head>
 <body>
+
+
+
+
 <div class="css-16c0d8l">
 <main id="productinfo" class="productinfocss">
 <div class="imagefood">
-<img src="${contextPath}/img/image_food/shinemuscat.jpg">
+
+               <c:forEach var="pimg" items="${userProductImglist}">
+                <c:if test="${pimg.fileType =='main_image'}">
+                  <img src="${contextPath}/download.do?fileName=${pimg.fileName}&productId=${userProductVO.productId}&cateCode=${userProductVO.cateCode}" alt="${pimg.fileName}" width="300px" height="300px">
+                </c:if>
+            </c:forEach>
 </div>
 <div id="list">
 <section class="listcss">
-<div class="listcss-1">번개배송<img src="${contextPath}/img/image_logo/thunder.png" height="30px">
-<h1 class="listcss-2"> [All Eating] 저탄소 샤인머스캣</h1>
-<h2 class="listcss-3">상큼함으로 무장한 연둣빛 포도</h2>
-<h2>
-<span class="listcss-sale">7</span><span class="listcss-sale">%</span>
-<span class="listcss-4">13,990</span><span class="listcss-4">원</span>
-</h2>
-<span class="listcss-price">18,900원</span>
+<div class="listcss-1"> <c:choose>
+         <c:when test="${userProductVO.deliveryType == 'reserve' }"> 예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
+         </c:when> 
+        <c:when test="${userProductVO.deliveryType == 'normal' }"> 일반배송
+         </c:when>
+         </c:choose>
+<h1 class="listcss-2"> 
+        <c:choose>
+         <c:when test="${userProductVO.deliveryType == 'reserve' }">[All Eating]
+         </c:when>
+        <c:when test="${userProductVO.deliveryType == 'normal' }">[${userProductVO.productBrand}]
+         </c:when>
+         </c:choose>
+                   ${userProductVO.productName} </h1>
+                   
+                   
+                   <div class="sale_text">  
+                    <c:choose>
+                    <c:when test="${userProductVO.productDiscount != 0}">
+                 
+                   <div class="sale_text_1" >${userProductVO.productDiscount}%</div>
+                   <div class="sale_text_2">${userProductVO.productPrice}원</div>
+                   <div class="sale_result"> ${userProductVO.productSalesPrice}원 </div> </c:when>
+                   
+                   <c:otherwise> <h6 class="sale_text_2">${userProductVO.productPrice}원</h6></c:otherwise>
+                   </c:choose>
+                  </div> 
+
 </div>
 <div class="listcss-5">로그인 후, 적립 혜택이 제공됩니다.</div>
 
@@ -55,49 +85,56 @@ function doDisplay(){
 <dl class="dlcss" id="dlcss-2">
 <dt class="listcss-6">배송</dt>
 <dd class="listcss-7">
-<p>21시 전 주문 시 내일 아침 7시 전 도착</p>
+<p><c:choose>
+         <c:when test="${userProductVO.deliveryType == 'reserve' }">21시 전 주문 시 내일 아침 7시 전 도착
+         </c:when>
+        <c:when test="${userProductVO.deliveryType == 'normal' }">택배 배송
+         </c:when>
+         </c:choose>
+
+</p>
 </dd>
 </dl>
 
 <dl class="dlcss">
 <dt class="listcss-6">판매자</dt>
 <dd class="listcss-7">
-<p>올잇팅</p>
+<p>${userVO.owner_name}</p>
 </dd>
 </dl>
 
 <dl class="dlcss">
 <dt class="listcss-6">포장타입</dt>
 <dd class="listcss-7">
-<p>냉장</p>
+<p>${userProductVO.productPackType }</p>
 </dd>
 </dl>
 
 <dl class="dlcss">
 <dt class="listcss-6">판매단위</dt>
 <dd class="listcss-7">
-<p>1팩</p>
+<p>${userProductVO.productUnit }</p>
 </dd>
 </dl>
 
 <dl class="dlcss">
 <dt class="listcss-6">중량/용량</dt>
 <dd class="listcss-7">
-<p>옵션별 상이</p>
+<p>${userProductVO.productWeight}</p>
 </dd>
 </dl>
 
 <dl class="dlcss">
 <dt class="listcss-6">원산지</dt>
 <dd class="listcss-7">
-<p>국산</p>
+<p>${userProductVO.productOrigin}</p>
 </dd>
 </dl>
 
 <dl class="dlcss">
 <dt class="listcss-6">유통기한</dt>
 <dd class="listcss-7">
-<p>농산물로 별도의 유통기한은 없으나 가급적 빨리 섭취하기를 권장드립니다.</p>
+<p>${userProductVO.productExpireDate}</p>
 </dd>
 </dl>
 
@@ -108,7 +145,7 @@ function doDisplay(){
 <dd class="choice-4">
 <div class="choice-5">
 <div class="choice-6">
-<span class="choice-7"> [All Eating] 저탄소 샤인머스캣</span>
+<span class="choice-7"> [${userProductVO.productBrand}] ${userProductVO.productName}</span>
 </div>
 <div class="choice-8">
 <div class="choice-9">
@@ -255,12 +292,22 @@ function doDisplay(){
 <div class="goods-wrap">
 <div class="goods-intro">
 <div class="pic">
-<img src="${contextPath}/img/image_food/shinemuscat_detail.jpg">
+<c:forEach var="pimg" items="${userProductImglist}"> 
+                <c:if test="${pimg.fileType =='detail_image1'}">
+                  <img src="${contextPath}/download.do?fileName=${pimg.fileName}&productId=${userProductVO.productId}&cateCode=${userProductVO.cateCode}" alt="${pimg.fileName}" width="300px" height="300px">
+                </c:if>
+            </c:forEach>
 <div class="context-last">
-   <small>상큼함으로 무장한 연둣빛 포도</small>
-    <h3>[All Eating] 저탄소 샤인머스캣</h3>
+   <small>${userProductVO.productContentTitle}</small>
+    <h3><c:choose>
+         <c:when test="${userProductVO.deliveryType == 'reserve' }">[All Eating]
+         </c:when>
+        <c:when test="${userProductVO.deliveryType == 'normal' }">[${userProductVO.productBrand}]
+         </c:when>
+         </c:choose>
+                   ${userProductVO.productName}</h3>
     <hr>
-    <p>샤인머스캣의 참맛을 아는 분이라면 머스캣이 나오는 시기를 손꼽아 기다리셨을 거예요. 거봉처럼 알이 굵고 매끈하며, 청포도처럼 청량한 단맛을 지닌 마성의 과일이니까요. 이번에는 꼼꼼히 엄선한 국내산 샤인머스캣을 준비했는데요. 큼지막한 알 사이즈에 한 번 놀라고, 톡 하고 터뜨렸을 때 입안 가득 퍼지는 과즙의 맛과 향에 두 번 놀랄 거예요. 1인 가구도 부담 없이 누릴 수 있는 샤인머스캣 한 송이, 그 천상의 맛을 손쉽게 경험하세요. </p>
+    <p>${userProductVO.productContent}</p>
 </div>
 </div>
 </div>

@@ -106,8 +106,8 @@ public class ProductControllerImpl implements ProductController{
 	
 	//제품 상세페이지 연결 컨트롤러
 	@Override
-	@RequestMapping(value="/product/userProductDetail.do?", method = RequestMethod.GET)
-	public ModelAndView userProductDetail(@RequestParam("productId") String productId, HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/product/userProductDetail.do", method = RequestMethod.GET)
+	public ModelAndView userProductDetail(@RequestParam("productId") int productId, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		Map userProductInfo = new HashMap<>();
 		userProductInfo = productService.selectUserProductDetail(productId);

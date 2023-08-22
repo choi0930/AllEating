@@ -5,5 +5,5 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 public interface ProductService {
-	public Map selectUserProductDetail(String productId)throws DataAccessException;
+	public Map selectUserProductDetail(int productId)throws DataAccessException;
 }
