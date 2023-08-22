@@ -24,7 +24,7 @@ public class CartVO {
 	private String productBrand;
 	private String fileName;
 	
-	
+
 	public String getDeliveryType() {
 		return deliveryType;
 	}
