@@ -41,10 +41,33 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 	private ProductImgVO productImgVO;
 	
 	@Override
+	@RequestMapping(value="/admin/listProducts.do", method = RequestMethod.GET)
 	public ModelAndView listProducts(Map<String, String> dataMap, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "admin_page");
+		session.setAttribute("selectedTab", "tab-2");
+		String section = dataMap.get("section");
+		String pageNum = dataMap.get("pageNum");
+		Map<String,Object> condMap=new HashMap<String,Object>();
+		if(section== null) {
+			section = "1";
+		}
 		
-		return null;
+		if(pageNum== null) {
+			pageNum = "1";
+		}
+		condMap.put("section",section);
+		condMap.put("pageNum",pageNum);
+		
+		Map productMap = new HashMap();
+		productMap = adminProductService.selectAdminProduct(condMap);
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("productMap", productMap);
+		mav.setViewName("/admin/productMain");
+		return mav;
 	}
 
 	@Override //상품관리 페이지 첫 진입
