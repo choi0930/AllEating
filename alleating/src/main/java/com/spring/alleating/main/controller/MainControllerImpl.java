@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.alleating.common.base.BaseController;
 import com.spring.alleating.main.service.MainService;
 
 @Controller ("mainController")
-	public class MainControllerImpl implements MainController {
+	public class MainControllerImpl extends BaseController implements MainController {
 	
 	@Autowired
 	MainService mainService;
@@ -33,6 +34,13 @@ import com.spring.alleating.main.service.MainService;
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("mainInfo", mainInfo);
 			mav.setViewName(viewName);
+		
+			Map productPeriod = calcSearchPeriod("one_month");
+			Map mainresult = mainService.selectMainProductDetail(productPeriod);
+			
+			mav.addObject("mainresult",mainresult);
+			
+			
 			
 			return mav;
 		}

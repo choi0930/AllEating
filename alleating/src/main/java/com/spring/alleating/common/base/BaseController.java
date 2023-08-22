@@ -4,8 +4,10 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -40,7 +42,7 @@ import com.spring.alleating.product.vo.ProductImgVO;
 			}
 			return fileList;
 		}
-		protected String calcSearchPeriod(String fixedSearchPeriod){
+		protected Map calcSearchPeriod(String fixedSearchPeriod){
 			String beginDate=null;
 			String endDate=null;
 			String endYear=null;
@@ -91,7 +93,10 @@ import com.spring.alleating.product.vo.ProductImgVO;
 			//예시 2023-06-17 
 			beginDate = beginYear +"-"+ beginMonth +"-"+beginDay;
 			//,을 구분자로 검색일 시작 날짜와 끝날짜를 반환
-			return beginDate+","+endDate;
+			Map dateMap = new HashMap();
+			dateMap.put("beginDate", beginDate);
+			dateMap.put("endDate", endDate);
+			return dateMap;
 		}
 		
 		protected String cateCodePull(String cateCode) {

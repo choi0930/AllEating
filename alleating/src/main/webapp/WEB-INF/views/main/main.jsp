@@ -3,8 +3,8 @@ pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
-<c:set var="productVO" value="${productInfo.productVO}" /><!--상품정보-->
-<c:set var="productImgList" value="${productInfo.productImgList}" /><!--이미지리스트-->
+<c:set var="saleProduct" value="${mainresult.saleList}" /><!--할인상품-->
+<c:set var="newProduct" value="${mainresult.newList}" /><!--신상품-->
 
 
 <link href="${contextPath}/css/test.css" rel="stylesheet" type="text/css" />
@@ -32,34 +32,24 @@ request.setCharacterEncoding("utf-8"); %>
           </div>
           <div>
           <div class="image-container">
-            <div class="qwerqwer">
-              <img src="${contextPath}/img/image_food/mara.png" width="240" height="320" alt="Image 1" />
-              <div class="test2">
-                <h5>[승기네]마라탕</h5>
-                <div>10,000원</div>
-              </div>
-            </div>
-            <div class="qwerqwer">
-              <img src="${contextPath}/img/image_food/olive.png" width="240" height="320" alt="Image 2" />
-              <div class="test2">
-                <h5>[현진이네]올리브</h5>
-                <div>3,500원</div>
-              </div>
-            </div>
-            <div class="qwerqwer">
-              <img src="${contextPath}/img/image_food/curry.png" width="240" height="320" alt="Image 3" />
-              <div class="test2">
-                <h5>[건태네]카레</h5>
-                <div>7,000원</div>
-              </div>
-            </div>
-            <div class="qwerqwer">
-              <img src="${contextPath}/img/image_food/picle.png" width="240" height="320" alt="Image 4" />
-              <div class="test2">
-                <h5>[All Eating]피클</h5>
-                <div>2,800원</div>
-              </div>
-            </div>
+            
+              <%-- <img src="${contextPath}/img/image_food/mara.png" width="240" height="320" alt="Image 1" /> --%>
+              <c:forEach var="newProductInfo" items="${newProduct}">
+               <div class="qwerqwer">
+                  <img src="${contextPath}/download.do?fileName=${newProductInfo.fileName}&productId=${newProductInfo.productId}&cateCode=${newProductInfo.cateCode}" alt="${newProductInfo.fileName}" width="300px" height="300px">
+                 
+                <div class="test2">
+   efsdf     <h5> [${newProductInfo.productBrand}] </h5>
+                  <h5> ${newProductInfo.productName} </h5>
+                   <div> ${newProductInfo.productPrice}원 </div>
+                </div>
+           </div> 
+            </c:forEach>
+             
+            
+            
+            
+            
           </div>
         </div> 
           <!-- <div class="newproduct-list">
@@ -107,39 +97,24 @@ request.setCharacterEncoding("utf-8"); %>
           <h3 class="newgoods">할인 품목</h3>
         </div>
         <div class="image-container3">
-          <div>
-            <img src="${contextPath}/img/image_food/pizza.png" alt="Image 1" />
-            <div class="test2">
-              <h5>[승기네]시카고 피자</h5>
-              <div><b style="color: #ef6c33;">10%</b> 9,900원</div>
-              <div class="text-line">11,000원</div>
-            </div>
-          </div>
-          <div>
-            <img src="${contextPath}/img/image_food/candy.png" alt="Image 2" />
-    
-            <div class="test2">
-              <h5>[All Eating]레몬 사탕</h5>
-              <div><b style="color: #ef6c33;">5%</b> 3,040원</div>
-              <div class="text-line">3,200원</div>
-            </div>
-          </div>
-          <div>
-            <img src="${contextPath}/img/image_food/rib.png" alt="Image 3" />
-            <div class="test2">
-              <h5>[All Eating]LA 갈비</h5>
-              <div><b style="color: #ef6c33;">20%</b> 12,800원</div>
-              <div class="text-line">16,000원</div>
-            </div>
-          </div>
-          <div>
-            <img src="${contextPath}/img/image_food/egg.png" alt="Image 4" />
-            <div class="test2">
-              <h5>[서형이네]1+등급 계란</h5>
-              <div><b style="color: #ef6c33;">10%</b> 8,100원</div>
-              <div class="text-line">9,000원</div>
-            </div>
-          </div>
+        <c:forEach var="saleProductInfo" items="${saleProduct}">
+               <div class="qwerqwer">
+                  <img src="${contextPath}/download.do?fileName=${saleProductInfo.fileName}&productId=${saleProductInfo.productId}&cateCode=${saleProductInfo.cateCode}" alt="${saleProductInfo.fileName}" width="300px" height="300px">
+                 
+                <div class="test2">
+        <h5>
+           <c:if test="${saleProductInfo.deliveryType == 'reserve' }">[${saleProductInfo.productBrand}]<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
+           </c:if>
+       
+       
+         </h5>
+                  <h5> ${saleProductInfo.productName} </h5>
+                   <div> ${saleProductInfo.productPrice}원 </div>
+                </div>
+           </div> 
+            </c:forEach>
+          
+         
         </div>
         </div>
         </div>

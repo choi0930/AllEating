@@ -1,6 +1,7 @@
 package com.spring.alleating.main.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
@@ -13,7 +14,7 @@ import com.spring.alleating.product.vo.ProductVO;
 @Repository("mainDAO")
 public interface MainDAO {
 
-	public ProductVO selectMainProductDetail(String productId)throws DataAccessException;
-	public List<ProductImgVO> selectMainProductDetailImage(String productId)throws DataAccessException;
+	public List<ProductVO> selectMainProductDetail(Map differenceInfo)throws DataAccessException;
+	public List<ProductImgVO> selectMainProductDetailImage()throws DataAccessException;
 	
 }

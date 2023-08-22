@@ -29,9 +29,16 @@ public class ProductVO {
 	private Date creDate;
     private String reg_id;
     private String join_type;
-    
+    private String fileName;
     
 	
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public String getReg_id() {
 		return reg_id;
 	}
