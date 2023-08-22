@@ -10,8 +10,53 @@
 		<result property="id" column="id" />
 		<result property="cart_product_qty" column="cart_product_qty" />
 		<result property="creDate" column="creDate" />
+		<result property="deliveryType" column="deliveryType" />
+		<result property="deliveryPrice" column="deliveryPrice" />
+		<result property="cateCode" column="cateCode" />
+		<result property="productName" column="productName" />
+		<result property="productPrice" column="productPrice" />
+		<result property="productDiscount" column="productDiscount" />
+		<result property="productSalesPrice" column="productSalesPrice" />
+		<result property="productPackType" column="productPackType" />
+		<result property="productStatus" column="productStatus"/>
+		<result property="productBrand" column="productBrand"/>
+		<result property="fileName" column="fileName"/>
 	</resultMap>
 	
+	<!-- select -->
+	<select id="selectCountInCart" resultType="String" parameterType="cartVO">
+	    <![CDATA[
+		    select if(count(*)= 0, 'false', 'true') from cart
+			where productId=#{productId}
+			  and id=#{id} 
+    	]]>
+	</select>
+	
+	<select id="selectMaxCartId" resultType="int">
+	    <![CDATA[
+			SELECT IFNULL(MAX(cartId), 0) + 1 FROM cart;
+    	]]>
+	</select>
+	
+	<select id="selectMyCartList" resultMap="cartResult" parameterType="cartVO">
+		select * from cart where id=#{id}
+	</select>
+	
+	<select id="selectCartProduct" resultMap="cartResult" parameterType="java.util.Map">
+		    <![CDATA[
+		  SELECT c.*, p.deliveryType,p.deliveryPrice,p.cateCode,p.productName,p.productPrice
+		  	,p.productDiscount,p.productSalesPrice,p.productPackType
+			,p.productStatus,p.productBrand, i.fileName
+			FROM cart c
+			INNER JOIN product p ON c.productId =  p.productId
+			INNER JOIN product_img i ON p.productId = i.productId
+    		where c.id = #{id}
+    		and i.fileType='main_image'
+    		and p.deliveryType=#{deliveryType};
+			]]>
+	</select>
+	
+	<!-- insert -->
 	<insert id="insertProductInCart" parameterType="cartVO">
 		  <![CDATA[
 		    	insert into cart (cartId,
@@ -26,25 +71,7 @@
     							        #{cart_product_qty})
     	]]>
 	</insert>
-	
-	<select id="selectCountInCart" resultType="String" parameterType="cartVO">
-	    <![CDATA[
-		    select if(count(*)= 0, 'false', 'true') from cart
-			where productId=#{productId}
-			  and id=#{id} 
-
-    	]]>
-	</select>
-	
-	<select id="selectMaxCartId" resultType="int">
-	    <![CDATA[
-			SELECT IFNULL(MAX(cartId), 0) + 1 FROM cart;
-    	]]>
-	</select>
-	<select id="selectMyCartList" resultMap="cartResult" parameterType="String">
-		select * from cart where id=#{id} order by creDate desc
-	</select>
-	
+	<!-- update -->	
 	<update id="updateCartQTY" parameterType="cartVO">
 	<![CDATA[
 		update cart set cart_product_qty=#{cart_product_qty}
@@ -54,6 +81,7 @@
 			        ]]>
 	</update>
 	
+	<!-- delete -->
 	<delete id="removeCart" parameterType="int">
 		delete from cart where cartId = #{cartId}
 	</delete>

@@ -3,7 +3,11 @@ pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<c:set var="cartList" value="${cartMap.cartList}" />
+<c:set var="reserveProductList" value="${cartMap.reserveProductList}" />
+<c:set var="normalProductList" value="${cartMap.normalProductList}" />
 <link href="${contextPath}/css/cart_01.css" rel="stylesheet" type="text/css" />
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -174,6 +178,31 @@ request.setCharacterEncoding("utf-8"); %>
       <div>
         <div>
          <div id="cart-info-all" >
+          <forEach var="reserve" items="${reserveProductList}">
+          <div id="cart-info"  >
+            <input type="checkbox"  class="individual_cart_checkbox" value="1" readonly/>
+            <img
+              class="cart-image"
+              src="${contextPath}/img/image_food/shinemuscat.JPG"
+              alt="Image 1"
+            />
+            <div class="cart-text03">
+              <h5>[All Eating]<br />저탄소 샤인머스켓</h5>
+            </div>
+            <div class="choice-8">
+              <div class="cart-count">
+                <button
+                  type="button" aria-label="수량내리기"   class="cartbutton-down" ><img src="${contextPath }/img/image_icon/minus.png" width="25px" height="25px"></button>
+                   <input type="text" class="inp" value="1" readonly />
+                <button type="button" aria-label="수량올리기" class="cartbutton-up" ><img src="${contextPath }/img/image_icon/plus.png" width="25px" height="25px"></button>
+              </div>
+              <div class="choice-11">
+                <span class="choice-12">13,990</span
+                ><span class="choice-12">원</span>
+              </div>
+            </div>
+          </div>
+          </forEach>
           <div id="cart-info"  >
             <input type="checkbox"  class="individual_cart_checkbox" value="1" readonly/>
             <img
