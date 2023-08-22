@@ -19,6 +19,19 @@ request.setCharacterEncoding("utf-8"); %>
         background-color: #0c4a60;
         border-color: #0c4a60;
       }
+      .delivery_type_text{
+      color:#C9C9C9;}
+      .sale_text{
+          display: flex;
+      }
+      .sale_text_1{
+      color:#EF6C33;
+      font-weight:bold;
+      padding-right:5px;}
+      .sale_text_2{
+      text-decoration:line-through;
+      color:#C9C9C9;
+      }
     </style>
   </head>
   <body>
@@ -39,11 +52,44 @@ request.setCharacterEncoding("utf-8"); %>
                   <img src="${contextPath}/download.do?fileName=${newProductInfo.fileName}&productId=${newProductInfo.productId}&cateCode=${newProductInfo.cateCode}" alt="${newProductInfo.fileName}" width="300px" height="300px">
                  
                 <div class="test2">
-   efsdf     <h5> [${newProductInfo.productBrand}] </h5>
+        
+        <div class=delivery_type_text>
+       <c:choose>
+         <c:when test="${newProductInfo.deliveryType == 'reserve' }"> 예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
+         </c:when> 
+        <c:when test="${newProductInfo.deliveryType == 'normal' }"> 일반배송
+         </c:when>
+         </c:choose>
+        
+        </div>
+        <h5> 
+        <c:choose>
+         <c:when test="${newProductInfo.deliveryType == 'reserve' }">[${newProductInfo.productBrand}]
+         </c:when>
+        <c:when test="${newProductInfo.deliveryType == 'normal' }">[${newProductInfo.productBrand}]
+         </c:when>
+         </c:choose>
+        </h5>
                   <h5> ${newProductInfo.productName} </h5>
-                   <div> ${newProductInfo.productPrice}원 </div>
+                  
+                  
+                  
+                  
+                  <div class="sale_text">  
+                  
+                    <c:choose>
+                    <c:when test="${newProductInfo.productDiscount != 0}">
+                 
+                   <div class="sale_text_1" >${newProductInfo.productDiscount}%</div>
+                   <div class="sale_text_2">${newProductInfo.productPrice}원</div>
+                   <div class="sale_result"> ${newProductInfo.productSalesPrice}원 </div> </c:when>
+                   
+                   <c:otherwise> <h6 class="sale_text_3">${newProductInfo.productPrice}원</h6></c:otherwise>
+                   </c:choose>
+                  
                 </div>
            </div> 
+           </div>
             </c:forEach>
              
             
@@ -102,14 +148,29 @@ request.setCharacterEncoding("utf-8"); %>
                   <img src="${contextPath}/download.do?fileName=${saleProductInfo.fileName}&productId=${saleProductInfo.productId}&cateCode=${saleProductInfo.cateCode}" alt="${saleProductInfo.fileName}" width="300px" height="300px">
                  
                 <div class="test2">
-        <h5>
-           <c:if test="${saleProductInfo.deliveryType == 'reserve' }">[${saleProductInfo.productBrand}]<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
-           </c:if>
-       
-       
-         </h5>
+        <div class=delivery_type_text>
+       <c:choose>
+         <c:when test="${saleProductInfo.deliveryType == 'reserve' }"> 예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
+         </c:when> 
+        <c:when test="${saleProductInfo.deliveryType == 'normal' }"> 일반배송
+         </c:when>
+         </c:choose>
+        
+        </div>
+        <h5> 
+        <c:choose>
+         <c:when test="${saleProductInfo.deliveryType == 'reserve' }">[${saleProductInfo.productBrand}]
+         </c:when>
+        <c:when test="${saleProductInfo.deliveryType == 'normal' }">[${saleProductInfo.productBrand}]
+         </c:when>
+         </c:choose>
+        </h5>
                   <h5> ${saleProductInfo.productName} </h5>
-                   <div> ${saleProductInfo.productPrice}원 </div>
+                  <div class="sale_text">  
+                   <div class="sale_text_1" >${saleProductInfo.productDiscount}%</div>
+                   <div class="sale_text_2">${saleProductInfo.productPrice}원</div>
+                  </div>
+                  <div class="sale_result"> ${saleProductInfo.productSalesPrice}원 </div>
                 </div>
            </div> 
             </c:forEach>

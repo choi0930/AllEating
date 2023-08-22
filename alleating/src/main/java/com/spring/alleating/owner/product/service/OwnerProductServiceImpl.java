@@ -32,14 +32,19 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 			int productPrice = Integer.parseInt(_productPrice); 
 			
 			double productDiscountFactor = productDiscountPercentage / 100.0; // 나눗셈 결과를 실수로 얻기 위해 100.0으로 나눔
-			int productSalesPrice = (int) (productPrice * (1 - productDiscountFactor)); // 할인율을 올바르게 적용하여 할인 가격 계산
+			int productRound = (int) (productPrice * (1 - productDiscountFactor)); // 할인율을 올바르게 적용하여 할인 가격 계산
+			int lastDigit = productRound % 10; // product의 숫자의 마지막 자릿수 추출
+			int productSalesPrice = productRound + ( 10 - lastDigit); //다음 10의 배수로 올림
+			
+			
+			
 			
 			productInfo.put("productSalesPrice",productSalesPrice);
 		}else {//할인 상품이 아닐때
 			productInfo.put("productSalesPrice", 0);
 			productInfo.put("productDiscount", 0);
 		}
-		productInfo.put("deliveryType","nomal"); //일반배송
+		productInfo.put("deliveryType","normal"); //일반배송
 		productInfo.put("deliveryPrice", 3000);
 		
 		ownerProductDAO.insertNewProduct(productInfo);
