@@ -1,5 +1,6 @@
 package com.spring.alleating.cart.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.alleating.cart.dao.CartDAO;
 import com.spring.alleating.cart.vo.CartVO;
+import com.spring.alleating.product.vo.ProductVO;
 
 @Service("cartService")
 public class CartServiceImpl implements CartService {
@@ -15,9 +17,32 @@ public class CartServiceImpl implements CartService {
 	private CartDAO cartDAO;
 	
 	@Override
-	public Map<String, List> myCartList(CartVO cartVO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Map myCartList(CartVO cartVO) throws Exception {
+		
+		List<CartVO> cartList = cartDAO.selectMyCartList(cartVO);
+		if(cartList.size() == 0) {
+			return null;
+		}
+		Map<String, String> dataMap = new HashMap<>();
+		String id = cartVO.getId();
+		
+		String deliveryType = "reserve"; //예약배송 상품
+		dataMap.put("id", id);
+		dataMap.put("deliveryType", deliveryType);
+		List<CartVO> reserveProductList =cartDAO.selectCartProduct(dataMap);
+		
+		deliveryType="normal"; //일반배송 상품
+		dataMap.put("deliveryType", deliveryType);
+		List<CartVO> normalProductList =cartDAO.selectCartProduct(dataMap);
+		
+		Map<String, List<CartVO>> cartMap = new HashMap();
+		cartMap.put("cartList", cartList);
+		cartMap.put("reserveProductList", reserveProductList);
+		cartMap.put("normalProductList", normalProductList);
+		
+		return cartMap;
+		
+		
 	}
 
 	@Override

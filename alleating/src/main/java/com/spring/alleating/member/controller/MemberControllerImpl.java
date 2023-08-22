@@ -151,7 +151,7 @@ public class MemberControllerImpl implements MemberController {
 	
 
 	@Override
-	@RequestMapping(value = "/member/modMember.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/modMember.do", method = { RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView modMember(@RequestParam("id") String id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		System.out.println("Call modMember-method of control");

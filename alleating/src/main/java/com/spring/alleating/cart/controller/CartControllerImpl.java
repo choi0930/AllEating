@@ -1,5 +1,7 @@
 package com.spring.alleating.cart.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -41,12 +43,19 @@ public class CartControllerImpl implements CartController{
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "cart_page");
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		if(memberVO != null) {
 		String id = memberVO.getId();
+		cartVO.setId(id);
+		}else {
+			cartVO.setId("Non-members");
+		}
 		
+		Map cartMap = cartService.myCartList(cartVO);
 		
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("cartMap", cartMap);
 		mav.setViewName(viewName);
 		return mav;
 	}

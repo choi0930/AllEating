@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.alleating.member.vo.MemberVO;
+
 @Controller("myPagecontroller")
 public class MyPageControllerImpl {
 	
@@ -76,6 +78,9 @@ public class MyPageControllerImpl {
 	public ModelAndView myPage_edit02(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		
+		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
