@@ -22,18 +22,32 @@ public class MainServiceImpl implements MainService{
 
 
 @Override
-public Map selectMainProductDetail(String productId) throws DataAccessException {
-	ProductVO mainDetailVO =  mainDAO.selectMainProductDetail(productId);
-	List<ProductImgVO> mainDetailList =  mainDAO.selectMainProductDetailImage(productId);
-	/*String reg_id = vo.getReg_id();*/
-	
+public Map selectMainProductDetail(Map productPeriod) throws DataAccessException {
+
 	Map mainDetailInfo = new HashMap();
+	Map differenceInfo = new HashMap();
 	
-	mainDetailInfo.put("productVO", mainDetailVO);
-	mainDetailInfo.put("productImgList", mainDetailList);
-	System.out.println(mainDetailList.size());
+	differenceInfo.put("productStatus", "discount");
+	List<ProductVO> saleList = mainDAO.selectMainProductDetail(differenceInfo);
 	
+	
+	
+	productPeriod.put("productStatus", "newProduct");
+	List<ProductVO> newList = mainDAO.selectMainProductDetail(productPeriod);
+	
+
+	
+	
+	mainDetailInfo.put("saleList", saleList);
+	mainDetailInfo.put("newList", newList);
+	System.out.println(saleList.size());
+	System.out.println(newList.size());
 	
 	return mainDetailInfo;
 }
+
+
+
+
+
 }
