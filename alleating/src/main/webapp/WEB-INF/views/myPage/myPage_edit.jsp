@@ -50,10 +50,7 @@ request.setCharacterEncoding("utf-8"); %>
         </div>
         <div class="text04">
           <div class="form_end">
-            <button
-              class="join_end_btn"
-              onclick="location.href='${contextPath}/member/modMember.do?id=${member.id}'"
-            >
+            <button class="join_end_btn">
               <span id="join_btn2_text">확인하기</span>
             </button>
           </div>
