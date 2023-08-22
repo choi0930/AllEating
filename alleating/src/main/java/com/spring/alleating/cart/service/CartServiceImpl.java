@@ -18,7 +18,7 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public Map myCartList(CartVO cartVO) throws Exception {
-		
+		Map cartMap = new HashMap();
 		List<CartVO> cartList = cartDAO.selectMyCartList(cartVO);
 		if(cartList.size() == 0) {
 			return null;
@@ -26,18 +26,14 @@ public class CartServiceImpl implements CartService {
 		Map<String, String> dataMap = new HashMap<>();
 		String id = cartVO.getId();
 		
-		String deliveryType = "reserve"; //예약배송 상품
+		
 		dataMap.put("id", id);
-		dataMap.put("deliveryType", deliveryType);
+		dataMap.put("deliveryType", "reserve");
 		List<CartVO> reserveProductList =cartDAO.selectCartProduct(dataMap);
-		
-		deliveryType="normal"; //일반배송 상품
-		dataMap.put("deliveryType", deliveryType);
-		List<CartVO> normalProductList =cartDAO.selectCartProduct(dataMap);
-		
-		Map<String, List<CartVO>> cartMap = new HashMap();
-		cartMap.put("cartList", cartList);
 		cartMap.put("reserveProductList", reserveProductList);
+		
+		dataMap.put("deliveryType", "normal");
+		List<CartVO> normalProductList =cartDAO.selectCartProduct(dataMap);
 		cartMap.put("normalProductList", normalProductList);
 		
 		return cartMap;

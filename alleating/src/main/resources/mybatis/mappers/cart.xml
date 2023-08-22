@@ -10,6 +10,7 @@
 		<result property="id" column="id" />
 		<result property="cart_product_qty" column="cart_product_qty" />
 		<result property="creDate" column="creDate" />
+		
 		<result property="deliveryType" column="deliveryType" />
 		<result property="deliveryPrice" column="deliveryPrice" />
 		<result property="cateCode" column="cateCode" />
