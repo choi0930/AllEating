@@ -49,10 +49,10 @@
 	   			AND productDiscount > 0
     		</if>
     		<if test="productStatus == 'newProduct'">
-    			AND g.creDate  between #{beginDate} and #{endDate}
+    			AND g.creDate between #{beginDate} and #{endDate}
     		</if>
     			ORDER BY g.creDate DESC
-    			LIMIT 4
+    			LIMIT 5
 				) t;
 		
 	</select>
