@@ -88,6 +88,19 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
         $("#idCheckMessage").hide();
 
+        $("#userId").keyup(function () {
+          if (userIdCheck.test($("#userId").val())) {
+            $("#idCheckMessage").removeClass("redText");
+            $("#idCheckMessage").addClass("greenText");
+          } else {
+            $("#join_id_ex").hide();
+            $("#idCheckMessage").show();
+            $("#idCheckMessage").text(
+              "6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합"
+            );
+            $("#idCheckMessage").addClass("redText");
+          }
+        });
         $("#pwdCheckMessage").hide();
         $("#pwd1").keyup(function () {
           if (passwdCheck.test($("#pwd1").val())) {
@@ -190,57 +203,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           $("#mailCecked").addClass("redText");
         }
       }
-
-      function fn_sub(obj) {
-        //document.getElementById("i_id").disabled=false;
-        obj.submit();
-      }
-
-      //이메일 sms 수신동의 전체 체크
-      $(document).ready(function () {
-        //전체 체크박스 클릭
-        $("#checkAll2").click(function () {
-          if ($("#checkAll2").prop("checked")) {
-            $(".testCheck2").prop("checked", true);
-          } else {
-            $(".testCheck2").prop("checked", false);
-          }
-        });
-        //전체 체크박스 선택중 체크박스 하나를 풀었을때 "전체" 체크해제
-        $(".testCheck2").click(function () {
-          if ($(".testCheck2:checked").length == 2) {
-            $("#checkAll2").prop("checked", true);
-          } else {
-            $("#checkAll2").prop("checked", false);
-          }
-        });
-      });
-
-      //이용약관 동의 체크박스
-      $(document).ready(function () {
-        //전체 체크박스 클릭
-        $("#checkAll").click(function () {
-          if ($("#checkAll").prop("checked")) {
-            $(".testCheck").prop("checked", true);
-          } else {
-            $(".testCheck").prop("checked", false);
-          }
-        });
-        //전체 체크박스 선택중 체크박스 하나를 풀었을때 "전체" 체크해제
-        $(".testCheck").click(function () {
-          if ($(".testCheck:checked").length == 7) {
-            $("#checkAll").prop("checked", true);
-          } else {
-            $("#checkAll").prop("checked", false);
-          }
-        });
-      });
     </script>
-    <link
-      href="${contextPath}/css/myPage_edit02.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="${contextPath}/css/join.css" rel="stylesheet" type="text/css" />
     <style></style>
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -248,11 +212,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <form
         name="joinForm"
         method="post"
-        action="${contextPath}/member/updateMember.do"
+        action="${contextPath}/member/join.do"
       >
         <div id="join_input">
-          <div id="join_title">개인 정보 수정</div>
-          <div id="join_Basic_input_text"></div>
+          <div id="join_title">회원가입</div>
+          <div id="join_Basic_input_text">
+            <span class="redText">*</span>
+            기본정보입력(필수)
+          </div>
+          <!--회원 분류-->
+
           <!--아이디-->
           <div class="form_info">
             <div class="form_label_box">
@@ -263,7 +232,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <input
                   type="text"
                   class="form-control join_input_box"
-                  id="id"
+                  id="userId"
                   name="id"
                   value="${member.id}"
                   readonly
@@ -284,9 +253,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <input
                   type="password"
                   class="form-control join_input_box"
-                  id="pwd"
+                  id="pwd1"
                   name="pwd"
-                  value="${member.pwd}"
                   placeholder="비밀번호를 입력해주세요"
                 />
               </div>
@@ -328,6 +296,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   class="form-control join_input_box"
                   id="join_name"
                   name="name"
+                  value="${member.name}"
                   placeholder="이름을 입력해주세요"
                 />
               </div>
@@ -440,6 +409,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   name="hp1"
                   id="hp1"
                   maxlength="3"
+                  value="${member.hp1}"
                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                 />
                 -
@@ -467,29 +437,57 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div class="form_button_box"></div>
           </div>
-
-          <div class="form_info">
-            <div class="form_label_box"></div>
-            <div class="form_value_box">
-              <div class="form_input_box">
-                <input
-                  type="text"
-                  class="form-control join_input_box2"
-                  id="sample6_detailAddress"
-                  name="address_detail"
-                  placeholder="상세주소"
-                />
-                <input
-                  type="text"
-                  class="form-control join_input_box2"
-                  id="sample6_extraAddress"
-                  name="address2"
-                  placeholder="참고항목"
-                  readonly
-                />
+          <!--사업장 전화번호-->
+          <div class="ownerInfo">
+            <div class="form_info">
+              <div class="form_label_box">
+                <label class="form_label">사업장 전화번호</label>
+                <span class="redText">*</span>
               </div>
+              <div class="form_value_box">
+                <div class="form_input_box">
+                  <input
+                    type="text"
+                    class="form-control phone join_input_box2 ownerInfoValue"
+                    name="owner_tel1"
+                    id="companyTel1"
+                    maxlength="3"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                    disabled
+                  />
+                  -
+                  <input
+                    type="text"
+                    class="form-control phone join_input_box2 ownerInfoValue"
+                    name="owner_tel2"
+                    id="companyTel2"
+                    maxlength="4"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                    disabled
+                  />
+                  -
+                  <input
+                    type="text"
+                    class="form-control phone join_input_box2 ownerInfoValue"
+                    name="owner_tel3"
+                    id="companyTel3"
+                    maxlength="4"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                    disabled
+                  />
+                </div>
+                <span class="hideConditionText redText"
+                  >전화번호를 입력해주세요</span
+                >
+              </div>
+              <div class="form_button_box"></div>
             </div>
           </div>
+          <!--사업장 전화번호-->
+          <!--주소-->
+          <!--나머지 주소-->
+          <!--나머지 주소-->
+
           <div class="form_info">
             <div class="form_label_box">
               <label class="form_label">성별</label>
@@ -682,17 +680,27 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                       </label>
                     </div>
                   </div>
+                  <div class="form_agree_box">
+                    <label class="form-check-label form_check_label">
+                      <input
+                        type="checkbox"
+                        id="check2"
+                        class="form-check-input testCheck"
+                        required
+                      /><!--14세이상 체크 (필수)-->
+                      <div class="form_label_text">
+                        <span>본인은 만14세 이상입니다.</span>
+                        <span>(필수)</span>
+                      </div>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <!--이용약관 동의 끝-->
           <div class="form_end">
-            <button
-              type="button"
-              class="join_end_btn"
-              onclick="fn_sub(this.form)"
-            >
+            <button type="button" class="join_end_btn" onclick="fn_loginGO()">
               <span id="join_btn_text">수정하기</span>
             </button>
           </div>

@@ -77,17 +77,11 @@ public class MyPageControllerImpl{
 	@RequestMapping(value="/myPage/myPage_edit02.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPage_edit02(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();
-		
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		session.setAttribute("side_menuType", "my_page");
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
-		
-		
+		session.setAttribute("side_menuType", "my_page");
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("member", member);
-		 
+		mav.addObject("member", memberVO);
 		mav.setViewName(viewName);
 		return mav;
 	}
