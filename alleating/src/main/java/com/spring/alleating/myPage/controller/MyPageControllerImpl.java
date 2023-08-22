@@ -80,6 +80,9 @@ public class MyPageControllerImpl{
 		
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		session.setAttribute("side_menuType", "my_page");
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		
+		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 
