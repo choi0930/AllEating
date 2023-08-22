@@ -11,6 +11,8 @@ public class MemberVO {
     private String join_type;
     private String name;
     private String email;
+    private String email1;
+    private String email2;
     private String hp1;
     private String hp2;
     private String hp3;
