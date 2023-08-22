@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.alleating.member.vo.MemberVO;
 
 @Controller("myPagecontroller")
-public class MyPageControllerImpl {
+public class MyPageControllerImpl{
 	
 	@RequestMapping(value="/myPage/myPage_01.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPageMain(HttpServletRequest request, HttpServletResponse response)throws Exception {
@@ -77,12 +77,17 @@ public class MyPageControllerImpl {
 	@RequestMapping(value="/myPage/myPage_edit02.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPage_edit02(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();
+		
+		MemberVO member = (MemberVO) session.getAttribute("member");
 		session.setAttribute("side_menuType", "my_page");
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("member", member);
+		 
 		mav.setViewName(viewName);
 		return mav;
 	}
@@ -166,4 +171,5 @@ public class MyPageControllerImpl {
 		mav.setViewName(viewName);
 		return mav;
 	}
+
 }

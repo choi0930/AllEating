@@ -263,7 +263,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <input
                   type="text"
                   class="form-control join_input_box"
-                  id="userId"
+                  id="id"
                   name="id"
                   value="${member.id}"
                   readonly
@@ -284,7 +284,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <input
                   type="password"
                   class="form-control join_input_box"
-                  id="pwd1"
+                  id="pwd"
                   name="pwd"
                   value="${member.pwd}"
                   placeholder="비밀번호를 입력해주세요"
