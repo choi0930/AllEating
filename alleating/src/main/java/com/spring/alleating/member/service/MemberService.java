@@ -10,4 +10,7 @@ public interface MemberService {
 	public void addMember(Map<String, String> memberInfo)throws DataAccessException;
 	public MemberVO login(Map<String, String> loginMember)throws DataAccessException;
 	public int selectById(String id)throws DataAccessException;
+	
+	public int updateMember(MemberVO memberVO) throws DataAccessException;
+	public MemberVO modMember(String id) throws DataAccessException;
 }

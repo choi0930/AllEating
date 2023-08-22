@@ -42,6 +42,12 @@
 		select count(*) from member where id = #{id}
 	</select>
 	
+	<select id="selectMemberById" resultType="memberVO" parameterType="String">
+ 	 	select * from member
+ 	 	where
+  		id=#{id}
+	</select>
+	
 	<!-- insert -->
 	<insert id="insertMember" parameterType="java.util.Map">
  			insert into member(
@@ -101,4 +107,28 @@
  				#{personalInformation}
  			)
 	</insert>
+	
+	<update id="updateMember" parameterType="memberVO">
+  		update member
+  		set pwd=#{pwd},
+  		    name=#{name}, 
+  		    email=#{email},
+  		    hp1=#{hp1},
+  		    hp2=#{hp2},
+  		    hp3=#{hp3},
+  		    zipcode=#{zipcode},
+  		    address=#{address},
+  		    address2=#{address2},
+  		    address_detail=#{address_detail},
+  		    gender=#{gender},
+  		    birth_year=#{birth_year},
+  		    birth_month=#{birth_month},
+  		    birth_day=#{birth_day},
+  		    sms_yn=#{sms_yn},
+  		    email_yn=#{email_yn}	    
+  		where
+  		id=#{id}
+    </update>
+    
+    
 </mapper>
