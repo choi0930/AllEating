@@ -35,7 +35,7 @@
 	
 	<select id="selectMaxCartId" resultType="int">
 	    <![CDATA[
-			SELECT IFNULL(MAX(cartId), 0) + 1 FROM cart;
+			SELECT IFNULL(MAX(cartId), 0) + 1 FROM cart
     	]]>
 	</select>
 	
@@ -45,15 +45,15 @@
 	
 	<select id="selectCartProduct" resultMap="cartResult" parameterType="java.util.Map">
 		    <![CDATA[
-		  SELECT c.*, p.deliveryType,p.deliveryPrice,p.cateCode,p.productName,p.productPrice
+		  select t.* from (SELECT c.*, p.deliveryType,p.deliveryPrice,p.cateCode,p.productName,p.productPrice
 		  	,p.productDiscount,p.productSalesPrice,p.productPackType
 			,p.productStatus,p.productBrand, i.fileName
-			FROM cart c
+			FROM cart c 
 			INNER JOIN product p ON c.productId =  p.productId
 			INNER JOIN product_img i ON p.productId = i.productId
     		where c.id = #{id}
     		and i.fileType='main_image'
-    		and p.deliveryType=#{deliveryType};
+    		and p.deliveryType=#{deliveryType}) t
 			]]>
 	</select>
 	

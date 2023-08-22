@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" isELIgnored="false"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
-<c:set var="resrve_product" value="${product_map.reserveProductList}" />
-<c:set var="normal_product" value="${product_map.normalProductList}" />
+<c:set var="resrve_product" value="${product_map.reserveProductList}" /><!--예약배송 상품-->
+<c:set var="normal_product" value="${product_map.normalProductList}" /><!--일반배송 상품-->
+
+<c:set  var="totalProductNum" value="0" />  <!--주문 개수 -->
+<c:set  var="totalDeliveryPrice" value="0" /> <!-- 총 배송비 --> 
+<c:set  var="totalDiscountedPrice" value="0" /> <!-- 총 할인금액 -->
 
 <link href="${contextPath}/css/cart_01.css" rel="stylesheet" type="text/css" />
 
@@ -124,37 +129,86 @@ pageEncoding="UTF-8" isELIgnored="false"%>
  /* $("div").fadeIn(1000).delay(1000).fadeOut(1000); */
  
 /*  fadein 나타남 fadeout 사라짐 */
- 
 
-
-   
-	$(document).ready(function() {
-  // "수량 증가" 버튼 클릭 이벤트 처리
-  $(".cartbutton-up").click(function() {
-    var inputField = $(this).siblings(".inp");
-    var currentValue = parseInt(inputField.val());
+// $(document).ready(function() {
+//   // "수량 증가" 버튼 클릭 이벤트 처리
+//   $(".cartbutton-up").click(function() {
+//     var inputField = $(this).siblings(".inp");
+//     var currentValue = parseInt(inputField.val());
     
-    if (!isNaN(currentValue)) {
-      inputField.val(currentValue + 1);
-    }
-  });
+//     if (!isNaN(currentValue)) {
+//       inputField.val(currentValue + 1);
+//     }
+//   });
   
-  // "수량 감소" 버튼 클릭 이벤트 처리
-  $(".cartbutton-down").click(function() {
-    var inputField = $(this).siblings(".inp");
-    var currentValue = parseInt(inputField.val());
+//   // "수량 감소" 버튼 클릭 이벤트 처리
+//   $(".cartbutton-down").click(function() {
+//     var inputField = $(this).siblings(".inp");
+//     var currentValue = parseInt(inputField.val());
     
-    if (!isNaN(currentValue) && currentValue > 1) {
-      inputField.val(currentValue - 1);
-    }
-  });
-});
+//     if (!isNaN(currentValue) && currentValue > 1) {
+//       inputField.val(currentValue - 1);
+//     }
+//   });
+// });
 
+function getSelectedCheckboxValues() {
+    var checkboxes = document.querySelectorAll('.individual_cart_checkbox');
+    var selectedValues = [];
 
+    checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            selectedValues.push(checkbox.value);
+        }
+    });
+
+    console.log(selectedValues); // 선택된 체크박스의 값 출력
+}
+//물건 수량 증가
+function count_up(cartId){
+    $.ajax({
+        type: "post",
+        url: `/api/cart/${cartId}/up`,
+        contentType: "application/json; charset=utf-8",   //보낼 데이터의 형식
+        dataType: "json" //응답받을 데이터의 형식
+    }).done(res => {
+        //해당 cart찾기
+        var index = -1;
+        for(var i=0; i<res.data.length;i++){
+            if(res.data[i].id == cartId){
+                index = i;
+            }
+        }
+
+        //수량 갱신
+        $('#count_' + cartId).text(res.data[index].product_count+"개");
+
+        //가격 갱신
+        $('#total_price_'+cartId).text(res.data[index].total_price+"원");
+
+        //장바구니 총 가격 갱신
+        var sum = 0;
+        for(var i=0; i<res.data.length; i++){
+            sum += parseInt($('#total_price_'+res.data[i].id).text());
+        }
+        $('#summary').text(sum+"원");
+
+    }).fail(error => {
+        alert("수량 증가 실패");
+    });
+}
 </script>
 <style>
   .emptyProductMsg{
     text-align: center;
+  }
+  .product_salesPrice{
+    text-align: right;
+  }
+  .line_text{
+    font-size: 14px;
+    color: #E1DDDB;
+    text-decoration: line-through;
   }
 </style>
       
@@ -165,7 +219,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     <div class="cart-main">
       <h3 class="cart-text01">장바구니</h3>
       <div id="cart-ch">
-        <a href="${contextPath}/member/loginForm.do">선택삭제</a>
+        <a href="javascript:getSelectedCheckboxValues()">선택삭제</a>
         <div class="header_top_bar"></div>
         <!--일자 바-->
         <a href="#">전체선택</a>
@@ -187,7 +241,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
               <div class="emptyProductMsg">장바구니에 담긴 상품이 없습니다.</div>
             </c:when>
             <c:when test="${not empty resrve_product}">
-              <forEach var="re" items="${resrve_product}">
+              <c:forEach var="re" items="${resrve_product}">
                 <div id="cart-info"  >
                   <input type="checkbox"  class="individual_cart_checkbox" value="${re.cartId}" />
                   <img
@@ -201,43 +255,39 @@ pageEncoding="UTF-8" isELIgnored="false"%>
                   <div class="choice-8">
                     <div class="cart-count">
                       <button
-                        type="button" aria-label="수량내리기"   class="cartbutton-down" ><img src="${contextPath }/img/image_icon/minus.png" width="25px" height="25px"></button>
-                         <input type="text" class="inp" value="${re.cart_product_qty}" readonly />
-                      <button type="button" aria-label="수량올리기" class="cartbutton-up" ><img src="${contextPath }/img/image_icon/plus.png" width="25px" height="25px"></button>
+                        type="button" aria-label="수량내리기"   class="cartbutton-down"  onclick="fn_qty('${re.cartId}')" >
+                        <img src="${contextPath }/img/image_icon/minus.png" width="25px" height="25px"></button>
+             
+                        <input type="text" class="inp" id="qty" value="${re.cart_product_qty}" readonly />
+                      <button type="button" aria-label="수량올리기" class="cartbutton-up" onclick="count_up('${re.cartId}')"><img src="${contextPath }/img/image_icon/plus.png" width="25px" height="25px"></button>
                     </div>
                     <div class="choice-11">
-                      <span class="choice-12">${re.productPrice}</span>
-                      <span class="choice-12">원</span>
+                      <c:choose>
+                        <c:when test="${re.productDiscount>0}">
+                          <div>
+                            <span class="redText">${re.productDiscount}%</span>
+                          </div>
+                          <div class="product_salesPrice">
+                            <fmt:formatNumber  value="${re.productSalesPrice*re.cart_product_qty}" type="number" var="total_sales_price" />
+                            <span class="choice-12">${total_sales_price}</span>
+                            <span class="choice-12">원</span>
+                          </div>
+                          <span class="choice-12 line_text"><fmt:formatNumber value="${re.productPrice}" type="number" />원</span>
+                        </c:when>
+                        <c:otherwise>
+                          <span class="choice-12"><fmt:formatNumber value="${re.productPrice}" type="number" /></span>
+                          <span class="choice-12">원</span>
+                        </c:otherwise>
+                      </c:choose>
+                      
                     </div>
                   </div>
                 </div>
-                </forEach>
+                </c:forEach>
             </c:when>
           </c:choose>
           
-          <div id="cart-info"  >
-            <input type="checkbox"  class="individual_cart_checkbox" value="1" readonly/>
-            <img
-              class="cart-image"
-              src="${contextPath}/img/image_food/shinemuscat.JPG"
-              alt="Image 1"
-            />
-            <div class="cart-text03">
-              <h5>[All Eating]<br />저탄소 샤인머스켓</h5>
-            </div>
-            <div class="choice-8">
-              <div class="cart-count">
-                <button
-                  type="button" aria-label="수량내리기"   class="cartbutton-down" ><img src="${contextPath }/img/image_icon/minus.png" width="25px" height="25px"></button>
-                   <input type="text" class="inp" value="1" readonly />
-                <button type="button" aria-label="수량올리기" class="cartbutton-up" ><img src="${contextPath }/img/image_icon/plus.png" width="25px" height="25px"></button>
-              </div>
-              <div class="choice-11">
-                <span class="choice-12">13,990</span
-                ><span class="choice-12">원</span>
-              </div>
-            </div>
-          </div>
+       
           <div class="cart-cost">
             <h4>13,990원 + 3,000원 = 16,990원</h4>
           </div>
@@ -256,7 +306,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
                       <div class="emptyProductMsg">장바구니에 담긴 상품이 없습니다.</div>
                     </c:when>
                     <c:otherwise>
-                      <forEach var="normal" items="${normal_product}">
+                      <c:forEach var="normal" items="${normal_product}">
                         <div id="cart-info2"  >
                           <input type="checkbox"  class="individual_cart_checkbox" value="${normal.cartId}" />
                           <img
@@ -271,41 +321,37 @@ pageEncoding="UTF-8" isELIgnored="false"%>
                             <div class="cart-count">
                               <button
                                 type="button" aria-label="수량내리기"   class="cartbutton-down" ><img src="${contextPath }/img/image_icon/minus.png" width="25px" height="25px"></button>
-                                 <input type="text" class="inp" value="${normal.cart_product_qty}" readonly />
+                                 <input type="text" class="inp" id="qty" value="${normal.cart_product_qty}" readonly />
                               <button type="button" aria-label="수량올리기" class="cartbutton-up" ><img src="${contextPath }/img/image_icon/plus.png" width="25px" height="25px"></button>
                             </div>
                             <div class="choice-11">
-                              <span class="choice-12">${normal.productPrice}</span>
-                              <span class="choice-12">원</span>
+                              <c:choose>
+                        <c:when test="${normal.productDiscount>0}">
+                          <div>
+                            <span class="redText">${normal.productDiscount}%</span>
+                          </div>
+                          <div class="product_salesPrice">
+                            <span class="choice-12">
+                              <fmt:formatNumber  value="${normal.productSalesPrice*normal.cart_product_qty}" type="number" var="total_sales_price" />
+                              ${total_sales_price}
+                            </span>
+                            <span class="choice-12">원</span>
+                          </div>
+                          <span class="choice-12 line_text"><fmt:formatNumber value="${normal.productPrice}" type="number" />원</span>
+                        </c:when>
+                        <c:otherwise>
+                          <span class="choice-12"><fmt:formatNumber value="${normal.productPrice}" type="number" /></span>
+                          <span class="choice-12">원</span>
+                        </c:otherwise>
+                      </c:choose>
                             </div>
                           </div>
                         </div>
-                        </forEach>
+                        </c:forEach>
                     </c:otherwise>
                   </c:choose>
                   
-
-          <div id="cart-info2" >
-            <input type="checkbox" class="individual_cart_checkbox"  />
-            <img
-              class="cart-image"
-              src="${contextPath}/img/image_food/peach.JPG" alt="Image 1" />
-            <div class="cart-text03">
-              <h5>[서형이네]<br />천중도 백도 복숭아</h5>
-            </div>
-            <div class="choice-8">
-              <div class="cart-count">
-                <button
-                  type="button" aria-label="수량내리기"  class="cartbutton-down" ><img src="${contextPath }/img/image_icon/minus.png" width="25px" height="25px"></button>
-                    <input type="text" class="inp" value="1" />           
-                <button type="button" aria-label="수량올리기" class="cartbutton-up" ><img src="${contextPath }/img/image_icon/plus.png" width="25px" height="25px"></button>
-              </div>
-              <div class="choice-11">
-                <span class="choice-12">18,900</span
-                ><span class="choice-12">원</span>
-              </div>
-            </div>
-          </div>
+                    
           <div class="cart-cost">
             <h4>18,900원 + 3,000원 = 21,900원</h4>
           </div>

@@ -31,9 +31,11 @@ public class CartServiceImpl implements CartService {
 		dataMap.put("deliveryType", "reserve");
 		List<CartVO> reserveProductList =cartDAO.selectCartProduct(dataMap);
 		cartMap.put("reserveProductList", reserveProductList);
+		System.out.println(reserveProductList.size());
 		
 		dataMap.put("deliveryType", "normal");
 		List<CartVO> normalProductList =cartDAO.selectCartProduct(dataMap);
+		
 		cartMap.put("normalProductList", normalProductList);
 		
 		return cartMap;
