@@ -48,6 +48,24 @@ public class AdminProductServiceImpl implements AdminProductService {
 		return productMap;
 	}
 
+	
+	
+	@Override
+	public Map selectAdminProduct(Map dataMap) throws DataAccessException {
+		Map productMap = new HashMap<>();
+		String join_type = "admin";
+		dataMap.put("join_type", join_type);
+		
+		List<ProductVO> productAdminProductList = adminProductDAO.selectProduct(dataMap);
+		int total = adminProductDAO.selectTotalProduct(join_type);
+		
+		productMap.put("productAdminProductList", productAdminProductList);
+		productMap.put("total", total);
+		return productMap;
+	}
+
+
+
 	@Override
 	public int addProduct(Map productInfo) throws DataAccessException {
 		String discount = (String) productInfo.get("discount");

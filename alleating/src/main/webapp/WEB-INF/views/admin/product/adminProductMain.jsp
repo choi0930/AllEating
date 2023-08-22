@@ -27,8 +27,15 @@
 
     $(this).addClass('active');
     $("#"+tab_id).addClass('active');
-  })
+  });
 
+
+  $('#tab1').click(function(){
+    location.href="/admin/productMain.do";
+  });
+  $('#tab2').click(function(){
+    location.href="/admin/listProducts.do";
+  });
 })
 
 function fn_goAddProduct(){
@@ -153,8 +160,8 @@ function fn_goAddProduct(){
 <body>
     <div class="tabContainer">
         <ul class="tabs">
-            <li class="tab-link ${selectedTab == 'tab-1' ? 'active' : ''}" data-tab="tab-1">사업자 상품 관리</li>
-            <li class="tab-link ${selectedTab == 'tab-2' ? 'active' : ''}" data-tab="tab-2">예약배송 상품 관리</li>
+            <li class="tab-link ${selectedTab == 'tab-1' ? 'active' : ''}" id="tab1" data-tab="tab-1">사업자 상품 관리</li>
+            <li class="tab-link ${selectedTab == 'tab-2' ? 'active' : ''}" id="tab2" data-tab="tab-2">예약배송 상품 관리</li>
         </ul>
 
         <div id="tab-1" class="tab-content ${selectedTab == 'tab-1' ? 'active' : ''}">
@@ -381,27 +388,27 @@ function fn_goAddProduct(){
                             <c:when test="${total > 150 }">
                                 <c:forEach var="page" begin="1" end="${(total/15)+1}" step="1">
                                     <c:if test="${section >1 && page==1 }">
-                                        <a class="no-uline" href="#">&nbsp; pre</a>
+                                        <a class="no-uline" href="${contextPath}/admin/listProducts.do?section=${section-1}&pageNum=${(section-1)*10 +1}">&nbsp; pre</a>
                                     </c:if>
-                                    <a class="no-uline" href="#">${(section-1)*15 + page }</a>
+                                    <a class="no-uline" href="${contextPath }/admin/listProducts.do?section=${section}&pageNum=${page}">${(section-1)*15 + page }</a>
                                     <c:if test="${page == (total/15)+1 }">
-                                        <a class="no-uline" href="#">&nbsp; next</a>							
+                                        <a class="no-uline" href="${contextPath }/admin/listProducts.do?section=${section+1}&pageNum=${section*10+1 }">&nbsp; next</a>							
                                     </c:if>						
                                 </c:forEach>
                             </c:when>
                             <c:when test="${total == 150 }">
                                 <c:forEach var="page" begin="1" end="10" step="1">
-                                    <a class="no-uline" href="#">${page }</a>
+                                    <a class="no-uline" href="${contextPath }/admin/listProducts.do?section=${section }&pageNum=${page }">${page }</a>
                                 </c:forEach>
                             </c:when>
                             <c:when test="${total < 150 }">
                                 <c:forEach var="page" begin="1" end="${(total/15)+1}" step="1">
                                     <c:choose>
                                         <c:when test="${page==pageNum }">
-                                            <a class="sel-page" href="#">${page }</a>
+                                            <a class="sel-page" href="${contextPath }/admin/listProducts.do?section=${section-1}&pageNum=${page}">${page }</a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a class="no-uline" href="#">${page }</a>
+                                            <a class="no-uline" href="${contextPath }/admin/listProducts.do?section=${section+1}&pageNum=${page }">${page }</a>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>

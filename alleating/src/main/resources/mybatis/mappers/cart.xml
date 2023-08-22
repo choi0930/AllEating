@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.spring.alleating.cart.dao.CartDAO">
+ <!-- 리절트 맵 정의 -->
+	<resultMap id="cartResult" type="cartVO">
+		<result property="cartId" column="cartId" />
+		<result property="productId" column="productId" />
+		<result property="id" column="id" />
+		<result property="cart_product_qty" column="cart_product_qty" />
+		<result property="creDate" column="creDate" />
+	</resultMap>
+	
+	<insert id="insertProductInCart" parameterType="cartVO">
+		  <![CDATA[
+		    	insert into cart (cartId,
+		    	                  productId,
+		    	                  id,
+		    	                  cart_product_qty
+		    	                  )
+		    	                  
+		        			values(#{cartId},
+    							        #{productId},
+    							        #{id},
+    							        #{cart_product_qty})
+    	]]>
+	</insert>
+	
+	<select id="selectCountInCart" resultType="String" parameterType="cartVO">
+	    <![CDATA[
+		    select if(count(*)= 0, 'false', 'true') from cart
+			where productId=#{productId}
+			  and id=#{id} 
+
+    	]]>
+	</select>
+	
+	<select id="selectMaxCartId" resultType="int">
+	    <![CDATA[
+			SELECT IFNULL(MAX(cartId), 0) + 1 FROM cart;
+    	]]>
+	</select>
+	<select id="selectMyCartList" resultMap="cartResult" parameterType="String">
+		select * from cart where id=#{id} order by creDate desc
+	</select>
+	
+	<update id="updateCartQTY" parameterType="cartVO">
+	<![CDATA[
+		update cart set cart_product_qty=#{cart_product_qty}
+		 	      	where id=#{id}
+			        and productId=#{productId}
+			        
+			        ]]>
+	</update>
+	
+	<delete id="removeCart" parameterType="int">
+		delete from cart where cartId = #{cartId}
+	</delete>
+ </mapper>

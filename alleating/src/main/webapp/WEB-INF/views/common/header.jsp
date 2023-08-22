@@ -220,104 +220,104 @@ $(function(){$('.header_nav').hover(
                   <a href="${contextPath}/product/product_01.do?category='901'"><img src="${contextPath}/img/headerImg/categroy_icon/vegetable.png"  width="20px" height="20px"  style="margin-right: 5px;"/> 채소</a>
                   <div class="small_categroy" id="vegetable_categroy">
                     <ul>
-                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode=901001">친환경</a></li>
-                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode=901002">고구마·감자·당근</a></li>
-                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode='901003'">시금치·쌈채소·나물</a></li>
-                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode='901004'">브로콜리·파프리카·양베추</a></li>
-                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode='901005'">양파·대파·마늘·배추</a></li>
-                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode='901006'">오이·호박·고추</a></li>
-                      <li class="categroy"><a href="${contextPath}/product/product_01.do?cateCode='901007'">콩나물·버섯</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='901001'">친환경</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='901002'">고구마·감자·당근</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='901003'">시금치·쌈채소·나물</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='901004'">브로콜리·파프리카·양베추</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='901005'">양파·대파·마늘·배추</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='901006'">오이·호박·고추</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='901007'">콩나물·버섯</a></li>
                     </ul>
                   </div> 
                   </li>
                   <li class="categroy" id="fruit">
-                <a href="#"><img src="${contextPath}/img/headerImg/categroy_icon/apple.png" width="20px" height="20px" style="margin-right: 5px;"/>과일·견과·쌀</a>
+                <a href="${contextPath}/product/product_01.do?category='902'"><img src="${contextPath}/img/headerImg/categroy_icon/apple.png" width="20px" height="20px" style="margin-right: 5px;"/>과일·견과·쌀</a>
                 <div class="small_categroy" id="fruit_categroy">
                   <ul>
-                    <li class="categroy"><a href="${contextPath}/product/product_01.do">국산과일</a></li>
-                    <li class="categroy"><a href="#">수입과일</a></li>
-                    <li class="categroy"><a href="#">쌀·잡곡</a></li>
-                    <li class="categroy"><a href="#">견과류</a></li>
-                    <li class="categroy"><a href="#">간편과일</a></li>
+                    <li class="categroy"><a href="${contextPath}/product/product_01.do?category='902001'">국산과일</a></li>
+                    <li class="categroy"><a href="${contextPath}/product/product_01.do?category='902002'">수입과일</a></li>
+                    <li class="categroy"><a href="${contextPath}/product/product_01.do?category='902003'">쌀·잡곡</a></li>
+                    <li class="categroy"><a href="${contextPath}/product/product_01.do?category='902004'">견과류</a></li>
+                    <li class="categroy"><a href="${contextPath}/product/product_01.do?category='902005'">간편과일</a></li>
                   </ul>
                 </div> 
                   </li>
                   <li class="categroy" id="fish">
-                  <a href="#"><img src="${contextPath}/img/headerImg/categroy_icon/free-icon-fish.png" width="20px" height="20px" style="margin-right: 5px;"/>수산·해산·건어물</a>
+                  <a href="${contextPath}/product/product_01.do?category='903"><img src="${contextPath}/img/headerImg/categroy_icon/free-icon-fish.png" width="20px" height="20px" style="margin-right: 5px;"/>수산·해산·건어물</a>
                   <div class="small_categroy" id="fish_categroy">
                     <ul>
-                      <li class="categroy"><a href="#">생선류</a></li>
-                      <li class="categroy"><a href="#">반건류</a></li>
-                      <li class="categroy"><a href="#">오징어·낙지·문어</a></li>
-                      <li class="categroy"><a href="#">새우·게·랍스터</a></li>
-                      <li class="categroy"><a href="#">해산물·조개류</a></li>
-                      <li class="categroy"><a href="#">김·미역·해조류</a></li>
-                      <li class="categroy"><a href="#">건어물·다시팩</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='903001'">생선류</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='903002'">반건류</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='903003'">오징어·낙지·문어</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='903004'">새우·게·랍스터</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='903005'">해산물·조개류</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='903006'">김·미역·해조류</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='903007'">건어물·다시팩</a></li>
                     </ul>
                   </div> 
                   </li>
                   <li class="categroy" id="meat">
-                  <a href="#"><img src="${contextPath}/img/headerImg/categroy_icon/free-icon-meat.png" width="20px" height="20px" style="margin-right: 5px;"/>정육·계란</a>
+                  <a href="${contextPath}/product/product_01.do?category='904'"><img src="${contextPath}/img/headerImg/categroy_icon/free-icon-meat.png" width="20px" height="20px" style="margin-right: 5px;"/>정육·계란</a>
                   <div class="small_categroy" id="meat_categroy">
                     <ul>
-                      <li class="categroy"><a href="#">국내산 소고기</a></li>
-                      <li class="categroy"><a href="#">수입산 소고기</a></li>
-                      <li class="categroy"><a href="#">돼지고기</a></li>
-                      <li class="categroy"><a href="#">닭·오리고기</a></li>
-                      <li class="categroy"><a href="#">양고기</a></li>
-                      <li class="categroy"><a href="#">양념육·돈까스</a></li>
-                      <li class="categroy"><a href="#">계란류</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='904001'">국내산 소고기</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='904002'">수입산 소고기</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='904003'">돼지고기</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='904004'">닭·오리고기</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='904005'">양고기</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='904006'">양념육·돈까스</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='904007'">계란류</a></li>
                     </ul>
                   </div> 
                   </li>
                   <li class="categroy" id="mainFood">
-                  <a href="#"><img src="${contextPath}/img/headerImg/categroy_icon/free-icon-soup.png" width="20px" height="20px" style="margin-right: 5px;"/>국·반찬·메인요리</a>
+                  <a href="${contextPath}/product/product_01.do?category='905'"><img src="${contextPath}/img/headerImg/categroy_icon/free-icon-soup.png" width="20px" height="20px" style="margin-right: 5px;"/>국·반찬·메인요리</a>
                   <div class="small_categroy" id="mainFood_categroy">
                     <ul>
-                      <li class="categroy"><a href="#">국 탕 찌개</a></li>
-                      <li class="categroy"><a href="#">밀키트 메인요리</a></li>
-                      <li class="categroy"><a href="#">밑반찬</a></li>
-                      <li class="categroy"><a href="#">김치·젓갈 장류</a></li>
-                      <li class="categroy"><a href="#">베이컨 햄 통조림</a></li>
-                      <li class="categroy"><a href="#">두부·어묵 부침개</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='905001'">국 탕 찌개</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='905002'">밀키트 메인요리</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='905003'">밑반찬</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='905004'">김치·젓갈 장류</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='905005'">베이컨 햄 통조림</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='905006'">두부·어묵 부침개</a></li>
                     </ul>
                   </div> 
                   </li>
                   <li class="categroy" id="salad">
-                  <a href="#"><img src="${contextPath}/img/headerImg/categroy_icon/salad.png" width="20px" height="20px" style="margin-right: 5px;"/>샐러드·간편식</a>
+                  <a href="${contextPath}/product/product_01.do?category='906'"><img src="${contextPath}/img/headerImg/categroy_icon/salad.png" width="20px" height="20px" style="margin-right: 5px;"/>샐러드·간편식</a>
                   <div class="small_categroy" id="salad_categroy">
                     <ul>
-                      <li class="categroy"><a href="#">샐러드 닭가슴살</a></li>
-                      <li class="categroy"><a href="#">도시락·밥류</a></li>
-                      <li class="categroy"><a href="#">파스타·면류</a></li>
-                      <li class="categroy"><a href="#">떡볶이·튀김·순대</a></li>
-                      <li class="categroy"><a href="#">폭립 떡갈비·안주</a></li>
-                      <li class="categroy"><a href="#">죽·스프·카레</a></li>
-                      <li class="categroy"><a href="#">선식·시리얼</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='906001'">샐러드 닭가슴살</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='906002'">도시락·밥류</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='906003'">파스타·면류</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='906004'">떡볶이·튀김·순대</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='906005'">폭립 떡갈비·안주</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='906006'">죽·스프·카레</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='906007'">선식·시리얼</a></li>
                     </ul>
                   </div> 
                   </li>
                   <li class="categroy" id="noodle">
-                  <a href="#"><img src="${contextPath}/img/headerImg/categroy_icon/free-icon-pasta.png" width="20px" height="20px" style="margin-right: 5px;"/>면·양념·오일</a>
+                  <a href="${contextPath}/product/product_01.do?category='907'"><img src="${contextPath}/img/headerImg/categroy_icon/free-icon-pasta.png" width="20px" height="20px" style="margin-right: 5px;"/>면·양념·오일</a>
                   <div class="small_categroy" id="noodle_categroy">
                     <ul>
-                      <li class="categroy"><a href="#">파스타 면류</a></li>
-                      <li class="categroy"><a href="#">식초·소스·드레싱</a></li>
-                      <li class="categroy"><a href="#">양념·액젓·장류</a></li>
-                      <li class="categroy"><a href="#">식용유·참기름·오일</a></li>
-                      <li class="categroy"><a href="#">소금 설탕·향신료</a></li>
-                      <li class="categroy"><a href="#">밀가루·가루·믹스</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='907001'">파스타 면류</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='907002'">식초·소스·드레싱</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='907003'">양념·액젓·장류</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='907004'">식용유·참기름·오일</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='907005'">소금 설탕·향신료</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='907006'">밀가루·가루·믹스</a></li>
                     </ul>
                   </div> 
                   </li>
                   <li class="categroy" id="water">
-                  <a href="#"><img src="${contextPath}/img/headerImg/categroy_icon/free-icon-coffee-cup.png" width="20px" height="20px" style="margin-right: 5px;"/>생수·음료·우유·커피</a>
+                  <a href="${contextPath}/product/product_01.do?category='908'"><img src="${contextPath}/img/headerImg/categroy_icon/free-icon-coffee-cup.png" width="20px" height="20px" style="margin-right: 5px;"/>생수·음료·우유·커피</a>
                   <div class="small_categroy" id="water_categroy">
                     <ul>
-                      <li class="categroy"><a href="#">생수 탄산수</a></li>
-                      <li class="categroy"><a href="#">음료 주스</a></li>
-                      <li class="categroy"><a href="#">우유·두유·요거트</a></li>
-                      <li class="categroy"><a href="#">커피</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='908001'">생수 탄산수</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='908002'">음료 주스</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='908003'">우유·두유·요거트</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category='908004'">커피</a></li>
                     </ul>
                   </div> 
                   </li>
@@ -327,9 +327,9 @@ $(function(){$('.header_nav').hover(
         </div><!--end header_categroy-->
        
           <ul id="header_ul">
-            <li class="header_nav"><a href="#">신상품</a></li>
-            <li class="header_nav"><a href="#">베스트</a></li>
-            <li class="header_nav"><a href="#">할인상품</a></li>
+            <li class="header_nav"><a href="${contextPath}/product/new_product_01.do">신상품</a></li>
+            <li class="header_nav"><a href="${contextPath}/product/best_product_01.do">베스트</a></li>
+            <li class="header_nav"><a href="${contextPath}/product/sale_product_01.do">할인상품</a></li>
             <li class="header_nav"><a href="#">커뮤니티</a></li>
           </ul>
           <div>
