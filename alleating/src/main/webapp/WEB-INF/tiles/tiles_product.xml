@@ -6,9 +6,9 @@
 
 <tiles-definitions>
 
-<definition name="/product/product_detail_01" extends="baseLayout">
+<definition name="/product/userProductDetail" extends="baseLayout">
 <put-attribute name="title" value="상품 상세페이지"/>
-<put-attribute name="body" value="/WEB-INF/views/product/product_detail_01.jsp"/>      
+<put-attribute name="body" value="/WEB-INF/views/product/userProductDetail.jsp"/>      
 </definition>
 
 

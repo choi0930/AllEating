@@ -39,6 +39,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	@RequestMapping(value="/owner/productMain.do", method = RequestMethod.GET)
 	public ModelAndView ownerProductMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		
 		session.setAttribute("side_menuType", "owner_page");
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
