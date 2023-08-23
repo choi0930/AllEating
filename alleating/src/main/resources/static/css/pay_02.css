@@ -100,3 +100,28 @@
         .payTwoPage{
             margin:10px 0px;
         }
+        
+        .dvtb{
+			width: 800px;
+   			 margin: 14px;
+		}
+
+		.dvtb input{
+			margin-right: 5px;
+		}
+
+ 		.dvtb table, tr, td{
+			width: 830px;
+       	 	border:1px solid black;
+       		border-collapse:collapse;
+       	 	padding:5px;
+       		text-align:center;
+      	}
+      	
+      	.dvtext01 ul{
+			margin-top: 26px;
+			margin-left: 15px;
+		}
+		.dvtext01 li{
+			margin-left: 20px;
+		}

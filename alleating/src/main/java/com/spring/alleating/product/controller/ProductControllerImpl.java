@@ -107,6 +107,7 @@ public class ProductControllerImpl implements ProductController{
 		mav.setViewName(viewName); //add
 		return mav;
 	}
+	
 	@Override
 	@RequestMapping(value= "/product/best_product_01.do", method = RequestMethod.GET)
 	public ModelAndView best_product_01(HttpServletRequest request, HttpServletResponse response)throws Exception {

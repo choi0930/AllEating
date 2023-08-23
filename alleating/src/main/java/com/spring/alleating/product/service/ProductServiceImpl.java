@@ -50,6 +50,15 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public Map selectnewProductDetail(Map newproductid) throws DataAccessException {
+		Map newproductInfo = new HashMap();
+		newproductid.put("productStatus", "newProduct");
+		List<ProductVO> newproduct = productDAO.selectnewProductDetail(newproductid);
+		return newproductid;
+	}
+	
+	
+
 	public Map selectCateProduct(Map cateInfo) throws DataAccessException {
 		Map _cateInfo = new HashMap();
 		
@@ -60,13 +69,5 @@ public class ProductServiceImpl implements ProductService {
 		return _cateInfo;
 	}
 	
-	
 
-
-	
-
-	
-	
-	
-	
 }

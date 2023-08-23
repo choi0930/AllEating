@@ -4,7 +4,9 @@
     
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-    
+    <c:set var="_newProduct" value="${_mainresult._newProductlist}" /><!--신상품-->
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +30,7 @@
    <a href="#" class="product-next">
      <div class="productview-list-preview">
       <img src="${contextPath}/img/image_food/shinemuscat.jpg" width="250px" height="320px">
-      <div class="product-text">예약배송 <img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
+      <div class="product-text"> ${_newProduct.deliveryType} <img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
       <div class="product-text">[All Eating]</div>
       <div class="product-text">저탄소 샤인머스캣</div>
       <div class="product-text">13,990원</div></a>

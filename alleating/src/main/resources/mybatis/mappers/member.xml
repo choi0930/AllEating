@@ -9,7 +9,8 @@
 		<result property="pwd" column="pwd" />
 		<result property="join_type" column="join_type" />
 		<result property="name" column="name" />
-		<result property="email" column="email" />
+		<result property="email1" column="email1" />
+		<result property="email2" column="email2" />
 		<result property="hp1" column="hp1" />
 		<result property="hp2" column="hp2" />
 		<result property="hp3" column="hp3" />
@@ -126,8 +127,8 @@
   		    birth_day=#{birth_day},
   		    sms_yn=#{sms_yn},
   		    email_yn=#{email_yn}	    
-  		where
-  		id=#{id}
+  			where
+  			id=#{id}
     </update>
     
     

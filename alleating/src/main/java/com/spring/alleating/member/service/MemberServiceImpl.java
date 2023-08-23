@@ -52,8 +52,20 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int updateMember(MemberVO member) throws DataAccessException {
-		return memberDAO.updateMember(member);
+	public int updateMember(Map<String, String> memberInfo) throws DataAccessException {
+		String email1 = memberInfo.get("email1");
+		String email2 = memberInfo.get("email2");
+		String email3 = memberInfo.get("email3");
+		String email;
+		if(email3.equals("choose") || email3.equals("self")) {
+			email = email1+"@"+email2;
+		}else {
+			email = email1+"@"+email3;
+		}
+		
+		memberInfo.put("email", email);
+			
+		return memberDAO.updateMember(memberInfo);
 	}
 	
 	

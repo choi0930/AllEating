@@ -18,7 +18,7 @@
     });
 
    function fn_cartOder(){
-        location.href="${contextPath}/order/pay_01.do";
+        location.href="${contextPath}/order/pay_02.do";
     }
     </script>
 <style>
