@@ -41,11 +41,12 @@ public class ProductControllerImpl implements ProductController{
 	
 	@Override
 	@RequestMapping(value= "/product/product_01.do", method = RequestMethod.GET)
-	public ModelAndView product_01(HttpServletRequest request, HttpServletResponse response)throws Exception {
+	public ModelAndView product_01(@RequestParam("cateCode")String cateCode,HttpServletRequest request, HttpServletResponse response)throws Exception {
 
 
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "product_01");
+		session.setAttribute("cateCode", cateCode);
 	
 		
 		String viewName = (String)request.getAttribute("viewName");
@@ -54,8 +55,15 @@ public class ProductControllerImpl implements ProductController{
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName); 
 		
-	String cateCode = request.getParameter("cateCode");
-	System.out.println(cateCode);
+		/*
+		 * String cateCode = request.getParameter("cateCode");
+		 * System.out.println(cateCode);
+		 */
+		
+		Map cateResultInfo = new HashMap<>();
+		Map cateResult = productService.selectCateProduct(cateResultInfo);
+		
+		mav.addObject("cateResult",cateResult);
 		
 		return mav;
 	}	

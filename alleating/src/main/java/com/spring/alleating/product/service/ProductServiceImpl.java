@@ -59,14 +59,15 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 
-	public Map selectCateProduct(Map cateInfo) throws DataAccessException {
-		Map _cateInfo = new HashMap();
+	public Map selectCateProduct(Map _cateInfo) throws DataAccessException {
+		Map cateInfo = new HashMap();
+		Map smallcateInfo = new HashMap();
 		
 		cateInfo.put("cateCode", "smallCateList");
 		List<ProductVO> cateList = productDAO.selectCateProduct(cateInfo);
 		
-		_cateInfo.put("cateList", cateList);
-		return _cateInfo;
+		smallcateInfo.put("cateList", cateList);
+		return smallcateInfo;
 	}
 	
 

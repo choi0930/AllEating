@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
     
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-<c:set var="cateList" value="${cateresult.cateList}" />
+<c:set var="cateZ" value="${cateResult.cateList}" />
     
 <!DOCTYPE html>
 <html>
@@ -42,28 +43,52 @@
         
   <div class="all-productview-list">
   <a href="#" class="product-next">
-  
-  <c:forEach var="cateFE" items="${cateList}">
-  <div class="all-productview-list-preview">
-  
-  <a href="${contextPath }/product/userProductDetail.do?cateCode=${cateFE.cateCode}">
-  <img src="${contextPath}/download.do?fileName=${cateFE.fileName}&productId=${cateFE.productId}&cateCode=${cateFE.cateCode}" alt="${cateFE.fileName}" width="300px" height="300px">
-  <div class="all-product-text">${cateFE.deliveryType}</div>
-  <div class="all-product-text">${cateFE.productBrand}</div>
-   <div class="all-product-text">${cateFE.productName}</div>
-     <div class="all-product-text">${cateFE.productPrice}</div>
-     <a href="#" class="product-review">
-     <div class="product-text">후기</div></a>
-    </a>
- </div>
- </c:forEach>
-  </a>
-  </div>
-  
-  
- 
-  </div>
+   <c:forEach var="newProductInfo" items="${newProduct}">
+               <div class="qwerqwer">
+               <a href="${contextPath }/product/userProductDetail.do?cateCode=${cateZ.cateCode}">
+                  <img src="${contextPath}/download.do?fileName=${cateZ.fileName}&productId=${cateZ.productId}&cateCode=${cateZ.cateCode}" alt="${cateZ.fileName}" width="300px" height="300px">
+                 </a>
+                <div class="test2">
         
+        <div class=delivery_type_text>
+       <c:choose>
+         <c:when test="${cateZ.deliveryType == 'reserve' }"> 예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
+         </c:when> 
+        <c:when test="${cateZ.deliveryType == 'normal' }"> 일반배송
+         </c:when>
+         </c:choose>
+        
+        </div>
+        <h5> 
+        <c:choose>
+         <c:when test="${cateZ.deliveryType == 'reserve' }">[All Eating]
+         </c:when>
+        <c:when test="${cateZ.deliveryType == 'normal' }">[${cateZ.productBrand}]
+         </c:when>
+         </c:choose>
+        </h5>
+                  <h5> ${cateZ.productName} </h5>
+                  
+                  
+                  
+                  
+                  <div class="sale_text">  
+                  
+                    <c:choose>
+                    <c:when test="${cateZ.productDiscount != 0}">
+                 
+                   <div class="sale_text_1" >${cateZ.productDiscount}%</div>
+                  
+                   <div class="sale_text_2"> <fmt:formatNumber value="${cateZ.productPrice}" pattern="#,###"/>원</div>
+                   <div class="sale_result"> <fmt:formatNumber value="${cateZ.productSalesPrice}" pattern="#,###"/>원 </div> </c:when>
+                   
+                   <c:otherwise> <h6 class="sale_text_3"><fmt:formatNumber value="${cateZ.productPrice}" pattern="#,###"/>원</h6></c:otherwise>
+                   </c:choose>
+                  
+                </div>
+           </div> 
+           </div>
+            </c:forEach>
         
         
         
