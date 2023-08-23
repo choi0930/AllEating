@@ -6,14 +6,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.alleating.product.vo.ProductVO;
 
 public interface AdminProductController {
 	public ModelAndView listProducts(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView adminProduct(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ResponseEntity addProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)throws Exception;
 	public ModelAndView productDetail(@RequestParam("productId") String productId, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	public String modifyProductStatus(@RequestParam Map productMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
 }

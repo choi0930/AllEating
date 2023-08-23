@@ -130,27 +130,27 @@ pageEncoding="UTF-8" isELIgnored="false"%>
  
 /*  fadein 나타남 fadeout 사라짐 */
 
-// $(document).ready(function() {
+$(document).ready(function() {
 //   // "수량 증가" 버튼 클릭 이벤트 처리
-//   $(".cartbutton-up").click(function() {
-//     var inputField = $(this).siblings(".inp");
-//     var currentValue = parseInt(inputField.val());
+   $(".cartbutton-up").click(function() {
+     var inputField = $(this).siblings(".inp");
+     var currentValue = parseInt(inputField.val());
     
-//     if (!isNaN(currentValue)) {
-//       inputField.val(currentValue + 1);
-//     }
-//   });
+     if (!isNaN(currentValue)) {
+       inputField.val(currentValue + 1);
+     }
+   });
   
-//   // "수량 감소" 버튼 클릭 이벤트 처리
-//   $(".cartbutton-down").click(function() {
-//     var inputField = $(this).siblings(".inp");
-//     var currentValue = parseInt(inputField.val());
+   // "수량 감소" 버튼 클릭 이벤트 처리
+   $(".cartbutton-down").click(function() {
+     var inputField = $(this).siblings(".inp");
+     var currentValue = parseInt(inputField.val());
     
-//     if (!isNaN(currentValue) && currentValue > 1) {
-//       inputField.val(currentValue - 1);
-//     }
-//   });
-// });
+     if (!isNaN(currentValue) && currentValue > 1) {
+       inputField.val(currentValue - 1);
+     }
+   });
+ });
 
 function getSelectedCheckboxValues() {
     var checkboxes = document.querySelectorAll('.individual_cart_checkbox');
@@ -164,39 +164,7 @@ function getSelectedCheckboxValues() {
 
     console.log(selectedValues); // 선택된 체크박스의 값 출력
 }
-//물건 수량 증가
-function count_up(cartId){
-    $.ajax({
-        type: "post",
-        url: `/api/cart/${cartId}/up`,
-        contentType: "application/json; charset=utf-8",   //보낼 데이터의 형식
-        dataType: "json" //응답받을 데이터의 형식
-    }).done(res => {
-        //해당 cart찾기
-        var index = -1;
-        for(var i=0; i<res.data.length;i++){
-            if(res.data[i].id == cartId){
-                index = i;
-            }
-        }
 
-        //수량 갱신
-        $('#count_' + cartId).text(res.data[index].product_count+"개");
-
-        //가격 갱신
-        $('#total_price_'+cartId).text(res.data[index].total_price+"원");
-
-        //장바구니 총 가격 갱신
-        var sum = 0;
-        for(var i=0; i<res.data.length; i++){
-            sum += parseInt($('#total_price_'+res.data[i].id).text());
-        }
-        $('#summary').text(sum+"원");
-
-    }).fail(error => {
-        alert("수량 증가 실패");
-    });
-}
 </script>
 <style>
   .emptyProductMsg{
@@ -243,7 +211,7 @@ function count_up(cartId){
             <c:when test="${not empty resrve_product}">
               <c:forEach var="re" items="${resrve_product}">
                 <div id="cart-info"  >
-                  <input type="checkbox"  class="individual_cart_checkbox" value="${re.cartId}" />
+                  <input type="checkbox"  id="check${re.cartId}" class="individual_cart_checkbox" value="${re.cartId}" />
                   <img
                     class="cart-image"
                     src="${contextPath}/download.do?fileName=${re.fileName}&productId=${re.productId}&cateCode=${re.cateCode}"
@@ -258,8 +226,8 @@ function count_up(cartId){
                         type="button" aria-label="수량내리기"   class="cartbutton-down"  onclick="fn_qty('${re.cartId}')" >
                         <img src="${contextPath }/img/image_icon/minus.png" width="25px" height="25px"></button>
              
-                        <input type="text" class="inp" id="qty" value="${re.cart_product_qty}" readonly />
-                      <button type="button" aria-label="수량올리기" class="cartbutton-up" onclick="count_up('${re.cartId}')"><img src="${contextPath }/img/image_icon/plus.png" width="25px" height="25px"></button>
+                        <input type="text" class="inp" id="qty${re.cartId}" value="${re.cart_product_qty}" readonly />
+                      <button type="button" aria-label="수량올리기" class="cartbutton-up" onclick="count_up('[[${re.cartId}]]','[[${re.productId}]]','[[${re.cart_product_qty}]]','up')"><img src="${contextPath }/img/image_icon/plus.png" width="25px" height="25px"></button>
                     </div>
                     <div class="choice-11">
                       <c:choose>
@@ -308,7 +276,7 @@ function count_up(cartId){
                     <c:otherwise>
                       <c:forEach var="normal" items="${normal_product}">
                         <div id="cart-info2"  >
-                          <input type="checkbox"  class="individual_cart_checkbox" value="${normal.cartId}" />
+                          <input type="checkbox" id="check${normal.cartId}"  class="individual_cart_checkbox" value="${normal.cartId}" />
                           <img
                             class="cart-image"
                             src="${contextPath}/download.do?fileName=${normal.fileName}&productId=${normal.productId}&cateCode=${normal.cateCode}"
@@ -321,7 +289,7 @@ function count_up(cartId){
                             <div class="cart-count">
                               <button
                                 type="button" aria-label="수량내리기"   class="cartbutton-down" ><img src="${contextPath }/img/image_icon/minus.png" width="25px" height="25px"></button>
-                                 <input type="text" class="inp" id="qty" value="${normal.cart_product_qty}" readonly />
+                                 <input type="text" class="inp" id="qty${normal.cartId}" value="${normal.cart_product_qty}" readonly />
                               <button type="button" aria-label="수량올리기" class="cartbutton-up" ><img src="${contextPath }/img/image_icon/plus.png" width="25px" height="25px"></button>
                             </div>
                             <div class="choice-11">

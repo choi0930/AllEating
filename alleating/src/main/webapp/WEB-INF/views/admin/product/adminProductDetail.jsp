@@ -41,7 +41,34 @@ request.setCharacterEncoding("utf-8"); %>
       }
     </style>
     
-    
+    <script>
+      function fn_modfiy(productId, productStatus){
+        var requestData = {
+        productId1: productId,
+        productStatus1: productStatus
+    };
+    console.log(productId);
+        $.ajax({
+		        type:"post",
+		        async:true,
+		        url:"${contextPath}/admin/modifyProductStatus.do",
+		        dataType:"text",
+            
+		        data:{productId1: productId, productStatus1: productStatus},
+		        success:function(data){
+			      
+              alert(data);
+		
+		          },
+		        error:function(data){
+			      alert("에러가 발생했습니다.");
+		        },
+		        complete:function(data){
+			
+		        }
+	          });
+      }
+    </script>
   </head>
   <body>
       <div>
@@ -72,6 +99,28 @@ request.setCharacterEncoding("utf-8"); %>
 
           <div id="prodcutDetail_info">
           <ul>
+            <li>
+              <div class="productdetail_flex">
+                <div>상품상태</div>
+                <c:choose>
+                  <c:when test="${productVO.productStatus == 'approval_request'}">
+                    <div>승인 요청</div>
+                  </c:when>
+                  <c:when test="${productVO.productStatus == 'declined'}">
+                    <div>승인 거절</div>
+                  </c:when>
+                  <c:when test="${productVO.productStatus == 'sale'}">
+                    <div>판매중</div>
+                  </c:when>
+                  <c:when test="${productVO.productStatus == 'sales_end'}">
+                    <div>판매 종료</div>
+                  </c:when>
+                  <c:otherwise>
+                    <div>품절</div>
+                  </c:otherwise>
+                </c:choose>
+              </div>
+            </li>
             <li>
               <div class="productdetail_flex">
                 <div>상품종류</div>
@@ -195,6 +244,19 @@ request.setCharacterEncoding("utf-8"); %>
           <div>
             ${productVO.productContent}
           </div>
+        </div>
+
+        <div>
+          <c:choose>
+            <c:when test="${productVO.join_type == 'owner'}">
+              <div><a href="${contextPath}/admin/productMain.do">목록으로</a></div>
+              <div><a href="javascript:fn_modfiy('${productVO.productId}','sale');">승인거절</a></div>
+              <div><a href="${contextPath}/admin/modifyProductStatus.do?productId=${productVO.productId}&productStatus='sale'">상품승인</a></div>
+            </c:when>
+            <c:otherwise>
+              <div><a href="${contextPath}/admin/listProducts.do">목록으로</a></div>
+            </c:otherwise>
+          </c:choose>
         </div>
       </div>
   </body>
