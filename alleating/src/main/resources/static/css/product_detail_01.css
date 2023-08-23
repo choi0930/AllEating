@@ -17,7 +17,7 @@ width: 550px;}
 }
 
 .listcss-1{
-font-color:#878787;
+
 padding-bottom:10px;
 font-family: 'Noto Sans KR', sans-serif;
 }
@@ -159,7 +159,7 @@ display: flex;
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
-    border: 1px solid rgb(221, 223, 225);
+    /* border: 1px solid rgb(221, 223, 225); */
     width: 88px;
     border-radius: 3px;
 }
@@ -259,6 +259,16 @@ padding-right: 12px;
     color: rgb(51, 51, 51);
     line-height: 20px;
     
+}
+.total-4{
+	border:none;
+	width:50px;
+	  text-align:center;
+}
+.total-4:focus{
+	 border-color:#555555;
+     outline: none;
+     text-align:center;
 }
 .circle{display: flex;
     -webkit-box-pack: end;
@@ -502,4 +512,8 @@ padding-top:50px;
 
 img, svg {
     vertical-align: middle;
+}
+
+#qty_choice{
+width: 120px;
 }

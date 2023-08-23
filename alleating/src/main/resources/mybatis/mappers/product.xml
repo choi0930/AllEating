@@ -54,12 +54,26 @@
 		]]>
 	</select>
 	
-	<!-- <select id="selectUserBycateCode" resultMap="productResult" parameterType="String">
-		<![CDATA[
-			select cateCode from product where cateCode = #{cateCode}
-			LIMIT 3
-		]]>
-	</select> -->
+	<select id="selectCateProduct" resultMap="productResult" parameterType="java.util.Map">
+		
+		SELECT t.*
+			   	FROM (
+   				SELECT g.*, d.fileName
+   				FROM product g
+   				INNER JOIN product_img d ON g.productId = d.productId
+	   			WHERE d.fileType = 'main_image' 
+	   			<if test="cateCode == 'smallCateList'"	>
+	   		
+	   			AND cateCode = #{cateCode}
+    		</if>
+    			ORDER BY g.creDate DESC
+    			
+    			LIMIT 12
+				) t;
+		
+	</select>
+	
+	
 	
 	
  </mapper>

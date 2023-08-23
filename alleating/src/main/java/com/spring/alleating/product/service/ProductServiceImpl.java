@@ -44,5 +44,28 @@ public class ProductServiceImpl implements ProductService {
 	
 		
 		return userProductInfo;
+		
+		
 	}
+
+	@Override
+	public Map selectCateProduct(Map cateInfo) throws DataAccessException {
+		Map _cateInfo = new HashMap();
+		
+		cateInfo.put("cateCode", "smallCateList");
+		List<ProductVO> cateList = productDAO.selectCateProduct(cateInfo);
+		
+		_cateInfo.put("cateList", cateList);
+		return _cateInfo;
+	}
+	
+	
+
+
+	
+
+	
+	
+	
+	
 }
