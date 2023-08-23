@@ -13,6 +13,6 @@ public interface ProductService {
 
 	public Map selectnewProductDetail(Map newproductid)throws DataAccessException;
 
-	public Map selectCateProduct(Map cateInfo)throws DataAccessException;
+	public Map selectCateProduct(Map _cateInfo)throws DataAccessException;
 
 }

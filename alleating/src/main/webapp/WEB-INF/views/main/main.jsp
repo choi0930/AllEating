@@ -7,7 +7,7 @@ request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <c:set var="saleProduct" value="${mainresult.saleList}" /><!--할인상품-->
 <c:set var="newProduct" value="${mainresult.newList}" /><!--신상품-->
-<c:set var="_newProduct" value="${newProductInfo._newProductlist}" /><!--신상품-->
+<c:set var="_newProduct" value="${newProductInfo._newProductlist}" /><!--신상품???-->
 
 
 
@@ -46,7 +46,7 @@ request.setCharacterEncoding("utf-8"); %>
   </head>
   <body>
   
-    ${_newProduct.deliveryType}
+   
         <div class="main-mid">
           <!------ 카테고리 첫 번째 시작점 ------>
           <div id="menu-title1">
