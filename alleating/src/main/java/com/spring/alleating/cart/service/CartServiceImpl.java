@@ -30,14 +30,16 @@ public class CartServiceImpl implements CartService {
 		dataMap.put("id", id);
 		dataMap.put("deliveryType", "reserve");
 		List<CartVO> reserveProductList =cartDAO.selectCartProduct(dataMap);
+		int reserveCount = reserveProductList.size();
+		System.out.println(reserveCount);
 		cartMap.put("reserveProductList", reserveProductList);
-		System.out.println(reserveProductList.size());
+		cartMap.put("reserveCount", reserveCount);
 		
 		dataMap.put("deliveryType", "normal");
 		List<CartVO> normalProductList =cartDAO.selectCartProduct(dataMap);
-		
+		int normalCount = normalProductList.size();
 		cartMap.put("normalProductList", normalProductList);
-		
+		cartMap.put("normalCount", normalCount);
 		return cartMap;
 		
 		
@@ -51,6 +53,8 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public void addProductInCart(CartVO cartVO) throws Exception {
+		int cartId =cartDAO.selectMaxCartId();
+		cartVO.setCartId(cartId);
 		cartDAO.insertProductInCart(cartVO);
 	}
 

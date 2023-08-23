@@ -31,7 +31,8 @@ public class ProductServiceImpl implements ProductService {
 		MemberVO userVO = productDAO.selectUserByRegId(reg_id);
 		
 		/*
-		 * String cateCode = userProductVO.getCateCode(); ProductVO productCategory =
+		 * String cateCode = userProductVO.getCateCode(); 
+		 * ProductVO productCategory =
 		 * productDAO.selectUserBycateCode(cateCode);
 		 */
 		
