@@ -28,11 +28,11 @@ import com.spring.alleating.main.service.MainService;
 	@RequestMapping(value= "/main.do", method = RequestMethod.GET)
 		public ModelAndView mainProductDetail( HttpServletRequest request, HttpServletResponse response)throws Exception {
 		
-			Map mainInfo = new HashMap<>();
+			/* Map mainInfo = new HashMap<>(); */
 			/* mainInfo = mainService.selectMainProductDetail */
 			String viewName = (String) request.getAttribute("viewName");
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("mainInfo", mainInfo);
+			/* mav.addObject("mainInfo", mainInfo); */
 			mav.setViewName(viewName);
 		
 			Map productPeriod = calcSearchPeriod("one_month");

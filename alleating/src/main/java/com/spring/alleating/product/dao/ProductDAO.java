@@ -1,6 +1,7 @@
 package com.spring.alleating.product.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
@@ -16,5 +17,6 @@ public interface ProductDAO {
 	public ProductVO selectUserProductDetail(int productId)throws DataAccessException;
 	public List<ProductImgVO> selectUserProductDetailImage(int productId)throws DataAccessException;
 	public MemberVO selectUserByRegId(String reg_id)throws DataAccessException;
-	public ProductVO selectUserBycateCode (String cateCode) throws DataAccessException;
+	
+	public List<ProductVO> selectCateProduct(Map cateInfo) throws DataAccessException;
 }

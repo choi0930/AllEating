@@ -17,4 +17,6 @@ public interface MainDAO {
 	public List<ProductVO> selectMainProductDetail(Map differenceInfo)throws DataAccessException;
 	public List<ProductImgVO> selectMainProductDetailImage()throws DataAccessException;
 	
+	
+	
 }
