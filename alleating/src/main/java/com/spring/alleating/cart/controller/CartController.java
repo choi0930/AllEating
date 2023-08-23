@@ -14,7 +14,7 @@ import com.spring.alleating.cart.vo.CartVO;
 
 public interface CartController {
 	public ModelAndView myCartMain(HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public @ResponseBody String addProductInCart(@RequestParam("productId") String productId,@RequestParam("cart_product_qty")String select_qty, HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public String addProductInCart(@RequestParam("productId") String productId,@RequestParam("cart_product_qty")String select_qty, HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public  @ResponseBody String modifyCartQty(HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView removeCartProduct(@RequestParam("cartId") int cartId,HttpServletRequest request, HttpServletResponse response)  throws Exception;
 }

@@ -287,7 +287,7 @@ function CheckAll(){
                         src="${contextPath}/download.do?fileName=${res.fileName}&productId=${res.productId}&cateCode=${res.cateCode}"
                       />
                       <div class="cart-text03">
-                        <h5>[${re.productBrand}]<br />${re.productName}</h5>
+                        <h5>[${res.productBrand}]<br />${res.productName}</h5>
                       </div>
                       <div class="choice-8">
                         <div class="cart-count">
@@ -335,41 +335,37 @@ function CheckAll(){
                             <c:when test="${res.productDiscount>0}">
                               <div>
                                 <span class="redText"
-                                  >${res.productDiscount}%</span
+                                  >${normal.productDiscount}%</span
                                 >
                               </div>
                               <div class="product_salesPrice">
-                                <span id="productPrice_${res.cartId}"></span>
-
-                                <span class="choice-12" id="price${res.cartId}"
-                                  >0</span
-                                >
+                                <span class="choice-12">
+                                  <fmt:formatNumber
+                                    value="${res.productSalesPrice*res.cart_product_qty}"
+                                    type="number"
+                                    var="total_sales_price"
+                                  />
+                                  ${total_sales_price}
+                                </span>
                                 <span class="choice-12">원</span>
                               </div>
-                            </c:when>
-                            <c:otherwise>
-                              <span class="choice-12 line_text">
-                                <fmt:formatNumber
+                              <span class="choice-12 line_text"
+                                ><fmt:formatNumber
                                   value="${res.productPrice}"
                                   type="number"
-                                  var="prices"
-                                />
-                                원</span
+                                />원</span
                               >
-
-                              <span
-                                class="choice-12"
-                                id="price${res.cartId}"
-                              ></span>
+                            </c:when>
+                            <c:otherwise>
                               <span class="choice-12"
                                 ><fmt:formatNumber
                                   value="${res.productPrice}"
                                   type="number"
-                                  id="productPrice_${res.cartId}"
-                                />원</span
-                              >
+                              /></span>
+                              <span class="choice-12">원</span>
                             </c:otherwise>
                           </c:choose>
+                         
                         </div>
                       </div>
                     </div>

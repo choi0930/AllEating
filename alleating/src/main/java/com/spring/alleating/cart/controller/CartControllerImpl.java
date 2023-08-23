@@ -65,8 +65,9 @@ public class CartControllerImpl implements CartController{
 	}
 
 	@Override
-	@RequestMapping(value="/cart/addProduct.do", method = {RequestMethod.POST,RequestMethod.GET})
-	public @ResponseBody String addProductInCart(@RequestParam("productId") String productId, @RequestParam("cart_product_qty")String select_qty ,HttpServletRequest request, HttpServletResponse response)
+	@ResponseBody 
+	@RequestMapping(value="/cart/addProduct.do", method = RequestMethod.POST)
+	public String addProductInCart(@RequestParam("productId") String productId, @RequestParam("cart_product_qty")String select_qty ,HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
@@ -89,7 +90,7 @@ public class CartControllerImpl implements CartController{
 
 	@Override
 	@ResponseBody
-	@RequestMapping(value="/cart/modifyCartQty.do", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value="/cart/modifyCartQty.do", method = RequestMethod.POST)
 	public  String modifyCartQty(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
