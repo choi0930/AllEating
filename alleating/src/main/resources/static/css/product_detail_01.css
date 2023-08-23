@@ -514,6 +514,11 @@ img, svg {
     vertical-align: middle;
 }
 
+
 #qty_choice{
 width: 120px;
+
+#toDisplay{
+	display:none;
+
 }

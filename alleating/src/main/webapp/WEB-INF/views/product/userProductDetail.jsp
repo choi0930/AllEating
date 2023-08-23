@@ -21,16 +21,21 @@
     <title>상품 상세페이지</title>
 <link href="${contextPath}/css/product_detail_01.css" rel="stylesheet" type="text/css" />
 
+
 <script type="text/javascript">
-/* var bDisplay = true;
-function doDisplay(){
+ var bDisplay = true;
+/*function doDisplay(){
     var con = document.getElementById("toDisplay");
     if(con.style.display == "none"){
         con.style.display = "block";
     } else {
         con.style.display = "none";
     }
+
 }); */
+
+
+
 
 
 /* $(function(){
@@ -40,7 +45,48 @@ function doDisplay(){
 		document.getElementById("#listcss-5").style.display = "";
        
 	}
-}); */
+
+
+}); 
+}*/
+
+/* 장바구니 담기 */
+function add_cart(productId) {
+  var select_qty = $('#product_qty').val();
+  if(select_qty == 0){
+    alert("수량을 선택해주세요");
+    return false;
+  }
+  
+  $.ajax({
+    type: "POST",
+    async: true, // true로 변경
+    url: "/cart/addProduct.do",
+    data: {
+      productId: productId,
+      cart_product_qty: select_qty
+    },
+    success: function(data, textStatus) {
+      if(data === 'add_success'){
+        
+        alert("장바구니에 등록되었습니다.");
+        $('#toDisplay').css('display','none');
+      } else if(data === 'already_existed'){
+        alert("이미 카트에 등록된 상품입니다.");	
+      }
+    },
+    error: function(data, textStatus) {
+      alert("에러가 발생했습니다." + data);
+    },
+    complete: function(data, textStatus) {
+      // 완료 처리 추가 가능
+    }
+  });
+}
+  /* 장바구니 담기 끝 */
+ function fn_shopping(){
+  $('#toDisplay').css('display','block');
+ }
 
 </script>
 
@@ -175,6 +221,7 @@ function doDisplay(){
 <div class="choice-9">
 
 
+
 <select class="form-select" id="qty_choice" aria-label="Default select example" onchange="qty_mod()" >
   <option selected >수량 선택</option>
   <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1개</option>
@@ -186,8 +233,7 @@ function doDisplay(){
   <option value="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7개</option>
   <option value="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8개</option>
   <option value="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9개</option>
-  <option value="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10개</option>
-          
+
 </select>
 <input type="submit" value="Calculate">
 
@@ -224,13 +270,15 @@ function doDisplay(){
 
 <div class="choice-cart-Info">
     <div class="choice-cart" >
-        <div class="choice-cart-2"  id="toDisplay" style="display:none;">
+        <div class="choice-cart-2"  id="toDisplay" >
         <div class="choice-cart-text">
              <h6 class="choice-cart-text-content">상품을 장바구니에 담았습니다.</h6>
         </div>
         <div class="choice-button">
-        <button type="button" class="choice-button-view" onclick="location.href='${contextPath}/product/product_01.do'">쇼핑 계속하기</button>
-        <button type="button" class="choice-button-view" onclick="location.href='${contextPath}/cart/myCart.do'">장바구니 가기</button>
+
+        <button type="button" class="choice-button-view" onclick="fn_shopping()">쇼핑 계속하기</button>
+        <button type="button" class="choice-button-view" >장바구니 가기</button>
+
         </div>
         </div> 
     </div>
@@ -272,7 +320,7 @@ function doDisplay(){
 </span>
 </button>
 <div class="cart">
-<button type="button"   radius="3" class="cartbutton" onclick="doDisplay()">
+<button type="button"   radius="3" class="cartbutton" onclick="add_cart('${userProductVO.productId}')">
 <span class="cart-2">장바구니 담기</span>
 </button>
  <div class="buy">
@@ -296,12 +344,12 @@ function doDisplay(){
 <span>이런 상품은 어떠신가요</span>
 <div class="how-1" >
 
-<%-- <c:forEach var="dimg" items="${userProductImglist}">
+<!-- <c:forEach var="dimg" items="${userProductImglist}">
                 <c:if test="${userProductVO.cateCode == '9002001' } ">
                   <img src="${contextPath}/download.do?fileName=${dimg.fileName}&productId=${userProductVO.productId}&cateCode=${userProductVO.cateCode}" alt="${dimg.fileName}" width="300px" height="300px">
                 </c:if>
-            </c:forEach> --%>
-
+            </c:forEach> 
+-->
 <div class="how-2">
 <img src="${contextPath}/img/image_food/mygumi.jpg" width="300" height="300">
 <div class="howname">[오리온] 마이구미 청포도 번들팩(43.2g X 6봉지)</div>
