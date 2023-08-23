@@ -21,5 +21,5 @@ public interface AdminProductDAO {
 	public ProductVO selectProductDetail(String productId)throws DataAccessException;
 	public List<ProductImgVO> selectProductDetailImage(String productId)throws DataAccessException;
 	public MemberVO selectMemberByRegId(String reg_id)throws DataAccessException;
-	
+	public void updateProductStatus(ProductVO productVO)throws DataAccessException;
 }

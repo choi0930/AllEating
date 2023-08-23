@@ -121,6 +121,13 @@ public class AdminProductServiceImpl implements AdminProductService {
 		
 		return productInfo;
 	}
+
+
+
+	@Override
+	public void modifyProductStatus(ProductVO productVO) throws DataAccessException {
+		adminProductDAO.updateProductStatus(productVO);
+	}
 	
 	
 }

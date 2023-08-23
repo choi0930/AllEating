@@ -115,11 +115,10 @@ public class MemberControllerImpl implements MemberController {
 	}
 	@Override
 	@RequestMapping(value= "/member/find_id_02.do", method = RequestMethod.GET)
-	public ModelAndView find_id_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
-
-		
+	public ModelAndView find_id_02(@RequestParam("name")String name,@RequestParam("email")String email, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		System.out.println(viewName); 
+		 
+		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName); //add

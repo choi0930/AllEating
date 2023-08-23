@@ -16,9 +16,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -188,6 +190,28 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		return mav;
 	}
 
+	
+	/* 사업자 상품 등록 승인 or 거절 */
+	@Override
+	
+	@RequestMapping(value="/admin/modifyProductStatus.do", method = {RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public String modifyProductStatus(@RequestParam Map productMap, HttpServletRequest request,
+	        HttpServletResponse response) throws Exception {
+	    
+	   String data = "";
+	   int productId = (int) productMap.get("productId");
+	   System.out.println(productId);
+	    adminProductService.modifyProductStatus(productVO);
+	    String productStatus = productVO.getProductStatus();
+	    Map<String, String> dataMap = new HashMap<>(); 
+	    if(productStatus.equals("declined")) {
+	        data = "요청 거절";
+	    } else if(productStatus.equals("sale")) {
+	    	data = "요청 승인";
+	    }
+	    return data;
+	}
 	//폼이동
 	@RequestMapping(value="/admin/*Form.do",method = RequestMethod.GET)
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{

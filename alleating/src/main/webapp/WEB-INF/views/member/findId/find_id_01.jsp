@@ -19,11 +19,11 @@
 </div>
 <div class="findform">
 <div class="form-floating mb-3" id="findform-2">
-    <input type="text" class="form-control" id="floatingInput" placeholder="name">
+    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="name">
     <label for="floatingInput">이름</label>
   </div>
   <div class="form-floating" id="findform-3">
-    <input type="email" class="form-control" id="floatingInput" placeholder="id@example.com">
+    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="id@example.com">
     <label for="floatingInput">이메일</label>
   </div>
 
