@@ -1,6 +1,5 @@
 package com.spring.alleating.cart.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -85,15 +84,25 @@ public class CartControllerImpl implements CartController{
 
 	@Override
 	@RequestMapping(value="/cart/modifyCartQty.do", method = RequestMethod.POST)
-	public @ResponseBody String modifyCartQty(@RequestParam("id") String id, @RequestParam("productId") int productId,@RequestParam("cart_product_qty") int cart_product_qty, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public @ResponseBody CartVO modifyCartQty(@RequestParam("cartId")int cartId,@RequestParam("productId") int productId,@RequestParam("cart_product_qty")int qty,@RequestParam("status") String status, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		String id = memberVO.getId();
+		
+		if(status.equals("up")) {
+			qty += 1;
+		}else {
+			qty -= 1;
+		}
+		
+		
 		cartVO.setId(id);
-		cartVO.setCart_product_qty(cart_product_qty);
+		cartVO.setCart_product_qty(qty);
 		cartVO.setProductId(productId);
 		
 		boolean result = cartService.modifyCartQty(cartVO);
 		String data = Boolean.toString(result);
-		return data;
+		return cartVO;
 	}
 
 	@Override

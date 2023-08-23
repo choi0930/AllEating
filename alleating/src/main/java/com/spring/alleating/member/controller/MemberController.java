@@ -28,7 +28,7 @@ public interface MemberController {
 	
 	
 	public ModelAndView find_id_01(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView find_id_02(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView find_id_02(@RequestParam("name")String name,@RequestParam("email")String email, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView find_pwd_01(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView find_pwd_02(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
