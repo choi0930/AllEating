@@ -10,5 +10,9 @@ import com.spring.alleating.product.vo.ProductVO;
 public interface ProductService {
 	public Map selectUserProductDetail(int productId)throws DataAccessException;
 	
+
 	public Map selectnewProductDetail(Map newproductid)throws DataAccessException;
+
+	public Map selectCateProduct(Map cateInfo)throws DataAccessException;
+
 }

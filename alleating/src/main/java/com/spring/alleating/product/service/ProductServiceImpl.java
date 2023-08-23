@@ -31,7 +31,8 @@ public class ProductServiceImpl implements ProductService {
 		MemberVO userVO = productDAO.selectUserByRegId(reg_id);
 		
 		/*
-		 * String cateCode = userProductVO.getCateCode(); ProductVO productCategory =
+		 * String cateCode = userProductVO.getCateCode(); 
+		 * ProductVO productCategory =
 		 * productDAO.selectUserBycateCode(cateCode);
 		 */
 		
@@ -44,6 +45,8 @@ public class ProductServiceImpl implements ProductService {
 	
 		
 		return userProductInfo;
+		
+		
 	}
 
 	@Override
@@ -55,4 +58,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	
+
+	public Map selectCateProduct(Map cateInfo) throws DataAccessException {
+		Map _cateInfo = new HashMap();
+		
+		cateInfo.put("cateCode", "smallCateList");
+		List<ProductVO> cateList = productDAO.selectCateProduct(cateInfo);
+		
+		_cateInfo.put("cateList", cateList);
+		return _cateInfo;
+	}
+	
+
 }

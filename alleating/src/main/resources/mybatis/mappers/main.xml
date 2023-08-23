@@ -76,4 +76,12 @@
 		select * from product_img where fileType='main_image'
 		]]>
 	</select>
+	
+	 <select id="selectProductBycateCode" resultMap="productResult" parameterType="String">
+		<![CDATA[
+			select * from product where cateCode = #{cateCode}
+			
+		]]>
+	</select> 
+	
 	</mapper>

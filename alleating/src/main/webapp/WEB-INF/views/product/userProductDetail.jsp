@@ -8,7 +8,7 @@
     <c:set var="userProductVO" value="${userProductInfo.userProductVO}" /><!--상품정보-->
 <c:set var="userProductImglist" value="${userProductInfo.userProductImglist}" /><!--이미지리스트-->
 <c:set var="userVO" value="${userProductInfo.userVO}" /><!--사업자리스트-->
-<c:set var="productCategory" value="${userProductInfo.productCategory}" /> <!-- 카테고리 -->
+
 
 
 
@@ -21,10 +21,10 @@
     <title>상품 상세페이지</title>
 <link href="${contextPath}/css/product_detail_01.css" rel="stylesheet" type="text/css" />
 
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script type="text/javascript">
-/* var bDisplay = true;
-function doDisplay(){
+ var bDisplay = true;
+/*function doDisplay(){
     var con = document.getElementById("toDisplay");
     if(con.style.display == "none"){
         con.style.display = "block";
@@ -35,6 +35,9 @@ function doDisplay(){
 }); */
 
 
+
+
+
 /* $(function(){
 	if(isLoginON == true and loginMember != null){
 		document.getElementById("#listcss-5").style.display = "none";
@@ -42,44 +45,54 @@ function doDisplay(){
 		document.getElementById("#listcss-5").style.display = "";
        
 	}
-}); */
 
 
+}); 
+}*/
+
+/* 장바구니 담기 */
+function add_cart(productId) {
+  var select_qty = $('#product_qty').val();
+  if(select_qty == 0){
+    alert("수량을 선택해주세요");
+    return false;
+  }
+  
+  $.ajax({
+    type: "POST",
+    async: true, // true로 변경
+    url: "/cart/addProduct.do",
+    data: {
+      productId: productId,
+      cart_product_qty: select_qty
+    },
+    success: function(data, textStatus) {
+      if(data === 'add_success'){
+        
+        alert("장바구니에 등록되었습니다.");
+        $('#toDisplay').css('display','none');
+      } else if(data === 'already_existed'){
+        alert("이미 카트에 등록된 상품입니다.");	
+      }
+    },
+    error: function(data, textStatus) {
+      alert("에러가 발생했습니다." + data);
+    },
+    complete: function(data, textStatus) {
+      // 완료 처리 추가 가능
+    }
+  });
 }
-function add_cart(productId,cart_product_qty) {
-		$.ajax({
-			type : "post",
-			async : false, //false인 경우 동기식으로 처리한다.
-			url : "${contextPath}/cart/addProduct",
-			data : {
-				productId:productId,
-				cart_product_qty:cart_product_qty	
-				
-			},
-			success : function(data, textStatus) {
-			
-				if(data=='add_success'){
-					imagePopup('open', '.layer01');	
-				}else if(data=='already_existed'){
-					alert("이미 카트에 등록된 상품입니다.");	
-				}
-				
-			},
-			error : function(data, textStatus) {
-				alert("에러가 발생했습니다."+data);
-			},
-			complete : function(data, textStatus) {
-				//alert("작업을완료 했습니다");
-			}
-		}); //end ajax	
-	}
+  /* 장바구니 담기 끝 */
+ function fn_shopping(){
+  $('#toDisplay').css('display','block');
+ }
 
 </script>
 
 
 </head>
 <body>
-
 
 
 
@@ -206,24 +219,42 @@ function add_cart(productId,cart_product_qty) {
 </div>
 <div class="choice-8">
 <div class="choice-9">
-<select class="form-select" aria-label="Default select example">
-  <option selected>수량 선택</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10">10</option>
-          
+
+
+
+<select class="form-select" id="qty_choice" aria-label="Default select example" onchange="qty_mod()" >
+  <option selected >수량 선택</option>
+  <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1개</option>
+  <option value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2개</option>
+  <option value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3개</option>
+  <option value="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4개</option>
+  <option value="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5개</option>
+  <option value="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6개</option>
+  <option value="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7개</option>
+  <option value="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8개</option>
+  <option value="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9개</option>
+
 </select>
+<input type="submit" value="Calculate">
+
 </div>
 <div class="choice-11">
-<span class="choice-12"><fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>원</span>
-<span class="choice-13"><fmt:formatNumber value="${userProductVO.productSalesPrice}" pattern="#,###"/>원</span>
+
+
+<c:choose>
+                    <c:when test="${userProductVO.productDiscount != 0}">
+                 
+                   <span class="sale_text_2"><fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>원</span>
+                   <span class="sale_text_result">
+                   <fmt:formatNumber value="${userProductVO.productSalesPrice}" pattern="#,###"/>원</span>
+                   </c:when>
+                   <c:otherwise><span class="sale_text_3"><fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>원</span></c:otherwise>
+                   </c:choose>
+
+
+
+<%-- <span class="choice-12"><fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>원</span>
+<span class="choice-13"><fmt:formatNumber value="${userProductVO.productSalesPrice}" pattern="#,###"/>원</span> --%>
 </div>
 </div>
 </div>
@@ -239,13 +270,15 @@ function add_cart(productId,cart_product_qty) {
 
 <div class="choice-cart-Info">
     <div class="choice-cart" >
-        <div class="choice-cart-2"  id="toDisplay" style="display:none;">
+        <div class="choice-cart-2"  id="toDisplay" >
         <div class="choice-cart-text">
              <h6 class="choice-cart-text-content">상품을 장바구니에 담았습니다.</h6>
         </div>
         <div class="choice-button">
-        <button type="button" class="choice-button-view" onclick="location.href='${contextPath}/product/product_01.do'">쇼핑 계속하기</button>
-        <button type="button" class="choice-button-view" onclick="add_cart()">장바구니 가기</button>
+
+        <button type="button" class="choice-button-view" onclick="fn_shopping()">쇼핑 계속하기</button>
+        <button type="button" class="choice-button-view" >장바구니 가기</button>
+
         </div>
         </div> 
     </div>
@@ -253,9 +286,21 @@ function add_cart(productId,cart_product_qty) {
 <div class="total">
 <div class="total-2">
 <div class="total-3">
-<span class="total-4">총 금액: </span>
-<span class="total-4">0</span>
-<span class="total-4">원</span>
+
+
+
+
+<c:choose>
+                    <c:when test="${userProductVO.productDiscount != 0}">
+                    총 상품 금액:  <input type="text" readonly class="total-4" value="<fmt:formatNumber value="${userProductVO.productSalesPrice}" pattern="#,###"/>">원
+                    </c:when>
+                   
+                   
+                   <c:otherwise>총 상품 금액:  <input type="text" readonly class="total-4" value="<fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>">원</c:otherwise>
+                   </c:choose>
+
+<%-- 총 상품 금액:  <input type="text" readonly class="total-4" value="<fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>">원 --%>
+
 </div>
 
 
@@ -264,7 +309,7 @@ function add_cart(productId,cart_product_qty) {
 <div class="circle">
 <span class="circle-2">적립</span>
 <span class="circle-3">구매 시 </span>
-<span class="circle-3"> 0원</span>
+<span class="circle-3"> 100원</span>
 <span class="circle-3"> 적립</span>
 </div>
 
@@ -275,7 +320,7 @@ function add_cart(productId,cart_product_qty) {
 </span>
 </button>
 <div class="cart">
-<button type="button"   radius="3" class="cartbutton" onclick="doDisplay()">
+<button type="button"   radius="3" class="cartbutton" onclick="add_cart('${userProductVO.productId}')">
 <span class="cart-2">장바구니 담기</span>
 </button>
  <div class="buy">
@@ -299,12 +344,12 @@ function add_cart(productId,cart_product_qty) {
 <span>이런 상품은 어떠신가요</span>
 <div class="how-1" >
 
-<%-- <c:forEach var="dimg" items="${userProductImglist}">
+<!-- <c:forEach var="dimg" items="${userProductImglist}">
                 <c:if test="${userProductVO.cateCode == '9002001' } ">
                   <img src="${contextPath}/download.do?fileName=${dimg.fileName}&productId=${userProductVO.productId}&cateCode=${userProductVO.cateCode}" alt="${dimg.fileName}" width="300px" height="300px">
                 </c:if>
-            </c:forEach> --%>
-
+            </c:forEach> 
+-->
 <div class="how-2">
 <img src="${contextPath}/img/image_food/mygumi.jpg" width="300" height="300">
 <div class="howname">[오리온] 마이구미 청포도 번들팩(43.2g X 6봉지)</div>

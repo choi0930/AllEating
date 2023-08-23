@@ -20,4 +20,6 @@ public interface ProductDAO {
 	
 	public List<ProductVO> selectnewProductDetail(Map newproductid)throws DataAccessException;
 	
+	public List<ProductVO> selectCateProduct(Map cateInfo) throws DataAccessException;
+
 }

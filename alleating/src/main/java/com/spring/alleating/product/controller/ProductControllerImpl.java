@@ -37,20 +37,50 @@ public class ProductControllerImpl implements ProductController{
 	 * ModelAndView mav = new ModelAndView(); mav.setViewName(viewName); //add
 	 * return mav; }
 	 */
+	
+	
 	@Override
 	@RequestMapping(value= "/product/product_01.do", method = RequestMethod.GET)
-	public ModelAndView product_01(@RequestParam("category")String category, HttpServletRequest request, HttpServletResponse response)throws Exception {
+	public ModelAndView product_01(HttpServletRequest request, HttpServletResponse response)throws Exception {
+
+
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "product_01");
-		session.setAttribute("category", category);
+	
 		
 		String viewName = (String)request.getAttribute("viewName");
 		System.out.println(viewName); 
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName); //add
+		mav.setViewName(viewName); 
+		
+	String cateCode = request.getParameter("cateCode");
+	System.out.println(cateCode);
+		
 		return mav;
-	}
+	}	
+
+	/*
+	 * @Override
+	 * 
+	 * @RequestMapping(value= "/product/product_01.do", method = RequestMethod.GET)
+	 * public ModelAndView product_01(@RequestParam("cateCode")String cateCode,
+	 * HttpServletRequest request, HttpServletResponse response)throws Exception {
+	 * HttpSession session = request.getSession();
+	 * session.setAttribute("side_menuType", "product_01");
+	 * session.setAttribute("cateCode", cateCode);
+	 * 
+	 * 
+	 * 
+	 * String viewName = (String)request.getAttribute("viewName");
+	 * System.out.println(viewName);
+	 * 
+	 * ModelAndView mav = new ModelAndView(); mav.setViewName(viewName);
+	 * 
+	 * 
+	 * 
+	 * return mav; }
+	 */
 	@Override
 	@RequestMapping(value="/product/search_01.do", method = RequestMethod.GET)
 	public ModelAndView search_01(@RequestParam("searchWord") String searchWord, HttpServletRequest request, HttpServletResponse response) throws Exception {

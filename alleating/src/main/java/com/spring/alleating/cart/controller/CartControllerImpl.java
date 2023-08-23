@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,11 +54,9 @@ public class CartControllerImpl implements CartController{
 		
 		Map product_map = cartService.myCartList(cartVO);
 		
-		
 		String viewName = (String) request.getAttribute("viewName");
 		
 		ModelAndView mav = new ModelAndView();
-		
 		
 		mav.addObject("product_map", product_map);
 		
@@ -65,12 +65,17 @@ public class CartControllerImpl implements CartController{
 	}
 
 	@Override
-	@RequestMapping(value="/cart/addProduct", method = RequestMethod.POST)
-	public @ResponseBody String addProductInCart(@RequestParam("id")String id, @RequestParam("productId") int productId, @RequestParam("cart_product_qty") int cart_product_qty,HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/cart/addProduct.do", method = {RequestMethod.POST,RequestMethod.GET})
+	public @ResponseBody String addProductInCart(@RequestParam("productId") String productId, @RequestParam("cart_product_qty")String select_qty ,HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		String id = memberVO.getId();
+		int _productId = Integer.parseInt(productId);
+		int _select_qty = Integer.parseInt(select_qty);
 		cartVO.setId(id);
-		cartVO.setProductId(productId);
-		cartVO.setCart_product_qty(cart_product_qty);
+		cartVO.setProductId(_productId);
+		cartVO.setCart_product_qty(_select_qty);
 		
 		Boolean check = cartService.findCartProducts(cartVO);
 		if(check==true){
@@ -83,26 +88,28 @@ public class CartControllerImpl implements CartController{
 	}
 
 	@Override
-	@RequestMapping(value="/cart/modifyCartQty.do", method = RequestMethod.POST)
-	public @ResponseBody CartVO modifyCartQty(@RequestParam("cartId")int cartId,@RequestParam("productId") int productId,@RequestParam("cart_product_qty")int qty,@RequestParam("status") String status, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@ResponseBody
+	@RequestMapping(value="/cart/modifyCartQty.do", method = {RequestMethod.POST, RequestMethod.GET})
+	public  String modifyCartQty(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		String id = memberVO.getId();
+		String qty = request.getParameter("cart_product_qty");
+		String productId = request.getParameter("productId");
+		String cartId = request.getParameter("cartId");
 		
-		if(status.equals("up")) {
-			qty += 1;
-		}else {
-			qty -= 1;
-		}
-		
+		int _qty = Integer.parseInt(qty);
+		int _productId = Integer.parseInt(productId);
+		int _cartId = Integer.parseInt(cartId);
 		
 		cartVO.setId(id);
-		cartVO.setCart_product_qty(qty);
-		cartVO.setProductId(productId);
+		cartVO.setCart_product_qty(_qty);
+		cartVO.setProductId(_productId);
+		cartVO.setCartId(_cartId);
 		
 		boolean result = cartService.modifyCartQty(cartVO);
 		String data = Boolean.toString(result);
-		return cartVO;
+		return "s";
 	}
 
 	@Override
