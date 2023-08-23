@@ -27,11 +27,16 @@ request.setCharacterEncoding("utf-8"); %>
       .sale_text_1{
       color:#EF6C33;
       font-weight:bold;
-      padding-right:5px;}
+      padding-right:5px;
+      font-size:35px;}
       .sale_text_2{
       text-decoration:line-through;
       color:#C9C9C9;
+      
       }
+      .sale_text {
+    display: flex;
+}
     </style>
   </head>
   <body>
@@ -49,8 +54,9 @@ request.setCharacterEncoding("utf-8"); %>
               <%-- <img src="${contextPath}/img/image_food/mara.png" width="240" height="320" alt="Image 1" /> --%>
               <c:forEach var="newProductInfo" items="${newProduct}">
                <div class="qwerqwer">
+               <a href="${contextPath }/product/userProductDetail.do?productId=${newProductInfo.productId}">
                   <img src="${contextPath}/download.do?fileName=${newProductInfo.fileName}&productId=${newProductInfo.productId}&cateCode=${newProductInfo.cateCode}" alt="${newProductInfo.fileName}" width="300px" height="300px">
-                 
+                 </a>
                 <div class="test2">
         
         <div class=delivery_type_text>
@@ -64,7 +70,7 @@ request.setCharacterEncoding("utf-8"); %>
         </div>
         <h5> 
         <c:choose>
-         <c:when test="${newProductInfo.deliveryType == 'reserve' }">[${newProductInfo.productBrand}]
+         <c:when test="${newProductInfo.deliveryType == 'reserve' }">[All Eating]
          </c:when>
         <c:when test="${newProductInfo.deliveryType == 'normal' }">[${newProductInfo.productBrand}]
          </c:when>
@@ -81,10 +87,11 @@ request.setCharacterEncoding("utf-8"); %>
                     <c:when test="${newProductInfo.productDiscount != 0}">
                  
                    <div class="sale_text_1" >${newProductInfo.productDiscount}%</div>
+                  
                    <div class="sale_text_2">${newProductInfo.productPrice}원</div>
                    <div class="sale_result"> ${newProductInfo.productSalesPrice}원 </div> </c:when>
                    
-                   <c:otherwise> <h6 class="sale_text_3">${newProductInfo.productPrice}원</h6></c:otherwise>
+                   <c:otherwise> <h6 class="sale_text_2">${newProductInfo.productPrice}원</h6></c:otherwise>
                    </c:choose>
                   
                 </div>
