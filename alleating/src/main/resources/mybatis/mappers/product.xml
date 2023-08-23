@@ -54,5 +54,12 @@
 		]]>
 	</select>
 	
+	<!-- <select id="selectUserBycateCode" resultMap="productResult" parameterType="String">
+		<![CDATA[
+			select cateCode from product where cateCode = #{cateCode}
+			LIMIT 3
+		]]>
+	</select> -->
+	
 	
  </mapper>

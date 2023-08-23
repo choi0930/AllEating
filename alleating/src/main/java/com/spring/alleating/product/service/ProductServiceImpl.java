@@ -30,11 +30,17 @@ public class ProductServiceImpl implements ProductService {
 		String reg_id = userProductVO.getReg_id();
 		MemberVO userVO = productDAO.selectUserByRegId(reg_id);
 		
+		/*
+		 * String cateCode = userProductVO.getCateCode(); ProductVO productCategory =
+		 * productDAO.selectUserBycateCode(cateCode);
+		 */
+		
 		
 		Map userProductInfo = new HashMap();
 		userProductInfo.put("userProductVO",userProductVO);
 		userProductInfo.put("userProductImglist", userProductImglist);
 		userProductInfo.put("userVO", userVO);
+		/* userProductInfo.put("productCategory", productCategory); */
 	
 		
 		return userProductInfo;

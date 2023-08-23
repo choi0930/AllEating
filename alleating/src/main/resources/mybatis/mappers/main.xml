@@ -52,7 +52,7 @@
     			AND g.creDate between #{beginDate} and #{endDate}
     		</if>
     			ORDER BY g.creDate DESC
-    			LIMIT 5
+    			LIMIT 4
 				) t;
 		
 	</select>
