@@ -23,9 +23,11 @@ public interface MemberController {
 	public ModelAndView modMember(@RequestParam("id") String id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 	
-	public ModelAndView updateMember(@ModelAttribute("info") MemberVO memberVO, 
-			HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
+	/*
+	 * public ModelAndView updateMember(@ModelAttribute("info") MemberVO memberVO,
+	 * HttpServletRequest request, HttpServletResponse response) throws Exception;
+	 */
+	public ModelAndView updateMember(@RequestParam Map<String, String> memberInfo, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
 	public ModelAndView find_id_01(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView find_id_02(@RequestParam("name")String name,@RequestParam("email")String email, HttpServletRequest request, HttpServletResponse response) throws Exception;

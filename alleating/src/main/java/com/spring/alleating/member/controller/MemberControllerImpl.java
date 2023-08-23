@@ -166,12 +166,12 @@ public class MemberControllerImpl implements MemberController {
 
 	@Override
 	@RequestMapping(value = "/member/updateMember.do", method = RequestMethod.POST)
-	public ModelAndView updateMember(@ModelAttribute("member") MemberVO member, HttpServletRequest request,
+	public ModelAndView updateMember(Map<String, String> memberInfo, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		System.out.println("Call updateMember-method of control");
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
-		result = memberService.updateMember(member);
+		result = memberService.updateMember(memberInfo);
 		ModelAndView mav = new ModelAndView("redirect:/main.do");
 		return mav;
 	}

@@ -45,4 +45,14 @@ public class ProductServiceImpl implements ProductService {
 		
 		return userProductInfo;
 	}
+
+	@Override
+	public Map selectnewProductDetail(Map newproductid) throws DataAccessException {
+		Map newproductInfo = new HashMap();
+		newproductid.put("productStatus", "newProduct");
+		List<ProductVO> newproduct = productDAO.selectnewProductDetail(newproductid);
+		return newproductid;
+	}
+	
+	
 }

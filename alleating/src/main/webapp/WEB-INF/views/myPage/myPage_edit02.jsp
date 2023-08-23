@@ -7,65 +7,44 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>회원가입</title>
+    <title>회원 정보 수정</title>
 
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-      function sample6_execDaumPostcode() {
-        new daum.Postcode({
-          oncomplete: function (data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var addr = ""; // 주소 변수
-            var extraAddr = ""; // 참고항목 변수
-
-            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === "R") {
-              // 사용자가 도로명 주소를 선택했을 경우
-              addr = data.roadAddress;
-            } else {
-              // 사용자가 지번 주소를 선택했을 경우(J)
-              addr = data.jibunAddress;
-            }
-
-            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-            if (data.userSelectedType === "R") {
-              // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-              // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-              if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
-                extraAddr += data.bname;
-              }
-              // 건물명이 있고, 공동주택일 경우 추가한다.
-              if (data.buildingName !== "" && data.apartment === "Y") {
-                extraAddr +=
-                  extraAddr !== ""
-                    ? ", " + data.buildingName
-                    : data.buildingName;
-              }
-              // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-              if (extraAddr !== "") {
-                extraAddr = " (" + extraAddr + ")";
-              }
-              // 조합된 참고항목을 해당 필드에 넣는다.
-              document.getElementById("sample6_extraAddress").value = extraAddr;
-            } else {
-              document.getElementById("sample6_extraAddress").value = "";
-            }
-
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById("sample6_postcode").value = data.zonecode;
-            document.getElementById("sample6_address").value = addr;
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("sample6_detailAddress").focus();
-          },
-        }).open();
-      }
       var userIdCheck = RegExp(/^[A-Za-z0-9]{6,16}$/); //아이디 유효성 검사
       var passwdCheck = RegExp(
         /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/
       ); //비밀번호 유효성 검사
+
+      function fn_select() {
+        var text = $("#email_select").val();
+        if (text == "self" || text == "choose") {
+          $("#selects").val("");
+          $("#selects").attr("disabled", false);
+        } else {
+          $("#selects").val(text);
+          $("#selects").attr("disabled", true);
+        }
+      }
+
+      //이메일 sms 수신동의 전체 체크
+      $(document).ready(function () {
+        //전체 체크박스 클릭
+        $("#checkAll2").click(function () {
+          if ($("#checkAll2").prop("checked")) {
+            $(".testCheck2").prop("checked", true);
+          } else {
+            $(".testCheck2").prop("checked", false);
+          }
+        });
+        //전체 체크박스 선택중 체크박스 하나를 풀었을때 "전체" 체크해제
+        $(".testCheck2").click(function () {
+          if ($(".testCheck2:checked").length == 2) {
+            $("#checkAll2").prop("checked", true);
+          } else {
+            $("#checkAll2").prop("checked", false);
+          }
+        });
+      });
 
       $(function () {
         $("#alert-success").hide();
@@ -164,6 +143,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         });
       }
 
+      function fn_modify_member(obj) {
+        obj.action = "${contextPath}/member/updateMember.do";
+        obj.submit();
+      }
+
       //넘어오는 이메일 인증번호
       var emailCheckNum;
       //이메일 인증번호 확인
@@ -204,16 +188,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         }
       }
     </script>
-    <link href="${contextPath}/css/join.css" rel="stylesheet" type="text/css" />
+    <link
+      href="${contextPath}/css/myPage_edit02.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <style></style>
   </head>
   <body class="d-flex flex-column min-vh-100">
     <div class="input-form">
-      <form
-        name="joinForm"
-        method="post"
-        action="${contextPath}/member/join.do"
-      >
+      <form name="memberupdate" method="post" action="${contextPath}">
         <div id="join_input">
           <div id="join_title">회원가입</div>
           <div id="join_Basic_input_text">
@@ -307,6 +291,82 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div class="form_button_box"></div>
           </div>
+          <!--주소-->
+          <div class="form_info2">
+            <div class="form_label_box">
+              <label class="form_label user_address"
+                >주소<span class="redText">*</span></label
+              >
+              <label class="form_label owner_address"
+                >사업장 주소<span class="redText">*</span></label
+              >
+            </div>
+            <div class="form_value_box">
+              <div class="form_input_box">
+                <input
+                  type="text"
+                  class="form-control phone join_input_box2"
+                  id="sample6_postcode"
+                  value="${member.zipcode}"
+                  name="zipcode"
+                  placeholder="우편번호"
+                  readonly
+                />
+                <button
+                  class="btn btn-outline-secondary addressBtn"
+                  type="button"
+                  id="idCheckBtn"
+                  onclick="sample6_execDaumPostcode()"
+                >
+                  우편번호 찾기
+                </button>
+              </div>
+            </div>
+            <div class="form_button_box"></div>
+          </div>
+          <!--나머지 주소-->
+          <div class="form_info2">
+            <div class="form_label_box"></div>
+            <div class="form_value_box">
+              <div class="form_input_box">
+                <input
+                  type="text"
+                  class="form-control join_input_box2"
+                  id="sample6_address"
+                  name="address"
+                  value="${member.address}"
+                  placeholder="주소"
+                  readonly
+                /><br />
+              </div>
+            </div>
+            <div class="form_button_box"></div>
+          </div>
+          <!--나머지 주소-->
+          <div class="form_info2">
+            <div class="form_label_box"></div>
+            <div class="form_value_box">
+              <div class="form_input_box">
+                <input
+                  type="text"
+                  class="form-control join_input_box2"
+                  id="sample6_detailAddress"
+                  value="${member.address_detail}"
+                  name="address_detail"
+                  placeholder="상세주소"
+                />
+                <input
+                  type="text"
+                  class="form-control join_input_box2"
+                  id="sample6_extraAddress"
+                  value="${member.address2}"
+                  name="address2"
+                  placeholder="참고항목"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
           <!--이메일-->
           <div class="form_info">
             <div class="form_label_box">
@@ -321,6 +381,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     id="userEmail"
                     class="form_input form_email form-control join_input_box2"
                     required
+                    value="${member.email.split('@')[0]}"
                   />
                   <span class="input-group-text">@</span>
                   <input
@@ -329,6 +390,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     id="selects"
                     class="form_input form_email form-control join_input_box2"
                     required="required"
+                    value="${member.email.split('@')[1]}"
                   />
 
                   <select
@@ -419,6 +481,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   name="hp2"
                   id="hp2"
                   maxlength="4"
+                  value="${member.hp2}"
                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                 />
                 -
@@ -428,6 +491,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   name="hp3"
                   id="hp3"
                   maxlength="4"
+                  value="${member.hp3}"
                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                 />
               </div>
@@ -543,6 +607,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     maxlength="4"
                     name="birth_year"
                     placeholder="YYYY"
+                    value="${member.birth_year}"
                   />
                   <span class="join_brith_bar">/</span>
                   <input
@@ -551,6 +616,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     maxlength="2"
                     name="birth_month"
                     placeholder="MM"
+                    value="${member.birth_month}"
                   />
                   <span class="join_brith_bar">/</span>
                   <input
@@ -559,6 +625,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     maxlength="2"
                     name="birth_day"
                     placeholder="DD"
+                    value="${member.birth_day}"
                   />
                 </div>
               </div>
@@ -572,60 +639,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="form_agree">
               <div class="form_label_box">
                 <label class="form_label">이용약관동의</label>
-                <span class="redText">*</span>
               </div>
               <div class="form_value_box">
                 <div class="form_input_box">
-                  <div class="form_agree_box">
-                    <label class="form-check-label form_check_label"
-                      ><input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="checkAll"
-                      /><!--전체 동의 체크박스-->
-                      <div class="form_label_text">
-                        <span>전체 동의합니다.</span>
-                      </div>
-                    </label>
-                    <p class="agree_box_text">
-                      선택항목에 동의하지 않은 경우도 회원가입 및 일반적인
-                      서비스를 이용할 수 있습니다.
-                    </p>
-                  </div>
-                  <div class="form_agree_box">
-                    <label class="form-check-label form_check_label">
-                      <input
-                        type="checkbox"
-                        id="check1"
-                        class="form-check-input testCheck"
-                        required
-                      /><!--이용약관 동의(필수)-->
-                      <div class="form_label_text">
-                        <span>이용약관 동의</span>
-                        <span>(필수)</span>
-                      </div>
-                    </label>
-                    <div>
-                      <a>약관보기 <span>></span></a>
-                    </div>
-                  </div>
-                  <div class="form_agree_box">
-                    <label class="form-check-label form_check_label">
-                      <input
-                        type="checkbox"
-                        id="check3"
-                        class="form-check-input testCheck"
-                        required
-                      /><!--개인정보 수집 이용 동의(필수)-->
-                      <div class="form_label_text">
-                        <span>개인정보 수집·이용 동의</span>
-                        <span>(필수)</span>
-                      </div>
-                    </label>
-                    <div>
-                      <a>약관보기 <span>></span></a>
-                    </div>
-                  </div>
                   <div class="form_agree_box">
                     <label class="form-check-label form_check_label">
                       <input
@@ -639,9 +655,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         <span>(선택)</span>
                       </div>
                     </label>
-                    <div>
-                      <a>약관보기 <span>></span></a>
-                    </div>
                   </div>
                   <div class="form_agree_box">
                     <label class="form-check-label form_check_label">
@@ -661,6 +674,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                       <label>
                         <input
                           type="checkbox"
+                          le
                           class="form-check-input testCheck testCheck2"
                           name="sms_yn"
                           value="Y"
@@ -680,27 +694,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                       </label>
                     </div>
                   </div>
-                  <div class="form_agree_box">
-                    <label class="form-check-label form_check_label">
-                      <input
-                        type="checkbox"
-                        id="check2"
-                        class="form-check-input testCheck"
-                        required
-                      /><!--14세이상 체크 (필수)-->
-                      <div class="form_label_text">
-                        <span>본인은 만14세 이상입니다.</span>
-                        <span>(필수)</span>
-                      </div>
-                    </label>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <!--이용약관 동의 끝-->
           <div class="form_end">
-            <button type="button" class="join_end_btn" onclick="fn_loginGO()">
+            <button
+              type="button"
+              class="join_end_btn"
+              onClick="fn_modify_member(memberupdate)"
+            >
               <span id="join_btn_text">수정하기</span>
             </button>
           </div>
