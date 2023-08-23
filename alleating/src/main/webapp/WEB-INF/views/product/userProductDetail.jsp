@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
     
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
     <c:set var="userProductVO" value="${userProductInfo.userProductVO}" /><!--상품정보-->
 <c:set var="userProductImglist" value="${userProductInfo.userProductImglist}" /><!--이미지리스트-->
 <c:set var="userVO" value="${userProductInfo.userVO}" /><!--사업자리스트-->
+<c:set var="productCategory" value="${userProductInfo.productCategory}" /> <!-- 카테고리 -->
+
+
+
     
 <!DOCTYPE html>
 <html>
@@ -18,7 +23,7 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-var bDisplay = true;
+/* var bDisplay = true;
 function doDisplay(){
     var con = document.getElementById("toDisplay");
     if(con.style.display == "none"){
@@ -26,6 +31,20 @@ function doDisplay(){
     } else {
         con.style.display = "none";
     }
+
+}); */
+
+
+/* $(function(){
+	if(isLoginON == true and loginMember != null){
+		document.getElementById("#listcss-5").style.display = "none";
+	}else{//조건이 아닐떄
+		document.getElementById("#listcss-5").style.display = "";
+       
+	}
+}); */
+
+
 }
 function add_cart(productId,cart_product_qty) {
 		$.ajax({
@@ -54,6 +73,7 @@ function add_cart(productId,cart_product_qty) {
 			}
 		}); //end ajax	
 	}
+
 </script>
 
 
@@ -96,15 +116,26 @@ function add_cart(productId,cart_product_qty) {
                     <c:when test="${userProductVO.productDiscount != 0}">
                  
                    <div class="sale_text_1" >${userProductVO.productDiscount}%</div>
-                   <div class="sale_text_2">${userProductVO.productPrice}원</div>
-                   <div class="sale_result"> ${userProductVO.productSalesPrice}원 </div> </c:when>
+                   <div class="sale_text_2"><fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>원</div>
+                   <div class="sale_result"> <fmt:formatNumber value="${userProductVO.productSalesPrice}" pattern="#,###"/>원 </div> </c:when>
                    
-                   <c:otherwise> <h6 class="sale_text_2">${userProductVO.productPrice}원</h6></c:otherwise>
+                   <c:otherwise> <h6 class="sale_text_3"><fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>원</h6></c:otherwise>
                    </c:choose>
                   </div> 
 
 </div>
-<div class="listcss-5">로그인 후, 적립 혜택이 제공됩니다.</div>
+
+<c:choose>
+            <c:when test="${isLoginON == true and loginMember != null}"><!--로그인 했을때-->
+              <div id="listcss-5"></div>
+            </c:when>
+            <c:otherwise><!--로그인 정보가 없을때-->
+              <div id="listcss-5">로그인 후, 적립 혜택이 제공됩니다.</div>
+            </c:otherwise>
+        </c:choose>
+
+<!-- <div id="listcss-5">로그인 후, 적립 혜택이 제공됩니다.</div> -->
+
 
 
 <div class="list">
@@ -175,13 +206,24 @@ function add_cart(productId,cart_product_qty) {
 </div>
 <div class="choice-8">
 <div class="choice-9">
-<button type="button" aria-label="수량내리기" disabled class="choicebutton-down"></button>
-<div class="choice-10">1</div>
-<button type="button" aria-label="수량올리기"  class="choicebutton-up"></button>
+<select class="form-select" aria-label="Default select example">
+  <option selected>수량 선택</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+          
+</select>
 </div>
 <div class="choice-11">
-<span class="choice-12">13,900</span><span class="choice-12">원</span>
-<span class="choice-13">11,610</span><span class="choice-13">원</span>
+<span class="choice-12"><fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>원</span>
+<span class="choice-13"><fmt:formatNumber value="${userProductVO.productSalesPrice}" pattern="#,###"/>원</span>
 </div>
 </div>
 </div>
@@ -222,8 +264,8 @@ function add_cart(productId,cart_product_qty) {
 <div class="circle">
 <span class="circle-2">적립</span>
 <span class="circle-3">구매 시 </span>
-<span class="circle-3">0원</span>
-<span class="circle-3">적립</span>
+<span class="circle-3"> 0원</span>
+<span class="circle-3"> 적립</span>
 </div>
 
 <div class="result">
@@ -256,6 +298,13 @@ function add_cart(productId,cart_product_qty) {
 <div class="how">
 <span>이런 상품은 어떠신가요</span>
 <div class="how-1" >
+
+<%-- <c:forEach var="dimg" items="${userProductImglist}">
+                <c:if test="${userProductVO.cateCode == '9002001' } ">
+                  <img src="${contextPath}/download.do?fileName=${dimg.fileName}&productId=${userProductVO.productId}&cateCode=${userProductVO.cateCode}" alt="${dimg.fileName}" width="300px" height="300px">
+                </c:if>
+            </c:forEach> --%>
+
 <div class="how-2">
 <img src="${contextPath}/img/image_food/mygumi.jpg" width="300" height="300">
 <div class="howname">[오리온] 마이구미 청포도 번들팩(43.2g X 6봉지)</div>

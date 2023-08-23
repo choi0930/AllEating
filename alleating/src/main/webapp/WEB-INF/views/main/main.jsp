@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %> <%
+pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <c:set var="saleProduct" value="${mainresult.saleList}" /><!--할인상품-->
@@ -88,10 +90,10 @@ request.setCharacterEncoding("utf-8"); %>
                  
                    <div class="sale_text_1" >${newProductInfo.productDiscount}%</div>
                   
-                   <div class="sale_text_2">${newProductInfo.productPrice}원</div>
-                   <div class="sale_result"> ${newProductInfo.productSalesPrice}원 </div> </c:when>
+                   <div class="sale_text_2"> <fmt:formatNumber value="${newProductInfo.productPrice}" pattern="#,###"/>원</div>
+                   <div class="sale_result"> <fmt:formatNumber value="${newProductInfo.productSalesPrice}" pattern="#,###"/>원 </div> </c:when>
                    
-                   <c:otherwise> <h6 class="sale_text_2">${newProductInfo.productPrice}원</h6></c:otherwise>
+                   <c:otherwise> <h6 class="sale_text_3"><fmt:formatNumber value="${newProductInfo.productPrice}" pattern="#,###"/>원</h6></c:otherwise>
                    </c:choose>
                   
                 </div>
@@ -175,9 +177,9 @@ request.setCharacterEncoding("utf-8"); %>
                   <h5> ${saleProductInfo.productName} </h5>
                   <div class="sale_text">  
                    <div class="sale_text_1" >${saleProductInfo.productDiscount}%</div>
-                   <div class="sale_text_2">${saleProductInfo.productPrice}원</div>
+                   <div class="sale_text_2"><fmt:formatNumber value="${saleProductInfo.productPrice}" pattern="#,###"/>원</div>
                   </div>
-                  <div class="sale_result"> ${saleProductInfo.productSalesPrice}원 </div>
+                  <div class="sale_result"> <fmt:formatNumber value="${saleProductInfo.productSalesPrice}" pattern="#,###"/>원 </div>
                 </div>
            </div> 
             </c:forEach>
