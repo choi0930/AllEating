@@ -52,7 +52,7 @@
 
 /* 장바구니 담기 */
 function add_cart(productId) {
-  var select_qty = $('#product_qty').val();
+  var select_qty = $('#qty_choice').val();
   if(select_qty == 0){
     alert("수량을 선택해주세요");
     return false;
