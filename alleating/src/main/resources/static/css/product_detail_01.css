@@ -503,3 +503,6 @@ padding-top:50px;
 img, svg {
     vertical-align: middle;
 }
+#toDisplay{
+	display:none;
+}
