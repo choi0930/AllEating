@@ -41,8 +41,8 @@ public class ProductControllerImpl implements ProductController{
 	
 	@Override
 	@RequestMapping(value= "/product/product_01.do", method = RequestMethod.GET)
-	public ModelAndView product_01(@RequestParam("cateCode")String cateCode,HttpServletRequest request, HttpServletResponse response)throws Exception {
-
+	public ModelAndView product_01(@RequestParam("category")String cateCode,HttpServletRequest request, HttpServletResponse response)throws Exception {
+		System.out.println(cateCode);
 
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "product_01");

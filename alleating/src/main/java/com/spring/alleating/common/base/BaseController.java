@@ -32,9 +32,9 @@ import com.spring.alleating.product.vo.ProductImgVO;
 				
 				File file = new File(PRODUCT_IMAGE_REPO_PATH +"\\"+ fileName);
 				if(mFile.getSize()!=0){ //File Null Check
-					if(! file.exists()){ //��λ� ������ �������� ���� ���
-						if(file.getParentFile().mkdirs()){ //��ο� �ش��ϴ� ���丮���� ����
-								file.createNewFile(); //���� ���� ����
+					if(! file.exists()){ 
+						if(file.getParentFile().mkdirs()){ 
+								file.createNewFile();
 						}
 					}
 					mFile.transferTo(new File(PRODUCT_IMAGE_REPO_PATH +"\\"+"temp"+ "\\"+originalFileName)); //�ӽ÷� ����� multipartFile�� ���� ���Ϸ� ����

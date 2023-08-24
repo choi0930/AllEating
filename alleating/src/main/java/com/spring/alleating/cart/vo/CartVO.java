@@ -24,7 +24,15 @@ public class CartVO {
 	private String productBrand;
 	private String fileName;
 	
-
+	private int oneProductPrice;
+	
+	
+	public int getOneProductPrice() {
+		return oneProductPrice;
+	}
+	public void setOneProductPrice(int oneProductPrice) {
+		this.oneProductPrice = oneProductPrice;
+	}
 	public String getDeliveryType() {
 		return deliveryType;
 	}

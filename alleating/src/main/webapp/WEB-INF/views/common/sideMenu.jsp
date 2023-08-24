@@ -439,24 +439,24 @@ text-decoration:none;}
                         <div>
                             <div class="side_product_total_count">
                                 <img src="${contextPath}/img/side/icon-shopping-cart.png" width="16px" alt="cart">
-                                <span class="side_font_size">전체상품 : 1개</span>
+                                <span class="side_font_size">전체상품 : <input type="text" value="0" class="css0930" id="productCount">개</span>
                             </div>
                             <div class="side_cartMenu_bottom">
                                 <div class="side_cartMenu_bottom2">
                                     <div><span class="side_font_size">주문금액:</span></div>
-                                    <div><span class="side_font_size">13,990원</span></div>
+                                    <div><span class="side_font_size" ><input type="text" value="0" class="css0930" id="total_sum">원</span></div>
                                 </div>
-                                <div class="side_cartMenu_bottom2">
+                                <!--<div class="side_cartMenu_bottom2">
                                     <div><span class="side_font_size">상품할인:</span></div>
                                     <div><span class="side_font_size">-0원</span></div>
-                                </div>
+                                </div>-->
                                 <div class="side_cartMenu_bottom2">
                                     <div><span class="side_font_size">배송비:</span></div>
-                                    <div><span class="side_font_size">3000원</span></div>
+                                    <div><span class="side_font_size"><input type="text" value="0" class="css0930" id="deliveryPrice">원</span></div>
                                 </div>
                                 <div class="side_cartMenu_bottom2 codr_opt_bx">
                                     <div><span class="side_font_size side_font_OrgText">결제 예정 금액:</span></div>
-                                    <div><span class="side_font_size side_font_OrgText side_total_priceText">16,990원</span></div>
+                                    <div><span class="side_font_size side_font_OrgText side_total_priceText" ><input type="text" value="0" class="css0930" id="td">원</span></div>
                                 </div>
                                 <button class="codr_btn_payment" onclick="fn_cartOder()">주문하기</button>
                             </div>

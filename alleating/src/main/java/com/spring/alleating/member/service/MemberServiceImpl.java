@@ -30,6 +30,8 @@ public class MemberServiceImpl implements MemberService{
 		memberInfo.put("email", email);
 		
 		memberDAO.insertMember(memberInfo);
+		
+		
 	}
 
 	@Override //로그인

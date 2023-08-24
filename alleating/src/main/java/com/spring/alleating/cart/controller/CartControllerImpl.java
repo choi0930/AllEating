@@ -28,17 +28,7 @@ public class CartControllerImpl implements CartController{
 	@Autowired
 	private CartVO cartVO;
 	
-	
-	//@RequestMapping(value="/cart/myCart.do", method = RequestMethod.GET)
-//	public ModelAndView myCart(HttpServletRequest request, HttpServletResponse response)throws Exception{
-//		HttpSession session = request.getSession();
-//		session.setAttribute("side_menuType", "cart_page");
-//		String viewName = (String) request.getAttribute("viewName");
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-
+	/* 카트 진입 */
 	@Override
 	@RequestMapping(value="/cart/myCart.do", method = RequestMethod.GET)
 	public ModelAndView myCartMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -47,9 +37,9 @@ public class CartControllerImpl implements CartController{
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		if(memberVO != null) {
 		String id = memberVO.getId();
-		cartVO.setId(id);
+			cartVO.setId(id);
 		}else {
-			cartVO.setId("Non-members");
+			cartVO.setId("NonMembers");
 		}
 		
 		Map product_map = cartService.myCartList(cartVO);
