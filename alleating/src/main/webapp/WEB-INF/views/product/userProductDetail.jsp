@@ -24,15 +24,10 @@
 
 <script type="text/javascript">
  var bDisplay = true;
-/*function doDisplay(){
-    var con = document.getElementById("toDisplay");
-    if(con.style.display == "none"){
-        con.style.display = "block";
-    } else {
-        con.style.display = "none";
-    }
+function doDisplay(){
+   
 
-}); */
+}); 
 
 
 
@@ -57,7 +52,7 @@ function add_cart(productId) {
     alert("수량을 선택해주세요");
     return false;
   }
-  
+ 
   $.ajax({
     type: "POST",
     async: true, // true로 변경
@@ -84,9 +79,9 @@ function add_cart(productId) {
   });
 }
   /* 장바구니 담기 끝 */
- function fn_shopping(){
-  $('#toDisplay').css('display','block');
- }
+
+ 
+ 
 
 </script>
 

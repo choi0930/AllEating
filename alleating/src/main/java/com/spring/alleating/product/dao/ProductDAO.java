@@ -20,6 +20,6 @@ public interface ProductDAO {
 	
 	public List<ProductVO> selectnewProductDetail(Map newproductid)throws DataAccessException; //신상품
 	
-	public List<ProductVO> selectCateProduct(Map cateInfo) throws DataAccessException; //카테고리
+	public List<ProductVO> selectCateProduct(Map aaaInfo)throws DataAccessException; //카테고리
 
 }

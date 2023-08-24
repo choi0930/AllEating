@@ -1,6 +1,7 @@
 package com.spring.alleating.product.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mysql.cj.Session;
 import com.spring.alleating.product.service.ProductService;
 
 @Controller("productController")
@@ -41,17 +41,14 @@ public class ProductControllerImpl implements ProductController{
 	
 	@Override
 	@RequestMapping(value= "/product/product_01.do", method = RequestMethod.GET)
-	public ModelAndView product_01(@RequestParam("cateCode")String cateCode,HttpServletRequest request, HttpServletResponse response)throws Exception {
+	public ModelAndView product_01(@RequestParam("category")String category,HttpServletRequest request, HttpServletResponse response)throws Exception {
 
 
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "product_01");
-		session.setAttribute("cateCode", cateCode);
-	
+		session.setAttribute("category", category);
 		
-		String viewName = (String)request.getAttribute("viewName");
-		System.out.println(viewName); 
-		
+		String viewName = (String)request.getAttribute("viewName");	
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName); 
 		
@@ -60,8 +57,11 @@ public class ProductControllerImpl implements ProductController{
 		 * System.out.println(cateCode);
 		 */
 		
-		Map cateResultInfo = new HashMap<>();
-		Map cateResult = productService.selectCateProduct(cateResultInfo);
+		
+		Map bbbInfo = new HashMap<>();
+		bbbInfo.put("cateCode", category);
+		List cateResult = productService.selectCateProduct(bbbInfo);
+		
 		
 		mav.addObject("cateResult",cateResult);
 		
