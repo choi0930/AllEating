@@ -3,7 +3,8 @@ pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
-
+<c:set var="order" value="${order}" />
+<c:set var="myOrderList" value="${myOrderList}" />
 <!DOCTYPE html>
 <html>
   <head>
@@ -45,24 +46,13 @@ request.setCharacterEncoding("utf-8"); %>
                 </tr>
               </thead>
               <tbody>
-                <c:choose>
-                  <c:when test="${empty couponList}">
-                      <tr>
-                        <td colspan="3"> 쿠폰 내역이 없습니다.</td>
-                      </tr>
-                  </c:when>
-                  <c:otherwise>
-                    <c:forEach var="coupon" items="${couponList}">
-                       <tr>
-                         <td>
-                           <input type="checkbox" />
-                         </td>
-                          <td>회원가입 환영 쿠폰</td>
-                         <td>2,000원</td>
-                       </tr>
-                     </c:forEach>
-                  </c:otherwise>
-                </c:choose>
+                <tr>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>회원가입 환영 쿠폰</td>
+                  <td>2,000원</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -120,13 +110,13 @@ request.setCharacterEncoding("utf-8"); %>
           <!--수령자 배송지및 이름 전화번호 처음에는 기본배송지 회원가입시 적었던 배송지 표시 배송지 변경시에 변경가능-->
           <div class="payTwoTitleText"><span>배송지 정보</span></div>
           <div class="payTwoText">
-           
+            ${order.name}&nbsp;&nbsp;${order.hp1}-${order.hp2}-${order.hp3}
           </div>
         </div>
         <div class="deliveryAddressText">
-          <div>${memberVO.name}
-            ${memberVO.zipcode}&nbsp;${memberVO.address}&nbsp;${memberVO.addressDetail}
-            ${memberVO.name}&nbsp;&nbsp;${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}   &nbsp;&nbsp;
+          <div>
+            ${order.zipcode}&nbsp;${order.address}&nbsp;${order.addressDetail}
+            &nbsp;&nbsp;
             <a href="#">배송지변경</a
             ><img
               src="${contextPath}/img/side/arrow-right-gray.png"
@@ -134,7 +124,7 @@ request.setCharacterEncoding("utf-8"); %>
             />
           </div>
         </div>
-       
+
         <div class="payDeliveryInfo payTwoborderTop">
           <span class="payTwoTitleText">배송 요청 사항</span>
 
@@ -163,43 +153,41 @@ request.setCharacterEncoding("utf-8"); %>
         <!--주문자-->
         <div class="payDeliveryInfo payTwoborderTop">
           <div class="payTwoTitleText">주문자명</div>
-          <div id="payTwoOrderName">${memberVO.name}</div>
+          <div id="payTwoOrderName">${order.name}</div>
         </div>
         <div class="payDeliveryInfo">
           <div class="payTwoTitleText">휴대폰</div>
           <div class="payTwoOrderInfo">
-            ${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}
+            ${order.hp1}-${order.hp2}-${order.hp3}
           </div>
         </div>
-    <!-- <div class="payDeliveryInfo">
+        <div class="payDeliveryInfo">
           <div class="payTwoTitleText">이메일</div>
           <div class="payTwoOrderInfo">${order.email}</div>
-        </div>-->
+        </div>
       </div>
       <!--end payDeliveryInfoMain(배송지정보)-->
 
       <!--주문하는 상품 정보-->
       <div class="payProductInfo">
-       
         <div class="payTwoSeationText">주문 상품 정보</div>
-        <div class="payTwoTitleText payTwoQty">주문 상품: ${allEating.size()}개</div>
-        <c:forEach var="item" items="${allEating}">
+        <div class="payTwoTitleText payTwoQty">주문 상품: 개</div>
         <div class="payDeliveryInfo payTwoProduct">
           <img
-            src="${contextPath}/download.do?fileName=${item.fileName}&productId=${item.productId}&cateCode=${item.cateCode}"
-            alt="${item.fileName}"
+            src="${contextPath}/img/image_food/shinemuscat.JPG"
+            alt="샤인머스켓"
             width="100px"
           />
 
           <div>
-            ${item.productName}
+            [AllEating]<br />
+            저탄소 샤인머스캣
           </div>
           <div>
-            ${item.productPrice * item.productQty}<br />
-            수량 ${item.productQty}개
+            13,990원<br />
+            수량 1개
           </div>
         </div>
-        </c:forEach>
       </div>
       <!--end payProductInfo(주문하는 상품)-->
 
@@ -211,7 +199,7 @@ request.setCharacterEncoding("utf-8"); %>
        
         <div class="payDeliveryInfo payTwoborderTop">
           <div class="payTwoTitleText">현재 보유중인 적립금</div>
-          <div class="payTwoPoint">${userPointVO.userPoint}원</div>
+          <div class="payTwoPoint">0원</div>
         </div>
         <div class="payDeliveryInfo">
           <div class="payTwoTitleText">사용할 적립금</div>
@@ -237,20 +225,15 @@ request.setCharacterEncoding("utf-8"); %>
           </div>
         </div>
         <div class="payDeliveryInfo payTwoborderTop">
-          
-          <table>
-            <tbody>
-            <tr>
-              <td>할인 금액</td>
-              <td>-0원</td>
-            </tr>
-            <tr>
-              <td>주문 금액</td>
-              <td><span style="font-size: 20px; font-weight: bold">16,900원</span>   (상품가 13,990원+배송비 3,000원)</td>
-            </tr>
-            </tbody>
-          </table>
-          
+          <div class="payTwoTitleText">할인 금액</div>
+          <div class="payTwoSalePriceText">-0원</div>
+        </div>
+        <div class="payDeliveryInfo">
+          <div class="payTwoTitleText">주문금액</div>
+          <div class="payTwoPriceText">
+            <span style="font-size: 20px; font-weight: bold">16,990원</span>
+            (상품가 13,990원+배송비 3,000원)
+          </div>
         </div>
       </div>
       <!--end paySaleInfo(할인혜택)-->
@@ -293,8 +276,27 @@ request.setCharacterEncoding("utf-8"); %>
       <div>
         <button id="payTwoLastbtn"><span>결제하기</span></button>
       </div>
-     
-     
+      <div id="payment-widget"></div>
+      <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+      <script>
+        const paymentWidget = PaymentWidget(
+          //토스 페이먼츠 testKey 자리
+
+          PaymentWidget.ANONYMOUS
+        );
+        paymentWidget.renderPaymentMethods("#payment-widget", "100");
+        const button = document.getElementById("payTwoLastbtn");
+        button.addEventListener("click", function () {
+          paymentWidget.requestPayment({
+            amount: "100",
+            orderId: "1000040",
+            orderName: "choi",
+            customerName: "choi",
+            successUrl: window.location.origin + "/test.do",
+            failUrl: window.location.origin + "/main.do",
+          });
+        });
+      </script>
     </div>
   </body>
 </html>

@@ -119,11 +119,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <link
-      href="${contextPath}/css/pay_02.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    
     <title><tiles:insertAttribute name="title"/></title>
   </head>
   <body>

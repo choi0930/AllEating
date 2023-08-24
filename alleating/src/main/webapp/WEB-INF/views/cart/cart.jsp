@@ -202,41 +202,63 @@ request.setCharacterEncoding("utf-8"); %>
                 $("#total_sum").attr('value',sum);
                 $('#deliveryPrice').attr('value', deliveryPrice);
                 $('#td').attr('value',total);
+
+                $('#h_productCount').attr('value',count);
+                $("#h_total_sum").attr('value',sum);
+                $('#h_deliveryPrice').attr('value', deliveryPrice);
+                $('#h_td').attr('value',total);
                 
       }
       
-      function getSelectedCheckboxValues(){
-        var order_cart_qty;
-	      var order_cart_id;
+
+      function getcheck(){
+        var checkCartId;
         var productId;
-        var objForm = document.frm_order;
-        var check_cartId = objForm.checked_cartId;
-        var cart_product_qtyy = objForm.cart_product_qtyy;
-        var length=check_cartId.length;
-          if(length>1){
-            for(var i=0; i<length; i++){
-              if(check_cartId[i].checked==true){
-                order_cart_id = check_cartId[i].value;
-                order_cart_qty = cart_product_qtyy[i].value;
-                productId = $('#productId_'+order_cart_id).val();
-                cart_product_qtyy[i].value="";
-                cart_product_qtyy[i].value = productId+":"+order_cart_qty; 
-              }
-            }
-          } else{
-            order_cart_id = check_cartId.value;
-            order_cart_qty = cart_product_qtyy.value;
-            productId = $('#productId_'+order_cart_id).val();
-            cart_product_qtyy.value=productId+":"+order_cart_qty;
-          }
+        var productName;
+        var productQty;
+        var productDiscount;
+        var productPrice;
+        var cateCode;
+        var fileName;
+        var allEatingOrderDetailes = [];
 
-          objForm.method="post";
-          objForm.action="/order/orderAllCartProducts.do";
-          objForm.submit();
-          
-      }
-
-
+        var length = $('input:checkbox[name=checked_cartId]:checked').length;
+        
+        $('input:checkbox[name=checked_cartId]:checked').each(function (index) {
+         
+    	      checkCartId=$(this).val();
+             productId = $('#productId_' + checkCartId).val();
+             productName = $('#productName_' + checkCartId).val();
+             productPrice = $('#productPrice' + checkCartId).val();
+             productDiscount = $('#discount_' + checkCartId).val();
+             productQty = $('#qty' + checkCartId).val();
+             cateCode = $('#cateCode_' + checkCartId).val();
+             fileName = $('#fileName_' + checkCartId).val();
+             allEatingOrderDetailes.push({
+              productId: productId,
+            productName: productName,
+            productPrice: productPrice,
+            productDiscount: productDiscount,
+            productQty: productQty,
+            cateCode: cateCode,
+            fileName :fileName
+             });
+      
+          });
+          $.ajax({
+        type: "POST",
+        url: "${contextPath}/order/orderAllCartProducts.do",
+        data: JSON.stringify(allEatingOrderDetailes),
+        contentType: "application/json;charset=UTF-8",
+        success: function (response) {
+            console.log("서버 응답 성공");
+          location.href="/order/pay_02.do";
+        },
+        error: function (error) {
+            console.error("오류 발생:", error);
+        }
+    });
+        }      
     </script>
     <style>
       .emptyProductMsg {
@@ -264,6 +286,12 @@ request.setCharacterEncoding("utf-8"); %>
           <a href="#">전체선택</a>
           <input type="checkbox" id="cart-all-check" />
         </div>
+        <form name = "frm_order">
+          
+          <input type="hidden" id="h_productCount" value="" />
+          <input type="hidden" id="h_total_sum" value="" />
+          <input type="hidden" id="h_deliveryPrice" value="" />
+          <input type="hidden" id="h_td" value="" />
 
         <div class="cart-text02">
           예약 배송 상품: ${reserveCount1}개
@@ -285,7 +313,7 @@ request.setCharacterEncoding("utf-8"); %>
             </button>
           </div>
         </div>
-        <form name = "frm_order">
+       
         <div>
           <div>
             <div id="cart-info-all">
@@ -311,9 +339,13 @@ request.setCharacterEncoding("utf-8"); %>
                         class="cart-image"
                         src="${contextPath}/download.do?fileName=${res.fileName}&productId=${res.productId}&cateCode=${res.cateCode}"
                       />
+                      <input type="hidden" id="cateCode_${res.cartId}" value="${res.cateCode}" />
+                      <input type="hidden" id="productName_${res.cartId}" value="${res.productName}"/>
+                      <input type="hidden" id="fileName_${res.cartId}" value="${res.fileName}"/>
                       <div class="cart-text03">
                         <h5>[${res.productBrand}]<br />${res.productName}</h5>
                       </div>
+                      
                       <div class="choice-8">
                         <div class="cart-count">
                           <input
@@ -392,6 +424,11 @@ request.setCharacterEncoding("utf-8"); %>
                             </c:when>
                             <c:otherwise>
                               <input
+                              id="discount_${res.cartId}"
+                              type="hidden"
+                              value="${res.productDiscount}"
+                            />
+                              <input
                                 id="productPrice${res.cartId}"
                                 type="hidden"
                                 value="${res.productPrice}"
@@ -460,6 +497,9 @@ request.setCharacterEncoding("utf-8"); %>
                         src="${contextPath}/download.do?fileName=${normal.fileName}&productId=${normal.productId}&cateCode=${normal.cateCode}"
                         alt="${normal.fileName}"
                       />
+                      <input type="hidden" id="cateCode_${normal.cartId}" value="${normal.cateCode}" />
+                      <input type="hidden" id="productName_${normal.cartId}" value="${normal.productName}"/>
+                      <input type="hidden" id="fileName_${normal.cartId}" value="${normal.fileName}"/>
                       <div class="cart-text03">
                         <h5>
                           [${normal.productBrand}]<br />${normal.productName}
@@ -542,6 +582,11 @@ request.setCharacterEncoding("utf-8"); %>
                               >
                             </c:when>
                             <c:otherwise>
+                              <input
+                              id="discount_${normal.cartId}"
+                              type="hidden"
+                              value="${normal.productDiscount}"
+                            />
                               <input
                                 id="productPrice${normal.cartId}"
                                 type="hidden"
