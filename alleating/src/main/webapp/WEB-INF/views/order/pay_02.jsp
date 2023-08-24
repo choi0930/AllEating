@@ -3,7 +3,8 @@ pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
-
+<c:set var="order" value="${order}" />
+<c:set var="myOrderList" value="${myOrderList}" />
 <!DOCTYPE html>
 <html>
   <head>
@@ -103,11 +104,14 @@ request.setCharacterEncoding("utf-8"); %>
         <div class="payDeliveryInfo">
           <!--수령자 배송지및 이름 전화번호 처음에는 기본배송지 회원가입시 적었던 배송지 표시 배송지 변경시에 변경가능-->
           <div class="payTwoTitleText"><span>배송지 정보</span></div>
-          <div class="payTwoText">최현진&nbsp;&nbsp;010-1234-5678</div>
+          <div class="payTwoText">
+            ${order.name}&nbsp;&nbsp;${order.hp1}-${order.hp2}-${order.hp3}
+          </div>
         </div>
         <div class="deliveryAddressText">
           <div>
-            대전 서구 둔산동 오라클 빌딩 10층 1005호&nbsp;&nbsp;
+            ${order.zipcode}&nbsp;${order.address}&nbsp;${order.addressDetail}
+            &nbsp;&nbsp;
             <a href="#">배송지변경</a
             ><img
               src="${contextPath}/img/side/arrow-right-gray.png"
@@ -144,15 +148,17 @@ request.setCharacterEncoding("utf-8"); %>
         <!--주문자-->
         <div class="payDeliveryInfo payTwoborderTop">
           <div class="payTwoTitleText">주문자명</div>
-          <div id="payTwoOrderName">최현진</div>
+          <div id="payTwoOrderName">${order.name}</div>
         </div>
         <div class="payDeliveryInfo">
           <div class="payTwoTitleText">휴대폰</div>
-          <div class="payTwoOrderInfo">010-1234-5678</div>
+          <div class="payTwoOrderInfo">
+            ${order.hp1}-${order.hp2}-${order.hp3}
+          </div>
         </div>
         <div class="payDeliveryInfo">
           <div class="payTwoTitleText">이메일</div>
-          <div class="payTwoOrderInfo">test@naver.com</div>
+          <div class="payTwoOrderInfo">${order.email}</div>
         </div>
       </div>
       <!--end payDeliveryInfoMain(배송지정보)-->
@@ -160,7 +166,7 @@ request.setCharacterEncoding("utf-8"); %>
       <!--주문하는 상품 정보-->
       <div class="payProductInfo">
         <div class="payTwoSeationText">주문 상품 정보</div>
-        <div class="payTwoTitleText payTwoQty">주문 상품: 1개</div>
+        <div class="payTwoTitleText payTwoQty">주문 상품: 개</div>
         <div class="payDeliveryInfo payTwoProduct">
           <img
             src="${contextPath}/img/image_food/shinemuscat.JPG"

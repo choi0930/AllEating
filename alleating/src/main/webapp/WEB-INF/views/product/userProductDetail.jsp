@@ -27,7 +27,7 @@
 function doDisplay(){
    
 
-}); 
+} 
 
 
 
@@ -80,6 +80,26 @@ function add_cart(productId) {
 }
 
   /*---------- 장바구니 담기 끝 ----------*/
+
+function fn_goToPay(){
+  var qty = $('#qty_choice').val();
+  var productId = $('#productId').val();
+
+  var formObj = document.createElement("form");
+  var i_product_id = document.createElement("input");
+  var i_qty = document.createElement("input");
+
+  i_product_id.name = "product_id";
+  i_qty.name = "qty";
+
+  formObj.appendChild(i_product_id);
+  formObj.appendChild(i_qty);
+
+  document.body.appendChild(formObj);
+  formObj.method ="POST";
+  formObj.action="${contextPath}/order/orderEachProduct.do";
+  formObj.submit();
+}
 
  function fn_shopping(){
   $('#toDisplay').css('display','block');
@@ -218,7 +238,7 @@ function add_cart(productId) {
 <div class="choice-8">
 <div class="choice-9">
 
-
+<input type="hidden" id="productId" value="${userProductVO.productId}">
 
 <select class="form-select" id="qty_choice" aria-label="Default select example" onchange="qty_mod()" >
   <option selected value="0" >수량 선택</option>
@@ -322,7 +342,7 @@ function add_cart(productId) {
 <span class="cart-2">장바구니 담기</span>
 </button>
  <div class="buy">
-<button type="button"  radius="3" class="buybutton" onclick="location.href='${contextPath}/cart/pay_01.do'">
+<button type="button"  radius="3" class="buybutton" onclick="fn_goToPay()">
 <span class="buy-2">구매하기</span>
 </button>
  </div>

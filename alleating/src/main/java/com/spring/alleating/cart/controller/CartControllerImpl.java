@@ -47,8 +47,8 @@ public class CartControllerImpl implements CartController{
 		String viewName = (String) request.getAttribute("viewName");
 		
 		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("product_map", product_map);
+		session.setAttribute("product_map", product_map);
+		//mav.addObject("product_map", product_map);
 		
 		mav.setViewName(viewName);
 		return mav;

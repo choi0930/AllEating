@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+
+ <mapper namespace="com.spring.alleating.coupon.dao">
+ <resultMap id="couponResult" type="couponVO">
+		<result property="couponId" column="couponId" />
+		<result property="coupon_name" column="coupon_name" />
+		<result property="coupon_range" column="coupon_range" />
+		<result property="beginDate" column="beginDate" />
+		<result property="endDate" column="endDate" />
+</resultMap>
+
+ <resultMap id="userCouponResult" type="userCouponVO">
+		<result property="couponId" column="couponId" />
+		<result property="id" column="id" />
+</resultMap>
+
+	<select id="selectUserCoupon" resultMap="userCouponResult" parameterType="String">
+		select * from usercoupon where id = #{id}
+	</select>
+ </mapper>

@@ -38,7 +38,37 @@ public class OrderVO {
 	private Date payDate;
 	private String thunderDate;
 	private String thunderTime;
-	private String shopping_ordercol;
+	/*order에서 필요한 정보*/
+	private String productBrand;
+	private int productDiscount;
+	private int productSalesPrice;
+	private String fileName;
+	
+	
+	public String getProductBrand() {
+		return productBrand;
+	}
+	public void setProductBrand(String productBrand) {
+		this.productBrand = productBrand;
+	}
+	public int getProductDiscount() {
+		return productDiscount;
+	}
+	public void setProductDiscount(int productDiscount) {
+		this.productDiscount = productDiscount;
+	}
+	public int getProductSalesPrice() {
+		return productSalesPrice;
+	}
+	public void setProductSalesPrice(int productSalesPrice) {
+		this.productSalesPrice = productSalesPrice;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public int getOrder_seq_num() {
 		return order_seq_num;
 	}
@@ -225,12 +255,7 @@ public class OrderVO {
 	public void setThunderTime(String thunderTime) {
 		this.thunderTime = thunderTime;
 	}
-	public String getShopping_ordercol() {
-		return shopping_ordercol;
-	}
-	public void setShopping_ordercol(String shopping_ordercol) {
-		this.shopping_ordercol = shopping_ordercol;
-	}
+
 	
 	
 }
