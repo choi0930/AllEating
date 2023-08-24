@@ -151,8 +151,8 @@ public class OrderControllerImpl implements OrderController{
 				}
 			}
 		}
-		session.setAttribute("myOrderList", myOrderList);
-		session.setAttribute("order",memberVO );
+		mav.addObject("myOrderList", myOrderList);
+		mav.addObject("order",memberVO );
 		mav.setViewName("/order/pay_02");
 		return mav;
 	}
