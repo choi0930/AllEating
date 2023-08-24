@@ -7,7 +7,6 @@ request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <c:set var="saleProduct" value="${mainresult.saleList}" /><!--할인상품-->
 <c:set var="newProduct" value="${mainresult.newList}" /><!--신상품-->
-<c:set var="_newProduct" value="${newProductInfo._newProductlist}" /><!--신상품???-->
 
 
 
@@ -107,7 +106,8 @@ request.setCharacterEncoding("utf-8"); %>
             
             
           </div>
-        </div> 
+        </div>
+         
           <!-- <div class="newproduct-list">
             <c:forEach var="newProduct" items="${newProductlist}">
               <div class="newProductname">
