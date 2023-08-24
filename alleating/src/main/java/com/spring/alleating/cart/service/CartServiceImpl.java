@@ -30,6 +30,24 @@ public class CartServiceImpl implements CartService {
 		dataMap.put("id", id);
 		dataMap.put("deliveryType", "reserve");
 		List<CartVO> reserveProductList =cartDAO.selectCartProduct(dataMap);
+		
+		for(CartVO vo: reserveProductList) {
+			int productDiscount = vo.getProductDiscount();
+			if(productDiscount>0) {
+				int productSalesPrice = vo.getProductSalesPrice();
+				int cart_product_qty = vo.getCart_product_qty();
+				int oneProductPrice = productSalesPrice * cart_product_qty;
+				System.out.println(oneProductPrice);
+				cartVO.setOneProductPrice(oneProductPrice);
+			}else {
+				int productPrice = vo.getProductPrice();
+				int cart_product_qty = vo.getCart_product_qty();
+				int oneProductPrice = productPrice * cart_product_qty;
+				System.out.println(oneProductPrice);
+				cartVO.setOneProductPrice(oneProductPrice);
+			}
+		}
+		
 		int reserveCount = reserveProductList.size();
 		System.out.println(reserveCount);
 		cartMap.put("reserveProductList", reserveProductList);
@@ -37,6 +55,20 @@ public class CartServiceImpl implements CartService {
 		
 		dataMap.put("deliveryType", "normal");
 		List<CartVO> normalProductList =cartDAO.selectCartProduct(dataMap);
+		for(CartVO vo: normalProductList) {
+			int productDiscount = vo.getProductDiscount();
+			if(productDiscount>0) {
+				int productSalesPrice = vo.getProductSalesPrice();
+				int cart_product_qty = vo.getCart_product_qty();
+				int oneProductPrice = productSalesPrice * cart_product_qty;
+				cartVO.setOneProductPrice(oneProductPrice);
+			}else {
+				int productPrice = vo.getProductPrice();
+				int cart_product_qty = vo.getCart_product_qty();
+				int oneProductPrice = productPrice * cart_product_qty;
+				cartVO.setOneProductPrice(oneProductPrice);
+			}
+		}
 		int normalCount = normalProductList.size();
 		cartMap.put("normalProductList", normalProductList);
 		cartMap.put("normalCount", normalCount);

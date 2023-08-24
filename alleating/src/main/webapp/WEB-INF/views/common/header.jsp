@@ -217,7 +217,7 @@ $(function(){$('.header_nav').hover(
               <div class="big_categroy">
                 <ul>
                   <li class="categroy" id="vegetable">
-                  <a href="${contextPath}/product/product_01.do?category='901'"><img src="${contextPath}/img/headerImg/categroy_icon/vegetable.png"  width="20px" height="20px"  style="margin-right: 5px;"/> 채소</a>
+                  <a href="${contextPath}/product/product_01.do?category=901"><img src="${contextPath}/img/headerImg/categroy_icon/vegetable.png"  width="20px" height="20px"  style="margin-right: 5px;"/> 채소</a>
                   <div class="small_categroy" id="vegetable_categroy">
                     <ul>
                       <li class="categroy"><a href="${contextPath}/product/product_01.do?category='901001'">친환경</a></li>

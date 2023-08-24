@@ -42,32 +42,25 @@ request.setCharacterEncoding("utf-8"); %>
     </style>
     
     <script>
-      function fn_modfiy(productId, productStatus){
-        var requestData = {
-        productId1: productId,
-        productStatus1: productStatus
-    };
-    console.log(productId);
+      /* 상품 상태 수정 */
+      function fn_modfiy(productStatus){
+        var productId = $('#productId').val();
+        console.log(productId);
         $.ajax({
-		        type:"post",
-		        async:true,
-		        url:"${contextPath}/admin/modifyProductStatus.do",
-		        dataType:"text",
-            
-		        data:{productId1: productId, productStatus1: productStatus},
+		        type: "POST",
+		        async: true,
+		        url: "/admin/modifyProductStatus.do",
+		        data:{ productId: productId, 
+              productStatus: productStatus },
 		        success:function(data){
-			      
               alert(data);
-		
 		          },
 		        error:function(data){
-			      alert("에러가 발생했습니다.");
-		        },
-		        complete:function(data){
-			
+			        alert("에러가 발생했습니다.");
 		        }
 	          });
       }
+      /*----------상품 상태 수정 끝----------*/
     </script>
   </head>
   <body>
@@ -96,7 +89,7 @@ request.setCharacterEncoding("utf-8"); %>
                 </c:if>
             </c:forEach>
           </div>
-
+          <input type="hidden" id="productId" value="${productVO.productId}">
           <div id="prodcutDetail_info">
           <ul>
             <li>
@@ -250,8 +243,8 @@ request.setCharacterEncoding("utf-8"); %>
           <c:choose>
             <c:when test="${productVO.join_type == 'owner'}">
               <div><a href="${contextPath}/admin/productMain.do">목록으로</a></div>
-              <div><a href="javascript:fn_modfiy('${productVO.productId}','sale');">승인거절</a></div>
-              <div><a href="${contextPath}/admin/modifyProductStatus.do?productId=${productVO.productId}&productStatus='sale'">상품승인</a></div>
+              <div><a href="javascript:fn_modfiy('declined');">승인거절</a></div>
+              <div><a href="javascript:fn_modfiy('sale');">상품승인</a></div>
             </c:when>
             <c:otherwise>
               <div><a href="${contextPath}/admin/listProducts.do">목록으로</a></div>
