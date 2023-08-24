@@ -118,16 +118,16 @@ $(function(){$('.header_nav').hover(
           <c:when test="${isLoginON == true and loginMember != null}"><!--로그인 했을때-->
             <c:choose>
               <c:when test="${loginMember.join_type == 'user' and loginMember.member_grade == 'base'}"> <!--일반회원 로그인-->
-                <span id="header_top_join" class="textColor1"><span class="textColor1">일반 회원</span> ${loginMember.name}님 반갑습니다!</span>
+                <span id="header_top_join" class="textColor1"><span class="textColor1">일반 회원</span> &nbsp${loginMember.name}님 반갑습니다!</span>
               </c:when>
               <c:when test="${loginMember.join_type == 'user' and loginMember.member_grade == 'vip'}"> <!--VIP회원 로그인-->
-                <span id="header_top_join" class="textColor1"><span class="textColor1">VIP 회원</span> ${loginMember.name}님 반갑습니다!</span>
+                <span id="header_top_join" class="textColor1"><span class="textColor1">VIP 회원</span> &nbsp${loginMember.name}님 반갑습니다!</span>
               </c:when>
               <c:when test="${loginMember.join_type == 'owner'}"> <!--사업자회원 로그인-->
-                <span id="header_top_join" class="textColor1"><span class="textColor1">사업자 회원</span> ${loginMember.name}님 반갑습니다!</span>
+                <span id="header_top_join" class="textColor1"><span class="textColor1">사업자 회원</span> &nbsp${loginMember.name}님 반갑습니다!</span>
               </c:when>
               <c:when test="${loginMember.join_type == 'admin'}"> <!--관리자회원 로그인-->
-                <span id="header_top_join" class="textColor1"><span class="textColor1">관리자 회원</span>${loginMember.name}님 반갑습니다!</span>
+                <span id="header_top_join" class="textColor1"><span class="textColor1">관리자 회원</span>&nbsp${loginMember.name}님 반갑습니다!</span>
               </c:when>
             </c:choose>
           </c:when>

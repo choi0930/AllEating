@@ -50,7 +50,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	
 	
 	
-//사업자 상품관리 리스트
+//�궗�뾽�옄 �긽�뭹愿�由� 由ъ뒪�듃
 	@Override
 	@RequestMapping(value= "/owner/ownerProductList.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView ownerProductList(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -89,8 +89,8 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		String reg_id = memberVO.getId();
 		String join_type = memberVO.getJoin_type();
-		newProductMap.put("reg_id", reg_id);//제품 등록자 id 입력
-		newProductMap.put("join_type", join_type); //제품 등록자가 관리자등급인지 사업자 등급인지 입력
+		newProductMap.put("reg_id", reg_id);//�젣�뭹 �벑濡앹옄 id �엯�젰
+		newProductMap.put("join_type", join_type); //�젣�뭹 �벑濡앹옄媛� 愿�由ъ옄�벑湲됱씤吏� �궗�뾽�옄 �벑湲됱씤吏� �엯�젰
 		
 		List<ProductImgVO> imageFileList =upload(multipartRequest);
 		if(imageFileList!= null && imageFileList.size()!=0) {
@@ -116,7 +116,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 				}
 			}
 			message= "<script>";
-			message += " alert('새로운 상품등록 요청하였습니다.');";
+			message += " alert('새로운 상품등록 요청했습니다.');";
 			message +=" location.href='"+multipartRequest.getContextPath()+"/owner/ownerProductList.do';";
 			message +=("</script>");
 		}catch(Exception e) {
@@ -129,7 +129,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			}
 			
 			message= "<script>";
-			message += " alert('요청 실패');";
+			message += " alert('요청실패');";
 			message +=" location.href='"+multipartRequest.getContextPath()+"/owner/ownerProductList.do';";
 			message +=("</script>");
 			e.printStackTrace();
@@ -187,7 +187,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 
 	
 
-	//폼이동
+	//�뤌�씠�룞
 	@RequestMapping(value="/owner/*Form.do",method = RequestMethod.GET)
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
