@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+     <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%
 request.setCharacterEncoding("utf-8"); %>
@@ -12,12 +12,15 @@ request.setCharacterEncoding("utf-8"); %>
     <meta charset="UTF-8" />
     <title>관리자 상품 상세페이지</title>
     <style>
+
+      
       #ProductDetail_mainImg{
         float: left;
       }
       #prodcutDetail_info{
         width: 300px;
         float:left;
+        margin-bottom:30px;
       }
       .clean{
         clear:both;
@@ -39,6 +42,27 @@ request.setCharacterEncoding("utf-8"); %>
       .productDetail_title{
         font-size: 20px;
       }
+      .butt{
+        display: flex;
+    justify-content: flex-end;
+    align-items: center; /* 수직 중앙 정렬을 위한 스타일 추가 */
+    margin-top: 40px; /* 원하는 간격으로 조정 */
+    margin-bottom:30px;
+    margin-right: 180px;
+   
+      }
+      .butt a {
+        margin-left: 10px;
+        background-color:#041897;
+        color:white;
+        padding-left: 10px;
+        padding-right:10px;
+        padding-top:5px;
+        padding-bottom:5px;
+       
+      }
+     
+     
     </style>
     
     <script>
@@ -85,7 +109,7 @@ request.setCharacterEncoding("utf-8"); %>
           
             <c:forEach var="img" items="${productImgList}">
                 <c:if test="${img.fileType =='main_image'}">
-                  <img src="${contextPath}/download.do?fileName=${img.fileName}&productId=${productVO.productId}&cateCode=${productVO.cateCode}" alt="${productImgVO.fileName}" width="300px" height="300px">
+                  <img src="${contextPath}/download.do?fileName=${img.fileName}&productId=${productVO.productId}&cateCode=${productVO.cateCode}" alt="${productImgVO.fileName}" width="300px" height="300px" style="margin-right:40px;">
                 </c:if>
             </c:forEach>
           </div>
@@ -222,7 +246,7 @@ request.setCharacterEncoding("utf-8"); %>
             <c:if test="${img.fileType != 'main_image' }">
               <div>제품 상세 이미지${itemNum.count-1}</div>
               <div>
-                <img src="${contextPath}/download.do?fileName=${img.fileName}&productId=${productVO.productId}&cateCode=${productVO.cateCode}" alt="${productImgVO.fileName}">
+                <img src="${contextPath}/download.do?fileName=${img.fileName}&productId=${productVO.productId}&cateCode=${productVO.cateCode}" alt="${productImgVO.fileName}" style="margin-bottom:50px;">
               </div>
             </c:if>
           
@@ -230,21 +254,21 @@ request.setCharacterEncoding("utf-8"); %>
         </div>
 
         <div>
-          <div>제품 소개글</div>
-          <div>
+          <div style="margin-bottom: 20px;"> 소개글 </div>
+          <div style="margin-right:22%;">
             ${productVO.productContentTitle}
           </div>
-          <div>
+          <div style="margin-bottom:30px;margin-right: 180px">
             ${productVO.productContent}
           </div>
         </div>
 
-        <div>
+        <div class="butt">
           <c:choose>
             <c:when test="${productVO.join_type == 'owner'}">
-              <div><a href="${contextPath}/admin/productMain.do">목록으로</a></div>
-              <div><a href="javascript:fn_modfiy('declined');">승인거절</a></div>
-              <div><a href="javascript:fn_modfiy('sale');">상품승인</a></div>
+              <span><a href="${contextPath}/admin/productMain.do">목록으로</a></span>
+              <span><a href="javascript:fn_modfiy('declined');">승인거절</a></span>
+              <span><a href="javascript:fn_modfiy('sale');">상품승인</a></span>
             </c:when>
             <c:otherwise>
               <div><a href="${contextPath}/admin/listProducts.do">목록으로</a></div>
@@ -254,3 +278,4 @@ request.setCharacterEncoding("utf-8"); %>
       </div>
   </body>
 </html>
+

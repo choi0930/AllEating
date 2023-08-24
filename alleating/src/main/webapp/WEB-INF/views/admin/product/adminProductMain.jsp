@@ -111,7 +111,8 @@ function fn_goAddProduct(){
             white-space: nowrap; 		
             word-break:break-all;
             width: 190px;
-            text-overflow: ellipsis;  	
+            text-overflow: ellipsis;
+            text-align:left;  	
         }
         .productTable{
             font-size: 14px;
