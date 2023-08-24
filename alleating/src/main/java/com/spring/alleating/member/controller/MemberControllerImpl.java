@@ -32,7 +32,8 @@ public class MemberControllerImpl implements MemberController {
 	@Autowired
 	private MemberVO memberVO;
 	
-	@Override //회원가입
+	/* 회원가입 */
+	@Override 
 	@RequestMapping(value="/member/join.do", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView addMember(Map<String, String> memberInfo, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -46,8 +47,10 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName("redirect:/member/loginForm.do"); //add
 		return mav;
 	}
+	/*---------------------------------회원가입 끝------------------------------------*/
 	
-	@Override //로그인
+	/* 로그인 */
+	@Override 
 	@RequestMapping(value="/member/login.do", method = {RequestMethod.POST})
 	public ModelAndView login(Map<String, String> loginMemberInfo, RedirectAttributes rAttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -72,9 +75,10 @@ public class MemberControllerImpl implements MemberController {
 		}
 		return mav;
 	}
+	/*---------------------------------로그인 끝------------------------------------*/
 	
-	
-	@Override //로그아웃
+	/* 로그아웃 */
+	@Override 
 	@RequestMapping(value="/member/logOut.do", method = RequestMethod.GET)
 	public ModelAndView logOut(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -84,9 +88,10 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName("redirect:/main.do");
 		return mav;
 	}
-
+	/*---------------------------------로그아웃 끝------------------------------------*/
 	
-	@Override //아이디 중복 확인
+	/* 아이디 중복 확인 */
+	@Override 
 	@RequestMapping(value="/member/checkId.do", method=RequestMethod.POST) 
 	public void checkId(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int result = memberService.selectById(id);
@@ -101,8 +106,10 @@ public class MemberControllerImpl implements MemberController {
 			out.print("usable");
 		}
 	}
-
-	@Override //아이디 찾기 
+	/*---------------------------------아이디 중목 확인 끝------------------------------------*/
+	
+	/* 아이디 찾기화면으로 이동 */ //이름뒤에 form을 추가해 단순 페이지이동은 통일하는게 좋을듯 함
+	@Override
 	@RequestMapping(value="/member/find_id_01.do", method = RequestMethod.GET)
 	public ModelAndView find_id_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
 
@@ -113,6 +120,8 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName); //add
 		return mav;
 	}
+	
+	/* 아이디 찾기 */
 	@Override
 	@RequestMapping(value= "/member/find_id_02.do", method = RequestMethod.GET)
 	public ModelAndView find_id_02(@RequestParam("name")String name,@RequestParam("email")String email, HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -124,6 +133,9 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName); //add
 		return mav;
 	}
+	/*---------------------------------아이디 찾기 끝------------------------------------*/
+	
+	/* 비밀번호 찾기 페이지 이동 */ //위 아이디찾기 페이지 이동과 동일
 	@Override //비밀번호 찾기
 	@RequestMapping(value= "/member/find_pwd_01.do", method = RequestMethod.GET)
 	public ModelAndView find_pwd_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -135,6 +147,8 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName); //add
 		return mav;
 	}
+	
+	/* 비밀번호 찾기 */
 	@Override
 	@RequestMapping(value= "/member/find_pwd_02.do", method = RequestMethod.GET)
 	public ModelAndView find_pwd_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -147,7 +161,7 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName); //add
 		return mav;
 	}
-	
+	/*---------------------------------비밀번호 찾기 끝------------------------------------*/
 
 	@Override
 	@RequestMapping(value = "/member/modMember.do", method = { RequestMethod.GET,RequestMethod.POST})
@@ -176,6 +190,7 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 
+	/* 회원가입 이메일 인증 */
 	@Override
 	@RequestMapping(value="/member/sendEmail.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -185,8 +200,9 @@ public class MemberControllerImpl implements MemberController {
 		response1.put("number", number);
 		return response1;
 	}
+	/*---------------------------------회원가입 이메일 인증 끝------------------------------------*/
 
-	//폼이동
+	/* 단순 페이지 이동(로그인 회원가입 페이지) */
 	@RequestMapping(value="/member/*Form.do", method = {RequestMethod.GET})
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
@@ -194,5 +210,5 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName);
 		return mav;
 	}
-
+	/*---------------------------------페이지이동 끝------------------------------------*/
 }

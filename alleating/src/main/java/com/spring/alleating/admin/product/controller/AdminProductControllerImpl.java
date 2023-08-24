@@ -16,6 +16,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,9 +31,14 @@ import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.product.vo.ProductImgVO;
 import com.spring.alleating.product.vo.ProductVO;
 
+/* 관리자 페이지 상품관리 */
+
 @Controller("adminProductController")
 public class AdminProductControllerImpl extends BaseController implements AdminProductController {
+	
+	/*파일 업로드 위치*/
 	private static final String PRODUCT_IMAGE_REPO = "C:\\alleating\\product_image_repo";
+	
 	@Autowired
 	private AdminProductService adminProductService;
 	
@@ -42,12 +48,15 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 	@Autowired
 	private ProductImgVO productImgVO;
 	
+	/* 관리자페이지 관리자 상품 페이징 기능 */
 	@Override
 	@RequestMapping(value="/admin/listProducts.do", method = RequestMethod.GET)
 	public ModelAndView listProducts(Map<String, String> dataMap, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		/*사이드메뉴 타입 관리자페이지로 변경*/
 		session.setAttribute("side_menuType", "admin_page");
+		/*텝메뉴 2번으로 설정*/
 		session.setAttribute("selectedTab", "tab-2");
 		String section = dataMap.get("section");
 		String pageNum = dataMap.get("pageNum");
@@ -71,8 +80,10 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		mav.setViewName("/admin/productMain");
 		return mav;
 	}
-
-	@Override //상품관리 페이지 첫 진입
+	/*---------------------------------관리자 상품 페이지 끝------------------------------------*/
+	
+	/*상품관리 페이지 첫 진입*/
+	@Override
 	@RequestMapping(value="/admin/productMain.do", method = RequestMethod.GET)
 	public ModelAndView adminProduct(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
@@ -102,10 +113,10 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		mav.setViewName(viewName);
 		return mav;
 	}
+	/*---------------------------------상품관리 페이지 첫 진입------------------------------------*/
 	
-	
-	
-	@Override // 관리자 예약배송 상품 등록
+	/* 관리자 상품 등록 */
+	@Override 
 	@RequestMapping(value="/admin/addNewProduct.do", method = RequestMethod.POST)
 	public ResponseEntity addProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
@@ -173,9 +184,9 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
+	/*---------------------------------관리자 상품 등록 끝------------------------------------*/
 	
-	
-	
+	/* 상품관리 상세페이지 */
 	@Override
 	@RequestMapping(value="/admin/productDetail.do", method = RequestMethod.GET)
 	public ModelAndView productDetail(String productId, HttpServletRequest request, HttpServletResponse response)
@@ -189,21 +200,21 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		
 		return mav;
 	}
-
+	/*---------------------------------상품관리 상세페이지------------------------------------*/
 	
 	/* 사업자 상품 등록 승인 or 거절 */
 	@Override
-	
-	@RequestMapping(value="/admin/modifyProductStatus.do", method = {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public String modifyProductStatus(@RequestParam Map productMap, HttpServletRequest request,
+	@RequestMapping(value="/admin/modifyProductStatus.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String modifyProductStatus(@RequestParam("productId")String productId,@RequestParam("productStatus")String productStatus, HttpServletRequest request,
 	        HttpServletResponse response) throws Exception {
 	    
-	   String data = "";
-	   int productId = (int) productMap.get("productId");
-	   System.out.println(productId);
+		String data = "";
+	   	int _productId = Integer.getInteger(productId);
+	   	productVO.setProductId(_productId);
+	   	productVO.setProductStatus(productStatus);
 	    adminProductService.modifyProductStatus(productVO);
-	    String productStatus = productVO.getProductStatus();
+	    
 	    Map<String, String> dataMap = new HashMap<>(); 
 	    if(productStatus.equals("declined")) {
 	        data = "요청 거절";
@@ -212,6 +223,8 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 	    }
 	    return data;
 	}
+	/*---------------------------------사업자 상품 등록 승인 or 거절 끝------------------------------------*/
+	
 	//폼이동
 	@RequestMapping(value="/admin/*Form.do",method = RequestMethod.GET)
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{

@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import com.mysql.cj.Session;
+import com.spring.alleating.common.base.BaseController;
 import com.spring.alleating.product.service.ProductService;
 
 @Controller("productController")
-public class ProductControllerImpl implements ProductController{
+public class ProductControllerImpl extends BaseController implements ProductController {
 	
 	@Autowired
 	ProductService productService;
@@ -41,8 +44,8 @@ public class ProductControllerImpl implements ProductController{
 	
 	@Override
 	@RequestMapping(value= "/product/product_01.do", method = RequestMethod.GET)
-	public ModelAndView product_01(@RequestParam("category")String category,HttpServletRequest request, HttpServletResponse response)throws Exception {
 
+	public ModelAndView product_01(@RequestParam("category")String category,HttpServletRequest request, HttpServletResponse response)throws Exception {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "product_01");
@@ -113,8 +116,17 @@ public class ProductControllerImpl implements ProductController{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName); //add
+	
+		Map newproductid = calcSearchPeriod("one_month");
+		System.out.println(newproductid.get("endDate"));
+		Map newproresult = productService.selectnewProductDetail(newproductid);
+		
+		mav.addObject("newproresult",newproresult);
+		
 		return mav;
 	}
+	
+	
 	
 	@Override
 	@RequestMapping(value= "/product/best_product_01.do", method = RequestMethod.GET)

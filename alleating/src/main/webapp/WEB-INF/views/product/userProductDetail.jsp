@@ -61,27 +61,30 @@ function add_cart(productId) {
       productId: productId,
       cart_product_qty: select_qty
     },
+
     success: function(data, textStatus) {
-      if(data === 'add_success'){
-        
+      
+      if(data === 'add_success'){   // 등록 성공시
         alert("장바구니에 등록되었습니다.");
         $('#toDisplay').css('display','none');
-      } else if(data === 'already_existed'){
+
+      } else if(data === 'already_existed'){ //이미 등록된 상품일시
         alert("이미 카트에 등록된 상품입니다.");	
       }
+
     },
     error: function(data, textStatus) {
       alert("에러가 발생했습니다." + data);
-    },
-    complete: function(data, textStatus) {
-      // 완료 처리 추가 가능
     }
   });
 }
-  /* 장바구니 담기 끝 */
 
- 
- 
+  /*---------- 장바구니 담기 끝 ----------*/
+
+ function fn_shopping(){
+  $('#toDisplay').css('display','block');
+ }
+
 
 </script>
 
@@ -218,7 +221,7 @@ function add_cart(productId) {
 
 
 <select class="form-select" id="qty_choice" aria-label="Default select example" onchange="qty_mod()" >
-  <option selected >수량 선택</option>
+  <option selected value="0" >수량 선택</option>
   <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1개</option>
   <option value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2개</option>
   <option value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3개</option>
