@@ -21,7 +21,7 @@
     <c:forEach var="newProInfo" items="${newPro}">
      <div class="qwerqwer">
      <a href="${contextPath }/product/userProductDetail.do?productId=${newProInfo.productId}">
-        <img src="${contextPath}/download.do?fileName=${newProInfo.fileName}&productId=${newProInfo.productId}&cateCode=${newProInfo.cateCode}" alt="${newProInfo.fileName}" width="300px" height="300px">
+        <img src="${contextPath}/download.do?fileName=${newProInfo.fileName}&productId=${newProInfo.productId}&cateCode=${newProInfo.cateCode}" alt="${newProInfo.fileName}" width="250px" height="320px">
        </a>
       <div class="test2">
 

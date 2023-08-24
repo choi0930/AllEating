@@ -13,7 +13,8 @@ input[type='number']::-webkit-inner-spin-button {
 	}
 	#join_title{
 	text-align: center;
-	margin-bottom: 40px;
+	margin-bottom: 5px;
+	margin-top: 44px;
     font-size: 28px;
     line-height: 35px;
     font-weight: 1000;
