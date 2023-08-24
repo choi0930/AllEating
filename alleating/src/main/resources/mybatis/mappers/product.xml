@@ -74,6 +74,12 @@
 		
 	</select>
 	
+	<select id="selectnewProductDetailImage" resultMap="productImgResult" parameterType="String">
+		<![CDATA[
+		select * from product_img where fileType='main_image'
+		]]>
+	</select>
+	
 	
 	
 	<select id="selectnewProductDetail" resultMap="productResult" parameterType="java.util.Map">

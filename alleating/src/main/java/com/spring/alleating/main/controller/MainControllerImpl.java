@@ -34,8 +34,9 @@ import com.spring.alleating.main.service.MainService;
 			ModelAndView mav = new ModelAndView();
 			/* mav.addObject("mainInfo", mainInfo); */
 			mav.setViewName(viewName);
-		
+		 
 			Map productPeriod = calcSearchPeriod("one_month");
+			System.out.println(productPeriod.get(productPeriod));
 			Map mainresult = mainService.selectMainProductDetail(productPeriod);
 			
 			mav.addObject("mainresult",mainresult);
