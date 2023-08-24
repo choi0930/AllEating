@@ -458,7 +458,7 @@ text-decoration:none;}
                                     <div><span class="side_font_size side_font_OrgText">결제 예정 금액:</span></div>
                                     <div><span class="side_font_size side_font_OrgText side_total_priceText" ><input type="text" value="0" class="css0930" id="td">원</span></div>
                                 </div>
-                                <button class="codr_btn_payment" onclick="getSelectedCheckboxValues()">주문하기</button>
+                                <button class="codr_btn_payment" onclick="getcheck()">주문하기</button>
                             </div>
                         </div>
                     </div>

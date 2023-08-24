@@ -1,6 +1,5 @@
 package com.spring.alleating.order.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,15 +10,17 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.alleating.cart.vo.CartVO;
+import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.order.service.OrderService;
+import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
 import com.spring.alleating.order.vo.OrderVO;
+import com.spring.alleating.point.vo.UserPointVO;
 import com.spring.alleating.product.vo.ProductVO;
 
 @Controller("orderController")
@@ -55,7 +56,7 @@ public class OrderControllerImpl implements OrderController{
 		orderMap.put("orderVO", orderVO);
 		orderMap.put("memberVO", memberVO);
 		
-		ProductVO productVO = orderService.oneProductOrder(orderMap);
+		
 		
 		
 		
@@ -74,88 +75,35 @@ public class OrderControllerImpl implements OrderController{
 		String viewName =(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		Map userInfo = orderService.userInfoToPay(memberVO);
+		List<UserCouponVO> couponList = (List<UserCouponVO>) userInfo.get("couponList");
+		UserPointVO userPointVO = (UserPointVO) userInfo.get("userPointVO");
+		mav.addObject("memberVO",memberVO);
+		mav.addObject("userPointVO",userPointVO);
+		mav.addObject("couponList",couponList);
+		
 		return mav;	
 	}
 	
 	
 	
+	/* 장바구니에서 상품 여러개 구매 */
 	@Override
-	@RequestMapping(value="/order/orderAllCartProducts.do", method = {RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView orderAllCartProducts(@RequestParam("cart_product_qtyy") String[] cart_product_qty, HttpServletRequest request,
+	@RequestMapping(value="/order/orderAllCartProducts.do", method = {RequestMethod.POST})
+	public void orderAllCartProducts(@RequestBody List<AllEatingOrderDetailVO> allEatingOrderDetailes, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		String viewName =(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
-		HttpSession session=request.getSession();
-		Map cartMap=(Map)session.getAttribute("product_map");
-		MemberVO memberVO=(MemberVO)session.getAttribute("loginMember");
-		List myOrderList=new ArrayList();
+		mav.setViewName(viewName);
+		HttpSession session = request.getSession();
+		session.setAttribute("allEating", allEatingOrderDetailes);
+		System.out.println(allEatingOrderDetailes.size());
+			
 		
-		List<CartVO> myProductsList=(List<CartVO>)cartMap.get("reserveProductList");
-		for(int i=0; i<cart_product_qty.length; i++){
-			
-			String[] cart_products=cart_product_qty[i].split(":");
-			
-			for(int j = 0; j< myProductsList.size();j++) {
-				
-				CartVO cartVO = myProductsList.get(j);
-				int productId = cartVO.getProductId();
-				
-				if(productId == Integer.parseInt(cart_products[0])) {
-					OrderVO _orderVO = new OrderVO();
-					
-					String productName = cartVO.getProductName();
-					String productBrand = cartVO.getProductBrand();
-					int productPrice = cartVO.getProductPrice();
-					int productDiscount = cartVO.getProductDiscount();
-					int productSalesPrice = cartVO.getProductSalesPrice();
-					String fileName = cartVO.getFileName();
-					
-					_orderVO.setProductId(productId);
-					_orderVO.setProductName(productName);
-					_orderVO.setProductPrice(productPrice);
-					_orderVO.setProductSalesPrice(productSalesPrice);
-					_orderVO.setFileName(fileName);
-					_orderVO.setProductQty(Integer.parseInt(cart_products[1]));
-					myOrderList.add(_orderVO);
-					break;
-				}
-			}
-		}
-		myProductsList=(List<CartVO>)cartMap.get("normalProductList");
-		for(int i=0; i<cart_product_qty.length; i++){
-			
-			String[] cart_products=cart_product_qty[i].split(":");
-			
-			for(int j = 0; j< myProductsList.size();j++) {
-				
-				CartVO cartVO = myProductsList.get(j);
-				int productId = cartVO.getProductId();
-				
-				if(productId == Integer.parseInt(cart_products[0])) {
-					OrderVO _orderVO = new OrderVO();
-					
-					String productName = cartVO.getProductName();
-					String productBrand = cartVO.getProductBrand();
-					int productPrice = cartVO.getProductPrice();
-					int productDiscount = cartVO.getProductDiscount();
-					int productSalesPrice = cartVO.getProductSalesPrice();
-					String fileName = cartVO.getFileName();
-					
-					_orderVO.setProductId(productId);
-					_orderVO.setProductName(productName);
-					_orderVO.setProductPrice(productPrice);
-					_orderVO.setProductSalesPrice(productSalesPrice);
-					_orderVO.setFileName(fileName);
-					_orderVO.setProductQty(Integer.parseInt(cart_products[1]));
-					myOrderList.add(_orderVO);
-					break;
-				}
-			}
-		}
-		mav.addObject("myOrderList", myOrderList);
-		mav.addObject("order",memberVO );
-		mav.setViewName("/order/pay_02");
-		return mav;
 	}
+	/*-------------------장바구니에서 상품 여러개 구매-----------------*/
 
 	@RequestMapping(value= "/order/pay_complete.do", method = RequestMethod.GET)
 	public ModelAndView payComplete(HttpServletRequest request, HttpServletResponse response) {

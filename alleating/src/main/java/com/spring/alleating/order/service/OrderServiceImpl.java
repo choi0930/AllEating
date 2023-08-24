@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.spring.alleating.coupon.dao.CouponDAO;
+import com.spring.alleating.coupon.vo.CouponVO;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.order.dao.OrderDAO;
@@ -34,28 +35,18 @@ public class OrderServiceImpl implements OrderService{
 	@Autowired
 	private CouponDAO couponDAO;
 	
-	@Override
-	public ProductVO oneProductOrder(Map orderMap) throws DataAccessException {
-		Map resultMap = new HashMap();
-		OrderVO vo = (OrderVO) orderMap.get("orderVO");
-		MemberVO vo2 = (MemberVO) orderMap.get("memberVO");
-		int productId = vo.getProductId();
-		String id = vo2.getId();
-		
-		UserPointVO userPointVO = pointDAO.selectUserPoint(id);
-		UserCouponVO userCouponVO = couponDAO.selectUserCoupon(id);
-		
-		ProductVO productVO = productDAO.selectUserProductDetail(productId);
-		List<ProductVO> myOrderProductList = new ArrayList();
-		myOrderProductList.add(productVO);
-		
-		resultMap.put("myOrderProductList", myOrderProductList);
-		resultMap.put("userPointVO", userPointVO);
-		resultMap.put("userCouponVO", userCouponVO);
-		resultMap.put("memberVO", vo2);
-		resultMap.put("OrderVO", vo2);
 
-		return productVO;
+
+	@Override
+	public Map userInfoToPay(MemberVO memberVO) throws DataAccessException {
+		String id = memberVO.getId();
+		UserPointVO userPointVO = pointDAO.selectUserPoint(id);
+		List<UserCouponVO> couponList =couponDAO.selectUserCoupon(id);
+		Map userInfo = new HashMap();
+		userInfo.put("memberVO", memberVO);
+		userInfo.put("userPointVO", userPointVO);
+		userInfo.put("couponList", couponList);
+		return userInfo;
 	}
 	
 	
