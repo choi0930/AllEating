@@ -101,7 +101,7 @@ request.setCharacterEncoding("utf-8"); %>
   </head>
   <body>
     <c:choose>
-      <c:when test="${cateCode.contains('901') }">
+      <c:when test="${category.contains('901') }">
         <div id="btn_category_group_title">채소</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
@@ -122,7 +122,7 @@ request.setCharacterEncoding("utf-8"); %>
           </div>
         </div>
       </c:when>
-      <c:when test="${cateCode.contains('902') }">
+      <c:when test="${category.contains('902') }">
         <div id="btn_category_group_title">과일·견과·쌀</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
@@ -135,7 +135,7 @@ request.setCharacterEncoding("utf-8"); %>
           </div>
         </div>
       </c:when>
-      <c:when test="${cateCode.contains('903') }">
+      <c:when test="${category.contains('903') }">
         <div id="btn_category_group_title">수산·해산·건어물</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
@@ -156,7 +156,7 @@ request.setCharacterEncoding("utf-8"); %>
           </div>
         </div>
       </c:when>
-      <c:when test="${cateCode.contains('904') }">
+      <c:when test="${category.contains('904') }">
         <div id="btn_category_group_title">정육·계란</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
@@ -177,7 +177,7 @@ request.setCharacterEncoding("utf-8"); %>
           </div>
         </div>
       </c:when>
-      <c:when test="${cateCode.contains('905') }">
+      <c:when test="${category.contains('905') }">
         <div id="btn_category_group_title">국·반찬·메인요리</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
@@ -198,7 +198,7 @@ request.setCharacterEncoding("utf-8"); %>
           </div>
         </div>
       </c:when>
-      <c:when test="${cateCode.contains('906') }">
+      <c:when test="${category.contains('906') }">
         <div id="btn_category_group_title">샐러드·간편식</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
@@ -219,7 +219,7 @@ request.setCharacterEncoding("utf-8"); %>
           </div>
         </div>
       </c:when>
-      <c:when test="${cateCode.contains('907') }">
+      <c:when test="${category.contains('907') }">
         <div id="btn_category_group_title">면·양념·오일</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
@@ -240,7 +240,7 @@ request.setCharacterEncoding("utf-8"); %>
           </div>
         </div>
       </c:when>
-      <c:when test="${cateCode.contains('908') }">
+      <c:when test="${category.contains('908') }">
         <div id="btn_category_group_title">생수·음료·우유·커피</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
