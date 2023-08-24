@@ -154,7 +154,7 @@ $(function(){$('.header_nav').hover(
         </div>
       <div id="header_middle">
         <div id="header_logo_img">
-          <a href="${contextPath}/main.do"><img src="${contextPath}/img/image_logo/alleating_logo_background_X.png" width="200px"/></a>
+          <a href="${contextPath}/main.do"><img src="${contextPath}/img/image_logo/alleating_logo_background_X.png" width="200px" ></a>
         </div>
       </div>
       <div class="allEating_header">

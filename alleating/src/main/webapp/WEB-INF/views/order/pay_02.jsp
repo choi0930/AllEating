@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %> <%
-request.setCharacterEncoding("utf-8"); %>
+pageEncoding="UTF-8" isELIgnored="false"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <!DOCTYPE html>
@@ -14,6 +14,11 @@ request.setCharacterEncoding("utf-8"); %>
       rel="stylesheet"
       type="text/css"
     />
+    <script>
+      function fn_deliveryMsgSelect(){
+        
+      }
+    </script>
   </head>
   <body>
     <!-- Modal -->
@@ -120,15 +125,15 @@ request.setCharacterEncoding("utf-8"); %>
           <!--수령자 배송지및 이름 전화번호 처음에는 기본배송지 회원가입시 적었던 배송지 표시 배송지 변경시에 변경가능-->
           <div class="payTwoTitleText"><span>배송지 정보</span></div>
           <div class="payTwoText">
+            ${memberVO.name} ${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}   &nbsp;&nbsp;<br>
+            ${memberVO.zipcode}&nbsp;${memberVO.address}&nbsp;${memberVO.address_detail}
            
           </div>
         </div>
         <div class="deliveryAddressText">
-          <div>${memberVO.name}
-            ${memberVO.zipcode}&nbsp;${memberVO.address}&nbsp;${memberVO.addressDetail}
-            ${memberVO.name}&nbsp;&nbsp;${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}   &nbsp;&nbsp;
-            <a href="#">배송지변경</a
-            ><img
+          <div>
+            <a href="#">배송지변경</a>
+            <img
               src="${contextPath}/img/side/arrow-right-gray.png"
               width="14px"
             />
@@ -189,7 +194,7 @@ request.setCharacterEncoding("utf-8"); %>
             src="${contextPath}/download.do?fileName=${item.fileName}&productId=${item.productId}&cateCode=${item.cateCode}"
             alt="${item.fileName}"
             width="100px"
-          />
+          >
 
           <div>
             ${item.productName}

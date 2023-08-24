@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-
+<script src="${contextPath}/js/memberForm.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
