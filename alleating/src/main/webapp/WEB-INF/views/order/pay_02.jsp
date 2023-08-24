@@ -96,10 +96,10 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         <table class="dvtb">
           <tr>
             <td></td>
-            <td><strong>8월/9일</strong></td>
+            <td><strong>${dateInfo.endDate}</strong></td>
             <td><strong>8월/10일</strong></td>
             <td><strong>8월/11일</strong></td>
-            <td><strong>8월/12일</strong></td>
+            <td><strong>${dateInfo.beginDate}</strong></td>
           </tr>
           <tr>
             <td>10:00~16:00</td>
@@ -251,7 +251,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
             </tr>
             <tr>
               <td>주문 금액</td>
-              <td><span style="font-size: 20px; font-weight: bold">16,900원</span>   (상품가 13,990원+배송비 3,000원)</td>
+              <td><span style="font-size: 20px; font-weight: bold">${totalPrice+deliveryPrice}원</span>   (상품가 ${totalPrice}원+배송비 ${deliveryPrice}원)</td>
             </tr>
             </tbody>
           </table>

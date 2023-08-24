@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.alleating.common.base.BaseController;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.order.service.OrderService;
@@ -24,7 +25,7 @@ import com.spring.alleating.point.vo.UserPointVO;
 import com.spring.alleating.product.vo.ProductVO;
 
 @Controller("orderController")
-public class OrderControllerImpl implements OrderController{
+public class OrderControllerImpl extends BaseController implements OrderController{
 	@Autowired
 	private OrderService orderService;
 	@Autowired
@@ -75,9 +76,11 @@ public class OrderControllerImpl implements OrderController{
 		String viewName =(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
+		Map dateInfo = calcSearchPeriod("four_day");
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		List<AllEatingOrderDetailVO> allEatingOrderDetailes = (List<AllEatingOrderDetailVO>) session.getAttribute("allEating");
+		
 		Map cartMap = new HashMap();
 		cartMap.put("memberVO", memberVO);
 		cartMap.put("allEating",allEatingOrderDetailes);
@@ -85,6 +88,11 @@ public class OrderControllerImpl implements OrderController{
 		Map userInfo = orderService.userInfoToPay(cartMap);
 		List<UserCouponVO> couponList = (List<UserCouponVO>) userInfo.get("couponList");
 		UserPointVO userPointVO = (UserPointVO) userInfo.get("userPointVO");
+		int totalPrice = (int) userInfo.get("totalPrice");
+		int deliveryPrice = (int) userInfo.get("deliveryPrice");
+		mav.addObject("dateInfo", dateInfo);
+		mav.addObject("deliveryPrice", deliveryPrice);
+		mav.addObject("totalPrice", totalPrice);
 		mav.addObject("memberVO",memberVO);
 		mav.addObject("userPointVO",userPointVO);
 		mav.addObject("couponList",couponList);
