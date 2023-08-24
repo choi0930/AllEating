@@ -66,15 +66,33 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 
-	public Map selectCateProduct(Map _cateInfo) throws DataAccessException {
-		Map cateInfo = new HashMap();
-		Map smallcateInfo = new HashMap();
+	public List selectCateProduct(Map bbbInfo) throws DataAccessException {
 		
-		cateInfo.put("cateCode", "smallCateList");
-		List<ProductVO> cateList = productDAO.selectCateProduct(cateInfo);
+		Map cccInfo = new HashMap();
+		/*
+		 * Map aaaInfo = new HashMap();
+		 * 
+		 * aaaInfo.put("cateCode", "smallCateList"); List<ProductVO> aaaList =
+		 * productDAO.selectCateProduct(aaaInfo);
+		 */
 		
-		smallcateInfo.put("cateList", cateList);
-		return smallcateInfo;
+		/*
+		 * bbbInfo.put("aaaList", aaaList); List<ProductVO> bbbList =
+		 * productDAO.selectCateProduct(bbbInfo);
+		 */
+		
+		//bbbInfo.put("cateCode", "smallCateList");
+		List<ProductVO> cateCode = productDAO.selectCateProduct(bbbInfo);
+		//System.out.println(cateCode.size() + "리스트 값 출력");
+		
+		
+		/*
+		 * cccInfo.put("aaaList", aaaList); cccInfo.put("bbbList", bbbList);
+		 */
+		
+		//cccInfo.put("cateCode", cateCode);
+		
+		return  cateCode;
 	}
 	
 

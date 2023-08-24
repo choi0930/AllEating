@@ -63,13 +63,10 @@
    				FROM product g
    				INNER JOIN product_img d ON g.productId = d.productId
 	   			WHERE d.fileType = 'main_image' 
-	   			<if test="cateCode == 'smallCateList'"	>
-	   		
+	   			
 	   			AND cateCode = #{cateCode}
-    		</if>
+    		
     			ORDER BY g.creDate DESC
-    			
-    			LIMIT 12
 				) t;
 		
 	</select>

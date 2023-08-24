@@ -5,7 +5,7 @@
     
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-<c:set var="cateZ" value="${cateResult.cateList}" />
+
     
 <!DOCTYPE html>
 <html>
@@ -43,31 +43,31 @@
         
   <div class="all-productview-list">
   <a href="#" class="product-next">
-   <c:forEach var="newProductInfo" items="${newProduct}">
+   <c:forEach var="zzzzz" items="${cateResult}">
                <div class="qwerqwer">
-               <a href="${contextPath }/product/userProductDetail.do?cateCode=${cateZ.cateCode}">
-                  <img src="${contextPath}/download.do?fileName=${cateZ.fileName}&productId=${cateZ.productId}&cateCode=${cateZ.cateCode}" alt="${cateZ.fileName}" width="300px" height="300px">
+               <a href="${contextPath }/product/userProductDetail.do?cateCode=${zzzzz.cateCode}">
+                  <img src="${contextPath}/download.do?fileName=${zzzzz.fileName}&productId=${zzzzz.productId}&cateCode=${zzzzz.cateCode}" alt="${zzzzz.fileName}" width="300px" height="300px">
                  </a>
                 <div class="test2">
         
         <div class=delivery_type_text>
        <c:choose>
-         <c:when test="${cateZ.deliveryType == 'reserve' }"> 예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
+         <c:when test="${zzzzz.deliveryType == 'reserve' }"> 예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
          </c:when> 
-        <c:when test="${cateZ.deliveryType == 'normal' }"> 일반배송
+        <c:when test="${zzzzz.deliveryType == 'normal' }"> 일반배송
          </c:when>
          </c:choose>
         
         </div>
         <h5> 
         <c:choose>
-         <c:when test="${cateZ.deliveryType == 'reserve' }">[All Eating]
+         <c:when test="${zzzzz.deliveryType == 'reserve' }">[All Eating]
          </c:when>
-        <c:when test="${cateZ.deliveryType == 'normal' }">[${cateZ.productBrand}]
+        <c:when test="${zzzzz.deliveryType == 'normal' }">[${zzzzz.productBrand}]
          </c:when>
          </c:choose>
         </h5>
-                  <h5> ${cateZ.productName} </h5>
+                  <h5> ${zzzzz.productName} </h5>
                   
                   
                   
@@ -75,20 +75,21 @@
                   <div class="sale_text">  
                   
                     <c:choose>
-                    <c:when test="${cateZ.productDiscount != 0}">
+                    <c:when test="${zzzzz.productDiscount != 0}">
                  
-                   <div class="sale_text_1" >${cateZ.productDiscount}%</div>
+                   <div class="sale_text_1" >${zzzzz.productDiscount}%</div>
                   
-                   <div class="sale_text_2"> <fmt:formatNumber value="${cateZ.productPrice}" pattern="#,###"/>원</div>
-                   <div class="sale_result"> <fmt:formatNumber value="${cateZ.productSalesPrice}" pattern="#,###"/>원 </div> </c:when>
+                   <div class="sale_text_2"> <fmt:formatNumber value="${zzzzz.productPrice}" pattern="#,###"/>원</div>
+                   <div class="sale_result"> <fmt:formatNumber value="${zzzzz.productSalesPrice}" pattern="#,###"/>원 </div> </c:when>
                    
-                   <c:otherwise> <h6 class="sale_text_3"><fmt:formatNumber value="${cateZ.productPrice}" pattern="#,###"/>원</h6></c:otherwise>
+                   <c:otherwise> <h6 class="sale_text_3"><fmt:formatNumber value="${zzzzz.productPrice}" pattern="#,###"/>원</h6></c:otherwise>
                    </c:choose>
                   
                 </div>
            </div> 
            </div>
             </c:forEach>
+            </a>
         
         
         
@@ -102,7 +103,6 @@
         <a class="productpaging-2"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAQAAABwkq/rAAAAIElEQVR42mMo/l/8n4GBgQFGQ5kgDowmQZCwAMImhDkAb0k27Zcisn8AAAAASUVORK5CYII=" alt="마지막 페이지로 이동하기 아이콘"></a>
     </div>
  </div>
+ </div>
 </body>
 </html>
-
-

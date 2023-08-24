@@ -40,7 +40,7 @@ public Map selectMainProductDetail(Map productPeriod) throws DataAccessException
 	
 	mainDetailInfo.put("saleList", saleList);
 	mainDetailInfo.put("newList", newList);
-	System.out.println(saleList.size());
+	System.out.println(saleList.size() + "ㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
 	System.out.println(newList.size());
 	
 	return mainDetailInfo;
