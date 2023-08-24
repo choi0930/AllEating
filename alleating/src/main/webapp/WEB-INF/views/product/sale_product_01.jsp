@@ -105,7 +105,7 @@ align-items: center
 
 </style>
 <script>
-    $(window).load(function(){
+  /*  $(window).load(function(){
         $('.saleProduct_box').hover(
         function(){
            
@@ -113,7 +113,7 @@ align-items: center
 
         }
         );
-    });
+    });*/
 </script>
 </head>
 <body>

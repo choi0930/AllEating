@@ -77,7 +77,12 @@ public class OrderControllerImpl implements OrderController{
 		mav.setViewName(viewName);
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
-		Map userInfo = orderService.userInfoToPay(memberVO);
+		List<AllEatingOrderDetailVO> allEatingOrderDetailes = (List<AllEatingOrderDetailVO>) session.getAttribute("allEating");
+		Map cartMap = new HashMap();
+		cartMap.put("memberVO", memberVO);
+		cartMap.put("allEating",allEatingOrderDetailes);
+		
+		Map userInfo = orderService.userInfoToPay(cartMap);
 		List<UserCouponVO> couponList = (List<UserCouponVO>) userInfo.get("couponList");
 		UserPointVO userPointVO = (UserPointVO) userInfo.get("userPointVO");
 		mav.addObject("memberVO",memberVO);
@@ -99,7 +104,7 @@ public class OrderControllerImpl implements OrderController{
 		mav.setViewName(viewName);
 		HttpSession session = request.getSession();
 		session.setAttribute("allEating", allEatingOrderDetailes);
-		System.out.println(allEatingOrderDetailes.size());
+		
 			
 		
 	}

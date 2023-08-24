@@ -14,6 +14,7 @@ import com.spring.alleating.coupon.vo.CouponVO;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.order.dao.OrderDAO;
+import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
 import com.spring.alleating.order.vo.OrderVO;
 import com.spring.alleating.point.dao.PointDAO;
 import com.spring.alleating.point.vo.UserPointVO;
@@ -38,10 +39,23 @@ public class OrderServiceImpl implements OrderService{
 
 
 	@Override
-	public Map userInfoToPay(MemberVO memberVO) throws DataAccessException {
+	public Map userInfoToPay(Map info) throws DataAccessException {
+		MemberVO memberVO = (MemberVO) info.get("memberVO");
+		List<AllEatingOrderDetailVO> allEatingOrderDetailes = (List<AllEatingOrderDetailVO>) info.get("memberVO");
 		String id = memberVO.getId();
 		UserPointVO userPointVO = pointDAO.selectUserPoint(id);
 		List<UserCouponVO> couponList =couponDAO.selectUserCoupon(id);
+		int sum =0;
+		for(AllEatingOrderDetailVO vo: allEatingOrderDetailes) {
+			int discount = vo.getProductDiscount();
+			int price = vo.getProductPrice();
+			if(discount>0) {
+				int salePrice = price * (discount/100);
+				
+			}
+			
+		}
+		
 		Map userInfo = new HashMap();
 		userInfo.put("memberVO", memberVO);
 		userInfo.put("userPointVO", userPointVO);
