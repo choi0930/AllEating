@@ -8,11 +8,14 @@
 	 	<mapper resource = "mybatis/mappers/member.xml" />
 	 		<!-- <mapper resource = "mybatis/mappers/community.xml" /> -->
 	 		<mapper resource = "mybatis/mappers/owner_order.xml" />
-	 	<mapper resource = "mybatis/mappers/owner_product.xml" />
-	 	<mapper resource = "mybatis/mappers/admin_product.xml" />
-<mapper resource = "mybatis/mappers/product.xml" />
-	 	<mapper resource = "mybatis/mappers/main.xml" />
-	 	<mapper resource = "mybatis/mappers/cart.xml" />
+	 		<mapper resource = "mybatis/mappers/owner_product.xml" />
+	 		<mapper resource = "mybatis/mappers/admin_product.xml" />
+			<mapper resource = "mybatis/mappers/product.xml" />
+	 		<mapper resource = "mybatis/mappers/main.xml" />
+	 		<mapper resource = "mybatis/mappers/cart.xml" />
+	 		<mapper resource = "mybatis/mappers/order.xml" />
+	 		<mapper resource = "mybatis/mappers/coupon.xml" />
+	 		<mapper resource = "mybatis/mappers/point.xml" />
 	 </mappers>
  </configuration>
 

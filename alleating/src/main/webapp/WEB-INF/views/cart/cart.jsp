@@ -204,14 +204,39 @@ request.setCharacterEncoding("utf-8"); %>
                 $('#td').attr('value',total);
                 
       }
+      
       function getSelectedCheckboxValues(){
-        var count = $(".chkbox:checked").length;
-                for (var i = 0; i < count; i++) {
-                    if ($(".chkbox")[i].checked == true) {
-                        var cartId = $(".chkbox")[i].value;
-                    }
-        }
+        var order_cart_qty;
+	      var order_cart_id;
+        var productId;
+        var objForm = document.frm_order;
+        var check_cartId = objForm.checked_cartId;
+        var cart_product_qtyy = objForm.cart_product_qtyy;
+        var length=check_cartId.length;
+          if(length>1){
+            for(var i=0; i<length; i++){
+              if(check_cartId[i].checked==true){
+                order_cart_id = check_cartId[i].value;
+                order_cart_qty = cart_product_qtyy[i].value;
+                productId = $('#productId_'+order_cart_id).val();
+                cart_product_qtyy[i].value="";
+                cart_product_qtyy[i].value = productId+":"+order_cart_qty; 
+              }
+            }
+          } else{
+            order_cart_id = check_cartId.value;
+            order_cart_qty = cart_product_qtyy.value;
+            productId = $('#productId_'+order_cart_id).val();
+            cart_product_qtyy.value=productId+":"+order_cart_qty;
+          }
+
+          objForm.method="post";
+          objForm.action="/order/orderAllCartProducts.do";
+          objForm.submit();
+          
       }
+
+
     </script>
     <style>
       .emptyProductMsg {
@@ -225,12 +250,7 @@ request.setCharacterEncoding("utf-8"); %>
         color: #e1dddb;
         text-decoration: line-through;
       }
-      .css0930{
-        border: none;
-    text-align: right;
-    width: 120px;
-    outline: none;
-      }
+   
     </style>
   </head>
   <body>
@@ -265,6 +285,7 @@ request.setCharacterEncoding("utf-8"); %>
             </button>
           </div>
         </div>
+        <form name = "frm_order">
         <div>
           <div>
             <div id="cart-info-all">
@@ -282,6 +303,7 @@ request.setCharacterEncoding("utf-8"); %>
                         id="check${res.cartId}"
                         class="individual_cart_checkbox chkbox" 
                         value="${res.cartId}"
+                        name="checked_cartId"
                         onchange="fn_totalPrice('${res.cartId}')"
                       />
 
@@ -318,6 +340,7 @@ request.setCharacterEncoding("utf-8"); %>
                             class="inp"
                             id="qty${res.cartId}"
                             value="${res.cart_product_qty}"
+                            name="cart_product_qtyy"
                             readonly
                             onchange="fn_productPrice('${res.cartId}')"
                           />
@@ -429,6 +452,7 @@ request.setCharacterEncoding("utf-8"); %>
                         id="check${normal.cartId}"
                         class="individual_cart_checkbox chkbox"
                         value="${normal.cartId}"
+                        name="checked_cartId"
                         onchange="fn_totalPrice('${normal.cartId}')"
                       />
                       <img
@@ -466,6 +490,7 @@ request.setCharacterEncoding("utf-8"); %>
                             id="qty${normal.cartId}"
                             value="${normal.cart_product_qty}"
                             readonly
+                            name="cart_product_qtyy"
                             onchange="fn_productPrice('${res.cartId}')"
                           />
                           <button
@@ -544,9 +569,10 @@ request.setCharacterEncoding("utf-8"); %>
             <div class="cartblank"></div>
           </div>
         </div>
+      </form>
       </div>
       
-
+   
 
 
 
