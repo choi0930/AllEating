@@ -41,22 +41,27 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public Map userInfoToPay(Map info) throws DataAccessException {
 		MemberVO memberVO = (MemberVO) info.get("memberVO");
-		List<AllEatingOrderDetailVO> allEatingOrderDetailes = (List<AllEatingOrderDetailVO>) info.get("memberVO");
+		List<AllEatingOrderDetailVO> allEatingOrderDetailes = (List<AllEatingOrderDetailVO>) info.get("allEating");
 		String id = memberVO.getId();
 		UserPointVO userPointVO = pointDAO.selectUserPoint(id);
 		List<UserCouponVO> couponList =couponDAO.selectUserCoupon(id);
-		int sum =0;
+		int productPrice =0;
+		int totalPrice = 0;
+		int deliveryPrice = 0;
 		for(AllEatingOrderDetailVO vo: allEatingOrderDetailes) {
-			int discount = vo.getProductDiscount();
 			int price = vo.getProductPrice();
-			if(discount>0) {
-				int salePrice = price * (discount/100);
-				
-			}
-			
+			int qty = vo.getProductQty();
+			productPrice = price*qty;
+			totalPrice+=productPrice;
+		
+		}
+		if(totalPrice<30000) {
+			deliveryPrice = 3000;
 		}
 		
 		Map userInfo = new HashMap();
+		userInfo.put("deliveryPrice", deliveryPrice);
+		userInfo.put("totalPrice", totalPrice);
 		userInfo.put("memberVO", memberVO);
 		userInfo.put("userPointVO", userPointVO);
 		userInfo.put("couponList", couponList);

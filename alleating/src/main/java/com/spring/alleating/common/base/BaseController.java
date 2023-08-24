@@ -99,6 +99,18 @@ import com.spring.alleating.product.vo.ProductImgVO;
 			return dateMap;
 		}
 		
+		protected Map calcDate() {
+			Calendar cal=Calendar.getInstance();
+			int beginMonth = cal.get(Calendar.MONTH) + 1;
+			int beginDay = cal.get(Calendar.DATE) + 1;
+			
+			
+			
+			List<String> dateList = new ArrayList();
+			
+			return null;
+		}
+		
 		protected String cateCodePull(String cateCode) {
 			
 			return null;

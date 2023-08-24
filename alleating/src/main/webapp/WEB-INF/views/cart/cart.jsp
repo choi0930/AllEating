@@ -185,6 +185,7 @@ request.setCharacterEncoding("utf-8"); %>
       function fn_totalPrice(){
         var str = "";
                 var sum = 0;
+                var deliveryPrice = 0;
                 var count = $(".chkbox:checked").length;
                 for (var i = 0; i < count; i++) {
                     if ($(".chkbox")[i].checked == true) {
@@ -195,7 +196,9 @@ request.setCharacterEncoding("utf-8"); %>
                         
                     }
                 }
-                var deliveryPrice = 3000;
+                if(sum<30000){
+                  deliveryPrice=3000;
+                }
                 var total = sum+deliveryPrice;
                 
                 $('#productCount').attr('value',count);
