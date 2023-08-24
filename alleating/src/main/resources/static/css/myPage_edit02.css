@@ -245,3 +245,11 @@ input[type='number']::-webkit-inner-spin-button {
 	.owner_address{
 		display:none;
 	}
+	
+	.eee{
+		display: none;
+	}
+	
+	.btn-outline-secondary {
+        display: none;
+      }

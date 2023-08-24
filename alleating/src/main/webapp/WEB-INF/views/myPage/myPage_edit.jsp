@@ -30,7 +30,7 @@ request.setCharacterEncoding("utf-8"); %>
       <form
         name="editpwd"
         method="post"
-        action="${contextPath}/myPage/myPage_edit02.do"
+        action="${contextPath}/member/checkPasswordAndRedirect"
       >
         <div class="edit01">
           <div class="edit02">
@@ -43,16 +43,14 @@ request.setCharacterEncoding("utf-8"); %>
                 type="password"
                 class="editpwd_box"
                 id="edit_pwd"
-                name="name"
+                name="pwd"
               />
             </div>
           </div>
         </div>
         <div class="text04">
           <div class="form_end">
-
-            <button class="join_end_btn">
-
+            <button class="join_end_btn" type="submit">
               <span id="join_btn2_text">확인하기</span>
             </button>
           </div>

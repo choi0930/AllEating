@@ -146,6 +146,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       function fn_modify_member(obj) {
         obj.action = "${contextPath}/member/updateMember.do";
         obj.submit();
+        alert("개인 정보가 수정되었습니다.");
       }
 
       //넘어오는 이메일 인증번호
@@ -193,13 +194,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       rel="stylesheet"
       type="text/css"
     />
-    <style></style>
   </head>
   <body class="d-flex flex-column min-vh-100">
     <div class="input-form">
       <form name="memberupdate" method="post" action="${contextPath}">
         <div id="join_input">
-          <div id="join_title">회원가입</div>
+          <div id="join_title">개인 정보 수정</div>
           <div id="join_Basic_input_text">
             <span class="redText">*</span>
             기본정보입력(필수)
@@ -239,6 +239,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   class="form-control join_input_box"
                   id="pwd1"
                   name="pwd"
+                  value="${member.pwd}"
                   placeholder="비밀번호를 입력해주세요"
                 />
               </div>
@@ -260,6 +261,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   type="password"
                   class="form-control join_input_box"
                   id="pwd2"
+                  value="${member.pwd}"
                   placeholder="비밀번호를 한번 더 입력해주세요"
                 />
               </div>
@@ -292,78 +294,80 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="form_button_box"></div>
           </div>
           <!--주소-->
-          <div class="form_info2">
-            <div class="form_label_box">
-              <label class="form_label user_address"
-                >주소<span class="redText">*</span></label
-              >
-              <label class="form_label owner_address"
-                >사업장 주소<span class="redText">*</span></label
-              >
-            </div>
-            <div class="form_value_box">
-              <div class="form_input_box">
-                <input
-                  type="text"
-                  class="form-control phone join_input_box2"
-                  id="sample6_postcode"
-                  value="${member.zipcode}"
-                  name="zipcode"
-                  placeholder="우편번호"
-                  readonly
-                />
-                <button
-                  class="btn btn-outline-secondary addressBtn"
-                  type="button"
-                  id="idCheckBtn"
-                  onclick="sample6_execDaumPostcode()"
+          <div class="eee">
+            <div class="form_info2">
+              <div class="form_label_box">
+                <label class="form_label user_address"
+                  >주소<span class="redText">*</span></label
                 >
-                  우편번호 찾기
-                </button>
+                <label class="form_label owner_address"
+                  >사업장 주소<span class="redText">*</span></label
+                >
               </div>
-            </div>
-            <div class="form_button_box"></div>
-          </div>
-          <!--나머지 주소-->
-          <div class="form_info2">
-            <div class="form_label_box"></div>
-            <div class="form_value_box">
-              <div class="form_input_box">
-                <input
-                  type="text"
-                  class="form-control join_input_box2"
-                  id="sample6_address"
-                  name="address"
-                  value="${member.address}"
-                  placeholder="주소"
-                  readonly
-                /><br />
+              <div class="form_value_box">
+                <div class="form_input_box">
+                  <input
+                    type="text"
+                    class="form-control phone join_input_box2"
+                    id="sample6_postcode"
+                    value="${member.zipcode}"
+                    name="zipcode"
+                    placeholder="우편번호"
+                    readonly
+                  />
+                  <button
+                    class="btn btn-outline-secondary addressBtn"
+                    type="button"
+                    id="idCheckBtn"
+                    onclick="sample6_execDaumPostcode()"
+                  >
+                    우편번호 찾기
+                  </button>
+                </div>
               </div>
+              <div class="form_button_box"></div>
             </div>
-            <div class="form_button_box"></div>
-          </div>
-          <!--나머지 주소-->
-          <div class="form_info2">
-            <div class="form_label_box"></div>
-            <div class="form_value_box">
-              <div class="form_input_box">
-                <input
-                  type="text"
-                  class="form-control join_input_box2"
-                  id="sample6_detailAddress"
-                  value="${member.address_detail}"
-                  name="address_detail"
-                  placeholder="상세주소"
-                />
-                <input
-                  type="text"
-                  class="form-control join_input_box2"
-                  id="sample6_extraAddress"
-                  value="${member.address2}"
-                  name="address2"
-                  placeholder="참고항목"
-                  readonly
-                />
+            <!--나머지 주소-->
+            <div class="form_info2">
+              <div class="form_label_box"></div>
+              <div class="form_value_box">
+                <div class="form_input_box">
+                  <input
+                    type="text"
+                    class="form-control join_input_box2"
+                    id="sample6_address"
+                    name="address"
+                    value="${member.address}"
+                    placeholder="주소"
+                    readonly
+                  /><br />
+                </div>
+              </div>
+              <div class="form_button_box"></div>
+            </div>
+            <!--나머지 주소-->
+            <div class="form_info2">
+              <div class="form_label_box"></div>
+              <div class="form_value_box">
+                <div class="form_input_box">
+                  <input
+                    type="text"
+                    class="form-control join_input_box2"
+                    id="sample6_detailAddress"
+                    value="${member.address_detail}"
+                    name="address_detail"
+                    placeholder="상세주소"
+                  />
+                  <input
+                    type="text"
+                    class="form-control join_input_box2"
+                    id="sample6_extraAddress"
+                    value="${member.address2}"
+                    name="address2"
+                    placeholder="참고항목"
+                    readonly
+                  />
+                </div>
               </div>
             </div>
           </div>

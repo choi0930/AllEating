@@ -41,6 +41,9 @@ request.setCharacterEncoding("utf-8"); %>
       .sale_text {
     display: flex;
 }
+    .sale_text_2{
+    margin-right: 7px;
+    }
     </style>
   </head>
   <body>
@@ -57,7 +60,7 @@ request.setCharacterEncoding("utf-8"); %>
               <c:forEach var="newProductInfo" items="${newProduct}">
                <div class="qwerqwer">
                <a href="${contextPath }/product/userProductDetail.do?productId=${newProductInfo.productId}">
-                  <img src="${contextPath}/download.do?fileName=${newProductInfo.fileName}&productId=${newProductInfo.productId}&cateCode=${newProductInfo.cateCode}" alt="${newProductInfo.fileName}" width="300px" height="300px">
+                  <img src="${contextPath}/download.do?fileName=${newProductInfo.fileName}&productId=${newProductInfo.productId}&cateCode=${newProductInfo.cateCode}" alt="${newProductInfo.fileName}" width="240px" height="320px">
                  </a>
                 <div class="test2">
         

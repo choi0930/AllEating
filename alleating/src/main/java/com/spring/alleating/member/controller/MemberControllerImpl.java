@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -162,7 +164,24 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 	/*---------------------------------비밀번호 찾기 끝------------------------------------*/
-
+	
+	
+	 @PostMapping("/member/checkPasswordAndRedirect")
+	    public String checkPasswordAndRedirect(@RequestParam("pwd") String providedPassword,
+	                                           HttpSession session) {
+	        // 세션에서 로그인한 회원 정보 가져오기 
+	        MemberVO loginMember = (MemberVO) session.getAttribute("loginMember");
+	        System.out.println("checkpwd");
+	        if (loginMember != null && loginMember.getPwd().equals(providedPassword)) {
+	            // 비밀번호가 맞는 경우
+	            return "redirect:/myPage/myPage_edit02.do";
+	        } else {
+	            // 비밀번호가 틀린 경우
+	            return "redirect:/myPage/myPage_edit.do";
+	        }
+	    }
+	
+	
 	@Override
 	@RequestMapping(value = "/member/modMember.do", method = { RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView modMember(@RequestParam("id") String id, HttpServletRequest request,
@@ -177,6 +196,7 @@ public class MemberControllerImpl implements MemberController {
 		mav.setViewName(viewName);
 		return mav;
 	}
+
 
 	@Override
 	@RequestMapping(value = "/member/updateMember.do", method = RequestMethod.POST)
