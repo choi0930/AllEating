@@ -218,10 +218,12 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         <table class="dvtb">
           <tr>
             <td></td>
-            <td><strong>${dateInfo.endDate}</strong></td>
-            <td><strong>8월/10일</strong></td>
-            <td><strong>8월/11일</strong></td>
-            <td><strong>${dateInfo.beginDate}</strong></td>
+            <%-- <td><strong>${dateInfo.endDate}</strong></td> --%>
+            <td><strong>8월/25일</strong></td>
+            <td><strong>8월/26일</strong></td>
+            <td><strong>8월/27일</strong></td>
+            <td><strong>8월/28일</strong></td>
+           <%--  <td><strong>${dateInfo.beginDate}</strong></td> --%>
           </tr>
           <tr>
             <td>10:00~16:00</td>
@@ -269,7 +271,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
             type="text" class="form-control payTwoInput" name="delivery_request"id="deliveryRequest"  />
 
           <select
-            class="form-select dliveryRequest_select"
+            class="form-select deliveryRequest_select"
             id="deliveryRequestSelect"
             onchange="fn_deliveryMsgSelect()"
           >

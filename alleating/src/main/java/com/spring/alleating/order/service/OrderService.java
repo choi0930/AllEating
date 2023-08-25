@@ -12,4 +12,6 @@ public interface OrderService {
 	public Map userInfoToPay(Map info)throws DataAccessException;
 	
 	public String pay(Map userOrder)throws DataAccessException;
+	
+	public Map selecOrderHistory(int orderId) throws DataAccessException; //마이페이지 주문내역
 }

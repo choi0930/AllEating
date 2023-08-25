@@ -22,7 +22,7 @@ import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.order.service.OrderService;
 import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
-import com.spring.alleating.order.vo.OrderVO;
+import com.spring.alleating.order.vo.AllEatingOrderVO;
 import com.spring.alleating.point.vo.UserPointVO;
 import com.spring.alleating.product.vo.ProductVO;
 
@@ -31,7 +31,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	@Autowired
 	private OrderService orderService;
 	@Autowired
-	private OrderVO orderVO;
+	private AllEatingOrderVO allEatingOrderVO;
 	
 	@RequestMapping(value="/order/pay_01.do", method = RequestMethod.GET)
 	public ModelAndView thunderDelivery(HttpServletRequest request, HttpServletResponse response)throws Exception{
@@ -54,9 +54,9 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		int _productId = Integer.parseInt(productId);
 		int _qty = Integer.parseInt(qty);
-		orderVO.setProductId(_productId);
-		orderVO.setProductQty(_qty);
-		orderMap.put("orderVO", orderVO);
+		allEatingOrderVO.setProductId(_productId);
+		/* allEatingOrderVO.setProductQty(_qty); */
+		orderMap.put("allEatingOrderVO", allEatingOrderVO);
 		orderMap.put("memberVO", memberVO);
 		
 		

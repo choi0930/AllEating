@@ -4,7 +4,7 @@
  
  <mapper namespace="com.spring.alleating.owner.order.dao.OwnerOrderDAO">
 
-	<resultMap id="ownerOrderResult" type="OrderVO">
+	<!-- <resultMap id="ownerOrderResult" type="OrderVO">
 		<result property="order_seq_num" column="order_seq_num" />
 		<result property="orderId" column="orderId" />
 		<result property="deliveryType" column="deliveryType" />
@@ -39,16 +39,16 @@
 		<result property="shopping_ordercol" column="shopping_ordercol" />
 		
 		
-	</resultMap>
+	</resultMap> -->
 	
 	
 	<!-- select -->
-	<select id="selectAllOwnerOrderList" resultMap="ownerOrderResult">
+<!-- 	<select id="selectAllOwnerOrderList" resultMap="ownerOrderResult">
 	<![CDATA[
  select * from shopping_order where deliveryType='nomal'
  
 ]]>
-	</select>
+	</select> -->
 	
 	<!-- insert -->
 

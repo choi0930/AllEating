@@ -24,6 +24,7 @@ public class AllEatingOrderVO {
 	private int totalPrice;
 	private String card_com_name;
 	private String card_pay_month;
+	private String orderStatus;
 	private Date payDate;
 	//예약상품 일자
 	private String thunderDate;
@@ -33,6 +34,20 @@ public class AllEatingOrderVO {
 	private String productName;
 	private String cateCode;
 	private String fileName;
+	private int productId;
+	
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
 	public String getOrderId() {
 		return orderId;
 	}

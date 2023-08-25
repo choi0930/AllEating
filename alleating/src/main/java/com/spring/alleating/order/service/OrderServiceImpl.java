@@ -16,9 +16,11 @@ import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.order.dao.OrderDAO;
 import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
+import com.spring.alleating.order.vo.AllEatingOrderVO;
 import com.spring.alleating.point.dao.PointDAO;
 import com.spring.alleating.point.vo.UserPointVO;
 import com.spring.alleating.product.dao.ProductDAO;
+import com.spring.alleating.product.vo.ProductImgVO;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService{
@@ -112,6 +114,19 @@ public class OrderServiceImpl implements OrderService{
 		
 		return orderId;
 	}
+
+	@Override
+	public Map selecOrderHistory(int orderId) throws DataAccessException {
+		AllEatingOrderVO orderHistoryVO = orderDAO.selectOrderHistory(orderId);
+		
+		Map orderHistoryInfo = new HashMap();
+		orderHistoryInfo.put("orderHistoryInfo", orderHistoryInfo);
+		return orderHistoryInfo;
+	}
+
+
+	
+	
 	
 	
 }

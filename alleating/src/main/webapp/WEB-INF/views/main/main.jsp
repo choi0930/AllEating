@@ -131,24 +131,21 @@ request.setCharacterEncoding("utf-8"); %>
           <div class="image-container2">
             <div>
               <img src="${contextPath}/img/image_food/jeayuk.png" alt="Image 1" />
-              <div class="test2">
-                <h5>[서형이네]제육볶음</h5>
-                <div>8,000원</div>
+              <div class="test3">
+                <h5>실패할 수 없는 제육볶음</h5>
               </div>
             </div>
             <div>
               <img src="${contextPath}/img/image_food/porkcutlet.png" alt="Image 2" />
     
-              <div class="test2">
-                <h5>[현진이네]돈까스</h5>
-                <div>11,000원</div>
+              <div class="test3">
+                <h5>바삭바삭 돈까스</h5>
               </div>
             </div>
             <div>
               <img src="${contextPath}/img/image_food/eggfood.png" alt="Image 3" />
-              <div class="test2">
-                <h5>[건태네]계란조림</h5>
-                <div>5,500원</div>
+              <div class="test3">
+                <h5>달콤 짭쪼롬 계란조림</h5>
               </div>
             </div>
           </div>

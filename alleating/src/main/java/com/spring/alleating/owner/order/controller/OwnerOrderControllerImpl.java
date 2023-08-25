@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.alleating.order.vo.OrderVO;
+import com.spring.alleating.order.vo.AllEatingOrderVO;
 import com.spring.alleating.owner.order.service.OwnerOrderService;
 
 
@@ -31,7 +31,7 @@ public class OwnerOrderControllerImpl implements OwnerOrderController {
 			session.setAttribute("side_menuType", "owner_page");
 
 			String viewName = (String)request.getAttribute("viewName");
-			List<OrderVO> ownerOrderList = ownerOrderService.ownerOrderList();
+			List<AllEatingOrderVO> ownerOrderList = ownerOrderService.ownerOrderList();
 			ModelAndView mav = new ModelAndView(viewName);
 			mav.addObject("ownerOrderList", ownerOrderList);
 			return mav;
