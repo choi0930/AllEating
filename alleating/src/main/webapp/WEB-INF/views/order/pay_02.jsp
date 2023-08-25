@@ -15,9 +15,59 @@ pageEncoding="UTF-8" isELIgnored="false"%>
       type="text/css"
     />
     <script>
-      function fn_deliveryMsgSelect(){
+     /*  function fn_deliveryMsgSelect(){
         
+
       }
+      
+
+      } */
+     
+      $(document).ready(function() {
+     	  // select 요소의 변경 이벤트 감지
+     	  $('#deliveryRequestSelect').on('change', function() {
+     	    var deliveryRequestSelect = $('#deliveryRequestSelect').val(); //배송 요청 사항 select
+     	
+     	    $('#deliveryRequest').val(deliveryRequestSelect); //배송 요청사항 input 에 적용
+     	  });
+     	  
+    /*  	  $('#deliveryRequest').prop('readonly', false); */
+     	});
+      
+    /*   $(document).ready(function() {
+      if ($("#deliveryRequestSelect").val() === "직접입력") {
+    	  $("#deliveryRequest").prop(readonly, false);
+    	} else {
+    	  $("#deliveryRequest").prop(readonly, true);
+    	}
+      });
+     */
+     
+     const optionSelect = document.getElementById('deliveryRequestSelect');
+     const inputField = document.getElementById('deliveryRequest');
+
+     optionSelect.addEventListener('change', function() {
+       if (optionSelect.value === '직접입력') {
+         inputField.readOnly = false;
+       } else {
+         inputField.readOnly = true;
+       }
+     });
+    	
+     /*  $(document).ready(function() {
+    	    var deliveryReadOnly = true;
+
+    	    if (deliveryReadOnly) {
+    	        if ($('#deliveryRequestSelect').val() === 'self') {
+    	            $('#deliveryRequest').prop('readonly', false);
+    	        }
+    	    } else {
+    	        if ($('#deliveryRequestSelect').val() !== 'self') {
+    	            $('#deliveryRequest').prop('readonly', true);
+    	        }
+    	    }
+    	}); */
+    	
       function fn_pay(){
         var userOrder;
         var receiverName = $('#receiverName').text();
@@ -89,6 +139,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         }
     });
       }
+
     </script>
   </head>
   <body>
@@ -215,18 +266,14 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           <span class="payTwoTitleText">배송 요청 사항</span>
 
           <input
-            tpye="text"
-            class="form-control payTwoInput"
-            name="delivery_request"
-            id="deliveryRequest"
-          />
+            type="text" class="form-control payTwoInput" name="delivery_request"id="deliveryRequest"  />
 
           <select
             class="form-select dliveryRequest_select"
-            id="dliveryRequestSelect"
+            id="deliveryRequestSelect"
             onchange="fn_deliveryMsgSelect()"
           >
-            <option value="self">직접 입력</option>
+            <option value="직접입력">직접입력</option>
             <option>빠른 배송 부탁드립니다.</option>
             <option>배송 전, 연락주세요.</option>
             <option>부재 시, 휴대폰으로 연락주세요.</option>
