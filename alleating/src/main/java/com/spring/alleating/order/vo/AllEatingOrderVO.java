@@ -2,8 +2,10 @@ package com.spring.alleating.order.vo;
 
 import java.sql.Date;
 
-public class AllEatinOrderVO {
-	private int orderId;
+import org.springframework.stereotype.Component;
+@Component("allEatingOrderVO")
+public class AllEatingOrderVO {
+	private String orderId;
 	private String id;
 	//주문자 정보
 	private String orderName;
@@ -31,10 +33,10 @@ public class AllEatinOrderVO {
 	private String productName;
 	private String cateCode;
 	private String fileName;
-	public int getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(int orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 	public String getId() {

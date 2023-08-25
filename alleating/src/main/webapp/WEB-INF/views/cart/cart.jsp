@@ -196,9 +196,9 @@ request.setCharacterEncoding("utf-8"); %>
                         
                     }
                 }
-                if(sum<30000){
+                
                   deliveryPrice=3000;
-                }
+                
                 var total = sum+deliveryPrice;
                 
                 $('#productCount').attr('value',count);
@@ -226,10 +226,14 @@ request.setCharacterEncoding("utf-8"); %>
         var allEatingOrderDetailes = [];
 
         var length = $('input:checkbox[name=checked_cartId]:checked').length;
-        
+        if(length == 0){
+              alert('최소 한개의 상품을 선택해 주세요.');
+              return false;
+            }
         $('input:checkbox[name=checked_cartId]:checked').each(function (index) {
          
     	      checkCartId=$(this).val();
+            
              productId = $('#productId_' + checkCartId).val();
              productName = $('#productName_' + checkCartId).val();
              productPrice = $('#productPrice' + checkCartId).val();
@@ -345,6 +349,7 @@ request.setCharacterEncoding("utf-8"); %>
                       <input type="hidden" id="cateCode_${res.cartId}" value="${res.cateCode}" />
                       <input type="hidden" id="productName_${res.cartId}" value="${res.productName}"/>
                       <input type="hidden" id="fileName_${res.cartId}" value="${res.fileName}"/>
+                      
                       <div class="cart-text03">
                         <h5>[${res.productBrand}]<br />${res.productName}</h5>
                       </div>
@@ -436,9 +441,10 @@ request.setCharacterEncoding("utf-8"); %>
                                 type="hidden"
                                 value="${res.productPrice}"
                               />
+                             
                               <span
                                 class="choice-12"
-                                
+                              
                                 ><input  class="css0930" class="reservePrice" type="text"id="total_price_${res.cartId}"  value="${res.oneProductPrice}" readonly>
                               <input type="hidden" id="totalPrice${res.cartId}" value=""> </span>
                               <span class="choice-12">원</span>

@@ -1,5 +1,8 @@
 package com.spring.alleating.order.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component("allEatingOrderDetailVO")
 public class AllEatingOrderDetailVO {
 	private int order_seq_num;
 	private String orderId;

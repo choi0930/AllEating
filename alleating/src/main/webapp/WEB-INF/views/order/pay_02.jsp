@@ -17,6 +17,10 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     <script>
      /*  function fn_deliveryMsgSelect(){
         
+
+      }
+      
+
       } */
      
       $(document).ready(function() {
@@ -64,7 +68,78 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     	    }
     	}); */
     	
-      
+      function fn_pay(){
+        var userOrder;
+        var receiverName = $('#receiverName').text();
+        var receiverHp = $('#receiverHp').text();
+        var zipcode = $('#zipcode').text();
+        var address = $('#address').text();
+        var addressDetail = $('#addressDetail').text();
+        var deliveryRequest = $('#deliveryRequest').val();
+        var orderName = $('#orderName').text();
+        var orderHp = $('#orderHp').text();
+        var userPoint = $('input[name=userPoint]').val();
+        var couponId = $('input[name=couponId]').val();
+        var totalPrice = $('input[name=totalPrice]').val();
+        var card_com_name = $('select[name=card_com_name]').val();
+        var card_pay_month = $('select[name=card_pay_month]').val();
+        var productId = $('input[name=productId]').val();
+        var productName = $('input[name=productName]').val();
+        var cateCode = $('input[name=cateCode]').val();
+        var fileName = $('input[name=fileName]').val();
+
+        console.log('받는사람: '+receiverName);
+        console.log('받는사람 전화: '+receiverHp);
+        console.log('우편번호: '+zipcode);
+        console.log('주소: '+address);
+        console.log('상세주소: '+addressDetail);
+        console.log('배송요청사항: '+deliveryRequest);
+        console.log('주문자: '+orderName);
+        console.log('주문자 번호: '+orderHp);
+        console.log('사용한 포인트: '+userPoint);
+        console.log('총결제가격: '+totalPrice);
+        console.log('카드사: '+card_com_name);
+        console.log('할부: '+card_pay_month);
+        console.log('대표상품id: '+productId);
+        console.log('대표상품이름: '+productName);
+        console.log('대표상품카테고리코드: '+cateCode);
+        console.log('대표상품이미지 파일 이름: '+fileName);
+
+        userOrder={
+          receiverName: receiverName,
+          receiverHp: receiverHp,
+          zipcode: zipcode,
+          address: address,
+          addressDetail: addressDetail,
+          deliveryRequest: deliveryRequest,
+          orderName: orderName,
+          orderHp: orderHp,
+          userPoint: userPoint,
+          couponId: couponId,
+          totalPrice: totalPrice,
+          card_com_name: card_com_name,
+          card_pay_month: card_pay_month,
+          productId: productId,
+          productName: productName,
+          cateCode: cateCode,
+          fileName: fileName
+        }
+        $.ajax({
+        type: "POST",
+        url: "${contextPath}/order/pay.do",
+        data: JSON.stringify(userOrder),
+        contentType: "application/json; charset=UTF-8",
+
+        success: function (response) {
+            console.log("서버 응답 성공");
+          location.href="/order/pay_complete.do?orderId="+response;
+        },
+        error: function (error) {
+            console.error("오류 발생:", error);
+        }
+    });
+      }
+
     </script>
   </head>
   <body>
@@ -172,8 +247,8 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           <!--수령자 배송지및 이름 전화번호 처음에는 기본배송지 회원가입시 적었던 배송지 표시 배송지 변경시에 변경가능-->
           <div class="payTwoTitleText"><span>배송지 정보</span></div>
           <div class="payTwoText">
-            ${memberVO.name} ${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}   &nbsp;&nbsp;<br>
-            ${memberVO.zipcode}&nbsp;${memberVO.address}&nbsp;${memberVO.address_detail}
+            <span id="receiverName">${memberVO.name}</span> <span id="receiverHp">${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}</span>   &nbsp;&nbsp;<br>
+            <span id="zipcode">${memberVO.zipcode}</span>&nbsp;<div id="address">${memberVO.address}</div>&nbsp;<div id="addressDetail">${memberVO.address_detail}</div>
            
           </div>
         </div>
@@ -211,13 +286,11 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         <!--주문자-->
         <div class="payDeliveryInfo payTwoborderTop">
           <div class="payTwoTitleText">주문자명</div>
-          <div id="payTwoOrderName">${memberVO.name}</div>
+          <div id="payTwoOrderName"><span id="orderName">${memberVO.name}</span></div>
         </div>
         <div class="payDeliveryInfo">
           <div class="payTwoTitleText">휴대폰</div>
-          <div class="payTwoOrderInfo">
-            ${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}
-          </div>
+          <div class="payTwoOrderInfo" id="orderHp">${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}</div>
         </div>
     <!-- <div class="payDeliveryInfo">
           <div class="payTwoTitleText">이메일</div>
@@ -248,6 +321,10 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           </div>
         </div>
         </c:forEach>
+        <input type="hidden" name="productId" value="${allEating[0].productId}" />
+        <input type="hidden" name="productName" value="${allEating[0].productName}" />
+        <input type="hidden" name="fileName" value="${allEating[0].fileName}" />
+        <input type="hidden" name="cateCode" value="${allEating[0].cateCode}" />
       </div>
       <!--end payProductInfo(주문하는 상품)-->
 
@@ -260,6 +337,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         <div class="payDeliveryInfo payTwoborderTop">
           <div class="payTwoTitleText">현재 보유중인 적립금</div>
           <div class="payTwoPoint">${userPointVO.userPoint}원</div>
+          <input type="hidden" name="userPoint" value="${userPointVO.userPoint}" />
         </div>
         <div class="payDeliveryInfo">
           <div class="payTwoTitleText">사용할 적립금</div>
@@ -268,6 +346,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
               type="text"
               class="form-control"
               id="payUsePointInput"
+              
             />원
           </div>
           <button class="btn btn-primary payTwoCouponBtn">사용</button>
@@ -275,7 +354,8 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         <div class="payDeliveryInfo">
           <div class="payTwoTitleText">쿠폰 적용</div>
           <div class="payTwoSalePriceText">
-            0원[할인]<button
+            <input type="hidden" id="couponId" value=""/>
+            <span id="couponDiscount">0원</span>[할인]<button
               class="btn btn-primary payTwoCouponBtn"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
@@ -294,7 +374,8 @@ pageEncoding="UTF-8" isELIgnored="false"%>
             </tr>
             <tr>
               <td>주문 금액</td>
-              <td><span style="font-size: 20px; font-weight: bold">${totalPrice+deliveryPrice}원</span>   (상품가 ${totalPrice}원+배송비 ${deliveryPrice}원)</td>
+              <td><span style="font-size: 20px; font-weight: bold" id="totalPrice">${totalPrice+deliveryPrice}원</span>   (상품가 ${totalPrice}원+배송비 ${deliveryPrice}원)</td>
+              <input type="hidden" name="totalPrice" value="${totalPrice+deliveryPrice}" />
             </tr>
             </tbody>
           </table>
@@ -309,7 +390,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         <div><input type="radio" checked />신용카드</div>
         <div>
           <!--카드사 선택-->
-          <select class="form-select dliveryRequest_select">
+          <select class="form-select dliveryRequest_select" name="card_com_name">
             <option>카드 선택</option>
             <option>국민카드</option>
             <option>삼성카드</option>
@@ -323,7 +404,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
             <option>하나카드</option>
           </select>
           <!--할부 선택-->
-          <select class="form-select dliveryRequest_select">
+          <select class="form-select dliveryRequest_select" name="card_pay_month">
             <option>일시불</option>
             <option>1개월 무이자</option>
             <option>2개월 무이자</option>
@@ -339,7 +420,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
       </div>
       <!--end payOptionInfo(결제수단선택)-->
       <div>
-        <button id="payTwoLastbtn"><span>결제하기</span></button>
+        <button id="payTwoLastbtn" onclick="fn_pay()"><span>결제하기</span></button>
       </div>
      
      

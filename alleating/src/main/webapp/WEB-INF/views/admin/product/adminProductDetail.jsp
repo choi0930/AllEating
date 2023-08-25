@@ -67,7 +67,7 @@ request.setCharacterEncoding("utf-8"); %>
     
     <script>
       /* 상품 상태 수정 */
-      function fn_modfiy(productStatus){
+      function fn_modify(productStatus){
         var productId = $('#productId').val();
         console.log(productId);
         $.ajax({
@@ -75,7 +75,7 @@ request.setCharacterEncoding("utf-8"); %>
 		        async: true,
 		        url: "/admin/modifyProductStatus.do",
 		        data:{ productId: productId, 
-              productStatus: productStatus },
+                  productStatus: productStatus },
 		        success:function(data){
               alert(data);
 		          },
@@ -267,8 +267,8 @@ request.setCharacterEncoding("utf-8"); %>
           <c:choose>
             <c:when test="${productVO.join_type == 'owner'}">
               <span><a href="${contextPath}/admin/productMain.do">목록으로</a></span>
-              <span><a href="javascript:fn_modfiy('declined');">승인거절</a></span>
-              <span><a href="javascript:fn_modfiy('sale');">상품승인</a></span>
+              <span><a href="javascript:fn_modify('declined');">승인거절</a></span>
+              <span><a href="javascript:fn_modify('sale');">상품승인</a></span>
             </c:when>
             <c:otherwise>
               <div><a href="${contextPath}/admin/listProducts.do">목록으로</a></div>

@@ -27,6 +27,6 @@ public interface AdminProductController {
 	public ModelAndView productDetail(@RequestParam("productId") String productId, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
 	/* 사업자 상품 등록 승인 or 거절 */
-	public String modifyProductStatus(@RequestParam("productId")String productId,@RequestParam("productStatus")String productStatus, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	public String modifyProductStatus(@RequestParam ("productId")String productId, @RequestParam("productStatus")String productStatus)throws Exception;
 	
 }
