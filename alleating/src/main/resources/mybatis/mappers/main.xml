@@ -51,6 +51,7 @@
     		<if test="productStatus == 'newProduct'">
     			AND g.creDate between #{beginDate} and #{endDate}
     		</if>
+    		AND g.productStatus = 'sale' or 'sold_out'
     			ORDER BY g.creDate DESC
     			LIMIT 4
 				) t;
@@ -77,11 +78,6 @@
 		]]>
 	</select>
 	
-	 <select id="selectProductBycateCode" resultMap="productResult" parameterType="String">
-		<![CDATA[
-			select * from product where cateCode = #{cateCode}
-			
-		]]>
-	</select> 
+	 
 	
 	</mapper>

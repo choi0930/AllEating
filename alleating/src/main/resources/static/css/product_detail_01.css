@@ -529,6 +529,7 @@ width: 120px;
 border:none;
     width: 145px;
 font-size: 45px;
+text-align: center;
 
 }
 
@@ -545,4 +546,7 @@ font-size: 20px;
 	    position: relative;
     right: 80px;
     font-size: 30px;
+}
+.sale_text_3{
+	font-size:40px;
 }

@@ -46,7 +46,7 @@
 <body>
     <div class="myPageBannerTop">
         <div class="myPageBannerValue">
-            <div><span id="myPageBannerTopText">최현진 님</span></div>
+            <div><span id="myPageBannerTopText">류서형 님</span></div>
         </div>
         <div class="myPageBannerValue myPageBannerMiddle">
             <div><span class="myPageBannerText">적립금</span></div>

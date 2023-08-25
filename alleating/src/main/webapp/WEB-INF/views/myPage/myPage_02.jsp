@@ -4,6 +4,9 @@
     <% request.setCharacterEncoding("utf-8"); %>
     
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+     <c:set var="orderHistoryVO" value="${orderHistoryInfo.orderHistoryVO}" /><!--상품정보-->
+    
+    
     <link href="${contextPath}/css/myPage_02.css" rel="stylesheet" type="text/css" />
     <!DOCTYPE html>
 <html>
@@ -68,7 +71,7 @@ function OrderDeleteCallback(obj){
       </div>
       <div class="product-orderdetail-line">
        <div class="product-orderdetail-line-2">
-          <p>저탄소 샤인머스캣</p>
+          <p></p>
         </div>
         <div class="product-orderdetail-line-2">
           <p>13,990원</p>
@@ -157,7 +160,7 @@ function OrderDeleteCallback(obj){
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">결제 일시</dt>
            <dd class="listcss-7">
-            <p>2023-08-14 18:00</p>
+            <p>2023-08-25 12:50</p>
            </dd>
          </dl>
        </div>
