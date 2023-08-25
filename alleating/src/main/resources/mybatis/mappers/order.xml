@@ -39,63 +39,71 @@
 	</resultMap>
 	
 	<!-- 상품 상세페이지에서 바로 주문 -->
-	<insert id="orderOneProduct" parameterType="orderVO">
-		insert into (
+	<insert id="insertOrderProduct" parameterType="java.util.Map">
+		insert into alleating_order (
 					orderId,
-					deliveryType,
-					delibery_request,
-					productId,
-					productName,
-					productQty,
-					deliveryPrice,
+					delivery_request,
 					userPoint,
 					couponId,
 					totalPrice,
-					product_pack_type,
 					id,
 					orderName,
 					orderHp,
-					orderEmail,
 					receiverName,
-					receiverHp1,
-					receiverHp2,
-					receiverHp3,
+					receiverHp,
 					zipcode,
 					address,
-					address2,
 					addressDetail,
 					card_com_name,
 					card_pay_month,
 					thunderDate,
-					thunderTime)
+					thunderTime,
+					productId,
+					productName,
+					fileName,
+					cateCode
+					)
 					values(
 					#{orderId},
-					#{deliveryType},
-					#{delibery_request},
-					#{productId},
-					#{productName},
-					#{productQty},
-					#{deliveryPrice},
+					#{delivery_request},
 					#{userPoint},
 					#{couponId},
 					#{totalPrice},
-					#{product_pack_type},
 					#{id},
 					#{orderName},
 					#{orderHp},
-					#{orderEmail},
 					#{receiverName},
-					#{receiverHp1},
-					#{receiverHp2},
-					#{receiverHp3},
+					#{receiverHp},
 					#{zipcode},
 					#{address},
-					#{address2},
 					#{addressDetail},
 					#{card_com_name},
 					#{card_pay_month},
 					#{thunderDate},
-					#{thunderTime}
+					#{thunderTime},
+					#{productId},
+					#{productName},
+					#{fileName},
+					#{cateCode}
 					)
+	</insert>
+	
+	<insert id="insertOrderDetail"  parameterType="allEatingOrderDetailVO">
+		insert into alleating_order_detail(
+					orderId,
+					productId,
+					productPrice,
+					productDiscount,
+					productQty,
+					cateCode
+		)values(
+					#{orderId},
+					#{productId},
+					#{productPrice},
+					#{productDiscount},
+					#{productQty},
+					#{cateCode}
+					)
+		
 	</insert>
   </mapper>

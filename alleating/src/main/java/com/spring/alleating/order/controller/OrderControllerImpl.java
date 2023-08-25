@@ -10,9 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.alleating.common.base.BaseController;
@@ -113,18 +115,37 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		HttpSession session = request.getSession();
 		session.setAttribute("allEating", allEatingOrderDetailes);
 		
-			
-		
 	}
-	/*-------------------장바구니에서 상품 여러개 구매-----------------*/
+	/*-------------------장바구니에서 상품 여러개 구매 끝-----------------*/
 
 	@RequestMapping(value= "/order/pay_complete.do", method = RequestMethod.GET)
 	public ModelAndView payComplete(HttpServletRequest request, HttpServletResponse response) {
 		String viewName = (String)request.getAttribute("viewName");
 		System.out.println(viewName); 
-		
+		String orderId = request.getParameter("orderId");
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("orderId",orderId);
 		mav.setViewName(viewName); //add
 		return mav;
 	}
+
+	@Override
+	@ResponseBody
+	@PostMapping(value="/order/pay.do")
+	public String pay(Map<String, Object> userOrder, HttpServletRequest request) throws Exception {
+		Map order = new HashMap();
+		
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		List<AllEatingOrderDetailVO> allEatingOrderDetailes = (List<AllEatingOrderDetailVO>) session.getAttribute("allEating");
+		
+		order.put("memberVO", memberVO);
+		order.put("userOrder", userOrder);
+		order.put("allEating", allEatingOrderDetailes);
+		String orderId = orderService.pay(order);
+		
+		return orderId;
+	}
+	
+	
 }

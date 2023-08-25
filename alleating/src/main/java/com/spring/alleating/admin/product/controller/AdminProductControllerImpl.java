@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -113,7 +114,7 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		mav.setViewName(viewName);
 		return mav;
 	}
-	/*---------------------------------상품관리 페이지 첫 진입------------------------------------*/
+	/*---------------------------------상품관리 페이지 첫 진입 끝------------------------------------*/
 	
 	/* 관리자 상품 등록 */
 	@Override 
@@ -200,17 +201,16 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		
 		return mav;
 	}
-	/*---------------------------------상품관리 상세페이지------------------------------------*/
+	/*---------------------------------상품관리 상세페이지 끝------------------------------------*/
 	
 	/* 사업자 상품 등록 승인 or 거절 */
 	@Override
 	@ResponseBody
 	@RequestMapping(value="/admin/modifyProductStatus.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String modifyProductStatus(@RequestParam("productId")String productId,@RequestParam("productStatus")String productStatus, HttpServletRequest request,
-	        HttpServletResponse response) throws Exception {
+	public String modifyProductStatus(@RequestParam ("productId")String productId, @RequestParam("productStatus")String productStatus) throws Exception {
 	    
 		String data = "";
-	   	int _productId = Integer.getInteger(productId);
+	   	int _productId = Integer.parseInt(productId);
 	   	productVO.setProductId(_productId);
 	   	productVO.setProductStatus(productStatus);
 	    adminProductService.modifyProductStatus(productVO);

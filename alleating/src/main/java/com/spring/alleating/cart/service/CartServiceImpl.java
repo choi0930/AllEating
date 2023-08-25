@@ -33,19 +33,21 @@ public class CartServiceImpl implements CartService {
 		
 		for(CartVO vo: reserveProductList) {
 			int productDiscount = vo.getProductDiscount();
+			int oneProductPrice = 0;
 			if(productDiscount>0) {
 				int productSalesPrice = vo.getProductSalesPrice();
 				int cart_product_qty = vo.getCart_product_qty();
-				int oneProductPrice = productSalesPrice * cart_product_qty;
+				oneProductPrice = productSalesPrice * cart_product_qty;
 				System.out.println(oneProductPrice);
-				cartVO.setOneProductPrice(oneProductPrice);
+				
 			}else {
 				int productPrice = vo.getProductPrice();
 				int cart_product_qty = vo.getCart_product_qty();
-				int oneProductPrice = productPrice * cart_product_qty;
+				oneProductPrice = productPrice * cart_product_qty;
 				System.out.println(oneProductPrice);
-				cartVO.setOneProductPrice(oneProductPrice);
+				
 			}
+			vo.setOneProductPrice(oneProductPrice);
 		}
 		
 		int reserveCount = reserveProductList.size();
@@ -55,19 +57,20 @@ public class CartServiceImpl implements CartService {
 		
 		dataMap.put("deliveryType", "normal");
 		List<CartVO> normalProductList =cartDAO.selectCartProduct(dataMap);
+		
 		for(CartVO vo: normalProductList) {
 			int productDiscount = vo.getProductDiscount();
+			int oneProductPrice=0;
 			if(productDiscount>0) {
 				int productSalesPrice = vo.getProductSalesPrice();
 				int cart_product_qty = vo.getCart_product_qty();
-				int oneProductPrice = productSalesPrice * cart_product_qty;
-				cartVO.setOneProductPrice(oneProductPrice);
+				oneProductPrice = productSalesPrice * cart_product_qty;
 			}else {
 				int productPrice = vo.getProductPrice();
 				int cart_product_qty = vo.getCart_product_qty();
-				int oneProductPrice = productPrice * cart_product_qty;
-				cartVO.setOneProductPrice(oneProductPrice);
+				oneProductPrice = productPrice * cart_product_qty;
 			}
+			vo.setOneProductPrice(oneProductPrice);
 		}
 		int normalCount = normalProductList.size();
 		cartMap.put("normalProductList", normalProductList);
