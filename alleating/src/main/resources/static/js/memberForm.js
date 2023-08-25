@@ -1,6 +1,7 @@
 /**
  * 
  */
+ 	
  //로그인 버튼 눌렀을때 유효성 검사
 function fn_loginGO(){
 	var joinType = $('.joinCheck:checked').val()
@@ -49,6 +50,14 @@ function fn_loginGO(){
 			});
 			return false;
 		}
+		if(!userIdCheck.test($('#userId').val())){
+				alert("아이디: 6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합 해주세요");
+				setTimeout(function(){
+			$('#userId').focus();
+			});
+			return false;
+		}
+		
 		if($('#pwd1').val() == ""){
 			alert('비밀번호를 입력해주세요');
 			setTimeout(function(){
@@ -61,6 +70,14 @@ function fn_loginGO(){
 			setTimeout(function(){
 			$('#pwd2').focus();
 			});
+			return false;
+		}
+		if($('#pwd1').val() == $('#pwd2').val())
+		if(!passwdCheck.test($('#pwd1').val())){
+			alert('비밀번호가 일치하지 않습니다.');
+			setTimeout(function(){
+			$('#pwd2').focus();
+		});
 			return false;
 		}
 		

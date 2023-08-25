@@ -77,6 +77,7 @@ request.setCharacterEncoding("utf-8"); %>
 
       //장바구니 체크박스
       $(document).ready(function () {
+        
         var part = $(".individual_cart_checkbox").length;
         //전체 체크박스 클릭
         $("#cart-all-check").click(function () {
@@ -187,6 +188,8 @@ request.setCharacterEncoding("utf-8"); %>
                 var sum = 0;
                 var deliveryPrice = 0;
                 var count = $(".chkbox:checked").length;
+               
+                  
                 for (var i = 0; i < count; i++) {
                     if ($(".chkbox")[i].checked == true) {
                         var cartId = $(".chkbox")[i].value;
@@ -196,9 +199,6 @@ request.setCharacterEncoding("utf-8"); %>
                         
                     }
                 }
-                
-                  deliveryPrice=3000;
-                
                 var total = sum+deliveryPrice;
                 
                 $('#productCount').attr('value',count);
@@ -241,6 +241,7 @@ request.setCharacterEncoding("utf-8"); %>
              productQty = $('#qty' + checkCartId).val();
              cateCode = $('#cateCode_' + checkCartId).val();
              fileName = $('#fileName_' + checkCartId).val();
+
              allEatingOrderDetailes.push({
               productId: productId,
             productName: productName,
