@@ -105,7 +105,26 @@ function fn_goToPay(){
   $('#toDisplay').css('display','block');
  }
 
+ 
+ $(document).ready(function() {
+	  // select 요소의 변경 이벤트 감지
+	  $('#qty_choice').on('change', function() {
+	    var qty_choice = $('#qty_choice').val(); //수량 선택 select
+	    var qty_hidden = $('.qty_hidden').val(); // hidden으로 숨겨진 값
+	    
+	    qty_choice = parseInt(qty_choice);
+	    qty_hidden = parseInt(qty_hidden);
+	    var qty_total = qty_choice * qty_hidden; // 계산된 결과
+	    
 
+	    // 결과를 총합에 적용
+	    $('.qty_total').val(qty_total);
+	   
+	  });
+	 /*  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); */
+	});
+ 
+ 
 </script>
 
 
@@ -251,9 +270,10 @@ function fn_goToPay(){
   <option value="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7개</option>
   <option value="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8개</option>
   <option value="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9개</option>
+  <option value="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10개</option>
 
 </select>
-<input type="submit" value="Calculate">
+
 
 </div>
 <div class="choice-11">
@@ -261,12 +281,13 @@ function fn_goToPay(){
 
 <c:choose>
                     <c:when test="${userProductVO.productDiscount != 0}">
-                 
-                   <span class="sale_text_2"><fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>원</span>
-                   <span class="sale_text_result">
-                   <fmt:formatNumber value="${userProductVO.productSalesPrice}" pattern="#,###"/>원</span>
-                   </c:when>
-                   <c:otherwise><span class="sale_text_3"><fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>원</span></c:otherwise>
+                    총 상품 금액: <input type="text"  class="qty_total" value="<fmt:formatNumber value="${userProductVO.productPrice}" type="number" />">원
+                                            <input type="hidden" class="qty_hidden" value="${userProductVO.productPrice}"/>
+                    </c:when>
+                   
+                   
+                   <c:otherwise>총 상품 금액:  <input type="text"  class="qty_total" value="<fmt:formatNumber value="${userProductVO.productPrice}" type="number" />">원
+                                            <input type="hidden" class="qty_hidden" value="${userProductVO.productPrice}"/></c:otherwise>
                    </c:choose>
 
 
@@ -310,11 +331,13 @@ function fn_goToPay(){
 
 <c:choose>
                     <c:when test="${userProductVO.productDiscount != 0}">
-                    총 상품 금액:  <input type="text" readonly class="total-4" value="<fmt:formatNumber value="${userProductVO.productSalesPrice}" pattern="#,###"/>">원
+                    총 상품 금액: <input type="text"  class="qty_total" value="<fmt:formatNumber value="${userProductVO.productPrice}" type="number" />">원
+                                            <input type="hidden" class="qty_hidden" value="${userProductVO.productPrice}"/>
                     </c:when>
                    
                    
-                   <c:otherwise>총 상품 금액:  <input type="text" readonly class="total-4" value="<fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>">원</c:otherwise>
+                   <c:otherwise>총 상품 금액:  <input type="text"  class="qty_total" value="<fmt:formatNumber value="${userProductVO.productPrice}" type="number" />">원
+                                            <input type="hidden" class="qty_hidden" value="${userProductVO.productPrice}"/></c:otherwise>
                    </c:choose>
 
 <%-- 총 상품 금액:  <input type="text" readonly class="total-4" value="<fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>">원 --%>
@@ -327,8 +350,8 @@ function fn_goToPay(){
 <div class="circle">
 <span class="circle-2">적립</span>
 <span class="circle-3">구매 시 </span>
-<span class="circle-3"> 100원</span>
-<span class="circle-3"> 적립</span>
+<span class="circle-3">&nbsp;100원</span>
+<span class="circle-3">&nbsp;적립</span>
 </div>
 
 <div class="result">
