@@ -128,7 +128,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		mav.setViewName(viewName); //add
 		return mav;
 	}
-
+	/* 주문 */
 	@Override
 	@ResponseBody
 	@PostMapping(value="/order/pay.do")
@@ -146,6 +146,6 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		return orderId;
 	}
-	
+	/*------------------------------ 주문 끝 --------------------------------------*/
 	
 }

@@ -67,7 +67,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     	        }
     	    }
     	}); */
-    	
+    	/* 주문페이지로 가기 */
       function fn_pay(){
         var userOrder;
         var receiverName = $('#receiverName').text();
@@ -139,7 +139,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         }
     });
       }
-
+      /*----------------------주문페이지로 가기 끝--------------------*/
     </script>
   </head>
   <body>
