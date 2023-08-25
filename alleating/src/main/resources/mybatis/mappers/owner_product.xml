@@ -119,4 +119,10 @@
 		
 	</insert>
 	
+	 <delete id="deleteproduct" parameterType="int">
+  		delete from product
+  		where
+  		productId=#{productId}
+ 	</delete>
+	
 </mapper>

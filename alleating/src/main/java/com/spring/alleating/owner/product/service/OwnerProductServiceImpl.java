@@ -1,14 +1,12 @@
 package com.spring.alleating.owner.product.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-
 
 import com.spring.alleating.owner.product.dao.OwnerProductDAO;
 import com.spring.alleating.product.vo.ProductImgVO;
@@ -17,6 +15,7 @@ import com.spring.alleating.product.vo.ProductVO;
 @Service("ownerProductService")
 
 public class OwnerProductServiceImpl implements OwnerProductService {
+
 
 	@Autowired
 	private OwnerProductDAO ownerProductDAO;
@@ -60,6 +59,12 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 		
 		return productId;
 	}
+	
+	/*
+	 * @Override public int removeproduct(int productId) throws DataAccessException
+	 * { return OwnerProductDAO }
+	 */
+	
 	
 	
 	/*

@@ -22,5 +22,6 @@ public interface ProductDAO {
 	public List<ProductImgVO> selectnewProductDetailImage()throws DataAccessException;
 	
 	public List<ProductVO> selectCateProduct(Map aaaInfo)throws DataAccessException; //카테고리
+	
 
 }
