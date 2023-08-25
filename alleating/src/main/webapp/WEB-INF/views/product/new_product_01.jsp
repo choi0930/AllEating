@@ -17,7 +17,6 @@
 <body>
 <div>
   <div class="image-container">
- <img src="${contextPath}/img/image_food/mara.png" width="240" height="320" alt="Image 1" />
     <c:forEach var="newProInfo" items="${newPro}">
      <div class="qwerqwer">
      <a href="${contextPath }/product/userProductDetail.do?productId=${newProInfo.productId}">
