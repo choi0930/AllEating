@@ -14,15 +14,14 @@ import com.spring.alleating.member.vo.MemberVO;
 @Controller("myPagecontroller")
 public class MyPageControllerImpl{
 	
-	@RequestMapping(value="/myPage/myPage_01.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView myPageMain(HttpServletRequest request, HttpServletResponse response)throws Exception {
-		HttpSession session = request.getSession();
-		session.setAttribute("side_menuType", "my_page");
-		String viewName = (String) request.getAttribute("viewName");	
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
-	}
+	/*
+	 * @RequestMapping(value="/myPage/myPage_01.do", method = {RequestMethod.GET,
+	 * RequestMethod.POST}) public ModelAndView myPageMain(HttpServletRequest
+	 * request, HttpServletResponse response)throws Exception { HttpSession session
+	 * = request.getSession(); session.setAttribute("side_menuType", "my_page");
+	 * String viewName = (String) request.getAttribute("viewName"); ModelAndView mav
+	 * = new ModelAndView(); mav.setViewName(viewName); return mav; }
+	 */
 	
 	@RequestMapping(value="/myPage/myPage_02.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPage_02(HttpServletRequest request, HttpServletResponse response)throws Exception {

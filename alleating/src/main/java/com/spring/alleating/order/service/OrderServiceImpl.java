@@ -116,17 +116,24 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public Map selecOrderHistory(int orderId) throws DataAccessException {
-		AllEatingOrderVO orderHistoryVO = orderDAO.selectOrderHistory(orderId);
+	public Map selectOrderNum(String orderId) throws DataAccessException {
+		AllEatingOrderVO payCompleteVO = orderDAO.selectOrderNum(orderId);
 		
-		Map orderHistoryInfo = new HashMap();
-		orderHistoryInfo.put("orderHistoryInfo", orderHistoryInfo);
-		return orderHistoryInfo;
+		Map payCompleteInfo = new HashMap();
+		payCompleteInfo.put("payCompleteVO", payCompleteVO);
+		return payCompleteInfo;
 	}
 
-
-	
-	
+	@Override
+	public List selectOrderHistory(String id) throws DataAccessException {
+		 
+		
+		Map orderHistoryInfo = new HashMap();
+		List<AllEatingOrderVO> orderHistoryVO = orderDAO.selectOrderHistory(id);
+		orderHistoryInfo.put("orderHistyoryVO", orderHistoryVO);
+		/* return orderHistoryInfo; */
+		return orderHistoryVO;
+	}
 	
 	
 }

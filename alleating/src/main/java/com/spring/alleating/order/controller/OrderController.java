@@ -17,4 +17,9 @@ public interface OrderController {
 	public void orderAllCartProducts(@RequestBody List<AllEatingOrderDetailVO> allEatingOrderDetailes, HttpServletRequest request,
 			HttpServletResponse response) throws Exception ;
 	public String pay(@RequestBody Map<String, Object> userOrder, HttpServletRequest request)throws Exception;
+	
+	public ModelAndView selectOrderNum(@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+
+    public ModelAndView orderHistory(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

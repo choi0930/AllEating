@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +25,6 @@ import com.spring.alleating.order.service.OrderService;
 import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
 import com.spring.alleating.order.vo.AllEatingOrderVO;
 import com.spring.alleating.point.vo.UserPointVO;
-import com.spring.alleating.product.vo.ProductVO;
 
 @Controller("orderController")
 public class OrderControllerImpl extends BaseController implements OrderController{
@@ -118,16 +118,15 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	}
 	/*-------------------장바구니에서 상품 여러개 구매 끝-----------------*/
 
-	@RequestMapping(value= "/order/pay_complete.do", method = RequestMethod.GET)
-	public ModelAndView payComplete(HttpServletRequest request, HttpServletResponse response) {
-		String viewName = (String)request.getAttribute("viewName");
-		System.out.println(viewName); 
-		String orderId = request.getParameter("orderId");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("orderId",orderId);
-		mav.setViewName(viewName); //add
-		return mav;
-	}
+	/*
+	 * @RequestMapping(value= "/order/pay_complete.do", method = RequestMethod.GET)
+	 * public ModelAndView payComplete(HttpServletRequest request,
+	 * HttpServletResponse response) { String viewName =
+	 * (String)request.getAttribute("viewName"); System.out.println(viewName);
+	 * String orderId = request.getParameter("orderId"); ModelAndView mav = new
+	 * ModelAndView(); mav.addObject("orderId",orderId); mav.setViewName(viewName);
+	 * //add return mav; }
+	 */
 	/* 주문 */
 	@Override
 	@ResponseBody
@@ -147,5 +146,47 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		return orderId;
 	}
 	/*------------------------------ 주문 끝 --------------------------------------*/
+
+	@Override
+	@RequestMapping(value="/order/pay_complete.do", method = RequestMethod.GET)
+	public ModelAndView selectOrderNum(@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		Map payCompleteInfo = new HashMap<>();
+		payCompleteInfo = orderService.selectOrderNum(orderId);
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("payCompleteInfo", payCompleteInfo);
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	//-------------------------마이페이지 주문내역
+	@Override
+	@RequestMapping(value="/myPage/myPage_01.do", method = RequestMethod.GET)
+	public ModelAndView orderHistory(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		
+		/*
+		 * Map orderHistoryInfo = new HashMap<>(); orderHistoryInfo =
+		 * orderService.selectOrderHistory(id);
+		 */
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		
+		Map fffInfo = new HashMap<>();
+		
+		/* Map orderHistoryResult = orderService.selectOrderHistory(fffInfo); */
+		/* mav.addObject("orderHistoryResult", orderHistoryResult); */
+		
+		return mav;
+	}
+	
+	
+
+	
 	
 }
