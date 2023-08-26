@@ -51,6 +51,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 	/*---------------------------------회원가입 끝------------------------------------*/
 	
+	
 	/* 로그인 */
 	@Override 
 	@RequestMapping(value="/member/login.do", method = {RequestMethod.POST})
@@ -102,13 +103,13 @@ public class MemberControllerImpl implements MemberController {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		if(result>0) {
-			System.out.println("以묐났");
 			out.print("no-usable");
 		}else {
 			out.print("usable");
 		}
 	}
 	/*---------------------------------아이디 중목 확인 끝------------------------------------*/
+	
 	
 	/* 아이디 찾기화면으로 이동 */ //이름뒤에 form을 추가해 단순 페이지이동은 통일하는게 좋을듯 함
 	@Override
@@ -128,9 +129,7 @@ public class MemberControllerImpl implements MemberController {
 	@RequestMapping(value= "/member/find_id_02.do", method = RequestMethod.GET)
 	public ModelAndView find_id_02(@RequestParam("name")String name,@RequestParam("email")String email, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		 
-		
-		
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName); //add
 		return mav;

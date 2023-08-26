@@ -72,13 +72,14 @@ function fn_loginGO(){
 			});
 			return false;
 		}
-		if($('#pwd1').val() == $('#pwd2').val())
-		if(!passwdCheck.test($('#pwd1').val())){
-			alert('비밀번호가 일치하지 않습니다.');
-			setTimeout(function(){
-			$('#pwd2').focus();
-		});
-			return false;
+		if($('#pwd1').val() == $('#pwd2').val()){
+		
+			if(!passwdCheck.test($('#pwd1').val())){
+				alert('비밀번호 형식을 확인해주세요');
+				setTimeout(function(){$('#pwd1').focus();});
+				return false;
+			}
+				
 		}
 		
 		if($('#join_name').val() == ""){
@@ -240,3 +241,63 @@ function fn_select(){
 	}
 
 	}
+	
+		$(function(){
+	$('#alert-success').hide();
+	$('#alert-danger').hide();
+	$("input").keyup(function(){
+		var pwd1 = $('#pwd1').val();
+		var pwd2 = $('#pwd2').val();
+		if(pwd1 !="" || pwd2 != ""){
+			if(pwd1 == pwd2){
+				$('#alert-success').show();
+				$('#alert-danger').hide();
+				$('#alert-success').addClass("greenText");
+			}else{
+				$('#alert-success').hide();
+				$('#alert-danger').show();
+				$('#alert-danger').addClass("redText");
+			}
+		}
+	});
+
+	$('#idCheckMessage').hide();
+	
+	$('#userId').keyup(function(){
+		if(userIdCheck.test($('#userId').val())){
+			$('#idCheckMessage').removeClass("redText");
+			$('#idCheckMessage').addClass("greenText");
+		}else{
+			$('#join_id_ex').hide();
+			$('#idCheckMessage').show();
+			$('#idCheckMessage').text('6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합');
+			$('#idCheckMessage').addClass('redText');
+		}
+	});
+	$('#pwdCheckMessage').hide();
+	$('#pwd1').keyup(function(){
+		if(passwdCheck.test($('#pwd1').val())){
+			$('#pwdCheckMessage').removeClass("redText");
+			$('#pwdCheckMessage').addClass("greenText");
+			
+		}else{
+			$('#join_pwd_ex').hide();
+			$('#pwdCheckMessage').show();
+			$('#pwdCheckMessage').text('영문/숫자/특수문자(공백제외)포함 8자 이상 20이하');
+			$('#pwdCheckMessage').addClass('redText');
+		}
+	});
+
+	$('#nameCheckMessge').hide();
+	$('#join_name').keyup(function(){
+		if(('#join_name').val() != " "){
+			$('#nameCheckMessge').hide();
+			$('#join_name_ex').show();
+		}else{
+			$('#join_name_ex').hide();
+			$('#nameCheckMessge').show();
+			$('#nameCheckMessge').text('이름을 입력해주세요');
+			$('#nameCheckMessge').addClass('redText');
+		}
+	});
+});

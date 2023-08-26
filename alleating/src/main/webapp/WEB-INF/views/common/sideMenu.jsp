@@ -11,18 +11,29 @@
 <head>
     <script>
     $(document).ready(function(){
+        
         $('.side_aTag').click(function(){
             $('.side_aTag').removeClass('current');
             $(this).addClass('current');
+        });
+
+
+        $('#memberTap').click(function(){
+            $('.hide_side_menu').toggle('500');
+             
+            
         });
     });
 
    function fn_cartOder(){
         location.href="${contextPath}/order/pay_02.do";
     }
+    function fn_showMenu(){
+       
+    }
     </script>
 <style>
-    .side_aTag:active, .side_aTag:hover{
+    .side_aTag:active, .side_aTag:hover, .side_small_aTag:hover{
         background-color:#E1DDDB;
         color:#0c4A60;
         font-weight: 1000;
@@ -178,6 +189,22 @@ text-decoration:none;}
     top: -26px;
     color: white;
 }
+.side_small_aTag{
+    cursor: pointer;
+    padding: 10px 13px 10px 30px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 19px;
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+}
+.lastAtag{
+    border-bottom: 1px solid rgb(242, 242, 242);
+}
+
 </style>
 <meta charset="UTF-8">
 <title>사이드 메뉴</title>
@@ -185,7 +212,9 @@ text-decoration:none;}
 <body>
     <div>
         <c:choose>
+            
             <c:when test="${side_menuType == 'my_page'}">
+                <!--마이페이지 사이드 메뉴-->
                 <div class="side_title">마이페이지</div>
                 <ul class="side_menu_subheading">
                     <li class="side_tap">
@@ -235,7 +264,9 @@ text-decoration:none;}
                     </li>
                 </ul>
             </c:when>
+            
             <c:when test="${side_menuType == 'owner_page'}">
+                <!--사업자페이지 사이드 메뉴-->
                 <div class="side_title">사업자페이지</div>
                 <ul class="side_menu_subheading">
                     <li class="side_tap">
@@ -260,18 +291,30 @@ text-decoration:none;}
                     </li>
                 </ul>
             </c:when>
+           
             <c:when test="${side_menuType == 'admin_page'}">
+                 <!--관리자페이지 사이드 메뉴-->
                 <div class="side_title">관리자페이지</div>
                 <ul class="side_menu_subheading">
                     <li class="side_tap">
-                        <a class="side_aTag" href="#">상품 관리
+                        <a class="side_aTag" href="${contextPath}/admin/productMain.do">상품 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
-                    <li class="side_tap"> 
-                        <a class="side_aTag" href="#">회원 관리
+                    <li class="side_tap" > 
+                        <a id="memberTap" class="side_aTag" href="#">회원 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
+                        <ul class="hide_side_menu">
+                            <li class="side_tap"> 
+                                <a class="side_small_aTag" href="${contextPath}/admin/userMemberList.do">일반회원 관리</a>
+                            </li>
+                            <li class="side_tap"> 
+                                <a class="side_small_aTag lastAtag" href="${contextPath}/admin/ownerMemberList.do">사업자회원 관리
+                                   
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="side_tap">
                         <a class="side_aTag" href="#">배송/주문 관리
@@ -295,7 +338,9 @@ text-decoration:none;}
                     </li>
                 </ul>
             </c:when>
+            
             <c:when test="${side_menuType == 'customer_service_center'}">
+                <!--고객센터 사이드 메뉴-->
                 <div class="side_title">고객센터</div>
                 <ul class="side_menu_subheading">
                     <li class="side_tap">
@@ -315,7 +360,9 @@ text-decoration:none;}
                     </li>
                 </ul>
             </c:when>
+            
             <c:when test="${side_menuType == 'community'}">
+                <!--커뮤니티 사이드 메뉴-->
                 <div class="side_title">커뮤니티</div>
                 <ul class="side_menu_subheading">
                     <li class="side_tap">
@@ -420,7 +467,9 @@ text-decoration:none;}
                 <span id="filter_price_text">검색</span>
             </div>
             </c:when>
+           
             <c:when test="${side_menuType == 'cart_page'}">
+                 <!--장바구니 사이드 메뉴-->
                 <div class="side_cart_menu">
                     <div class="side_cart_menu2">
                         <div class="side_cart_top_menuBox">

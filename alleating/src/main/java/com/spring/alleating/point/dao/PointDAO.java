@@ -1,5 +1,7 @@
 package com.spring.alleating.point.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -9,4 +11,5 @@ import com.spring.alleating.point.vo.UserPointVO;
 @Repository("pointDAO")
 public interface PointDAO {
 	public UserPointVO selectUserPoint(String id)throws DataAccessException;
+	public void insertJoinUserPoint (Map userInfo)throws DataAccessException;
 }
