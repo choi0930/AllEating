@@ -17,5 +17,5 @@ public interface OrderService {
 	
 	public Map selectOrderNum (String orderId) throws DataAccessException; //留덉씠�럹�씠吏� 二쇰Ц�궡�뿭
 	
-	public List<AllEatingOrderVO> selectOrderHistory (String id) throws DataAccessException;
+	public List selectOrderHistory (Map fffInfo) throws DataAccessException;
 }
