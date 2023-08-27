@@ -4,6 +4,7 @@ pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="userVO" value="${userProductInfo.userVO}" />
 <!DOCTYPE html>
 <html>
   <head>
@@ -168,7 +169,7 @@ $(function(){$('.header_nav').hover(
           <div>
             <c:choose>
               <c:when test="${loginMember.join_type == 'user'}">
-                <a href="${contexPath}/myPage/myPage_01.do" id="user_icon">
+                <a href="${contextPath }/myPage/myPage_01.do?id=${userVO.id}" id="user_icon">
                   <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
                 </a>
               </c:when>

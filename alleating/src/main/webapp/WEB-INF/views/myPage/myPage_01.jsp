@@ -3,6 +3,9 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+    <c:set var="orderHistoryVO" value="${orderHistoryResult.orderHistoryVO}" />
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +16,7 @@
 
 </head>
 <body>
+  
   <div class="orderlist">
    <div class = "orderlist-main">
     <div class="orderlistview">
@@ -47,7 +51,9 @@
      </div>
      </div>
     </div>
+   
     <div class="product-order">
+      <c:forEach var="xxx" items="${orderHistoryVO}">
       <div class="product-order-pic">
        <img src="${contextPath }/img/image_food/shinemuscat.jpg" width="150px" height="150px">
       </div>
@@ -55,32 +61,32 @@
        <dl class="dlcss" id="dlcss-2">
         <dt class="listcss-6">상품명</dt>
          <dd class="listcss-7">
-          <p>저탄소 샤인머스캣</p>
+          <p>${xxx.prouductName}</p>
          </dd>
        </dl>
        <dl class="dlcss" id="dlcss-2">
         <dt class="listcss-6">주문 번호</dt>
          <dd class="listcss-7">
-          <p>23081412345</p>
+          <p>${xxx.orderId}</p>
          </dd>
        </dl>
        <dl class="dlcss" id="dlcss-2">
         <dt class="listcss-6">결제방법</dt>
          <dd class="listcss-7">
-          <p>신용카드</p>
+          <p>${xxx.pay_com_name}</p>
          </dd>
        </dl>
        <dl class="dlcss" id="dlcss-2">
         <dt class="listcss-6">결제 금액</dt>
          <dd class="listcss-7">
-          <p>16,990원</p>
+          <p>${xxx.totalPrice}</p>
          </dd>
        </dl>
       </div>
    
      <div class="orderview">
       <div class="orderview-2">
-       <p>배송중</p>
+       <p>delivery</p>
        <div class="order-refund">
         <div class="orderview-3">
          <button type="button" class="btn btn-outline-primary" id="order-refund-button">교환 신청</button>
@@ -94,6 +100,8 @@
      </div>
     
     </div>
+    </c:forEach>
 </div>
+
 </body>
 </html>

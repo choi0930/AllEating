@@ -116,11 +116,17 @@
 					)
 		
 	</insert>
-	<!-- 마이페이지 주문내역 -->
-	<select id="selectOrderHistory" resultMap="orderResult" parameterType="int">
+	<!-- 주문 완료 -->
+	<select id="selectOrderNum" resultType="allEatingOrderVO" parameterType="String">
 		<![CDATA[
-		select * from alleating_order where orderId = #{orderId}
+		select orderId, id from alleating_order where orderId = #{orderId}
 		]]>
+	</select>
+	
+	<!-- 마이페이지 주문 내역 -->
+	<select id="selectOrderHistory" resultMap="orderResult" parameterType="String">
+	
+	 select * from alleating_order where id = #{id}
 	</select>
 	
   </mapper>
