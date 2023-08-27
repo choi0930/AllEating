@@ -94,7 +94,7 @@ request.setCharacterEncoding("utf-8"); %>
         $(".individual_cart_checkbox").click(function () {
           if ($(".individual_cart_checkbox:checked").length == part) {
             $("#cart-all-check").prop("checked", true);
-            fn_totalPrice();  
+            fn_totalPrice();
           } else {
             $("#cart-all-check").prop("checked", false);
             fn_totalPrice();
@@ -186,7 +186,7 @@ request.setCharacterEncoding("utf-8"); %>
       function fn_totalPrice(){
         var str = "";
                 var sum = 0;
-                var deliveryPrice = 0;
+                var deliveryPrice = 3000;
                 var count = $(".chkbox:checked").length;
                
                   
@@ -383,7 +383,7 @@ request.setCharacterEncoding("utf-8"); %>
                             value="${res.cart_product_qty}"
                             name="cart_product_qtyy"
                             readonly
-                            onchange="fn_productPrice('${res.cartId}')"
+                            
                           />
                           <button
                             type="button"
@@ -541,7 +541,7 @@ request.setCharacterEncoding("utf-8"); %>
                             value="${normal.cart_product_qty}"
                             readonly
                             name="cart_product_qtyy"
-                            onchange="fn_productPrice('${res.cartId}')"
+                          
                           />
                           <button
                             type="button"

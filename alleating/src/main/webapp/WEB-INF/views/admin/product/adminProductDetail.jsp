@@ -267,8 +267,16 @@ request.setCharacterEncoding("utf-8"); %>
           <c:choose>
             <c:when test="${productVO.join_type == 'owner'}">
               <span><a href="${contextPath}/admin/productMain.do">목록으로</a></span>
-              <span><a href="javascript:fn_modify('declined');">승인거절</a></span>
-              <span><a href="javascript:fn_modify('sale');">상품승인</a></span>
+              <c:choose>
+                <c:when test="${productVO.productStatus == 'approval_request'}">
+                  <span><a href="javascript:fn_modify('declined');">승인거절</a></span>
+                  <span><a href="javascript:fn_modify('sale');">상품승인</a></span>
+                </c:when>
+                <c:when test="${productVO.productStatus == 'declined'}">
+                  <span><a href="javascript:fn_modify('sale');">상품승인</a></span>
+                </c:when>
+              </c:choose>
+              
             </c:when>
             <c:otherwise>
               <div><a href="${contextPath}/admin/listProducts.do">목록으로</a></div>
