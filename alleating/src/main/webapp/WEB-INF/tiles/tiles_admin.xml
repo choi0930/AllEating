@@ -32,4 +32,19 @@
 		<put-attribute name="title" value="관리자 회원 목록 상세페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/admin/member/memberDetail.jsp"/>      
 	</definition>
+	
+	<definition name="/admin/couponList" extends="baseLayout2">
+		<put-attribute name="title" value="관리자 쿠폰 목록 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/coupon/couponList.jsp"/>      
+	</definition>
+	
+	<definition name="/admin/addCouponForm" extends="baseLayout2">
+		<put-attribute name="title" value="관리자 쿠폰 등록 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/coupon/addCouponForm.jsp"/>      
+	</definition>
+	
+	<definition name="/admin/modCouponForm.do" extends="baseLayout2">
+		<put-attribute name="title" value="관리자 쿠폰 수정 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/coupon/modCouponForm.jsp"/>      
+	</definition>
 </tiles-definitions>

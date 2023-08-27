@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.spring.alleating.admin.coupon.dao.AdminCouponDAO">
+ 	<resultMap id="couponResult" type="couponVO">
+		<result property="couponId" column="couponId" />
+		<result property="coupon_name" column="coupon_name" />
+		<result property="coupon_range" column="coupon_range" />
+		<result property="couponDiscountRate" column="couponDiscountRate" />
+		<result property="beginDate" column="beginDate" />
+		<result property="endDate" column="endDate" />
+		<result property="coupon_startDate" column="coupon_startDate" />
+		<result property="coupon_endDate" column="coupon_endDate" />
+		<result property="coupon_deleted" column="coupon_deleted" />
+	</resultMap>
+	
+	<!-- 사용가능 및 배포중인 쿠폰 목록 -->
+	<select id="selectAllCoupons" resultMap="couponResult" parameterType="java.util.Map">
+		
+	</select>
+	
+	<!-- 삭제 및 만료된 쿠폰 목록 -->
+	<select id="selectInvalidCoupons" resultMap="couponResult" parameterType="java.util.Map">
+	
+	</select>
+	
+	<select id="selectByCouponId" resultMap="couponResult" parameterType="String">
+		select * from coupon where couponId = #{couponId}
+	</select>
+	
+	<!-- 쿠폰 등록 -->
+	<insert id="insertCouponInfo" parameterType="couponVO">
+		insert into coupon (couponId, coupon_name, coupon_range, couponDiscountRate, beginDate, endDate, coupon_startDate, coupon_endDate)
+		values(#{couponId}, #{coupon_name}, #{coupon_range}, #{couponDiscountRate}, #{beginDate}, #{endDate}, #{coupon_startDate}, #{coupon_endDate})
+	</insert>
+	
+	<!-- 쿠폰 상태 삭제로 변경 -->
+	<update id="delCouponInfo" parameterType="java.util.Map">
+		update coupon set coupon_deleted = 'y' where couponId = #{couponId}
+	</update>
+	<!-- 쿠폰 상태 변경 -->
+	<update id="modfiyCouponInfo" parameterType="couponVO" >
+		update coupon set coupon_name = #{coupon_name}, coupon_range = #{coupon_range}, couponDiscountRate=#{couponDiscountRate}, beginDate=#{beginDate}, endDate=#{endDate},
+		coupon_startDate = #{coupon_startDate}, coupon_endDate = #{coupon_endDate} where couponId = #{couponId}
+	</update>
+	</mapper>
