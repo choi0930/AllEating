@@ -11,7 +11,7 @@ public class ViewNameInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			 { try {
 				 String viewName = getViewName(request);
-				 System.out.println(viewName); //값이 저장되는지 알아보기 위해
+				 System.out.println(viewName); 
 				 request.setAttribute("viewName", viewName);
 				 
 			 } catch(Exception e) {

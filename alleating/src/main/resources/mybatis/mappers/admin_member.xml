@@ -36,9 +36,12 @@
 	
 	<!-- 관리자 페이지 회원 목록 -->
 	<select id="adminSelectUser" resultMap="memResult" parameterType="java.util.Map">
-		select * from member where joinType = #{joinType}
+		select * from member where join_type = #{join_type}
 	</select>
-	
+	<!-- 관리자 페이지 사업자/일반유저 총 명수 count -->
+	<select id="adminCountUser" resultType = "int" parameterType="String">
+		select count(id) from member where join_type = #{join_type}
+	</select>
 	<!-- 관리자 페이지 회원 상세보기 -->
 	<select id="adminUserDetail" resultMap = "memResult" parameterType="String">
 		select * from member where id = #{id}

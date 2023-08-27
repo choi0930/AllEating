@@ -34,10 +34,20 @@ public class MemberVO {
     private Date joinDate;
     private String personalInformation;
     
+    private String hp;
+    
     public MemberVO() {
     	
     }
     
+	public String getHp() {
+		return hp;
+	}
+
+	public void setHp(String hp) {
+		this.hp = hp;
+	}
+
 	public String getId() {
 		return id;
 	}

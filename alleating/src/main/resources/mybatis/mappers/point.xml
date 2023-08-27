@@ -19,4 +19,7 @@
 		select * from user_point where id = #{id}
 	</select>
 
+	<insert id="insertJoinUserPoint" parameterType="java.util.Map">
+		insert user_point(id, userPoint) values( #{id}, #{userPoint});
+	</insert>
  </mapper>

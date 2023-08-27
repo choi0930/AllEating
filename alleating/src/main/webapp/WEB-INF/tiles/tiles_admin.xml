@@ -13,8 +13,23 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/product/adminAddProductForm.jsp"/>      
 	</definition>
 	
-		<definition name="/admin/productDetail" extends="baseLayout2">
+	<definition name="/admin/productDetail" extends="baseLayout2">
 		<put-attribute name="title" value="관리자 상품 상세페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/admin/product/adminProductDetail.jsp"/>      
+	</definition>
+	
+	<definition name="/admin/userMemberList" extends="baseLayout2">
+		<put-attribute name="title" value="관리자 일반회원 목록 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/member/userMemberList.jsp"/>      
+	</definition>
+
+	<definition name="/admin/ownerMemberList" extends="baseLayout2">
+		<put-attribute name="title" value="관리자 사업자회원 목록 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/member/ownerMemberList.jsp"/>      
+	</definition>
+	
+	<definition name="/admin/memberDetail" extends="baseLayout2">
+		<put-attribute name="title" value="관리자 회원 목록 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/member/memberDetail.jsp"/>      
 	</definition>
 </tiles-definitions>
