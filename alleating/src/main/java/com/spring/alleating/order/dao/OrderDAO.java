@@ -21,6 +21,6 @@ public interface OrderDAO {
 	
 	public AllEatingOrderVO selectOrderNum(String orderId)throws DataAccessException; //주문 완료 확인 창 
 	
-	public List<AllEatingOrderVO> selectOrderHistory (String id) throws DataAccessException; //주문 내역
+	public List<AllEatingOrderVO> selectOrderHistory (Map dddInfo) throws DataAccessException; //주문 내역
 	
 }
