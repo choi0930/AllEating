@@ -60,10 +60,10 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 		return productId;
 	}
 	
-	/*
-	 * @Override public int removeproduct(int productId) throws DataAccessException
-	 * { return OwnerProductDAO }
-	 */
+	
+	  @Override public int removeproduct(int productId) throws DataAccessException{
+	  return OwnerProductDAO 
+	  }
 	
 	
 	

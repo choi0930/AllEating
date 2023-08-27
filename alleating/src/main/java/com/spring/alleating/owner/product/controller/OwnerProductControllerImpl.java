@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -140,9 +141,20 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	
 	
 	
-	
+	/*
+	 * @Override
+	 * 
+	 * @RequestMapping(value = "/member/removeproduct.do", method =
+	 * RequestMethod.GET) public ModelAndView removeproduct(@RequestParam("id")
+	 * String id, HttpServletRequest request, HttpServletResponse response) throws
+	 * Exception { request.setCharacterEncoding("utf-8");
+	 * memberService.removeMember(id); ModelAndView mav = new
+	 * ModelAndView("redirect:/member/listMembers.do"); return mav; }
+	 */
 	
 
+	
+	
 	/*
 	 * @Override
 	 * 

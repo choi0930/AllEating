@@ -21,6 +21,6 @@ public interface OwnerProductService {
 
 	//public void addNewProductImg(List imageFileList) throws Exception;
 	
-	/* public int removeproduct(int productId) throws DataAccessException; */
+	 public int removeproduct(int productId) throws DataAccessException; 
 	
 }
