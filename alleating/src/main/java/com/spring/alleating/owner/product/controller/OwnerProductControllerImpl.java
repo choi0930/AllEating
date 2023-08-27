@@ -84,8 +84,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		}
 		
 		
-		
-		
+
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		String reg_id = memberVO.getId();
@@ -139,18 +138,17 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		return resEntity;
 	}
 	
+	 @Override
+	 @RequestMapping(value = "/owner/deleteProduct.do", method = RequestMethod.GET)
+	 public ModelAndView deleteProduct(@RequestParam("productId") int productId, HttpServletRequest request, 
+			 HttpServletResponse response) throws Exception { request.setCharacterEncoding("utf-8"); 
+			 System.out.println("productId" + productId);
+			 ownerProductService.removeproduct(productId); 
+			 ModelAndView mav = new ModelAndView("redirect:/owner/ownerProductList.do");
+				return mav;	 	
+	}
 	
-	
-	/*
-	 * @Override
-	 * 
-	 * @RequestMapping(value = "/member/removeproduct.do", method =
-	 * RequestMethod.GET) public ModelAndView removeproduct(@RequestParam("id")
-	 * String id, HttpServletRequest request, HttpServletResponse response) throws
-	 * Exception { request.setCharacterEncoding("utf-8");
-	 * memberService.removeMember(id); ModelAndView mav = new
-	 * ModelAndView("redirect:/member/listMembers.do"); return mav; }
-	 */
+	 
 	
 
 	
@@ -197,7 +195,9 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	 * srcFile.delete(); } } e.printStackTrace(); } }
 	 */
 
-	
+
+
+
 
 	//�뤌�씠�룞
 	@RequestMapping(value="/owner/*Form.do",method = RequestMethod.GET)
