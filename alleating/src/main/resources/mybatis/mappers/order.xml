@@ -5,26 +5,26 @@
   <mapper namespace="com.spring.alleating.order.dao.OrderDAO">
   <resultMap id="orderResult" type="allEatingOrderVO">
 		<result property="orderId" column="orderId" />
-		<result property="id" column="orderId" />
-		<result property="orderName" column="orderId" />
-		<result property="orderHp" column="orderId" />
-		<result property="receiverName" column="orderId" />
-		<result property="receiverHp" column="orderId" />
-		<result property="zipcode" column="orderId" />
-		<result property="address" column="orderId" />
-		<result property="address2" column="orderId" />
-		<result property="addressDetail" column="orderId" />
-		<result property="delivery_request" column="orderId" />
-		<result property="userPoint" column="orderId" />
-		<result property="couponId" column="orderId" />
-		<result property="totalPrice" column="orderId" />
-		<result property="card_com_name" column="orderId" />
-		<result property="card_pay_month" column="orderId" />
+		<result property="id" column="id" />
+		<result property="orderName" column="orderName" />
+		<result property="orderHp" column="orderHp" />
+		<result property="receiverName" column="receiverName" />
+		<result property="receiverHp" column="receiverHp" />
+		<result property="zipcode" column="zipcode" />
+		<result property="address" column="address" />
+		<result property="address2" column="address2" />
+		<result property="addressDetail" column="addressDetail" />
+		<result property="delivery_request" column="delivery_request" />
+		<result property="userPoint" column="userPoint" />
+		<result property="couponId" column="couponId" />
+		<result property="totalPrice" column="totalPrice" />
+		<result property="card_com_name" column="card_com_name" />
+		<result property="card_pay_month" column="card_pay_month" />
 		  <result property="orderStatus" column="orderStatus" />
-		<result property="payDate" column="orderId" />
-		<result property="thunderDate" column="orderId" />
-		<result property="thunderTime" column="orderId" />
-		<result property="productName" column="orderId" />
+		<result property="payDate" column="payDate" />
+		<result property="thunderDate" column="thunderDate" />
+		<result property="thunderTime" column="thunderTime" />
+		<result property="productName" column="productName" />
 		<result property="cateCode" column="cateCode" />
         <result property="fileName" column="fileName" />
       
@@ -124,7 +124,7 @@
 	</select>
 	
 	<!-- 마이페이지 주문 내역 -->
-	<select id="selectOrderHistory" resultMap="orderResult" parameterType="String">
+	<select id="selectOrderHistory" resultMap="orderResult" parameterType="java.util.Map">
 	
 	 select * from alleating_order where id = #{id}
 	</select>

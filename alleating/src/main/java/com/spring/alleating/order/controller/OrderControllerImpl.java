@@ -163,10 +163,12 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	//-------------------------마이페이지 주문내역
 	@Override
 	@RequestMapping(value="/myPage/myPage_01.do", method = RequestMethod.GET)
-	public ModelAndView orderHistory(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView orderHistory(@RequestParam("id" ) String id,  HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
+		session.setAttribute("id", id);
+		/* String _id = request.getParameter(id); */
 		
 		/*
 		 * Map orderHistoryInfo = new HashMap<>(); orderHistoryInfo =
@@ -177,10 +179,14 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		
-		Map fffInfo = new HashMap<>();
-		
-		/* Map orderHistoryResult = orderService.selectOrderHistory(fffInfo); */
-		/* mav.addObject("orderHistoryResult", orderHistoryResult); */
+		 Map fffInfo = new HashMap<>(); 
+			
+			 fffInfo.put("id", id); // "orderHistoryVO"로 사용자의 아이디를 담아서 전달합니다.?? 그럼 "id"가 맞는데
+				/* fffInfo.put("_id", _id); */
+			 
+		List orderHistoryResult = orderService.selectOrderHistory(fffInfo);
+	
+		mav.addObject("orderHistoryResult", orderHistoryResult);
 		
 		return mav;
 	}

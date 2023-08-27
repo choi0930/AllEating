@@ -138,6 +138,6 @@
 		
 	</insert>
 	<update id="updateProductStatus" parameterType="productVO">
-	 	update product set productStatus = ${productStatus} where productId = ${productId}
+	 	update product set productStatus = #{productStatus} where productId = #{productId}
 	</update>
  </mapper>

@@ -60,6 +60,7 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	}
 	
 	
+
 	
 	  @Override public void removeproduct(int delproductId) throws DataAccessException{
 		  ownerProductDAO.deleteproduct(delproductId);
@@ -89,6 +90,13 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	public List<ProductVO> ownerProductList() throws Exception {
 		List<ProductVO> ownerProductList = ownerProductDAO.selectAllOwnerProductList();
 		return ownerProductList;
+	}
+
+
+	@Override
+	public int removeproduct(int productId) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

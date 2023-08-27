@@ -2,7 +2,9 @@ package com.spring.alleating.order.vo;
 
 import java.sql.Date;
 
+
 import org.springframework.stereotype.Component;
+
 @Component("allEatingOrderVO")
 public class AllEatingOrderVO {
 	private String orderId;
@@ -35,19 +37,6 @@ public class AllEatingOrderVO {
 	private String cateCode;
 	private String fileName;
 	private int productId;
-	
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
-	public int getProductId() {
-		return productId;
-	}
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
 	public String getOrderId() {
 		return orderId;
 	}
@@ -144,6 +133,12 @@ public class AllEatingOrderVO {
 	public void setCard_pay_month(String card_pay_month) {
 		this.card_pay_month = card_pay_month;
 	}
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 	public Date getPayDate() {
 		return payDate;
 	}
@@ -180,8 +175,17 @@ public class AllEatingOrderVO {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
 	
 	
 	
 }
+	
+	
+	
+
