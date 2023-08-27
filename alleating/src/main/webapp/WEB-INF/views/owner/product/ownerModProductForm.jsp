@@ -4,7 +4,7 @@ uri="http://java.sun.com/jsp/jstl/core" %> <%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <link
-  href="${contextPath}/css/owner01.css"
+  href="${contextPath}/css/Modowner.css"
   rel="stylesheet"
   type="text/css"
 />
@@ -251,11 +251,25 @@ request.setCharacterEncoding("utf-8"); %>
               <div>
                 <div id="d_file"></div>
               </div>
+
+           
+
             </div>
+
+
+
           </div>
         </div>
-        </div>   
         </div>
+
+
+
+        
+        
+        </div>
+
+
+
         <div class="form_end">
           <button class="join_end_btn" onclick="fn_loginGO()">
             <span id="join_btn_text">등록하기</span>

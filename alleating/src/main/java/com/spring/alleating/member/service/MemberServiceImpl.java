@@ -18,7 +18,8 @@ public class MemberServiceImpl implements MemberService{
 	private MemberDAO memberDAO;
 	@Autowired
 	private PointDAO pointDAO;
-	
+	@Autowired
+	private MemberVO memberVO;
 	
 	@Override //회원가입
 	public void addMember(Map<String, String> memberInfo) throws DataAccessException {
@@ -61,7 +62,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberVO modMember(String id) throws DataAccessException {
-		MemberVO memberVO = new MemberVO();
+		/* MemberVO memberVO = new MemberVO(); */
 		memberVO = memberDAO.selectMemberById(id);
 		return memberVO;
 	}

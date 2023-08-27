@@ -20,6 +20,7 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	@Autowired
 	private OwnerProductDAO ownerProductDAO;
 	
+	
 	@Override
 	public int addNewProduct(Map productInfo) throws Exception{
 		String discount = (String) productInfo.get("discount");
@@ -35,16 +36,14 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 			int lastDigit = productRound % 10; // product의 숫자의 마지막 자릿수 추출
 			int productSalesPrice = productRound + ( 10 - lastDigit); //다음 10의 배수로 올림
 			
-			
-			
-			
+					
 			productInfo.put("productSalesPrice",productSalesPrice);
 		}else {//할인 상품이 아닐때
 			productInfo.put("productSalesPrice", 0);
 			productInfo.put("productDiscount", 0);
 		}
-		productInfo.put("deliveryType","normal"); //일반배송
-		productInfo.put("deliveryPrice", 3000);
+		productInfo.put("deliveryType","normal"); //일반배송  //예약배송
+		productInfo.put("deliveryPrice", 3000);  //배달비
 		
 		ownerProductDAO.insertNewProduct(productInfo);
 		String _productId = (String) productInfo.get("productId");
@@ -61,11 +60,12 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	}
 	
 	
-	/*
-	 * @Override public int removeproduct(int productId) throws DataAccessException{
-	 * return OwnerProductDAO;
-	 */
-	  
+
+	
+	  @Override public void removeproduct(int delproductId) throws DataAccessException{
+		  ownerProductDAO.deleteproduct(delproductId);
+	  }
+	 
 	
 	
 	

@@ -20,8 +20,10 @@ public interface MemberController {
 	public ModelAndView login(@RequestParam Map<String, String> loginMemberInfo, RedirectAttributes rAttr, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView logOut(HttpServletRequest request, HttpServletResponse response)throws Exception;
 		
-	public ModelAndView modMember(@RequestParam("id") String id, HttpServletRequest request,
-			HttpServletResponse response) throws Exception;
+	/*
+	 * public ModelAndView modMember(@RequestParam("id") String id,
+	 * HttpServletRequest request, HttpServletResponse response) throws Exception;
+	 */
 	
 	/*
 	 * public ModelAndView updateMember(@ModelAttribute("info") MemberVO memberVO,

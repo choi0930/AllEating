@@ -116,10 +116,10 @@
 											 #{fileType},
 											 #{reg_id} )
 	
-		
 	</insert>
 	
-	 <delete id="deleteproduct" parameterType="int">
+	
+	<delete id="deleteproduct" parameterType="int">
   		delete from product
   		where
   		productId=#{productId}

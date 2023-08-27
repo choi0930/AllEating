@@ -22,5 +22,6 @@ public interface OwnerProductDAO {
 	 */
 	public List<ProductVO> selectAllOwnerProductList() throws Exception;
 	
-	public int deleteproduct(int productId)throws DataAccessException;
+	public void deleteproduct(int productIdMap)throws DataAccessException;
 }
+  
