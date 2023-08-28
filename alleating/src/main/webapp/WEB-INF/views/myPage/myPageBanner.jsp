@@ -47,7 +47,7 @@
 <body>
     <div class="myPageBannerTop">
         <div class="myPageBannerValue">
-            <div><span id="myPageBannerTopText">ㅋㅋ님</span></div>
+            <div><span id="myPageBannerTopText">${loginMember.name}&nbsp;님</span></div>
         </div>
         <div class="myPageBannerValue myPageBannerMiddle">
             <div><span class="myPageBannerText">적립금</span></div>

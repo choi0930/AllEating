@@ -28,7 +28,7 @@
 		<result property="cateCode" column="cateCode" />
         <result property="fileName" column="fileName" />
       
-        <result property="productId" column="productId" />
+        <result property="productBrand" column="productBrand" />
 					
 		
 		
@@ -43,8 +43,10 @@
 		<result property="cateCode" column="cateCode" />
 		<result property="deliveryType" column="deliveryType" />
 		<result property="delivery_status" column="delivery_status" />
+		
 		<result property="productName" column="productName" />
 		<result property="fileName" column="fileName" />
+		<result property="productBrand" column="productBrand" />
 		
 	</resultMap>
 	
@@ -102,21 +104,25 @@
 		insert into alleating_order_detail(
 					orderId,
 					productId,
+					productName,
 					productPrice,
 					productDiscount,
 					productQty,
 					cateCode,
 					fileName,
-					deliveryType
+					deliveryType,
+					productBrand
 		)values(
 					#{orderId},
 					#{productId},
+					#{productName},
 					#{productPrice},
 					#{productDiscount},
 					#{productQty},
 					#{cateCode},
 					#{fileName},
-					#{deliveryType}
+					#{deliveryType},
+					#{productBrand}
 					)
 		
 	</insert>
@@ -133,14 +139,25 @@
 	 select * from alleating_order where id = #{id}
 	</select>
 	
-	<!-- 주문 내역 상세 중 제품들 정보 -->
+	<!-- 주문 내역 상세내역 -->
 	<select id="OrderHistoryDetail" resultMap="orderResult" parameterType="String">
 	
 	 select * from alleating_order where orderId = #{orderId}
 	</select>
-	<select id="OrderHistoryProduct" resultMap="orderResult" parameterType="String">
 	
-	 select * from alleating_order_detail where orderId = #{orderId}
+	<!-- 주문 내역 상세 중 상품 정보들 -->
+	<select id="OrderHistoryProduct" resultMap="orderDetailResult" parameterType="String">
+	
+	 select * from alleating_order_detail
+	 
+	  where orderId = #{orderId}
+	  
+	  <if test="deliveryType == 'reserve'"	>
+	   		AND deliveryType = 'reserve'
+    </if>
+     <if test="deliveryType == 'normal'">
+     		AND deliveryType = 'normal'
+     </if>
 	</select>
 	
 	

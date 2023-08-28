@@ -22,4 +22,6 @@ public interface OrderService {
 	public Map OrderHistoryDetail (String orderId)throws DataAccessException; //주문내역 상세 정보들
 	
 	
+	
+	
 }
