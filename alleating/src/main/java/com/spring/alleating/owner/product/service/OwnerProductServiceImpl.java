@@ -94,13 +94,16 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 
 
 	@Override
-	public int removeproduct(int productId) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public void modifyproduct(Map goodsMap) throws Exception {
+		ownerProductDAO.updateproduct(goodsMap);	
 	}
 
 
-	
+	@Override
+	public void modifyproductImg(List<ProductImgVO> imageFileList) throws Exception {
+		ownerProductDAO.updateproductimg(imageFileList);
+	}
+
 
 	/*
 	 * @Override public int addProduct(Map productMap) throws Exception {
@@ -114,12 +117,6 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	 * return productId; }
 	 */
 	
-	
-
-
-
-
-		
 	}
 
 

@@ -149,7 +149,12 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	}
 	
 	 
-	
+		@Override
+		public ModelAndView ownerupdateproduct(int productId, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			
+			return null;
+		}
 
 	
 	
@@ -211,11 +216,5 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 
 
 
-	@Override
-	public ModelAndView removeProduct(String id, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

@@ -23,5 +23,9 @@ public interface OwnerProductDAO {
 	public List<ProductVO> selectAllOwnerProductList() throws Exception;
 	
 	public void deleteproduct(int productIdMap)throws DataAccessException;
+	
+	public void updateproduct(Map goodsMap) throws DataAccessException;
+	public void updateproductimg(List<ProductImgVO> imageFileList) throws DataAccessException;
 }
+
   
