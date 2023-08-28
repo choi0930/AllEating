@@ -4,7 +4,8 @@
     <% request.setCharacterEncoding("utf-8"); %>
     
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-     <c:set var="orderHistoryVO" value="${orderHistoryInfo.orderHistoryVO}" /><!--상품정보-->
+ <c:set var="orderDetailVO" value="${orderDetailInfo.orderDetailVO}" /><!--주문내역상세 정보-->
+<c:set var="orderProductList" value="${orderDetailInfo.orderProductList}" /><!--주문내역 상세 상품 정보들-->
     
     
     <link href="${contextPath}/css/myPage_02.css" rel="stylesheet" type="text/css" />
@@ -46,9 +47,11 @@ function OrderDeleteCallback(obj){
      </div>
     </div>
       
+       
     <div class="orderlistdetailview-under">
+    
      <div class="orderlist-time">
-      23081412345
+      <p>${orderDetailVO.orderId}</p>
      </div>
      <div class="order-problem-next">
       <span class="order-problem-next-text">
@@ -65,19 +68,21 @@ function OrderDeleteCallback(obj){
      </div>
      </div>
    
+    <c:forEach var="orderProductList" items="${orderProductList}">
     <div class="product-orderdetail">
+    
       <div class="product-orderdetail-pic">
-       <img src="${contextPath }/img/image_food/shinemuscat.jpg" width="150px" height="150px">
+   <img src="${contextPath}/download.do?fileName=${orderProductList.fileName}&productId=${orderProductList.productId}&cateCode=${orderProductList.cateCode}" alt="${orderProductList.fileName}" width="300px" height="300px">
       </div>
       <div class="product-orderdetail-line">
        <div class="product-orderdetail-line-2">
           <p></p>
         </div>
         <div class="product-orderdetail-line-2">
-          <p>13,990원</p>
+          <p>${orderProductList.productPrice}</p>
         </div>
         <div class="product-orderdetail-line-2">
-          <p>1개</p>
+          <p>${orderProductList.productQty}</p>
         </div>
       </div>
    
@@ -98,6 +103,7 @@ function OrderDeleteCallback(obj){
     
    
     </div>
+    </c:forEach>
     
     
     <div class="orderresult">

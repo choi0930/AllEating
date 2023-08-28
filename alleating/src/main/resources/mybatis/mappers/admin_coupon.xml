@@ -6,6 +6,7 @@
  	<resultMap id="couponResult" type="couponVO">
 		<result property="couponId" column="couponId" />
 		<result property="coupon_name" column="coupon_name" />
+		<result property="coupon_quantity" column="coupon_quantity" />
 		<result property="coupon_range" column="coupon_range" />
 		<result property="couponDiscountRate" column="couponDiscountRate" />
 		<result property="beginDate" column="beginDate" />
@@ -17,12 +18,29 @@
 	
 	<!-- 사용가능 및 배포중인 쿠폰 목록 -->
 	<select id="selectAllCoupons" resultMap="couponResult" parameterType="java.util.Map">
-		
+		 select t.* from(select * from coupon where coupon_endDate > sysdate()
+ 					and coupon_quantity > 0
+ 					and coupon_deleted='n'
+ 					order by creDate DESC) t limit 5 offset #{offset}
+	</select>
+	
+	<select id="selectCouponTotal" resultType="int" >
+			select count(*) from coupon where coupon_endDate > sysdate()
+ 					and coupon_quantity > 0
+ 					and coupon_deleted='n'
 	</select>
 	
 	<!-- 삭제 및 만료된 쿠폰 목록 -->
 	<select id="selectInvalidCoupons" resultMap="couponResult" parameterType="java.util.Map">
+		 select t.* from(select * from coupon where <![CDATA[coupon_endDate < sysdate()]]>
+ 				or coupon_quantity = 0
+ 				or coupon_deleted='y') t limit 5 offset #{offset2} 
+	</select>
 	
+	<select id="selectInvalidCouponTotal" resultType="int" >
+	select count(*) from coupon where <![CDATA[coupon_endDate < sysdate()]]>
+ 				or coupon_quantity = 0
+ 				or coupon_deleted='y'
 	</select>
 	
 	<select id="selectByCouponId" resultMap="couponResult" parameterType="String">
@@ -31,8 +49,8 @@
 	
 	<!-- 쿠폰 등록 -->
 	<insert id="insertCouponInfo" parameterType="couponVO">
-		insert into coupon (couponId, coupon_name, coupon_range, couponDiscountRate, beginDate, endDate, coupon_startDate, coupon_endDate)
-		values(#{couponId}, #{coupon_name}, #{coupon_range}, #{couponDiscountRate}, #{beginDate}, #{endDate}, #{coupon_startDate}, #{coupon_endDate})
+		insert into coupon (couponId, coupon_name, coupon_quantity, coupon_range, couponDiscountRate, beginDate, endDate, coupon_startDate, coupon_endDate)
+		values(#{couponId}, #{coupon_name}, #{coupon_quantity}, #{coupon_range}, #{couponDiscountRate}, #{beginDate}, #{endDate}, #{coupon_startDate}, #{coupon_endDate})
 	</insert>
 	
 	<!-- 쿠폰 상태 삭제로 변경 -->
@@ -41,7 +59,7 @@
 	</update>
 	<!-- 쿠폰 상태 변경 -->
 	<update id="modfiyCouponInfo" parameterType="couponVO" >
-		update coupon set coupon_name = #{coupon_name}, coupon_range = #{coupon_range}, couponDiscountRate=#{couponDiscountRate}, beginDate=#{beginDate}, endDate=#{endDate},
-		coupon_startDate = #{coupon_startDate}, coupon_endDate = #{coupon_endDate} where couponId = #{couponId}
+		update coupon set coupon_name = #{coupon_name}, coupon_range = #{coupon_range}, coupon_quantity=#{coupon_quantity},couponDiscountRate=#{couponDiscountRate}, beginDate=#{beginDate}, endDate=#{endDate},
+		coupon_startDate = #{coupon_startDate}, coupon_endDate = #{coupon_endDate} where couponId = #{couponId} where couponId = #{couponId}
 	</update>
 	</mapper>

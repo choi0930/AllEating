@@ -223,6 +223,7 @@ request.setCharacterEncoding("utf-8"); %>
         var productPrice;
         var cateCode;
         var fileName;
+        var deliveryType;
         var allEatingOrderDetailes = [];
 
         var length = $('input:checkbox[name=checked_cartId]:checked').length;
@@ -241,7 +242,7 @@ request.setCharacterEncoding("utf-8"); %>
              productQty = $('#qty' + checkCartId).val();
              cateCode = $('#cateCode_' + checkCartId).val();
              fileName = $('#fileName_' + checkCartId).val();
-
+             deliveryType = $('#h_deliveryType'+ checkCartId).val();
              allEatingOrderDetailes.push({
               productId: productId,
             productName: productName,
@@ -249,7 +250,8 @@ request.setCharacterEncoding("utf-8"); %>
             productDiscount: productDiscount,
             productQty: productQty,
             cateCode: cateCode,
-            fileName :fileName
+            fileName :fileName,
+            deliveryType : deliveryType
              });
       
           });
@@ -300,6 +302,7 @@ request.setCharacterEncoding("utf-8"); %>
           <input type="hidden" id="h_total_sum" value="" />
           <input type="hidden" id="h_deliveryPrice" value="" />
           <input type="hidden" id="h_td" value="" />
+          
 
         <div class="cart-text02">
           예약 배송 상품: ${reserveCount1}개
@@ -333,6 +336,7 @@ request.setCharacterEncoding("utf-8"); %>
                 </c:when>
                 <c:otherwise>
                   <c:forEach var="res" items="${resrve_product}">
+                    <input type="hidden" id="h_deliveryType${res.cartId}" value="${res.deliveryType}" />
                     <div id="cart-info">
                       <input
                         type="checkbox"
@@ -507,6 +511,7 @@ request.setCharacterEncoding("utf-8"); %>
                         src="${contextPath}/download.do?fileName=${normal.fileName}&productId=${normal.productId}&cateCode=${normal.cateCode}"
                         alt="${normal.fileName}"
                       />
+                      <input type="hidden" id="h_deliveryType${normal.cartId}" value="${normal.deliveryType}" />
                       <input type="hidden" id="cateCode_${normal.cartId}" value="${normal.cateCode}" />
                       <input type="hidden" id="productName_${normal.cartId}" value="${normal.productName}"/>
                       <input type="hidden" id="fileName_${normal.cartId}" value="${normal.fileName}"/>

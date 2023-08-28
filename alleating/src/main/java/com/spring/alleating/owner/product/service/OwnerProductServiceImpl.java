@@ -62,7 +62,8 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	
 
 	
-	  @Override public void removeproduct(int delproductId) throws DataAccessException{
+	  @Override 
+	  public void removeproduct(int delproductId) throws DataAccessException{
 		  ownerProductDAO.deleteproduct(delproductId);
 	  }
 	 
@@ -93,10 +94,12 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	}
 
 
+
 	@Override
 	public void modifyproduct(Map goodsMap) throws Exception {
 		ownerProductDAO.updateproduct(goodsMap);	
 	}
+
 
 
 	@Override
