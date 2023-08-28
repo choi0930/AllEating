@@ -14,7 +14,7 @@ import com.spring.alleating.coupon.vo.CouponVO;
 
 public interface AdminCouponController {
 	/*관리자 페이지 쿠폰 리스트 가져옴*/
-	public ModelAndView couponList(@RequestParam Map dataMap,HttpServletRequest request, HttpServletResponse response)throws Exception;
+	public ModelAndView couponList(@RequestParam Map<String, String> dataMap,HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/*관리자 페이지 쿠폰 추가*/
 	public ResponseEntity addCoupon(@ModelAttribute CouponVO couponVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/* 쿠폰 수정을 위한 쿠폰id로 정보 불러오기 */

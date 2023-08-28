@@ -62,7 +62,8 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	
 
 	
-	  @Override public void removeproduct(int delproductId) throws DataAccessException{
+	  @Override 
+	  public void removeproduct(int delproductId) throws DataAccessException{
 		  ownerProductDAO.deleteproduct(delproductId);
 	  }
 	 
