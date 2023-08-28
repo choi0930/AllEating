@@ -120,11 +120,12 @@ $("startDate").val(newDate)
      
     
    
-    
+     <a href="${contextPath }/myPage/myPage_02.do?orderId=${bbig.orderId}"> 
     <div class="product-order">
       
       <div class="product-order-pic">
-       <img src="${contextPath }/img/image_food/shinemuscat.jpg" width="150px" height="150px">
+     
+      <img src="${contextPath}/download.do?fileName=${bbig.fileName}&productId=${bbig.productId}&cateCode=${bbig.cateCode}" alt="${bbig.fileName}" width="240px" height="320px">
       </div>
       <div class="product-order-line">
        
@@ -156,7 +157,8 @@ $("startDate").val(newDate)
           </dd>
           </dl>
         </div>
-        </div>
+       
+        </a>
         </div>
           </c:forEach>
           

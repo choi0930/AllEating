@@ -15,7 +15,11 @@ public interface OrderService {
 	
 	public String pay(Map userOrder)throws DataAccessException;
 	
-	public Map selectOrderNum (String orderId) throws DataAccessException; //留덉씠�럹�씠吏� 二쇰Ц�궡�뿭
+	public Map selectOrderNum (String orderId) throws DataAccessException; //주문 완료
 	
-	public List selectOrderHistory (Map fffInfo) throws DataAccessException;
+	public List selectOrderHistory (Map fffInfo) throws DataAccessException; //주문 내역
+	
+	public Map OrderHistoryDetail (String orderId)throws DataAccessException; //주문내역 상세 정보들
+	
+	
 }

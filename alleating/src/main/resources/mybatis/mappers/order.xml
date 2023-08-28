@@ -123,10 +123,22 @@
 		]]>
 	</select>
 	
-	<!-- 마이페이지 주문 내역 -->
+	<!-- 주문 내역 -->
 	<select id="selectOrderHistory" resultMap="orderResult" parameterType="java.util.Map">
 	
 	 select * from alleating_order where id = #{id}
 	</select>
+	
+	<!-- 주문 내역 상세 중 제품들 정보 -->
+	<select id="OrderHistoryDetail" resultMap="orderResult" parameterType="String">
+	
+	 select * from alleating_order where orderId = #{orderId}
+	</select>
+	<select id="OrderHistoryProduct" resultMap="orderResult" parameterType="String">
+	
+	 select * from alleating_order_detail where orderId = #{orderId}
+	</select>
+	
+	
 	
   </mapper>

@@ -93,11 +93,6 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	}
 
 
-	@Override
-	public int removeproduct(int productId) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
 	

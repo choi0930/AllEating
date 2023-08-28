@@ -135,6 +135,20 @@ public class OrderServiceImpl implements OrderService{
 		/* return orderHistoryInfo; */
 		return orderHistoryVO;
 	}
+
+	@Override
+	public Map OrderHistoryDetail(String orderId) throws DataAccessException {
+		
+		AllEatingOrderVO orderDetailVO = orderDAO.OrderHistoryDetail(orderId);
+		List<AllEatingOrderDetailVO> orderProductList = orderDAO.OrderHistoryProduct(orderId);
+		
+		Map orderDetailInfo = new HashMap();
+		orderDetailInfo.put("orderDetailVO", orderDetailVO);
+		orderDetailInfo.put("orderProductList", orderProductList);
+		return orderDetailInfo;
+	}
+
+
 	
 	
 }

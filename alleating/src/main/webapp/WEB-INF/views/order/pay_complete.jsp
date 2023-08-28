@@ -23,7 +23,7 @@ request.setCharacterEncoding("utf-8"); %>
         <div class="paycomplete-ordernum">주문 번호:${payCompleteVO.orderId} </div>
         <div class="paycomplete-next">
           <div class="paycomplete-next-text-2">
-            <a href="${contextPath }/myPage/myPage_01.do?id=${payCompleteVO.id}"> 
+            <a href="${contextPath }/myPage/myPage_01.do?id=${loginMember.id}"> 
             <h6>주문 내역 확인하기</h6>
 
             <button class="triangle-button">
