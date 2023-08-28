@@ -95,8 +95,18 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 
 
 
+	@Override
+	public void modifyproduct(Map goodsMap) throws Exception {
+		ownerProductDAO.updateproduct(goodsMap);	
+	}
 
-	
+
+
+	@Override
+	public void modifyproductImg(List<ProductImgVO> imageFileList) throws Exception {
+		ownerProductDAO.updateproductimg(imageFileList);
+	}
+
 
 	/*
 	 * @Override public int addProduct(Map productMap) throws Exception {
@@ -110,12 +120,6 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	 * return productId; }
 	 */
 	
-	
-
-
-
-
-		
 	}
 
 

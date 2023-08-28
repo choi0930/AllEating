@@ -261,18 +261,30 @@ request.setCharacterEncoding("utf-8"); %>
                       </c:choose>
                     </td>
                     <td>
-                    	<a class="product_del_btn" href="${ContextPath}/owner/ModProduct.do?productId=${ownerProduct.productId}">
-          				수정
-      					 </a>
-                     <!--  <button type="button" class="product_mod_btn">
+                      <a
+                        class="product_del_btn"
+                        href="${ContextPath}/owner/modProduct.do?productId=${ownerProduct.productId}"
+                      >
+                        수정
+                      </a>
+                      <!--  <button type="button" class="product_mod_btn">
                         수정
                       </button> -->
-                       <a class="product_del_btn" href="${ContextPath}/owner/deleteProduct.do?productId=${ownerProduct.productId}">
-          				삭제
-      					 </a>
-                    <%--  <button type="button" class="product_del_btn"  onclick="location.href='${ContextPath }/owner/deleteProduct.do'">   											
+                      <a
+                        class="product_del_btn"
+                        href="${ContextPath}/owner/deleteProduct.do?productId=${ownerProduct.productId}"
+                      >
                         삭제
-                      </button> --%>
+                      </a>
+                      <%--
+                      <button
+                        type="button"
+                        class="product_del_btn"
+                        onclick="location.href='${ContextPath }/owner/deleteProduct.do'"
+                      >
+                        삭제
+                      </button>
+                      --%>
                     </td>
                   </tr>
                 </c:forEach>

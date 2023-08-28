@@ -149,7 +149,12 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	}
 	
 	 
-	
+		@Override
+		public ModelAndView ownerupdateproduct(int productId, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			
+			return null;
+		}
 
 	
 	
@@ -207,7 +212,6 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		mav.setViewName(viewName);
 		return mav;
 	}
-
 
 
 

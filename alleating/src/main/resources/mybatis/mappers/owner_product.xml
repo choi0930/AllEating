@@ -124,5 +124,44 @@
   		where
   		productId=#{productId}
  	</delete>
+ 	
+ 		<update id="updateproduct" parameterType="java.util.Map">
+  		update product
+  		set deliveryType=#{deliveryType},
+ 			deliveryPrice=#{deliveryPrice},
+ 			cateCode=#{cateCode},
+ 			productName=#{productName},
+ 			productPrice=#{productPrice},
+  			productDiscount=#{productDiscount},
+  			productSalesPrice=#{productSalesPrice},
+  			productUnit=#{productUnit},
+  			productPackType=#{productPackType},
+ 			productWeight=#{productWeight},
+  			productOrigin=#{productOrigin},
+  			productTotal=#{productTotal},
+			productExpireDate=#{productExpireDate},
+ 			productStatus=#{productStatus},
+ 			productBrand=#{productBrand},
+  			productContentTitle=#{productContentTitle},
+  			productContent=#{productContent},
+  			where
+  			productId=#{productId}
+    </update>
+    
+    <update id="updateproductimg" parameterType="productImgVO">
+  		update member
+  		set productId=#{productId},
+  			reg_id=#{reg_id},
+  			fileName=#{fileName},
+  			fileType=#{fileType},	    
+  			where
+  			imgId=#{imgId}
+    </update>
+    
+    <select id="selectproductById" resultType="productVO" parameterType="int">
+ 	 	select * from product
+ 	 	where
+  		productId=#{productId}
+	</select>
 	
 </mapper>
