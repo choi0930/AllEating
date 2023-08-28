@@ -26,10 +26,13 @@ public interface OwnerProductDAO {
 	
 	public void updateproduct(Map goodsMap) throws DataAccessException;
 	public void updateproductimg(List<ProductImgVO> imageFileList) throws DataAccessException;
-	public ProductVO selectproductDetail(int productId) throws DataAccessException;
-	public List selectproductImageFileList(int productId) throws DataAccessException;
+	public ProductVO productEditdata(int productId) throws DataAccessException;
+	public List productEditdataImg(int productId) throws DataAccessException; 
 	
 	
+//	 public ProductVO selectproductDetail(int productId) throws DataAccessException; 
+//	 public List selectproductImageFileList(int productId) throws DataAccessException;
+
 }
 
   

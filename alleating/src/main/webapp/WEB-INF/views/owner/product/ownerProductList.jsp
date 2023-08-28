@@ -263,7 +263,7 @@ request.setCharacterEncoding("utf-8"); %>
                     <td>
                       <a
                         class="product_del_btn"
-                        href="${ContextPath}/owner/ownerupdateproduct.do?productId=${ownerProduct.productId}"
+                        href="${ContextPath}/owner/ownerproducteditdetail.do?productId=${ownerProduct.productId}"
                       >
                         수정
                       </a>

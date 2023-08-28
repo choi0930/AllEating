@@ -148,24 +148,41 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 				return mav;	 	
 	}
 		
+	 	/* 수정한 사업자 상품 정보를 띄어주는 */
+//	   @RequestMapping(value="/owner/ownerupdateproduct.do"
+//	   ,method={RequestMethod.GET,RequestMethod.POST}) 
+//	   public ModelAndView ownerupdateproduct(@RequestParam("productId") int productId, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//	   String viewName=(String)request.getAttribute("viewName"); 
+//	   ModelAndView mav = new ModelAndView(viewName); 
+//	   Map goodsMap= ownerProductService.productDetail(productId);
+//	   mav.addObject("goodsMap",goodsMap); 
+//	   return mav; 
+//	   }
+	  
+	   
+	   
+		/* 사업자 상품 수정 정보 불러오는 */
+		@Override
+		@RequestMapping(value="/owner/ownerproducteditdetail.do", method = RequestMethod.GET)
+		public ModelAndView ownerproducteditdetail(int productId, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			Map producteditInfo = new HashMap<>();
+			producteditInfo = ownerProductService.productEditService(productId);
+			String viewName = (String) request.getAttribute("viewName");
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("producteditInfo", producteditInfo);
+			mav.setViewName(viewName);
+			return mav;
+		}
+	 
 	/*
-	 * @RequestMapping(value="/owner/ownerupdateproduct.do"
-	 * ,method={RequestMethod.GET,RequestMethod.POST}) public ModelAndView
-	 * ownerupdateproduct(@RequestParam("productId") int productId,
-	 * HttpServletRequest request, HttpServletResponse response) throws Exception {
-	 * String viewName=(String)request.getAttribute("viewName"); ModelAndView mav =
-	 * new ModelAndView(viewName); Map goodsMap=
-	 * ownerProductService.productDetail(productId);
-	 * mav.addObject("goodsMap",goodsMap); return mav; }
-	 * 
-	 * 
-	 * 
 	 * @Override public void modifyProductImageInfo(MultipartHttpServletRequest
 	 * multipartRequest, HttpServletResponse response) throws Exception { // TODO
 	 * Auto-generated method stub
 	 * 
 	 * }
 	 */
+	 
 		/*
 		 * @RequestMapping(value="/modifyProductForm.do"
 		 * ,method={RequestMethod.GET,RequestMethod.POST}) public ModelAndView
@@ -235,7 +252,6 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		mav.setViewName(viewName);
 		return mav;
 	}
-
 
 
 }
