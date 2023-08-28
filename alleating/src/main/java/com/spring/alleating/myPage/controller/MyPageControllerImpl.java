@@ -23,15 +23,15 @@ public class MyPageControllerImpl{
 	 * = new ModelAndView(); mav.setViewName(viewName); return mav; }
 	 */
 	
-	@RequestMapping(value="/myPage/myPage_02.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView myPage_02(HttpServletRequest request, HttpServletResponse response)throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
-	}
-	
+	/*
+	 * @RequestMapping(value="/myPage/myPage_02.do", method = {RequestMethod.GET,
+	 * RequestMethod.POST}) public ModelAndView myPage_02(HttpServletRequest
+	 * request, HttpServletResponse response)throws Exception { String viewName =
+	 * (String) request.getAttribute("viewName");
+	 * 
+	 * ModelAndView mav = new ModelAndView(); mav.setViewName(viewName); return mav;
+	 * }
+	 */
 	@RequestMapping(value="/myPage/myPage_03.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView myPage_03(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();

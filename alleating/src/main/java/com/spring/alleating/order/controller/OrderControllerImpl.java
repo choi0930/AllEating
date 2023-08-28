@@ -167,7 +167,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
-		session.setAttribute("id", id);
+	
 		/* String _id = request.getParameter(id); */
 		
 		/*
@@ -178,6 +178,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
+		
 		
 		 Map fffInfo = new HashMap<>(); 
 			
@@ -190,8 +191,27 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		return mav;
 	}
+
 	
 	
+	/* 마이페이지 주문내역 상세페이지 */
+	@Override
+	@RequestMapping(value="/myPage/myPage_02.do", method = RequestMethod.GET)
+	public ModelAndView OrderHistoryDetail(@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session = request.getSession(); //얘가 없으면
+		session.setAttribute("side_menuType", "my_page"); //세션에 키와 값을 줄 지정할 수 없음
+		
+		Map orderDetailInfo = new HashMap<>();
+		orderDetailInfo = orderService.OrderHistoryDetail(orderId);
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		
+		mav.addObject("orderDetailInfo", orderDetailInfo);
+		return mav;
+	}
 
 	
 	
