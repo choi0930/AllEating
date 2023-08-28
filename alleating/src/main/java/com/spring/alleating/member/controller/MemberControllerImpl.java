@@ -86,7 +86,7 @@ public class MemberControllerImpl implements MemberController {
 	public ModelAndView logOut(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		session.setAttribute("isLoginOn",false);
+		session.setAttribute("isLoginON",false);
 		session.removeAttribute("loginMember");
 		mav.setViewName("redirect:/main.do");
 		return mav;

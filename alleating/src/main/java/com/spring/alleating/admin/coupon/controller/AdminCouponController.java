@@ -22,5 +22,5 @@ public interface AdminCouponController {
 	/*관리자 페이지 쿠폰 정보 삭제 처리*/
 	public String delCouponInfo(@RequestParam("couponId")String couponId, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/*관리자 페이지 쿠폰 정보 수정*/
-	public ModelAndView modfiyCouponInfo(@RequestParam CouponVO couponVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	public ResponseEntity modfiyCouponInfo(@ModelAttribute CouponVO couponVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
 }
