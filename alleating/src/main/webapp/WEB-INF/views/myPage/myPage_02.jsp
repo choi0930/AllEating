@@ -101,8 +101,10 @@ function OrderDeleteCallback(obj){
    
       <div class="orderdetailview">
        <div class="orderdetailview-2">
-        <a class="orderdetailview-3" >후기 작성 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>   
+
+        <a href="${contextPath }/myPage/myPage_review.do" class="orderdetailview-3" >후기 작성 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>   
        </div>
+      
        <div class="orderdetailview-2">
         <a class="orderdetailview-3" >장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        </div>

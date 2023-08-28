@@ -159,6 +159,19 @@
      </if>
 	</select>
 	
+	<!-- 상품 후기 조회 -->
+	<select id="selectUserReview" resultMap="orderResult" parameterType="java.util.Map">
+		
+		
+
+   				SELECT a.orderId, b.productId, b.fileName, b.cateCode, b.productName, b.productBrand
+   				FROM alleating_order a
+   				INNER JOIN alleating_order_detail b ON a.orderId = b.orderId
+    			where a.id = #{id}
+    			and b.delivery_status = 'delivery_complete';
+				
+		
+	</select>
 	
 	
   </mapper>

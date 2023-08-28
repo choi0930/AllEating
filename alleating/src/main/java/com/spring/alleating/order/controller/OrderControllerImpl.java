@@ -214,7 +214,24 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		return mav;
 	}
 
-	
+	@Override
+	@RequestMapping(value="/myPage/myPage_review.do", method = RequestMethod.GET)
+	public ModelAndView selectUserReview(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		session.setAttribute("selectedTab", "tab-1");
+		
+		Map userReviewInfo = new HashMap<>();
+		userReviewInfo = orderService.selectUserReview(id);
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		
+		mav.addObject("userReviewInfo",userReviewInfo);
+		return mav;
+	}
 
 	
 	

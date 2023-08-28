@@ -21,7 +21,7 @@ public interface OrderService {
 	
 	public Map OrderHistoryDetail (String orderId)throws DataAccessException; //주문내역 상세 정보들
 	
-	
+	public Map selectUserReview(String id) throws DataAccessException; //상품후기 조회
 	
 	
 }

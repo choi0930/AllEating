@@ -25,5 +25,5 @@ public interface OrderController {
 
     public ModelAndView OrderHistoryDetail(@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse resonse) throws Exception;
     
-  
+    public ModelAndView selectUserReview(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

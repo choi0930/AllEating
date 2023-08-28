@@ -164,7 +164,19 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	
-
+	@Override
+	public Map selectUserReview(String id) throws DataAccessException {
+		  Map userReviewInfo = new HashMap();
+		
+		  Map _userReviewInfo = new HashMap();
+		List<AllEatingOrderVO> reviewList = orderDAO.selectUserReview(_userReviewInfo);
+		
+		
+		/* userReviewInfo.put("id", id); */
+		userReviewInfo.put("reviewList", reviewList);
+		
+		return userReviewInfo;
+	}
 
 	
 	
