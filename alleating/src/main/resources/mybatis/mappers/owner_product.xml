@@ -118,6 +118,11 @@
 	
 	</insert>
 	
+	<select id="selectproductById" resultType="productVO" parameterType="int">
+ 	 	select * from product
+ 	 	where
+  		productId=#{productId}
+	</select>
 	
 	<delete id="deleteproduct" parameterType="int">
   		delete from product
@@ -158,10 +163,14 @@
   			imgId=#{imgId}
     </update>
     
-    <select id="selectproductById" resultType="productVO" parameterType="int">
- 	 	select * from product
- 	 	where
-  		productId=#{productId}
+	
+	<select id="selectproductImageFileList" resultMap="productImgResult"   parameterType="String"  >
+	    <![CDATA[
+		    	select * from  product_img
+		    	where  
+			    productId=#{productId}
+			    order by imgId asc
+    	]]>
 	</select>
 	
 </mapper>

@@ -24,7 +24,11 @@ public interface OwnerProductService {
 	
 	public void removeproduct(int productId) throws DataAccessException;
 	
-	public void modifyproduct(Map goodsMap) throws Exception;
-	public void modifyproductImg(List<ProductImgVO> imageFileList) throws Exception;
+	/*
+	 * public void modifyproduct(Map goodsMap) throws Exception; public void
+	 * modifyproductImg(List<ProductImgVO> imageFileList) throws Exception; public
+	 * Map productDetail(int productId) throws Exception; public Map
+	 * productImageFile(int productId) throws Exception;
+	 */
 			
 }

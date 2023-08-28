@@ -147,16 +147,39 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			 ModelAndView mav = new ModelAndView("redirect:/owner/ownerProductList.do");
 				return mav;	 	
 	}
-	
-	 
-		@Override
-		public ModelAndView ownerupdateproduct(int productId, HttpServletRequest request, HttpServletResponse response)
-				throws Exception {
-			
-			return null;
-		}
-
-	
+		
+	/*
+	 * @RequestMapping(value="/owner/ownerupdateproduct.do"
+	 * ,method={RequestMethod.GET,RequestMethod.POST}) public ModelAndView
+	 * ownerupdateproduct(@RequestParam("productId") int productId,
+	 * HttpServletRequest request, HttpServletResponse response) throws Exception {
+	 * String viewName=(String)request.getAttribute("viewName"); ModelAndView mav =
+	 * new ModelAndView(viewName); Map goodsMap=
+	 * ownerProductService.productDetail(productId);
+	 * mav.addObject("goodsMap",goodsMap); return mav; }
+	 * 
+	 * 
+	 * 
+	 * @Override public void modifyProductImageInfo(MultipartHttpServletRequest
+	 * multipartRequest, HttpServletResponse response) throws Exception { // TODO
+	 * Auto-generated method stub
+	 * 
+	 * }
+	 */
+		/*
+		 * @RequestMapping(value="/modifyProductForm.do"
+		 * ,method={RequestMethod.GET,RequestMethod.POST}) public ModelAndView
+		 * modifyGoodsForm(@RequestParam("productId") int productId, HttpServletRequest
+		 * request, HttpServletResponse response) throws Exception { String
+		 * viewName=(String)request.getAttribute("viewName"); ModelAndView mav = new
+		 * ModelAndView(viewName);
+		 * 
+		 * Map goodsMap=adminGoodsService.goodsDetail(productId);
+		 * mav.addObject("goodsMap",goodsMap);
+		 * 
+		 * return mav; }
+		 */
+		
 	
 	/*
 	 * @Override
@@ -212,8 +235,6 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		mav.setViewName(viewName);
 		return mav;
 	}
-
-
 
 
 
