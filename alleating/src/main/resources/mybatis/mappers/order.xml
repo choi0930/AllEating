@@ -105,14 +105,18 @@
 					productPrice,
 					productDiscount,
 					productQty,
-					cateCode
+					cateCode,
+					fileName,
+					deliveryType
 		)values(
 					#{orderId},
 					#{productId},
 					#{productPrice},
 					#{productDiscount},
 					#{productQty},
-					#{cateCode}
+					#{cateCode},
+					#{fileName},
+					#{deliveryType}
 					)
 		
 	</insert>

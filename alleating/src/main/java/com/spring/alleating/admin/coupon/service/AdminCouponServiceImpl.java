@@ -1,5 +1,7 @@
 package com.spring.alleating.admin.coupon.service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -20,7 +22,18 @@ public class AdminCouponServiceImpl implements AdminCouponService {
 	@Override
 	public Map couponList(Map couponMap) throws DataAccessException {
 		
-		return null;
+		List<CouponVO> useCouponList = adminCouponDAO.selectAllCoupons(couponMap);
+		int total = adminCouponDAO.selectCouponTotal();
+		List<CouponVO> invalidCouponList = adminCouponDAO.selectInvalidCoupons(couponMap);
+		int total2 = adminCouponDAO.selectInvalidCouponTotal();
+		
+		Map couponInfo = new HashMap<>();
+		couponInfo.put("useCouponList", useCouponList);
+		couponInfo.put("total", total);
+		couponInfo.put("invalidCouponList", invalidCouponList);
+		couponInfo.put("total2", total2);
+		
+		return couponInfo;
 	}
 	/*관리자 페이지 쿠폰 추가*/
 	@Override

@@ -1,5 +1,6 @@
 package com.spring.alleating.admin.coupon.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,11 +32,50 @@ public class AdminCouponControllerImpl extends BaseController implements AdminCo
 	
 	@Override
 	@RequestMapping(value="/admin/couponList.do", method = RequestMethod.GET)
-	public ModelAndView couponList(@RequestParam Map dataMap, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView couponList(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
+		String section = dataMap.get("section");
+		String pageNum = dataMap.get("pageNum");
+		
+		String section2 = dataMap.get("section2");
+		String pageNum2 = dataMap.get("pageNum2");
+		
+		Map<String,Object> condMap=new HashMap<String,Object>();
+		if(section== null) {
+			section = "1";
+		}
+		
+		if(pageNum== null) {
+			pageNum = "1";
+		}
+		if(section2== null) {
+			section2 = "1";
+		}
+		
+		if(pageNum2== null) {
+			pageNum2 = "1";
+		}
+		
+		int _section = Integer.parseInt(section);
+		int _pageNum = Integer.parseInt(pageNum);
+		 int offset = (_section-1) * 100 +(_pageNum-1) * 5;
+		condMap.put("offset",offset);
+		condMap.put("secion", section);
+		condMap.put("pageNum", pageNum);
+		
+		int _seciont2 = Integer.parseInt(section2);
+		int _pageNum2 = Integer.parseInt(pageNum2);
+		int offset2 = (_seciont2-1) * 100 +(_pageNum2-1) * 5;
+		condMap.put("offset2",offset2);
+		condMap.put("secion2", section2);
+		condMap.put("pageNum2", pageNum2);
+		
+		Map couponMap = adminCouponService.couponList(condMap);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
+		mav.addObject("couponMap", couponMap);
 		return mav;
 	}
 	
