@@ -37,6 +37,45 @@ public class AllEatingOrderVO {
 	private String cateCode;
 	private String fileName;
 	private int productId;
+	
+	private int productQty;
+	private String productBrand;
+	private int productPrice;
+	private int productDiscount;
+	private String delivery_status;
+	
+	
+	
+	public int getProductQty() {
+		return productQty;
+	}
+	public void setProductQty(int productQty) {
+		this.productQty = productQty;
+	}
+	public String getProductBrand() {
+		return productBrand;
+	}
+	public void setProductBrand(String productBrand) {
+		this.productBrand = productBrand;
+	}
+	public int getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+	public int getProductDiscount() {
+		return productDiscount;
+	}
+	public void setProductDiscount(int productDiscount) {
+		this.productDiscount = productDiscount;
+	}
+	public String getDelivery_status() {
+		return delivery_status;
+	}
+	public void setDelivery_status(String delivery_status) {
+		this.delivery_status = delivery_status;
+	}
 	public String getOrderId() {
 		return orderId;
 	}

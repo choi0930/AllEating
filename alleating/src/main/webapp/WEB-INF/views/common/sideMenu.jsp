@@ -317,7 +317,7 @@ text-decoration:none;}
                         </ul>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="#">배송/주문 관리
+                        <a class="side_aTag" href="${contextPath}/admin/adminOrderList.do">배송/주문 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
