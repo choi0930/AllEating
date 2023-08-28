@@ -29,4 +29,7 @@ public interface AdminProductController {
 	/* 사업자 상품 등록 승인 or 거절 */
 	public String modifyProductStatus(@RequestParam ("productId")String productId, @RequestParam("productStatus")String productStatus)throws Exception;
 	
+	/* 관리자 상품 수정 페이지 이동 */
+	public ModelAndView modProduct(@RequestParam("productId")String productId, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	
 }

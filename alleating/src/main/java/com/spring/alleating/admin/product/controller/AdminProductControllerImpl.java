@@ -225,6 +225,22 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 	}
 	/*---------------------------------사업자 상품 등록 승인 or 거절 끝------------------------------------*/
 	
+	/* 관리자 상품 수정 페이지 이동 */
+	@Override
+	@RequestMapping(value="/admin/adminModProductForm.do", method = RequestMethod.GET)
+	public ModelAndView modProduct(@RequestParam("productId")String productId, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		Map productInfo = new HashMap<>();
+		productInfo = adminProductService.selectProductDetail(productId);
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("productInfo", productInfo);
+		mav.setViewName(viewName);
+		
+		return mav;
+	}
+	
+	/*---------------------------------관리자 상품 수정 페이지 이동 끝------------------------------------*/
 	//폼이동
 	@RequestMapping(value="/admin/*Form.do",method = RequestMethod.GET)
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{

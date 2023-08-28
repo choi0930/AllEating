@@ -27,11 +27,11 @@
 		<result property="productName" column="productName" />
 		<result property="cateCode" column="cateCode" />
         <result property="fileName" column="fileName" />
-      
+      <result property="productId" column="productId" />
         <result property="productBrand" column="productBrand" />
 					
-		
-		
+		<result property="productDiscount" column="productDiscount" />
+			<result property="delivery_status" column="delivery_status" />
 	</resultMap>
 	<resultMap id="orderDetailResult" type="allEatingOrderDetailVO">
 		<result property="order_seq_num" column="order_seq_num" />
