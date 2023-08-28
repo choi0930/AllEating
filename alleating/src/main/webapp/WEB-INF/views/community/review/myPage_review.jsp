@@ -4,6 +4,9 @@ uri="http://java.sun.com/jsp/jstl/core" %> <%
 request.setCharacterEncoding("utf-8"); %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<c:set var="reviewList" value="${userReviewInfo.reviewList}" />
+
+
 <link
   href="${contextPath}/css/myPage_review.css"
   rel="stylesheet"
@@ -60,25 +63,32 @@ request.setCharacterEncoding("utf-8"); %>
         </div>
       </div>
 
+
+
+ 
       <div
         id="tab-1"
         class="tab-content ${selectedTab == 'tab-1' ? 'active' : ''}"
       >
+      
+      <div>
+      <c:forEach var="review" items="${reviewList}">
         <div class="want_02">
           <div class="capture">
-            <img
-              src="${contextPath}/img/image_food/shinemuscat.JPG"
-              width="120"
-              height="120"
-              alt="Image 2"
-            />
+             <img src="${contextPath}/download.do?fileName=${review.fileName}&productId=${review.productId}&cateCode=${review.cateCode}" alt="${review.fileName}" width="150px" height="150px">
+          </div>
           </div>
           <div class="qwe">
-            <div class="detail_01"><h4>[All Eating] 샤인머스켓</h4></div>
-            <div class="detail_01"><h5 id="asd">35,000원</h5></div>
-            <div class="detail_01"><h5 id="asd">2개</h5></div>
-            <div class="detail_01"><h5 id="asd">배송완료</h5></div>
+            <div class="detail_01"><h4>[${review.productBrand}]</h4><h4>${review.productName}</h4>
+            </div>
+            </div>
+           
+              </c:forEach>
+            </div>
           </div>
+          
+          
+          
           <div class="text04">
             <div class="form_end">
               <button class="join_censel_btn" onclick="fn_loginGO()">
@@ -86,32 +96,9 @@ request.setCharacterEncoding("utf-8"); %>
               </button>
             </div>
           </div>
-        </div>
-
-        <div class="want_02">
-          <div class="capture">
-            <img
-              src="${contextPath}/img/image_food/peach.jpg"
-              width="120"
-              height="120"
-              alt="Image 2"
-            />
-          </div>
-          <div class="qwe">
-            <div class="detail_01"><h4>[서형이네] 천중도 백도 복숭아</h4></div>
-            <div class="detail_01"><h5 id="asd">18,900원</h5></div>
-            <div class="detail_01"><h5 id="asd">1개</h5></div>
-            <div class="detail_01"><h5 id="asd">배송완료</h5></div>
-          </div>
-          <div class="text04">
-            <div class="form_end">
-              <button class="join_censel_btn" onclick="fn_loginGO()">
-                <span id="join_btn_text">후기 쓰기</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+        
+      
+     
 
       <div
         id="tab-2"
