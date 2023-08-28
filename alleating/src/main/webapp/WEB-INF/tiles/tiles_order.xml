@@ -9,12 +9,15 @@
 		<put-attribute name="title" value="예약배송 일자선택"/>
 		<put-attribute name="body" value="/WEB-INF/views/order/pay_01.jsp"/>      
 	</definition>
+    
     <definition name="/order/pay_02" extends="baseLayout">
 		<put-attribute name="title" value="결제창"/>
 		<put-attribute name="body" value="/WEB-INF/views/order/pay_02.jsp"/>      
 	</definition>
+	
 	<definition name="/order/pay_complete" extends="baseLayout" >
 		<put-attribute name="title" value="주문 완료"/>
 		<put-attribute name="body" value="/WEB-INF/views/order/pay_complete.jsp"/>
 	</definition>
+	
 </tiles-definitions>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.alleating.admin.coupon.service.AdminCouponService;
@@ -112,10 +113,12 @@ public class AdminCouponControllerImpl extends BaseController implements AdminCo
 	
 	
 	@Override
+	@ResponseBody
 	@RequestMapping(value="/admin/delCoupon.do", method = RequestMethod.POST)
 	public String delCouponInfo(@RequestParam("couponId")String couponId, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		return null;
+		adminCouponService.delCouponInfo(couponId);
+		return "success";
 	}
 	
 	/* 쿠폰 수정을 위한 쿠폰id로 정보 불러오기 */
@@ -131,14 +134,38 @@ public class AdminCouponControllerImpl extends BaseController implements AdminCo
 		mav.setViewName(viewName);
 		return mav;	
 		}
-
+	/*------------------------------------쿠폰 수정을 위한 쿠폰id로 정보 불러오기 끝----------------------------------------------*/
+	
+	
+	/* 쿠폰 정보 수정 */
 	@Override
 	@RequestMapping(value="/admin/modifyCoupon.do", method = RequestMethod.POST)
-	public ModelAndView modfiyCouponInfo(@RequestParam CouponVO couponVO, HttpServletRequest request, HttpServletResponse response)
+	public ResponseEntity modfiyCouponInfo(@ModelAttribute CouponVO couponVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		try {
+			int result = adminCouponService.modfiyCouponInfo(couponVO);
+			message= "<script>";
+			message += " alert('쿠폰정보를 수정했습니다.');";
+			message +=" location.href='"+request.getContextPath()+"/admin/couponList.do';";
+			message +="</script>";
+		} catch (Exception e) {
+			e.printStackTrace();
+			message= "<script>";
+			message += " alert('쿠폰 정보수정을 실패했습니다.');";
+			message +=" location.href='"+request.getContextPath()+"/admin/couponList.do';";
+			message +="</script>";
+			
+		}
 		
-		return null;
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
+	/*------------------------------------쿠폰 정보 수정 끝----------------------------------------------*/
 	
 	//폼이동
 		@RequestMapping(value="/admin/*CouponForm.do",method = RequestMethod.GET)

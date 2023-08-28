@@ -224,6 +224,7 @@ request.setCharacterEncoding("utf-8"); %>
         var cateCode;
         var fileName;
         var deliveryType;
+        var productBrand;
         var allEatingOrderDetailes = [];
 
         var length = $('input:checkbox[name=checked_cartId]:checked').length;
@@ -243,6 +244,7 @@ request.setCharacterEncoding("utf-8"); %>
              cateCode = $('#cateCode_' + checkCartId).val();
              fileName = $('#fileName_' + checkCartId).val();
              deliveryType = $('#h_deliveryType'+ checkCartId).val();
+             productBrand = $('#h_productBrand'+checkCartId).val();
              allEatingOrderDetailes.push({
               productId: productId,
             productName: productName,
@@ -251,7 +253,8 @@ request.setCharacterEncoding("utf-8"); %>
             productQty: productQty,
             cateCode: cateCode,
             fileName :fileName,
-            deliveryType : deliveryType
+            deliveryType : deliveryType,
+            productBrand : productBrand
              });
       
           });
@@ -336,7 +339,7 @@ request.setCharacterEncoding("utf-8"); %>
                 </c:when>
                 <c:otherwise>
                   <c:forEach var="res" items="${resrve_product}">
-                    <input type="hidden" id="h_deliveryType${res.cartId}" value="${res.deliveryType}" />
+                    
                     <div id="cart-info">
                       <input
                         type="checkbox"
@@ -354,7 +357,8 @@ request.setCharacterEncoding("utf-8"); %>
                       <input type="hidden" id="cateCode_${res.cartId}" value="${res.cateCode}" />
                       <input type="hidden" id="productName_${res.cartId}" value="${res.productName}"/>
                       <input type="hidden" id="fileName_${res.cartId}" value="${res.fileName}"/>
-                      
+                      <input type="hidden" id="h_deliveryType${res.cartId}" value="${res.deliveryType}" />
+                      <input type="hidden" id="h_productBrand${res.cartId}" value="${res.productBrand}"  /> 
                       <div class="cart-text03">
                         <h5>[${res.productBrand}]<br />${res.productName}</h5>
                       </div>

@@ -19,7 +19,7 @@ public class AllEatingOrderDetailVO {
 	private String productBrand;
 	
 	
-	
+
 	public String getProductBrand() {
 		return productBrand;
 	}

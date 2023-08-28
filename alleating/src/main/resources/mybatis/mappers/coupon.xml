@@ -8,16 +8,28 @@
 		<result property="couponId" column="couponId" />
 		<result property="coupon_name" column="coupon_name" />
 		<result property="coupon_range" column="coupon_range" />
+		<result property="couponDiscountRate" column="couponDiscountRate" />
+		<result property="coupon_quantity" column="coupon_quantity" />
 		<result property="beginDate" column="beginDate" />
 		<result property="endDate" column="endDate" />
+		<result property="coupon_startDate" column="coupon_startDate" />
+		<result property="coupon_endDate" column="coupon_endDate" />
+		<result property="coupon_deleted" column="coupon_deleted" />
 </resultMap>
 
- <resultMap id="userCouponResult" type="userCouponVO">
+<resultMap id="userCouponResult" type="userCouponVO">
 		<result property="couponId" column="couponId" />
 		<result property="id" column="id" />
 </resultMap>
 
 	<select id="selectUserCoupon" resultMap="userCouponResult" parameterType="String">
 		select * from usercoupon where id = #{id}
+	</select>
+	
+	<select id="selectAllCouponList" resultMap="couponResult">
+		 select * from coupon where coupon_endDate > sysdate()
+ 					and coupon_quantity > 0
+ 					and coupon_deleted='n'
+ 					order by creDate DESC
 	</select>
  </mapper>

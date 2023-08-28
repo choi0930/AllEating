@@ -31,7 +31,7 @@ public interface AdminCouponDAO {
 	public int insertCouponInfo(CouponVO couponVO)throws DataAccessException;
 	
 	/* 쿠폰 상태 삭제로 변경 */
-	public int delCouponInfo(Map couponInfo)throws DataAccessException;
+	public int delCouponInfo(String couponId)throws DataAccessException;
 	
 	/* 쿠폰 상태 변경 */
 	public int modfiyCouponInfo(CouponVO couponVO)throws DataAccessException;

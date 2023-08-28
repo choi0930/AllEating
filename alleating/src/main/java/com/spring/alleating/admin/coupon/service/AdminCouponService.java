@@ -14,7 +14,7 @@ public interface AdminCouponService {
 	/* 쿠폰 수정을 위한 쿠폰id로 정보 불러오기 */	
 	public CouponVO couponFindByCouponId(String couponId)throws DataAccessException;
 	/*관리자 페이지 쿠폰 정보 삭제 처리*/
-	public int delCouponInfo(Map couponInfo)throws DataAccessException;
+	public int delCouponInfo(String couponId)throws DataAccessException;
 	/*관리자 페이지 쿠폰 정보 수정*/
 	public int modfiyCouponInfo(CouponVO couponVO)throws DataAccessException;
 }

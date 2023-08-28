@@ -206,7 +206,13 @@ a{
     border: 1px solid gainsboro;
     animation: 0.5s linear 0s 1 normal none running animation-plwpox;
 }
-
+#adminOrOwner_icon{
+	margin-left: 10px;
+}
+#coupon_icon{
+    margin-left: 13px;
+	
+}
 #water_categroy, #hide_cate, #noodle_categroy, #salad_categroy, #mainFood_categroy, #meat_categroy, #fish_categroy, #fruit_categroy, #vagetable_categroy{
 	display: none;
 }

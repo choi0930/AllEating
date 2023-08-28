@@ -47,7 +47,6 @@
 		<result property="productName" column="productName" />
 		<result property="fileName" column="fileName" />
 		<result property="productBrand" column="productBrand" />
-		
 	</resultMap>
 	
 	<!-- 상품 상세페이지에서 바로 주문 -->
