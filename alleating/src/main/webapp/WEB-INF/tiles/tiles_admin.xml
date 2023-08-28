@@ -43,7 +43,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/coupon/addCouponForm.jsp"/>      
 	</definition>
 	
-	<definition name="/admin/modCouponForm.do" extends="baseLayout2">
+	<definition name="/admin/modCouponForm" extends="baseLayout2">
 		<put-attribute name="title" value="관리자 쿠폰 수정 페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/admin/coupon/modCouponForm.jsp"/>      
 	</definition>

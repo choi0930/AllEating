@@ -166,20 +166,10 @@ $(function(){$('.header_nav').hover(
       </div>
       <div class="allEating_header">
         <div class="header_button_group">
-          <div>
+          <div> 
             <c:choose>
-              <c:when test="${loginMember.join_type == 'user'}">
+              <c:when test="${isLoginON == true}">
                 <a href="${contextPath }/myPage/myPage_01.do?id=${loginMember.id}" id="user_icon">
-                  <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
-                </a>
-              </c:when>
-               <c:when test="${loginMember.join_type == 'owner'}">
-                <a href="${contexPath}/owner/ownerProductList.do" id="user_icon">
-                  <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
-                </a>
-              </c:when>
-               <c:when test="${loginMember.join_type == 'admin'}">
-                <a href="${contexPath}/admin/productMain.do" id="user_icon">
                   <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
                 </a>
               </c:when>
@@ -193,13 +183,37 @@ $(function(){$('.header_nav').hover(
           </div>
           <div>
             <a href="#" id="wish_icon">
-              <img src="${contextPath}/img/headerImg/icon/free-icon-heart.png" alt="찜목록icon" width="29px" height="35px">
+              <img src="${contextPath}/img/headerImg/icon/free-icon-heart.png" alt="찜목록icon" width="29px" height="35px" />
+            </a>
+          </div>
+          <div>
+            <a href="${contextPath}/coupon/couponList.do" id="coupon_icon">
+              <img src="${contextPath}/img/headerImg/icon/icon-coupon.png" alt="쿠폰icon" width="29px" height="35px" />
             </a>
           </div>
           <div>
             <a href="${contextPath}/cart/myCart.do" id="cart_icon">
               <img src="${contextPath}/img/headerImg/icon/free-icon-shopping-cart.png" alt="장바구니icon" width="29px" height="35px">
             </a>
+          </div>
+          <div>
+            <c:choose>
+              
+              <c:when test="${loginMember.join_type == 'admin'}">
+                <!--관리자-->
+                <a href = "${contexPath}/admin/productMain.do" id="adminOrOwner_icon">
+                  <img src="${contextPath}/img/headerImg/icon/icon-gear.png" alt="관리자icon" width="29px" height="35px" />
+                </a>
+              </c:when>
+              
+              <c:when test="${loginMember.join_type == 'owner'}">
+                <!--사업자-->
+                <a href = "${contexPath}/owner/ownerProductList.do" id="adminOrOwner_icon">
+                  <img src="${contextPath}/img/headerImg/icon/icon-gear.png" alt="관리자icon" width="29px" height="35px" />
+                </a>
+              </c:when>
+            </c:choose>
+           
           </div>
         </div><!--end header_button_group-->
       </div><!--end allEating_header-->

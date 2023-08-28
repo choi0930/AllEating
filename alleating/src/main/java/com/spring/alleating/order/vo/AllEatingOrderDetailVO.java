@@ -16,9 +16,16 @@ public class AllEatingOrderDetailVO {
 	
 	private String productName;
 	private String fileName;
+	private String productBrand;
 	
 	
-	
+
+	public String getProductBrand() {
+		return productBrand;
+	}
+	public void setProductBrand(String productBrand) {
+		this.productBrand = productBrand;
+	}
 	public String getFileName() {
 		return fileName;
 	}

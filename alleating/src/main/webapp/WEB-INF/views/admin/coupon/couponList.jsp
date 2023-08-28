@@ -11,7 +11,7 @@ request.setCharacterEncoding("utf-8"); %>
 <html>
   <head>
     <title>관리자 쿠폰관리 페이지</title>
-    <script></script>
+
     <style>
       .topArea {
         display: flex;
@@ -66,6 +66,29 @@ request.setCharacterEncoding("utf-8"); %>
       function fn_addCoupon() {
         location.href = "${contextPath}/admin/addCouponForm.do";
       }
+
+      function fn_modCouponForm(couponId) {
+        location.href =
+          "${contextPath}/admin/modCouponForm.do?couponId=" + couponId;
+      }
+
+      function fn_delCoupon(couponId) {
+        $.ajax({
+          type: "POST",
+          async: true,
+          url: "/admin/delCoupon.do",
+          data: {
+            couponId: couponId,
+          },
+          success: function (data) {
+            alert("쿠폰 삭제 완료");
+            location.href = "${contextPath}/admin/couponList.do";
+          },
+          error: function (data) {
+            alert("에러 발생");
+          },
+        });
+      }
     </script>
   </head>
   <body>
@@ -83,7 +106,7 @@ request.setCharacterEncoding("utf-8"); %>
             <span class="statusText">현재 사용가능한 쿠폰을 조회합니다.</span>
           </div>
         </div>
-        총${total}
+        총${total}개
         <div class="couponTable">
           <!--쿠폰 목록-->
           <table class="table adminProductTable table-hover couponTables">
@@ -112,15 +135,21 @@ request.setCharacterEncoding("utf-8"); %>
                       <td>${coupon.couponId}</td>
                       <td>${coupon.coupon_name}</td>
                       <td>${coupon.coupon_range}</td>
-                      <td>${coupon.couponDiscountRate}</td>
-                      <td>${coupon.coupon_quantity}</td>
+                      <td>${coupon.couponDiscountRate}%</td>
+                      <td>${coupon.coupon_quantity}개</td>
                       <td>${coupon.beginDate}~${coupon.endDate}</td>
                       <td>
                         ${coupon.coupon_startDate}~${coupon.coupon_endDate}
                       </td>
                       <td>
-                        <button>수정</button>
-                        <button>삭제</button>
+                        <button
+                          onclick="fn_modCouponForm('${coupon.couponId}')"
+                        >
+                          수정
+                        </button>
+                        <button onclick="fn_delCoupon('${coupon.couponId}')">
+                          삭제
+                        </button>
                       </td>
                     </tr>
                   </c:forEach>
@@ -194,13 +223,15 @@ request.setCharacterEncoding("utf-8"); %>
         <div>쿠폰관리</div>
         <div class="topArea">
           <div>
-            <span class="statusText">쿠폰 현황</span>
+            <span class="statusText">만료된 쿠폰</span>
           </div>
           <div>
-            <span class="statusText">현재 사용가능한 쿠폰을 조회합니다.</span>
+            <span class="statusText"
+              >사용기간 만료, 수량없음, 삭제된 쿠폰을 조회합니다.</span
+            >
           </div>
         </div>
-        총${total2}
+        총${total2}개
         <div class="couponTable">
           <!--사용기간 만료된 혹은 삭제된 쿠폰 목록-->
           <table class="table adminProductTable table-hover couponTables">
@@ -229,18 +260,15 @@ request.setCharacterEncoding("utf-8"); %>
                       <td>${invalidCoupon.couponId}</td>
                       <td>${invalidCoupon.coupon_name}</td>
                       <td>${invalidCoupon.coupon_range}</td>
-                      <td>${invalidCoupon.couponDiscountRate}</td>
-                      <td>${invalidCoupon.coupon_quantity}</td>
+                      <td>${invalidCoupon.couponDiscountRate}%</td>
+                      <td>${invalidCoupon.coupon_quantity}개</td>
                       <td>
                         ${invalidCoupon.beginDate}~${invalidCoupon.endDate}
                       </td>
                       <td>
                         ${invalidCoupon.coupon_startDate}~${invalidCoupon.coupon_endDate}
                       </td>
-                      <td>
-                        <button>수정</button>
-                        <button>수정</button>
-                      </td>
+                      <td></td>
                     </tr>
                   </c:forEach>
                 </c:otherwise>
@@ -249,6 +277,64 @@ request.setCharacterEncoding("utf-8"); %>
           </table>
         </div>
         <!--사용기간 만료된 혹은 삭제된 쿠폰 목록-->
+        <div class="pageBottom">
+          <c:if test="${total2 != null }">
+            <c:choose>
+              <c:when test="${total2 > 50 }">
+                <c:forEach var="page" begin="1" end="${(total2/5)+1}" step="1">
+                  <c:if test="${section2 >1 && page==1 }">
+                    <a
+                      class="no-uline"
+                      href="${contextPath}/admin/couponList.do?section2=${section2-1}&pageNum2=${(section2-1)*10 +1}"
+                      >&nbsp; pre</a
+                    >
+                  </c:if>
+                  <a
+                    class="no-uline"
+                    href="${contextPath }/admin/couponList.do?section2=${section2}&pageNum2=${page}"
+                    >${(section-1)*5 + page }</a
+                  >
+                  <c:if test="${page == (total2/5)+1 }">
+                    <a
+                      class="no-uline"
+                      href="${contextPath }/admin/couponList.do?section2=${section2+1}&pageNum2=${section2*10+1 }"
+                      >&nbsp; next</a
+                    >
+                  </c:if>
+                </c:forEach>
+              </c:when>
+              <c:when test="${total2 == 50 }">
+                <c:forEach var="page" begin="1" end="10" step="1">
+                  <a
+                    class="no-uline"
+                    href="${contextPath }/admin/couponList.do?section2=${section2 }&pageNum2=${page }"
+                    >${page }</a
+                  >
+                </c:forEach>
+              </c:when>
+              <c:when test="${total2 < 50 }">
+                <c:forEach var="page" begin="1" end="${(total2/5)+1}" step="1">
+                  <c:choose>
+                    <c:when test="${page==pageNum }">
+                      <a
+                        class="sel-page"
+                        href="${contextPath }/admin/couponList.do?section2=${section2-1}&pageNum2=${page}"
+                        >${page }</a
+                      >
+                    </c:when>
+                    <c:otherwise>
+                      <a
+                        class="no-uline"
+                        href="${contextPath }/admin/couponList.do?section2=${section2+1}&pageNum2=${page }"
+                        >${page }</a
+                      >
+                    </c:otherwise>
+                  </c:choose>
+                </c:forEach>
+              </c:when>
+            </c:choose>
+          </c:if>
+        </div>
       </div>
     </div>
   </body>

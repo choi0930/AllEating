@@ -55,6 +55,11 @@
 <put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>      
 </definition>
 
+<definition name="/coupon/couponList" extends="baseLayoutMainPage">
+<put-attribute name="title" value="쿠폰 페이지"/>
+<put-attribute name="banner" value=""/>
+<put-attribute name="body" value="/WEB-INF/views/coupon/couponList.jsp"/>      
+</definition>
 
 <definition name="/test" extends="baseLayoutMainPage">
 <put-attribute name="title" value="test"/>

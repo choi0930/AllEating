@@ -54,12 +54,12 @@
 	</insert>
 	
 	<!-- 쿠폰 상태 삭제로 변경 -->
-	<update id="delCouponInfo" parameterType="java.util.Map">
+	<update id="delCouponInfo" parameterType="String">
 		update coupon set coupon_deleted = 'y' where couponId = #{couponId}
 	</update>
 	<!-- 쿠폰 상태 변경 -->
 	<update id="modfiyCouponInfo" parameterType="couponVO" >
 		update coupon set coupon_name = #{coupon_name}, coupon_range = #{coupon_range}, coupon_quantity=#{coupon_quantity},couponDiscountRate=#{couponDiscountRate}, beginDate=#{beginDate}, endDate=#{endDate},
-		coupon_startDate = #{coupon_startDate}, coupon_endDate = #{coupon_endDate} where couponId = #{couponId} where couponId = #{couponId}
+		coupon_startDate = #{coupon_startDate}, coupon_endDate = #{coupon_endDate} where couponId = #{couponId}
 	</update>
 	</mapper>

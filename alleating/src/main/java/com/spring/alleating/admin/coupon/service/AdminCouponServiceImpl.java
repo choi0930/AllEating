@@ -53,8 +53,8 @@ public class AdminCouponServiceImpl implements AdminCouponService {
 	
 	/*관리자 페이지 쿠폰 정보 삭제 처리*/
 	@Override
-	public int delCouponInfo(Map couponInfo) throws DataAccessException {
-		return adminCouponDAO.delCouponInfo(couponInfo);
+	public int delCouponInfo(String couponId) throws DataAccessException {
+		return adminCouponDAO.delCouponInfo(couponId);
 	}
 	/*관리자 페이지 쿠폰 정보 수정*/
 	@Override
