@@ -6,8 +6,8 @@
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
     <c:set var="userProductVO" value="${userProductInfo.userProductVO}" /><!--상품정보-->
-<c:set var="userProductImglist" value="${userProductInfo.userProductImglist}" /><!--이미지리스트-->
-<c:set var="userVO" value="${userProductInfo.userVO}" /><!--유저 리스트-->
+	<c:set var="userProductImglist" value="${userProductInfo.userProductImglist}" /><!--이미지리스트-->
+	<c:set var="userVO" value="${userProductInfo.userVO}" /><!--유저 리스트-->
 
 
 

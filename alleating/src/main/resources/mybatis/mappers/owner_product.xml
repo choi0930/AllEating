@@ -36,6 +36,7 @@
 		<result property="img_type" column="img_type" />
 		<result property="creDate" column="creDate" />
 	</resultMap>
+	
 	<!-- select -->
 	<select id="selectAllOwnerProductList" resultMap="productResult">
 	<![CDATA[
@@ -162,15 +163,25 @@
   			where
   			imgId=#{imgId}
     </update>
-    
+     
+    <select id="productEditdata" resultMap="productResult" parameterType="int">
+		<![CDATA[
+		select * from product where productId = #{productId}
+		]]>
+	</select>
+	<select id="productEditdataImg" resultMap="productImgResult" parameterType="int">
+		<![CDATA[
+		select * from product_img where productId = #{productId}
+		]]>
+	</select>
 	
-	<select id="selectproductImageFileList" resultMap="productImgResult"   parameterType="String"  >
+	<!-- <select id="selectproductImageFileList" resultMap="productImgResult"   parameterType="String"  >
 	    <![CDATA[
 		    	select * from  product_img
 		    	where  
 			    productId=#{productId}
 			    order by imgId asc
     	]]>
-	</select>
+	</select> -->
 	
 </mapper>
