@@ -9,8 +9,6 @@ import com.spring.alleating.order.vo.AllEatingOrderVO;
 
 
 
-
-
 @Mapper
 @Repository("ownerOrderDAO")
 public interface OwnerOrderDAO {
