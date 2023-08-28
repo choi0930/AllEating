@@ -140,13 +140,30 @@ public class OrderServiceImpl implements OrderService{
 	public Map OrderHistoryDetail(String orderId) throws DataAccessException {
 		
 		AllEatingOrderVO orderDetailVO = orderDAO.OrderHistoryDetail(orderId);
-		List<AllEatingOrderDetailVO> orderProductList = orderDAO.OrderHistoryProduct(orderId);
+		
+		
 		
 		Map orderDetailInfo = new HashMap();
+		Map deliveryInfo = new HashMap();
+		
+		deliveryInfo.put("deliveryType", "reserve");
+		deliveryInfo.put("orderId", orderId);
+		List<AllEatingOrderDetailVO> reserveList = orderDAO.OrderHistoryProduct(deliveryInfo);
+		
+		deliveryInfo.put("deliveryType", "normal");
+		List<AllEatingOrderDetailVO> normalList = orderDAO.OrderHistoryProduct(deliveryInfo);
+		
+		
+		
 		orderDetailInfo.put("orderDetailVO", orderDetailVO);
-		orderDetailInfo.put("orderProductList", orderProductList);
+		orderDetailInfo.put("reserveList", reserveList);
+		orderDetailInfo.put("normalList", normalList);
+		System.out.println(reserveList.size() + "ㅇ러ㅣ쟏러ㅐㅈ댜ㅓ랮댜ㅓㄹ");
+		System.out.println(normalList.size() + "ㄹㅈㄷㄹㅈㄷ람조리젿ㄹ");
 		return orderDetailInfo;
 	}
+
+	
 
 
 	

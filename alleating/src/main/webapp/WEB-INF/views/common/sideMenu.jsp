@@ -218,7 +218,7 @@ text-decoration:none;}
                 <div class="side_title">마이페이지</div>
                 <ul class="side_menu_subheading">
                     <li class="side_tap">
-                        <a class="side_aTag" href="${contextPath}/myPage/myPage_01.do">주문 내역
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_01.do?id=${loginMember.id}">주문 내역
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>

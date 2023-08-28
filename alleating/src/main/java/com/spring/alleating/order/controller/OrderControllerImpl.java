@@ -204,6 +204,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		Map orderDetailInfo = new HashMap<>();
 		orderDetailInfo = orderService.OrderHistoryDetail(orderId);
+	
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
@@ -212,6 +213,8 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		mav.addObject("orderDetailInfo", orderDetailInfo);
 		return mav;
 	}
+
+	
 
 	
 	

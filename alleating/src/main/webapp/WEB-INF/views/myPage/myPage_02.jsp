@@ -5,7 +5,9 @@
     
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
  <c:set var="orderDetailVO" value="${orderDetailInfo.orderDetailVO}" /><!--주문내역상세 정보-->
-<c:set var="orderProductList" value="${orderDetailInfo.orderProductList}" /><!--주문내역 상세 상품 정보들-->
+ <c:set var="reserveList" value="${orderDetailInfo.reserveList}" />
+  <c:set var="normalList" value="${orderDetailInfo.normalList}" />
+
     
     
     <link href="${contextPath}/css/myPage_02.css" rel="stylesheet" type="text/css" />
@@ -68,23 +70,34 @@ function OrderDeleteCallback(obj){
      </div>
      </div>
    
-    <c:forEach var="orderProductList" items="${orderProductList}">
+   
+    <div>
+     <c:forEach var="reserve" items="${reserveList}">
+     
     <div class="product-orderdetail">
     
       <div class="product-orderdetail-pic">
-   <img src="${contextPath}/download.do?fileName=${orderProductList.fileName}&productId=${orderProductList.productId}&cateCode=${orderProductList.cateCode}" alt="${orderProductList.fileName}" width="300px" height="300px">
+   <img src="${contextPath}/download.do?fileName=${reserve.fileName}&productId=${reserve.productId}&cateCode=${reserve.cateCode}" alt="${reserve.fileName}" width="150px" height="150px">
       </div>
       <div class="product-orderdetail-line">
+      <div class="product-orderdetail-line-2">
+          <p>예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;"></p>
+        </div>
+      <div class="product-orderdetail-line-2">
+          <p>[All Eating]</p>
+        </div>
        <div class="product-orderdetail-line-2">
-          <p></p>
+          <p>${reserve.productName}</p>
         </div>
         <div class="product-orderdetail-line-2">
-          <p>${orderProductList.productPrice}</p>
+          <p>${reserve.productPrice}</p>
         </div>
         <div class="product-orderdetail-line-2">
-          <p>${orderProductList.productQty}</p>
+          <p>${reserve.productQty}</p>
         </div>
       </div>
+      </div>
+      
    
       <div class="orderdetailview">
        <div class="orderdetailview-2">
@@ -98,12 +111,80 @@ function OrderDeleteCallback(obj){
         	<a class="orderdetailview-3" >주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        	</div> 
       </div>
-    
-    
-    
-   
+     
+      </c:forEach>
     </div>
-    </c:forEach>
+    
+    
+    <div>
+     <c:forEach var="normalList" items="${normalList}">
+    
+    <div class="product-orderdetail">
+    
+      <div class="product-orderdetail-pic">
+   <img src="${contextPath}/download.do?fileName=${normalList.fileName}&productId=${normalList.productId}&cateCode=${normalList.cateCode}" alt="${normalList.fileName}" width="150px" height="150px">
+      </div>
+      <div class="product-orderdetail-line">
+      <div class="product-orderdetail-line-2">
+          <p>일반 배송</p>
+        </div>
+      <div class="product-orderdetail-line-2">
+          <p>[${normalList.productBrand}]</p>
+        </div>
+       <div class="product-orderdetail-line-2">
+          <p>${normalList.productName}</p>
+        </div>
+        <div class="product-orderdetail-line-2">
+          <p>${normalList.productPrice}</p>
+        </div>
+        <div class="product-orderdetail-line-2">
+          <p>${normalList.productQty}</p>
+        </div>
+      </div>
+      </div>
+      
+   
+      <div class="orderdetailview">
+       <div class="orderdetailview-2">
+        <a class="orderdetailview-3" >후기 작성 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>   
+       </div>
+       <div class="orderdetailview-2">
+        <a class="orderdetailview-3" >장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+       </div>
+      
+       	<div class="orderdetailview-2">
+        	<a class="orderdetailview-3" >주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+       	</div> 
+      </div>
+     
+      </c:forEach>
+    </div>
+    
+    
+    
+   <%--    <div class="orderlistdetailview-under">
+    
+     <div class="orderlist-time">
+      <p>${orderDetailVO.orderId}</p>
+     </div>
+     <div class="order-problem-next">
+      <span class="order-problem-next-text">
+       배송 또는 상품에 문제가 있습니까?     
+      </span>
+      <a class="oneoneq" style="color:navy;">
+       1:1문의하기
+       <span>
+        <button class="triangle-button">
+         <img src="${contextPath}/img/image_icon/triangle_navy.png" width="25px" height="29px">
+        </button>
+       </span>
+      </a>
+     </div>
+     </div> --%>
+    
+    
+    
+
     
     
     <div class="orderresult">
@@ -136,7 +217,7 @@ function OrderDeleteCallback(obj){
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">상품 금액</dt>
            <dd class="listcss-7">
-            <p>13,990원</p>
+            <p>${orderDetailVO.totalPrice}원</p>
            </dd>
          </dl>
          <dl class="dlcss" id="dlcss-2">
@@ -154,19 +235,25 @@ function OrderDeleteCallback(obj){
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">결제 금액</dt>
            <dd class="listcss-7">
-            <p>16,990원</p>
+            <p>${orderDetailVO.totalPrice}원</p>
            </dd>
          </dl>
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">결제 방법</dt>
            <dd class="listcss-7">
-            <p>신용카드</p>
+            <p>${orderDetailVO.card_com_name}</p>
+           </dd>
+         </dl>
+         <dl class="dlcss" id="dlcss-2">
+          <dt class="listcss-6">할부</dt>
+           <dd class="listcss-7">
+            <p>${orderDetailVO.card_com_name}</p>
            </dd>
          </dl>
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">결제 일시</dt>
            <dd class="listcss-7">
-            <p>2023-08-25 12:50</p>
+            <p>${orderDetailVO.card_pay_month}</p>
            </dd>
          </dl>
        </div>
@@ -179,13 +266,19 @@ function OrderDeleteCallback(obj){
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">주문 번호</dt>
            <dd class="listcss-7">
-            <p>23081412345</p>
+            <p>${orderDetailVO.orderId}</p>
            </dd>
          </dl>
          <dl class="dlcss" id="dlcss-2">
-          <dt class="listcss-6">보내는분</dt>
+          <dt class="listcss-6">구매자</dt>
            <dd class="listcss-7">
-            <p>최현진</p>
+            <p>${orderDetailVO.orderName}</p>
+           </dd>
+         </dl>
+         <dl class="dlcss" id="dlcss-2">
+          <dt class="listcss-6">구매자 연락처</dt>
+           <dd class="listcss-7">
+            <p>${orderDetailVO.orderHp}</p>
            </dd>
          </dl>
        </div>
@@ -198,47 +291,37 @@ function OrderDeleteCallback(obj){
         <h3>배송 정보</h3>
         </div>
           <div class="orderlistdetailview-list-4">
-         <dl class="dlcss" id="dlcss-2">
-          <dt class="listcss-6">배송 타입</dt>
-           <dd class="listcss-7">
-            <p>예약 배송</p>
-           </dd>
-         </dl>
+       
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">선택 배송 일자</dt>
            <dd class="listcss-7">
-            <p>10:00~16:00</p>
+            <p>???????</p>
            </dd>
          </dl>
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">수령인</dt>
            <dd class="listcss-7">
-            <p>최현진</p>
+            <p>${orderDetailVO.receiverName}</p>
            </dd>
          </dl>
+        
          <dl class="dlcss" id="dlcss-2">
-          <dt class="listcss-6">결제 금액</dt>
+          <dt class="listcss-6">수령인 연락처</dt>
            <dd class="listcss-7">
-            <p>16,990원</p>
-           </dd>
-         </dl>
-         <dl class="dlcss" id="dlcss-2">
-          <dt class="listcss-6">전화번호</dt>
-           <dd class="listcss-7">
-            <p>010-1234-5678</p>
+            <p>${orderDetailVO.receiverHp}</p>
            </dd>
          </dl>
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">배송지</dt>
            <dd class="listcss-7">
-            <p>31547</p>
-            <p>대전 서구 둔산동 오라클 빌딩</p>
+            <p>${orderDetailVO.zipcode}</p>
+            <p>${orderDetailVO.address}&nbsp;${orderDetailVO.address2}&nbsp;${orderDetailVO.addressDetail}</p>
            </dd>
          </dl>
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">배송메모</dt>
            <dd class="listcss-7">
-            <p>문 앞에 놓아주세요</p>
+            <p>${orderDetailVO.delivery_request}</p>
            </dd>
          </dl>
        </div>
