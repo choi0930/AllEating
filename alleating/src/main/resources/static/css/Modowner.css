@@ -99,3 +99,22 @@ margin-left: 17px;
 #opbt{
 	width: 103px;
 }
+
+.pdeditimg{
+	display: flex;
+    flex-direction: column;
+}
+
+#qwe {
+	margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#asd{
+	width: 150px;
+}
+
+.pdimg{
+	margin-left: 10px;
+    margin-bottom: 10px;
+}

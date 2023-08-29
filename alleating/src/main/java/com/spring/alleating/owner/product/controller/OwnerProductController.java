@@ -17,17 +17,6 @@ public interface OwnerProductController {
 	public ModelAndView deleteProduct(int productId, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView ownerproducteditdetail(@RequestParam("productId") int productId, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
-	/*
-	 * public ModelAndView ownerupdateproduct(@RequestParam("productId") int
-	 * productId, HttpServletRequest request, HttpServletResponse response) throws
-	 * Exception; public void modifyProductImageInfo(MultipartHttpServletRequest
-	 * multipartRequest, HttpServletResponse response) throws Exception;
-	 */
-	
-	/*
-	 * public ModelAndView removeProduct(@RequestParam("id") String id,
-	 * HttpServletRequest request, HttpServletResponse response) throws Exception;
-	 */
 	//public void  addNewProductImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
 }
 

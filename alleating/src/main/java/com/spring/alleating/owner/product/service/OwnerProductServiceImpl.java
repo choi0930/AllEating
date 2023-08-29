@@ -66,38 +66,30 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	public void removeproduct(int delproductId) throws DataAccessException {
 		ownerProductDAO.deleteproduct(delproductId);
 	}
-
-	
-//	  @Override public Map productDetail(int productId) throws Exception { Map
-//	  productMap = new HashMap(); ProductVO
-//	  productVO=ownerProductDAO.selectProductDetail(productId); 
-//	  List imageFileList =ownerProductDAO.selectProductImageFileList(productId);
-//	  productMap.put("product", productVO);
-//	  productMap.put("imageFileList",imageFileList); 
-//	  return productMap; }
-//	 
-//	  @Override public List productImageFile(int productId) throws Exception{ 
-//		 List imageList = ownerProductDAO.selectProductImageFileList(productId); 
-//		 return imageList; 
-//		  }
 	 
-
 	@Override
 	public List<ProductVO> ownerProductList() throws Exception {
 		List<ProductVO> ownerProductList = ownerProductDAO.selectAllOwnerProductList();
 		return ownerProductList;
 	}
 
-			/* 수정하기 */
-	  @Override public void modifyproduct(Map goodsMap) throws Exception {
-	  ownerProductDAO.updateproduct(goodsMap); }
+//			/* 수정하기 */
+//	  @Override public void modifyproduct(Map productInfoup) throws Exception {
+//	  ownerProductDAO.updateproduct(productInfoup);
+//	  String _productId = (String) productInfoup.get("productId");
+//		int productId = Integer.parseInt(_productId);
+//		
+//		ArrayList<ProductImgVO> imageFileList = (ArrayList) productInfoup.get("imageFileList");
+//		for (ProductImgVO productImgVO : imageFileList) {
+//			productImgVO.setProductId(productIdup);
+//			ownerProductDAO.
+//		}
+//
+//		return productId;
+//	  }
+//	  
 	  
 	  
-	  
-	  @Override public void modifyproductImg(List<ProductImgVO> imageFileList) throws Exception {
-		 ownerProductDAO.updateproductimg(imageFileList); 
-		  }
-
 			/* 수정할 데이터 불러오기 */  
 	@Override
 	public Map productEditService(int EService) throws Exception {
@@ -118,19 +110,6 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 			// 상품 정보랑 이미지 상품등록자를 맵에 넣어주는 작업중이였음
   
 	  
-//	  @Override public Map productDetail(int productId) throws Exception { 
-//		  Map goodsMap = new HashMap(); 
-//		  ProductVO productVO = ownerProductDAO.selectproductDetail(productId); 
-//		  List imageFileList = ownerProductDAO.selectProductImageFileList(productId);
-//	  goodsMap.put("product", productVO);
-//	  goodsMap.put("imageFileList", imageFileList); 
-//	  return goodsMap; 
-//	  }
-//	  
-//	  @Override public Map productImageFile(int productId) throws Exception { 
-//		  List imageList = ownerProductDAO.selectProductImageFileList(productId); 
-//		  return imageList; 
-//		  }
 	 
 
 	/*
