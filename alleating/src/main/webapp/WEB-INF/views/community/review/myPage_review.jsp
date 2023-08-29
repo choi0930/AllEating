@@ -70,33 +70,38 @@ request.setCharacterEncoding("utf-8"); %>
         id="tab-1"
         class="tab-content ${selectedTab == 'tab-1' ? 'active' : ''}"
       >
-      
+     
       <div>
+      
       <c:forEach var="review" items="${reviewList}">
+       <form action="/myPage/myPage_reviewForm.do" method="get" encType="multipart/form-data">
         <div class="want_02">
           <div class="capture">
+          
              <img src="${contextPath}/download.do?fileName=${review.fileName}&productId=${review.productId}&cateCode=${review.cateCode}" alt="${review.fileName}" width="150px" height="150px">
           </div>
           </div>
           <div class="qwe">
-            <div class="detail_01"><h4>[${review.productBrand}]</h4><h4>${review.productName}</h4>
-            </div>
+           <input type="text" class="productNaming" name="brand" value="[${review.productBrand}]">
+           <input type="text" class="productNaming" name="naming"  value="${review.productName}">
+           <%--  <input type="hidden" class="detail_01" value="[${review.productBrand}]${review.productName}"> --%>
             </div>
            
-              </c:forEach>
-            </div>
-          </div>
-          
-          
-          
+           
           <div class="text04">
             <div class="form_end">
-              <button class="join_censel_btn" onclick="fn_loginGO()">
-                <span id="join_btn_text">후기 쓰기</span>
+              <button type="submit" class="review_btn" > <span id="review_add_btn_text">후기 쓰기</span>
               </button>
             </div>
           </div>
-        
+          </form>
+          </c:forEach>
+          
+      
+       </div>
+      
+      
+      </div>  
       
      
 
@@ -114,16 +119,16 @@ request.setCharacterEncoding("utf-8"); %>
             />
           </div>
           <div class="qwe">
-            <div class="detail_01"><h4>[All Eating] 샤인머스켓</h4></div>
-            <div class="detail_01"><h5 id="asd">2023-08-21</h5></div>
+            <div class="detail_01"><h4>???</h4></div>
+            <div class="detail_01"><h5 id="asd">???</h5></div>
             <div class="detail_01">
               <h5 id="asd">후기 내용</h5>
             </div>
           </div>
           <div class="text04">
             <div class="form_end">
-              <button class="join_censel_btn" onclick="fn_loginGO()">
-                <span id="join_btn_text">후기 수정</span>
+              <button class="review_btn" onclick="fn_loginGO()">
+                <span id="review_mod_btn_text">후기 수정</span>
               </button>
             </div>
           </div>
@@ -139,16 +144,16 @@ request.setCharacterEncoding("utf-8"); %>
             />
           </div>
           <div class="qwe">
-            <div class="detail_01"><h4>[서형이네] 천중도 백도 복숭아</h4></div>
-            <div class="detail_01"><h5 id="asd">2023-08-21</h5></div>
+            <div class="detail_01"><h4>???</h4></div>
+            <div class="detail_01"><h5 id="asd">???</h5></div>
             <div class="detail_01">
               <h5 id="asd">후기 내용</h5>
             </div>
           </div>
           <div class="text04">
             <div class="form_end">
-              <button class="join_censel_btn" onclick="fn_loginGO()">
-                <span id="join_btn_text">후기 수정</span>
+              <button class="review_btn" onclick="fn_loginGO()">
+                <span id="review_mod_btn_text">후기 수정</span>
               </button>
             </div>
           </div>

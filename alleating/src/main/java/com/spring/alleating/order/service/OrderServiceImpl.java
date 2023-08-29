@@ -168,8 +168,8 @@ public class OrderServiceImpl implements OrderService{
 	public Map selectUserReview(String id) throws DataAccessException {
 		  Map userReviewInfo = new HashMap();
 		
-		  Map _userReviewInfo = new HashMap();
-		List<AllEatingOrderVO> reviewList = orderDAO.selectUserReview(_userReviewInfo);
+			/* Map _userReviewInfo = new HashMap(); */
+		List<AllEatingOrderDetailVO> reviewList = orderDAO.selectUserReview(id);
 		
 		
 		/* userReviewInfo.put("id", id); */

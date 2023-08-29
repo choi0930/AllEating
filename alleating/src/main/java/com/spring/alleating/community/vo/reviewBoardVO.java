@@ -7,6 +7,7 @@ public class reviewBoardVO {
 private String articleNO;
 private String id;
 private int productId;
+private String productBrand;
 private String productName;
 private String fileName;
 private String content;
@@ -18,6 +19,12 @@ private String delivery_status;
 
 
 
+public String getProductBrand() {
+	return productBrand;
+}
+public void setProductBrand(String productBrand) {
+	this.productBrand = productBrand;
+}
 public int getProductPrice() {
 	return productPrice;
 }
