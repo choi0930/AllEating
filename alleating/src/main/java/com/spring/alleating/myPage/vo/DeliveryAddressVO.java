@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository("deliveryAddressVO")
 public class DeliveryAddressVO {
-	private String num;
+	private int num;
 	private String id;
 	private String deliveryName;
 	private String receiver_name;
@@ -16,10 +16,10 @@ public class DeliveryAddressVO {
 	private String address2;
 	private String address_detail;
 	private String default_address;
-	public String getNum() {
+	public int getNum() {
 		return num;
 	}
-	public void setNum(String num) {
+	public void setNum(int num) {
 		this.num = num;
 	}
 	public String getId() {

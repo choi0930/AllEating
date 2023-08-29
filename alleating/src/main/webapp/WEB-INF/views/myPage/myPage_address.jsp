@@ -68,6 +68,7 @@ request.setCharacterEncoding("utf-8"); %>
           },
         }).open();
       }
+      /* 마이페이지: 배송지 추가 */
       function fn_addDeliveryAddress() {
         var deliveryName = $("input[name=deliveryName]").val();
         var receiver_name = $("input[name=receiver_name]").val();
@@ -92,18 +93,45 @@ request.setCharacterEncoding("utf-8"); %>
         $.ajax({
           type: "POST",
           async: true,
-          url: "${contextPath}/myPage/addCoupon.do",
+          url: "${contextPath}/myPage/myPage_addAddress.do",
           data: JSON.stringify(addressInfo),
+          contentType: "application/json",
           dataType: "text",
           success: function (data) {
+            $(".modal").hide();
             alert(data);
-            location.href = "/myPage/myPage_coupon.do";
+            location.href = "/myPage/myPage_address.do";
           },
           error: function (data) {
             alert("에러가 발생했습니다.");
           },
         });
       }
+      /*------------------ 마이페이지: 배송지 추가 끝 ---------------------*/
+
+      /* 마이페이지: 배송지 삭제 */
+      function fn_delete(num) {
+        var addressInfo = { num: num };
+        $.ajax({
+          type: "POST",
+          async: true,
+          url: "${contextPath}/myPage/myPage_delAddress.do",
+          data: JSON.stringify(addressInfo),
+          contentType: "application/json",
+          dataType: "text",
+          success: function (data) {
+            $(".modal").hide();
+            alert(data);
+            location.href = "/myPage/myPage_address.do";
+          },
+          error: function (data) {
+            alert("에러가 발생했습니다.");
+          },
+        });
+      }
+      /*---------------------- 마이페이지: 배송지 삭제 끝 ---------------------*/
+
+      function fn_changeDefault() {}
     </script>
     <style>
       .addressText {
@@ -307,8 +335,8 @@ request.setCharacterEncoding("utf-8"); %>
                 <input
                   class="form-check-input"
                   type="radio"
-                  value=""
-                  name="delivery"
+                  value="${addressInfo.num}"
+                  name="addressNum"
                   id="flexCheckDefault"
                 />
               </td>
@@ -338,7 +366,12 @@ request.setCharacterEncoding("utf-8"); %>
                   <td><button>수정</button></td>
                 </c:when>
                 <c:otherwise>
-                  <td><button>수정</button> <button>삭제</button></td>
+                  <td>
+                    <button>수정</button>
+                    <button onclick="fn_delete('${addressInfo.num}')">
+                      삭제
+                    </button>
+                  </td>
                 </c:otherwise>
               </c:choose>
             </tr>
@@ -346,7 +379,7 @@ request.setCharacterEncoding("utf-8"); %>
         </tbody>
       </table>
       <div>
-        <button>기본배송지 설정</button>
+        <button onclick="fn_changeDefault()">기본배송지 설정</button>
       </div>
     </div>
   </body>
