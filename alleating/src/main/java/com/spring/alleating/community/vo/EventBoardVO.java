@@ -1,5 +1,5 @@
 package com.spring.alleating.community.vo;
 
-public class eventBoardVO {
+public class EventBoardVO {
 
 }

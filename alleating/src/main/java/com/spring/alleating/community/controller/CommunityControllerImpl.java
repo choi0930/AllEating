@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.alleating.common.base.BaseController;
 import com.spring.alleating.community.service.CommunityService;
+import com.spring.alleating.community.vo.ReviewBoardVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.product.vo.ProductImgVO;
 
@@ -34,6 +35,8 @@ public class CommunityControllerImpl extends BaseController implements Community
 	@Autowired
 	CommunityService communityService;
 	
+	@Autowired 
+	ReviewBoardVO reviewBoardVO;
 	@Override
 	@RequestMapping(value= "/community/review_01.do", method = RequestMethod.GET)
 	public ModelAndView review_01(HttpServletRequest request, HttpServletResponse response)throws Exception {
@@ -50,7 +53,7 @@ public class CommunityControllerImpl extends BaseController implements Community
 
 	@Override
 	@RequestMapping(value="/myPage/add_reviewForm.do", method= {RequestMethod.POST})
-	public ResponseEntity addReview(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+	public ResponseEntity addReview( @RequestParam(required=false,name="views") String view,MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -65,12 +68,14 @@ public class CommunityControllerImpl extends BaseController implements Community
 		}
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
-		String _id = memberVO.getId();
-		newReviewMap.put("_id", _id);
+	
+		String id1 = reviewBoardVO.getId();
+		newReviewMap.put("id", id1);
+		
 		List<ProductImgVO> reviewImgList = upload(multipartRequest);
 		if(reviewImgList!= null && reviewImgList.size()!=0) {
 			for(ProductImgVO productImgVO : reviewImgList) {
-				productImgVO.setReg_id(_id);
+				productImgVO.setReg_id(id1);
 			}
 			newReviewMap.put("reviewImgList", reviewImgList);
 		}

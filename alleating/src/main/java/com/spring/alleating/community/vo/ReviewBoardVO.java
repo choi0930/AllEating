@@ -3,7 +3,7 @@ package com.spring.alleating.community.vo;
 import org.springframework.stereotype.Component;
 
 @Component("reviewBoardVO")
-public class reviewBoardVO {
+public class ReviewBoardVO {
 private String articleNO;
 private String id;
 private int productId;
