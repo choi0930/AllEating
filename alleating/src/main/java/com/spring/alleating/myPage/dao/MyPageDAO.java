@@ -25,4 +25,10 @@ public interface MyPageDAO {
 	public List<DeliveryAddressVO>selectAllDeliveryAddress(Map dataMap)throws DataAccessException;
 	/*마이페이지: 배송지 추가*/
 	public int insertDeilveryAddress(DeliveryAddressVO deliveryAddressVO)throws DataAccessException;
+	/*마이페이지: 배송지 삭제*/
+	public int deleteDeilveryAddress(DeliveryAddressVO deliveryAddressVO)throws DataAccessException;
+	/*마이페이지: 기본 배송지 검색*/
+	public DeliveryAddressVO selectDefaultAddress(String id)throws DataAccessException;
+	/*마이페이지: 기본 배송지 변경*/
+	public int updateDefaultAddress(Map deliveryInfo)throws DataAccessException;
 }

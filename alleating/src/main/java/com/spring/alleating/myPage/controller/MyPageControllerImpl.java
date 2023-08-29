@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,6 +81,94 @@ public class MyPageControllerImpl implements MyPageController{
 	}
 	/*----------------------------------------마이페이지 등록 끝----------------------------------------------------*/
 	
+	/* 마이페이지: 배송지관리 목록 */
+	@Override
+	@RequestMapping(value="/myPage/myPage_address.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView myPage_address(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
+		String id = memberVO.getId();
+		
+		Map newAddressMap = new HashMap<>();
+		newAddressMap.put("id", id);
+		List<DeliveryAddressVO> addressList =  myPageService.listAddress(newAddressMap); //로그인 한 유저 배송지 정보목록 list 가져옴
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("addressList", addressList);
+		mav.setViewName(viewName);
+		return mav;
+	}
+	/*----------------------------------------마이페이지: 배송지관리 목록 끝----------------------------------------------------------*/
+	
+	/* 마이페이지: 배송지 추가 */
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/myPage/myPage_addAddress.do", method = RequestMethod.POST)
+	public String myPage_addDlieveryAddress(@RequestBody DeliveryAddressVO deliveryAddressVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
+		
+		String id = memberVO.getId();
+		deliveryAddressVO.setId(id); //로그인한사람 id set
+		
+		int result = myPageService.addDeliveryAddress(deliveryAddressVO);
+		String msg = "";
+		if(result == 1) {
+			msg="배송지 추가완료";
+		}else {
+			msg="추가 실패";
+		}
+		return msg;
+	}
+	/*----------------------------------------마이페이지: 배송지 추가 끝----------------------------------------------------------*/
+	
+	/* 마이페이지: 배송지 삭제 */
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/myPage/myPage_delAddress.do", method = RequestMethod.POST)
+	public String myPage_delDlieveryAddress(@RequestBody DeliveryAddressVO deliveryAddressVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
+		
+		String id = memberVO.getId();
+		deliveryAddressVO.setId(id); //로그인한사람 id set
+		int result = myPageService.deleteAddress(deliveryAddressVO);
+		
+		String msg = "";
+		if(result == 1) {
+			msg="배송지 삭제완료";
+		}else {
+			msg="삭제 실패";
+		}
+		return msg;
+	}
+	/*----------------------------------------마이페이지: 배송지 삭제 끝----------------------------------------------------------*/
+	
+	/* 마이페이지: 기본 배송지 변경 */
+	@Override
+	@RequestMapping(value="/myPage/myPage_modDefaultAddress.do", method = RequestMethod.POST)
+	public String myPage_modDefaultDlieveryAddress(DeliveryAddressVO deliveryAddressVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
+		
+		String id = memberVO.getId();
+		deliveryAddressVO.setId(id); //로그인한사람 id set
+		int result = myPageService.changeDefaultAddress(deliveryAddressVO);
+		
+		String msg = "";
+		if(result == 1) {
+			msg="기본 배송지 변경 완료";
+		}else {
+			msg="배송지 변경 실패";
+		}
+		return null;
+	}
+	/*----------------------------------------마이페이지: 기본 배송지 변경 끝----------------------------------------------------------*/
 	/*
 	 * @RequestMapping(value="/myPage/myPage_01.do", method = {RequestMethod.GET,
 	 * RequestMethod.POST}) public ModelAndView myPageMain(HttpServletRequest
@@ -110,7 +199,6 @@ public class MyPageControllerImpl implements MyPageController{
 	}
 	
 	
-
 
 
 	@Override
@@ -180,26 +268,7 @@ public class MyPageControllerImpl implements MyPageController{
 		mav.setViewName(viewName);
 		return mav;
 	}
-	/* 마이페이지: 배송지관리 목록 */
-	@Override
-	@RequestMapping(value="/myPage/myPage_address.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView myPage_address(HttpServletRequest request, HttpServletResponse response)throws Exception {
-		HttpSession session = request.getSession();
-		session.setAttribute("side_menuType", "my_page");
-		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
-		String id = memberVO.getId();
-		
-		Map newAddressMap = new HashMap<>();
-		newAddressMap.put("id", id);
-		List<DeliveryAddressVO> addressList =  myPageService.listAddress(newAddressMap); //로그인 한 유저 배송지 정보목록 list 가져옴
-		
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("addressList", addressList);
-		mav.setViewName(viewName);
-		return mav;
-	}
-	/*----------------------------------------마이페이지: 배송지관리 목록 끝----------------------------------------------------------*/
+
 	
 	
 	

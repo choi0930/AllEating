@@ -3,8 +3,11 @@ package com.spring.alleating.myPage.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.alleating.myPage.vo.DeliveryAddressVO;
 
 public interface MyPageController {
 	public ModelAndView myPage_03(HttpServletRequest request, HttpServletResponse response)throws Exception;
@@ -15,8 +18,12 @@ public interface MyPageController {
 	public ModelAndView myPage_secession(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/* 마이페이지: 배송지관리 페이지 이동(로그인한 유저 배송지 목록 불러오기) */
 	public ModelAndView myPage_address(HttpServletRequest request, HttpServletResponse response)throws Exception;
-	/* 마이페이지: 배송지 추가*/
-	
+	/* 마이페이지: 배송지 추가 */
+	public String myPage_addDlieveryAddress(@RequestBody DeliveryAddressVO deliveryAddressVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	/* 마이페이지: 배송지 삭제 */
+	public String myPage_delDlieveryAddress(@RequestBody DeliveryAddressVO deliveryAddressVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	/* 마이페이지: 기본 배송지 변경 */
+	public String myPage_modDefaultDlieveryAddress(@RequestBody DeliveryAddressVO deliveryAddressVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/* 마이페이지: 쿠폰 페이지 이동(로그인한 유저 쿠폰 목록 불러오기) */
 	public ModelAndView myPage_coupon(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/* 마이페이지: 쿠폰 등록 */

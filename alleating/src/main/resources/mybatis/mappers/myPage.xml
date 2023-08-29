@@ -60,11 +60,26 @@
 		<select id="selectAllDeliveryAddress" resultMap="deliveryAddressResult" parameterType="java.util.Map">
 			select * from deliveryaddress where id = #{id} order by default_address desc
 		</select>
+		<!-- 마이페이지: 기존 기본 배송지 가져오기 -->
+		<select id="selectDefaultAddress" resultMap="deliveryAddressResult" parameterType="String">
+			select * from deliveryaddress where id = #{id} and default_address = 'y'
+		</select>
+		
 		<!-- 마이페이지: 배송지 추가 -->
 		<insert id="insertDeilveryAddress" parameterType="deliveryAddressVO">
 			insert into deliveryaddress (id, deliveryName, receiver_name, receiver_hp1, receiver_hp2, receiver_hp3, zipcode, address, address2, address_detail)
 			values(#{id}, #{deliveryName}, #{receiver_name}, #{receiver_hp1}, #{receiver_hp2}, #{receiver_hp3}, #{zipcode}, #{address}, #{address2}, #{address_detail})
 		</insert>
+		
+		<!-- 마이페이지: 배송지 삭제 -->
+		<delete id="deleteDeilveryAddress" parameterType="deliveryAddressVO">
+			delete from deliveryaddress where num = #{num} and id = #{id}
+		</delete>
+		
+		<!-- 마이페이지: 기본 배송지 변경 -->
+		<update id="updateDefaultAddress" parameterType="java.util.Map">
+			update set deliveryaddress default_address = #{default_address} where id=#{id} and num = #{num}
+		</update>
 		<!-- 배송지관리 -->
 		
 		

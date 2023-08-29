@@ -1,5 +1,6 @@
 package com.spring.alleating.myPage.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +61,42 @@ public class MyPageServiceImpl implements MyPageService{
 		int result = myPageDAO.insertDeilveryAddress(deliveryAddressVO);
 		return result;
 	}
-	/*---------------------------------- 마이페이지 배송지 추가 끝----- --------------------------------*/
+	/*---------------------------------- 마이페이지 배송지 추가 끝--------------------------------------*/
+	
+	/*마이페이지: 배송지 삭제*/
+	@Override
+	public int deleteAddress(DeliveryAddressVO deliveryAddressVO) throws DataAccessException {
+		int result = myPageDAO.deleteDeilveryAddress(deliveryAddressVO);
+		return result;
+	}
+	/*---------------------------------- 마이페이지 배송지 삭제 끝-------------------------------------*/
+	
+	/*마이페이지: 기본 배송지 변경*/
+	@Override
+	public int changeDefaultAddress(DeliveryAddressVO deliveryAddressVO) throws DataAccessException {
+		String id = deliveryAddressVO.getId();
+		//기존에 있던 기본 배송지 해재처리
+		DeliveryAddressVO vo = myPageDAO.selectDefaultAddress(id); //기본배송지로 설정되어있는 값 가져오기
+		Map deliveryInfo = new HashMap();
+		int num = vo.getNum();
+		String default_address = "n"; //기본 배송지 해재
+		
+		deliveryInfo.put("id", id);
+		deliveryInfo.put("num", num);
+		deliveryInfo.put("default_address", default_address);
+		
+		myPageDAO.updateDefaultAddress(deliveryInfo);
+		
+		//새로운 기본 배송지 설정
+		num = deliveryAddressVO.getNum();
+		default_address = "y";
+		deliveryInfo.put("num", num);
+		deliveryInfo.put("default_address", default_address);
+		
+		int result = myPageDAO.updateDefaultAddress(deliveryInfo);
+		
+		return result;
+	}
+	/*---------------------------------- 마이페이지 기본 배송지 변경 끝-------------------------------------*/
 	
 }

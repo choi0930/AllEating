@@ -17,4 +17,8 @@ public interface MyPageService {
 	public List<DeliveryAddressVO> listAddress(Map dataMap)throws DataAccessException;
 	/*마이페이지: 배송지 추가*/
 	public int addDeliveryAddress(DeliveryAddressVO deliveryAddressVO)throws DataAccessException;
+	/*마이페이지: 배송지 삭제*/
+	public int deleteAddress(DeliveryAddressVO deliveryAddressVO)throws DataAccessException;
+	/*마이페이지: 기본 배송지 변경*/
+	public int changeDefaultAddress(DeliveryAddressVO deliveryAddressVO)throws DataAccessException;
 }
