@@ -120,7 +120,7 @@ width:840px;
 <div id="cotainer" style="padding-top: 0px;">
 <div class="content_box content_foot_pb">
 
-<form action="${contextPath}/myPage/add_reviewForm.do" method="get" encType="multipart/form-data">
+<form action="${contextPath}/myPage/add_reviewForm.do" method="post" encType="multipart/form-data">
 
 <div class="bbs_vtype">
 
@@ -133,29 +133,31 @@ width:840px;
 <li class="between">
 <dl>
 <dt>브랜드</dt>
-<dd><input name="productBrand" type="text"/><%= request.getParameter("brand") %> </dd>
+<dd><input name="productBrand" type="text" value="<%= request.getParameter("brand") %> "/></dd>
 </dl>
 </li>
 
 <li class="between">
 <dl>
 <dt>상품명</dt>
-<dd><input name="productName" type="text"/> <%= request.getParameter("naming") %></dd>
+<dd><input name="productName" type="text" value="<%= request.getParameter("naming") %>"/> </dd>
 </dl>
 </li>
 
 <li class="between">
 <dl>
 <dt>작성자</dt>
-<dd><input name="id" type="text"/> ${loginMember.name}</dd>
-<dd><input  name="productId" type="hidden"/> ${loginMember.name}</dd>
+<dd><input name="id" type="hidden"  value="${loginMember.id}"/> </dd>
+<dd><input type="text" value="${loginMember.name}"/></dd>
+<dd><input  name="productId" type="hidden" /> </dd>
+
 </dl>
 </li>
  
  <li style="border-bottom: 0px solid #dedede;">
 <dl>
 <dt>내용</dt>
-<dd>  <input name="content" type="text"/> <textarea name="opinion" cols="30" rows="5"></textarea></dd>
+<dd> <!--  <input name="content" type="text"/>  --><textarea name="content" cols="30" rows="5"></textarea></dd>
 </dl>
 </li>
 </ul>

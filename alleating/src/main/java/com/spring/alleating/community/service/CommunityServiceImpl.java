@@ -10,7 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.spring.alleating.community.dao.CommunityDAO;
-import com.spring.alleating.community.vo.reviewBoardVO;
+import com.spring.alleating.community.vo.ReviewBoardVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.order.vo.AllEatingOrderVO;
 import com.spring.alleating.product.vo.ProductImgVO;
