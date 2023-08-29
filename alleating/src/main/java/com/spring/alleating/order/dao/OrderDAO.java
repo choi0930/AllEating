@@ -24,5 +24,5 @@ public interface OrderDAO {
 	public AllEatingOrderVO OrderHistoryDetail (String orderId) throws DataAccessException; //주문 내역 상세 중 정보들
 	public List<AllEatingOrderDetailVO> OrderHistoryProduct (Map deliveryInfo) throws DataAccessException; //주문 내역 상세 중 상품 정보들
 	
-	public  List<AllEatingOrderVO> selectUserReview (Map userReviewInfo) throws DataAccessException; //상품 후기 조회
+	public  List<AllEatingOrderDetailVO> selectUserReview (String id) throws DataAccessException; //상품 후기 조회
 }

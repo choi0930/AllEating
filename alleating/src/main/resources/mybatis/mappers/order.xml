@@ -160,7 +160,7 @@
 	</select>
 	
 	<!-- 상품 후기 조회 -->
-	<select id="selectUserReview" resultMap="orderResult" parameterType="java.util.Map">
+	<select id="selectUserReview" resultMap="orderDetailResult" parameterType="java.util.Map">
 		
 		
 

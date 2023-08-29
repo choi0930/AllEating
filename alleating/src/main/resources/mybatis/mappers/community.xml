@@ -7,17 +7,47 @@
 		<result property="articleNO" column="articleNO" />
 		<result property="id" column="id" />
 		<result property="productId" column="productId" />
+			<result property="productBrand" column="productBrand" />
 		<result property="productName" column="productName" />
 		<result property="fileName" column="fileName" />
 		<result property="content" column="content" />
 		<result property="writeDate" column="writeDate" />
-		
-		<result property="productPrice" column="productPrice" />
-	    <result property="productQty" column="productQty" />
-		    <result property="delivery_status" column="delivery_status" />
+
 	</resultMap>
 	
+	<insert id="insertReview" parameterType="java.util.Map">
+	<selectKey resultType="String" keyProperty="productId"
+			order="BEFORE">
+			select ifnull(max(productId),0)+1 from review_board
+		</selectKey>
+	<![CDATA[
+	insert into review_board(
+	id,
+	productID,
+	productBrand,
+	productName,
+	fileName,
+	content) values (
+	#{id},
+	#{productID},
+	#{productBrand},
+	#{productName},
+	#{fileName},
+	#{content}
+	)
+	]]>
 	
+	</insert>
+	
+	<insert id="insertReviewImg" parameterType="productImgVO">
+	<selectKey resultType="int" keyProperty="imgId"
+			order="BEFORE">
+			select ifnull(max(imgId),0)+1 from product_img
+		</selectKey>
+		<![CDATA[
+	insert into product_img(imgId, productId, fileName, fileType,reg_id) values(#{imgId}, #{productId}, #{fileName}, #{fileType}, #{reg_id})
+	]]>
+	</insert>
 	
 	
 	
