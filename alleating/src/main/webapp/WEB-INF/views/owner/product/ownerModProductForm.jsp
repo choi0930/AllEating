@@ -6,65 +6,129 @@ request.setCharacterEncoding("utf-8"); %>
 <c:set var="pdVO" value="${producteditInfo.pdVO}" />
 <c:set var="pdlist" value="${producteditInfo.pdlist}" />
 <c:set var="ownerVO" value="${producteditInfo.ownerVO}" />
-
-<link
-  href="${contextPath}/css/Modowner.css"
-  rel="stylesheet"
-  type="text/css"
-/>
-
+<link href="${contextPath}/css/Modowner.css" rel="stylesheet" type="text/css" />
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>ownermain.jsp</title>
-   
     <script type="text/javascript">
-      $(function () {
-        $(".op10").hide();
-        $("#salecb").click(function () {
-          $(".op10").toggle();
-        });
+
+
+function fn_enable01() {
+  changeImageByType('main_image');
+}
+
+function fn_enable02() {
+  changeImageByType('detail_image1');
+}
+
+function changeImageByType(imageType) {
+  var fileInput = $("<input type='file' accept='image/*' />");
+  fileInput.on("change", function () {
+    var selectedImage = this.files[0];
+    if (selectedImage) {
+      var newImageURL = URL.createObjectURL(selectedImage);
+      var previewImg;
+      if (imageType === 'main_image') {
+        previewImg = $(".qwe_0"); // 메인 이미지 미리보기 엘리먼트 선택
+      } else if (imageType === 'detail_image1') {
+        previewImg = $(".qwe_1"); // 상세 이미지 미리보기 엘리먼트 선택
+      }
+      previewImg.attr("src", newImageURL); // 이미지의 src 속성을 선택한 이미지로 변경
+    }
+  });
+  fileInput.click();
+}
+
+  $(document).ready(function () {
+  // 초기화 시에 할인율 입력란의 값을 저장
+  $("#saletd").data("originalValue", $("#saletd").val());
+
+  // 체크박스가 변경될 때의 동작 설정
+  $("#salecb").change(function () {
+    if (this.checked) {
+      $(".op10").show();
+    } else {
+      $(".op10").hide();
+      // 체크가 해제되면 할인율 입력란을 원래 값으로 복구
+      $("#saletd").val($("#saletd").data("originalValue"));
+    }
+  });
+
+  // 페이지 로드 시 체크박스의 초기 상태에 따라 할인율 입력란 보이기/숨기기 설정
+  if ($("#salecb").prop("checked")) {
+    $(".op10").show();
+  } else {
+    $(".op10").hide();
+  }
+  
+  // 할인율 입력란의 값이 변경될 때 원래 값을 업데이트
+  $("#saletd").change(function () {
+    $(this).data("originalValue", $(this).val());
+  });
+});
+
+      $(document).ready(function () {
+        $("#cateCode").val("${pdVO.cateCode}").attr("selected", "selected");
       });
 
+      $(document).ready(function () {
+        $("#uclass")
+          .val("${pdVO.productPackType}")
+          .attr("selected", "selected");
+      });
 
       var cnt = 0;
       function fn_addFile() {
         if (cnt == 0) {
           $("#d_file").append(
             "<br>" +
-            "<input type='file' name='main_image' id='f_main_image' onchange='readURL(this, \"#preview" + cnt + "\")'/>" +
-            "<img id='preview" + cnt + "' src='#' width='200' height='200' />"
-            +"<br>" 
+              "<input type='file' name='main_image' id='f_main_image' onchange='readURL(this, \"#preview" +
+              cnt +
+              "\")'/>" +
+              "<img id='preview" +
+              cnt +
+              "' src='#' width='200' height='200' />" +
+              "<br>"
           );
         } else {
           $("#d_file").append(
             "<br>" +
-            "<input type='file' name='detail_image" + cnt + "' onchange='readURL(this, \"#preview" + cnt + "\")'/>" +
-            "<img id='preview" + cnt + "' src='#' width='200' height='200' />"
-            +"<br>" 
+              "<input type='file' name='detail_image" +
+              cnt +
+              "' onchange='readURL(this, \"#preview" +
+              cnt +
+              "\")'/>" +
+              "<img id='preview" +
+              cnt +
+              "' src='#' width='200' height='200' />" +
+              "<br>"
           );
         }
         cnt++;
       }
 
       function readURL(input, previewId) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $(previewId).attr('src', e.target.result);
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $(previewId).attr("src", e.target.result);
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
     </script>
   </head>
   <body>
     <div class="ownermain">
-      <div class="ownertext01"><h4>상품등록</h4></div>
-      <form action="${contextPath}/owner/updateProduct.do" method="post" encType="multipart/form-data">
-      
+      <div class="ownertext01"><h4>상품 정보 수정</h4></div>
+      <form
+        action="${contextPath}/owner/addNewProduct.do"
+        method="post"
+        encType="multipart/form-data"
+      >
         <div class="ownertext02">
           <div class="op01">
             <div class="fixed_join">상품종류</div>
@@ -146,43 +210,82 @@ request.setCharacterEncoding("utf-8"); %>
               </select>
             </div>
             <div class="nonebox"></div>
-          </div> 
+          </div>
           <div class="op01">
-            <div class="fixed_join" >브랜드명</div>
+            <div class="fixed_join">브랜드명</div>
             <div class="ownerbox">
-              <input id="productBrand" name="productBrand" type="text" size="20" value="${pdVO.productBrand}" />
+              <input
+                id="productBrand"
+                name="productBrand"
+                type="text"
+                size="20"
+                value="${pdVO.productBrand}"
+              />
             </div>
-
-          </div>   
+          </div>
 
           <div class="op01">
-       
             <div class="fixed_join">상품이름</div>
             <div class="ownerbox">
-              <input  name="productName" type="text" size="20" value="${pdVO.productName}"/>
+              <input
+                name="productName"
+                type="text"
+                size="20"
+                value="${pdVO.productName}"
+              />
             </div>
             <div class="nonebox"></div>
           </div>
           <div class="op01">
-            <div class="fixed_join" >상품가격</div>
+            <div class="fixed_join">상품가격</div>
             <div class="ownerbox">
-              <input name="productPrice" type="text" size="20" value="${pdVO.productPrice}"/>
+              <input
+                name="productPrice"
+                type="text"
+                size="20"
+                value="${pdVO.productPrice}"
+              />
             </div>
-            <div class="dodo"> 원
-              <input type="checkbox" name="discount" id="salecb"  value="y"/>할인율 입력
+            <div class="dodo">
+              원
+              <input
+                type="checkbox"
+                name="discount"
+                id="salecb"
+                value="y"
+                <c:choose>
+                  <c:when test="${pdVO.productDiscount > 0 }">
+                    checked="checked"
+                  </c:when>
+                  <c:when test="${pdVO.productDiscount == 0 }">
+                  </c:when>
+                </c:choose>
+              />할인율 입력
             </div>
           </div>
           <div class="op10">
-             <div class="fixed_join">할인율</div>
-                <div class="ownerbox">
-                 <input id="saletd" type="text" name="productDiscount" size="20" value="${pdVO.productDiscount}"/>
-                </div>
-                 <div class="dodo">%</div>  
-          </div> 
+            <div class="fixed_join">할인율</div>
+            <div class="ownerbox">
+              <input
+                id="saletd"
+                type="text"
+                name="productDiscount"
+                size="20"
+                value="${pdVO.productDiscount}"
+                
+              />
+            </div>
+            <div class="dodo">%</div>
+          </div>
           <div class="op01">
             <div class="fixed_join">판매단위</div>
             <div class="ownerbox">
-              <input name="productUnit" type="text" size="20" value="${pdVO.productUnit}"/>
+              <input
+                name="productUnit"
+                type="text"
+                size="20"
+                value="${pdVO.productUnit}"
+              />
             </div>
           </div>
           <div class="op01">
@@ -198,78 +301,122 @@ request.setCharacterEncoding("utf-8"); %>
           <div class="op01">
             <div class="fixed_join">중량/용량</div>
             <div class="ownerbox">
-              <input  name="productWeight" type="text" size="20" value="${pdVO.productWeight}"/>
+              <input
+                name="productWeight"
+                type="text"
+                size="20"
+                value="${pdVO.productWeight}"
+              />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join" >원산지</div>
+            <div class="fixed_join">원산지</div>
             <div class="ownerbox">
-              <input name="productOrigin" type="text" size="20"  value="${pdVO.productOrigin}"/>
+              <input
+                name="productOrigin"
+                type="text"
+                size="20"
+                value="${pdVO.productOrigin}"
+              />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join" >총수량</div>
+            <div class="fixed_join">총수량</div>
 
             <div class="ownerbox">
-              <input name="productTotal" type="text" size="20" value="${pdVO.productTotal}"/>
+              <input
+                name="productTotal"
+                type="text"
+                size="20"
+                value="${pdVO.productTotal}"
+              />
             </div>
           </div>
           <div class="op01">
-            <div class="fixed_join" >유통기한</div>
+            <div class="fixed_join">유통기한</div>
             <div class="ownerbox">
-              <input name="productExpireDate" type="text" size="20" value="${pdVO.productExpireDate}"/>
+              <input
+                name="productExpireDate"
+                type="text"
+                size="20"
+                value="${pdVO.productExpireDate}"
+              />
             </div>
             <div class="dodo"></div>
           </div>
 
           <div class="op01">
-            <div class="fixed_join" >소제목</div>
+            <div class="fixed_join">소제목</div>
             <div class="ownerbox">
-              <input name="productContentTitle" type="text" size="20" value="${pdVO.productContentTitle}"/>
+              <input
+                name="productContentTitle"
+                type="text"
+                size="20"
+                value="${pdVO.productContentTitle}"
+              />
             </div>
-        
           </div>
-  
+
           <div class="op01">
             <div class="fixed_join">내용</div>
             <div class="ownerbox">
-              <input name="productContent" type="text" size="20" value="${pdVO.productContent}" />
+              <input
+                name="productContent"
+                type="text"
+                size="20"
+                value="${pdVO.productContent}"
+              />
             </div>
-
-
-        </div>
-        <div class="tab_content" id="tab7">
-          <div class="ownertext03"><h4>상품이미지</h4></div>
-          <div class="ownertext04">
-            <div>
-              <div class="op02">
-                <div class="op03">
- 
-                  <div class="op06"><input type="button" id="opbt" value="파일 추가" onClick="fn_addFile()"/> 상세 이미지</div>
-                          
+          </div>
+          <div class="tab_content" id="tab7">
+            <div class="ownertext03"><h4>상품이미지</h4></div>
+            <div class="ownertext04">
               <div>
-                <div id="d_file">
-                  <div id="d_file">
-   					 <!-- 기존 이미지 정보 표시 -->
-<%--    				  <c:forEach items="${pdlist}" var="detailImage" varStatus="status">
-    				      <div class="op07">
-        			    <img id="preview${status.index}" src="${contextPath}${detailImage.fileName}" width="200" height="200" />
-        			  <input type="file" name="detailImage${status.index}" onchange="readURL(this, '#preview${status.index}');" />
-     				</div>
-    			  </c:forEach> --%>
+                <div class="op02">
+                  <div class="op03">
+                    <div class="op06">
+                      <input
+                        type="button"
+                        id="opbt"
+                        value="파일 추가"
+                        onClick="fn_addFile()"
+                      />
+                      상세 이미지
+                    </div>
+                    <div class="pdeditimg">
+                      <c:forEach var="imageFileName" items="${pdlist}" varStatus="i">
+                       <div class="pdimg"> 
+                        <img
+                          class="qwe_${i.index}"
+                          src="${contextPath}/download.do?fileName=${imageFileName.fileName}&productId=${pdVO.productId}&cateCode=${pdVO.cateCode}&fileType=${imageFileName.fileType}"
+                          width="200"
+                          height="200"
+                        /> 
+                        <c:choose>
+                          <c:when test="${imageFileName.fileType == 'main_image' }">
+                            <input id="asd" type="button" value="수정하기(메인)" onClick="fn_enable01()">
+                          </c:when>
+                          <c:when test="${imageFileName.fileType == 'detail_image1' }">
+                            <input id="asd" type="button" value="수정하기(상세)" onClick="fn_enable02()">
+                          </c:when>
+                        </c:choose>
+                      </div>
+                      </c:forEach>
+                    </div>
+                    <div>
+                      <div id="d_file"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="form_end">
+            <button class="join_end_btn" onclick="fn_loginGO()">
+              <span id="join_btn_text">수정하기</span>
+            </button>
+          </div>
         </div>
-        </div>   
-        </div>
-        <div class="form_end">
-          <button class="join_end_btn" onclick="fn_loginGO()">
-            <span id="join_btn_text">등록하기</span>
-          </button>
-        </div>
-       </div> 
       </form>
     </div>
   </body>

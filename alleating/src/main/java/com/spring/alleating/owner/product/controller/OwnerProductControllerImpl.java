@@ -175,27 +175,6 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			return mav;
 		}
 	 
-	/*
-	 * @Override public void modifyProductImageInfo(MultipartHttpServletRequest
-	 * multipartRequest, HttpServletResponse response) throws Exception { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * }
-	 */
-	 
-		/*
-		 * @RequestMapping(value="/modifyProductForm.do"
-		 * ,method={RequestMethod.GET,RequestMethod.POST}) public ModelAndView
-		 * modifyGoodsForm(@RequestParam("productId") int productId, HttpServletRequest
-		 * request, HttpServletResponse response) throws Exception { String
-		 * viewName=(String)request.getAttribute("viewName"); ModelAndView mav = new
-		 * ModelAndView(viewName);
-		 * 
-		 * Map goodsMap=adminGoodsService.goodsDetail(productId);
-		 * mav.addObject("goodsMap",goodsMap);
-		 * 
-		 * return mav; }
-		 */
 		
 	
 	/*
