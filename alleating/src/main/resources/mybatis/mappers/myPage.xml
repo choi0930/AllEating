@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.alleating.myPage.dao.MyPageDAO">
+	<!-- 유저 쿠폰 -->
+ 	<resultMap id="couponResult" type="userCouponVO">
+		<result property="couponId" column="couponId" />
+		<result property="id" column="id" />
+		<result property="coupon_name" column="coupon_name" />
+		<result property="coupon_range" column="coupon_range" />
+		<result property="couponDiscountRate" column="couponDiscountRate" />
+		<result property="coupon_startDate" column="coupon_startDate" />
+		<result property="coupon_endDate" column="coupon_endDate" />
+		<result property="cateGoryName" column="cateGoryName" />
+	</resultMap>
+	<!-- 배송지 정보 -->
+	<resultMap id="deliveryAddressResult" type="deliveryAddressVO">
+		<result property="num" column="num" />
+		<result property="id" column="id" />
+		<result property="deliveryName" column="deliveryName" />
+		<result property="receiver_name" column="receiver_name" />
+		<result property="receiver_hp1" column="receiver_hp1" />
+		<result property="receiver_hp2" column="receiver_hp2" />
+		<result property="receiver_hp3" column="receiver_hp3" />
+		<result property="zipcode" column="zipcode" />
+		<result property="address" column="address" />
+		<result property="address2" column="address2" />
+		<result property="address_detail" column="address_detail" />
+		<result property="default_address" column="default_address" />
+	</resultMap>
+	
+		<!-- 쿠폰 -->
+		<!-- 관리자가 등록한 쿠폰목록에 있는 쿠폰인지 확인 -->
+		<select id="findCoupon" resultType="int" parameterType="String">
+			select count(*) from coupon where couponId = #{couponId}
+		</select>
+		
+		<!-- 등록하는 사람이 이미등록했던 쿠폰인지 확인 -->
+		<select id="findUserCoupon" resultType="int" parameterType="userCouponVO">
+			select count(*) from userCoupon where couponId = #{couponId} and id = #{id}
+		</select>
+		<!-- 로그인한 유저 쿠폰목록 select -->
+		<select id="selectUserCoupon" resultMap="couponResult" parameterType="String">
+		select u.couponId, c.coupon_name, c.couponDiscountRate, c.coupon_startDate, c.coupon_endDate, g.cateGoryName  from usercoupon u
+			inner join coupon c on u.couponId = c.couponId
+			inner join category g on c.coupon_range = g.cateCode
+			where u.id=#{id};
+		</select>
+		
+		<!-- 유저 쿠폰 등록 -->
+		<insert id="insertUserCoupon" parameterType="userCouponVO">
+			insert into usercoupon (couponId, id) values (#{couponId}, #{id}) 
+		</insert>
+		<!-- 쿠폰 -->
+		
+		
+		<!-- 배송지관리 -->
+		<!-- 마이페이지: 로그인 유저 배송지 정보목록 -->
+		<select id="selectAllDeliveryAddress" resultMap="deliveryAddressResult" parameterType="java.util.Map">
+			select * from deliveryaddress where id = #{id} order by default_address desc
+		</select>
+		<!-- 마이페이지: 배송지 추가 -->
+		<insert id="insertDeilveryAddress" parameterType="deliveryAddressVO">
+			insert into deliveryaddress (id, deliveryName, receiver_name, receiver_hp1, receiver_hp2, receiver_hp3, zipcode, address, address2, address_detail)
+			values(#{id}, #{deliveryName}, #{receiver_name}, #{receiver_hp1}, #{receiver_hp2}, #{receiver_hp3}, #{zipcode}, #{address}, #{address2}, #{address_detail})
+		</insert>
+		<!-- 배송지관리 -->
+		
+		
+		
+		
+</mapper>

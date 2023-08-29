@@ -59,5 +59,10 @@
 		where d.deliveryType="reserve";
 		]]>
 	</select>
+	<select id="adminOrderCount" resultType="int">
+		<![CDATA[
+		 select count(*) from alleating_order_detail where deliveryType="reserve"
+		]]>
+	</select>
 	
 </mapper>

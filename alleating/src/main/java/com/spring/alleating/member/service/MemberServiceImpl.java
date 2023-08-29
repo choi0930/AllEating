@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService{
 		memberInfo.put("email", email);
 		
 		memberDAO.insertMember(memberInfo);
-		
+		//회원가입시 기본 포인트 생성
 		String id = memberInfo.get("id");
 		int point = 0;
 		
@@ -45,6 +45,33 @@ public class MemberServiceImpl implements MemberService{
 		userInfo.put("userPoint", point);
 		
 		pointDAO.insertJoinUserPoint(userInfo);
+		
+		
+		///////////////////////////////////////////////////////////////////////////
+		///////////////////////회원가입시 입력한 주소가 기본배송지로 설정////////////////////
+		//////////////////////////////////////////////////////////////////////////
+		String receiver_name = memberInfo.get("name");
+		String receiver_hp1 = memberInfo.get("hp1");
+		String receiver_hp2 = memberInfo.get("hp2");
+		String receiver_hp3 = memberInfo.get("hp3");
+		String zipcode = memberInfo.get("zipcode");
+		String address = memberInfo.get("address");
+		String address2 = memberInfo.get("address2");
+		String address_detail = memberInfo.get("address_detail");
+		String default_address = memberInfo.get("default_address");
+		Map<String, String> defaultAddress = new HashMap<String, String>();
+		defaultAddress.put("id", id);
+		defaultAddress.put("receiver_name", receiver_name);
+		defaultAddress.put("receiver_hp1", receiver_hp1);
+		defaultAddress.put("receiver_hp2", receiver_hp2);
+		defaultAddress.put("receiver_hp3", receiver_hp3);
+		defaultAddress.put("zipcode", zipcode);
+		defaultAddress.put("address", address);
+		defaultAddress.put("address2", address2);
+		defaultAddress.put("address_detail", address_detail);
+		defaultAddress.put("default_address", default_address);
+		
+		memberDAO.joinMemberDeliveryaddress(defaultAddress);
 		
 	}
 

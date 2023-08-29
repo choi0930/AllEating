@@ -68,18 +68,218 @@ request.setCharacterEncoding("utf-8"); %>
           },
         }).open();
       }
+      function fn_addDeliveryAddress() {
+        var deliveryName = $("input[name=deliveryName]").val();
+        var receiver_name = $("input[name=receiver_name]").val();
+        var receiver_hp1 = $("select[name=receiver_hp1]").val();
+        var receiver_hp2 = $("input[name=receiver_hp2]").val();
+        var receiver_hp3 = $("input[name=receiver_hp3]").val();
+        var zipcode = $("input[name=zipcode]").val();
+        var address = $("input[name=address]").val();
+        var address2 = $("input[name=address2]").val();
+        var address_detail = $("input[name=address_detail]").val();
+        var addressInfo = {
+          deliveryName: deliveryName,
+          receiver_name: receiver_name,
+          receiver_hp1: receiver_hp1,
+          receiver_hp2: receiver_hp2,
+          receiver_hp3: receiver_hp3,
+          zipcode: zipcode,
+          address: address,
+          address2: address2,
+          address_detail: address_detail,
+        };
+        $.ajax({
+          type: "POST",
+          async: true,
+          url: "${contextPath}/myPage/addCoupon.do",
+          data: JSON.stringify(addressInfo),
+          dataType: "text",
+          success: function (data) {
+            alert(data);
+            location.href = "/myPage/myPage_coupon.do";
+          },
+          error: function (data) {
+            alert("에러가 발생했습니다.");
+          },
+        });
+      }
     </script>
+    <style>
+      .addressText {
+        font-size: 12px;
+      }
+      .addressArea {
+        margin: 0 auto;
+      }
+      .areaText {
+        width: 90px;
+      }
+      .join_input_box {
+        width: 60px;
+        display: inline;
+      }
+      .phoneSelect {
+        display: inline;
+        width: 80px;
+      }
+      .modal_table td {
+        padding: 15px 0px;
+      }
+    </style>
   </head>
   <body>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">배송지 추가</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body addressArea">
+            <table class="modal_table">
+              <tr>
+                <td class="areaText">주소별칭</td>
+                <td>
+                  <input type="text" class="form-control" name="deliveryName" />
+                </td>
+              </tr>
+              <tr>
+                <td class="areaText">받는분</td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="receiver_name"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="areaText">휴대폰</td>
+                <td>
+                  <select name="receiver_hp1" class="form-select phoneSelect">
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
+                  </select>
+                  -<input
+                    type="text"
+                    name="receiver_hp2"
+                    maxlength="4"
+                    class="form-control join_input_box"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  />-<input
+                    type="text"
+                    name="receiver_hp3"
+                    maxlength="4"
+                    class="form-control join_input_box"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="sample6_postcode"
+                    name="zipcode"
+                    placeholder="우편번호"
+                    readonly
+                  />
+                </td>
+                <td>
+                  <button
+                    class="btn btn-outline-secondary addressBtn"
+                    type="button"
+                    id="idCheckBtn"
+                    onclick="sample6_execDaumPostcode()"
+                  >
+                    우편번호 찾기
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="sample6_address"
+                    name="address"
+                    placeholder="주소"
+                    readonly
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="sample6_extraAddress"
+                    name="address2"
+                    placeholder="참고항목"
+                    readonly
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input
+                    type="text"
+                    class="form-control join_input_box2"
+                    id="sample6_detailAddress"
+                    name="address_detail"
+                    placeholder="상세주소"
+                  />
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              닫기
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="fn_addDeliveryAddress()"
+            >
+              배송지 추가
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--모달 끝-->
     <div class="pwant">
       <div class="proW">
         <div class="want01"><h3>배송지 관리</h3></div>
         <div class="form_input_box">
           <button
-            class="btn btn-outline-secondary_addressBtn01"
             type="button"
-            id="idCheckBtn"
-            onclick="sample6_execDaumPostcode()"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
           >
             + 새 배송지 추가
           </button>
@@ -91,49 +291,63 @@ request.setCharacterEncoding("utf-8"); %>
 
       <table id="title001" align="center" border="1" width="100%">
         <thead class="title">
-          <tr height="60" align="center">
-            <td id="title01">선택</td>
-            <td id="title02">주소</td>
-            <td id="title03">받으실 분</td>
-            <td id="title04">연락처</td>
-            <td id="title05">배송 유형</td>
-            <td id="title06">수정</td>
+          <tr height="60">
+            <td></td>
+            <td>배송지 이름</td>
+            <td>받으실 분</td>
+            <td>배송주소</td>
+            <td>연락처</td>
+            <td>관리</td>
           </tr>
         </thead>
         <tbody>
-          <tr height="60" align="center">
-            <td id="title01">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-                checked="checked"
-              />
-            </td>
-            <td id="title02">오라클 빌딩 10층 1005호</td>
-            <td id="title03">최현진</td>
-            <td id="title04">010-1234-5678</td>
-            <td id="title05">예약 배송</td>
-            <td id="title06">수정</td>
-          </tr>
-          <tr height="60" align="center">
-            <td id="title01">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-            </td>
-            <td id="title02">연수동산로12 계룡리슈빌1차 100동 200호</td>
-            <td id="title03">조승기</td>
-            <td id="title04">010-8757-6203</td>
-            <td id="title05">예약 배송</td>
-            <td id="title06">수정</td>
-          </tr>
+          <c:forEach var="addressInfo" items="${addressList}">
+            <tr height="60">
+              <td>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  value=""
+                  name="delivery"
+                  id="flexCheckDefault"
+                />
+              </td>
+              <c:choose>
+                <c:when test="${addressInfo.default_address == 'y'}">
+                  <td>
+                    <span class="redText">[기본배송지]</span><br />
+                    ${addressInfo.deliveryName}
+                  </td>
+                </c:when>
+                <c:otherwise>
+                  <td>${addressInfo.deliveryName}</td>
+                </c:otherwise>
+              </c:choose>
+              <td>${addressInfo.receiver_name}</td>
+              <td class="addressText">
+                (${addressInfo.zipcode})<br />
+                ${addressInfo.address}&nbsp;${addressInfo.address2}<br />
+                ${addressInfo.address_detail}
+              </td>
+              <td>
+                ${addressInfo.receiver_hp1}-${addressInfo.receiver_hp2}-${addressInfo.receiver_hp3}
+              </td>
+
+              <c:choose>
+                <c:when test="${addressInfo.default_address == 'y'}">
+                  <td><button>수정</button></td>
+                </c:when>
+                <c:otherwise>
+                  <td><button>수정</button> <button>삭제</button></td>
+                </c:otherwise>
+              </c:choose>
+            </tr>
+          </c:forEach>
         </tbody>
       </table>
+      <div>
+        <button>기본배송지 설정</button>
+      </div>
     </div>
   </body>
 </html>

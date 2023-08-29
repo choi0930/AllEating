@@ -45,13 +45,13 @@ public class AdminOrderControllerImpl implements AdminOrderContorller {
 		condMap.put("section",section);
 		condMap.put("pageNum",pageNum);
 		
-		Map orderMap = new HashMap();
-		orderMap = adminOrderService.adminOrderList(condMap);
+		Map adminOrderMap = new HashMap();
+		adminOrderMap = adminOrderService.adminOrderList(condMap);
 		
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("orderMap", orderMap);
+		mav.addObject("adminOrderMap", adminOrderMap);
 		mav.setViewName(viewName);
 		return mav;
 	}
