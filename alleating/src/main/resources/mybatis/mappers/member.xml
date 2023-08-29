@@ -108,7 +108,10 @@
  				#{personalInformation}
  			)
 	</insert>
-	
+	<insert id="joinMemberDeliveryaddress" parameterType="java.util.Map">
+		insert into deliveryaddress(id, deliveryName, receiver_name, receiver_hp1, receiver_hp2,receiver_hp3, zipcode, address, address2, address_detail, default_address)
+		values(#{id}, '기본배송지',#{receiver_name}, #{receiver_hp1}, #{receiver_hp2}, #{receiver_hp3}, #{zipcode}, #{address}, #{address2}, #{address_detail}, 'y')
+	</insert>
 	<update id="updateMember" parameterType="memberVO">
   		update member
   		set pwd=#{pwd},

@@ -17,6 +17,6 @@ public interface MemberDAO {
 	
 	public MemberVO selectMemberById(String id) throws DataAccessException;	
 	public int updateMember(Map memberInfo) throws DataAccessException;
-	
+	public void joinMemberDeliveryaddress(Map defaultAddress)throws DataAccessException;
 
 }

@@ -79,6 +79,7 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("productMap", productMap);
 		mav.setViewName("/admin/productMain");
+		
 		return mav;
 	}
 	/*---------------------------------관리자 상품 페이지 끝------------------------------------*/
@@ -112,6 +113,7 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("productMap", productMap);
 		mav.setViewName(viewName);
+		
 		return mav;
 	}
 	/*---------------------------------상품관리 페이지 첫 진입 끝------------------------------------*/

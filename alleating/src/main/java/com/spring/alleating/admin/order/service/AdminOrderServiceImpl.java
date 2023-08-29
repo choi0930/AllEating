@@ -21,7 +21,9 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 		Map<String, Object> orderMap = new HashMap<>();
 		
 		List<AllEatingOrderVO> orderList = adminOrderDAO.selectAdminOrder();
+		int total = adminOrderDAO.adminOrderCount();
 		orderMap.put("orderList", orderList);
+		orderMap.put("total", total);
 		return orderMap;
 	}
 

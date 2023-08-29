@@ -302,11 +302,11 @@ $(function(){$('.header_nav').hover(
                   <a href="${contextPath}/product/product_01.do?category=906"><img src="${contextPath}/img/headerImg/categroy_icon/salad.png" width="20px" height="20px" style="margin-right: 5px;"/>샐러드·간편식</a>
                   <div class="small_categroy" id="salad_categroy">
                     <ul>
-                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category=906001">샐러드 닭가슴살</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category=906001">샐러드·닭가슴살</a></li>
                       <li class="categroy"><a href="${contextPath}/product/product_01.do?category=906002">도시락·밥류</a></li>
                       <li class="categroy"><a href="${contextPath}/product/product_01.do?category=906003">파스타·면류</a></li>
                       <li class="categroy"><a href="${contextPath}/product/product_01.do?category=906004">떡볶이·튀김·순대</a></li>
-                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category=906005">폭립 떡갈비·안주</a></li>
+                      <li class="categroy"><a href="${contextPath}/product/product_01.do?category=906005">폭립·떡갈비·안주</a></li>
                       <li class="categroy"><a href="${contextPath}/product/product_01.do?category=906006">죽·스프·카레</a></li>
                       <li class="categroy"><a href="${contextPath}/product/product_01.do?category=906007">선식·시리얼</a></li>
                     </ul>

@@ -6,7 +6,7 @@
 function fn_loginGO(){
 	var joinType = $('.joinCheck:checked').val()
 	
-	if(joinType == 'owner'){
+	if(joinType == 'owner'){ //사업자 회원가입시
 		if($('#companyName').val()==""){
 			alert('사업장명을 입력해주세요');
 			setTimeout(function(){
@@ -42,7 +42,7 @@ function fn_loginGO(){
 		});
 			return false;
 		}
-	}
+	}//사업자 회원가입시 끝
 		if($('#userId').val() == ""){
 			alert('아이디를 입력해주세요');
 			setTimeout(function(){
@@ -73,13 +73,11 @@ function fn_loginGO(){
 			return false;
 		}
 		if($('#pwd1').val() == $('#pwd2').val()){
-		
 			if(!passwdCheck.test($('#pwd1').val())){
 				alert('비밀번호 형식을 확인해주세요');
 				setTimeout(function(){$('#pwd1').focus();});
 				return false;
-			}
-				
+			}	
 		}
 		
 		if($('#join_name').val() == ""){

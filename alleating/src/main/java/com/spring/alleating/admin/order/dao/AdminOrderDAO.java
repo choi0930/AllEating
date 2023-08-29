@@ -12,4 +12,5 @@ import com.spring.alleating.order.vo.AllEatingOrderVO;
 @Repository("adminOrderDAO")
 public interface AdminOrderDAO {
 	public List<AllEatingOrderVO> selectAdminOrder()throws DataAccessException;
+	public int adminOrderCount()throws DataAccessException;
 }
