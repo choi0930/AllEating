@@ -53,9 +53,32 @@
 	
 	<select id="selectAllOwnerOrderList" resultMap="allEatingOrderResult">
  				SELECT
-   				 a.*,
+   				 a.orderId,
+   				 a.id,
+   				 a.orderName,
+   				 a.orderHp,
+   				 a.receiverName,
+   				 a.receiverHp,
+   				 a.zipcode,
+   				 a.address,
+   				 a.address2,
+   				 a.addressDetail,
+   				 a.delivery_request,
+   				 a.userPoint,
+   				 a.couponId,
+   				 a.totalPrice,
+   				 a.card_com_name,
+   				 a.card_pay_month,
+   				 a.orderStatus,
+   				 a.payDate,
+   				 a.thunderDate,
+   				 a.thunderTime,
+   				 a.cateCode,
+   				 a.fileName,
+   				 a.productId,
     			b.delivery_status,
-    			b.productQty
+    			b.productQty,
+    			b.productName
 				FROM
   				  alleating_order a
 				INNER JOIN
@@ -64,18 +87,7 @@
   				  a.orderId = b.orderId;
 	</select> 
 	
-<!-- 	<select id="selectAllOwnerOrderList" resultMap="allEatingOrderResult">
-	
- 	select * from alleating_order order by orderId desc
- 	
-	</select> 
 
-	
-	<select id="selectAllOwnerOrderList" resultMap="allEatingOrderResult" parameterType="String">
-	
- 	select * from alleating_order where orderId = #{orderId}
- 	
-	</select>  -->
 	
 	<!-- insert -->
 
