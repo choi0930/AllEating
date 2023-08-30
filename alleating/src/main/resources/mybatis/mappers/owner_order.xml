@@ -29,6 +29,8 @@
 		<result property="cateCode" column="cateCode" />
 		<result property="fileName" column="fileName" />
 		<result property="productId" column="productId" />
+		<result property="delivery_status" column="delivery_status" />
+		<result property="productQty" column="productQty" />
 	</resultMap> 
 	
 	<resultMap id="allEatingOrderDetailResult" type="allEatingOrderDetailVO">
@@ -48,11 +50,32 @@
 			
 	
 	<!-- select -->
-	<select id="selectAllOwnerOrderList" resultMap="allEatingOrderDetailResult">
 	
- 	select * from alleating_order_detail where deliveryType='normal'
+	<select id="selectAllOwnerOrderList" resultMap="allEatingOrderResult">
+ 				SELECT
+   				 a.*,
+    			b.delivery_status,
+    			b.productQty
+				FROM
+  				  alleating_order a
+				INNER JOIN
+ 				  alleating_order_detail b
+				ON
+  				  a.orderId = b.orderId;
+	</select> 
+	
+<!-- 	<select id="selectAllOwnerOrderList" resultMap="allEatingOrderResult">
+	
+ 	select * from alleating_order order by orderId desc
  	
 	</select> 
+
+	
+	<select id="selectAllOwnerOrderList" resultMap="allEatingOrderResult" parameterType="String">
+	
+ 	select * from alleating_order where orderId = #{orderId}
+ 	
+	</select>  -->
 	
 	<!-- insert -->
 

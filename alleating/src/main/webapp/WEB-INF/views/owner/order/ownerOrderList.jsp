@@ -4,20 +4,26 @@
     
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-    <c:choose>
+    <!-- <c:choose>
 		<c:when test="${total%30 == 0}">
 			<c:set var="totals2" value="${total/30}" />
 		</c:when>	
 		<c:otherwise>
 			<c:set var="totals2" value="${total/30+1}" />
 		</c:otherwise>
-	</c:choose>
+	</c:choose> -->
 	
 <!DOCTYPE html>
 <html>
 <head>
-    <title>사업자 상품관리 페이지</title>
-    <script>
+    <title>사업자 배송/주문 관리 페이지</title>
+    <script>   
+
+        $(document).ready(function () {
+        $("#delivery_status").val("${ownerOrder.delivery_status}").attr("selected", "selected");
+      });
+
+
         $(document).ready(function(){
   
   $('ul.tabs li').click(function(){
@@ -166,13 +172,9 @@ function fn_goAddProduct(){
     </script>
 </head>
 <body>
-    <div class="tabContainer">
-     
-        <ul class="tabs">
-          
-            
+    <div class="tabContainer"> 
+        <ul class="tabs">     
         </ul>
-
         <div id="tab-1" class="tab-content active">
             <div class="tab_contents">
                 <div class="adminProductMain_searchBarArea"> <!--배송관리 상단-->
@@ -217,7 +219,7 @@ function fn_goAddProduct(){
                 <div class="productTable"><!--사업자가 등록한 상품 목록-->
                     <table class="table adminProductTable table-hover">
                         <thead class="table-dark">
-                            <tr onclick="location.href='/test.do?'" style="cursor: pointer;">
+                            <tr  style="cursor: pointer;">
                                 <td >주문 번호</td>
                                 <td >ID</td>
                                 <td >상품명</td>
@@ -226,60 +228,40 @@ function fn_goAddProduct(){
                                 <td >배송 주소</td>
                                 <td >주문 일자</td>
                                 <td >배송 상태</td>
-                                
                             </tr>
-                        </thead>
-                        
-                        
-                        
+                        </thead> 
                         <tbody>
-                        <c:forEach var ="ownerOrder" items="${ownerOrderList }">
-                            <tr onclick="location.href='/test.do?'" style="cursor: pointer;">
-                                 <td >${ownerProduct.orderId}</td>
-                                <td >${ownerProduct.id}</td>
-                                <td >${ownerProduct.productName}</td>
-                                <td >${ownerProduct.productQty}개</td>
-                                <td >${ownerProduct.receiverName}개</td>
-                                <td >${ownerProduct.address}${ownerProduct.address2}${ownerProduct.addressDetail}</td>
-                                <td >${ownerProduct.payDate}</td>
-                                <td ><select onchange="fn_productSelect()">
+                        <c:forEach var ="ownerOrder" items="${orderlist}">
+                            <tr>
+                                 <td onclick="location.href='/test.do?'" style="cursor: pointer;">${ownerOrder.orderId}</td>
+                                <td onclick="location.href='/test.do?'" style="cursor: pointer;">${ownerOrder.id}</td>
+                                <td onclick="location.href='/test.do?'" style="cursor: pointer;">${ownerOrder.productName}</td>
+                                <td onclick="location.href='/test.do?'" style="cursor: pointer;">${ownerOrder.productQty}개</td>
+                                <td onclick="location.href='/test.do?'" style="cursor: pointer;">${ownerOrder.receiverName}</td>
+                                <td onclick="location.href='/test.do?'" style="cursor: pointer;">${ownerOrder.address}${ownerOrder.address2}${ownerOrder.addressDetail}</td>
+                                <td onclick="location.href='/test.do?'" style="cursor: pointer;">${ownerOrder.payDate}</td>
+                                <td >
+                                 <select id="delivery_status" name="delivery_status">
                                 <option selected>전체</option>
-                                <option>배송 준비중</option>
-                                <option>배송중</option>
-                                <option>배송 완료</option>
-                                <option>교환 접수</option>
-                                <option>교환 진행중</option>
-                                <option>교환 완료</option>
-                                <option>반품 접수</option>
-                                <option>반품 진행중</option>
-                                <option>반품 완료</option>
-                                <option>주문 취소</option>
+                                <option value="delivery_prepared">배송 준비중</option>
+                                <option value="shipping">배송중</option>
+                                <option value="delivery_completed">배송 완료</option>
+                                <option value="exchange reception">교환 접수</option>
+                                <option value="exchange in progress">교환 진행중</option>
+                                <option value="exchange completed">교환 완료</option>
+                                <option value="return acceptance">반품 접수</option>
+                                <option value="return in progress">반품 진행중</option>
+                                <option value="return complete">반품 완료</option>
+                                <option value="withdraw order">주문 취소</option>
                             </select></td>
-                            <td><button type="button" class="product_apply_btn">적용</button>
-                            
-                                
-                                
-                                
-                                
-                               <%--  <td><c:choose >
-	                             <c:when test="${ownerProduct.productStatus eq 'approval_request'}"> 승인 요청 </c:when>
-	                             <c:when test="${ownerProduct.productStatus eq 'declined'}"> 승인 거절 </c:when>
-	                             <c:when test="${ownerProduct.productStatus eq 'sale'}"> 판매 종료 </c:when>
-	                             <c:when test="${ownerProduct.productStatus eq 'sold_out'}"> 품절 </c:when>
-	                            </c:choose></td> --%>
-                             
-                               
+                            <td><button type="button" class="product_apply_btn">적용</button>                            
                             </tr> 
                             </c:forEach>
-                       
-                          
-                        </tbody>
-                        
-                        
+                        </tbody>    
                     </table>
                 </div><!--사업자가 등록한 상품 목록-->
 
-                <c:choose>
+                <!-- <c:choose>
                     <c:when test="${total>=40}">
                         <div id="page_wrap">
                             <c:forEach   var="page" begin="1" end="10" step="1" >
@@ -306,14 +288,10 @@ function fn_goAddProduct(){
                             
                         </c:forEach>
                     </c:when>
-                </c:choose>
+                </c:choose> -->
             </div>
-        </div>
-        
-                
-               
-    </div>
-   
+        </div>      
+    </div>  
 </body>
 </html>
 

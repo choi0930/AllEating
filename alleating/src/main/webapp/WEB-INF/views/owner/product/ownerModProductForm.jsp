@@ -125,7 +125,7 @@ function changeImageByType(imageType) {
     <div class="ownermain">
       <div class="ownertext01"><h4>상품 정보 수정</h4></div>
       <form
-        action="${contextPath}/owner/addNewProduct.do"
+        action="${contextPath}/owner/ownerupdateproduct.do"
         method="post"
         encType="multipart/form-data"
       >
