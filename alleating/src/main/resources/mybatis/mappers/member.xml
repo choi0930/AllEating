@@ -36,10 +36,14 @@
 		<result property="snsId" column="snsId"/>
 	</resultMap>
 	<!-- select -->
+	<!-- 일반로그인 -->
 	<select id = "selectByIdAndPwd" parameterType="java.util.Map" resultMap="memResult">
 		select * from member where id = #{id} and pwd = #{pwd}
 	</select>
-	
+	<!-- 카카오 로그인 -->
+	<select id="selectKaKaoLogin" parameterType="java.util.Map" resultMap="memResult">
+		select * from member where id = #{id} and email = #{email}
+	</select>
 	<select id="selectById" parameterType="String" resultType="int">
 		select count(*) from member where id = #{id}
 	</select>

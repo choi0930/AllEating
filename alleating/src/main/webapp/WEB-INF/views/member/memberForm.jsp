@@ -184,7 +184,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           success: function (data) {
             alert("인증번호를 발송했습니다");
             emailCheckNum = data.number;
-            console.log(data);
           },
           error: function (data) {
             alert("에러가 발생했습니다.");

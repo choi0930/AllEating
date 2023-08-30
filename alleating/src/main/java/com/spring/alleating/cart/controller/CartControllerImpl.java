@@ -1,5 +1,8 @@
 package com.spring.alleating.cart.controller;
 
+import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.spring.alleating.cart.service.CartService;
 import com.spring.alleating.cart.vo.CartVO;
 import com.spring.alleating.member.vo.MemberVO;
@@ -81,7 +86,7 @@ public class CartControllerImpl implements CartController{
 	@Override
 	@ResponseBody
 	@RequestMapping(value="/cart/modifyCartQty.do", method = RequestMethod.POST)
-	public  String modifyCartQty(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String modifyCartQty(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		String id = memberVO.getId();
@@ -104,7 +109,7 @@ public class CartControllerImpl implements CartController{
 	}
 
 	@Override
-	@RequestMapping(value="/cart/removeProduct", method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value="/cart/removeProduct.do", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView removeCartProduct(int cartId, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		cartService.removeCartProducts(cartId);
@@ -113,5 +118,15 @@ public class CartControllerImpl implements CartController{
 		mav.setViewName("redirect:/cart/myCart.do");
 		return mav;
 	}
-	
+	/* 장바구니 체크한 상품 여러개 삭제 */
+	@Override
+	@ResponseBody
+	@PostMapping(value="/cart/removeProductArray.do")
+	public String removeCartProducts(@RequestBody List<CartVO> cartList , HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String msg="삭제완료";
+		cartService.removeCartProductArray(cartList);
+		return msg;
+	}
+	/*------------------------------------------------------------------------------------------------*/
 }

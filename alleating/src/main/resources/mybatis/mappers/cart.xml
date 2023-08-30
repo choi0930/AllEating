@@ -25,6 +25,21 @@
 		<result property="fileName" column="fileName"/>
 	</resultMap>
 	
+	<resultMap id="deliveryAddressResult" type="deliveryAddressVO">
+		<result property="num" column="num" />
+		<result property="id" column="id" />
+		<result property="deliveryName" column="deliveryName" />
+		<result property="receiver_name" column="receiver_name" />
+		<result property="receiver_hp1" column="receiver_hp1" />
+		<result property="receiver_hp2" column="receiver_hp2" />
+		<result property="receiver_hp3" column="receiver_hp3" />
+		<result property="zipcode" column="zipcode" />
+		<result property="address" column="address" />
+		<result property="address2" column="address2" />
+		<result property="address_detail" column="address_detail" />
+		<result property="default_address" column="default_address" />
+	</resultMap>
+	
 	<!-- select -->
 	<select id="selectCountInCart" resultType="String" parameterType="cartVO">
 	    <![CDATA[
@@ -58,6 +73,9 @@
 			]]>
 	</select>
 	
+	<select id="selectDefaultDeliveryAddress" resultMap="deliveryAddressResult" parameterType="cartVO">
+		select * from deliveryaddress where id = #{id} and default_address = 'y'
+	</select>
 	<!-- insert -->
 	<insert id="insertProductInCart" parameterType="cartVO">
 		  <![CDATA[

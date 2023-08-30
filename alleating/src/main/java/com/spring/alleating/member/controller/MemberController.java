@@ -5,12 +5,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.spring.alleating.member.vo.MemberVO;
 
 
 public interface MemberController {
@@ -37,5 +35,7 @@ public interface MemberController {
 	public ModelAndView find_pwd_02(HttpServletRequest request, HttpServletResponse response) throws Exception;	
 	
 	/*카카오 로그인*/
-	public ModelAndView kokaoLogin(@RequestParam String code)throws Exception;
+	public ModelAndView kakaoLogin(@RequestParam String code, HttpServletRequest request)throws Exception;
+	/*카카오 회원가입*/
+	public ResponseEntity<?> kakaoJoin(@RequestParam Map<String, String> snsMemberInfo, HttpServletRequest request)throws Exception;
 }

@@ -4,13 +4,12 @@ uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fmt"
 uri="http://java.sun.com/jsp/jstl/fmt" %> <%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
-<c:set
-  var="resrve_product"
-  value="${product_map.reserveProductList}"
-/><!--예약배송 상품-->
-<c:set var="normal_product" value="${product_map.normalProductList}" />
-<!--일반배송 상품-->
+<!--예약배송 상품-->
+<c:set var="resrve_product" value="${product_map.reserveProductList}" />
 <c:set var="reserveCount1" value="${product_map.reserveCount}" />
+
+<!--일반배송 상품-->
+<c:set var="normal_product" value="${product_map.normalProductList}" />
 <c:set var="normalCount1" value="${product_map.normalCount}" />
 
 <!DOCTYPE html>
@@ -26,6 +25,7 @@ request.setCharacterEncoding("utf-8"); %>
     <script type="text/javascript">
       window.onload=function(){
         fn_productPrice();
+        fn_totalPrice();
       }
       $(function () {
         $("#cartShowBtn").hide();
@@ -103,7 +103,7 @@ request.setCharacterEncoding("utf-8"); %>
       });
 
       
-      /*qty 증가*/
+      /*장바구니 수량 증가*/
       function fn_qty_up(cartId) {
         var qty = $("#qty" + cartId).val();
 
@@ -130,7 +130,9 @@ request.setCharacterEncoding("utf-8"); %>
           fn_productPrice(cartId);
         });
       }
-      /*qty 감소*/
+      /*---------------------------------------------------------*/
+
+      /*장바구니 수량 감소*/
       function fn_qty_down(cartId) {
         var qty = $("#qty" + cartId).val();
 
@@ -164,8 +166,9 @@ request.setCharacterEncoding("utf-8"); %>
           
         });
       }
-     
+     /*---------------------------------------------------------*/
        
+
       function fn_productPrice(cartId) {
         
         var productPrice = $("#productPrice" + cartId).val();
@@ -182,23 +185,27 @@ request.setCharacterEncoding("utf-8"); %>
         $("#total_price_" + cartId).val(result);
         fn_totalPrice();
       }
-
+      /* 체크한 상품만 계산*/
       function fn_totalPrice(){
         var str = "";
                 var sum = 0;
                 var deliveryPrice = 3000;
                 var count = $(".chkbox:checked").length;
                
-                  
-                for (var i = 0; i < count; i++) {
+                $('input:checkbox[name=checked_cartId]:checked').each(function (index) {
+                /*for (var i = 0; i < count; i++) {
                     if ($(".chkbox")[i].checked == true) {
                         var cartId = $(".chkbox")[i].value;
                         var productPrice = $('#totalPrice'+cartId).val();
                         console.log(productPrice);
                         sum +=Number(productPrice);
-                        
                     }
-                }
+                }*/
+                  var cartId = $(this).val();
+                  console.log(cartId);
+                  var productPrice = $('#totalPrice'+cartId).val();
+                  sum +=Number(productPrice);
+              });
                 var total = sum+deliveryPrice;
                 
                 $('#productCount').attr('value',count);
@@ -212,8 +219,9 @@ request.setCharacterEncoding("utf-8"); %>
                 $('#h_td').attr('value',total);
                 
       }
-      
+      /*---------------------------------------------------------------------------*/
 
+      /*체크한 상품만 결제페이지로 이동*/
       function getcheck(){
         var checkCartId;
         var productId;
@@ -271,7 +279,34 @@ request.setCharacterEncoding("utf-8"); %>
             console.error("오류 발생:", error);
         }
     });
-        }      
+        } 
+        /*---------------------------------------------------------------------------*/  
+      /* 체크한 상품 선택 삭제 */
+        function selectDelete(){
+        var cartId;
+        var cartArray =[];
+        
+        $('input:checkbox[name=checked_cartId]:checked').each(function (index) {
+           cartId = $(this).val();
+          cartArray.push({"cartId":cartId});
+        });
+        console.log(cartArray);
+      
+        $.ajax({
+        type: "POST",
+        url: "${contextPath}/cart/removeProductArray.do",
+        data: JSON.stringify(cartArray),
+        contentType: "application/json;charset=UTF-8",
+        success: function (response) {
+          alert(response);
+          location.href="/cart/myCart.do";
+        },
+        error: function (error) {
+            console.error("오류 발생:", error);
+        }
+    });
+      }   
+      /*----------------------------------------------------------------------------*/
     </script>
     <style>
       .emptyProductMsg {
@@ -293,11 +328,11 @@ request.setCharacterEncoding("utf-8"); %>
       <div class="cart-main">
         <h3 class="cart-text01">장바구니</h3>
         <div id="cart-ch">
-          <a href="javascript:getSelectedCheckboxValues()">선택삭제</a>
+          <a href="javascript:selectDelete()">선택삭제</a>
           <div class="header_top_bar"></div>
           <!--일자 바-->
-          <a href="#">전체선택</a>
-          <input type="checkbox" id="cart-all-check" />
+          전체선택
+          <input type="checkbox" id="cart-all-check" checked />
         </div>
         <form name = "frm_order">
           
@@ -348,7 +383,8 @@ request.setCharacterEncoding("utf-8"); %>
                         value="${res.cartId}"
                         name="checked_cartId"
                         onchange="fn_totalPrice('${res.cartId}')"
-                      />
+                        checked
+                        />
 
                       <img
                         class="cart-image"
@@ -428,7 +464,7 @@ request.setCharacterEncoding("utf-8"); %>
                               <div class="product_salesPrice">
                                 <span class="choice-12">
                                 <input  class="css0930" class="reservePrice" type="text"id="total_price_${res.cartId}"  value="${res.oneProductPrice}" readonly>
-                                <input type="hidden" id="totalPrice${res.cartId}" value="">
+                                <input type="hidden" id="totalPrice${res.cartId}" value="${res.oneProductPrice}">
                                 </span>
                                 <span class="choice-12">원</span>
                               </div>
@@ -455,7 +491,7 @@ request.setCharacterEncoding("utf-8"); %>
                                 class="choice-12"
                               
                                 ><input  class="css0930" class="reservePrice" type="text"id="total_price_${res.cartId}"  value="${res.oneProductPrice}" readonly>
-                              <input type="hidden" id="totalPrice${res.cartId}" value=""> </span>
+                              <input type="hidden" id="totalPrice${res.cartId}" value="${res.oneProductPrice}"> </span>
                               <span class="choice-12">원</span>
                             </c:otherwise>
                           </c:choose>
@@ -509,6 +545,7 @@ request.setCharacterEncoding("utf-8"); %>
                         value="${normal.cartId}"
                         name="checked_cartId"
                         onchange="fn_totalPrice('${normal.cartId}')"
+                        checked
                       />
                       <img
                         class="cart-image"
@@ -589,7 +626,7 @@ request.setCharacterEncoding("utf-8"); %>
                                  
                                 >
                                 <input  class="css0930" type="text"id="total_price_${normal.cartId}"  value="${normal.oneProductPrice}" readonly>
-                                <input type="hidden" id="totalPrice${normal.cartId}" value=""></span>
+                                <input type="hidden" id="totalPrice${normal.cartId}" value="${normal.oneProductPrice}"></span>
                                 </span>
                                 <span class="choice-12">원</span>
                               </div>
@@ -615,7 +652,7 @@ request.setCharacterEncoding("utf-8"); %>
                                 class="choice-12"
                               
                                 ><input  class="css0930" type="text"id="total_price_${normal.cartId}"  value="${normal.oneProductPrice}" readonly>
-                                <input type="hidden" id="totalPrice${normal.cartId}" value=""></span>
+                                <input type="hidden" id="totalPrice${normal.cartId}" value="${normal.oneProductPrice}"></span>
                               <span class="choice-12">원</span>
                             </c:otherwise>
                           </c:choose>

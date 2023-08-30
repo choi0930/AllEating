@@ -62,150 +62,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           },
         }).open();
       }
-      var userIdCheck = RegExp(/^[A-Za-z0-9]{6,16}$/); //아이디 유효성 검사
-      var passwdCheck = RegExp(
-        /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/
-      ); //비밀번호 유효성 검사
-
-      $(function () {
-        //비밀번호 일치 확인
-        $("#alert-success").hide();
-        $("#alert-danger").hide();
-        $("input").keyup(function () {
-          var pwd1 = $("#pwd1").val();
-          var pwd2 = $("#pwd2").val();
-          if (pwd1 != "" || pwd2 != "") {
-            if (pwd1 == pwd2) {
-              $("#alert-success").show();
-              $("#alert-danger").hide();
-              $("#alert-success").addClass("greenText");
-            } else {
-              $("#alert-success").hide();
-              $("#alert-danger").show();
-              $("#alert-danger").addClass("redText");
-            }
-          }
-        });
 
         $("#idCheckMessage").hide();
 
-        $("#userId").keyup(function () {
-          //아이디 형식 검사
-          if (userIdCheck.test($("#userId").val())) {
-            $("#idCheckMessage").removeClass("redText");
-            $("#idCheckMessage").addClass("greenText");
-          } else {
-            $("#join_id_ex").hide();
-            $("#idCheckMessage").show();
-            $("#idCheckMessage").text(
-              "6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합"
-            );
-            $("#idCheckMessage").addClass("redText");
-          }
-        });
-        $("#pwdCheckMessage").hide();
-        $("#pwd1").keyup(function () {
-          //비밀번호 형식 검사
-          if (passwdCheck.test($("#pwd1").val())) {
-            $("#pwdCheckMessage").removeClass("redText");
-            $("#pwdCheckMessage").addClass("greenText");
-          } else {
-            $("#join_pwd_ex").hide();
-            $("#pwdCheckMessage").show();
-            $("#pwdCheckMessage").text(
-              "영문/숫자/특수문자(공백제외)포함 8자 이상 20이하"
-            );
-            $("#pwdCheckMessage").addClass("redText");
-          }
-        });
 
-        $("#nameCheckMessge").hide();
-        $("#join_name").keyup(function () {
-          if ("#join_name".val() != " ") {
-            $("#nameCheckMessge").hide();
-            $("#join_name_ex").show();
-          } else {
-            $("#join_name_ex").hide();
-            $("#nameCheckMessge").show();
-            $("#nameCheckMessge").text("이름을 입력해주세요");
-            $("#nameCheckMessge").addClass("redText");
-          }
-        });
-      });
-      function fn_checkId() {
-        //아이디 중복체크
-        var _id = $("#userId").val();
-        if (_id == "") {
-          alert("아이디를 입릭하세요");
-          return false;
-        }
-        if (!userIdCheck.test($("#userId").val())) {
-          alert("6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합 해주세요");
-          return false;
-        }
-        $.ajax({
-          type: "post",
-          async: true,
-          url: "${contextPath}/member/checkId.do",
-          dataType: "text",
-          data: { id: _id },
-          success: function (data, textStatus) {
-            if (data == "usable") {
-              $("#idCheckMessage").text("사용할 수 있는 ID입니다");
-              $("#idCheckMessage").removeClass();
-              $("#idCheckMessage").addClass("greenText");
-            } else {
-              $("#idCheckMessage").text("사용할 수 없는 ID입니다.");
-              $("#idCheckMessage").removeClass();
-              $("#idCheckMessage").addClass("redText");
-            }
-          },
-          error: function (data, textStatus) {
-            alert("에러가 발생했습니다.");
-          },
-          complete: function (data, textStatus) {},
-        });
-      }
-
-      //넘어오는 이메일 인증번호
-      var emailCheckNum;
-      //이메일 인증번호 확인
-      function fn_checkEamil() {
-        var email1 = $("#userEmail").val();
-        var email2 = $("#selects").val();
-        var userEmail = email1 + "@" + email2;
-
-        $.ajax({
-          type: "post",
-          async: true,
-          url: "${contextPath}/member/sendEmail.do",
-          dataType: "Json",
-          data: { email: userEmail },
-          success: function (data) {
-            alert("인증번호를 발송했습니다");
-            emailCheckNum = data.number;
-            console.log(data);
-          },
-          error: function (data) {
-            alert("에러가 발생했습니다.");
-          },
-          complete: function (data) {},
-        });
-        $("#checkEamil").css("display", "block");
-      }
-      //인증번호 확인
-      function fn_checkNum() {
-        var mailCeck = $("#email_check").val();
-        if (mailCeck == emailCheckNum) {
-          $("#mailCecked").text("인증번호 확인 완료");
-          $("#mailCecked").removeClass();
-          $("#mailCecked").addClass("greenText");
-        } else {
-          $("#mailCecked").text("인증번호가 틀렸습니다.");
-          $("#mailCecked").removeClass();
-          $("#mailCecked").addClass("redText");
-        }
-      }
+     
     </script>
     <link href="${contextPath}/css/join.css" rel="stylesheet" type="text/css" />
     <style></style>
@@ -215,7 +76,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <form
         name="joinForm"
         method="post"
-        action="${contextPath}/member/join.do"
+        action="${contextPath}/member/kakaoJoin.do"
       >
         <div id="join_input">
           <div id="join_title">회원가입</div>
@@ -316,9 +177,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <div class="form_input_box">
                 <input
                   type="text"
-                  class="form-control join_input_box"
-                  id="userId"
-                  
+                  class="form-control join_input_box"  
                   value="${snsUserInfo.id}"
                   placeholder="아이디를 입력해주세요"
                   disabled
@@ -473,8 +332,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </div>
           <div id="checkEamil">
-            
-<!--
             <div class="form_info" id="emailNumCheckBox">
               <div class="form_label_box">
                 <label class="form_label">인증번호 확인</label>
@@ -504,7 +361,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               </div>
             </div>
           </div>
-        -->
+        
           <!--휴대폰-->
           <div class="form_info">
             <div class="form_label_box">
@@ -877,12 +734,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </div>
           <!--이용약관 동의 끝-->
           <div class="form_end">
-            <button type="button" class="join_end_btn" onclick="fn_loginGO()">
+            <button type="submit" class="join_end_btn">
               <span id="join_btn_text">가입하기</span>
             </button>
           </div>
         </div>
-        <input type="hidden" name ="snsId" value="${snsUserInfo.snsId}"/>
       </form>
     </div>
   </body>

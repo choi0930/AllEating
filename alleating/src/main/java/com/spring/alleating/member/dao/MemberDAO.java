@@ -21,4 +21,6 @@ public interface MemberDAO {
 
 	/* 카카오id로 회원가입이 되어있는지 확인*/
 	public int selectCheckSnsId(Map snsUserMap)throws DataAccessException;
+	/*카카오 로그인*/
+	public MemberVO selectKaKaoLogin(Map snsLoginInfo)throws DataAccessException;
 }
