@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.spring.alleating.myPage.vo.DeliveryAddressVO;
 import com.spring.alleating.order.vo.AllEatingOrderVO;
 
 
@@ -23,5 +24,5 @@ public interface OrderService {
 	
 	public Map selectUserReview(String id) throws DataAccessException; //상품후기 조회
 	
-	
+	public List<DeliveryAddressVO> getDeliveryAddressList(String id)throws DataAccessException; //배송지 목록 가져오기
 }

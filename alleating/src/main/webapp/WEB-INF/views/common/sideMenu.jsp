@@ -482,11 +482,10 @@ text-decoration:none;}
                                     (${deliveryAddressVO.address2})
                                     </c:if>
                                     ${deliveryAddressVO.address_detail}
-                                <!--${zipcode} ${address} ${addressDetail} ${address2}-->
                                 </span>
                             </div>
                             <div class="side_deliveryAddressChange_btn">
-                                <button class="btn btn-info btn-sm">배송지 변경</button>
+                                <!--<button class="btn btn-info btn-sm">배송지 변경</button>-->
                             </div>
                         </div>
                         
