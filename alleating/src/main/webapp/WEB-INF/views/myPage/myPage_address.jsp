@@ -131,7 +131,25 @@ request.setCharacterEncoding("utf-8"); %>
       }
       /*---------------------- 마이페이지: 배송지 삭제 끝 ---------------------*/
 
-      function fn_changeDefault() {}
+      function fn_changeDefault() {
+        var addressNum = $('input[name=addressNum]:checked').val();
+        addressInfo = {num : addressNum};
+        $.ajax({
+          type: "POST",
+          async: true,
+          url: "${contextPath}/myPage/myPage_modDefaultAddress.do",
+          data: JSON.stringify(addressInfo),
+          contentType: "application/json",
+          dataType: "text",
+          success: function (data) {
+            alert(data);
+            location.href = "/myPage/myPage_address.do";
+          },
+          error: function (data) {
+            alert("에러가 발생했습니다.");
+          },
+        });
+      }
     </script>
     <style>
       .addressText {
@@ -154,10 +172,16 @@ request.setCharacterEncoding("utf-8"); %>
       .modal_table td {
         padding: 15px 0px;
       }
+      #title001 tr{
+        border-bottom: 1px solid #e1ddde;
+      }
+      #title001 tr td{
+        padding: 17px 10px;
+      }
     </style>
   </head>
   <body>
-    <!-- Modal -->
+    <!-------------------------------------- Modal ----------------------------------------->
     <div
       class="modal fade"
       id="exampleModal"
@@ -298,7 +322,8 @@ request.setCharacterEncoding("utf-8"); %>
         </div>
       </div>
     </div>
-    <!--모달 끝-->
+    <!--------------------------------------모달 끝------------------------------------------->
+
     <div class="pwant">
       <div class="proW">
         <div class="want01"><h3>배송지 관리</h3></div>
@@ -333,7 +358,7 @@ request.setCharacterEncoding("utf-8"); %>
             <tr height="60">
               <td>
                 <input
-                  class="form-check-input"
+                  class="form-check-input address_num"
                   type="radio"
                   value="${addressInfo.num}"
                   name="addressNum"

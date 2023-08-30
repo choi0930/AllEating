@@ -33,6 +33,7 @@
 		<result property="owner_tel3" column="owner_tel3"/>
 		<result property="joinDate" column="joinDate"/>
 		<result property="personalInformation" column="personalInformation"/>
+		<result property="snsId" column="snsId"/>
 	</resultMap>
 	<!-- select -->
 	<select id = "selectByIdAndPwd" parameterType="java.util.Map" resultMap="memResult">
@@ -49,6 +50,11 @@
   		id=#{id}
 	</select>
 	
+	<!-- 카카오 로그인 -->
+	<select id="selectCheckSnsId" resultType="int" parameterType="java.util.Map">
+		select count(*) from member where id = #{id} and email = #{email}
+	</select>
+	<!-- 카카오 로그인 끝 -->
 	<!-- insert -->
 	<insert id="insertMember" parameterType="java.util.Map">
  			insert into member(

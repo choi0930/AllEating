@@ -88,13 +88,14 @@ public class MyPageServiceImpl implements MyPageService{
 		myPageDAO.updateDefaultAddress(deliveryInfo);
 		
 		//새로운 기본 배송지 설정
+		System.out.println("새로운 기본 배송지 설정 시작");
 		num = deliveryAddressVO.getNum();
 		default_address = "y";
 		deliveryInfo.put("num", num);
 		deliveryInfo.put("default_address", default_address);
 		
 		int result = myPageDAO.updateDefaultAddress(deliveryInfo);
-		
+		System.out.println("새로운 기본 배송지 설정 끝");
 		return result;
 	}
 	/*---------------------------------- 마이페이지 기본 배송지 변경 끝-------------------------------------*/

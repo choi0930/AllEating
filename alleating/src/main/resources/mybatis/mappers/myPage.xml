@@ -78,7 +78,7 @@
 		
 		<!-- 마이페이지: 기본 배송지 변경 -->
 		<update id="updateDefaultAddress" parameterType="java.util.Map">
-			update set deliveryaddress default_address = #{default_address} where id=#{id} and num = #{num}
+			update deliveryaddress set default_address = #{default_address} where num = #{num} and  id = #{id}
 		</update>
 		<!-- 배송지관리 -->
 		
