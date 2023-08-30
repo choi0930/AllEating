@@ -19,4 +19,6 @@ public interface MemberDAO {
 	public int updateMember(Map memberInfo) throws DataAccessException;
 	public void joinMemberDeliveryaddress(Map defaultAddress)throws DataAccessException;
 
+	/* 카카오id로 회원가입이 되어있는지 확인*/
+	public int selectCheckSnsId(Map snsUserMap)throws DataAccessException;
 }

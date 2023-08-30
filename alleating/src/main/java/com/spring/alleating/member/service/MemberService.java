@@ -13,5 +13,7 @@ public interface MemberService {
 	
 	public int updateMember(Map<String, String> memberInfo) throws DataAccessException;
 	public MemberVO modMember(String id) throws DataAccessException;
-	
+	//카카오 로그인
+	public String  getKakaoAccessToken (String code) throws Exception;
+	public Map createKakaoUser(String token) throws Exception;
 }

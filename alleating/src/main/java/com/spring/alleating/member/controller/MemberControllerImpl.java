@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -221,6 +222,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 	/*---------------------------------회원가입 이메일 인증 끝------------------------------------*/
 
+	
 	/* 단순 페이지 이동(로그인 회원가입 페이지) */
 	@RequestMapping(value="/member/*Form.do", method = {RequestMethod.GET})
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -230,4 +232,28 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 	/*---------------------------------페이지이동 끝------------------------------------*/
+
+
+	/* 카카오 로그인 */
+	@Override
+	@GetMapping(value="/member/kakao.do")
+	public ModelAndView kokaoLogin(@RequestParam String code) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		String access_Token = memberService.getKakaoAccessToken(code);
+		System.out.println(access_Token);
+		
+		Map snsUserInfo = new HashMap();
+		snsUserInfo = memberService.createKakaoUser(access_Token);
+		String status = (String) snsUserInfo.get("status");
+		
+		if(status.equals("addMemer")) {
+			mav.addObject("snsUserInfo", snsUserInfo);
+			mav.setViewName("/member/snsMemberForm");
+		}else {
+			
+		}
+		return mav;
+	}
+	/*---------------------------------카카오 로그인 끝------------------------------------*/
 }

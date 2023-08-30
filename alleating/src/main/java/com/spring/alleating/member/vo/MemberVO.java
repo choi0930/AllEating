@@ -33,13 +33,21 @@ public class MemberVO {
     private String owner_tel3;
     private Date joinDate;
     private String personalInformation;
-    
+    private String snsId;
     private String hp;
     
     public MemberVO() {
     	
     }
     
+	public String getSnsId() {
+		return snsId;
+	}
+
+	public void setSnsId(String snsId) {
+		this.snsId = snsId;
+	}
+
 	public String getHp() {
 		return hp;
 	}

@@ -150,8 +150,9 @@ public class MyPageControllerImpl implements MyPageController{
 	
 	/* 마이페이지: 기본 배송지 변경 */
 	@Override
+	@ResponseBody
 	@RequestMapping(value="/myPage/myPage_modDefaultAddress.do", method = RequestMethod.POST)
-	public String myPage_modDefaultDlieveryAddress(DeliveryAddressVO deliveryAddressVO, HttpServletRequest request,
+	public String myPage_modDefaultDlieveryAddress(@RequestBody DeliveryAddressVO deliveryAddressVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
@@ -166,9 +167,11 @@ public class MyPageControllerImpl implements MyPageController{
 		}else {
 			msg="배송지 변경 실패";
 		}
-		return null;
+		return msg;
 	}
 	/*----------------------------------------마이페이지: 기본 배송지 변경 끝----------------------------------------------------------*/
+	
+	
 	/*
 	 * @RequestMapping(value="/myPage/myPage_01.do", method = {RequestMethod.GET,
 	 * RequestMethod.POST}) public ModelAndView myPageMain(HttpServletRequest

@@ -218,12 +218,57 @@ document.addEventListener("keyup", function(event) {
 			<div>
 			<ul id="snsLoginIconGroup">
 				<li>
-					<a href="#">
+					<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=22821e5743829f1eb421764701cb07c1&redirect_uri=http://localhost:8080/member/kakao.do">
 						<span class="loginKokoIcon"></span>
 						<span class="loginSnsText">카카오 로그인</span>
 					</a>
 				</li>
 			</ul>
+			<a href="javascript:kakaoLogout()">
+				로그아웃
+			</a>
+			<!-- 카카오 스크립트 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+Kakao.init('1d89484c3196a79b77c9f71ffa39d4ef'); //발급받은 키 중 javascript키를 사용해준다.
+console.log(Kakao.isInitialized()); // sdk초기화여부판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (response) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {
+			var kakaoid=response.id;
+			console.log(response);
+			
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }
+//카카오로그아웃  
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response)
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }
+  }  
+</script>
 			</div>
 			<div class="login_nomemberOderSearch">
 				<a href="#"><span>비회원 조회하기</span></a>
