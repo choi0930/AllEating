@@ -44,6 +44,13 @@ public class MemberServiceImpl implements MemberService{
 		
 		memberInfo.put("email", email);
 		
+		String _id = memberInfo.get("id");
+		
+		if(_id.contains("kakao_")) {
+			memberInfo.put("pwd", "kakao");
+			
+		}
+		
 		memberDAO.insertMember(memberInfo);
 		//회원가입시 기본 포인트 생성
 		String id = memberInfo.get("id");
@@ -181,7 +188,7 @@ public class MemberServiceImpl implements MemberService{
 	public Map createKakaoUser(String token) throws Exception {
 		String reqURL = "https://kapi.kakao.com/v2/user/me";
 		
-		Map<String, String> snsUserInfo = new HashMap();
+		Map<String, Object> snsUserInfo = new HashMap();
 	    //access_token을 이용하여 사용자 정보 조회
 	    try {
 	       URL url = new URL(reqURL);
@@ -215,6 +222,13 @@ public class MemberServiceImpl implements MemberService{
 	       String email = "";
 	       if(hasEmail){
 	           email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
+	           
+	           	 String[] emailSplit = email.split("@");
+		    	 String email1 = emailSplit[0];
+		    	 String email2 = emailSplit[1];
+		    	 
+		    	 snsUserInfo.put("email1", email1);
+		    	 snsUserInfo.put("email2", email2);
 	       }
 	       
 	       System.out.println("snsId : " + kakaoId);
@@ -231,18 +245,12 @@ public class MemberServiceImpl implements MemberService{
 	     int result =  memberDAO.selectCheckSnsId(snsUserInfo);
 	     
 	     if(result == 0) {
-	    	 
-	    	 String email = snsUserInfo.get("email");
-	    	 String[] emailSplit = email.split("@");
-	    	 String email1 = emailSplit[0];
-	    	 String email2 = emailSplit[1];
-	    	 
-	    	 snsUserInfo.put("email1", email1);
-	    	 snsUserInfo.put("email2", email2);
 	    	 snsUserInfo.put("status", "addMemer");
 	    	 return snsUserInfo;
 	     }else {
+	    	 MemberVO memberVO = memberDAO.selectKaKaoLogin(snsUserInfo);
 	    	 snsUserInfo.put("status", "login");
+	    	 snsUserInfo.put("memberVO", memberVO);
 	    	 return snsUserInfo;
 	     }
 	    

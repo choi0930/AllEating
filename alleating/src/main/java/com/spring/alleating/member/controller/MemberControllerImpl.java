@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -237,7 +238,7 @@ public class MemberControllerImpl implements MemberController {
 	/* 카카오 로그인 */
 	@Override
 	@GetMapping(value="/member/kakao.do")
-	public ModelAndView kokaoLogin(@RequestParam String code) throws Exception {
+	public ModelAndView kakaoLogin(@RequestParam String code, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
 		String access_Token = memberService.getKakaoAccessToken(code);
@@ -247,13 +248,51 @@ public class MemberControllerImpl implements MemberController {
 		snsUserInfo = memberService.createKakaoUser(access_Token);
 		String status = (String) snsUserInfo.get("status");
 		
-		if(status.equals("addMemer")) {
+		if(status.equals("addMemer")) { //가입되어있는 회원이 아닐때
 			mav.addObject("snsUserInfo", snsUserInfo);
 			mav.setViewName("/member/snsMemberForm");
-		}else {
-			
+		}else { //가입되있는 회원일시 로그인처리
+			MemberVO vo = (MemberVO) snsUserInfo.get("memberVO");
+			if(vo!=null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("loginMember", vo);
+				session.setAttribute("isLoginON", true);
+				String action = (String) session.getAttribute("action");
+				session.removeAttribute("action");
+				if (action != null) {
+					mav.setViewName("redirect:" + action);
+				} else {
+						mav.setViewName("redirect:/main.do");
+				}
+			}else {
+				mav.addObject("result", "loginFailed");
+				mav.setViewName("redirect:/member/loginForm.do");
+			}
 		}
 		return mav;
 	}
 	/*---------------------------------카카오 로그인 끝------------------------------------*/
+
+	/* 카카오 정보로 회원가입 */
+	@Override
+	@PostMapping(value="/member/kakaoJoin.do")
+	public ResponseEntity<?> kakaoJoin(@RequestParam Map<String, String> snsMemberInfo, HttpServletRequest request) throws Exception {
+		memberService.addMember(snsMemberInfo);
+		
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		message= "<script>";
+				message += " alert('회원가입이 완료되었습니다.');";
+				message +=" location.href='"+request.getContextPath()+"/member/loginForm.do';";
+				message +=("</script>");
+
+				resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEntity;
+		
+	}
+	/*---------------------------------카카오 정보로 회원가입 끝------------------------------------*/
+	
 }

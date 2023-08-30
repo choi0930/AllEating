@@ -473,10 +473,15 @@ text-decoration:none;}
                 <div class="side_cart_menu">
                     <div class="side_cart_menu2">
                         <div class="side_cart_top_menuBox">
+                            <c:set var="deliveryAddressVO" value="${product_map.deliveryAddressVO}" />
                             <div>
                                 <img src="${contextPath}/img/side/icon-location.png" width="16px" alt="location">
-                                <strong class="side_cart_deliveryTitleText">기본배송지: ${deliveryName}</strong><br>
-                                <span class="side_cart_deliveryAddressText">[35234] 대전 서구 대덕대로 182 오라클빌딩10층 1005호 (둔산동)
+                                <strong class="side_cart_deliveryTitleText">기본배송지: ${deliveryAddressVO.deliveryName}</strong><br>
+                                <span class="side_cart_deliveryAddressText">[${deliveryAddressVO.zipcode}] ${deliveryAddressVO.address}
+                                    <c:if test="${not empty deliveryAddressVO.address2}">
+                                    (${deliveryAddressVO.address2})
+                                    </c:if>
+                                    ${deliveryAddressVO.address_detail}
                                 <!--${zipcode} ${address} ${addressDetail} ${address2}-->
                                 </span>
                             </div>

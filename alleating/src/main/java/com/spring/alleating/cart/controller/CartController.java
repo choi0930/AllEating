@@ -1,6 +1,6 @@
 package com.spring.alleating.cart.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,4 +17,5 @@ public interface CartController {
 	public String addProductInCart(@RequestParam("productId") String productId,@RequestParam("cart_product_qty")String select_qty, HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public  @ResponseBody String modifyCartQty(HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView removeCartProduct(@RequestParam("cartId") int cartId,HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public String removeCartProducts(@RequestBody List<CartVO> cartList ,HttpServletRequest request, HttpServletResponse response)  throws Exception;
 }
