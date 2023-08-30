@@ -147,9 +147,9 @@ width:840px;
 <li class="between">
 <dl>
 <dt>작성자</dt>
-<dd><input name="id" type="hidden"  value="${loginMember.id}"/> </dd>
+
 <dd><input type="text" value="${loginMember.name}"/></dd>
-<dd><input  name="productId" type="hidden" /> </dd>
+<dd> </dd>
 
 </dl>
 </li>

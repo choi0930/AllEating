@@ -26,22 +26,19 @@ public class CommunityServiceImpl implements CommunityService {
 	
 
 	@Override
-	public int addReview(Map reviewInfo) throws Exception {
+	public int addReview(Map NewReivewMap) throws Exception {
 		
 		
-	String id = memberVO.getId();
-		reviewInfo.put("id", id);
+		int productId = communityDAO.insertReview(NewReivewMap);
 		
 		
-		communityDAO.insertReview(reviewInfo);
-		String _produtId = (String) reviewInfo.get("productId");
-		int productId = Integer.parseInt(_produtId);
 		
-		ArrayList<ProductImgVO> reviewImgList = (ArrayList) reviewInfo.get("reviewImgList");
+		ArrayList<ProductImgVO> reviewImgList = (ArrayList) NewReivewMap.get("reviewImgList");
 		for(ProductImgVO productImgVO : reviewImgList) {
 			productImgVO.setProductId(productId);
-			communityDAO.insertReviewImg(productImgVO);
+			
 		}
+		communityDAO.insertReviewImg(reviewImgList);
 		return productId;
 	}
 	
