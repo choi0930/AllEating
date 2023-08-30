@@ -46,6 +46,7 @@ public class OwnerOrderControllerImpl implements OwnerOrderController {
 			List orderlist = ownerOrderService.listOwnerOrder();
 			ModelAndView mav = new ModelAndView(viewName);
 			mav.addObject("orderlist", orderlist);
+			mav.setViewName(viewName);
 			return mav;
 		}
 			
