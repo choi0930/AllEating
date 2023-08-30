@@ -139,7 +139,16 @@ $(function(){$('.header_nav').hover(
         <div class="header_top_bar"></div> <!--일자 바-->
         <c:choose>
             <c:when test="${isLoginON == true and loginMember != null}"><!--로그인 했을때-->
-              <a href="${contextPath}/member/logOut.do">로그아웃</a>
+              <c:choose>
+                <c:when test="${loginType eq 'kakao'}">
+                  <a href="https://kauth.kakao.com/oauth/logout?client_id=22821e5743829f1eb421764701cb07c1&logout_redirect_uri=http://localhost:8080/member/logOut.do">로그아웃</a>  
+                </c:when>
+                <c:otherwise>
+                  <a href="${contextPath}/member/logOut.do">로그아웃</a>
+                </c:otherwise>
+              </c:choose>
+              
+
             </c:when>
             <c:otherwise><!--로그인 정보가 없을때-->
               <a href="${contextPath}/member/loginForm.do">로그인</a>

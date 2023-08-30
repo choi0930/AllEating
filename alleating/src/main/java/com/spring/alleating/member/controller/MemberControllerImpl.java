@@ -90,6 +90,7 @@ public class MemberControllerImpl implements MemberController {
 		HttpSession session = request.getSession();
 		session.setAttribute("isLoginON",false);
 		session.removeAttribute("loginMember");
+		session.removeAttribute("loginType");
 		mav.setViewName("redirect:/main.do");
 		return mav;
 	}
@@ -257,6 +258,7 @@ public class MemberControllerImpl implements MemberController {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginMember", vo);
 				session.setAttribute("isLoginON", true);
+				session.setAttribute("loginType", "kakao");
 				String action = (String) session.getAttribute("action");
 				session.removeAttribute("action");
 				if (action != null) {
