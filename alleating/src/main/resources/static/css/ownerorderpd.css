@@ -1,0 +1,175 @@
+
+
+
+    .orderlistdetail-main{
+        width:840px;
+    }
+.orderlistdetailview{
+    display:flex;
+    align-items: center;
+    padding-top: 22px;
+    border-bottom: #ABDFF1 3px solid;
+    padding-left: 20px;
+     padding-bottom: 10px;
+     
+}
+.orderlistdetailview-title{
+    width:200px;}
+
+.orderlistdetailtext{
+    font-size: 15px;
+    color: #d1d1e0;
+}
+.order-problem-next{
+display: flex;
+    padding-left: 300px;
+    align-items: flex-start;}
+.orderlistdetailview-under{
+display: flex;
+    justify-content: space-around;
+    padding-top:20px;
+    
+    }
+    
+
+    
+    .order-problem-next-text{
+	padding-right:10px;
+}
+    
+    
+ 
+    
+   .triangle-button {border:none;
+   background-color:#FFFFFF;
+   
+   }
+   
+   
+.product-orderdetail-pic {
+    padding-top: 5px;
+}
+
+.product-orderdetail {
+    padding-left: 20px;
+    padding-top: 30px;
+}
+.product-orderdetail{
+display:flex;}
+   
+   .product-orderdetail-line {
+   padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.orderdetailview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 260px;
+}
+   
+   .orderdetailview-2 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.orderdetailview-3 {
+    padding-left: 10px;
+}
+   .order-refund-button{
+   border:#EF6C33 1px solid;
+   background-color:#FFFFFF;}
+   .order-refund{
+   display:flex;}
+
+
+
+
+.orderlistdetailview-list-3{
+display: flex;
+    align-items: center;
+    padding-top: 70px;
+    border-bottom: #ABDFF1 3px solid;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    }
+    
+   
+    
+    .orderresult{
+    display:flex;
+    padding-top: 30px;}
+      .readd{
+       -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    text-align: center;
+   
+    align-items: center;
+    justify-content: center;
+    margin-left:30px;
+    
+    display: inline;
+      
+}
+    .readdbutton{
+    font-weight: 500;
+        display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 210px;
+    height: 52px;
+    border-radius: 3px;
+    color: #fff;
+    background-color:#000066;
+    border: 0 none;
+    display: inline-block;}
+    .readd-2{
+    
+    font-size: 16px;
+    font-weight: 500;
+    }
+    
+     .allcancel{
+        -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;}
+    .allcancelbutton{
+    font-weight: 500;
+        display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 210px;
+    height: 52px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #000066;
+    border: 0 none;
+    display: inline;}
+    .allcancel-2{
+       /*  display: inline-block; */
+    font-size: 16px;
+    font-weight: 500;
+    }
+    
+    .orderpotential-text{
+    color:#E1DDDB;}
+    
+    .orderpotential{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top:20px;}
+    
+    .orderlistdetailview-list-4{
+    padding-top:20px;}
+    
