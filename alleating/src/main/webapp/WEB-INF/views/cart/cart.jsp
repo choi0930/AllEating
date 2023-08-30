@@ -107,6 +107,10 @@ request.setCharacterEncoding("utf-8"); %>
       function fn_qty_up(cartId) {
         var qty = $("#qty" + cartId).val();
 
+        if(qty >= 10){
+          alert("10개이상 선택 할 수 없습니다.");
+          return false;
+        }
         ++qty;
 
         $("#qty" + cartId).attr("value", qty);
@@ -189,8 +193,13 @@ request.setCharacterEncoding("utf-8"); %>
       function fn_totalPrice(){
         var str = "";
                 var sum = 0;
-                var deliveryPrice = 3000;
+                var deliveryPrice;
                 var count = $(".chkbox:checked").length;
+                if(count>0){
+                  deliveryPrice = 3000;
+                }else{
+                  deliveryPrice = 0;
+                }
                
                 $('input:checkbox[name=checked_cartId]:checked').each(function (index) {
                 /*for (var i = 0; i < count; i++) {

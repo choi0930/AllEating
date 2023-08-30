@@ -176,7 +176,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="form_value_box">
               <div class="form_input_box">
                 <input
-                  type="text"
+                  type="hidden"
                   class="form-control join_input_box"  
                   value="${snsUserInfo.id}"
                   placeholder="아이디를 입력해주세요"

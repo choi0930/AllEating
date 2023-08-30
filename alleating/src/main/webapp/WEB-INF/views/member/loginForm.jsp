@@ -224,9 +224,7 @@ document.addEventListener("keyup", function(event) {
 					</a>
 				</li>
 			</ul>
-			<a href="javascript:kakaoLogout()">
-				로그아웃
-			</a>
+			
 			<!-- 카카오 스크립트 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
