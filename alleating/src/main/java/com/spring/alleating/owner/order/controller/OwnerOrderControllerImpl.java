@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.alleating.coupon.vo.UserCouponVO;
+import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.order.vo.AllEatingOrderVO;
 import com.spring.alleating.owner.order.service.OwnerOrderService;
 
@@ -50,5 +52,16 @@ public class OwnerOrderControllerImpl implements OwnerOrderController {
 			return mav;
 		}
 			
+		
+		@Override
+		@RequestMapping(value="/owner/ownerOrderproduct.do", method = {RequestMethod.GET, RequestMethod.POST})
+		public ModelAndView ownerOrderproduct(HttpServletRequest request, HttpServletResponse response)throws Exception {
+			HttpSession session = request.getSession();
+			session.setAttribute("side_menuType", "owner_page");
+			String viewName = (String) request.getAttribute("viewName");
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName(viewName);
+			return mav;
+		}
 	
 }
