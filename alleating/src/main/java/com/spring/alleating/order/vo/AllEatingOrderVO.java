@@ -39,9 +39,9 @@ public class AllEatingOrderVO {
 	private int productId;
 	
 	private int productQty;
-	private String productBrand;
-	private int productPrice;
-	private int productDiscount;
+//	private String productBrand;
+//	private int productPrice;
+//	private int productDiscount;
 	private String delivery_status;
 	
 	
@@ -52,24 +52,24 @@ public class AllEatingOrderVO {
 	public void setProductQty(int productQty) {
 		this.productQty = productQty;
 	}
-	public String getProductBrand() {
-		return productBrand;
-	}
-	public void setProductBrand(String productBrand) {
-		this.productBrand = productBrand;
-	}
-	public int getProductPrice() {
-		return productPrice;
-	}
-	public void setProductPrice(int productPrice) {
-		this.productPrice = productPrice;
-	}
-	public int getProductDiscount() {
-		return productDiscount;
-	}
-	public void setProductDiscount(int productDiscount) {
-		this.productDiscount = productDiscount;
-	}
+//	public String getProductBrand() {
+//		return productBrand;
+//	}
+//	public void setProductBrand(String productBrand) {
+//		this.productBrand = productBrand;
+//	}
+//	public int getProductPrice() {
+//		return productPrice;
+//	}
+//	public void setProductPrice(int productPrice) {
+//		this.productPrice = productPrice;
+//	}
+//	public int getProductDiscount() {
+//		return productDiscount;
+//	}
+//	public void setProductDiscount(int productDiscount) {
+//		this.productDiscount = productDiscount;
+//	}
 	public String getDelivery_status() {
 		return delivery_status;
 	}
