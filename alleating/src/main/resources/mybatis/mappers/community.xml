@@ -13,23 +13,23 @@
 		<result property="content" column="content" />
 		<result property="writeDate" column="writeDate" />
 
+
+
+
 	</resultMap>
 	
 	<insert id="insertReview" parameterType="java.util.Map">
-	<selectKey resultType="String" keyProperty="productId"
-			order="BEFORE">
-			select ifnull(max(productId),0)+1 from review_board
-		</selectKey>
+	
 	<![CDATA[
 	insert into review_board(
 	id,
-	productID,
+	productId,
 	productBrand,
 	productName,
 	fileName,
 	content) values (
 	#{id},
-	#{productID},
+	#{productId},
 	#{productBrand},
 	#{productName},
 	#{fileName},
@@ -40,10 +40,7 @@
 	</insert>
 	
 	<insert id="insertReviewImg" parameterType="productImgVO">
-	<selectKey resultType="int" keyProperty="imgId"
-			order="BEFORE">
-			select ifnull(max(imgId),0)+1 from product_img
-		</selectKey>
+	
 		<![CDATA[
 	insert into product_img(imgId, productId, fileName, fileType,reg_id) values(#{imgId}, #{productId}, #{fileName}, #{fileType}, #{reg_id})
 	]]>

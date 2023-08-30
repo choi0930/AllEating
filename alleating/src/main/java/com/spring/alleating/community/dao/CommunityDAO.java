@@ -2,6 +2,8 @@ package com.spring.alleating.community.dao;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -15,6 +17,6 @@ import com.spring.alleating.product.vo.ProductImgVO;
 public interface CommunityDAO {
 	
 	public int insertReview(Map newReviewMap)throws DataAccessException;
-	public void insertReviewImg(ProductImgVO productImgVO) throws DataAccessException;
+	public void insertReviewImg(List fileList) throws DataAccessException;
 
 }

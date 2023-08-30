@@ -52,12 +52,15 @@ public class CommunityControllerImpl extends BaseController implements Community
 	}
 
 	@Override
-	@RequestMapping(value="/myPage/add_reviewForm.do", method= {RequestMethod.POST})
-	public ResponseEntity addReview( @RequestParam(required=false,name="views") String view,MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+	@RequestMapping(value="/myPage/myPage_reviewForm.do", method= {RequestMethod.POST})
+	public ResponseEntity addReview(@RequestParam("productId") int productId, MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		String fileName=null;
+		
+		
+		
 		
 		Map newReviewMap = new HashMap<>();
 		Enumeration enu = multipartRequest.getParameterNames();
@@ -67,15 +70,18 @@ public class CommunityControllerImpl extends BaseController implements Community
 			newReviewMap.put(name,value);
 		}
 		HttpSession session = multipartRequest.getSession();
+		session.setAttribute("productId", productId);
+		
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
-	
-		String id1 = reviewBoardVO.getId();
-		newReviewMap.put("id", id1);
+		String id = memberVO.getId();
+		
+		 newReviewMap.put("id", id); 
+		System.out.println(newReviewMap);
 		
 		List<ProductImgVO> reviewImgList = upload(multipartRequest);
 		if(reviewImgList!= null && reviewImgList.size()!=0) {
 			for(ProductImgVO productImgVO : reviewImgList) {
-				productImgVO.setReg_id(id1);
+				productImgVO.setReg_id(id);
 			}
 			newReviewMap.put("reviewImgList", reviewImgList);
 		}
@@ -85,7 +91,7 @@ public class CommunityControllerImpl extends BaseController implements Community
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-			int productId = communityService.addReview(newReviewMap);
+			/* int productId = communityService.addReview(newReviewMap); */
 	
 			if(reviewImgList!=null && reviewImgList.size()!=0) {
 				for(ProductImgVO  productImgVO:reviewImgList) {
@@ -117,6 +123,15 @@ public class CommunityControllerImpl extends BaseController implements Community
 		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
+
+	@Override
+	public void insertReviewImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception {
+		
+		
+	}
+
+
 
 	
 
