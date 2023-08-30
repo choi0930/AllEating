@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.spring.alleating.coupon.dao.CouponDAO;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
+import com.spring.alleating.myPage.vo.DeliveryAddressVO;
 import com.spring.alleating.order.dao.OrderDAO;
 import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
 import com.spring.alleating.order.vo.AllEatingOrderVO;
@@ -66,8 +67,14 @@ public class OrderServiceImpl implements OrderService{
 		MemberVO memberVO = (MemberVO) info.get("memberVO");
 		List<AllEatingOrderDetailVO> allEatingOrderDetailes = (List<AllEatingOrderDetailVO>) info.get("allEating");
 		String id = memberVO.getId();
+
+		//포인트 가져오기
 		UserPointVO userPointVO = pointDAO.selectUserPoint(id);
+		//가지고 있는 쿠폰 목록 가져오기
 		List<UserCouponVO> couponList =couponDAO.selectUserCoupon(id);
+		//기본 배송지 주소 가져오기
+		DeliveryAddressVO dliveryAddressVO = orderDAO.selectDefaultAddress(id);
+		
 		int productPrice =0;
 		int totalPrice = 0;
 		int deliveryPrice = 0;
@@ -81,7 +88,8 @@ public class OrderServiceImpl implements OrderService{
 		
 			deliveryPrice = 3000;
 		
-		Map userInfo = new HashMap();
+		Map<String, Object> userInfo = new HashMap<String, Object>();
+		userInfo.put("dliveryAddressVO", dliveryAddressVO);
 		userInfo.put("deliveryPrice", deliveryPrice);
 		userInfo.put("totalPrice", totalPrice);
 		userInfo.put("memberVO", memberVO);
@@ -91,6 +99,12 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 
+	/* 배송지 목록 가져오기 */
+	@Override
+	public List<DeliveryAddressVO> getDeliveryAddressList(String id) throws DataAccessException {
+		List<DeliveryAddressVO> addressList =  orderDAO.selectAddress(id);
+		return addressList;
+	}
 
 	@Override
 	public String pay(Map order) throws DataAccessException {

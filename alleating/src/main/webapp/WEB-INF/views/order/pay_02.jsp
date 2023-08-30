@@ -140,6 +140,11 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     });
       }
       /*----------------------주문페이지로 가기 끝--------------------*/
+      function fn_deliveryPopUp(){
+          let popUrl = "/order/deliveryChangePopup.do";
+          let popOption = "width = 800px, height = 550px, top = 300px, left = 300px, scrollbars=yes";
+        window.open(popUrl, "배송지 변경", popOption);
+      }
     </script>
   </head>
   <body>
@@ -218,12 +223,12 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         <table class="dvtb">
           <tr>
             <td></td>
-            <%-- <td><strong>${dateInfo.endDate}</strong></td> --%>
+            <td><strong>${dateInfo.endDate}</strong></td> 
             <td><strong>8월/25일</strong></td>
             <td><strong>8월/26일</strong></td>
             <td><strong>8월/27일</strong></td>
             <td><strong>8월/28일</strong></td>
-           <%--  <td><strong>${dateInfo.beginDate}</strong></td> --%>
+            <td><strong>${dateInfo.beginDate}</strong></td> 
           </tr>
           <tr>
             <td>10:00~16:00</td>
@@ -250,13 +255,19 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           <div class="payTwoTitleText"><span>배송지 정보</span></div>
           <div class="payTwoText">
             <span id="receiverName">${memberVO.name}</span> <span id="receiverHp">${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}</span>   &nbsp;&nbsp;<br>
-            <span id="zipcode">${memberVO.zipcode}</span>&nbsp;<div id="address">${memberVO.address}</div>&nbsp;<div id="addressDetail">${memberVO.address_detail}</div>
-           
+            <span id="zipcode">${deliveryAddressVO.zipcode}</span>&nbsp;
+            <div id="address">
+              ${deliveryAddressVO.address}
+              <c:if test="${not empty deliveryAddressVO.address2}">
+                ${deliveryAddressVO.address2}
+              </c:if>
+            </div>
+            <div id="addressDetail">${deliveryAddressVO.address_detail}</div>
           </div>
         </div>
         <div class="deliveryAddressText">
           <div>
-            <a href="#">배송지변경</a>
+            <a href="javascript:fn_deliveryPopUp()">배송지변경</a>
             <img
               src="${contextPath}/img/side/arrow-right-gray.png"
               width="14px"

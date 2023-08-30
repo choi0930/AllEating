@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.alleating.common.base.BaseController;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
+import com.spring.alleating.myPage.vo.DeliveryAddressVO;
+import com.spring.alleating.myPage.vo.refundVO;
 import com.spring.alleating.order.service.OrderService;
 import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
 import com.spring.alleating.order.vo.AllEatingOrderVO;
@@ -72,7 +76,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	/*-------------------- 상품 상세페이지에서 주문시 끝 --------------------*/
 	
 	
-	
+	/* 결제 페이지로 이동 */
 	@RequestMapping(value="/order/pay_02.do", method = RequestMethod.GET)
 	public ModelAndView pay(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		String viewName =(String)request.getAttribute("viewName");
@@ -92,16 +96,19 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		UserPointVO userPointVO = (UserPointVO) userInfo.get("userPointVO");
 		int totalPrice = (int) userInfo.get("totalPrice");
 		int deliveryPrice = (int) userInfo.get("deliveryPrice");
+		DeliveryAddressVO dliveryAddressVO = (DeliveryAddressVO) userInfo.get("dliveryAddressVO");
+		
 		mav.addObject("dateInfo", dateInfo);
 		mav.addObject("deliveryPrice", deliveryPrice);
 		mav.addObject("totalPrice", totalPrice);
 		mav.addObject("memberVO",memberVO);
 		mav.addObject("userPointVO",userPointVO);
 		mav.addObject("couponList",couponList);
+		mav.addObject("deliveryAddressVO",dliveryAddressVO);
 		
 		return mav;	
 	}
-	
+	/*----------------------------------------------- 결제 페이지로 이동 ----------------------------------------------------*/
 	
 	
 	/* 장바구니에서 상품 여러개 구매 */
@@ -117,7 +124,22 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 	}
 	/*-------------------장바구니에서 상품 여러개 구매 끝-----------------*/
-
+	
+	/* 배송지 변경 팝업창 */
+	@Override
+	@GetMapping("/order/deliveryChangePopup.do")
+	public void deliveryChangePopUp(Model model, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		String id = memberVO.getId();
+		List<DeliveryAddressVO> addressList =  orderService.getDeliveryAddressList(id);
+		
+		model.addAttribute("addressList", addressList);
+		
+	}
+	/*-----------------------------------배송지 변경 팝업창 끝 ---------------------------------*/
+	
+	
 	/*
 	 * @RequestMapping(value= "/order/pay_complete.do", method = RequestMethod.GET)
 	 * public ModelAndView payComplete(HttpServletRequest request,
@@ -147,6 +169,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	}
 	/*------------------------------ 주문 끝 --------------------------------------*/
 
+	
 	@Override
 	@RequestMapping(value="/order/pay_complete.do", method = RequestMethod.GET)
 	public ModelAndView selectOrderNum(@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse response)

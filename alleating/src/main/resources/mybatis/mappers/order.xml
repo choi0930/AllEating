@@ -48,7 +48,20 @@
 		<result property="fileName" column="fileName" />
 		<result property="productBrand" column="productBrand" />
 	</resultMap>
-	
+	<resultMap id="deliveryAddressResult" type="deliveryAddressVO">
+		<result property="num" column="num" />
+		<result property="id" column="id" />
+		<result property="deliveryName" column="deliveryName" />
+		<result property="receiver_name" column="receiver_name" />
+		<result property="receiver_hp1" column="receiver_hp1" />
+		<result property="receiver_hp2" column="receiver_hp2" />
+		<result property="receiver_hp3" column="receiver_hp3" />
+		<result property="zipcode" column="zipcode" />
+		<result property="address" column="address" />
+		<result property="address2" column="address2" />
+		<result property="address_detail" column="address_detail" />
+		<result property="default_address" column="default_address" />
+	</resultMap>
 	<!-- 상품 상세페이지에서 바로 주문 -->
 	<insert id="insertOrderProduct" parameterType="java.util.Map">
 		insert into alleating_order (
@@ -172,6 +185,12 @@
 				
 		
 	</select>
-	
-	
+	<!-- 기본 배송지 주소 -->
+	<select id="selectDefaultAddress" resultMap="deliveryAddressResult" parameterType="String">
+			select * from deliveryaddress where id = #{id} and default_address = 'y'
+	</select>
+	<!-- 배송지 주소 -->
+	<select id="selectAddress" resultMap="deliveryAddressResult" parameterType="String">
+			select * from deliveryaddress where id = #{id}
+	</select>
   </mapper>

@@ -253,16 +253,17 @@ request.setCharacterEncoding("utf-8"); %>
              fileName = $('#fileName_' + checkCartId).val();
              deliveryType = $('#h_deliveryType'+ checkCartId).val();
              productBrand = $('#h_productBrand'+checkCartId).val();
+
              allEatingOrderDetailes.push({
               productId: productId,
-            productName: productName,
-            productPrice: productPrice,
-            productDiscount: productDiscount,
-            productQty: productQty,
-            cateCode: cateCode,
-            fileName :fileName,
-            deliveryType : deliveryType,
-            productBrand : productBrand
+              productName: productName,
+              productPrice: productPrice,
+              productDiscount: productDiscount,
+              productQty: productQty,
+              cateCode: cateCode,
+              fileName :fileName,
+              deliveryType : deliveryType,
+              productBrand : productBrand
              });
       
           });
@@ -280,7 +281,8 @@ request.setCharacterEncoding("utf-8"); %>
         }
     });
         } 
-        /*---------------------------------------------------------------------------*/  
+        /*---------------------------------------------------------------------------*/
+         
       /* 체크한 상품 선택 삭제 */
         function selectDelete(){
         var cartId;
