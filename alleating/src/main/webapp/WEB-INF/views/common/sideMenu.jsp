@@ -474,15 +474,25 @@ text-decoration:none;}
                     <div class="side_cart_menu2">
                         <div class="side_cart_top_menuBox">
                             <c:set var="deliveryAddressVO" value="${product_map.deliveryAddressVO}" />
+                            
                             <div>
-                                <img src="${contextPath}/img/side/icon-location.png" width="16px" alt="location">
-                                <strong class="side_cart_deliveryTitleText">기본배송지: ${deliveryAddressVO.deliveryName}</strong><br>
-                                <span class="side_cart_deliveryAddressText">[${deliveryAddressVO.zipcode}] ${deliveryAddressVO.address}
-                                    <c:if test="${not empty deliveryAddressVO.address2}">
-                                    (${deliveryAddressVO.address2})
-                                    </c:if>
-                                    ${deliveryAddressVO.address_detail}
-                                </span>
+                                <c:choose>
+                                    <c:when test="${isLoginON == null || isLoginON == false}">
+                                        <img src="${contextPath}/img/side/icon-location.png" width="16px" alt="location">        
+                                        <strong class="side_cart_deliveryTitleText">로그인을 해보세요.</strong><br>
+                                        <span class="side_cart_deliveryAddressText">로그인을 하시면 지금 보고있는 상품을 나중에도 확인하실 수 있습니다.</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${contextPath}/img/side/icon-location.png" width="16px" alt="location">
+                                        <strong class="side_cart_deliveryTitleText">기본배송지: ${deliveryAddressVO.deliveryName}</strong><br>
+                                        <span class="side_cart_deliveryAddressText">[${deliveryAddressVO.zipcode}] ${deliveryAddressVO.address}
+                                            <c:if test="${not empty deliveryAddressVO.address2}">
+                                            (${deliveryAddressVO.address2})
+                                            </c:if>
+                                        ${deliveryAddressVO.address_detail}
+                                        </span>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                             <div class="side_deliveryAddressChange_btn">
                                 <!--<button class="btn btn-info btn-sm">배송지 변경</button>-->

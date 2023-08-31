@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.spring.alleating.coupon.vo.CouponVO;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.myPage.dao.MyPageDAO;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
@@ -16,6 +17,7 @@ public class MyPageServiceImpl implements MyPageService{
 	
 	@Autowired
 	private MyPageDAO myPageDAO;
+	
 	/* 마이페이지 쿠폰 등록 */
 	@Override
 	public int addUserCoupon(UserCouponVO userCouponVO) throws DataAccessException {
@@ -25,8 +27,20 @@ public class MyPageServiceImpl implements MyPageService{
 		int result = 0 ;
 		if(check == 1) { //관리자가 등록했었던 쿠폰일시 
 			int check2 = myPageDAO.findUserCoupon(userCouponVO); //이미 등록한 쿠폰인지 확인 
+			
 			if(check2 == 0) { //이미 등록한 쿠폰이 아닐때
-				result = myPageDAO.insertUserCoupon(userCouponVO);
+				result = myPageDAO.insertUserCoupon(userCouponVO); //쿠폰 등록
+				//쿠폰 등록이 성공했을때
+				if(result>0) {
+					//수량 줄일 쿠폰 가져오기
+					CouponVO couponVO = myPageDAO.selectCoupon(couponId);
+					//수량 줄이기
+					int qty = couponVO.getCoupon_quantity();
+					int _qty = qty-1;
+					couponVO.setCoupon_quantity(_qty);
+					//수량 업데이트
+					myPageDAO.updateCouponQuantity(couponVO);
+				}
 			}else {// 이미 등록한 쿠폰일때
 				result = 3; //msg="이미 등록한 쿠폰입니다."
 			}
@@ -88,14 +102,13 @@ public class MyPageServiceImpl implements MyPageService{
 		myPageDAO.updateDefaultAddress(deliveryInfo);
 		
 		//새로운 기본 배송지 설정
-		System.out.println("새로운 기본 배송지 설정 시작");
 		num = deliveryAddressVO.getNum();
 		default_address = "y";
 		deliveryInfo.put("num", num);
 		deliveryInfo.put("default_address", default_address);
 		
 		int result = myPageDAO.updateDefaultAddress(deliveryInfo);
-		System.out.println("새로운 기본 배송지 설정 끝");
+		
 		return result;
 	}
 	/*---------------------------------- 마이페이지 기본 배송지 변경 끝-------------------------------------*/
