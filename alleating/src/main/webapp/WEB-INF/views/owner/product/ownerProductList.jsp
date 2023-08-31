@@ -213,7 +213,7 @@ request.setCharacterEncoding("utf-8"); %>
             <!--사업자가 등록한 상품 목록-->
             <table class="table adminProductTable table-hover">
               <thead class="table-dark">
-                <tr onclick="location.href='/test.do?'" style="cursor: pointer">
+                <tr>
                   <td>상품ID</td>
                   <td>등록일</td>
                   <td>상품명</td>
@@ -225,68 +225,71 @@ request.setCharacterEncoding("utf-8"); %>
               </thead>
 
               <tbody>
-                <c:forEach var="ownerProduct" items="${ownerProductList }">
-                  <tr style="cursor: pointer">
-                    <td>${ownerProduct.productId}</td>
-                    <td>${ownerProduct.creDate}</td>
-                    <td>${ownerProduct.productName}</td>
-                    <td>${ownerProduct.productPrice}</td>
-                    <td>${ownerProduct.productSalesPrice}</td>
-
-                    <td>
-                      <c:choose>
-                        <c:when
-                          test="${ownerProduct.productStatus eq 'approval_request'}"
+                <c:forEach var="ownerProduct" items="${ownerProductList}">
+                  <c:if test="${ownerProduct.reg_com_name eq '서형이네'}">
+                    <tr style="cursor: pointer">
+                      <td>${ownerProduct.productId}</td>
+                      <td>${ownerProduct.creDate}</td>
+                      <td>${ownerProduct.productName}</td>
+                      <td>${ownerProduct.productPrice}</td>
+                      <td>${ownerProduct.productSalesPrice}</td>
+                      <td>
+                        <c:choose>
+                          <c:when
+                            test="${ownerProduct.productStatus eq 'approval_request'}"
+                          >
+                            승인 요청
+                          </c:when>
+                          <c:when
+                            test="${ownerProduct.productStatus eq 'declined'}"
+                          >
+                            승인 거절
+                          </c:when>
+                          <c:when
+                            test="${ownerProduct.productStatus eq 'sale'}"
+                          >
+                            판매중</c:when
+                          >
+                          <c:when
+                            test="${ownerProduct.productStatus eq 'sales_end'}"
+                          >
+                            판매 종료</c:when
+                          >
+                          <c:when
+                            test="${ownerProduct.productStatus eq 'sold_out'}"
+                          >
+                            품절
+                          </c:when>
+                        </c:choose>
+                      </td>
+                      <td>
+                        <a
+                          class="product_del_btn"
+                          href="${ContextPath}/owner/ownerupdateproduct.do?productId=${ownerProduct.productId}"
                         >
-                          승인 요청
-                        </c:when>
-                        <c:when
-                          test="${ownerProduct.productStatus eq 'declined'}"
-                        >
-                          승인 거절
-                        </c:when>
-                        <c:when test="${ownerProduct.productStatus eq 'sale'}">
-                          판매중</c:when
-                        >
-                        <c:when
-                          test="${ownerProduct.productStatus eq 'sales_end'}"
-                        >
-                          판매 종료</c:when
-                        >
-                        <c:when
-                          test="${ownerProduct.productStatus eq 'sold_out'}"
-                        >
-                          품절
-                        </c:when>
-                      </c:choose>
-                    </td>
-                    <td>
-                      <a
-                        class="product_del_btn"
-                        href="${ContextPath}/owner/ownerproducteditdetail.do?productId=${ownerProduct.productId}"
-                      >
-                        수정
-                      </a>
-                      <!--  <button type="button" class="product_mod_btn">
+                          수정
+                        </a>
+                        <!--  <button type="button" class="product_mod_btn">
                         수정
                       </button> -->
-                      <a
-                        class="product_del_btn"
-                        href="${ContextPath}/owner/deleteProduct.do?productId=${ownerProduct.productId}"
-                      >
-                        삭제
-                      </a>
-                      <%--
-                      <button
-                        type="button"
-                        class="product_del_btn"
-                        onclick="location.href='${ContextPath }/owner/deleteProduct.do'"
-                      >
-                        삭제
-                      </button>
-                      --%>
-                    </td>
-                  </tr>
+                        <a
+                          class="product_del_btn"
+                          href="${ContextPath}/owner/deleteProduct.do?productId=${ownerProduct.productId}"
+                        >
+                          삭제
+                        </a>
+                        <%--
+                        <button
+                          type="button"
+                          class="product_del_btn"
+                          onclick="location.href='${ContextPath }/owner/deleteProduct.do'"
+                        >
+                          삭제
+                        </button>
+                        --%>
+                      </td>
+                    </tr>
+                  </c:if>
                 </c:forEach>
               </tbody>
             </table>
