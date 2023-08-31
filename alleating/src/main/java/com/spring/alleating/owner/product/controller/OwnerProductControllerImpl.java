@@ -57,6 +57,10 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	public ModelAndView ownerProductList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "owner_page");
+	
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
+		String owner_name = memberVO.getOwner_name();
+		System.out.println("회사이름"+ owner_name);
 
 		String viewName = (String)request.getAttribute("viewName");
 		List<ProductVO> ownerProductList = ownerProductService.ownerProductList();
