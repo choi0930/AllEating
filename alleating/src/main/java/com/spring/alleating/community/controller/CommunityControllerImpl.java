@@ -17,6 +17,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +31,7 @@ import com.spring.alleating.community.service.CommunityService;
 import com.spring.alleating.community.vo.ReviewBoardVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.product.vo.ProductImgVO;
+import com.spring.alleating.product.vo.ProductVO;
 
 @Controller("communityController")
 public class CommunityControllerImpl extends BaseController implements CommunityController {
@@ -40,7 +43,7 @@ public class CommunityControllerImpl extends BaseController implements Community
 	@Autowired 
 	ReviewBoardVO reviewBoardVO;
 	@Override
-	@RequestMapping(value= "/community/review_01.do", method = RequestMethod.GET)
+	@RequestMapping(value= "/community/review_01.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView review_01(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "review_01");
@@ -56,7 +59,7 @@ public class CommunityControllerImpl extends BaseController implements Community
 	
 /////////////////////////////////// 게시물 작성 페이지로 이동하기/////////////////
 	@Override
-	public void addreview(HttpServletRequest request, HttpServletResponse response)
+	public String addreview(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session  = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
@@ -67,31 +70,72 @@ public class CommunityControllerImpl extends BaseController implements Community
 		
 		String viewName = (String)request.getAttribute("viewName");	
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName); 
+		mav.setViewName(viewName);
+		return viewName; 
 		
 	
 	}
 	
 	//////////////////////////////게시물 작성 ////////////////////////////
 	
-
-
+	
 
 	@Override
-	public void insertReviewImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
-			throws Exception {
+	@RequestMapping(value="/myPage/completeReview.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView completeReview(@RequestParam("id") String id, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session  = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		session.setAttribute("id", id);
 		
+		String productId = request.getParameter("productId");
+		int _productId =Integer.parseInt(productId);
+		
+		session.setAttribute("productId", _productId);
+		/*
+		 * MemberVO memberVO = (MemberVO) session.getAttribute("loginMember"); String
+		 * id= memberVO.getId(); ProductVO productVO = (ProductVO)
+		 * session.getAttribute("whtProduct");
+		 * 
+		 * String productId = request.getParameter("productId"); int _productId =
+		 * Integer.parseInt(productId);
+		 */
+	
+		Map reviewInfo = new HashMap<>();
+		reviewInfo.put("id", id);
+		reviewInfo.put("productId", _productId);
+		
+		System.out.println(id);
+		System.out.println(productId);
+		
+	
+		Map _reviewInfo = communityService.insertReview(reviewBoardVO);
+		
+		Map reviewResult = new HashMap<>();
+		reviewResult.put("_reviewInfo" , _reviewInfo);
+		reviewResult.put("reviewInfo", reviewInfo);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/myPage/myPage_review.do");
+		mav.addObject("reviewResult", reviewResult);
+	
+		return mav;
+	}
+		
+
+
+
 		
 	}
 
 
 
-	
 
 	
 
+	
+
 
 	
 	
 	
-	}
+	

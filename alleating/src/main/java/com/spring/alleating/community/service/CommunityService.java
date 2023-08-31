@@ -9,5 +9,6 @@ import com.spring.alleating.community.vo.ReviewBoardVO;
 
 public interface CommunityService {
 
+	public Map insertReview(ReviewBoardVO reviewBoardVO) throws Exception;
 
 }

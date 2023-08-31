@@ -120,8 +120,9 @@ width:840px;
 <div id="cotainer" style="padding-top: 0px;">
 <div class="content_box content_foot_pb">
 
-<form action="${pageContext.request.contextPath}/myPage/myPage_reviewForm.do" method="get" encType="multipart/form-data">
-
+<form action="${contextPath}/myPage/completeReview.do" method="get" >
+<input type="hidden" name="id" value="${loginMember.id}">
+<input type="hidden" name="productId" value="${whtProductId.productId}">
 <div class="bbs_vtype">
 
 
@@ -164,8 +165,8 @@ width:840px;
 
 
 
-<div class="op06"><input type="file" value="파일 추가" onChange="readURL(this);"/></div>
-<div><img id="reviewImgAdd"/></div>
+<!-- <div class="op06"><input type="file" value="파일 추가" onChange="readURL(this);"/></div>
+<div><img id="reviewImgAdd"/></div> -->
 </div>
 
 

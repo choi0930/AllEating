@@ -4,14 +4,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.support.AbstractMultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.alleating.community.vo.ReviewBoardVO;
+
 public interface CommunityController {
 	public ModelAndView review_01(HttpServletRequest request, HttpServletResponse response)throws Exception;
-	public void addreview(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	 public void insertReviewImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
+	public String addreview(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	ModelAndView completeReview(@RequestParam("id") String id, Model model, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+	
 	
 }

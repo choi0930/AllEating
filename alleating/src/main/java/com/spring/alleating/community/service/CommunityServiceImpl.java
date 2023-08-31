@@ -21,6 +21,16 @@ public class CommunityServiceImpl implements CommunityService {
 	@Autowired
 	CommunityDAO communityDAO;
 
+	@Override
+	public Map insertReview(ReviewBoardVO reviewBoardVO) throws Exception {
+	 
+		Map reviewInsert = communityDAO.insertReview(reviewBoardVO);
+	return reviewInsert;
+		
+	}
+
+	
+	
 
 	}
 	
