@@ -59,7 +59,9 @@ import com.spring.alleating.product.vo.ProductImgVO;
 			//Calender.MONTH는 0~11이 반환되므로 현재 월을 알기위해 +1  DecimalFormat으로 빈자리에 0을 채움 7 -> 07 
 			endMonth  = df.format(cal.get(Calendar.MONTH) + 1);
 			//현재 날짜 구함 DecimalFormat으로 빈자리에 0을 채움 7 -> 07
+
 			endDay   = df.format(cal.get(Calendar.DATE));
+
 			// 예시: 2023-07-17 endDate에는 현재 년월일이 설정됨
 			endDate = endYear +"-"+ endMonth +"-"+endDay;
 			

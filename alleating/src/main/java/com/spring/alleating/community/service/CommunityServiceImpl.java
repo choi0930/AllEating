@@ -20,28 +20,14 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Autowired
 	CommunityDAO communityDAO;
-	@Autowired
-	private MemberVO memberVO;
-	
-	
 
-	@Override
-	public int addReview(Map NewReivewMap) throws Exception {
-		
-		
-		int productId = communityDAO.insertReview(NewReivewMap);
-		
-		
-		
-		ArrayList<ProductImgVO> reviewImgList = (ArrayList) NewReivewMap.get("reviewImgList");
-		for(ProductImgVO productImgVO : reviewImgList) {
-			productImgVO.setProductId(productId);
-			
-		}
-		communityDAO.insertReviewImg(reviewImgList);
-		return productId;
+
 	}
 	
 	
 
-}
+	
+	
+	
+
+

@@ -120,7 +120,7 @@ width:840px;
 <div id="cotainer" style="padding-top: 0px;">
 <div class="content_box content_foot_pb">
 
-<form action="${contextPath}/myPage/add_reviewForm.do" method="post" encType="multipart/form-data">
+<form action="${pageContext.request.contextPath}/myPage/myPage_reviewForm.do" method="get" encType="multipart/form-data">
 
 <div class="bbs_vtype">
 
