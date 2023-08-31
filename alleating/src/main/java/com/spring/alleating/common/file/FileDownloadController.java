@@ -3,6 +3,8 @@ package com.spring.alleating.common.file;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,13 +20,20 @@ public class FileDownloadController {
 		@RequestMapping("/download.do")
 		protected void download(@RequestParam("fileName") String fileName, @RequestParam("productId") String productId, @RequestParam("cateCode") String cateCode, HttpServletResponse response) throws Exception{
 		
-			
-			OutputStream out = response.getOutputStream();
-		String downFile = PRODUCT_IMAGE_REPO + "\\" +cateCode+"\\"+productId+"\\" + fileName;
-		File file = new File(downFile);
+		
+		OutputStream out = response.getOutputStream();
+		
+		fileName = URLEncoder.encode(fileName, "UTF-8");
 		
 		response.setHeader("Cache-Control", "no-cache");
 		response.addHeader("Content-disposition", "attachment; fileName=" + fileName );
+		
+		fileName = URLDecoder.decode(fileName,"UTF-8");
+		 
+		String downFile = PRODUCT_IMAGE_REPO + "\\" +cateCode+"\\"+productId+"\\" + fileName;
+		File file = new File(downFile);
+		
+		
 		FileInputStream in = new FileInputStream(file);
 		System.out.println(file);
 		byte[] buffer = new byte [1024 * 8];

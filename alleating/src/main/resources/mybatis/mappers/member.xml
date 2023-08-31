@@ -35,7 +35,7 @@
 		<result property="personalInformation" column="personalInformation"/>
 		<result property="snsId" column="snsId"/>
 	</resultMap>
-	<!-- select -->
+	
 	<!-- 일반로그인 -->
 	<select id = "selectByIdAndPwd" parameterType="java.util.Map" resultMap="memResult">
 		select * from member where id = #{id} and pwd = #{pwd}
@@ -59,7 +59,8 @@
 		select count(*) from member where id = #{id} and email = #{email}
 	</select>
 	<!-- 카카오 로그인 끝 -->
-	<!-- insert -->
+	
+	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="java.util.Map">
  			insert into member(
  			id, 
@@ -118,6 +119,7 @@
  				#{personalInformation}
  			)
 	</insert>
+	<!-- 회원가입시 입력한 주소 기본배송지로 설정됨 -->
 	<insert id="joinMemberDeliveryaddress" parameterType="java.util.Map">
 		insert into deliveryaddress(id, deliveryName, receiver_name, receiver_hp1, receiver_hp2,receiver_hp3, zipcode, address, address2, address_detail, default_address)
 		values(#{id}, '기본배송지',#{receiver_name}, #{receiver_hp1}, #{receiver_hp2}, #{receiver_hp3}, #{zipcode}, #{address}, #{address2}, #{address_detail}, 'y')

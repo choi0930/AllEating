@@ -29,8 +29,8 @@ public class AllEatingOrderVO {
 	private String orderStatus;
 	private Date payDate;
 	//예약상품 일자
-	private String thunderDate;
-	private String thunderTime;
+	private String reserveDate;
+	private String reserveTime;
 	
 	//대표 상품 정보
 	private String productName;
@@ -39,9 +39,9 @@ public class AllEatingOrderVO {
 	private int productId;
 	
 	private int productQty;
-//	private String productBrand;
-//	private int productPrice;
-//	private int productDiscount;
+	private String productBrand;
+	private int productPrice;
+	private int productDiscount;
 	private String delivery_status;
 	
 	
@@ -52,24 +52,24 @@ public class AllEatingOrderVO {
 	public void setProductQty(int productQty) {
 		this.productQty = productQty;
 	}
-//	public String getProductBrand() {
-//		return productBrand;
-//	}
-//	public void setProductBrand(String productBrand) {
-//		this.productBrand = productBrand;
-//	}
-//	public int getProductPrice() {
-//		return productPrice;
-//	}
-//	public void setProductPrice(int productPrice) {
-//		this.productPrice = productPrice;
-//	}
-//	public int getProductDiscount() {
-//		return productDiscount;
-//	}
-//	public void setProductDiscount(int productDiscount) {
-//		this.productDiscount = productDiscount;
-//	}
+	public String getProductBrand() {
+		return productBrand;
+	}
+	public void setProductBrand(String productBrand) {
+		this.productBrand = productBrand;
+	}
+	public int getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+	public int getProductDiscount() {
+		return productDiscount;
+	}
+	public void setProductDiscount(int productDiscount) {
+		this.productDiscount = productDiscount;
+	}
 	public String getDelivery_status() {
 		return delivery_status;
 	}
@@ -184,17 +184,18 @@ public class AllEatingOrderVO {
 	public void setPayDate(Date payDate) {
 		this.payDate = payDate;
 	}
-	public String getThunderDate() {
-		return thunderDate;
+
+	public String getReserveDate() {
+		return reserveDate;
 	}
-	public void setThunderDate(String thunderDate) {
-		this.thunderDate = thunderDate;
+	public void setReserveDate(String reserveDate) {
+		this.reserveDate = reserveDate;
 	}
-	public String getThunderTime() {
-		return thunderTime;
+	public String getReserveTime() {
+		return reserveTime;
 	}
-	public void setThunderTime(String thunderTime) {
-		this.thunderTime = thunderTime;
+	public void setReserveTime(String reserveTime) {
+		this.reserveTime = reserveTime;
 	}
 	public String getProductName() {
 		return productName;

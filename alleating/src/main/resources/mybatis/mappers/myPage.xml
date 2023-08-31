@@ -14,6 +14,7 @@
 		<result property="coupon_endDate" column="coupon_endDate" />
 		<result property="cateGoryName" column="cateGoryName" />
 	</resultMap>
+	
 	<!-- 배송지 정보 -->
 	<resultMap id="deliveryAddressResult" type="deliveryAddressVO">
 		<result property="num" column="num" />
@@ -29,6 +30,11 @@
 		<result property="address_detail" column="address_detail" />
 		<result property="default_address" column="default_address" />
 	</resultMap>
+	<!-- 쿠폰 -->
+	 <resultMap id="quantityCouponResult" type="couponVO">
+		<result property="couponId" column="couponId" />
+		<result property="coupon_quantity" column="coupon_quantity" />
+</resultMap>
 	
 		<!-- 쿠폰 -->
 		<!-- 관리자가 등록한 쿠폰목록에 있는 쿠폰인지 확인 -->
@@ -45,13 +51,24 @@
 		select u.couponId, c.coupon_name, c.couponDiscountRate, c.coupon_startDate, c.coupon_endDate, g.cateGoryName  from usercoupon u
 			inner join coupon c on u.couponId = c.couponId
 			inner join category g on c.coupon_range = g.cateCode
-			where u.id=#{id};
+			where u.id=#{id}
+			and c.coupon_deleted = 'n';
+		</select>
+		
+		<!-- 수량 줄일 쿠폰 가져오기 -->
+		<select id="selectCoupon" resultMap="quantityCouponResult" parameterType="String">
+			select couponId, coupon_quantity from coupon where couponId = #{couponId}
 		</select>
 		
 		<!-- 유저 쿠폰 등록 -->
 		<insert id="insertUserCoupon" parameterType="userCouponVO">
 			insert into usercoupon (couponId, id) values (#{couponId}, #{id}) 
 		</insert>
+		
+		<!-- 쿠폰 총수량에서 -1 -->
+		<update id="updateCouponQuantity" parameterType="CouponVO">
+			update coupon set coupon_quantity = #{coupon_quantity} where couponId = #{couponId}
+		</update>
 		<!-- 쿠폰 -->
 		
 		

@@ -18,27 +18,27 @@
 	
 	<!-- 사용가능 및 배포중인 쿠폰 목록 -->
 	<select id="selectAllCoupons" resultMap="couponResult" parameterType="java.util.Map">
-		 select t.* from(select * from coupon where coupon_endDate > sysdate()
+		 select t.* from(select * from coupon where coupon_endDate >= CURDATE()
  					and coupon_quantity > 0
  					and coupon_deleted='n'
  					order by creDate DESC) t limit 5 offset #{offset}
 	</select>
 	
 	<select id="selectCouponTotal" resultType="int" >
-			select count(*) from coupon where coupon_endDate > sysdate()
+			select count(*) from coupon where coupon_endDate >= CURDATE()
  					and coupon_quantity > 0
  					and coupon_deleted='n'
 	</select>
 	
 	<!-- 삭제 및 만료된 쿠폰 목록 -->
 	<select id="selectInvalidCoupons" resultMap="couponResult" parameterType="java.util.Map">
-		 select t.* from(select * from coupon where <![CDATA[coupon_endDate < sysdate()]]>
+		 select t.* from(select * from coupon where <![CDATA[coupon_endDate < CURDATE()]]>
  				or coupon_quantity = 0
  				or coupon_deleted='y') t limit 5 offset #{offset2} 
 	</select>
 	
 	<select id="selectInvalidCouponTotal" resultType="int" >
-	select count(*) from coupon where <![CDATA[coupon_endDate < sysdate()]]>
+	select count(*) from coupon where <![CDATA[coupon_endDate < CURDATE()]]>
  				or coupon_quantity = 0
  				or coupon_deleted='y'
 	</select>

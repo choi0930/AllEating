@@ -23,8 +23,8 @@
 		<result property="card_pay_month" column="card_pay_month" />
 		<result property="orderStatus" column="orderStatus" />
 		<result property="payDate" column="payDate" />
-		<result property="thunderDate" column="thunderDate" />
-		<result property="thunderTime" column="thunderTime" />
+		<result property="reserveDate" column="reserveDate" />
+		<result property="reserveTime" column="reserveTime" />
 		<result property="productName" column="productName" />
 		<result property="cateCode" column="cateCode" />
 		<result property="fileName" column="fileName" />
@@ -71,8 +71,8 @@
    				 a.card_pay_month,
    				 a.orderStatus,
    				 a.payDate,
-   				 a.thunderDate,
-   				 a.thunderTime,
+   				 a.reserveDate,
+   				 a.reserveTime,
    				 a.cateCode,
    				 a.fileName,
    				 a.productId,

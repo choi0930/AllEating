@@ -88,7 +88,7 @@
    				INNER JOIN product_img d ON g.productId = d.productId
 	   			WHERE d.fileType = 'main_image' 
     		<if test="productStatus == 'newProduct'">
-    			AND g.creDate between #{beginDate} and #{endDate}
+    			AND g.creDate between #{beginDate} and #{endDate}+1
     		</if>
     			ORDER BY g.creDate DESC
     			LIMIT 12
