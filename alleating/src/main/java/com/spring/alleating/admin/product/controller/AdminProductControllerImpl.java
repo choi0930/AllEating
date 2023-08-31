@@ -246,6 +246,7 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 	
 	/* 관리자 상품 삭제 */
 	@Override
+	@ResponseBody
 	@RequestMapping(value="/admin/delAdminProduct.do", method = RequestMethod.POST)
 	public String delProduct(@RequestBody ProductVO productVO , HttpServletRequest request, HttpServletResponse response)
 			throws Exception {

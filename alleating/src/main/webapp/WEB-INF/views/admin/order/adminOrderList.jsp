@@ -4,14 +4,18 @@
     
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-    <c:set var="ownerList" value="${newOrderMap.orderList}" />
-    <c:set var="total" value="${newOrderMap.total}" />
-    
+    <c:set var="ownerList" value="${adminOrderMap.orderList}" />
+    <c:set var="total" value="${adminOrderMap.total}" />
+    <c:set var="engTokor" value="${['배송 준비중','배송중','배송 완료','교환 접수','교환 진행중','교환 완료','반품 접수','반품 진행중','반품 완료','주문 취소']}" />
 <!DOCTYPE html>
 <html>
 <head>
     <title>사업자 배송/주문 관리 페이지</title>
     <script>   
+
+     
+
+
         $(document).ready(function(){
   
   $('ul.tabs li').click(function(){
@@ -225,6 +229,7 @@ function fn_goAddProduct(){
                                     <td colspan="9">주문 정보가 없습니다.</td>
                                 </c:when>
                                 <c:otherwise>
+                                   
                                     <c:forEach var ="ownerOrder" items="${ownerList}">
                                         <tr>
                                             <td style="cursor: pointer;">${ownerOrder.orderId}</td>
@@ -236,7 +241,18 @@ function fn_goAddProduct(){
                                             <td>${ownerOrder.payDate}</td>
                                             <td>
                                         <select id="delivery_status" name="delivery_status">
-                                            <c:choose>
+                                            
+                                            <c:forEach var="i" items="${['delivery_prepared','shipping','delivery_completed','exchange_reception','exchange_progress','exchange_completed','return_acceptance','return_progress','return_complete','withdraw_order']}"  varStatus="loop">
+                                                <c:choose>
+                                                    <c:when test="${i == ownerOrder.delivery_status}">
+                                                        <option value="${i}" selected>${engTokor[loop.index]}</option>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <option value="${i}">${engTokor[loop.index]}</option>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                            <!--<c:choose>
                                                 <c:when test="${ownerOrder.delivery_status == 'delivery_prepared'}">
                                                     <option value="delivery_prepared" selected>배송 준비중</option>
                                                     <option value="shipping">배송중</option>
@@ -357,7 +373,7 @@ function fn_goAddProduct(){
                                                     <option value="return_complete">반품 완료</option>
                                                     <option value="withdraw_order" selected>주문 취소</option>
                                                 </c:when>
-                                            </c:choose>
+                                            </c:choose>-->
                                         </select>
                                     </td>
                                         <td><button type="button" class="product_apply_btn">적용</button>    </td>                        

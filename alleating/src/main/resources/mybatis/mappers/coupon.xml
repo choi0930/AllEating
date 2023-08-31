@@ -21,7 +21,8 @@
 		<result property="couponId" column="couponId" />
 		<result property="id" column="id" />
 </resultMap>
-
+	
+	
 	<select id="selectUserCoupon" resultMap="userCouponResult" parameterType="String">
 		select * from usercoupon where id = #{id}
 	</select>
@@ -33,4 +34,14 @@
     				AND coupon_deleted = 'n'
 					ORDER BY creDate DESC;
 	</select>
+	
+	<select id="selectPayToCoupon" resultMap="couponResult" parameterType="java.util.Map">
+		select c.coupon_name, c.couponDiscountRate ,u.couponId from coupon c
+			inner join usercoupon u on c.couponId = u.couponId
+			where u.id = #{id}
+			and c.coupon_range = #{coupon_range}
+			and c.endDate >= CURDATE()
+			and c.coupon_deleted = 'n'
+	</select>
+	
  </mapper>
