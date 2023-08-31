@@ -165,8 +165,8 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	   
 		/* 사업자 상품 수정 정보 불러오는 */
 		@Override
-		@RequestMapping(value="/owner/ownerproducteditdetail.do", method = RequestMethod.GET)
-		public ModelAndView ownerproducteditdetail(int productId, HttpServletRequest request, HttpServletResponse response)
+		@RequestMapping(value="/owner/ownerupdateproduct.do", method = RequestMethod.GET)
+		public ModelAndView ownerupdateproduct(int productId, HttpServletRequest request, HttpServletResponse response)
 				throws Exception {
 			Map producteditInfo = new HashMap<>();
 			producteditInfo = ownerProductService.productEditService(productId);
