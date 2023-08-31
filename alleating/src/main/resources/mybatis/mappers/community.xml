@@ -39,12 +39,7 @@
 	
 	</insert>
 	
-	<insert id="insertReviewImg" parameterType="productImgVO">
-	
-		<![CDATA[
-	insert into product_img(imgId, productId, fileName, fileType,reg_id) values(#{imgId}, #{productId}, #{fileName}, #{fileType}, #{reg_id})
-	]]>
-	</insert>
+
 	
 	
 	

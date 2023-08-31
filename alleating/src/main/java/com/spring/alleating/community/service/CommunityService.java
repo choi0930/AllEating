@@ -5,8 +5,9 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.spring.alleating.community.vo.ReviewBoardVO;
+
 public interface CommunityService {
-	public int addReview(Map NewReivewMap) throws Exception;
 
 
 }
