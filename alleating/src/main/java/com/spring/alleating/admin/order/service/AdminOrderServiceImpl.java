@@ -26,5 +26,13 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 		orderMap.put("total", total);
 		return orderMap;
 	}
+	
+	/*관리자페이지: 사업자 주문정보 가져오기*/
+	@Override
+	public Map<String, Object> ownerOrderList(Map dataMap) throws DataAccessException {
+		Map<String, Object> orderMap = new HashMap<>();
+		List<AllEatingOrderVO> orderList = adminOrderDAO.selectOwnerOrder(dataMap);
+		return null;
+	}
 
 }

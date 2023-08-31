@@ -22,8 +22,8 @@
 		<result property="card_pay_month" column="card_pay_month" />
 		<result property="orderStatus" column="orderStatus" />
 		<result property="payDate" column="payDate" />
-		<result property="thunderDate" column="thunderDate" />
-		<result property="thunderTime" column="thunderTime" />
+		<result property="reserveDate" column="reserveDate" />
+		<result property="reserveTime" column="reserveTime" />
 		<result property="productName" column="productName" />
 		<result property="cateCode" column="cateCode" />
         <result property="fileName" column="fileName" />
@@ -57,6 +57,15 @@
 		inner join alleating_order_detail d 
 		on a.orderId = d.orderId
 		where d.deliveryType="reserve";
+		]]>
+	</select>
+		<select id="selectOwnerOrder" resultMap="orderResult" parameterType="java.util.Map">
+	<![CDATA[
+		select t.* from(select a.orderId, a.id, a.zipcode, a.address, a.address2, a.addressDetail, a.payDate, d.productId, d.productName, d.productQty, d.productBrand, d.productPrice, d.productDiscount ,d.delivery_status 
+				from alleating_order a 
+				inner join alleating_order_detail d 
+				on a.orderId = d.orderId
+				where d.deliveryType="normal") t limit 15 offset #{offset};
 		]]>
 	</select>
 	<select id="adminOrderCount" resultType="int">

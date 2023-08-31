@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.spring.alleating.coupon.vo.CouponVO;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
 
@@ -19,6 +20,10 @@ public interface MyPageDAO {
 	public int findUserCoupon(UserCouponVO userCouponVO)throws DataAccessException;
 	/*마이페이지: 쿠폰 추가하기*/
 	public int insertUserCoupon(UserCouponVO userCouponVO)throws DataAccessException;
+	/*수량 줄일 쿠폰 가져오기*/
+	public CouponVO selectCoupon(String couponId)throws DataAccessException;
+	/*쿠폰 수량 줄이기*/
+	public void updateCouponQuantity(CouponVO couponVO)throws DataAccessException;
 	/*마이페이지: 쿠폰 목록 불러오기*/
 	public List<UserCouponVO>selectUserCoupon(String id)throws DataAccessException;
 	/*마이페이지: 배송지 목록 불러오기*/

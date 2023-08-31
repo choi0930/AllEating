@@ -27,9 +27,10 @@
 	</select>
 	
 	<select id="selectAllCouponList" resultMap="couponResult">
-		 select * from coupon where coupon_endDate > sysdate()
- 					and coupon_quantity > 0
- 					and coupon_deleted='n'
- 					order by creDate DESC
+			SELECT * FROM coupon
+					WHERE endDate >= CURDATE()
+				    AND coupon_quantity > 0
+    				AND coupon_deleted = 'n'
+					ORDER BY creDate DESC;
 	</select>
  </mapper>

@@ -89,6 +89,8 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		String reg_id = memberVO.getId();
 		String join_type = memberVO.getJoin_type();
+		String reg_com_name = memberVO.getOwner_name();
+		newProductMap.put("reg_com_name", reg_com_name);//사업자 회사명
 		newProductMap.put("reg_id", reg_id);//�젣�뭹 �벑濡앹옄 id �엯�젰
 		newProductMap.put("join_type", join_type); //�젣�뭹 �벑濡앹옄媛� 愿�由ъ옄�벑湲됱씤吏� �궗�뾽�옄 �벑湲됱씤吏� �엯�젰
 		

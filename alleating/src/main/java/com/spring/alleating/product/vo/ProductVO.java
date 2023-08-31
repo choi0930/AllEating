@@ -28,11 +28,18 @@ public class ProductVO {
 	private String productContent;
 	private Date creDate;
     private String reg_id;
+    private String reg_com_name;
     private String join_type;
     private String fileName;
     
 	
 	
+	public String getReg_com_name() {
+		return reg_com_name;
+	}
+	public void setReg_com_name(String reg_com_name) {
+		this.reg_com_name = reg_com_name;
+	}
 	public String getFileName() {
 		return fileName;
 	}
