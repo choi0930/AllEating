@@ -10,4 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface AdminOrderContorller {
 	public ModelAndView adminOrderList(@RequestParam Map<String, String>dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	/*사업자 상품 주문 정보 */
+	public ModelAndView ownerOrderList(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
 }

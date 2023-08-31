@@ -31,8 +31,16 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 	@Override
 	public Map<String, Object> ownerOrderList(Map dataMap) throws DataAccessException {
 		Map<String, Object> orderMap = new HashMap<>();
+		//사업자 상품 주문정보
 		List<AllEatingOrderVO> orderList = adminOrderDAO.selectOwnerOrder(dataMap);
-		return null;
+		System.out.println(orderList.size());
+		//사업자 상품 주문정보 수
+		int total = adminOrderDAO.ownerOrderCount();
+		
+		orderMap.put("orderList", orderList);
+		orderMap.put("total", total);
+		
+		return orderMap;
 	}
-
+	
 }

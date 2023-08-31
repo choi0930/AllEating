@@ -55,5 +55,37 @@ public class AdminOrderControllerImpl implements AdminOrderContorller {
 		mav.setViewName(viewName);
 		return mav;
 	}
+	/* 사업자 상품 주문 리스트 */
+	@Override
+	@RequestMapping(value="/admin/adminOwnerOrderList.do", method = RequestMethod.GET)
+	public ModelAndView ownerOrderList(Map<String, String> dataMap, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		Map newDataMap = new HashMap<>();
+		String section = dataMap.get("section");
+		String pageNum = dataMap.get("pageNum");
+		if(section== null) {
+			section = "1";
+		}
+		
+		if(pageNum== null) {
+			pageNum = "1";
+		}
+		int _section = Integer.parseInt(section);
+		int _pageNum = Integer.parseInt(pageNum);
+		
+		int offset = (_section-1) * 100 +(_pageNum-1) * 15;
+		newDataMap.put("offset", offset);
+		newDataMap.put("section", section);
+		newDataMap.put("pageNum", pageNum);
+		Map newOrderMap = new HashMap<>();
+		 newOrderMap = adminOrderService.ownerOrderList(newDataMap);
+
+			
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("newOrderMap", newOrderMap);
+			mav.setViewName(viewName);
+			return mav;
+	}
 
 }

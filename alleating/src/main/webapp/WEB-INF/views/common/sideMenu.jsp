@@ -20,8 +20,10 @@
 
         $('#memberTap').click(function(){
             $('.hide_side_menu').toggle('500');
-             
-            
+        });
+        
+        $('#orderTap').click(function(){
+            $('.hide_side_menu2').toggle('500');
         });
     });
 
@@ -310,16 +312,22 @@ text-decoration:none;}
                                 <a class="side_small_aTag" href="${contextPath}/admin/userMemberList.do">일반회원 관리</a>
                             </li>
                             <li class="side_tap"> 
-                                <a class="side_small_aTag lastAtag" href="${contextPath}/admin/ownerMemberList.do">사업자회원 관리
-                                   
-                                </a>
+                                <a class="side_small_aTag lastAtag" href="${contextPath}/admin/ownerMemberList.do">사업자회원 관리</a>
                             </li>
                         </ul>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="${contextPath}/admin/adminOrderList.do">배송/주문 관리
+                        <a id="orderTap" class="side_aTag" href="#">배송/주문 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
+                        <ul class="hide_side_menu2">
+                            <li class="side_tap"> 
+                                <a class="side_small_aTag" href="${contextPath}/admin/adminOwnerOrderList.do">사업자 주문/배송 관리</a>
+                            </li>
+                            <li class="side_tap"> 
+                                <a class="side_small_aTag lastAtag" href="${contextPath}/admin/ownerMemberList.do">예약배송 주문 관리</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="side_tap">
                         <a class="side_aTag" href="#">커뮤니티 관리

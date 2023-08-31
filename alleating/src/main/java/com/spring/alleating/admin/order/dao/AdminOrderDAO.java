@@ -18,4 +18,6 @@ public interface AdminOrderDAO {
 	public int adminOrderCount()throws DataAccessException;
 	/*관리자페이지: 사업자 주문정보 불러오기*/
 	public List<AllEatingOrderVO> selectOwnerOrder(Map dataMap)throws DataAccessException;
+	/*관리자페이지: 사업자 주문정보 총 개수 불러오기*/
+	public int ownerOrderCount()throws DataAccessException;
 }

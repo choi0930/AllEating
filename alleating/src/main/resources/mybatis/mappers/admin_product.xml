@@ -24,6 +24,7 @@
 		<result property="productContent" column="productContent"/>
 		<result property="creDate" column="creDate"/>
 		<result property="reg_id" column="reg_id"/>
+		<result property="reg_com_name" column="reg_com_name"/>
 		<result property="join_type" column="join_type" />
 	</resultMap>
 	
@@ -91,6 +92,7 @@
 							productContentTitle,
 							productContent,
 							reg_id,
+							reg_com_name,
 							join_type)
 							values(
 							#{productId},
@@ -112,6 +114,7 @@
 							#{productContentTitle},
 							#{productContent},
 							#{reg_id},
+							'AllEating',
 							#{join_type}
 							)
 			]]>
