@@ -13,4 +13,7 @@ public interface AdminProductService {
 	public int addProduct(Map productInfo)throws DataAccessException;
 	public Map selectProductDetail(String productId)throws DataAccessException;
 	public void modifyProductStatus(ProductVO productVO)throws DataAccessException;
+	
+	/*관리자 상품 삭제*/
+	public int deleteAdminProduct(ProductVO productVO)throws DataAccessException;
 }

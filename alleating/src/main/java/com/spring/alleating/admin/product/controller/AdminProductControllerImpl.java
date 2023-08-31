@@ -243,6 +243,24 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 	}
 	
 	/*---------------------------------관리자 상품 수정 페이지 이동 끝------------------------------------*/
+	
+	/* 관리자 상품 삭제 */
+	@Override
+	@RequestMapping(value="/admin/delAdminProduct.do", method = RequestMethod.POST)
+	public String delProduct(@RequestBody ProductVO productVO , HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		int result = adminProductService.deleteAdminProduct(productVO);
+		String msg;
+		if(result>0) {
+			msg="삭제완료";
+		}else {
+			msg="삭제실패";
+		}
+		return msg;
+	}
+	/*---------------------------------관리자 상품 삭제 끝------------------------------------*/
+	
 	//폼이동
 	@RequestMapping(value="/admin/*Form.do",method = RequestMethod.GET)
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{
@@ -253,4 +271,5 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
 }

@@ -32,4 +32,6 @@ public interface AdminProductController {
 	/* 관리자 상품 수정 페이지 이동 */
 	public ModelAndView modProduct(@RequestParam("productId")String productId, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
+	/* 관리자 상품 삭제 */
+	public String delProduct(@RequestBody ProductVO productVO ,HttpServletRequest request, HttpServletResponse response)throws Exception;
 }

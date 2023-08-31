@@ -131,7 +131,8 @@ request.setCharacterEncoding("utf-8"); %>
             alert("에러가 발생했습니다." + data);
           },
         }).done(function () {
-          fn_productPrice(cartId);
+        fn_productPrice(cartId);
+       
         });
       }
       /*---------------------------------------------------------*/
@@ -171,7 +172,7 @@ request.setCharacterEncoding("utf-8"); %>
         });
       }
      /*---------------------------------------------------------*/
-       
+
 
       function fn_productPrice(cartId) {
         
@@ -473,8 +474,8 @@ request.setCharacterEncoding("utf-8"); %>
                                 >
                               </div>
                               <div class="product_salesPrice">
-                                <span class="choice-12">
-                                <input  class="css0930" class="reservePrice" type="text"id="total_price_${res.cartId}"  value="${res.oneProductPrice}" readonly>
+                                <span class="choice-12" id="total_price_${res.cartId}">
+                          <input  class="css0930" class="reservePrice" type="text"id="total_price_${res.cartId}"  value="${res.oneProductPrice}" readonly>
                                 <input type="hidden" id="totalPrice${res.cartId}" value="${res.oneProductPrice}">
                                 </span>
                                 <span class="choice-12">원</span>

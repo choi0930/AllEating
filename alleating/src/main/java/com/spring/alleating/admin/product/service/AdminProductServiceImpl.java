@@ -128,6 +128,14 @@ public class AdminProductServiceImpl implements AdminProductService {
 	public void modifyProductStatus(ProductVO productVO) throws DataAccessException {
 		adminProductDAO.updateProductStatus(productVO);
 	}
+
+
+
+	@Override
+	public int deleteAdminProduct(ProductVO productVO) throws DataAccessException {
+		int result = adminProductDAO.delProduct(productVO);
+		return result;
+	}
 	
 	
 }

@@ -66,6 +66,7 @@
 			select id, name, owner_name from member where id = #{reg_id}
 		]]>
 	</select>
+	<!-- 상품 정보 -->
 	<insert id="insertNewProduct" parameterType="java.util.Map">
 		<selectKey resultType="String" keyProperty="productId"
 			order="BEFORE">
@@ -119,6 +120,7 @@
 							)
 			]]>
 	</insert>
+	<!-- 상품 이미지 -->
 	<insert id="insertProductImageFile" parameterType="productImgVO">
 		
 		<selectKey resultType="int" keyProperty="imgId"
@@ -140,7 +142,12 @@
 	
 		
 	</insert>
+	<!-- 판매상태 변경 -->
 	<update id="updateProductStatus" parameterType="productVO">
 	 	update product set productStatus = #{productStatus} where productId = #{productId}
 	</update>
+	
+	<delete id="delProduct" parameterType="productVO">
+		delete from product where productId = #{productId}
+	</delete>
  </mapper>

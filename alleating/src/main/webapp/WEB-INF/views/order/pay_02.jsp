@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" isELIgnored="false"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
@@ -144,6 +145,9 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           let popUrl = "/order/deliveryChangePopup.do";
           let popOption = "width = 800px, height = 550px, top = 300px, left = 300px, scrollbars=yes";
         window.open(popUrl, "배송지 변경", popOption);
+      }
+      function fn_selectCoupon(){
+
       }
     </script>
   </head>
@@ -326,10 +330,13 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           >
 
           <div>
+            [${item.productBrand}]<br>
             ${item.productName}
           </div>
           <div>
-            ${item.productPrice * item.productQty}<br />
+            <fmt:formatNumber value="${item.productPrice * item.productQty}" type="number" />
+            <input type="hidden" value="${item.productPrice * item.productQty}" name="oneProductPrice"/> 
+           <br />
             수량 ${item.productQty}개
           </div>
         </div>
@@ -368,14 +375,21 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           <div class="payTwoTitleText">쿠폰 적용</div>
           <div class="payTwoSalePriceText">
             <input type="hidden" id="couponId" value=""/>
-            <span id="couponDiscount">0원</span>[할인]<button
+            <span id="couponDiscount">0원</span>[할인]
+            <!--<button
               class="btn btn-primary payTwoCouponBtn"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
               <span>쿠폰 선택</span>
+            </button>-->
+            <button onclick="fn_selectCoupon()">
+              쿠폰 선택
             </button>
           </div>
+        </div>
+        <div>
+          
         </div>
         <div class="payDeliveryInfo payTwoborderTop">
           
