@@ -1,6 +1,7 @@
 package com.spring.alleating.product.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,10 @@ public class ProductImgVO {
 	private String fileType;
 	private Date creDate;
 	private String reg_id;
+	
+	 
+
+	
 	
 	public String getReg_id() {
 		return reg_id;

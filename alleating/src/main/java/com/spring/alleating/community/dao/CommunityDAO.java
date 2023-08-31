@@ -11,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.spring.alleating.community.vo.ReviewBoardVO;
+import com.spring.alleating.product.vo.ProductImgVO;
 
 
 
@@ -18,7 +19,7 @@ import com.spring.alleating.community.vo.ReviewBoardVO;
 @Repository("communityDAO")
 public interface CommunityDAO {
 	
-	public Map insertReview(ReviewBoardVO reviewBoardVO)throws DataAccessException;
-
+	public void insertReview(ReviewBoardVO reviewBoardVO)throws DataAccessException;
+    public void insertReviewImg(ProductImgVO productImgVO)throws DataAccessException;
 
 }
