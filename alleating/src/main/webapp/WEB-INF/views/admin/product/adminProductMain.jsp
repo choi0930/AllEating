@@ -41,6 +41,24 @@
 function fn_goAddProduct(){
     location.href="/admin/adminAddProductForm.do";
 }
+function fn_delProduct(productId){
+    var param = {"productId": productId};
+    $.ajax({
+        async: true,
+        type:"POST",
+        data: JSON.stringify(param),
+        url:"/admin/delAdminProduct.do",
+        contentType: "application/json",
+        dataType: "text",
+        success: function(data){
+            alert(data);
+            location.href='/admin/listProducts.do';
+        },
+        error: function(data){
+            alert('에러발생');
+        }
+    });
+}
     </script>
     <style>
         /* 탭 스타일 */
@@ -374,7 +392,7 @@ function fn_goAddProduct(){
                                 <td>
                                     <div class="productTable_btn_group">
                                             <a href="#">수정하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
-                                        <a href="#">삭제하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
+                                        <a href="javascript:fn_delProduct('${adminProduct.productId}')">삭제하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
                                     </div>
                                 </td>
                             </tr> 

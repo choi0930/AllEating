@@ -22,4 +22,7 @@ public interface AdminProductDAO {
 	public List<ProductImgVO> selectProductDetailImage(String productId)throws DataAccessException;
 	public MemberVO selectMemberByRegId(String reg_id)throws DataAccessException;
 	public void updateProductStatus(ProductVO productVO)throws DataAccessException;
+	
+	/*관리자 상품 삭제*/
+	public int delProduct(ProductVO productVO)throws DataAccessException;
 }
