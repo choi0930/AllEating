@@ -3,6 +3,8 @@ pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+
+
 <c:choose>
   <c:when test="${total%30 == 0}">
     <c:set var="totals2" value="${total/30}" />
@@ -163,6 +165,7 @@ request.setCharacterEncoding("utf-8"); %>
     <script></script>
   </head>
   <body>
+
     <div class="tabContainer">
       <a href="${ContextPath }/owner/ownerAddProductForm.do">
         <input class="ownerProductMain_addBTN" type="button" value="등록"
@@ -223,10 +226,10 @@ request.setCharacterEncoding("utf-8"); %>
                   <td>선택</td>
                 </tr>
               </thead>
-
+    				
               <tbody>
                 <c:forEach var="ownerProduct" items="${ownerProductList}">
-                  <c:if test="${ownerProduct.reg_com_name eq '서형이네'}">
+                  <c:if test="${ownerProduct.reg_com_name eq sessionScope.loginMember.owner_name}">
                     <tr style="cursor: pointer">
                       <td>${ownerProduct.productId}</td>
                       <td>${ownerProduct.creDate}</td>

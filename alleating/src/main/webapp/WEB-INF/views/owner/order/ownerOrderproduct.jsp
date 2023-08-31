@@ -4,9 +4,9 @@
     <% request.setCharacterEncoding("utf-8"); %>
     
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
- <c:set var="orderDetailVO" value="${ownerOrderDetailInfo.OwnerorderDetailVO}" /><!--주문내역상세 정보-->
- <c:set var="reserveList" value="${ownerOrderDetailInfo.OwnerreserveList}" />
-  <c:set var="normalList" value="${ownerOrderDetailInfo.OwnernormalList}" />
+ <c:set var="orderDetailVO" value="${orderDetailInfo.orderDetailVO}" /><!--주문내역상세 정보-->
+ <c:set var="reserveList" value="${orderDetailInfo.reserveList}" />
+  <c:set var="normalList" value="${orderDetailInfo.normalList}" />
 
     <link href="${contextPath}/css/ownerorderpd.css" rel="stylesheet" type="text/css" />
     <!DOCTYPE html>
@@ -56,7 +56,7 @@ function OrderDeleteCallback(obj){
      <div class="order-problem-next">
 
      </div>
-     </div>
+     </div>k
    
    
     <div>
@@ -132,8 +132,72 @@ function OrderDeleteCallback(obj){
         </div>
       </div>
       </div>
+      
+   
+      <div class="orderdetailview">
+       <div class="orderdetailview-2">
+        <a class="orderdetailview-3" >후기 작성 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>   
+       </div>
+       <div class="orderdetailview-2">
+        <a class="orderdetailview-3" >장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+       </div>
+      
+       	<div class="orderdetailview-2">
+        	<a class="orderdetailview-3" >주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+       	</div> 
+      </div>
+     
       </c:forEach>
     </div>
+    
+    
+    
+   <%--    <div class="orderlistdetailview-under">
+    
+     <div class="orderlist-time">
+      <p>${orderDetailVO.orderId}</p>
+     </div>
+     <div class="order-problem-next">
+      <span class="order-problem-next-text">
+       배송 또는 상품에 문제가 있습니까?     
+      </span>
+      <a class="oneoneq" style="color:navy;">
+       1:1문의하기
+       <span>
+        <button class="triangle-button">
+         <img src="${contextPath}/img/image_icon/triangle_navy.png" width="25px" height="29px">
+        </button>
+       </span>
+      </a>
+     </div>
+     </div> --%>
+    
+    
+    
+
+    
+    
+    <div class="orderresult">
+     	<div class="readd">
+       <button type="button"   radius="3" class="readdbutton">
+         <span class="readd-2">전체 상품 다시 담기</span>
+       </button>
+       </div>
+     <div class="allcancel">
+       <button type="button"  radius="3" class="allcancelbutton">
+        <span class="allcancel-2">전체 상품 주문 취소</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="orderpotential">
+      <div class="orderpotential-view">
+      <p class="orderpotential-text">주문 취소는 [배송 준비중]인 상태일 경우에만 가능합니다.</p>
+      </div>
+  </div>
+    
+    
+    
      <div class="orderlistdetailview-list">
       <div class="orderlistdetailview-list-2">
        <div class="orderlistdetailview-list-3">
@@ -184,7 +248,7 @@ function OrderDeleteCallback(obj){
          </dl>
        </div>
        
-      <!-- <div class="orderlistdetailview-list-2">
+      <div class="orderlistdetailview-list-2">
        <div class="orderlistdetailview-list-3">
         <h3>주문 정보</h3>
         </div>
@@ -208,7 +272,9 @@ function OrderDeleteCallback(obj){
            </dd>
          </dl>
        </div>
-   </div> -->
+      
+      
+   </div>
    
    <div class="orderlistdetailview-list-2">
        <div class="orderlistdetailview-list-3">

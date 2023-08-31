@@ -4,9 +4,9 @@
     <% request.setCharacterEncoding("utf-8"); %>
     
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
- <c:set var="orderDetailVO" value="${orderDetailInfo.orderDetailVO}" /><!--주문내역상세 정보-->
- <c:set var="reserveList" value="${orderDetailInfo.reserveList}" />
-  <c:set var="normalList" value="${orderDetailInfo.normalList}" />
+ 	<c:set var="orderDetailVO" value="${orderDetailInfo.orderDetailVO}" /><!--주문내역상세 정보-->
+ 	<c:set var="reserveList" value="${orderDetailInfo.reserveList}" />
+ 	 <c:set var="normalList" value="${orderDetailInfo.normalList}" />
 
     
     

@@ -252,7 +252,7 @@ function changeImageByType(imageType) {
                 type="checkbox"
                 name="discount"
                 id="salecb"
-                value="y">
+                value="y"
                 <c:choose>
                   <c:when test="${pdVO.productDiscount > 0 }">
                     checked="checked"
