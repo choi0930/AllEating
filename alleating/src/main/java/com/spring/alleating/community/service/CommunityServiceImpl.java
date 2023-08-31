@@ -22,17 +22,25 @@ public class CommunityServiceImpl implements CommunityService {
 	CommunityDAO communityDAO;
 
 	@Override
-	public Map insertReview(ReviewBoardVO reviewBoardVO) throws Exception {
-	 
-		Map reviewInsert = communityDAO.insertReview(reviewBoardVO);
-	return reviewInsert;
+	public void insertReview(ReviewBoardVO reviewBoardVO) {
+		communityDAO.insertReview(reviewBoardVO);
 		
+		/*
+		 * // 이미지파일 이름 및 정보 DB에 등록 ArrayList<ProductImgVO> reviewimgFileList =
+		 * reviewBoardVO.getReviewimgFileList(); for (ProductImgVO productImgVO :
+		 * reviewimgFileList) { productImgVO.setProductId(reviewBoardVO.getProductId());
+		 * communityDAO.insertReviewImg(productImgVO); }
+		 */
+	   
 	}
 
+	 
+    
+}
 	
 	
 
-	}
+	
 	
 	
 

@@ -12,11 +12,16 @@
 		<result property="fileName" column="fileName" />
 		<result property="content" column="content" />
 		<result property="writeDate" column="writeDate" />
-
-
-
-
+</resultMap>
+<resultMap id="productImgResult" type="productImgVO">
+		<result property="imgId" column="imgId" />
+		<result property="productId" column="productId" />
+		<result property="reg_id" column="reg_id" />
+		<result property="fileName" column="fileName" />
+		<result property="img_type" column="img_type" />
+		<result property="creDate" column="creDate" />
 	</resultMap>
+
 	
 	<insert id="insertReview" parameterType="java.util.Map">
 	
@@ -39,6 +44,20 @@
 	
 	</insert>
 	
+	<insert id="insertReviewImg" parameterType="productImgVO">
+	insert into product_img (imgId,
+		                                     productId,
+									         fileName,
+											 fileType,
+											 reg_id)
+											 values
+											 (#{imgId},
+											 #{productId},
+											 #{fileName},
+											 #{fileType},
+											 #{reg_id} )
+	
+	</insert>
 
 	
 	

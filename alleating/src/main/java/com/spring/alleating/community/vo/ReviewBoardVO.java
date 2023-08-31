@@ -1,6 +1,11 @@
 package com.spring.alleating.community.vo;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.spring.alleating.product.vo.ProductImgVO;
 
 @Component("reviewBoardVO")
 public class ReviewBoardVO {
@@ -9,7 +14,8 @@ private String id;
 private int productId;
 private String productBrand;
 private String productName;
-private String fileName;
+private String  fileName;
+
 private String content;
 private String writeDate;
 
@@ -19,6 +25,16 @@ private String delivery_status;
 
 
 
+private String imagePath;
+
+
+
+public String getImagePath() {
+	return imagePath;
+}
+public void setImagePath(String imagePath) {
+	this.imagePath = imagePath;
+}
 public String getProductBrand() {
 	return productBrand;
 }
@@ -85,6 +101,8 @@ public String getWriteDate() {
 public void setWriteDate(String writeDate) {
 	this.writeDate = writeDate;
 }
+
+
 
 
 }
