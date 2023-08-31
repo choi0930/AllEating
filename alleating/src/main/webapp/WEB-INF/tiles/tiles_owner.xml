@@ -24,7 +24,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/owner/product/ownerModProductForm.jsp"/>      
 	</definition>
 	
-	<definition name="/owner/ownerOrderproduct" extends="baseLayout2">
+	<definition name="/owner/ownerOrderHistoryDetail" extends="baseLayout2">
 		<put-attribute name="title" value="사업자 상품 상세 페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/owner/order/ownerOrderproduct.jsp"/>      
 	</definition>

@@ -29,10 +29,11 @@
         <result property="fileName" column="fileName" />
       	<result property="productId" column="productId" />
         <result property="productBrand" column="productBrand" />
-					
+				
 		<result property="productDiscount" column="productDiscount" />
 			<result property="delivery_status" column="delivery_status" />
 	</resultMap>
+	
 	<resultMap id="orderDetailResult" type="allEatingOrderDetailVO">
 		<result property="order_seq_num" column="order_seq_num" />
 		<result property="orderId" column="orderId" />
@@ -48,6 +49,7 @@
 		<result property="fileName" column="fileName" />
 		<result property="productBrand" column="productBrand" />
 	</resultMap>
+	
 	<resultMap id="deliveryAddressResult" type="deliveryAddressVO">
 		<result property="num" column="num" />
 		<result property="id" column="id" />
