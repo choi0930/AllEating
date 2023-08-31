@@ -36,6 +36,27 @@ public class OwnerOrderServiceImpl implements OwnerOrderService {
 		ownerorderList = ownerOrderDAO.selectAllOwnerOrderList();
 		return ownerorderList;
 	}
+
+
+	@Override
+	public Map OnwerOrderHistoryDetail(String orderId) throws DataAccessException {
+		AllEatingOrderVO OwnerorderDetailVO = ownerOrderDAO.OwnerOrderHistoryDetail(orderId);
+		
+		Map OwnerorderDetailInfo = new HashMap();
+		Map OwnerdeliveryInfo = new HashMap();
+		
+		OwnerdeliveryInfo.put("deliveryType", "reserve");
+		OwnerdeliveryInfo.put("orderId", orderId);
+		List<AllEatingOrderDetailVO> OwnerreserveList = ownerOrderDAO.OwnerOrderHistoryProduct(OwnerdeliveryInfo);
+		
+		OwnerdeliveryInfo.put("deliveryType", "normal");
+		List<AllEatingOrderDetailVO> OwnernormalList = ownerOrderDAO.OwnerOrderHistoryProduct(OwnerdeliveryInfo);
+			
+		OwnerorderDetailInfo.put("OwnerorderDetailVO", OwnerorderDetailVO);
+		OwnerorderDetailInfo.put("OwnerreserveList", OwnerreserveList);
+		OwnerorderDetailInfo.put("OwnernormalList", OwnernormalList);
+		return OwnerorderDetailInfo;
+	}
 	
 	
 //	@Override

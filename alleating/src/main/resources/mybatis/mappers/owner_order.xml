@@ -88,8 +88,28 @@
 	</select> 
 	
 
+		<!-- 사업자의 주문 내역 상세내역 보기-->
+	<select id="OwnerOrderHistoryDetail" resultMap="allEatingOrderResult" parameterType="String">
+	
+	 select * from alleating_order where orderId = #{orderId}
+	</select>
+	
+	<!-- 주문 내역 상세 보기 중 주문 상품 정보들 -->
+	<select id="OwnerOrderHistoryProduct" resultMap="allEatingOrderDetailResult" parameterType="String">
+	
+	 select * from alleating_order_detail
+	 
+	  where orderId = #{orderId}
+	  
+	  <if test="deliveryType == 'reserve'"	>
+	   		AND deliveryType = 'reserve'
+    </if>
+     <if test="deliveryType == 'normal'">
+     		AND deliveryType = 'normal'
+     </if>
+	</select>
+
 	
 	<!-- insert -->
 
-	
 </mapper>

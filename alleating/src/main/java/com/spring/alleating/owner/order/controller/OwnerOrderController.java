@@ -11,5 +11,7 @@ public interface OwnerOrderController {
 	
 	public ModelAndView ownerOrderList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	public ModelAndView ownerOrderproduct(HttpServletRequest request, HttpServletResponse response)throws Exception;
+//	public ModelAndView ownerOrderproduct(HttpServletRequest request, HttpServletResponse response)throws Exception;
+	
+	public ModelAndView ownerOrderHistoryDetail(@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse resonse) throws Exception;
 }
