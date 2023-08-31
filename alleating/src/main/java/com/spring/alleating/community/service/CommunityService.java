@@ -9,7 +9,7 @@ import com.spring.alleating.community.vo.ReviewBoardVO;
 
 public interface CommunityService {
 
-	void insertReview(ReviewBoardVO reviewBoardVO);
+	void insertReview(Map<String, Object> reviewMap);
 
 	/* public Map insertReview(ReviewBoardVO reviewBoardVO) throws Exception; */
 

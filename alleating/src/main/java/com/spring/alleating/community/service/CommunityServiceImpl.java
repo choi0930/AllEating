@@ -20,10 +20,17 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Autowired
 	CommunityDAO communityDAO;
+	@Autowired
+	ReviewBoardVO reviewBoardVO;
 
 	@Override
-	public void insertReview(ReviewBoardVO reviewBoardVO) {
-		communityDAO.insertReview(reviewBoardVO);
+	public void insertReview(Map<String, Object> reviewMap) {
+		communityDAO.insertReview(reviewMap);
+		
+	}
+
+
+
 		
 		/*
 		 * // 이미지파일 이름 및 정보 DB에 등록 ArrayList<ProductImgVO> reviewimgFileList =
@@ -32,7 +39,7 @@ public class CommunityServiceImpl implements CommunityService {
 		 * communityDAO.insertReviewImg(productImgVO); }
 		 */
 	   
-	}
+	
 
 	 
     

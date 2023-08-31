@@ -16,7 +16,7 @@ import com.spring.alleating.community.vo.ReviewBoardVO;
 public interface CommunityController {
 	public ModelAndView review_01(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public String addreview(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView completeReview(@RequestParam("id") String id,MultipartFile reviewImage, HttpServletRequest request,
+	public ResponseEntity completeReview(MultipartHttpServletRequest multipartRequest,
 			HttpServletResponse response) throws Exception;
 
 	

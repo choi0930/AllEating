@@ -120,7 +120,7 @@ width:840px;
 <div id="cotainer" style="padding-top: 0px;">
 <div class="content_box content_foot_pb">
 
-<form action="${contextPath}/myPage/completeReview.do" method="get" encType="multipart/form-data">
+<form action="${contextPath}/myPage/completeReview.do" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="${loginMember.id}">
 <input type="hidden" name="productId" value="<%= request.getParameter("productId") %>">
 <div class="bbs_vtype">
@@ -165,7 +165,7 @@ width:840px;
 
 
 
- <div class="op06"><input type="file" name="reviewImage" value="파일 추가" onChange="readURL(this);" accept="image/*"/></div>
+ <div class="op06"><input type="file" name="fileName" value="파일 추가" onChange="readURL(this);" accept="image/*"/></div>
 <div><img id="reviewImgAdd"/></div> 
 </div>
 

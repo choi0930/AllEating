@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ import com.spring.alleating.product.vo.ProductImgVO;
 import com.spring.alleating.product.vo.ProductVO;
 
 @Controller("communityController")
-public class CommunityControllerImpl extends BaseController implements CommunityController {
+public class CommunityControllerImpl  implements CommunityController {
 	private static final String REVIEW_IMAGE_REPO = "C:\\alleating\\review_image_repo";
 	@Autowired
 	CommunityService communityService;
@@ -89,74 +90,110 @@ public class CommunityControllerImpl extends BaseController implements Community
 
 	@Override
 	@RequestMapping(value="/myPage/completeReview.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView completeReview(@RequestParam("id") String id, MultipartFile reviewImage, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ResponseEntity completeReview( MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		
+		multipartRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> reviewMap = new HashMap<String, Object>();
+		Enumeration enu = multipartRequest.getParameterNames();
+		while (enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = multipartRequest.getParameter(name);
+			reviewMap.put(name, value);
+		}
+		String imageFileName = upload(multipartRequest);
+		String id= (String) reviewMap.get("id");
+		String productId = (String) reviewMap.get("productId");
+		/* int _productId = Integer.parseInt(productId); */
+		String productName =  (String) reviewMap.get("productName");
+		String content = (String) reviewMap.get("content");
+		String productBrand = (String) reviewMap.get("productBrand");
 		
-		String productId = request.getParameter("productId");
-		int _productId =Integer.parseInt(productId);
+		Map zzMap = new HashMap<>();
+		zzMap.put("id", id);
+		zzMap.put("productId", productId);
+		zzMap.put("productName", productName);
+		zzMap.put("content", content);
+		zzMap.put("productBrand", productBrand);
 	     
-		String productName = request.getParameter("productName");
-		String content = request.getParameter("content");
-		String productBrand= request.getParameter("productBrand");
+	     		
+		
 	
 		
+		  
+		/* reviewMap.put("id", _id); */
+		/*
+		 * reviewMap.put("productId", _productId); reviewMap.put("content", content);
+		 * reviewMap.put("productBrand", productBrand); reviewMap.put("productName",
+		 * productName);
+		 */
 		
+		/* String id = (String) reviewMap.get("id"); */
 		
-		 // ReviewBoardVO 객체 생성과 설정
-        ReviewBoardVO reviewBoardVO = new ReviewBoardVO();
-        reviewBoardVO.setId(id);
-        reviewBoardVO.setProductId(_productId);
-      
-        reviewBoardVO.setProductName(productName);
-        reviewBoardVO.setContent(content);
-        reviewBoardVO.setProductBrand(productBrand);
+		String message;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
-        // 서비스를 통해 데이터베이스에 INSERT 작업 수행
-       communityService.insertReview(reviewBoardVO);
-
-		
-		
-		ModelAndView mav = new ModelAndView();
-		 mav.setViewName("redirect:/myPage/myPage_review.do");
-		mav.addObject("id", id);
-		mav.addObject("productId", productId);
-		mav.addObject("productName", productName);
-		mav.addObject("productBrand", productBrand);
-		
-	if(!reviewImage.isEmpty()) {
 		try {
-			// 업로드할 경로 설정
-            String uploadDirectory = "/c:/alleating//review_image_repo/";
-            
-            // 파일 이름 설정 (예: 유니크한 ID나 타임스탬프를 사용)
-            String fileName = System.currentTimeMillis() + "_" + reviewImage.getOriginalFilename();
-            
-            // 파일 경로 생성
-            Path filePath = Paths.get(uploadDirectory, fileName);
-            
-            // 파일 저장
-            Files.copy(reviewImage.getInputStream(), filePath);
-            
-            // 리뷰 객체에 이미지 경로 저장
-            String imagePath = "/uploaded-images/" + fileName; // 예시 경로, 실제 경로에 맞게 수정
-            reviewBoardVO.setImagePath(imagePath);
-            
-        } catch (IOException e) {
-            // 업로드 실패 처리
-            e.printStackTrace();
-        }
-    }
+			/* int articleNO = communityService.insertReview(zzMap); */
 	
+			if (imageFileName != null && imageFileName.length() != 0) {
+				File srcFile = new File(REVIEW_IMAGE_REPO + "\\" + "temp" + "\\" + imageFileName);
+				File destDir = new File(REVIEW_IMAGE_REPO + "\\" + id);
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
+			}
+			message = "<script>";
+			message += " alert('성공');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/myPage/myPage_review.do'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			File srcFile = new File(REVIEW_IMAGE_REPO + "\\" + "temp" + "\\" + imageFileName);
+			srcFile.delete();
+
+			message = " <script>";
+			message += " alert('실패'); ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/myPage/myPage_review.do'; ";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		return resEnt;
+
+	}
 	
-		return mav;
+    
+
+		//upload method
+	private String upload(MultipartHttpServletRequest multipartRequest) throws Exception {
+		String imageFileName = null;
+
+		Iterator<String> fileNames = multipartRequest.getFileNames();
+		while (fileNames.hasNext()) {
+			String fileName = fileNames.next();
+			MultipartFile mFile = multipartRequest.getFile(fileName);
+			imageFileName = mFile.getOriginalFilename();
+			File file = new File(REVIEW_IMAGE_REPO + "\\" + fileName);
+			if (mFile.getSize() != 0) {
+				if (!file.exists()) {
+					if (file.getParentFile().mkdirs()) {
+						file.createNewFile();
+					}
+				}
+				mFile.transferTo(new File(REVIEW_IMAGE_REPO + "\\" + "temp" + "\\" + imageFileName));
+			}
+		}
+		return imageFileName;
+	}
+		
+	
 	}
 	
 		
 
 
 
-		
-	}
+	
 
 
 
