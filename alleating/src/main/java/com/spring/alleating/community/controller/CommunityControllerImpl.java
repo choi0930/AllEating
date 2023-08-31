@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,7 @@ public class CommunityControllerImpl extends BaseController implements Community
 	@Autowired
 	CommunityService communityService;
 	
+	
 	@Autowired 
 	ReviewBoardVO reviewBoardVO;
 	@Override
@@ -51,78 +53,29 @@ public class CommunityControllerImpl extends BaseController implements Community
 		return mav;
 	}
 
-	@Override
-	@RequestMapping(value="/myPage/myPage_reviewForm.do", method= {RequestMethod.POST})
-	public ResponseEntity addReview(@RequestParam("productId") int productId, MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
-			throws Exception {
-		multipartRequest.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=UTF-8");
-		String fileName=null;
-		
-		
-		
-		
-		Map newReviewMap = new HashMap<>();
-		Enumeration enu = multipartRequest.getParameterNames();
-		while(enu.hasMoreElements()){
-			String name=(String)enu.nextElement();
-			String value=multipartRequest.getParameter(name);
-			newReviewMap.put(name,value);
-		}
-		HttpSession session = multipartRequest.getSession();
-		session.setAttribute("productId", productId);
-		
-		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
-		String id = memberVO.getId();
-		
-		 newReviewMap.put("id", id); 
-		System.out.println(newReviewMap);
-		
-		List<ProductImgVO> reviewImgList = upload(multipartRequest);
-		if(reviewImgList!= null && reviewImgList.size()!=0) {
-			for(ProductImgVO productImgVO : reviewImgList) {
-				productImgVO.setReg_id(id);
-			}
-			newReviewMap.put("reviewImgList", reviewImgList);
-		}
-		
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		try {
-			/* int productId = communityService.addReview(newReviewMap); */
 	
-			if(reviewImgList!=null && reviewImgList.size()!=0) {
-				for(ProductImgVO  productImgVO:reviewImgList) {
-					fileName = productImgVO.getFileName();
-					File srcFile = new File(REVIEW_IMAGE_REPO+"\\"+"temp"+"\\"+fileName);
-					File destDir = new File(REVIEW_IMAGE_REPO+"\\"+productId);
-					FileUtils.moveFileToDirectory(srcFile, destDir,true);
-				}
-			}
-			message= "<script>";
-			message += " alert('후기가 등록되었습니다.');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/myPage/myPage_review.do';";
-			message +=("</script>");
-		}catch(Exception e) {
-			if(reviewImgList!=null && reviewImgList.size()!=0) {
-				for(ProductImgVO  productImgVO:reviewImgList) {
-					fileName = productImgVO.getFileName();
-					File srcFile = new File(REVIEW_IMAGE_REPO+"\\"+"temp"+"\\"+fileName);
-					srcFile.delete();
-				}
-			}
-			
-			message= "<script>";
-			message += " alert('내용을 입력해주세요.');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/myPage/myPage_review.do';";
-			message +=("</script>");
-			e.printStackTrace();
-		}
-		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-		return resEntity;
+/////////////////////////////////// 게시물 작성 페이지로 이동하기/////////////////
+	@Override
+	public void addreview(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session  = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		String id= memberVO.getId();
+		
+		String productId = request.getParameter("productId");
+		int _productId = Integer.parseInt(productId);
+		
+		String viewName = (String)request.getAttribute("viewName");	
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName); 
+		
+	
 	}
+	
+	//////////////////////////////게시물 작성 ////////////////////////////
+	
+
+
 
 	@Override
 	public void insertReviewImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface CommunityController {
 	public ModelAndView review_01(HttpServletRequest request, HttpServletResponse response)throws Exception;
-	public ResponseEntity addReview(@RequestParam("productId") int productId, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
+	public void addreview(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	 public void insertReviewImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 	
 }

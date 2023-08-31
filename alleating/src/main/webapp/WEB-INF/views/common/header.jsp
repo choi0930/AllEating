@@ -178,7 +178,7 @@ $(function(){$('.header_nav').hover(
           <div> 
             <c:choose>
               <c:when test="${isLoginON == true}">
-                <a href="${contextPath }/myPage/myPage_01.do?id=${loginMember.id}" id="user_icon">
+                <a href="${contextPath}/myPage/myPage_01.do?id=${loginMember.id}" id="user_icon">
                   <img src="${contextPath}/img/headerImg/icon/free-icon-user-profile.png" alt="유저icon" width="29px" height="35px">
                 </a>
               </c:when>

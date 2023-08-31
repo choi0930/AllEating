@@ -65,8 +65,8 @@ request.setCharacterEncoding("utf-8");
 			<div>
 
 				<c:forEach var="review" items="${reviewList}">
-					<form action="/myPage/myPage_reviewForm.do" method="get"
-						encType="multipart/form-data">
+					<form action="/myPage/myPage_reviewForm.do" method="GET" encType="multipart/form-data">
+						<input type="hidden" name="productId" value="${review.productId}">
 						<div class="want_02">
 							<div class="capture">
 
@@ -76,9 +76,8 @@ request.setCharacterEncoding("utf-8");
 							</div>
 						</div>
 						<div class="qwe">
-							<input type="text" class="productNaming"
-								value="[${review.productBrand}]"> <input type="text"
-								class="productNaming" value="${review.productName}">
+							<input type="text" class="productNaming" value="[${review.productBrand}]" name="brand">
+								<input type="text" class="productNaming" value="${review.productName}" name="naming">
 							<%--  <input type="hidden" class="detail_01" value="[${review.productBrand}]${review.productName}"> --%>
 						</div>
 
