@@ -61,17 +61,36 @@
 	</select>
 		<select id="selectOwnerOrder" resultMap="orderResult" parameterType="java.util.Map">
 	<![CDATA[
-		select t.* from(select a.orderId, a.id, a.zipcode, a.address, a.address2, a.addressDetail, a.payDate, d.productId, d.productName, d.productQty, d.productBrand, d.productPrice, d.productDiscount ,d.delivery_status 
-				from alleating_order a 
-				inner join alleating_order_detail d 
-				on a.orderId = d.orderId
-				where d.deliveryType="normal") t limit 15 offset #{offset};
+			SELECT * FROM (
+    SELECT a.*, d.delivery_status
+    FROM alleating_order a
+    INNER JOIN alleating_order_detail d ON a.orderId = d.orderId
+    WHERE d.deliveryType = "normal"
+    GROUP BY a.orderId
+) t limit 15 offset #{offset};
 		]]>
 	</select>
 	<select id="adminOrderCount" resultType="int">
 		<![CDATA[
-		 select count(*) from alleating_order_detail where deliveryType="reserve"
+                SELECT COUNT(*) FROM (
+    SELECT a.orderId
+    FROM alleating_order a
+    INNER JOIN alleating_order_detail d ON a.orderId = d.orderId
+    WHERE d.deliveryType = "normal"
+    GROUP BY a.orderId
+) t;
 		]]>
 	</select>
-	
+	<!-- 사업자 상품 주문정보 -->
+	<select id="ownerOrderCount" resultType="int">
+		<![CDATA[
+SELECT COUNT(*) FROM (
+    SELECT a.orderId
+    FROM alleating_order a
+    INNER JOIN alleating_order_detail d ON a.orderId = d.orderId
+    WHERE d.deliveryType = "normal"
+    GROUP BY a.orderId
+) t;
+		]]>
+	</select>
 </mapper>
