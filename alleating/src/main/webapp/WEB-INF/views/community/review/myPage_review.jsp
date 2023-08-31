@@ -65,7 +65,7 @@ request.setCharacterEncoding("utf-8");
 			<div>
 
 				<c:forEach var="review" items="${reviewList}">
-					<form action="/myPage/myPage_reviewForm.do" method="GET" encType="multipart/form-data">
+					<form action="/myPage/myPage_reviewForm.do" method="get" encType="multipart/form-data">
 						<input type="hidden" name="productId" value="${review.productId}">
 						<div class="want_02">
 							<div class="capture">

@@ -18,7 +18,7 @@ import com.spring.alleating.community.vo.ReviewBoardVO;
 @Repository("communityDAO")
 public interface CommunityDAO {
 	
-	public void insertReview(ReviewBoardVO reviewBoardVO)throws DataAccessException;
+	public Map insertReview(ReviewBoardVO reviewBoardVO)throws DataAccessException;
 
 
 }

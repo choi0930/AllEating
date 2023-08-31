@@ -171,7 +171,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 
 	
 	@Override
-	@RequestMapping(value="/order/pay_complete.do", method = RequestMethod.GET)
+	@RequestMapping(value="/order/pay_complete.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView selectOrderNum(@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		Map payCompleteInfo = new HashMap<>();
@@ -185,7 +185,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	
 	//-------------------------마이페이지 주문내역
 	@Override
-	@RequestMapping(value="/myPage/myPage_01.do", method = RequestMethod.GET)
+	@RequestMapping(value="/myPage/myPage_01.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView orderHistory(@RequestParam("id" ) String id,  HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession();
@@ -219,7 +219,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	
 	/* 마이페이지 주문내역 상세페이지 */
 	@Override
-	@RequestMapping(value="/myPage/myPage_02.do", method = RequestMethod.GET)
+	@RequestMapping(value="/myPage/myPage_02.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView OrderHistoryDetail(@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession(); //얘가 없으면
@@ -238,7 +238,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	}
 
 	@Override
-	@RequestMapping(value="/myPage/myPage_review.do", method = RequestMethod.GET)
+	@RequestMapping(value="/myPage/myPage_review.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView selectUserReview(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession();
