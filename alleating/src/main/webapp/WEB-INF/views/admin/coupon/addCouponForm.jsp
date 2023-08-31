@@ -113,78 +113,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <div>
             <select name="coupon_range" class="form-select">
               <option selected value="none">상품분류 선택</option>
-              <optgroup label="채소">
-                <option value="901001">친환경</option>
-                <option value="901002">고구마 · 감자 · 당근</option>
-                <option value="901003">시금치 · 쌈채소 · 나물</option>
-                <option value="901004">브로콜리 · 파프리카 · 양배추</option>
-                <option value="901005">양파 · 대파 · 마늘 · 배추</option>
-                <option value="901006">오이 · 호박 · 고추</option>
-                <option value="901007">콩나물 · 버섯</option>
-              </optgroup>
-
-              <optgroup label="과일 · 견과 · 쌀">
-                <option value="902001">국산과일</option>
-                <option value="902002">수입과일</option>
-                <option value="902004">냉동·건과일</option>
-                <option value="902005">견과류</option>
-                <option value="902006">쌀·잡곡</option>
-              </optgroup>
-
-              <optgroup label="수산 · 해산 · 건어물">
-                <option value="903001">생선류</option>
-                <option value="903002">반건류</option>
-                <option value="903003">오징어·낙지·문어</option>
-                <option value="903004">새우·게·랍스터</option>
-                <option value="903005">해산물·조개류</option>
-                <option value="903006">김·미역·해조류</option>
-                <option value="903007">건어물·다시팩</option>
-              </optgroup>
-
-              <optgroup label="정육 · 계란">
-                <option value="904001">국내산 소고기</option>
-                <option value="904002">수입산 소고기</option>
-                <option value="904003">돼지고기</option>
-                <option value="904004">닭·오리고기</option>
-                <option value="904005">양고기</option>
-                <option value="904006">양념육·돈까스</option>
-                <option value="904007">계란류</option>
-              </optgroup>
-
-              <optgroup label="국 · 반찬 · 메인요리">
-                <option value="905001">국·탕·찌개</option>
-                <option value="905002">밀키트·메인요리</option>
-                <option value="905003">밑반찬</option>
-                <option value="905004">김치·젓갈·장류</option>
-                <option value="905005">두부·어묵·부침개</option>
-                <option value="905006">베이컨·햄·통조림</option>
-              </optgroup>
-
-              <optgroup label="샐러드 · 간편식">
-                <option value="906001">샐러드·닭가슴살</option>
-                <option value="906002">도시락·밥류</option>
-                <option value="906003">파스타·면류</option>
-                <option value="906004">떡볶이·튀김·순대</option>
-                <option value="906005">폭립·떡갈비·안주</option>
-                <option value="906006">죽·스프·카레</option>
-                <option value="906007">선식·시리얼</option>
-              </optgroup>
-
-              <optgroup label="면 · 양념 · 오일">
-                <option value="907001">파스타·면류</option>
-                <option value="907002">식초·소스·드레싱</option>
-                <option value="907003">양념·액젓·장류</option>
-                <option value="907004">식용유·참기름·오일</option>
-                <option value="907005">소금·설탕·향신료</option>
-                <option value="907006">밀가루·가루·믹스</option>
-              </optgroup>
-
-              <optgroup label="생수 · 음료 · 우유 · 커피">
-                <option value="908001">생수·탄산수</option>
-                <option value="908002">음료·주스</option>
-                <option value="908003">우유·두유·요거트</option>
-                <option value="908004">커피</option>
-              </optgroup>
+              <option value="901">채소</option>
+              <option value="902">과일·견과·쌀</option>
+              <option value="903">수산·해산·건어물</option>
+              <option value="904">정육·계란</option>
+              <option value="905">국·반찬·메인요리</option>
+              <option value="906">샐러드·간편식</option>
+              <option value="907">면·양념·오일</option>
+              <option value="908">생수·음료·우유·커피</option>
             </select>
           </div>
         </div>

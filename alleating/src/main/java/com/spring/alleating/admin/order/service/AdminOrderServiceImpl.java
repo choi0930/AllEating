@@ -20,7 +20,7 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 	public Map<String, Object> adminOrderList(Map dataMap) throws DataAccessException {
 		Map<String, Object> orderMap = new HashMap<>();
 		
-		List<AllEatingOrderVO> orderList = adminOrderDAO.selectAdminOrder();
+		List<AllEatingOrderVO> orderList = adminOrderDAO.selectAdminOrder(dataMap);
 		int total = adminOrderDAO.adminOrderCount();
 		orderMap.put("orderList", orderList);
 		orderMap.put("total", total);

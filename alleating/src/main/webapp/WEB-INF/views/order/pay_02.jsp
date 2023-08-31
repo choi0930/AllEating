@@ -147,7 +147,9 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         window.open(popUrl, "배송지 변경", popOption);
       }
       function fn_selectCoupon(){
-
+        let popUrl = "/coupon/couponPopUp.do";
+          let popOption = "width = 800px, height = 550px, top = 300px, left = 300px, scrollbars=yes";
+        window.open(popUrl, "쿠폰 적용", popOption);
       }
     </script>
   </head>

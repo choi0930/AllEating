@@ -42,9 +42,13 @@ public class AdminOrderControllerImpl implements AdminOrderContorller {
 		if(pageNum== null) {
 			pageNum = "1";
 		}
-		condMap.put("section",section);
-		condMap.put("pageNum",pageNum);
 		
+		int _section = Integer.parseInt(section);
+		int _pageNum = Integer.parseInt(pageNum);
+		
+		int offset = (_section-1) * 100 +(_pageNum-1) * 15;
+		condMap.put("offset", offset);
+		               
 		Map adminOrderMap = new HashMap();
 		adminOrderMap = adminOrderService.adminOrderList(condMap);
 		
@@ -55,6 +59,7 @@ public class AdminOrderControllerImpl implements AdminOrderContorller {
 		mav.setViewName(viewName);
 		return mav;
 	}
+	
 	/* 사업자 상품 주문 리스트 */
 	@Override
 	@RequestMapping(value="/admin/adminOwnerOrderList.do", method = RequestMethod.GET)
@@ -76,8 +81,8 @@ public class AdminOrderControllerImpl implements AdminOrderContorller {
 		
 		int offset = (_section-1) * 100 +(_pageNum-1) * 15;
 		newDataMap.put("offset", offset);
-		newDataMap.put("section", section);
-		newDataMap.put("pageNum", pageNum);
+		//newDastaMap.put("section", section);
+		//newDataMap.put("pageNum", pageNum);
 		Map newOrderMap = new HashMap<>();
 		 newOrderMap = adminOrderService.ownerOrderList(newDataMap);
 

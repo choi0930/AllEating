@@ -325,7 +325,7 @@ text-decoration:none;}
                                 <a class="side_small_aTag" href="${contextPath}/admin/adminOwnerOrderList.do">사업자 주문/배송 관리</a>
                             </li>
                             <li class="side_tap"> 
-                                <a class="side_small_aTag lastAtag" href="${contextPath}/admin/ownerMemberList.do">예약배송 주문 관리</a>
+                                <a class="side_small_aTag lastAtag" href="${contextPath}/admin/adminOrderList.do">예약배송 주문 관리</a>
                             </li>
                         </ul>
                     </li>

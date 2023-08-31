@@ -57,4 +57,9 @@
 		<put-attribute name="title" value="관리자페이지 사업자 상품 주문/배송 관리페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/admin/order/adminOwnerOrderList.jsp"/>      
 	</definition>
+	
+	<definition name="/admin/adminOrderList" extends="baseLayout2">
+		<put-attribute name="title" value="관리자페이지 예약 상품 주문/배송 관리페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/order/adminOrderList.jsp"/>      
+	</definition>
 </tiles-definitions>
