@@ -43,7 +43,7 @@
 	<![CDATA[
  select * from product where join_type='owner'
  
-]]>
+	]]>
 	</select>
 	
 	<!-- insert -->
