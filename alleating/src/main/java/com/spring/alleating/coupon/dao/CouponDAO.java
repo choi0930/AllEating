@@ -12,8 +12,11 @@ import com.spring.alleating.coupon.vo.UserCouponVO;
 @Mapper
 @Repository("couponDAO")
 public interface CouponDAO {
+	
 	public List<UserCouponVO> selectUserCoupon(String id)throws DataAccessException;
+	
 	public List<CouponVO> selectAllCouponList()throws DataAccessException;
-	public CouponVO selectPayToCoupon(Map dateMap)throws DataAccessException;
+	
+	public List<CouponVO> selectPayToCoupon(Map dateMap)throws DataAccessException;
 }
 

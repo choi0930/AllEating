@@ -56,7 +56,10 @@ public class CouponControllerImpl implements CouponController{
 		dataMap.put("id", id);
 		dataMap.put("alleatingOrderDetailes", allEatingOrderDetailes);
 		
-		couponService.payCouponList(dataMap);
+		Map<String, List<AllEatingOrderDetailVO>> responseMap = new HashMap<>();
+		responseMap = couponService.payCouponList(dataMap);
+		
+		model.addAttribute("responseMap", responseMap);
 	}
 
 	
