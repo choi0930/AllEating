@@ -40,9 +40,7 @@ import com.spring.alleating.main.service.MainService;
 			Map mainresult = mainService.selectMainProductDetail(productPeriod);
 			
 			mav.addObject("mainresult",mainresult);
-			
-			
-			
+
 			return mav;
 		}
 		

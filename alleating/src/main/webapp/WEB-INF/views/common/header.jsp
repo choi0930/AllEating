@@ -110,6 +110,9 @@ $(function(){$('.header_nav').hover(
     console.log(searchKeyWord);
     location.href="/product/search_01.do?searchWord="+searchKeyWord;
   }
+
+
+  
     </script>
   </head>
   <body>
@@ -227,7 +230,7 @@ $(function(){$('.header_nav').hover(
         </div><!--end header_button_group-->
       </div><!--end allEating_header-->
     </div><!--end allEating_header-->
-    <div id="header">
+    <div id="header1">
       <div id="fix_header">
         <div id="header_categroy">
           <div id="cate_header">

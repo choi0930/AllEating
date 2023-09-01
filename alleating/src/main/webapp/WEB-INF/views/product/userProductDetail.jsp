@@ -23,15 +23,6 @@
 
 
 <script type="text/javascript">
- var bDisplay = true;
-function doDisplay(){
-   
-
-} 
-
-
-
-
 
 /* $(function(){
 	if(isLoginON == true and loginMember != null){
@@ -106,23 +97,26 @@ function fn_goToPay(){
  }
 
  
- $(document).ready(function() {
+ function qty_mod(){
 	  // select 요소의 변경 이벤트 감지
-	  $('#qty_choice').on('change', function() {
+	  
 	    var qty_choice = $('#qty_choice').val(); //수량 선택 select
-	    var qty_hidden = $('.qty_hidden').val(); // hidden으로 숨겨진 값
+	    var qty_hidden = $('#h_price').val(); // hidden으로 숨겨진 값
 	    
-	    qty_choice = parseInt(qty_choice);
-	    qty_hidden = parseInt(qty_hidden);
+	    qty_choice = Number(qty_choice);
+	    qty_hidden = Number(qty_hidden);
 	    var qty_total = qty_choice * qty_hidden; // 계산된 결과
 	    
+      var result = qty_total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+      console.log
 
 	    // 결과를 총합에 적용
-	    $('.qty_total').val(qty_total);
-	   
-	  });
-	
-	});
+      $('.h_qty_total').val(qty_total);
+	    $('.qty_total').text(result);
+   
+	 /*  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); */
+ }
+
  
  
 </script>
@@ -193,7 +187,7 @@ function fn_goToPay(){
 <dt class="listcss-6">배송</dt>
 <dd class="listcss-7">
 <p><c:choose>
-         <c:when test="${userProductVO.deliveryType == 'reserve' }">21시 전 주문 시 내일 아침 7시 전 도착
+         <c:when test="${userProductVO.deliveryType == 'reserve' }">예약배송: 주문시 원하는 일자를 선택 하실 수 있습니다.
          </c:when>
         <c:when test="${userProductVO.deliveryType == 'normal' }">택배 배송
          </c:when>
@@ -260,8 +254,7 @@ function fn_goToPay(){
 <input type="hidden" id="productId" value="${userProductVO.productId}">
 
 <select class="form-select" id="qty_choice" aria-label="Default select example" onchange="qty_mod()" >
-  <option selected value="0" >수량 선택</option>
-  <option value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1개</option>
+  <option selected value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1개</option>
   <option value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2개</option>
   <option value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3개</option>
   <option value="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4개</option>
@@ -279,21 +272,17 @@ function fn_goToPay(){
 <div class="choice-11">
 
 
-<c:choose>
+              <c:choose>
                     <c:when test="${userProductVO.productDiscount != 0}">
-                    총 상품 금액: <input type="text"  class="qty_total" value="<fmt:formatNumber value="${userProductVO.productPrice}" type="number" />">원
-                                            <input type="hidden" class="qty_hidden" value="${userProductVO.productPrice}"/>
+                              <fmt:formatNumber value='${userProductVO.productSalesPrice}' type='number' />원
                     </c:when>
                    
                    
-                   <c:otherwise>총 상품 금액:  <input type="text"  class="qty_total" value="<fmt:formatNumber value="${userProductVO.productPrice}" type="number" />">원
-                                            <input type="hidden" class="qty_hidden" value="${userProductVO.productPrice}"/></c:otherwise>
-                   </c:choose>
+                  <c:otherwise>
+                          <fmt:formatNumber value="${userProductVO.productPrice}" type="number" />원
+                  </c:otherwise>
+              </c:choose>
 
-
-
-<%-- <span class="choice-12"><fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>원</span>
-<span class="choice-13"><fmt:formatNumber value="${userProductVO.productSalesPrice}" pattern="#,###"/>원</span> --%>
 </div>
 </div>
 </div>
@@ -331,16 +320,21 @@ function fn_goToPay(){
 
 <c:choose>
                     <c:when test="${userProductVO.productDiscount != 0}">
-                    총 상품 금액: <input type="text"  class="qty_total" value="<fmt:formatNumber value="${userProductVO.productPrice}" type="number" />">원
-                                            <input type="hidden" class="qty_hidden" value="${userProductVO.productPrice}"/>
+                    총 상품 금액:<span class="qty_total"> <fmt:formatNumber value='${userProductVO.productSalesPrice}' type='number' /></span>원
+                     <!--<input type="text"  class="qty_total" value="${userProductVO.productSalesPrice}">원-->
+                                            <input type="hidden" class="qty_hidden"  id="h_price" value="${userProductVO.productSalesPrice}"/>
+                                            <input type="hidden" class="h_qty_total" />
                     </c:when>
                    
                    
-                   <c:otherwise>총 상품 금액:  <input type="text"  class="qty_total" value="<fmt:formatNumber value="${userProductVO.productPrice}" type="number" />">원
-                                            <input type="hidden" class="qty_hidden" value="${userProductVO.productPrice}"/></c:otherwise>
+                   <c:otherwise>
+                            총 상품 금액:  <span class="qty_total"><fmt:formatNumber value='${userProductVO.productPrice}' type='number' /></span>원
+                            <!--<input type="text"  class="qty_total" value="${userProductVO.productPrice}">-->
+                                              <input type="hidden" class="qty_hidden"  id="h_price" value="${userProductVO.productPrice}"/>
+                                              <input type="hidden" class="h_qty_total"  />
+                                          </c:otherwise>
+                                          
                    </c:choose>
-
-<%-- 총 상품 금액:  <input type="text" readonly class="total-4" value="<fmt:formatNumber value="${userProductVO.productPrice}" pattern="#,###"/>">원 --%>
 
 </div>
 

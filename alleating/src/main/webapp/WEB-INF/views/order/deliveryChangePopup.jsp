@@ -8,6 +8,7 @@ request.setCharacterEncoding("utf-8"); %>
   <head>
     <title>배송지 변경 팝업창</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
       #addressTable{
         width: 700px;
@@ -27,6 +28,23 @@ request.setCharacterEncoding("utf-8"); %>
         text-align: center;
       }
     </style>
+    <script>
+      $('.deliveryChangeBtn').click(function(){
+        var checked = $('input[name=addressNum]:checked').val();
+        $("#receiverName", opener.document).val($("#dliveryName_"+checked).val());
+        $("#receiverHp", opener.document).val($("#reHp_"+checked).val());
+        $("#zipcode", opener.document).val($("#zipcode_"+checked).val());
+        $("#address", opener.document).val($("#address_"+checked).val());
+        $("#address", opener.document).val($("#address_"+checked).val());
+        var address2 = $('address2_'+checked).val();
+        if(address2 != null){
+          $("#address2", opener.document).val($("#address2_"+checked).val());
+        }
+        $("#addressDetail", opener.document).val($("#address_detail_"+checked).val());
+
+        window.close();
+      });
+    </script>
   </head>
   <body>
     <div id="addressTitle">배송지 변경</div>
@@ -63,24 +81,24 @@ request.setCharacterEncoding("utf-8"); %>
                   <c:when test="${addressInfo.default_address == 'y'}">
                     <td>
                       <span class="redText">[기본배송지]</span><br />
-                      ${addressInfo.deliveryName}
+                      <span id="dliveryName_${addressInfo.num}">${addressInfo.deliveryName}</span>
                     </td>
                   </c:when>
                   <c:otherwise>
-                    <td>${addressInfo.deliveryName}</td>
+                    <td><span id="dliveryName_${addressInfo.num}">${addressInfo.deliveryName}</span></td>
                   </c:otherwise>
                 </c:choose>
-                <td>${addressInfo.receiver_name}</td>
+                <td><span id="reName_${addressInfo.num}">${addressInfo.receiver_name}</span></td>
                 <td class="addressText">
-                  (${addressInfo.zipcode})<br />
-                  ${addressInfo.address}&nbsp;${addressInfo.address2}<br />
-                  ${addressInfo.address_detail}
+                  (<span id="zipcode_${addressInfo.num}">${addressInfo.zipcode}</span>)<br />
+                  <span id="address_${addressInfo.num}">${addressInfo.address}</span>&nbsp;<span id="address2_${addressInfo.num}">${addressInfo.address2}</span><br />
+                  <span id="address_detail_${addressInfo.num}">${addressInfo.address_detail}</span>
                 </td>
                 <td>
-                  ${addressInfo.receiver_hp1}-${addressInfo.receiver_hp2}-${addressInfo.receiver_hp3}
+                  <span id="reHp_${addressInfo.num}">${addressInfo.receiver_hp1}-${addressInfo.receiver_hp2}-${addressInfo.receiver_hp3}</span>
                 </td>
                 <td>
-                  <button>적용</button>
+                  <button class="deliveryChangeBtn">적용</button>
                 </td>
               </tr>
             </c:forEach>

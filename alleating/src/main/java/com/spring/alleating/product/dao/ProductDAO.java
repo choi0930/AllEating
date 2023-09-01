@@ -19,6 +19,11 @@ public interface ProductDAO {
 	public MemberVO selectUserByRegId(String reg_id)throws DataAccessException;
 	
 	public List<ProductVO> selectnewProductDetail(Map newproductid)throws DataAccessException; //신상품
+	public int selectNewProductCount()throws DataAccessException; //신상품 수
+	/* 검색 */
+	public List<ProductVO> selectBySearchWord(Map product)throws DataAccessException;
+	public int selectBySearchCount(String searchWord)throws DataAccessException;
+	
 	public List<ProductImgVO> selectnewProductDetailImage()throws DataAccessException;
 	
 	public List<ProductVO> selectCateProduct(Map aaaInfo)throws DataAccessException; //카테고리
