@@ -42,12 +42,13 @@ import com.spring.alleating.product.vo.ProductVO;
 @Controller("communityController")
 public class CommunityControllerImpl  implements CommunityController {
 	private static final String REVIEW_IMAGE_REPO = "C:\\alleating\\review_image_repo";
+	
 	@Autowired
 	CommunityService communityService;
-	
-	
+
 	@Autowired 
 	ReviewBoardVO reviewBoardVO;
+	
 	@Override
 	@RequestMapping(value= "/community/review_01.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView review_01(HttpServletRequest request, HttpServletResponse response)throws Exception {
@@ -93,14 +94,22 @@ public class CommunityControllerImpl  implements CommunityController {
 	public ResponseEntity completeReview( MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		
 		multipartRequest.setCharacterEncoding("utf-8");
-		Map<String, Object> reviewMap = new HashMap<String, Object>();
+		response.setContentType("text/html; charset=UTF-8");
+	
+		
+		Map reviewMap = new HashMap<>();
+		
 		Enumeration enu = multipartRequest.getParameterNames();
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
 			String value = multipartRequest.getParameter(name);
 			reviewMap.put(name, value);
 		}
+	
+		//upload 메소드에서 imageFilName을 반환해서 여기로 돌아옴.
 		String imageFileName = upload(multipartRequest);
+		
+		
 		String id= (String) reviewMap.get("id");
 		String productId = (String) reviewMap.get("productId");
 		/* int _productId = Integer.parseInt(productId); */
@@ -108,12 +117,21 @@ public class CommunityControllerImpl  implements CommunityController {
 		String content = (String) reviewMap.get("content");
 		String productBrand = (String) reviewMap.get("productBrand");
 		
+		//upload 메소드에서 imageFileName을 반환했으니 불러준다.??
+		String _imageFileName=(String) reviewMap.get("fileName");
+		
+		
 		Map zzMap = new HashMap<>();
 		zzMap.put("id", id);
 		zzMap.put("productId", productId);
-		zzMap.put("productName", productName);
+		 zzMap.put("productName", productName); 
 		zzMap.put("content", content);
 		zzMap.put("productBrand", productBrand);
+		
+		//upload 메소드에서 imageFilName을 값에 넣어준다. 키는 fileName
+		zzMap.put("fileName", imageFileName);
+		
+		
 	     
 	     		
 		
@@ -135,11 +153,11 @@ public class CommunityControllerImpl  implements CommunityController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			/* int articleNO = communityService.insertReview(zzMap); */
-	
+			 int articleNO = communityService.insertReview(zzMap);
+	        
 			if (imageFileName != null && imageFileName.length() != 0) {
 				File srcFile = new File(REVIEW_IMAGE_REPO + "\\" + "temp" + "\\" + imageFileName);
-				File destDir = new File(REVIEW_IMAGE_REPO + "\\" + id);
+				File destDir = new File(REVIEW_IMAGE_REPO + "\\" + articleNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			message = "<script>";
@@ -164,7 +182,7 @@ public class CommunityControllerImpl  implements CommunityController {
 	
     
 
-		//upload method
+		//upload method 
 	private String upload(MultipartHttpServletRequest multipartRequest) throws Exception {
 		String imageFileName = null;
 

@@ -19,7 +19,7 @@ import com.spring.alleating.product.vo.ProductImgVO;
 @Repository("communityDAO")
 public interface CommunityDAO {
 	
-	public void insertReview(Map reviewMap)throws DataAccessException;
+	public int insertReview(Map reviewMap)throws DataAccessException;
     public void insertReviewImg(ProductImgVO productImgVO)throws DataAccessException;
 
 }

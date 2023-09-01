@@ -24,15 +24,22 @@
 
 	
 	<insert id="insertReview" parameterType="java.util.Map">
+	<selectKey resultType="String" keyProperty="articleNO"
+			order="BEFORE">
+			select ifnull(max(articleNO),0)+1 from review_board
+		</selectKey>
+	
 	
 	<![CDATA[
 	insert into review_board(
+	articleNO,
 	id,
 	productId,
 	productBrand,
 	productName,
 	fileName,
 	content) values (
+	#{articleNO},
 	#{id},
 	#{productId},
 	#{productBrand},

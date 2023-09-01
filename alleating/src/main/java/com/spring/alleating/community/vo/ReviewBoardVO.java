@@ -9,7 +9,7 @@ import com.spring.alleating.product.vo.ProductImgVO;
 
 @Component("reviewBoardVO")
 public class ReviewBoardVO {
-private String articleNO;
+private int articleNO;
 private String id;
 private int productId;
 private String productBrand;
@@ -52,10 +52,10 @@ public String getDelivery_status() {
 public void setDelivery_status(String delivery_status) {
 	this.delivery_status = delivery_status;
 }
-public String getArticleNO() {
+public int getArticleNO() {
 	return articleNO;
 }
-public void setArticleNO(String articleNO) {
+public void setArticleNO(int articleNO) {
 	this.articleNO = articleNO;
 }
 public String getId() {

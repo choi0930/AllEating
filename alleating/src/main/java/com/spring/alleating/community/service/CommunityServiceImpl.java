@@ -22,12 +22,21 @@ public class CommunityServiceImpl implements CommunityService {
 	CommunityDAO communityDAO;
 	@Autowired
 	ReviewBoardVO reviewBoardVO;
-
+	
 	@Override
-	public void insertReview(Map<String, Object> reviewMap) {
-		communityDAO.insertReview(reviewMap);
+	public int insertReview(Map reviewInfo) throws Exception {
 		
+		communityDAO.insertReview(reviewInfo);
+		String _articleNO = (String) reviewInfo.get("articleNO");
+		int articleNO = Integer.parseInt(_articleNO);
+		return articleNO;
 	}
+	
+
+	
+	
+
+
 
 
 

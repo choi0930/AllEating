@@ -165,7 +165,7 @@ width:840px;
 
 
 
- <div class="op06"><input type="file" name="fileName" value="파일 추가" onChange="readURL(this);" accept="image/*"/></div>
+ <div class="op06"><input type="file" name="fileName" value="파일 추가" onChange="readURL(this);" /></div>
 <div><img id="reviewImgAdd"/></div> 
 </div>
 
