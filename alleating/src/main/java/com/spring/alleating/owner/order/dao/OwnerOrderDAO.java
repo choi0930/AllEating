@@ -24,5 +24,6 @@ public interface OwnerOrderDAO {
 	public AllEatingOrderVO OwnerOrderHistoryDetail (String orderId) throws DataAccessException; //주문 내역 상세 중 정보들
 	public List<AllEatingOrderDetailVO> OwnerOrderHistoryProduct (Map deliveryInfo) throws DataAccessException; //주문 내역 상세 중 상품 정보들
 	
-	
+//	public void updateownerdelivery(int odService)throws DataAccessException;
+	public void updateownerdelivery(Map odinfo) throws DataAccessException;
 }

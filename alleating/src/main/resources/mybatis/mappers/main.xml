@@ -55,10 +55,7 @@
     			ORDER BY g.creDate DESC
     			LIMIT 4
 
-				) t;																
-
-
-		
+				) t;											
 	</select>
 	
 	<select id="selectNewProductDetail" resultMap="productResult" parameterType="java.util.Map">
