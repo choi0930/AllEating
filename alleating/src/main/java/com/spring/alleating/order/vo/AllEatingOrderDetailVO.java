@@ -1,6 +1,10 @@
 package com.spring.alleating.order.vo;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
+
+import com.spring.alleating.coupon.vo.CouponVO;
 
 @Component("allEatingOrderDetailVO")
 public class AllEatingOrderDetailVO {
@@ -18,8 +22,17 @@ public class AllEatingOrderDetailVO {
 	private String fileName;
 	private String productBrand;
 	
+	//결제시 카테고리 범위에 맞는 쿠폰리스트 가져옴
+	private List<CouponVO> couponsList;
+	
 	
 
+	public List<CouponVO> getCouponList() {
+		return couponsList;
+	}
+	public void setCouponList(List<CouponVO> couponList) {
+		this.couponsList = couponList;
+	}
 	public String getProductBrand() {
 		return productBrand;
 	}

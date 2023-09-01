@@ -26,22 +26,20 @@ public Map selectMainProductDetail(Map productPeriod) throws DataAccessException
 
 	Map mainDetailInfo = new HashMap();
 	Map differenceInfo = new HashMap();
-	
+	//할인상품 리스트
 	differenceInfo.put("productStatus", "discount");
 	List<ProductVO> saleList = mainDAO.selectMainProductDetail(differenceInfo);
 	
 	
-	
+	//신상품 리스트
 	productPeriod.put("productStatus", "newProduct");
 	List<ProductVO> newList = mainDAO.selectMainProductDetail(productPeriod);
 	
 
-	
-	
 	mainDetailInfo.put("saleList", saleList);
 	mainDetailInfo.put("newList", newList);
-	System.out.println(saleList.size() + "ㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
-	System.out.println(newList.size());
+//	System.out.println(saleList.size() + "ㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+//	System.out.println(newList.size());
 	
 	return mainDetailInfo;
 }
