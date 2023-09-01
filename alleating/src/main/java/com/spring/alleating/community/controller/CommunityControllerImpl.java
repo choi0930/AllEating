@@ -75,29 +75,38 @@ public class CommunityControllerImpl  implements CommunityController {
 		String productId = request.getParameter("productId");
 		int _productId = Integer.parseInt(productId);
 		
+		
+		String order_seq_num = request.getParameter("order_seq_num");
+		int _order_seq_num = Integer.parseInt(order_seq_num);
+		String review_ny = request.getParameter("review_ny");
+		
+		
 		String viewName = (String)request.getAttribute("viewName");	
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("productId", _productId);
+		mav.addObject("order_seq_num", _order_seq_num);
+		mav.addObject("review_ny", review_ny);
+	
 		mav.setViewName(viewName);
 		return viewName; 
 		
 	
 	}
 	
-	//////////////////////////////게시물 작성 ////////////////////////////
+	//////////////////////////////후기 작성 페이지////////////////////////////
 	
-	
-
 	@Override
 	@RequestMapping(value="/myPage/completeReview.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ResponseEntity completeReview( MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+	public ResponseEntity completeReview(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		
+		HttpSession session = multipartRequest.getSession();
 		multipartRequest.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 	
 		
 		Map reviewMap = new HashMap<>();
+	
 		
 		Enumeration enu = multipartRequest.getParameterNames();
 		while (enu.hasMoreElements()) {
@@ -110,19 +119,19 @@ public class CommunityControllerImpl  implements CommunityController {
 		String imageFileName = upload(multipartRequest);
 		
 		
-		String id= (String) reviewMap.get("id");
+		String _id= (String) reviewMap.get("id");
 		String productId = (String) reviewMap.get("productId");
-		/* int _productId = Integer.parseInt(productId); */
+		
 		String productName =  (String) reviewMap.get("productName");
 		String content = (String) reviewMap.get("content");
 		String productBrand = (String) reviewMap.get("productBrand");
+		String review_ny = (String) reviewMap.get("review_ny");
 		
-		//upload 메소드에서 imageFileName을 반환했으니 불러준다.??
-		String _imageFileName=(String) reviewMap.get("fileName");
+		String order_seq_num = (String) reviewMap.get("order_seq_num");
 		
 		
 		Map zzMap = new HashMap<>();
-		zzMap.put("id", id);
+		zzMap.put("id", _id);
 		zzMap.put("productId", productId);
 		 zzMap.put("productName", productName); 
 		zzMap.put("content", content);
@@ -130,22 +139,9 @@ public class CommunityControllerImpl  implements CommunityController {
 		
 		//upload 메소드에서 imageFilName을 값에 넣어준다. 키는 fileName
 		zzMap.put("fileName", imageFileName);
+		zzMap.put("review_ny", review_ny);
+		zzMap.put("order_seq_num", order_seq_num);
 		
-		
-	     
-	     		
-		
-	
-		
-		  
-		/* reviewMap.put("id", _id); */
-		/*
-		 * reviewMap.put("productId", _productId); reviewMap.put("content", content);
-		 * reviewMap.put("productBrand", productBrand); reviewMap.put("productName",
-		 * productName);
-		 */
-		
-		/* String id = (String) reviewMap.get("id"); */
 		
 		String message;
 		ResponseEntity resEnt = null;
@@ -154,6 +150,7 @@ public class CommunityControllerImpl  implements CommunityController {
 
 		try {
 			 int articleNO = communityService.insertReview(zzMap);
+			
 	        
 			if (imageFileName != null && imageFileName.length() != 0) {
 				File srcFile = new File(REVIEW_IMAGE_REPO + "\\" + "temp" + "\\" + imageFileName);
@@ -162,7 +159,7 @@ public class CommunityControllerImpl  implements CommunityController {
 			}
 			message = "<script>";
 			message += " alert('성공');";
-			message += " location.href='" + multipartRequest.getContextPath() + "/myPage/myPage_review.do'; ";
+			message += " location.href='" + multipartRequest.getContextPath()+ "/myPage/myPage_review.do?id=" + _id + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -171,13 +168,13 @@ public class CommunityControllerImpl  implements CommunityController {
 
 			message = " <script>";
 			message += " alert('실패'); ";
-			message += " location.href='" + multipartRequest.getContextPath() + "/myPage/myPage_review.do'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/myPage/myPage_review.do?id=${loginMember.id}'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
 		}
 		return resEnt;
-
+     
 	}
 	
     
@@ -203,7 +200,20 @@ public class CommunityControllerImpl  implements CommunityController {
 		}
 		return imageFileName;
 	}
+
+
+	@Override
+	public ModelAndView writtenReview(String id, HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 		
+	
+	/////////////////////작성한 후기 페이지 ///////////////////////////
+	
+	
+	
+	
 	
 	}
 	

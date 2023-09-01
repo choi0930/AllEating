@@ -17,7 +17,9 @@ public interface CommunityController {
 	public ModelAndView review_01(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public String addreview(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity completeReview(MultipartHttpServletRequest multipartRequest,
-			HttpServletResponse response) throws Exception;
+			HttpServletResponse response) throws Exception; //후기 작성
+	public ModelAndView writtenReview (@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response);
+	
 
 	
 }

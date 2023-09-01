@@ -113,11 +113,10 @@ function fn_goToPay(){
 	    // 결과를 총합에 적용
       $('.h_qty_total').val(qty_total);
 	    $('.qty_total').text(result);
-      
-	   
-	  
+   
 	 /*  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); */
  }
+
  
  
 </script>

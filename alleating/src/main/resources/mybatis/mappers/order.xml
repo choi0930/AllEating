@@ -48,6 +48,8 @@
 		<result property="productName" column="productName" />
 		<result property="fileName" column="fileName" />
 		<result property="productBrand" column="productBrand" />
+		
+			<result property="review_ny" column="review_ny" />
 	</resultMap>
 	
 	<resultMap id="deliveryAddressResult" type="deliveryAddressVO">
@@ -164,7 +166,8 @@
 	
 	 select * from alleating_order_detail
 	 
-	  where orderId = #{orderId}
+	  where orderId = #{orderId} and review_ny = n
+	  
 	  
 	  <if test="deliveryType == 'reserve'"	>
 	   		AND deliveryType = 'reserve'
@@ -172,24 +175,29 @@
      <if test="deliveryType == 'normal'">
      		AND deliveryType = 'normal'
      </if>
+    
+     
 	</select>
+	
 	
 	<!-- 상품 후기 조회 -->
 	<select id="selectUserReview" resultMap="orderDetailResult" parameterType="java.util.Map">
 		
 		
 
-   				SELECT a.orderId, b.productId, b.fileName, b.cateCode, b.productName, b.productBrand
+   				SELECT a.orderId, b.productId, b.fileName, b.cateCode, b.productName, b.productBrand, 
+   				 b.order_seq_num, b.review_ny
    				FROM alleating_order a
    				INNER JOIN alleating_order_detail b ON a.orderId = b.orderId
     			where a.id = #{id}
-    			and b.delivery_status = 'delivery_complete';
+    			and b.delivery_status = 'delivery_complete'
+    			 and b.review_ny = 'n';
 				
 		
 	</select>
 	<!-- 기본 배송지 주소 -->
 	<select id="selectDefaultAddress" resultMap="deliveryAddressResult" parameterType="String">
-			select * from deliveryaddress where id = #{id} and default_address = 'y'
+			select * from deliveryAddress where id = #{id} and default_address = 'y'
 	</select>
 	<!-- 배송지 주소 -->
 	<select id="selectAddress" resultMap="deliveryAddressResult" parameterType="String">
