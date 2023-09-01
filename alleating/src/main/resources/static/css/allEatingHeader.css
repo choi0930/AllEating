@@ -119,11 +119,12 @@ a{
     cursor: pointer;
      margin-left: 20px;
 }
-#header{
+#header1{
 	min-width: 1050px;
     letter-spacing: -0.3px;
     background-color: rgb(255, 255, 255);
     position: relative;
+    
     box-shadow: rgba(0, 0, 0, 0.07) 0px 3px 4px 0px;
     width: 100%;
     z-index: 10;
@@ -131,6 +132,7 @@ a{
 
 #fix_header{
 	    position: relative;
+	    
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;

@@ -260,12 +260,12 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           <!--수령자 배송지및 이름 전화번호 처음에는 기본배송지 회원가입시 적었던 배송지 표시 배송지 변경시에 변경가능-->
           <div class="payTwoTitleText"><span>배송지 정보</span></div>
           <div class="payTwoText">
-            <span id="receiverName">${memberVO.name}</span> <span id="receiverHp">${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}</span>   &nbsp;&nbsp;<br>
+            <span id="receiverName">${deliveryAddressVO.receiver_name}</span> <span id="receiverHp">${deliveryAddressVO.receiver_hp1}-${deliveryAddressVO.receiver_hp2}-${deliveryAddressVO.receiver_hp3}</span>   &nbsp;&nbsp;<br>
             <span id="zipcode">${deliveryAddressVO.zipcode}</span>&nbsp;
             <div id="address">
               ${deliveryAddressVO.address}
               <c:if test="${not empty deliveryAddressVO.address2}">
-                ${deliveryAddressVO.address2}
+                <span id="address2">${deliveryAddressVO.address2}</span>
               </c:if>
             </div>
             <div id="addressDetail">${deliveryAddressVO.address_detail}</div>
