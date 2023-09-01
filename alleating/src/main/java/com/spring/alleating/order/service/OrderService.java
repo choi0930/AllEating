@@ -22,7 +22,7 @@ public interface OrderService {
 	
 	public Map OrderHistoryDetail (String orderId)throws DataAccessException; //주문내역 상세 정보들
 	
-	public Map selectUserReview(String id) throws DataAccessException; //상품후기 조회
+	public Map selectUserReview(String id) throws DataAccessException; //마이페이지 작성가능한후기 조회
 	
 	public List<DeliveryAddressVO> getDeliveryAddressList(String id)throws DataAccessException; //배송지 목록 가져오기
 }

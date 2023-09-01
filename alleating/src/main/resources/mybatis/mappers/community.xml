@@ -47,9 +47,20 @@
 	#{fileName},
 	#{content}
 	)
+    
+	
 	]]>
 	
 	</insert>
+	
+	<!-- 리뷰 작성하면 review_ny를 y로 업데이트 -->
+	<update id="updateReviewStatus" parameterType="java.util.Map">
+    <![CDATA[
+    UPDATE alleating_order_detail
+    SET review_ny = 'y'
+    WHERE order_seq_num = #{order_seq_num} AND review_ny = 'n'
+    ]]>
+</update>
 	
 	<insert id="insertReviewImg" parameterType="productImgVO">
 	insert into product_img (imgId,
@@ -66,6 +77,9 @@
 	
 	</insert>
 
+<select id="selectWrittenReview" resultMap="communityResult" parameterType="java.util.Map">
+ select * from review_board where id=#{id}
+</select>
 	
 	
 	

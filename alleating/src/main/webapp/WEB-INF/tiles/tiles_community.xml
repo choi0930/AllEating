@@ -22,7 +22,15 @@
 		<put-attribute name="body" value="/WEB-INF/views/community/review/myPage_reviewForm.jsp"/>      
 	</definition>
 	
-	<definition name="/myPage/add_reviewForm" extends="baseLayout2">
+	<definition name="/myPage/myPage_writtenReview" extends="baseLayout2">
+		<put-attribute name="title" value="작성한 후기 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/community/review/myPage_writtenReview.jsp"/>      
+	</definition>
+	
+	
+	
+	<!-- 아직 지우지 말아주세용 혹시나해서 -->
+<!-- 	<definition name="/myPage/add_reviewForm" extends="baseLayout2">
 		<put-attribute name="title" value="사용자 후기 작성 페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/community/review/myPage_review.jsp"/>      
 	</definition>
@@ -30,7 +38,7 @@
 	<definition name="/myPage/completeReview" extends="baseLayout2">
 		<put-attribute name="title" value="사용자 후기 작성 페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/community/review/myPage_review.jsp"/>      
-	</definition>
+	</definition> -->
 
 
 

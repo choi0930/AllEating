@@ -183,11 +183,12 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		return mav;
 	}
 	
-	//-------------------------마이페이지 주문내역
+	//////////////////////////마이페이지 주문내역////////////////////////////////
 	@Override
 	@RequestMapping(value="/myPage/myPage_01.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView orderHistory(@RequestParam("id" ) String id,  HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
 	
@@ -241,6 +242,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	@RequestMapping(value="/myPage/myPage_review.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView selectUserReview(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		request.getParameter("id"); 
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
 		session.setAttribute("selectedTab", "tab-1");

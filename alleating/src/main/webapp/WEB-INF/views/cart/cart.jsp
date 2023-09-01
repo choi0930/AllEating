@@ -568,6 +568,7 @@ request.setCharacterEncoding("utf-8"); %>
                       <input type="hidden" id="cateCode_${normal.cartId}" value="${normal.cateCode}" />
                       <input type="hidden" id="productName_${normal.cartId}" value="${normal.productName}"/>
                       <input type="hidden" id="fileName_${normal.cartId}" value="${normal.fileName}"/>
+                      <input type="hidden" id="h_productBrand${normal.cartId}" value="${normal.productBrand}"  /> 
                       <div class="cart-text03">
                         <h5>
                           [${normal.productBrand}]<br />${normal.productName}

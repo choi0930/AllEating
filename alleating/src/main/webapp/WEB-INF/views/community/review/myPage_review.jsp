@@ -7,6 +7,7 @@ request.setCharacterEncoding("utf-8");
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <c:set var="reviewList" value="${userReviewInfo.reviewList}" />
+<c:set var="writtenReviewList" value="${WrittenReviewInfo.writtenReviewList}" />
 
 
 <link href="${contextPath}/css/myPage_review.css" rel="stylesheet"
@@ -40,33 +41,23 @@ request.setCharacterEncoding("utf-8");
 		<div class="pwant">
 			<div class="proW">
 				<div class="want01">
-					<h3>상품후기</h3>
+					<h3>작성 가능한 후기</h3>
 				</div>
 			</div>
 			<div>
 				<div class="review01"></div>
 			</div>
 			<div class="review02">
-				<ul class="tabs">
-					<li class="tab-link ${selectedTab == 'tab-1' ? 'active' : ''}"
-						data-tab="tab-1">작성 가능 후기</li>
-					<li class="tab-link ${selectedTab == 'tab-2' ? 'active' : ''}"
-						data-tab="tab-2">작성한 후기</li>
-				</ul>
+				
 			</div>
 		</div>
-
-
-
-
-		<div id="tab-1"
-			class="tab-content ${selectedTab == 'tab-1' ? 'active' : ''}">
-
 			<div>
 
 				<c:forEach var="review" items="${reviewList}">
 					<form action="/myPage/myPage_reviewForm.do" method="get" encType="multipart/form-data">
-						<input type="hidden" name="productId" value="${review.productId}">
+						<input type="hidden" name="productId" value="${review.productId}">   
+					    <input type="hidden" name="order_seq_num" value="${review.order_seq_num}">
+					    <input type="hidden" name="review_ny" value="${review.review_ny}">
 						<div class="want_02">
 							<div class="capture">
 
@@ -96,62 +87,10 @@ request.setCharacterEncoding("utf-8");
 			</div>
 
 
-		</div>
+		
 
 
 
-		<div id="tab-2"
-			class="tab-content ${selectedTab == 'tab-2' ? 'active' : ''}">
-			<div class="want_02">
-				<div class="capture">
-					<img src="${contextPath}/img/image_food/shinemuscat.JPG"
-						width="120" height="120" alt="Image 2" />
-				</div>
-				<div class="qwe">
-					<div class="detail_01">
-						<h4>???</h4>
-					</div>
-					<div class="detail_01">
-						<h5 id="asd">???</h5>
-					</div>
-					<div class="detail_01">
-						<h5 id="asd">후기 내용</h5>
-					</div>
-				</div>
-				<div class="text04">
-					<div class="form_end">
-						<button class="review_btn" onclick="fn_loginGO()">
-							<span id="review_mod_btn_text">후기 수정</span>
-						</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="want_02">
-				<div class="capture">
-					<img src="${contextPath}/img/image_food/peach.jpg" width="120"
-						height="120" alt="Image 2" />
-				</div>
-				<div class="qwe">
-					<div class="detail_01">
-						<h4>???</h4>
-					</div>
-					<div class="detail_01">
-						<h5 id="asd">???</h5>
-					</div>
-					<div class="detail_01">
-						<h5 id="asd">후기 내용</h5>
-					</div>
-				</div>
-				<div class="text04">
-					<div class="form_end">
-						<button class="review_btn" onclick="fn_loginGO()">
-							<span id="review_mod_btn_text">후기 수정</span>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </body>
 </html>

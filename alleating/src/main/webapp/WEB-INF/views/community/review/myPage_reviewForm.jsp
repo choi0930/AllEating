@@ -123,6 +123,10 @@ width:840px;
 <form action="${contextPath}/myPage/completeReview.do" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="${loginMember.id}">
 <input type="hidden" name="productId" value="<%= request.getParameter("productId") %>">
+<input type="hidden" name="order_seq_num" value="<%= request.getParameter("order_seq_num") %>">
+<input type="hidden" name="review_ny" value="<%= request.getParameter("review_ny") %>">
+
+
 <div class="bbs_vtype">
 
 
