@@ -5,7 +5,7 @@
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
     <c:set var="newPro" value="${newproresult.newproduct}" />
-
+    <c:set var="total" value="${newproresult.total}" />
 
 <!DOCTYPE html>
 <html>
@@ -61,7 +61,7 @@
  </div>
   </c:forEach>
 </div>
-      <div class="productpaging">
+      <!-- <div class="productpaging">
         <a class="productpaging-2"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAQAAABwkq/rAAAAHUlEQVR42mNgAIPi/8X/kWkwA8SE0UQIMJAsCKMBBzk27fqtkcYAAAAASUVORK5CYII=" alt="처음 페이지로 이동하기 아이콘"></a>
         <a class="productpaging-2"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAHCAQAAABqrk9lAAAAGElEQVR42mNgAIPi/8X/4QwwE5PBQJADAAKSG3cyVhtXAAAAAElFTkSuQmCC" alt="이전 페이지로 이동하기 아이콘"></a>
  <a class="productpaging-3">1</a>
@@ -69,6 +69,64 @@
 <a class="productpaging-2"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAHCAQAAABqrk9lAAAAGUlEQVR42mMo/l/8nwECQEwCHEwGhAlRBgA2mht3SwgzrwAAAABJRU5ErkJggg==" alt="다음 페이지로 이동하기 아이콘"></a>
 <a class="productpaging-2"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAQAAABwkq/rAAAAIElEQVR42mMo/l/8n4GBgQFGQ5kgDowmQZCwAMImhDkAb0k27Zcisn8AAAAASUVORK5CYII=" alt="마지막 페이지로 이동하기 아이콘"></a>
  
+</div> -->
+<div class="pageBottom">
+  <c:if test="${total != null }">
+    <c:choose>
+      <c:when test="${total > 200 }">
+        <c:forEach var="page" begin="1" end="${(total/20)+1}" step="1">
+          <c:if test="${section >1 && page==1 }">
+            <a
+              class="no-uline"
+              href="${contextPath}/product/new_product_01.do?section=${section-1}&pageNum=${(section-1)*10 +1}"
+              >&nbsp; pre</a
+            >
+          </c:if>
+          <a
+            class="no-uline"
+            href="${contextPath }/product/new_product_01.do?section=${section}&pageNum=${page}"
+            >${(section-1)*5 + page }</a
+          >
+          <c:if test="${page == (total/20)+1 }">
+            <a
+              class="no-uline"
+              href="${contextPath }/product/new_product_01.do?section=${section+1}&pageNum=${section*10+1 }"
+              >&nbsp; next</a
+            >
+          </c:if>
+        </c:forEach>
+      </c:when>
+      <c:when test="${total == 200 }">
+        <c:forEach var="page" begin="1" end="10" step="1">
+          <a
+            class="no-uline"
+            href="${contextPath }/product/new_product_01.do?section=${section }&pageNum=${page }"
+            >${page }</a
+          >
+        </c:forEach>
+      </c:when>
+      <c:when test="${total < 200 }">
+        <c:forEach var="page" begin="1" end="${(total/20)+1}" step="1">
+          <c:choose>
+            <c:when test="${page==pageNum }">
+              <a
+                class="sel-page"
+                href="${contextPath }/product/new_product_01.do?section=${section-1}&pageNum=${page}"
+                >${page }</a
+              >
+            </c:when>
+            <c:otherwise>
+              <a
+                class="no-uline"
+                href="${contextPath }/product/new_product_01.do?section=${section+1}&pageNum=${page }"
+                >${page }</a
+              >
+            </c:otherwise>
+          </c:choose>
+        </c:forEach>
+      </c:when>
+    </c:choose>
+  </c:if>
 </div>
 </div>
 </body>

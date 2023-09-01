@@ -55,8 +55,9 @@
 		]]>
 	</select>
 	
+	<!-- 카테고리 코드별로 상품 불러옴 -->
 	<select id="selectCateProduct" resultMap="productResult" parameterType="java.util.Map">
-		
+		<![CDATA[
 		SELECT t.*
 			   	FROM (
    				SELECT g.*, d.fileName
@@ -64,35 +65,60 @@
    				INNER JOIN product_img d ON g.productId = d.productId
 	   			WHERE d.fileType = 'main_image' 
 	   			
-	   			AND cateCode = #{cateCode}
+	   			AND g.cateCode like concat( '%', #{cateCode}, '%' )
     		
     			ORDER BY g.creDate DESC
 				) t;
-		
+				]]>
 	</select>
+	
+	
 	
 	<select id="selectnewProductDetailImage" resultMap="productImgResult" parameterType="String">
 		<![CDATA[
 		select * from product_img where fileType='main_image'
 		]]>
 	</select>
-	
-	
-	
+	<!-- 헤더 검색창 검색 -->
+	<select id="selectBySearchWord" resultMap="productResult" parameterType="java.util.Map">
+		   	SELECT t.*
+			   	FROM (
+   				SELECT g.*, d.fileName
+   				FROM product g
+   				INNER JOIN product_img d ON g.productId = d.productId
+	   			WHERE d.fileType = 'main_image' 
+	   			AND g.productName like concat( '%', #{searchWord}, '%' )
+	   			AND g.productStatus = 'sale' or 'sold_out'
+    			ORDER BY g.creDate DESC
+				) t limit 20 offset #{offset};
+	</select>
+	<!-- 검색어에 대한 상품수 -->
+	<select id="selectBySearchCount" resultType="int" parameterType="String">
+	 	select count(*) from product where productName like concat( '%', #{searchWord}, '%' )
+	 		AND productStatus = 'sale' or 'sold_out'
+	 	
+	</select>
+	<!-- 신상품 페이지 상품 리스트 -->
 	<select id="selectnewProductDetail" resultMap="productResult" parameterType="java.util.Map">
-		
+		<![CDATA[
 		SELECT t.*
 			   	FROM (
    				SELECT g.*, d.fileName
    				FROM product g
    				INNER JOIN product_img d ON g.productId = d.productId
 	   			WHERE d.fileType = 'main_image' 
-    		<if test="productStatus == 'newProduct'">
-    			AND g.creDate between #{beginDate} and #{endDate}+1
-    		</if>
+                AND g.creDate between DATE_ADD(NOW(),INTERVAL -1 MONTH )  and  NOW()
+                AND g.productStatus = 'sale' or 'sold_out'
     			ORDER BY g.creDate DESC
-    			LIMIT 12
-				) t;
-		
+    			
+				) t limit 20 offset #{offset};
+		]]>
+	</select>
+	<!-- 신상품 페이지 상품 total -->
+	<select id="selectNewProductCount" resultType="int" >
+		<![CDATA[
+		 select count(*) from product where creDate between DATE_ADD(NOW(),INTERVAL -1 MONTH )  and  NOW()
+                 AND productStatus = 'sale' or 'sold_out'
+           ]]>      
 	</select>
  </mapper>

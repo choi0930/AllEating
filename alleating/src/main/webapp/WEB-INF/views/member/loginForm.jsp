@@ -171,21 +171,15 @@ document.addEventListener("keyup", function(event) {
          form.submit();
 		 document.getElementById("form").remove();
 	}
-	
-</script>
-
-</head>
-<body>
-	<script type="text/javascript">
-
-  
-		var failed = new URLSearchParams(window.location.search).get('result');
+	var failed = new URLSearchParams(window.location.search).get('result');
 		
 		if (failed === 'loginFailed') {
 		  alert('로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.');
 		}
-	  
-	  </script>
+</script>
+
+</head>
+<body>
 <div align="center" class="to">
 <img src ="${contextPath}/img/image_logo/alleating_logo_background_X.png" style = "width:200px; height:150px;"/>
 	<!--<div id="loginTitle">로그인</div>-->

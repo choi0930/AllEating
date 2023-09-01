@@ -19,9 +19,33 @@ request.setCharacterEncoding("utf-8"); %>
             $(this).css("background-color", "#fff");
           }
         );
+        
+        
       });
+      /*$(
+        function(){
+          var category = new URLSearchParams(window.location.search).get('category');
+          $('901').removeClass('selectCheckCateCode');
+          $('901001').removeClass('selectCheckCateCode');
+
+          var countBtn = $('.btn_category').length;
+
+          for(int i = 0; i<1; i++){
+
+          }
+		    if(category == '901'){
+
+          }
+        }
+      );
+      
+      */
     </script>
     <style>
+
+      .selectCheckCateCode{
+        background-color: #E1DDDB;
+      }
       .btn_category_container {
         border: 2px solid #e1e5e9;
         border-radius: 8px;
@@ -97,6 +121,7 @@ request.setCharacterEncoding("utf-8"); %>
         letter-spacing: -1px;
         text-align: center;
       }
+      
     </style>
   </head>
   <body>
@@ -105,16 +130,16 @@ request.setCharacterEncoding("utf-8"); %>
         <div id="btn_category_group_title">채소</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
-            <button class="btn_category">전체</button>
-            <button class="btn_category">친환경</button>
-            <button class="btn_category">고구마·감자·당근</button>
-            <button class="btn_category">시금치·쌈채소·나물</button>
-            <button class="btn_category">브로콜리·파프리카·양배추</button>
-            <button class="btn_category">양파·대파·마늘·배추</button>
+            <button id="901" class="btn_category">전체</button>
+            <button id="901001" class="btn_category">친환경</button>
+            <button id="901002" class="btn_category">고구마·감자·당근</button>
+            <button id="901003" class="btn_category">시금치·쌈채소·나물</button>
+            <button id="901004" class="btn_category">브로콜리·파프리카·양배추</button>
+            <button id="901005" class="btn_category">양파·대파·마늘·배추</button>
           </div>
           <div class="btn_category_group">
-            <button class="btn_category">오이·호박·고추</button>
-            <button class="btn_category">콩나물·버섯</button>
+            <button id="901006" class="btn_category">오이·호박·고추</button>
+            <button id="901007" class="btn_category">콩나물·버섯</button>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
@@ -126,12 +151,12 @@ request.setCharacterEncoding("utf-8"); %>
         <div id="btn_category_group_title">과일·견과·쌀</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
-            <button class="btn_category">전체</button>
-            <button class="btn_category">국산과일</button>
-            <button class="btn_category">수입과일</button>
-            <button class="btn_category">쌀·잡곡</button>
-            <button class="btn_category">견과류</button>
-            <button class="btn_category">간편과일</button>
+            <button id="902" class="btn_category">전체</button>
+            <button id="902001" class="btn_category">국산과일</button>
+            <button id="902002" class="btn_category">수입과일</button>
+            <button id="902003" class="btn_category">쌀·잡곡</button>
+            <button id="902004" class="btn_category">견과류</button>
+            <button id="902005" class="btn_category">간편과일</button>
           </div>
         </div>
       </c:when>
@@ -139,16 +164,16 @@ request.setCharacterEncoding("utf-8"); %>
         <div id="btn_category_group_title">수산·해산·건어물</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
-            <button class="btn_category">전체</button>
-            <button class="btn_category">생선류</button>
-            <button class="btn_category">반건류</button>
-            <button class="btn_category">오징어·낙지·문어</button>
-            <button class="btn_category">새우·게·랍스터</button>
-            <button class="btn_category">해산물·조개류</button>
+            <button id="903" class="btn_category">전체</button>
+            <button id="903001" class="btn_category">생선류</button>
+            <button id="903002" class="btn_category">반건류</button>
+            <button id="903003" class="btn_category">오징어·낙지·문어</button>
+            <button id="903004" class="btn_category">새우·게·랍스터</button>
+            <button id="903005" class="btn_category">해산물·조개류</button>
           </div>
           <div class="btn_category_group">
-            <button class="btn_category">김·미역·해조류</button>
-            <button class="btn_category">건어물·다시팩</button>
+            <button id="903006" class="btn_category">김·미역·해조류</button>
+            <button id="903007" class="btn_category">건어물·다시팩</button>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
@@ -160,15 +185,15 @@ request.setCharacterEncoding("utf-8"); %>
         <div id="btn_category_group_title">정육·계란</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
-            <button class="btn_category">전체</button>
-            <button class="btn_category">국내산 소고기</button>
-            <button class="btn_category">수입산 소고기</button>
-            <button class="btn_category">돼지고기</button>
-            <button class="btn_category">닭·오리고기</button>
-            <button class="btn_category">양고기</button>
+            <button id="904" class="btn_category">전체</button>
+            <button id="904001" class="btn_category">국내산 소고기</button>
+            <button id="904002" class="btn_category">수입산 소고기</button>
+            <button id="904003" class="btn_category">돼지고기</button>
+            <button id="904004" class="btn_category">닭·오리고기</button>
+            <button id="904005" class="btn_category">양고기</button>
           </div>
           <div class="btn_category_group">
-            <button class="btn_category">양념육·돈까스</button>
+            <button id="904006" class="btn_category">양념육·돈까스</button>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
@@ -181,15 +206,15 @@ request.setCharacterEncoding("utf-8"); %>
         <div id="btn_category_group_title">국·반찬·메인요리</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
-            <button class="btn_category">전체</button>
-            <button class="btn_category">국·탕·찌개</button>
-            <button class="btn_category">밀키트·메인요리</button>
-            <button class="btn_category">밑반찬</button>
-            <button class="btn_category">김치·젓갈·장류</button>
-            <button class="btn_category">두부·어묵·부침개</button>
+            <button id="905001" class="btn_category">전체</button>
+            <button id="905002" class="btn_category">국·탕·찌개</button>
+            <button id="905003" class="btn_category">밀키트·메인요리</button>
+            <button id="905004" class="btn_category">밑반찬</button>
+            <button id="905005" class="btn_category">김치·젓갈·장류</button>
+            <button id="905006" class="btn_category">두부·어묵·부침개</button>
           </div>
           <div class="btn_category_group">
-            <button class="btn_category">베이컨·햄·통조림</button>
+            <button id="905007" class="btn_category">베이컨·햄·통조림</button>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
@@ -202,17 +227,17 @@ request.setCharacterEncoding("utf-8"); %>
         <div id="btn_category_group_title">샐러드·간편식</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
-            <button class="btn_category">전체</button>
-            <button class="btn_category">샐러드·닭가슴살</button>
-            <button class="btn_category">도시락·밥류</button>
-            <button class="btn_category">파스타·면류</button>
-            <button class="btn_category">떡볶이·튀김·순대</button>
-            <button class="btn_category">피자·핫도그·만두</button>
+            <button id="906" class="btn_category">전체</button>
+            <button id="906001" class="btn_category">샐러드·닭가슴살</button>
+            <button id="906002" class="btn_category">도시락·밥류</button>
+            <button id="906003" class="btn_category">파스타·면류</button>
+            <button id="906004" class="btn_category">떡볶이·튀김·순대</button>
+            <button id="906005" class="btn_category">피자·핫도그·만두</button>
           </div>
           <div class="btn_category_group">
-            <button class="btn_category">폭립·떡갈비·안주</button>
-            <button class="btn_category">죽·스프·카레</button>
-            <button class="btn_category">선식·시리얼</button>
+            <button id="906006" class="btn_category">폭립·떡갈비·안주</button>
+            <button id="906007" class="btn_category">죽·스프·카레</button>
+            <button id="906008" class="btn_category">선식·시리얼</button>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
@@ -223,15 +248,15 @@ request.setCharacterEncoding("utf-8"); %>
         <div id="btn_category_group_title">면·양념·오일</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
-            <button class="btn_category">전체</button>
-            <button class="btn_category">파스타·면류</button>
-            <button class="btn_category">식초·소스·드레싱</button>
-            <button class="btn_category">양념·액젓·장류</button>
-            <button class="btn_category">식용유·참기름·오일</button>
-            <button class="btn_category">소금·설탕·향신료</button>
+            <button id="907" class="btn_category">전체</button>
+            <button id="907001" class="btn_category">파스타·면류</button>
+            <button id="907002" class="btn_category">식초·소스·드레싱</button>
+            <button id="907003" class="btn_category">양념·액젓·장류</button>
+            <button id="907004" class="btn_category">식용유·참기름·오일</button>
+            <button id="907005" class="btn_category">소금·설탕·향신료</button>
           </div>
           <div class="btn_category_group">
-            <button class="btn_category">밀가루·가루·믹스</button>
+            <button id="907006" class="btn_category">밀가루·가루·믹스</button>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
@@ -244,11 +269,11 @@ request.setCharacterEncoding("utf-8"); %>
         <div id="btn_category_group_title">생수·음료·우유·커피</div>
         <div class="btn_category_container">
           <div class="btn_category_group">
-            <button class="btn_category">전체</button>
-            <button class="btn_category">생수·탄산수</button>
-            <button class="btn_category">음료·주스</button>
-            <button class="btn_category">우유·두유·요거트</button>
-            <button class="btn_category">커피</button>
+            <button id="908" class="btn_category">전체</button>
+            <button id="908001" class="btn_category">생수·탄산수</button>
+            <button id="908002" class="btn_category">음료·주스</button>
+            <button id="908003" class="btn_category">우유·두유·요거트</button>
+            <button id="908004" class="btn_category">커피</button>
             <div class="btn_category2"></div>
           </div>
         </div>

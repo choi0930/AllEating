@@ -80,7 +80,7 @@ background-color:#E1DDDB;}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <title><tiles:insertAttribute name="title"/></title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <div id="container">
     <div id="header">
         <tiles:insertAttribute name="header"/>
@@ -100,10 +100,12 @@ background-color:#E1DDDB;}
         </div>
     </div>
     
-    <div id="footer">
+    <div id="footer" >
+        <footer class="mt-auto">
         <tiles:insertAttribute name="footer"/>
+    </footer>
     </div>
-    
+
 </div>
 </body>
 </html>

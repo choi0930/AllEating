@@ -42,9 +42,9 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 	 */
 	
 	
+	/* 카테고리별 상품 목록 */
 	@Override
 	@RequestMapping(value= "/product/product_01.do", method = RequestMethod.GET)
-
 	public ModelAndView product_01(@RequestParam("category")String category,HttpServletRequest request, HttpServletResponse response)throws Exception {
 
 		HttpSession session = request.getSession();
@@ -92,23 +92,70 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 	 * 
 	 * return mav; }
 	 */
+	
+	/* 헤더 검색바 검색기능 */
 	@Override
 	@RequestMapping(value="/product/search_01.do", method = RequestMethod.GET)
-	public ModelAndView search_01(@RequestParam("searchWord") String searchWord, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView search_01(@RequestParam Map dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		
+		String section = (String) dataMap.get("section");
+		String pageNum = (String) dataMap.get("pageNum");
+
+		Map<String,Object> condMap=new HashMap<String,Object>();
+		if(section== null) {
+			section = "1";
+		}
+		
+		if(pageNum== null) {
+			pageNum = "1";
+		}
+
+		 int _section = Integer.parseInt(section);
+		 int _pageNum = Integer.parseInt(pageNum);
+		 int offset = (_section-1) * 100 +(_pageNum-1) * 20;
+		 
+		 
 		HttpSession session = request.getSession();
+		String searchWord = (String) dataMap.get("searchWord");
 		session.setAttribute("searchKeyWord", searchWord);
+		
+		condMap.put("offset",offset);
+		condMap.put("searchWord", searchWord);
+		
+		Map productMap = productService.searchProduct(condMap);
+		
 		String viewName = (String)request.getAttribute("viewName");
 		System.out.println(viewName); 
 		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("productMap", productMap);
 		mav.setViewName(viewName); 
 		return mav;
 	}
 	
+	/* 신상품 페이지 */
 	@Override
 	@RequestMapping(value= "/product/new_product_01.do", method = RequestMethod.GET)
-	public ModelAndView new_product_01(HttpServletRequest request, HttpServletResponse response)throws Exception {
+	public ModelAndView new_product_01(@RequestParam Map<String, String> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		
+		String section = dataMap.get("section");
+		String pageNum = dataMap.get("pageNum");
+
+		Map<String,Object> condMap=new HashMap<String,Object>();
+		if(section== null) {
+			section = "1";
+		}
+		
+		if(pageNum== null) {
+			pageNum = "1";
+		}
+
+		 int _section = Integer.parseInt(section);
+		 int _pageNum = Integer.parseInt(pageNum);
+		 int offset = (_section-1) * 100 +(_pageNum-1) * 20;
+		 condMap.put("offset",offset);
+		
+		Map newproresult = productService.selectnewProductDetail(condMap);
 		
 		
 		String viewName = (String)request.getAttribute("viewName");
@@ -117,9 +164,7 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName); //add
 	
-		Map newproductid = calcSearchPeriod("one_month");
-		System.out.println(newproductid.get("endDate"));
-		Map newproresult = productService.selectnewProductDetail(newproductid);
+		
 		
 		mav.addObject("newproresult",newproresult);
 		

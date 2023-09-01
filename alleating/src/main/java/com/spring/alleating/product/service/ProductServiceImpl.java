@@ -50,16 +50,17 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 
-	
+	/* 신상품 페이지 */
 	@Override
 	public Map selectnewProductDetail(Map newproductid) throws DataAccessException {
-		
 		Map newproductInfo = new HashMap();
-		
-		newproductid.put("productStatus", "newProduct");
+		//신상품 리스트
 		List<ProductVO> newproduct = productDAO.selectnewProductDetail(newproductid);
+		//신상품 상품 개수
+		int total = productDAO.selectNewProductCount();
 		
 		newproductInfo.put("newproduct", newproduct);
+		newproductInfo.put("total", total);
 		
 		return newproductInfo;
 	}
@@ -93,6 +94,19 @@ public class ProductServiceImpl implements ProductService {
 		//cccInfo.put("cateCode", cateCode);
 		
 		return  cateCode;
+	}
+
+	/* 헤더 검색바 검색기능 */
+	@Override
+	public Map<String,Object> searchProduct(Map dataMap) throws DataAccessException {
+		String keyWord = (String) dataMap.get("searchWord");
+		List<ProductVO> productList =  productDAO.selectBySearchWord(dataMap);
+		int total = productDAO.selectBySearchCount(keyWord);
+		
+		Map newProductMap = new HashMap<>();
+		newProductMap.put("productList", productList);
+		newProductMap.put("total", total);
+		return newProductMap;
 	}
 	
 
