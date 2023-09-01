@@ -46,7 +46,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
      
      const optionSelect = document.getElementById('deliveryRequestSelect');
      const inputField = document.getElementById('deliveryRequest');
-
+/*
      optionSelect.addEventListener('change', function() {
        if (optionSelect.value === '직접입력') {
          inputField.readOnly = false;
@@ -54,7 +54,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
          inputField.readOnly = true;
        }
      });
-    	
+  */  	
      /*  $(document).ready(function() {
     	    var deliveryReadOnly = true;
 
@@ -151,7 +151,27 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           let popOption = "width = 800px, height = 550px, top = 300px, left = 300px, scrollbars=yes";
         window.open(popUrl, "쿠폰 적용", popOption);
       }
+
+      function setResList(resArr){
+        console.log(resArr);  
+console.log("넘어옴");
+var html = "";
+$('#deliveryTable > tbody').empty();
+html += '<tr>';  
+for(i in resArr){
+  $('#deliveryTable > tbody').empty();
+    html += '<td id="addressText">'+ resArr[i] +'</td>';
+  }
+  html += '</tr>';
+
+  $('#deliveryTable').append(html);
+}
     </script>
+    <style>
+      #addressText{
+        font-size: 12px;
+      }
+    </style>
   </head>
   <body>
     <!-- Modal -->
@@ -256,11 +276,36 @@ pageEncoding="UTF-8" isELIgnored="false"%>
             <td><input type="radio" name="checkBox" />예약가능</td>
           </tr>
         </table>
+         <!--수령자 배송지및 이름 전화번호 처음에는 기본배송지 회원가입시 적었던 배송지 표시 배송지 변경시에 변경가능-->
+         
         <div class="payDeliveryInfo">
-          <!--수령자 배송지및 이름 전화번호 처음에는 기본배송지 회원가입시 적었던 배송지 표시 배송지 변경시에 변경가능-->
+         
           <div class="payTwoTitleText"><span>배송지 정보</span></div>
           <div class="payTwoText">
-            <span id="receiverName">${deliveryAddressVO.receiver_name}</span> <span id="receiverHp">${deliveryAddressVO.receiver_hp1}-${deliveryAddressVO.receiver_hp2}-${deliveryAddressVO.receiver_hp3}</span>   &nbsp;&nbsp;<br>
+            <table id="deliveryTable">
+              <thead>
+                <tr>
+                  <td>받으실 분</td>
+                  <td>배송주소</td>
+                  <td>연락처</td>
+                </tr>
+              </thead>
+              <tbody id="deliveryAddressBody">
+                <tr>
+                  <td>${deliveryAddressVO.receiver_name}</td>
+                  <td id="addressText">
+                    
+                    ${deliveryAddressVO.zipcode}<br>
+                    <c:if test="${not empty deliveryAddressVO.address2}">
+                      <span id="address2">${deliveryAddressVO.address2}</span>
+                    </c:if>
+                    ${deliveryAddressVO.address_detail}
+                  </td>
+                  <td>${deliveryAddressVO.receiver_hp1}-${deliveryAddressVO.receiver_hp2}-${deliveryAddressVO.receiver_hp3}</td>
+                </tr>
+              </tbody>
+            </table>
+           <!-- <span id="receiverName">${deliveryAddressVO.receiver_name}</span> <span id="receiverHp">${deliveryAddressVO.receiver_hp1}-${deliveryAddressVO.receiver_hp2}-${deliveryAddressVO.receiver_hp3}</span>   &nbsp;&nbsp;<br>
             <span id="zipcode">${deliveryAddressVO.zipcode}</span>&nbsp;
             <div id="address">
               ${deliveryAddressVO.address}
@@ -268,7 +313,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
                 <span id="address2">${deliveryAddressVO.address2}</span>
               </c:if>
             </div>
-            <div id="addressDetail">${deliveryAddressVO.address_detail}</div>
+            <div id="addressDetail">${deliveryAddressVO.address_detail}</div>-->
           </div>
         </div>
         <div class="deliveryAddressText">
@@ -292,7 +337,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
             id="deliveryRequestSelect"
             onchange="fn_deliveryMsgSelect()"
           >
-            <option value="직접입력">직접입력</option>
+            <option selected value="직접입력">직접입력</option>
             <option>빠른 배송 부탁드립니다.</option>
             <option>배송 전, 연락주세요.</option>
             <option>부재 시, 휴대폰으로 연락주세요.</option>
