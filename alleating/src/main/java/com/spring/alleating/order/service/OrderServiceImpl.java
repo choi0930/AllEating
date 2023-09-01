@@ -144,7 +144,7 @@ public class OrderServiceImpl implements OrderService{
 		
 		Map gggInfo = new HashMap();
 		List<AllEatingOrderVO> orderHistoryVO = orderDAO.selectOrderHistory(fffInfo);
-		System.out.println(orderHistoryVO.size() + "맵 사이즈 나오닝");
+		System.out.println(orderHistoryVO.size() );
 		/* orderHistoryInfo.put("orderHistyoryVO", orderHistoryVO); */
 		/* return orderHistoryInfo; */
 		return orderHistoryVO;
@@ -172,21 +172,19 @@ public class OrderServiceImpl implements OrderService{
 		orderDetailInfo.put("orderDetailVO", orderDetailVO);
 		orderDetailInfo.put("reserveList", reserveList);
 		orderDetailInfo.put("normalList", normalList);
-		System.out.println(reserveList.size() + "ㅇ러ㅣ쟏러ㅐㅈ댜ㅓ랮댜ㅓㄹ");
-		System.out.println(normalList.size() + "ㄹㅈㄷㄹㅈㄷ람조리젿ㄹ");
+		System.out.println(reserveList.size() );
+		System.out.println(normalList.size() );
 		return orderDetailInfo;
 	}
 
 	
+	////////////////////////주문내역 확인창////////////////////////////
 	@Override
 	public Map selectUserReview(String id) throws DataAccessException {
 		  Map userReviewInfo = new HashMap();
-		
-			/* Map _userReviewInfo = new HashMap(); */
+			
 		List<AllEatingOrderDetailVO> reviewList = orderDAO.selectUserReview(id);
 		
-		
-		/* userReviewInfo.put("id", id); */
 		userReviewInfo.put("reviewList", reviewList);
 		
 		return userReviewInfo;

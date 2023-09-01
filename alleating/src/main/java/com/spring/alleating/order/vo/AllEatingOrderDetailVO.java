@@ -17,6 +17,7 @@ public class AllEatingOrderDetailVO {
 	private String cateCode;
 	private String deliveryType;
 	private String delivery_status;
+	private String review_ny; //리뷰 유무
 	
 	private String productName;
 	private String fileName;
@@ -27,6 +28,12 @@ public class AllEatingOrderDetailVO {
 	
 	
 
+	public String getReview_ny() {
+		return review_ny;
+	}
+	public void setReview_ny(String review_ny) {
+		this.review_ny = review_ny;
+	}
 	public List<CouponVO> getCouponList() {
 		return couponsList;
 	}

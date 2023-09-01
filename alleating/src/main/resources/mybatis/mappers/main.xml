@@ -54,7 +54,7 @@
     		AND g.productStatus = 'sale' or 'sold_out'
     			ORDER BY g.creDate DESC
     			LIMIT 4
-				) t;																/////////////최현진은무엇인가??
+				) t;																
 		
 	</select>
 	

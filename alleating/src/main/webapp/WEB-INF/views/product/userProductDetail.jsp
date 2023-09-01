@@ -121,7 +121,7 @@ function fn_goToPay(){
 	    $('.qty_total').val(qty_total);
 	   
 	  });
-	 /*  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); */
+	
 	});
  
  
