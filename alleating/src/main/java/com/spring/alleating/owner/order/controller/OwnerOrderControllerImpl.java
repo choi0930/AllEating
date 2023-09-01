@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.owner.order.service.OwnerOrderService;
 
 
@@ -42,6 +43,11 @@ public class OwnerOrderControllerImpl implements OwnerOrderController {
 		@Override
 		@RequestMapping(value="/owner/ownerOrderList.do", method = RequestMethod.GET)
 		public ModelAndView ownerOrderList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
+			String owner_name = memberVO.getOwner_name();
+			System.out.println("회사이름"+ owner_name);
+			
 			String viewName = (String) request.getAttribute("viewName");
 			List orderlist = ownerOrderService.listOwnerOrder();
 			ModelAndView mav = new ModelAndView(viewName);
