@@ -31,6 +31,7 @@
 		<result property="productId" column="productId" />
 		<result property="delivery_status" column="delivery_status" />
 		<result property="productQty" column="productQty" />
+		<result property="reg_com_name" column="reg_com_name" />
 	</resultMap> 
 	
 	<resultMap id="allEatingOrderDetailResult" type="allEatingOrderDetailVO">
@@ -78,15 +79,19 @@
    				 a.productId,
     			b.delivery_status,
     			b.productQty,
-    			b.productName
+    			b.productName,
+    			c.reg_com_name
 				FROM
   				  alleating_order a
 				INNER JOIN
  				  alleating_order_detail b
 				ON
-  				  a.orderId = b.orderId;
+  				  a.orderId = b.orderId
+  				INNER JOIN
+ 				  product c
+ 				ON
+ 				  a.productId = c.productId
 	</select> 
-	
 
 		<!-- 사업자의 주문 내역 상세내역 보기-->
 	<select id="OwnerOrderHistoryDetail" resultMap="allEatingOrderResult" parameterType="String">

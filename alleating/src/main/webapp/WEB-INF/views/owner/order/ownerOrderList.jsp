@@ -223,341 +223,383 @@ request.setCharacterEncoding("utf-8"); %>
               <tbody>
                 <c:set var="prevOrderId" value="" />
                 <c:forEach var="ownerOrder" items="${orderlist}">
-                  <c:if test="${ownerOrder.orderId ne prevOrderId}">
-                    <c:set var="prevOrderId" value="${ownerOrder.orderId}" />
-                    <tr>
-                      <td
-                        onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
-                        style="cursor: pointer"
-                      >
-                        ${ownerOrder.orderId}
-                      </td>
-                      <td
-                        onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
-                        style="cursor: pointer"
-                      >
-                        ${ownerOrder.id}
-                      </td>
-                      <td
-                        onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
-                        style="cursor: pointer"
-                      >
-                        ${ownerOrder.productName}
-                      </td>
-                      <td
-                        onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
-                        style="cursor: pointer"
-                      >
-                        ${ownerOrder.receiverName}
-                      </td>
-                      <td
-                        onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
-                        style="cursor: pointer"
-                      >
-                        ${ownerOrder.address}${ownerOrder.address2}${ownerOrder.addressDetail}
-                      </td>
-                      <td
-                        onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
-                        style="cursor: pointer"
-                      >
-                        ${ownerOrder.payDate}
-                      </td>
-                      <td>
-                        <select id="delivery_status" name="delivery_status">
-                          <c:choose>
-                            <c:when
-                              test="${ownerOrder.delivery_status == 'delivery_prepared' }"
-                            >
-                              <option value="delivery_prepared" selected>
-                                배송 준비중
-                              </option>
-                              <option value="shipping">배송중</option>
-                              <option value="delivery_completed">
-                                배송 완료
-                              </option>
-                              <option value="exchange_reception">
-                                교환 접수
-                              </option>
-                              <option value="exchange_progress">
-                                교환 진행중
-                              </option>
-                              <option value="exchange_completed">
-                                교환 완료
-                              </option>
-                              <option value="return_acceptance">
-                                반품 접수
-                              </option>
-                              <option value="return_progress">
-                                반품 진행중
-                              </option>
-                              <option value="return_complete">반품 완료</option>
-                              <option value="withdraw_order">주문 취소</option>
-                            </c:when>
-                            <c:when
-                              test="${ownerOrder.delivery_status == 'shipping' }"
-                            >
-                              <option value="delivery_prepared">
-                                배송 준비중
-                              </option>
-                              <option value="shipping" selected>배송중</option>
-                              <option value="delivery_completed">
-                                배송 완료
-                              </option>
-                              <option value="exchange_reception">
-                                교환 접수
-                              </option>
-                              <option value="exchange_progress">
-                                교환 진행중
-                              </option>
-                              <option value="exchange_completed">
-                                교환 완료
-                              </option>
-                              <option value="return_acceptance">
-                                반품 접수
-                              </option>
-                              <option value="return_progress">
-                                반품 진행중
-                              </option>
-                              <option value="return_complete">반품 완료</option>
-                              <option value="withdraw_order">주문 취소</option>
-                            </c:when>
-                            <c:when
-                              test="${ownerOrder.delivery_status == 'delivery_completed' }"
-                            >
-                              <option value="delivery_prepared">
-                                배송 준비중
-                              </option>
-                              <option value="shipping">배송중</option>
-                              <option value="delivery_completed" selected>
-                                배송 완료
-                              </option>
-                              <option value="exchange_reception">
-                                교환 접수
-                              </option>
-                              <option value="exchange_progress">
-                                교환 진행중
-                              </option>
-                              <option value="exchange_completed">
-                                교환 완료
-                              </option>
-                              <option value="return_acceptance">
-                                반품 접수
-                              </option>
-                              <option value="return_progress">
-                                반품 진행중
-                              </option>
-                              <option value="return_complete">반품 완료</option>
-                              <option value="withdraw_order">주문 취소</option>
-                            </c:when>
-                            <c:when
-                              test="${ownerOrder.delivery_status == 'exchange reception' }"
-                            >
-                              <option value="delivery_prepared">
-                                배송 준비중
-                              </option>
-                              <option value="shipping">배송중</option>
-                              <option value="delivery_completed">
-                                배송 완료
-                              </option>
-                              <option value="exchange_reception" selected>
-                                교환 접수
-                              </option>
-                              <option value="exchange_progress">
-                                교환 진행중
-                              </option>
-                              <option value="exchange_completed">
-                                교환 완료
-                              </option>
-                              <option value="return_acceptance">
-                                반품 접수
-                              </option>
-                              <option value="return_progress">
-                                반품 진행중
-                              </option>
-                              <option value="return_complete">반품 완료</option>
-                              <option value="withdraw_order">주문 취소</option>
-                            </c:when>
-                            <c:when
-                              test="${ownerOrder.delivery_status == 'exchange_progress' }"
-                            >
-                              <option value="delivery_prepared">
-                                배송 준비중
-                              </option>
-                              <option value="shipping">배송중</option>
-                              <option value="delivery_completed">
-                                배송 완료
-                              </option>
-                              <option value="exchange_reception">
-                                교환 접수
-                              </option>
-                              <option value="exchange_progress" selected>
-                                교환 진행중
-                              </option>
-                              <option value="exchange_completed">
-                                교환 완료
-                              </option>
-                              <option value="return_acceptance">
-                                반품 접수
-                              </option>
-                              <option value="return_progress">
-                                반품 진행중
-                              </option>
-                              <option value="return_complete">반품 완료</option>
-                              <option value="withdraw_order">주문 취소</option>
-                            </c:when>
-                            <c:when
-                              test="${ownerOrder.delivery_status == 'exchange_completed' }"
-                            >
-                              <option value="delivery_prepared">
-                                배송 준비중
-                              </option>
-                              <option value="shipping">배송중</option>
-                              <option value="delivery_completed">
-                                배송 완료
-                              </option>
-                              <option value="exchange_reception">
-                                교환 접수
-                              </option>
-                              <option value="exchange_progress">
-                                교환 진행중
-                              </option>
-                              <option value="exchange_completed" selected>
-                                교환 완료
-                              </option>
-                              <option value="return_acceptance">
-                                반품 접수
-                              </option>
-                              <option value="return_progress">
-                                반품 진행중
-                              </option>
-                              <option value="return_complete">반품 완료</option>
-                              <option value="withdraw_order">주문 취소</option>
-                            </c:when>
-                            <c:when
-                              test="${ownerOrder.delivery_status == 'return_acceptance' }"
-                            >
-                              <option value="delivery_prepared">
-                                배송 준비중
-                              </option>
-                              <option value="shipping">배송중</option>
-                              <option value="delivery_completed">
-                                배송 완료
-                              </option>
-                              <option value="exchange_reception">
-                                교환 접수
-                              </option>
-                              <option value="exchange_progress">
-                                교환 진행중
-                              </option>
-                              <option value="exchange_completed">
-                                교환 완료
-                              </option>
-                              <option value="return_acceptance" selected>
-                                반품 접수
-                              </option>
-                              <option value="return_progress">
-                                반품 진행중
-                              </option>
-                              <option value="return_complete">반품 완료</option>
-                              <option value="withdraw_order">주문 취소</option>
-                            </c:when>
-                            <c:when
-                              test="${ownerOrder.delivery_status == 'return_progress' }"
-                            >
-                              <option value="delivery_prepared">
-                                배송 준비중
-                              </option>
-                              <option value="shipping">배송중</option>
-                              <option value="delivery_completed">
-                                배송 완료
-                              </option>
-                              <option value="exchange_reception">
-                                교환 접수
-                              </option>
-                              <option value="exchange_progress">
-                                교환 진행중
-                              </option>
-                              <option value="exchange_completed">
-                                교환 완료
-                              </option>
-                              <option value="return_acceptance">
-                                반품 접수
-                              </option>
-                              <option value="return_progress" selected>
-                                반품 진행중
-                              </option>
-                              <option value="return_complete">반품 완료</option>
-                              <option value="withdraw_order">주문 취소</option>
-                            </c:when>
-                            <c:when
-                              test="${ownerOrder.delivery_status == 'return_complete' }"
-                            >
-                              <option value="delivery_prepared">
-                                배송 준비중
-                              </option>
-                              <option value="shipping">배송중</option>
-                              <option value="delivery_completed">
-                                배송 완료
-                              </option>
-                              <option value="exchange_reception">
-                                교환 접수
-                              </option>
-                              <option value="exchange_progress">
-                                교환 진행중
-                              </option>
-                              <option value="exchange_completed">
-                                교환 완료
-                              </option>
-                              <option value="return_acceptance">
-                                반품 접수
-                              </option>
-                              <option value="return_progress">
-                                반품 진행중
-                              </option>
-                              <option value="return_complete" selected>
-                                반품 완료
-                              </option>
-                              <option value="withdraw_order">주문 취소</option>
-                            </c:when>
-                            <c:when
-                              test="${ownerOrder.delivery_status == 'withdraw_order' }"
-                            >
-                              <option value="delivery_prepared">
-                                배송 준비중
-                              </option>
-                              <option value="shipping">배송중</option>
-                              <option value="delivery_completed">
-                                배송 완료
-                              </option>
-                              <option value="exchange_reception">
-                                교환 접수
-                              </option>
-                              <option value="exchange_progress">
-                                교환 진행중
-                              </option>
-                              <option value="exchange_completed">
-                                교환 완료
-                              </option>
-                              <option value="return_acceptance">
-                                반품 접수
-                              </option>
-                              <option value="return_progress">
-                                반품 진행중
-                              </option>
-                              <option value="return_complete">반품 완료</option>
-                              <option value="withdraw_order" selected>
-                                주문 취소
-                              </option>
-                            </c:when>
-                          </c:choose>
-                        </select>
-                      </td>
-                      <td>
-                        <button type="button" class="product_apply_btn">
-                          적용
-                        </button>
-                      </td>
-                    </tr>
+                  <c:if
+                    test="${ownerOrder.reg_com_name eq sessionScope.loginMember.owner_name}"
+                  >
+                    <c:if test="${ownerOrder.orderId ne prevOrderId}">
+                      <c:set var="prevOrderId" value="${ownerOrder.orderId}" />
+                      <tr>
+                        <td
+                          onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
+                          style="cursor: pointer"
+                        >
+                          ${ownerOrder.orderId}
+                        </td>
+                        <td
+                          onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
+                          style="cursor: pointer"
+                        >
+                          ${ownerOrder.id}
+                        </td>
+                        <td
+                          onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
+                          style="cursor: pointer"
+                        >
+                          ${ownerOrder.productName}
+                        </td>
+                        <td
+                          onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
+                          style="cursor: pointer"
+                        >
+                          ${ownerOrder.receiverName}
+                        </td>
+                        <td
+                          onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
+                          style="cursor: pointer"
+                        >
+                          ${ownerOrder.address}${ownerOrder.address2}${ownerOrder.addressDetail}
+                        </td>
+                        <td
+                          onclick="location.href='${contextPath}/owner/ownerOrderHistoryDetail.do?orderId=${ownerOrder.orderId}'"
+                          style="cursor: pointer"
+                        >
+                          ${ownerOrder.payDate}
+                        </td>
+                        <td>
+                          <select id="delivery_status" name="delivery_status">
+                            <c:choose>
+                              <c:when
+                                test="${ownerOrder.delivery_status == 'delivery_prepared' }"
+                              >
+                                <option value="delivery_prepared" selected>
+                                  배송 준비중
+                                </option>
+                                <option value="shipping">배송중</option>
+                                <option value="delivery_completed">
+                                  배송 완료
+                                </option>
+                                <option value="exchange_reception">
+                                  교환 접수
+                                </option>
+                                <option value="exchange_progress">
+                                  교환 진행중
+                                </option>
+                                <option value="exchange_completed">
+                                  교환 완료
+                                </option>
+                                <option value="return_acceptance">
+                                  반품 접수
+                                </option>
+                                <option value="return_progress">
+                                  반품 진행중
+                                </option>
+                                <option value="return_complete">
+                                  반품 완료
+                                </option>
+                                <option value="withdraw_order">
+                                  주문 취소
+                                </option>
+                              </c:when>
+                              <c:when
+                                test="${ownerOrder.delivery_status == 'shipping' }"
+                              >
+                                <option value="delivery_prepared">
+                                  배송 준비중
+                                </option>
+                                <option value="shipping" selected>
+                                  배송중
+                                </option>
+                                <option value="delivery_completed">
+                                  배송 완료
+                                </option>
+                                <option value="exchange_reception">
+                                  교환 접수
+                                </option>
+                                <option value="exchange_progress">
+                                  교환 진행중
+                                </option>
+                                <option value="exchange_completed">
+                                  교환 완료
+                                </option>
+                                <option value="return_acceptance">
+                                  반품 접수
+                                </option>
+                                <option value="return_progress">
+                                  반품 진행중
+                                </option>
+                                <option value="return_complete">
+                                  반품 완료
+                                </option>
+                                <option value="withdraw_order">
+                                  주문 취소
+                                </option>
+                              </c:when>
+                              <c:when
+                                test="${ownerOrder.delivery_status == 'delivery_completed' }"
+                              >
+                                <option value="delivery_prepared">
+                                  배송 준비중
+                                </option>
+                                <option value="shipping">배송중</option>
+                                <option value="delivery_completed" selected>
+                                  배송 완료
+                                </option>
+                                <option value="exchange_reception">
+                                  교환 접수
+                                </option>
+                                <option value="exchange_progress">
+                                  교환 진행중
+                                </option>
+                                <option value="exchange_completed">
+                                  교환 완료
+                                </option>
+                                <option value="return_acceptance">
+                                  반품 접수
+                                </option>
+                                <option value="return_progress">
+                                  반품 진행중
+                                </option>
+                                <option value="return_complete">
+                                  반품 완료
+                                </option>
+                                <option value="withdraw_order">
+                                  주문 취소
+                                </option>
+                              </c:when>
+                              <c:when
+                                test="${ownerOrder.delivery_status == 'exchange reception' }"
+                              >
+                                <option value="delivery_prepared">
+                                  배송 준비중
+                                </option>
+                                <option value="shipping">배송중</option>
+                                <option value="delivery_completed">
+                                  배송 완료
+                                </option>
+                                <option value="exchange_reception" selected>
+                                  교환 접수
+                                </option>
+                                <option value="exchange_progress">
+                                  교환 진행중
+                                </option>
+                                <option value="exchange_completed">
+                                  교환 완료
+                                </option>
+                                <option value="return_acceptance">
+                                  반품 접수
+                                </option>
+                                <option value="return_progress">
+                                  반품 진행중
+                                </option>
+                                <option value="return_complete">
+                                  반품 완료
+                                </option>
+                                <option value="withdraw_order">
+                                  주문 취소
+                                </option>
+                              </c:when>
+                              <c:when
+                                test="${ownerOrder.delivery_status == 'exchange_progress' }"
+                              >
+                                <option value="delivery_prepared">
+                                  배송 준비중
+                                </option>
+                                <option value="shipping">배송중</option>
+                                <option value="delivery_completed">
+                                  배송 완료
+                                </option>
+                                <option value="exchange_reception">
+                                  교환 접수
+                                </option>
+                                <option value="exchange_progress" selected>
+                                  교환 진행중
+                                </option>
+                                <option value="exchange_completed">
+                                  교환 완료
+                                </option>
+                                <option value="return_acceptance">
+                                  반품 접수
+                                </option>
+                                <option value="return_progress">
+                                  반품 진행중
+                                </option>
+                                <option value="return_complete">
+                                  반품 완료
+                                </option>
+                                <option value="withdraw_order">
+                                  주문 취소
+                                </option>
+                              </c:when>
+                              <c:when
+                                test="${ownerOrder.delivery_status == 'exchange_completed' }"
+                              >
+                                <option value="delivery_prepared">
+                                  배송 준비중
+                                </option>
+                                <option value="shipping">배송중</option>
+                                <option value="delivery_completed">
+                                  배송 완료
+                                </option>
+                                <option value="exchange_reception">
+                                  교환 접수
+                                </option>
+                                <option value="exchange_progress">
+                                  교환 진행중
+                                </option>
+                                <option value="exchange_completed" selected>
+                                  교환 완료
+                                </option>
+                                <option value="return_acceptance">
+                                  반품 접수
+                                </option>
+                                <option value="return_progress">
+                                  반품 진행중
+                                </option>
+                                <option value="return_complete">
+                                  반품 완료
+                                </option>
+                                <option value="withdraw_order">
+                                  주문 취소
+                                </option>
+                              </c:when>
+                              <c:when
+                                test="${ownerOrder.delivery_status == 'return_acceptance' }"
+                              >
+                                <option value="delivery_prepared">
+                                  배송 준비중
+                                </option>
+                                <option value="shipping">배송중</option>
+                                <option value="delivery_completed">
+                                  배송 완료
+                                </option>
+                                <option value="exchange_reception">
+                                  교환 접수
+                                </option>
+                                <option value="exchange_progress">
+                                  교환 진행중
+                                </option>
+                                <option value="exchange_completed">
+                                  교환 완료
+                                </option>
+                                <option value="return_acceptance" selected>
+                                  반품 접수
+                                </option>
+                                <option value="return_progress">
+                                  반품 진행중
+                                </option>
+                                <option value="return_complete">
+                                  반품 완료
+                                </option>
+                                <option value="withdraw_order">
+                                  주문 취소
+                                </option>
+                              </c:when>
+                              <c:when
+                                test="${ownerOrder.delivery_status == 'return_progress' }"
+                              >
+                                <option value="delivery_prepared">
+                                  배송 준비중
+                                </option>
+                                <option value="shipping">배송중</option>
+                                <option value="delivery_completed">
+                                  배송 완료
+                                </option>
+                                <option value="exchange_reception">
+                                  교환 접수
+                                </option>
+                                <option value="exchange_progress">
+                                  교환 진행중
+                                </option>
+                                <option value="exchange_completed">
+                                  교환 완료
+                                </option>
+                                <option value="return_acceptance">
+                                  반품 접수
+                                </option>
+                                <option value="return_progress" selected>
+                                  반품 진행중
+                                </option>
+                                <option value="return_complete">
+                                  반품 완료
+                                </option>
+                                <option value="withdraw_order">
+                                  주문 취소
+                                </option>
+                              </c:when>
+                              <c:when
+                                test="${ownerOrder.delivery_status == 'return_complete' }"
+                              >
+                                <option value="delivery_prepared">
+                                  배송 준비중
+                                </option>
+                                <option value="shipping">배송중</option>
+                                <option value="delivery_completed">
+                                  배송 완료
+                                </option>
+                                <option value="exchange_reception">
+                                  교환 접수
+                                </option>
+                                <option value="exchange_progress">
+                                  교환 진행중
+                                </option>
+                                <option value="exchange_completed">
+                                  교환 완료
+                                </option>
+                                <option value="return_acceptance">
+                                  반품 접수
+                                </option>
+                                <option value="return_progress">
+                                  반품 진행중
+                                </option>
+                                <option value="return_complete" selected>
+                                  반품 완료
+                                </option>
+                                <option value="withdraw_order">
+                                  주문 취소
+                                </option>
+                              </c:when>
+                              <c:when
+                                test="${ownerOrder.delivery_status == 'withdraw_order' }"
+                              >
+                                <option value="delivery_prepared">
+                                  배송 준비중
+                                </option>
+                                <option value="shipping">배송중</option>
+                                <option value="delivery_completed">
+                                  배송 완료
+                                </option>
+                                <option value="exchange_reception">
+                                  교환 접수
+                                </option>
+                                <option value="exchange_progress">
+                                  교환 진행중
+                                </option>
+                                <option value="exchange_completed">
+                                  교환 완료
+                                </option>
+                                <option value="return_acceptance">
+                                  반품 접수
+                                </option>
+                                <option value="return_progress">
+                                  반품 진행중
+                                </option>
+                                <option value="return_complete">
+                                  반품 완료
+                                </option>
+                                <option value="withdraw_order" selected>
+                                  주문 취소
+                                </option>
+                              </c:when>
+                            </c:choose>
+                          </select>
+                        </td>
+                        <td>
+                          <button type="button" class="product_apply_btn">
+                            적용
+                          </button>
+                        </td>
+                      </tr>
+                    </c:if>
                   </c:if>
                 </c:forEach>
               </tbody>

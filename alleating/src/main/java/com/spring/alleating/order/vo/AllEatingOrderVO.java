@@ -44,8 +44,16 @@ public class AllEatingOrderVO {
 	private int productDiscount;
 	private String delivery_status;
 	
+	private String reg_com_name;
+
 	
 	
+	public String getReg_com_name() {
+		return reg_com_name;
+	}
+	public void setReg_com_name(String reg_com_name) {
+		this.reg_com_name = reg_com_name;
+	}
 	public int getProductQty() {
 		return productQty;
 	}
