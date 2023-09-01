@@ -15,4 +15,5 @@ public interface OwnerOrderService {
 	
 	public Map OnwerOrderHistoryDetail (String orderId)throws DataAccessException; //주문내역 상세 정보들
 	
+	public void updateOwnerDelivery(Map odinfo) throws DataAccessException;
 }
