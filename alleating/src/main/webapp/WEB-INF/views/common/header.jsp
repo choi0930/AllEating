@@ -158,7 +158,7 @@ $(function(){$('.header_nav').hover(
             </c:otherwise>
         </c:choose>
         <div class="header_top_bar"></div> <!--일자 바-->
-        <a href="#">고객센터</a>
+        <a href="${contextPath}/serviceCenter/announcement.do">고객센터</a>
       </div>
         <div id="header_top_center">
           <div><a href="#">공지사항</a></div>

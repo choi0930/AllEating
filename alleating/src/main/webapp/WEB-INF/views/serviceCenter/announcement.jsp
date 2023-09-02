@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+isELIgnored="false" pageEncoding="UTF-8"%> <%
+request.setCharacterEncoding("utf-8"); %> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<title>공지사항 페이지</title>
 <style>
 	.announcement_01_1{
 		font-weight:500;
@@ -122,6 +123,9 @@ li {
 	}
 	
 </style> 
+</head>
+<body>
+
 <div class="all">
 <h2 class="announcement_01_1">공지사항</h2>
 
