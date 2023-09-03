@@ -7,7 +7,7 @@ request.setCharacterEncoding("utf-8");
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <c:set var="reviewList" value="${userReviewInfo.reviewList}" />
-<c:set var="writtenReviewList" value="${WrittenReviewInfo.writtenReviewList}" />
+
 
 
 <link href="${contextPath}/css/myPage_review.css" rel="stylesheet"
@@ -16,6 +16,14 @@ request.setCharacterEncoding("utf-8");
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+		.reviewBox {
+    padding-top: 15px;
+}
+.productNaming {
+    border: none;
+    font-size: 30px;
+	</style>
 <meta charset="UTF-8" />
 <title>상품 후기</title>
 <script>
@@ -51,7 +59,7 @@ request.setCharacterEncoding("utf-8");
 				
 			</div>
 		</div>
-			<div>
+			<div class="reviewBox">
 
 				<c:forEach var="review" items="${reviewList}">
 					<form action="/myPage/myPage_reviewForm.do" method="get" encType="multipart/form-data">
@@ -67,9 +75,9 @@ request.setCharacterEncoding("utf-8");
 							</div>
 						</div>
 						<div class="qwe">
-							<input type="text" class="productNaming" value="[${review.productBrand}]" name="brand">
-								<input type="text" class="productNaming" value="${review.productName}" name="naming">
-							<%--  <input type="hidden" class="detail_01" value="[${review.productBrand}]${review.productName}"> --%>
+							<input type="text" class="productNaming" value="[${review.productBrand}]" name="brand" readonly>
+								<input type="text" class="productNaming" value="${review.productName}" name="naming" readonly>
+				
 						</div>
 
 

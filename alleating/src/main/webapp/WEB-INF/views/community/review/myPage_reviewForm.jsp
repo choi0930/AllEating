@@ -17,6 +17,11 @@ reader.onload = function (e) {
 reader.readAsDataURL(input.files[0]);
 }
 }
+
+$("#file").on('change',function(){
+  var fileName = $("#file").val();
+  $(".upload-name").val(fileName);
+});
 </script>
 
 <style>
@@ -110,6 +115,58 @@ width:840px;
     align-items: center; /* 버튼을 세로 중앙 정렬 */
 }
 
+.bbs_vtype {
+    padding-top: 90px;
+    padding-left: 15px;
+}
+input{
+    border:none;
+    font-size: 20px;
+    
+}
+.add_review_btn {
+    border: none;
+    background: #000060;
+    color: white;
+    width: 100px;
+    height: 50px;
+    margin-right: 70px;
+}
+.op06 {
+    margin-left: 25px;
+}
+
+.filebox .upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 78%;
+    color: #999999;
+}
+
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+
 </style>
 
 
@@ -138,14 +195,14 @@ width:840px;
 <li class="between">
 <dl>
 <dt>브랜드</dt>
-<dd><input name="productBrand" type="text" value="<%= request.getParameter("brand") %> "/></dd>
+<dd><input name="productBrand" type="text" readonly value="<%= request.getParameter("brand") %> "/></dd>
 </dl>
 </li>
 
 <li class="between">
 <dl>
 <dt>상품명</dt>
-<dd><input name="productName" type="text" value="<%= request.getParameter("naming") %>"/> </dd>
+<dd><input name="productName" type="text" readonly value="<%= request.getParameter("naming") %>"/> </dd>
 </dl>
 </li>
 
@@ -153,7 +210,7 @@ width:840px;
 <dl>
 <dt>작성자</dt>
 
-<dd><input type="text" value="${loginMember.name}"/></dd>
+<dd><input type="text" readonly value="${loginMember.name}"/></dd>
 <dd> </dd>
 
 </dl>
@@ -169,7 +226,15 @@ width:840px;
 
 
 
- <div class="op06"><input type="file" name="fileName" value="파일 추가" onChange="readURL(this);" /></div>
+ <div class="op06">
+    <input type="file" name="fileName" value="파일 추가" onChange="readURL(this);" />
+</div>
+
+<!--<div class="filebox">
+    <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+    <label for="file">파일찾기</label> 
+    <input type="file" id="file" onchange="readURL(this);">
+</div>-->
 <div><img id="reviewImgAdd"/></div> 
 </div>
 

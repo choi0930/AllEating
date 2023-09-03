@@ -24,7 +24,7 @@ import com.spring.alleating.common.base.BaseController;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
-import com.spring.alleating.myPage.vo.refundVO;
+import com.spring.alleating.myPage.vo.RefundVO;
 import com.spring.alleating.order.service.OrderService;
 import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
 import com.spring.alleating.order.vo.AllEatingOrderVO;

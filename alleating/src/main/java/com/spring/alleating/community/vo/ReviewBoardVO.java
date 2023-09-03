@@ -24,10 +24,16 @@ private int productQty;
 private String delivery_status;
 
 
+private String cateCode; //작성한 후기 inner join
 
 
 
-
+public String getCateCode() {
+	return cateCode;
+}
+public void setCateCode(String cateCode) {
+	this.cateCode = cateCode;
+}
 public String getProductBrand() {
 	return productBrand;
 }

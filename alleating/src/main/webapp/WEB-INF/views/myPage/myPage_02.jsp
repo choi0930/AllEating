@@ -72,10 +72,11 @@ function OrderDeleteCallback(obj){
    
    
     <div>
-     <c:forEach var="reserve" items="${reserveList}">
+     
      
     <div class="product-orderdetail">
-    
+      <c:forEach var="reserve" items="${reserveList}">
+      <div>
       <div class="product-orderdetail-pic">
    <img src="${contextPath}/download.do?fileName=${reserve.fileName}&productId=${reserve.productId}&cateCode=${reserve.cateCode}" alt="${reserve.fileName}" width="150px" height="150px">
       </div>
@@ -96,7 +97,9 @@ function OrderDeleteCallback(obj){
           <p>${reserve.productQty}</p>
         </div>
       </div>
-      </div>
+      
+    </div>
+      
       
    
       <div class="orderdetailview">
@@ -113,34 +116,33 @@ function OrderDeleteCallback(obj){
         	<a class="orderdetailview-3" >주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        	</div> 
       </div>
-     
-      </c:forEach>
+    </c:forEach>
     </div>
     
     
     <div>
-     <c:forEach var="normalList" items="${normalList}">
+     <c:forEach var="normal" items="${normalList}">
     
     <div class="product-orderdetail">
     
       <div class="product-orderdetail-pic">
-   <img src="${contextPath}/download.do?fileName=${normalList.fileName}&productId=${normalList.productId}&cateCode=${normalList.cateCode}" alt="${normalList.fileName}" width="150px" height="150px">
+   <img src="${contextPath}/download.do?fileName=${normal.fileName}&productId=${normal.productId}&cateCode=${normal.cateCode}" alt="${normal.fileName}" width="150px" height="150px">
       </div>
       <div class="product-orderdetail-line">
       <div class="product-orderdetail-line-2">
           <p>일반 배송</p>
         </div>
       <div class="product-orderdetail-line-2">
-          <p>[${normalList.productBrand}]</p>
+          <p>[${normal.productBrand}]</p>
         </div>
        <div class="product-orderdetail-line-2">
-          <p>${normalList.productName}</p>
+          <p>${normal.productName}</p>
         </div>
         <div class="product-orderdetail-line-2">
-          <p>${normalList.productPrice}</p>
+          <p>${normal.productPrice}</p>
         </div>
         <div class="product-orderdetail-line-2">
-          <p>${normalList.productQty}</p>
+          <p>${normal.productQty}</p>
         </div>
       </div>
       </div>
@@ -164,25 +166,7 @@ function OrderDeleteCallback(obj){
     
     
     
-   <%--    <div class="orderlistdetailview-under">
-    
-     <div class="orderlist-time">
-      <p>${orderDetailVO.orderId}</p>
-     </div>
-     <div class="order-problem-next">
-      <span class="order-problem-next-text">
-       배송 또는 상품에 문제가 있습니까?     
-      </span>
-      <a class="oneoneq" style="color:navy;">
-       1:1문의하기
-       <span>
-        <button class="triangle-button">
-         <img src="${contextPath}/img/image_icon/triangle_navy.png" width="25px" height="29px">
-        </button>
-       </span>
-      </a>
-     </div>
-     </div> --%>
+ 
     
     
     
@@ -249,13 +233,13 @@ function OrderDeleteCallback(obj){
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">할부</dt>
            <dd class="listcss-7">
-            <p>${orderDetailVO.card_com_name}</p>
+            <p>${orderDetailVO.card_pay_month}</p>
            </dd>
          </dl>
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">결제 일시</dt>
            <dd class="listcss-7">
-            <p>${orderDetailVO.card_pay_month}</p>
+            <p>${orderDetailVO.card_payDate}</p>
            </dd>
          </dl>
        </div>

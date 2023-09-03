@@ -166,7 +166,7 @@
 	
 	 select * from alleating_order_detail
 	 
-	  where orderId = #{orderId} and review_ny = n
+	  where orderId = #{orderId}
 	  
 	  
 	  <if test="deliveryType == 'reserve'"	>

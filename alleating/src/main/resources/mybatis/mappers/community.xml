@@ -77,8 +77,12 @@
 	
 	</insert>
 
+	<!-- 작성한 후기 목록 -->
 <select id="selectWrittenReview" resultMap="communityResult" parameterType="java.util.Map">
- select * from review_board where id=#{id}
+ select r.*, a.cateCode, a.productId
+from review_board r
+inner join  alleating_order_detail a on r.productId = a.productId
+where r.id=#{id}
 </select>
 	
 	

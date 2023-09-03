@@ -12,6 +12,7 @@ import com.spring.alleating.coupon.vo.CouponVO;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.myPage.dao.MyPageDAO;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
+import com.spring.alleating.myPage.vo.WishVO;
 @Service("myPageService")
 public class MyPageServiceImpl implements MyPageService{
 	
@@ -112,5 +113,51 @@ public class MyPageServiceImpl implements MyPageService{
 		return result;
 	}
 	/*---------------------------------- 마이페이지 기본 배송지 변경 끝-------------------------------------*/
+
 	
+//////////////////////마이페이지 찜목록////////////////
+
+
+	@Override
+	public List selectWishList(Map _wishMap) throws DataAccessException {
+		List<WishVO> wishVO = myPageDAO.selectWishList(_wishMap);
+		return wishVO;
+	}
+
+	@Override
+	public int insertWish(WishVO wishVO) throws DataAccessException {
+		int insertWish = myPageDAO.insertWish(wishVO);
+	    return insertWish;
+	}
+
+	@Override
+	public void updateWish(WishVO wishVO) throws DataAccessException {
+		myPageDAO.updateWish(wishVO);
+		
+	}
+
+	@Override
+	public int deleteWish(WishVO wishVO) throws DataAccessException {
+		int deleteWish = myPageDAO.deleteWish(wishVO);
+		return deleteWish;
+	}
+
+	@Override
+	public int deleteAllWish(WishVO wishVO) throws DataAccessException {
+		int deleteAllWish = myPageDAO.deleteAllWish(wishVO);
+		return deleteAllWish;
+	}
+	
+
+	
+	
+	
+////////////////////////마이페이지 - 찜목록 끝
+	
+
+
+
+
+
+
 }

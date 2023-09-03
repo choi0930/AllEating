@@ -44,39 +44,6 @@ public class CommunityServiceImpl implements CommunityService {
 		return reviewBoardVO;
 	}
 
-	
-	
-	
-
-	
-	
-
-
-
-
-
-		
-		/*
-		 * // 이미지파일 이름 및 정보 DB에 등록 ArrayList<ProductImgVO> reviewimgFileList =
-		 * reviewBoardVO.getReviewimgFileList(); for (ProductImgVO productImgVO :
-		 * reviewimgFileList) { productImgVO.setProductId(reviewBoardVO.getProductId());
-		 * communityDAO.insertReviewImg(productImgVO); }
-		 */
-	   
-	
-
 	 
     
 }
-	
-	
-
-	
-	
-	
-
-	
-	
-	
-
-

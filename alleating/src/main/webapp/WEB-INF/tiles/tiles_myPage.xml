@@ -17,14 +17,14 @@
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_02.jsp"/>      
 	</definition>
 	
-	<definition name="/myPage/myPage_03" extends="baseLayoutBannerSide">
+	<definition name="/myPage/myPage_wish" extends="baseLayoutBannerSide">
 		<put-attribute name="title" value="마이페이지 찜한내역"/>
 		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_03.jsp"/>      
+		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_wish.jsp"/>      
 	</definition>
 	
 	<definition name="/myPage/myPage_04" extends="baseLayoutBannerSide">
-		<put-attribute name="title" value="마이페이지 찜한내역"/>
+		<put-attribute name="title" value="상품 문의"/>
 		<put-attribute name="banner" value="/WEB-INF/views/myPage/myPageBanner.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/myPage/myPage_04.jsp"/>      
 	</definition>
