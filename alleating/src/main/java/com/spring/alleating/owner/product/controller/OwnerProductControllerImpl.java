@@ -181,6 +181,18 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			return mav;
 		}
 	 
+		@Override
+		@RequestMapping(value="/owner/ownerinquirylist.do", method = {RequestMethod.GET, RequestMethod.POST})
+		public ModelAndView ownerinquirylist(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			HttpSession session = request.getSession();
+			session.setAttribute("side_menuType", "owner");
+			String viewName = (String) request.getAttribute("viewName");
+			List ownerinquirylist = ownerProductService.listArticles();
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName(viewName);
+			mav.addObject("ownerinquirylist", ownerinquirylist);
+			return mav;
+		}
 		
 	
 	/*
