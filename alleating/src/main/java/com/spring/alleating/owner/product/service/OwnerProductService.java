@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
-import com.spring.alleating.product.vo.ProductImgVO;
 import com.spring.alleating.product.vo.ProductVO;
+import com.spring.alleating.servicecenter.vo.inqueryBoardVO;
 
 public interface OwnerProductService {
 	public int addNewProduct(Map newProductMap) throws Exception;
@@ -30,6 +30,9 @@ public interface OwnerProductService {
 		 */
 	  
 	  public Map productEditService(int EService) throws Exception;
+	  
+		/* 사업자 상품문의 게시판(미완) */
+	  public List<inqueryBoardVO> listArticles() throws Exception;
 
 	  
 	 
