@@ -14,6 +14,7 @@ import com.spring.alleating.owner.product.dao.OwnerProductDAO;
 import com.spring.alleating.product.dao.ProductDAO;
 import com.spring.alleating.product.vo.ProductImgVO;
 import com.spring.alleating.product.vo.ProductVO;
+import com.spring.alleating.servicecenter.vo.inqueryBoardVO;
 
 @Service("ownerProductService")
 
@@ -24,6 +25,8 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	private ProductVO productVO;
 	@Autowired
 	private ProductDAO productDAO;
+	@Autowired
+	private inqueryBoardVO inqueryboardVO;
 
 	@Override
 	public int addNewProduct(Map productInfo) throws Exception {
@@ -108,8 +111,14 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 		return producteditInfo;
 	}
 			// 상품 정보랑 이미지 상품등록자를 맵에 넣어주는 작업중이였음
+
+	/* 사업자 상품문의 게시판(미완) */
+	@Override
+	public List<inqueryBoardVO> listArticles() throws Exception {
+		 List<inqueryBoardVO> ownerinquirylist = ownerProductDAO.selectAllArticlesList();
+		return null;
+	}
   
-	  
 	 
 
 	/*

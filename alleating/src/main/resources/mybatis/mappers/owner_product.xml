@@ -38,8 +38,17 @@
 		<result property="creDate" column="creDate" />
 	</resultMap>
 	
+	<resultMap id="ownerInquiryResult" type="inqueryBoardVO">
+		<result property="articleNO" column="articleNO" />
+		<result property="parentNO" column="parentNO" />
+		<result property="id" column="id" />
+		<result property="board_status" column="board_status" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="writeDate" column="writeDate" />
+	</resultMap> 
 	
-	
+
 	<!-- select -->
 	<select id="selectAllOwnerProductList" resultMap="productResult">
 	<![CDATA[
@@ -179,6 +188,32 @@
 		select * from product_img where productId = #{productId}
 		]]>
 	</select>
+	
+		<select id="selectAllArticlesList" resultMap="ownerInquiryResult">
+<![CDATA[
+	SELECT CASE WHEN LEVEL-1 > 0 then CONCAT(CONCAT(REPEAT(' ', level-1),'< '), board.title) 
+		   ELSE board.title 
+		   END AS title, 
+		   board.articleNO, 
+		   board.parentNO, 
+		   result.level, 
+		   board.content, 
+		   board.id, 
+		   board.writeDate 
+		   FROM (
+		   			SELECT 
+		   			function_hierarchical() AS articleNO, 
+		   			@level AS level 
+		   FROM (
+		   			SELECT 
+		   			@start_with:=0,
+		   			@articleNO:=@start_with, 
+		   			@level:=0
+		   		) tbl 
+		   JOIN inquiry_board
+		   ) result 
+		   JOIN inquiry_board board ON board.articleNO = result.articleNO
+]]>	</select>
 	
 	
 </mapper>
