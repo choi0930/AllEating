@@ -116,5 +116,13 @@
 
 	
 	<!-- insert -->
+	
+	<!-- update -->
+		<update id="updateownerdelivery" parameterType="java.util.Map">
+  		update alleating_order_detail
+  		set delivery_status=#{delivery_status}    
+  			where
+  			orderId=#{orderId}
+   		</update>
 
 </mapper>

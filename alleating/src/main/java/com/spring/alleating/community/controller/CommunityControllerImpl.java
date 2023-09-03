@@ -208,8 +208,10 @@ public class CommunityControllerImpl  implements CommunityController {
 	@RequestMapping(value="/myPage/myPage_writtenReview.do", method = { RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView writtenReview(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) {
 		
+
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
+
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();

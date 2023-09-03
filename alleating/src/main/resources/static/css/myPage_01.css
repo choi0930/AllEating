@@ -28,8 +28,8 @@ display:flex;
     padding-left: 500px;
     align-items: center;}
 .orderlistview-under{
-display: flex;
-    justify-content: space-around;
+/*display: flex;
+    justify-content: space-around;*/
     padding-top:10px;}
     
     .orderlist-time {

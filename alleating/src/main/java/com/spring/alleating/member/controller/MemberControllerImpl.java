@@ -167,18 +167,22 @@ public class MemberControllerImpl implements MemberController {
 	}
 	/*---------------------------------비밀번호 찾기 끝------------------------------------*/
 	
-	
+	/* 회원정보 수정전에 비밀번호 인증 */
 	 @PostMapping("/member/checkPasswordAndRedirect")
 	    public String checkPasswordAndRedirect(@RequestParam("pwd") String providedPassword,
 	                                           HttpSession session) {
 	        // 세션에서 로그인한 회원 정보 가져오기 
 	        MemberVO loginMember = (MemberVO) session.getAttribute("loginMember");
 	        System.out.println("checkpwd");
+	        String message;
 	        if (loginMember != null && loginMember.getPwd().equals(providedPassword)) {
 	            // 비밀번호가 맞는 경우
 	            return "redirect:/myPage/myPage_edit02.do";
 	        } else {
 	            // 비밀번호가 틀린 경우
+	        	message = "<script>";
+	        	message += 		"alert('에러다 에러');";
+	        	message += "</script>";
 	            return "redirect:/myPage/myPage_edit.do";
 	        }
 	    }
@@ -199,12 +203,13 @@ public class MemberControllerImpl implements MemberController {
 		 * mav.setViewName(viewName); return mav; }
 		 */
 
-
+	 /* 일반회원의 회원 정보 수정 */
 	@Override
 	@RequestMapping(value = "/member/updateMember.do", method = RequestMethod.POST)
 	public ModelAndView updateMember(Map<String, String> memberInfo, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		System.out.println("Call updateMember-method of control");
+		System.out.println(memberInfo);
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
 		result = memberService.updateMember(memberInfo);

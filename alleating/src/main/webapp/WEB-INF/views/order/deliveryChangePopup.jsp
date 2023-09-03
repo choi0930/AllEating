@@ -29,21 +29,35 @@ request.setCharacterEncoding("utf-8"); %>
       }
     </style>
     <script>
-      $('.deliveryChangeBtn').click(function(){
-        var checked = $('input[name=addressNum]:checked').val();
-        $("#receiverName", opener.document).val($("#dliveryName_"+checked).val());
-        $("#receiverHp", opener.document).val($("#reHp_"+checked).val());
-        $("#zipcode", opener.document).val($("#zipcode_"+checked).val());
-        $("#address", opener.document).val($("#address_"+checked).val());
-        $("#address", opener.document).val($("#address_"+checked).val());
-        var address2 = $('address2_'+checked).val();
-        if(address2 != null){
-          $("#address2", opener.document).val($("#address2_"+checked).val());
-        }
-        $("#addressDetail", opener.document).val($("#address_detail_"+checked).val());
 
-        window.close();
-      });
+      /*결제창에 정보 보내기*/
+      function selectItem(){
+
+    var resArr = new Array();
+    var a;
+    
+
+$("input[name='addressNum']:checked").each(function(index) {
+var num = $(this).val();
+
+var deliveryName = $('#receiver_name_'+num).val();
+var zipcode = $('#zipcode_'+num).val();
+var address = $('#address_'+num).val();
+var address2 = $('#address2_'+num).val();
+var address_detail = $('#address_detail_'+num).val();
+var receiver_hp = $('#receiver_hp_'+num).val();
+ console.log(deliveryName);
+var _address = zipcode+"</br>"+address+address2+"</br>"+address_detail
+resArr.push(deliveryName);
+resArr.push(_address);
+resArr.push(receiver_hp);
+
+console.log(resArr);
+});
+window.opener.setResList(resArr);
+window.close();
+}
+/*-------------------------------------------------------------------------*/
     </script>
   </head>
   <body>
@@ -67,8 +81,14 @@ request.setCharacterEncoding("utf-8"); %>
           </c:when>
           <c:otherwise>
             <c:forEach var="addressInfo" items="${addressList}">
-              <tr height="60">
+              <tr id="tr_${addressInfo.num}" height="60">
                 <td>
+                  <input type="hidden" id="receiver_name_${addressInfo.num}" value="${addressInfo.receiver_name}" />
+                  <input type="hidden" id="zipcode_${addressInfo.num}" value="${addressInfo.zipcode}" />
+                  <input type="hidden" id="address_${addressInfo.num}" value="${addressInfo.address}" />
+                  <input type="hidden" id="address2_${addressInfo.num}" value="${addressInfo.address2}" />
+                  <input type="hidden" id="address_detail_${addressInfo.num}" value="${addressInfo.address_detail}" />
+                  <input type="hidden" id="receiver_hp_${addressInfo.num}" value="${addressInfo.receiver_hp1}-${addressInfo.receiver_hp2}-${addressInfo.receiver_hp3}" />
                   <input
                     class="form-check-input address_num"
                     type="radio"
@@ -81,24 +101,24 @@ request.setCharacterEncoding("utf-8"); %>
                   <c:when test="${addressInfo.default_address == 'y'}">
                     <td>
                       <span class="redText">[기본배송지]</span><br />
-                      <span id="dliveryName_${addressInfo.num}">${addressInfo.deliveryName}</span>
+                      ${addressInfo.deliveryName}
                     </td>
                   </c:when>
                   <c:otherwise>
-                    <td><span id="dliveryName_${addressInfo.num}">${addressInfo.deliveryName}</span></td>
+                    <td>${addressInfo.deliveryName}</td>
                   </c:otherwise>
                 </c:choose>
-                <td><span id="reName_${addressInfo.num}">${addressInfo.receiver_name}</span></td>
+                <td>${addressInfo.receiver_name}</td>
                 <td class="addressText">
-                  (<span id="zipcode_${addressInfo.num}">${addressInfo.zipcode}</span>)<br />
-                  <span id="address_${addressInfo.num}">${addressInfo.address}</span>&nbsp;<span id="address2_${addressInfo.num}">${addressInfo.address2}</span><br />
-                  <span id="address_detail_${addressInfo.num}">${addressInfo.address_detail}</span>
+                  (${addressInfo.zipcode})<br />
+                  ${addressInfo.address}&nbsp;${addressInfo.address2}<br />
+                  ${addressInfo.address_detail}
                 </td>
                 <td>
-                  <span id="reHp_${addressInfo.num}">${addressInfo.receiver_hp1}-${addressInfo.receiver_hp2}-${addressInfo.receiver_hp3}</span>
+                  ${addressInfo.receiver_hp1}-${addressInfo.receiver_hp2}-${addressInfo.receiver_hp3}
                 </td>
                 <td>
-                  <button class="deliveryChangeBtn">적용</button>
+                  <button class="deliveryChangeBtn" onclick="selectItem()">적용</button>
                 </td>
               </tr>
             </c:forEach>

@@ -74,6 +74,19 @@ public class OwnerOrderControllerImpl implements OwnerOrderController {
 			mav.addObject("ownerOrderDetailInfo", ownerOrderDetailInfo);
 			return mav;
 		}
+
+		@Override
+		@RequestMapping(value = "/owner/updateOwnerDelivery.do", method = RequestMethod.POST)
+		public ModelAndView updateOwnerDelivery(Map odinfo, HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+				System.out.println(odinfo);
+				ownerOrderService.updateOwnerDelivery(odinfo);
+				
+				ModelAndView mav = new ModelAndView("redirect:/owner/ownerOrderList.do");
+				return mav;
+		}
+
+
 		
 
 }

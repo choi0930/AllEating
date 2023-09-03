@@ -28,6 +28,8 @@ public class OwnerOrderServiceImpl implements OwnerOrderService {
 	private OwnerOrderDAO ownerOrderDAO;
 	@Autowired
 	private ProductDAO productDAO;
+	@Autowired
+	private AllEatingOrderDetailVO allEatingOrderDetailVO;
 	
 	
 	@Override
@@ -56,6 +58,20 @@ public class OwnerOrderServiceImpl implements OwnerOrderService {
 		OwnerorderDetailInfo.put("OwnerreserveList", OwnerreserveList);
 		OwnerorderDetailInfo.put("OwnernormalList", OwnernormalList);
 		return OwnerorderDetailInfo;
+	}
+
+
+//	@Override
+//	public Map odService(int odService) throws Exception {
+//		AllEatingOrderDetailVO aodVO = ownerOrderDAO.updateownerdelivery(null);
+//		
+//		return null;
+//	}
+
+
+	@Override
+	public void updateOwnerDelivery(Map odinfo) throws DataAccessException {
+		 ownerOrderDAO.updateownerdelivery(odinfo);
 	}
 	
 	
