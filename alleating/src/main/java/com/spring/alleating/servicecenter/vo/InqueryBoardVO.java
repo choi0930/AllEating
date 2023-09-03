@@ -5,7 +5,7 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 @Component("inqueryBoardVO")
-public class inqueryBoardVO {
+public class InqueryBoardVO {
 	private String articleNO;
 	private String parentNO;
 	private String id;

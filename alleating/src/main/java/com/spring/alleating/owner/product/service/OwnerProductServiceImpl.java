@@ -14,7 +14,7 @@ import com.spring.alleating.owner.product.dao.OwnerProductDAO;
 import com.spring.alleating.product.dao.ProductDAO;
 import com.spring.alleating.product.vo.ProductImgVO;
 import com.spring.alleating.product.vo.ProductVO;
-import com.spring.alleating.servicecenter.vo.inqueryBoardVO;
+import com.spring.alleating.servicecenter.vo.InqueryBoardVO;
 
 @Service("ownerProductService")
 
@@ -26,7 +26,7 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	@Autowired
 	private ProductDAO productDAO;
 	@Autowired
-	private inqueryBoardVO inqueryboardVO;
+	private InqueryBoardVO inqueryboardVO;
 
 	@Override
 	public int addNewProduct(Map productInfo) throws Exception {
@@ -114,8 +114,8 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 
 	/* 사업자 상품문의 게시판(미완) */
 	@Override
-	public List<inqueryBoardVO> listArticles() throws Exception {
-		 List<inqueryBoardVO> ownerinquirylist = ownerProductDAO.selectAllArticlesList();
+	public List<InqueryBoardVO> listArticles() throws Exception {
+		 List<InqueryBoardVO> ownerinquirylist = ownerProductDAO.selectAllArticlesList();
 		return null;
 	}
   
