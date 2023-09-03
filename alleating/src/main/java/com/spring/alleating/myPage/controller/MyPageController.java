@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
+import com.spring.alleating.myPage.vo.WishVO;
 
 public interface MyPageController {
-	public ModelAndView myPage_03(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView myPage_04(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView myPage_edit(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView myPage_edit02(HttpServletRequest request, HttpServletResponse response)throws Exception;
@@ -32,6 +32,15 @@ public interface MyPageController {
 	public ModelAndView productCancel(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView productExchange(HttpServletRequest request, HttpServletResponse response)throws Exception ;
 	public ModelAndView productReturn(HttpServletRequest request, HttpServletResponse response)throws Exception;
-	
-	
+
+	//마이페이지-찜목록 조회
+	public ModelAndView selectWishList(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	//마이페이지 - 찜 목록 추가
+	public String insertWish (@RequestBody WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	//마이페이지 - 찜목록 변경
+	public String updateWish (@RequestBody WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	//마이페이지 - 찜 목록 삭제
+	public String deleteWish(@RequestBody WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	//마이페이지 - 관리자나 사업자가 상품 삭제 시 그 상품 찜 전체 삭제
+	public String deleteAllWish(@RequestBody WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

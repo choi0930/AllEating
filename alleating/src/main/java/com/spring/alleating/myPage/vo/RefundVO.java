@@ -1,5 +1,5 @@
 package com.spring.alleating.myPage.vo;
 
-public class wishVO {
+public class RefundVO {
 
 }

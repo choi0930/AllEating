@@ -168,7 +168,7 @@ public class CommunityControllerImpl  implements CommunityController {
 
 			message = " <script>";
 			message += " alert('실패'); ";
-			message += " location.href='" + multipartRequest.getContextPath() + "/myPage/myPage_review.do?id=${loginMember.id}'; ";
+			message += " location.href='" + multipartRequest.getContextPath() + "/myPage/myPage_review.do?id=" + _id + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -202,36 +202,27 @@ public class CommunityControllerImpl  implements CommunityController {
 	}
 
 
-	@Override
-	public ModelAndView writtenReview(String id, HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-		
-	
+
 	/////////////////////작성한 후기 페이지 ///////////////////////////
-	
-	
-	
-	
-	
-	}
-	
+	@Override
+	@RequestMapping(value="/myPage/myPage_writtenReview.do", method = { RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView writtenReview(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) {
 		
-
-
-
-	
-
-
-
-
-	
-
-	
-
-
-	
-	
-	
-	
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		
+		Map _writtenReviewInfo = new HashMap<>();
+		_writtenReviewInfo.put("id", id);
+		
+		List reviewWrittenList = communityService.selectWrittenReview(_writtenReviewInfo);
+		
+		
+		
+		mav.addObject("reviewWrittenList",reviewWrittenList);
+		return mav;
+	}
+	}

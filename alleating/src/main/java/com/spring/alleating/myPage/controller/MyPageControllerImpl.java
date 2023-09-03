@@ -21,6 +21,7 @@ import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.myPage.service.MyPageService;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
+import com.spring.alleating.myPage.vo.WishVO;
 
 @Controller("myPagecontroller")
 public class MyPageControllerImpl implements MyPageController{
@@ -29,6 +30,9 @@ public class MyPageControllerImpl implements MyPageController{
 	private MyPageService myPageService;
 	@Autowired
 	private UserCouponVO userCouponVO;
+	
+	@Autowired
+	private WishVO wishVO;
 	
 	/* 마이페이지 쿠폰 등록페이지 */
 	@Override
@@ -172,35 +176,8 @@ public class MyPageControllerImpl implements MyPageController{
 	/*----------------------------------------마이페이지: 기본 배송지 변경 끝----------------------------------------------------------*/
 	
 	
-	/*
-	 * @RequestMapping(value="/myPage/myPage_01.do", method = {RequestMethod.GET,
-	 * RequestMethod.POST}) public ModelAndView myPageMain(HttpServletRequest
-	 * request, HttpServletResponse response)throws Exception { HttpSession session
-	 * = request.getSession(); session.setAttribute("side_menuType", "my_page");
-	 * String viewName = (String) request.getAttribute("viewName"); ModelAndView mav
-	 * = new ModelAndView(); mav.setViewName(viewName); return mav; }
-	 */
 	
-	/*
-	 * @RequestMapping(value="/myPage/myPage_02.do", method = {RequestMethod.GET,
-	 * RequestMethod.POST}) public ModelAndView myPage_02(HttpServletRequest
-	 * request, HttpServletResponse response)throws Exception { String viewName =
-	 * (String) request.getAttribute("viewName");
-	 * 
-	 * ModelAndView mav = new ModelAndView(); mav.setViewName(viewName); return mav;
-	 * }
-	 */
-	@Override
-	@RequestMapping(value="/myPage/myPage_03.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView myPage_03(HttpServletRequest request, HttpServletResponse response)throws Exception {
-		HttpSession session = request.getSession();
-		session.setAttribute("side_menuType", "my_page");
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
-	}
-	
+
 	
 
 
@@ -215,16 +192,7 @@ public class MyPageControllerImpl implements MyPageController{
 		return mav;
 	}
 	
-	/*
-	 * @RequestMapping(value="/myPage/myPage_review.do", method =
-	 * {RequestMethod.GET, RequestMethod.POST}) public ModelAndView
-	 * myPage_review(HttpServletRequest request, HttpServletResponse response)throws
-	 * Exception { HttpSession session = request.getSession();
-	 * session.setAttribute("side_menuType", "my_page");
-	 * session.setAttribute("selectedTab", "tab-1"); String viewName = (String)
-	 * request.getAttribute("viewName"); ModelAndView mav = new ModelAndView();
-	 * mav.setViewName(viewName); return mav; }
-	 */
+
 	
 	@Override
 	@RequestMapping(value="/myPage/myPage_edit.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -314,4 +282,60 @@ public class MyPageControllerImpl implements MyPageController{
 		return mav;
 	}
 
+/////////////////////////마이페이지- 찜목록///////////////////////
+	
+	@Override
+	@RequestMapping(value="/myPage/myPage_wish.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectWishList(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		
+		Map _wishMap = new HashMap<>();
+		_wishMap.put("id", id);
+		
+		List wishList = myPageService.selectWishList(_wishMap);
+		mav.addObject("wishList", wishList);
+		return mav;
+	}
+
+	@Override
+	public String insertWish(WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String updateWish(WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteWish(WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteAllWish(WishVO wishVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+
+
+
+	
+	
+	
+	//////////////////////마이페이지 - 찜목록 끝///////////////////////
 }

@@ -10,6 +10,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <style>
+
+    .exchange_refund {
+        display: flex;
+        flex-direction: column;
+        margin-left: 500px;
+        margin-top: -120px;
+    }
+      </style>
+
+
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -102,8 +114,12 @@ $("startDate").val(newDate)
     </div>
       </div>
       </div>
-      <c:forEach var="bbig" items="${orderHistoryResult}"> 
+
+
+      
     <div class="orderlistview-under">
+      <div class="eng">
+      <c:forEach var="bbig" items="${orderHistoryResult}"> 
      <div class="orderlist-time">
      ${bbig.payDate}
      </div>
@@ -156,23 +172,35 @@ $("startDate").val(newDate)
           <p>${bbig.totalPrice}</p>
           </dd>
           </dl>
+
+          <div class="exchange_refund">
+            <div class="orderview-3">
+              <button type="button" class="btn btn-outline-primary" id="order-refund-button">교환 신청</button>
+             </div>
+             <div class="orderview-3" >
+             <button type="button" class="btn btn-outline-primary"  id="order-refund-button2">반품 신청</button>
+             </div>
+             </div>
+
         </div>
        
         </a>
-        </div>
-          </c:forEach>
-          
-         <button type="button" class="btn btn-outline-primary" id="order-refund-button">교환 신청</button>
-        </div>
-        <div class="orderview-3" >
-        <button type="button" class="btn btn-outline-primary"  id="order-refund-button">반품 신청</button>
-        </div>
-       </div>
-      </div>
-            
-     </div>
-    
+      
+
+      </c:forEach>
     </div>
+        </div>
+        
+          
+          
+      </div>
+       </div>
+      
+            
+     
+    
+     
+    
 
 </body>
 </html>

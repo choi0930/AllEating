@@ -233,12 +233,12 @@ text-decoration:none;}
                                 <a class="side_small_aTag" href="${contextPath}/myPage/myPage_review.do?id=${loginMember.id}">작성 가능 후기</a>
                             </li>
                             <li class="side_tap"> 
-                                <a class="side_small_aTag lastAtag" href="${contextPath}/myPage/myPage_writtenReview.do">작성한 후기</a>
+                                <a class="side_small_aTag lastAtag" href="${contextPath}/myPage/myPage_writtenReview.do?id=${loginMember.id}">작성한 후기</a>
                             </li>
                         </ul>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="${contextPath}/myPage/myPage_03.do">찜한 상품
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_wish.do?id=${loginMember.id}">찜한 상품
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>

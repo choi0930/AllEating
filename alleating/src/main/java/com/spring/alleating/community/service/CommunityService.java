@@ -13,6 +13,7 @@ public interface CommunityService {
 	public int insertReview(Map reviewMap) throws Exception;
 	 public void updateReviewStatus(Map reviewUpMap)throws Exception; 
 	 public List selectWrittenReview(Map _writtenReviewInfo) throws DataAccessException; //마이페이지 작성가능한후기 조회
+	
 
 
 

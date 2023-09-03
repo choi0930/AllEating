@@ -129,6 +129,7 @@ public class OrderServiceImpl implements OrderService{
 		return orderId;
 	}
 
+	//주문 완료
 	@Override
 	public Map selectOrderNum(String orderId) throws DataAccessException {
 		AllEatingOrderVO payCompleteVO = orderDAO.selectOrderNum(orderId);
@@ -138,6 +139,8 @@ public class OrderServiceImpl implements OrderService{
 		return payCompleteInfo;
 	}
 
+	
+	//마이페이지 주문 내역
 	@Override
 	public List selectOrderHistory(Map fffInfo) throws DataAccessException {
 		 
@@ -150,6 +153,8 @@ public class OrderServiceImpl implements OrderService{
 		return orderHistoryVO;
 	}
 
+	
+	//주문 내역 상세
 	@Override
 	public Map OrderHistoryDetail(String orderId) throws DataAccessException {
 		
@@ -178,7 +183,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	
-	////////////////////////주문내역 확인창////////////////////////////
+	//작성 가능한 후기
 	@Override
 	public Map selectUserReview(String id) throws DataAccessException {
 		  Map userReviewInfo = new HashMap();

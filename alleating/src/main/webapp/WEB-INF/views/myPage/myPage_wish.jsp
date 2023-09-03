@@ -25,6 +25,7 @@ request.setCharacterEncoding("utf-8"); %>
       </div>
 
       <div class="want_02">
+        <c:forEach var="wish" item="${wishList}">
         <div class="capture">
           <img
             src="${contextPath}/img/image_food/shinemuscat.JPG"
@@ -34,9 +35,9 @@ request.setCharacterEncoding("utf-8"); %>
           />
         </div>
         <div class="qwe">
-          <div class="detail_01"><h4>[All Eating] 샤인머스켓</h4></div>
-          <div class="detail_01"><h5 id="asd">35,000원</h5></div>
-          <div class="detail_01"><h5 id="asd">2개</h5></div>
+          <div class="detail_01"><h4>[${wish.productBrand}] ${wish.productName}</h4></div>
+          <div class="detail_01"><h5 id="asd">${wish.productPrice}원</h5></div>
+          
         </div>
         <div class="text04">
           <div class="form_end">
@@ -50,35 +51,10 @@ request.setCharacterEncoding("utf-8"); %>
             </button>
           </div>
         </div>
+      </c:forEach>
       </div>
 
-      <div class="want_02">
-        <div class="capture">
-          <img
-            src="${contextPath}/img/image_food/shinemuscat.JPG"
-            width="120"
-            height="120"
-            alt="Image 2"
-          />
-        </div>
-        <div class="qwe">
-          <div class="detail_01"><h4>[All Eating] 샤인머스켓</h4></div>
-          <div class="detail_01"><h5 id="asd">35,000원</h5></div>
-          <div class="detail_01"><h5 id="asd">2개</h5></div>
-        </div>
-        <div class="text04">
-          <div class="form_end">
-            <button class="join_censel_btn" onclick="fn_loginGO()">
-              <span id="join_btn_text">취소</span>
-            </button>
-          </div>
-          <div class="form_end">
-            <button class="join_end_btn" onclick="fn_loginGO()">
-              <span id="join_btn2_text">담기</span>
-            </button>
-          </div>
-        </div>
-      </div>
+     
     </div>
   </body>
 </html>
