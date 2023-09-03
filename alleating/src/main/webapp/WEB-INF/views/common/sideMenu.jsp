@@ -348,6 +348,11 @@ text-decoration:none;}
                         </a>
                     </li>
                     <li class="side_tap">
+                        <a class="side_aTag" href="${contextPath}/admin/couponList.do">공지사항 관리
+                            <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
+                        </a>
+                    </li>
+                    <li class="side_tap">
                         <a class="side_aTag" href="#">상품문의/후기 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
@@ -360,7 +365,7 @@ text-decoration:none;}
                 <div class="side_title">고객센터</div>
                 <ul class="side_menu_subheading">
                     <li class="side_tap">
-                        <a class="side_aTag" href="#">공지사항
+                        <a class="side_aTag" href="${contextPath}/serviceCenter/announcement.do">공지사항
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>

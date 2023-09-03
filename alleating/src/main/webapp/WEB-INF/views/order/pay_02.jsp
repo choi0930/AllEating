@@ -158,11 +158,23 @@ console.log("넘어옴");
 var html = "";
 $('#deliveryTable > tbody').empty();
 html += '<tr>';  
-for(i in resArr){
-  $('#deliveryTable > tbody').empty();
-    html += '<td id="addressText">'+ resArr[i] +'</td>';
-  }
-  html += '</tr>';
+html += '<td class="css0930">받으실 분</td>';
+html += '<td>'+resArr[0]+'</td>';
+html += '</tr>';
+html += '<tr>';  
+html += '<td class="css0930">배송주소</td>';
+html += '<td id="addressText">'+resArr[1]+'</td>';
+html += '</tr>';
+html += '<tr>';  
+html += '<td class="css0930">연락처</td>';
+html += '<td>'+resArr[2]+'</td>';
+html += '</tr>';
+// for(i in resArr){
+//   $('#deliveryTable > tbody').empty();
+//     html += '<td id="addressText">'+ resArr[i] +'</td>';
+
+//   }
+  //html += '</tr>';
 
   $('#deliveryTable').append(html);
 }
@@ -170,6 +182,21 @@ for(i in resArr){
     <style>
       #addressText{
         font-size: 12px;
+      }
+      #payTwoText  table{
+        border:0;
+        
+      }
+
+      #deliveryTable tr td{
+        text-align: left;
+        border-left: none;
+        border-right: none;
+        border-top:  none;
+        border-bottom: 1px solid #e1ddde;
+      }
+      .css0930{
+        width: 120px;
       }
     </style>
   </head>
@@ -283,24 +310,24 @@ for(i in resArr){
           <div class="payTwoTitleText"><span>배송지 정보</span></div>
           <div class="payTwoText">
             <table id="deliveryTable">
-              <thead>
-                <tr>
-                  <td>받으실 분</td>
-                  <td>배송주소</td>
-                  <td>연락처</td>
-                </tr>
-              </thead>
               <tbody id="deliveryAddressBody">
                 <tr>
+                  <td class="css0930">받으실 분</td>
                   <td>${deliveryAddressVO.receiver_name}</td>
+                </tr>
+                <tr>
+                  <td class="css0930">배송주소</td>
                   <td id="addressText">
-                    
                     ${deliveryAddressVO.zipcode}<br>
+                    ${deliveryAddressVO.address}
                     <c:if test="${not empty deliveryAddressVO.address2}">
                       <span id="address2">${deliveryAddressVO.address2}</span>
                     </c:if>
                     ${deliveryAddressVO.address_detail}
                   </td>
+                </tr>
+                <tr>
+                  <td class="css0930">연락처</td>
                   <td>${deliveryAddressVO.receiver_hp1}-${deliveryAddressVO.receiver_hp2}-${deliveryAddressVO.receiver_hp3}</td>
                 </tr>
               </tbody>

@@ -29,6 +29,8 @@ request.setCharacterEncoding("utf-8"); %>
       }
     </style>
     <script>
+
+      /*결제창에 정보 보내기*/
       function selectItem(){
 
     var resArr = new Array();
@@ -37,15 +39,7 @@ request.setCharacterEncoding("utf-8"); %>
 
 $("input[name='addressNum']:checked").each(function(index) {
 var num = $(this).val();
-//var resObj = new Object();
-// $tr = $("#tr_"+num);
-// resObj.deliveryName             = $tr.find("input[name=deliveryName']").val();
-// resObj.receiver_name            = $tr.find("input[name='receiver_name']").val();
-// resObj.zipcode           = $tr.find("input[name='zipcode']").val();
-// resObj.address         = $tr.find("input[name='address']").val();
-// resObj.address2     = $tr.find("input[name='address2']").val();
-// resObj.address_detail     = $tr.find("input[name='address_detail']").val();
-// resObj.receiver_hp = $tr.find("input[name='receiver_hp']").val();
+
 var deliveryName = $('#receiver_name_'+num).val();
 var zipcode = $('#zipcode_'+num).val();
 var address = $('#address_'+num).val();
@@ -63,6 +57,7 @@ console.log(resArr);
 window.opener.setResList(resArr);
 window.close();
 }
+/*-------------------------------------------------------------------------*/
     </script>
   </head>
   <body>
