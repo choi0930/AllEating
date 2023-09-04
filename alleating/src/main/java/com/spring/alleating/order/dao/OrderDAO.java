@@ -11,6 +11,7 @@ import com.spring.alleating.coupon.vo.CouponVO;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
 import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
 import com.spring.alleating.order.vo.AllEatingOrderVO;
+import com.spring.alleating.point.vo.UserPointVO;
 
 
 
@@ -33,4 +34,14 @@ public interface OrderDAO {
 	public List<DeliveryAddressVO> selectAddress(String id)throws DataAccessException;
 	/* 적용시킬 쿠폰 할인율 가져오기 */
 	public CouponVO selectApplyCoupon(String couponId)throws DataAccessException;
+	/* 주문한 상품 카트에서 삭제 */
+	public int orderProductDelCart(Map orderProductInfo)throws DataAccessException;
+	/* 주문시 사용한 쿠폰 삭제 */
+	public int orderUserDelCoupon(Map orderDelCouponInfo)throws DataAccessException;
+	/* 주문시 사용한 포인트 사용자가 가지고있는 포인트에서 빼기 */
+	public int orderUserPoint(Map userPointInfo)throws DataAccessException;
+	/* 주문시 사용한 포인트 내역 저장 */
+	public void orderUserPointHistory(Map userPointHistoryInfo)throws DataAccessException;
+	/* 유저 포인트 가져오기 */
+	public UserPointVO selectUserPoint(String id)throws DataAccessException;
 }

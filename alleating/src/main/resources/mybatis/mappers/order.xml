@@ -155,6 +155,28 @@
 					)
 		
 	</insert>
+	<!-- 주문한 상품 카트에서 삭제 -->
+	<delete id="orderProductDelCart" parameterType="java.util.Map">
+		delete from cart where productId = #{productId} and id = #{id}
+	</delete>
+	<!-- 주문시 사용한 쿠폰 삭제 -->
+	<delete id="orderUserDelCoupon" parameterType="java.util.Map">
+		delete from usercoupon where couponId = #{couponId} and id = #{id}
+	</delete>
+	<!-- 포인트 가져오기 -->
+	<select id="selectUserPoint" resultType="userPointVO" parameterType="String">
+		select * from user_point where id = #{id}
+	</select>
+	
+	<!-- 주문시 사용한 포인트 -->
+	<update id="orderUserPoint" parameterType="java.util.Map">
+		update user_point set userPoint = #{userPoint} where id = #{id}
+	</update>
+	
+	<!-- 주문시 사용한 포인트 내역 -->
+	<insert id="orderUserPointHistory" parameterType="java.util.Map">
+		insert user_point_history (id, usePoint) values (#{id}, #{usePoint})
+	</insert>
 	<!-- 주문 완료 -->
 	<select id="selectOrderNum" resultType="allEatingOrderVO" parameterType="String">
 		<![CDATA[

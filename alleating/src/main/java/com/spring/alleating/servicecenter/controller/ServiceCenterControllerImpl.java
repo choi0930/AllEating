@@ -60,27 +60,7 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 		return mav;
 	}
 	
-	/* 공지사항 작성 */
-	@Override
-	@ResponseBody
-	public String addBoard(BoardVO boardVO, HttpServletRequest request) throws Exception {
-		
-		return null;
-	}
 	
-	/* 공지사항 수정 */
-	@Override
-	public ResponseEntity<?> updateBoard(BoardVO boardVO, HttpServletRequest request) throws Exception {
-		
-		return null;
-	}
-
-	/* 공지사항 삭제 */
-	@Override
-	public String deleteBoard(String articleNO) throws Exception {
-		
-		return null;
-	}
 
 
 	@Override

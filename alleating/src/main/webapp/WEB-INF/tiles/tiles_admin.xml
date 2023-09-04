@@ -62,4 +62,14 @@
 		<put-attribute name="title" value="관리자페이지 예약 상품 주문/배송 관리페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/admin/order/adminOrderList.jsp"/>      
 	</definition>
+	
+	<definition name="/admin/adminAnnouncement" extends="baseLayout2">
+		<put-attribute name="title" value="관리자페이지 공지사항 목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/serviceCenter/adminAnnouncement.jsp"/>      
+	</definition>
+	
+	<definition name="/admin/adminAnnouncement_02" extends="baseLayout2">
+		<put-attribute name="title" value="관리자페이지 공지사항 목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/serviceCenter/announcement_02.jsp"/>      
+	</definition>
 </tiles-definitions>

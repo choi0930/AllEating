@@ -4,7 +4,13 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
-
+<c:set var="deliveryStatus" value="${userInfo.deliveryStatus}" />
+<c:set var="deliveryAddressVO" value="${userInfo.dliveryAddressVO}" />
+<c:set var="deliveryPrice" value="${userInfo.deliveryPrice}" />
+<c:set var="memberVO" value="${userInfo.memberVO}" />
+<c:set var="userPointVO" value="${userInfo.userPointVO}" />
+<c:set var="couponList" value="${userInfo.couponList}" />
+<c:set var="totalPrice" value="${userInfo.totalPrice}" />
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,7 +29,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
      	  $('#deliveryRequestSelect').on('change', function() {
      	    var deliveryRequestSelect = $('#deliveryRequestSelect').val(); //배송 요청 사항 select
      	
-     	    $('#deliveryRequest').val(deliveryRequestSelect); //배송 요청사항 input 에 적용
+     	    $('#deliveryRequest').attr("value", deliveryRequestSelect); //배송 요청사항 input 에 적용
      	  });
      	  
     /*  	  $('#deliveryRequest').prop('readonly', false); */
@@ -63,18 +69,28 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     	    }
     	}); */
     	/* 주문페이지로 가기 */
-      function fn_pay(){
+      function fn_pay(deliveryStatus){
+
+        if(deliveryStatus == 'reserve'){
+          var radioCheck = $('input[name=radioBox]:checked').val();
+          var date = [];
+          date = radioCheck.split(",");
+
+          var reserveDate = date[0];
+          var reserveTime = date[1];
+        }
+
         var userOrder;
-        var receiverName = $('#receiverName').text();
-        var receiverHp = $('#receiverHp').text();
-        var zipcode = $('#zipcode').text();
+        var receiverName = $('input[name=receiverName]').val();
+        var receiverHp = $('input[name=receiverHp]').val();
+        var zipcode = $('input[name=zipcode]').val();
         var address = $('#address').text();
-        var addressDetail = $('#addressDetail').text();
+        var addressDetail = $('input[name=addressDetail]').val();
         var deliveryRequest = $('#deliveryRequest').val();
         var orderName = $('#orderName').text();
         var orderHp = $('#orderHp').text();
         var userPoint = $('input[name=userPoint]').val();
-        var couponId = $('input[name=couponId]').val();
+        var couponId = $('#couponId').val();
         var totalPrice = $('input[name=totalPrice]').val();
         var card_com_name = $('select[name=card_com_name]').val();
         var card_pay_month = $('select[name=card_pay_month]').val();
@@ -82,31 +98,17 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         var productName = $('input[name=productName]').val();
         var cateCode = $('input[name=cateCode]').val();
         var fileName = $('input[name=fileName]').val();
-
-        console.log('받는사람: '+receiverName);
-        console.log('받는사람 전화: '+receiverHp);
-        console.log('우편번호: '+zipcode);
-        console.log('주소: '+address);
-        console.log('상세주소: '+addressDetail);
-        console.log('배송요청사항: '+deliveryRequest);
-        console.log('주문자: '+orderName);
-        console.log('주문자 번호: '+orderHp);
-        console.log('사용한 포인트: '+userPoint);
-        console.log('총결제가격: '+totalPrice);
-        console.log('카드사: '+card_com_name);
-        console.log('할부: '+card_pay_month);
-        console.log('대표상품id: '+productId);
-        console.log('대표상품이름: '+productName);
-        console.log('대표상품카테고리코드: '+cateCode);
-        console.log('대표상품이미지 파일 이름: '+fileName);
-
+        address = address.trim();
+       
         userOrder={
+          reserveDate: reserveDate,
+          reserveTime: reserveTime,
           receiverName: receiverName,
           receiverHp: receiverHp,
           zipcode: zipcode,
           address: address,
           addressDetail: addressDetail,
-          deliveryRequest: deliveryRequest,
+          delivery_request: deliveryRequest,
           orderName: orderName,
           orderHp: orderHp,
           userPoint: userPoint,
@@ -119,6 +121,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           cateCode: cateCode,
           fileName: fileName
         }
+    
         $.ajax({
         type: "POST",
         url: "${contextPath}/order/pay.do",
@@ -145,6 +148,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           let popOption = "width = 800px, height = 550px, top = 300px, left = 300px, scrollbars=yes";
         window.open(popUrl, "쿠폰 적용", popOption);
       }
+
 /* 배송지 변경 팝업창에서 가져온 정보 */
   function setResList(resArr){
 
@@ -158,11 +162,15 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     html += '</tr>';
     html += '<tr>';  
     html += '<td class="css0930">배송주소</td>';
-    html += '<td id="addressText">'+resArr[1]+'</td>';
+    html += '<td id="addressText">'+resArr[1]+'<br> <span id="address">'+resArr[2]+'</span>'+resArr[3]+'</td>';
     html += '</tr>';
     html += '<tr>';  
     html += '<td class="css0930">연락처</td>';
-    html += '<td>'+resArr[2]+'</td>';
+    html += '<td>'+resArr[4];
+    html +=  '<input type="hidden" name="receiverName" value="'+resArr[0]+'" >';
+    html += '<input type="hidden" name="receiverHp" value="'+resArr[4]+'" >';
+    html += '<input type="hidden" name="zipcode" value="'+resArr[1]+'" >'
+    html += '<input type="hidden" name="addressDetail" value="'+resArr[3]+'">'+'</td>';
     html += '</tr>';
 
   $('#deliveryTable').append(html);
@@ -210,13 +218,15 @@ $.ajax({
             $('#priceTextArea_'+productId).empty();            
             $('#priceTextArea_'+productId).html(html); 
             $('#couponDiscount').text(_discountPrice);           
-
+            $('#h_couponDiscount_'+productId).attr("value",discountPrice);
+            $('#couponId').attr("value",resCouponId);
+            $('#couponBtn').attr("disabled", true);
         },
         error: function (error) {
             console.error("오류 발생:", error);
         }
 }).done(function(){
-  discountInfo('coupon',discountPrice);
+  discountInfo();
 });
 }
 /*--------------------------------쿠폰적용 끝-------------------------------------*/
@@ -226,6 +236,7 @@ $(function(){
         $('#useAllPoint').click(function(){
           if($('#useAllPoint').prop("checked")){
             var allPoint = $('#originalUserPoint').val();
+            $('#payUsePointInput').attr("value","");
             $('#payUsePointInput').attr("value",allPoint);
           }else{
             $('#payUsePointInput').attr("value","");
@@ -237,43 +248,68 @@ $(function(){
 /* 포인트 사용 */
 function fn_usePoint(){
   var point = $('#payUsePointInput').val();
-  $('#pointuse').attr("value", point);
 
-  discountInfo('point',point);
-}
-
-function discountInfo(status, discount){
-  console.log(discount);
- var _couponDiscount;
- var coupondiscountText;
-
- var _pointDiscount;
- var pointDiscountText;
-
- var totalDiscount;
-  if(status == 'coupon'){
-    const couponDiscount = discount;  
-    _couponDiscount = couponDiscount;
-    
-  }else{
-    const  pointDiscount = discount;
-    _pointDiscount = pointDiscount;
-    
+  var originalPoint = $('#originalUserPoint').val();
+  if(Number(point)>Number(originalPoint)){
+    alert('보유하신 포인트보다 더많은 포인트를 입력하셨습니다. \n다시입력해 주세요');
+    return false;
   }
-  if(_pointDiscount == null){
-    totalDiscount = _couponDiscount;
-  }else if(_couponDiscount == null){
-    totalDiscount = _pointDiscount;
-  }else if(_pointDiscount !=null && _couponDiscount !=null){
-    totalDiscount = _couponDiscount+_pointDiscount;
-  }
-  totalDiscountText = totalDiscount
-                          .toString()
+
+  var finalPoint = Number(originalPoint) - Number(point);
+
+  var _finalPoint = finalPoint.toString()
                           .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    
-  var html = totalDiscountText;
-  $('#discountPriceText').text(html);
+
+  $('#pointuse').attr("value", point);
+  $('#payPoint').text(_finalPoint);
+  console.log(_finalPoint);
+  discountInfo();
 }
+
+/* 쿠폰 포인트로 할인되는 금액계산 */
+function discountInfo(){
+  var discount = [];
+  var point = $('#pointuse').val();
+  $('.h_couponDiscount').each(function(index){
+    discount.push($(this).val());
+  });
+  var couponDiscount = 0;
+  for(var i in discount){
+    if(discount[i] >0){
+      couponDiscount = discount[i];
+      break;
+    }
+  }
+ var totalDiscount = Number(couponDiscount) + Number(point);
+ console.log("포인트 할인금액: "+point);
+ console.log("쿠폰 할인금액: "+couponDiscount);
+ console.log("총할인금액: "+totalDiscount);
+  var _totalDiscount = totalDiscount.toString()
+                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+  $('#discountPriceText').text(_totalDiscount);
+  $('#discountPrice').attr("value", totalDiscount);
+  fn_totalPrice();
+}
+/*----------------------------------------------------------------------*/
+
+/* 할인 적용시 값 계산 */
+function fn_totalPrice(){
+  
+  var totalProductPrice = $('#h_totalProductPrice ').val();
+  var deliveryPrice = $('#h_deliveryPrice').val();
+  var discountPrice = $('#discountPrice ').val();
+  var finalPrice;
+  var finalTotalProductPrice;
+
+  finalTotalProductPrice = Number(totalProductPrice) - Number(discountPrice);
+  finalPrice = Number(finalTotalProductPrice) + Number(deliveryPrice);
+
+  $('#finalTotalPrice').attr("value",finalPrice);
+  $('#totalPrices').text(finalTotalProductPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
+  $('#totalPrice').text(finalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
+}
+
     </script>
     <style>
       #addressText{
@@ -297,111 +333,59 @@ function discountInfo(status, discount){
         text-decoration: line-through;
         color: #e1ddde;
       }
+      .dliveryRequest_select{
+        width: 25%;
+        display: inline;
+      }
+      .reserveChoice{
+        width: 820px;
+        margin: 0 auto;
+      }
     </style>
   </head>
   <body>
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">쿠폰 선택</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <td>선택</td>
-                  <td>쿠폰 이름</td>
-                  <td>할인중</td>
-                </tr>
-              </thead>
-              <tbody>
-                <c:choose>
-                  <c:when test="${empty couponList}">
-                      <tr>
-                        <td colspan="3"> 쿠폰 내역이 없습니다.</td>
-                      </tr>
-                  </c:when>
-                  <c:otherwise>
-                    <c:forEach var="coupon" items="${couponList}">
-                       <tr>
-                         <td>
-                           <input type="checkbox" />
-                         </td>
-                          <td>회원가입 환영 쿠폰</td>
-                         <td>2,000원</td>
-                       </tr>
-                     </c:forEach>
-                  </c:otherwise>
-                </c:choose>
-              </tbody>
-            </table>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              닫기
-            </button>
-            <button type="button" class="btn btn-primary">쿠폰 선택</button>
-          </div>
-        </div>
-      </div>
-    </div>
+ 
     <div class="payTwoSeationText">결제하기</div>
     <div class="payTwoPage">
       <!--배송지 정보-->
       <div class="payTwoDeliberyInfoMain">
-        <div class="dvtext01">
-          <ul>
-            <h5>예약 배송 일자 및 시간 선택</h5>
-          </ul>
-        </div>
-        <table class="dvtb">
-          <tr>
-            <td></td>
-            <td><strong>${dateInfo.endDate}</strong></td> 
-            <td><strong>8월/25일</strong></td>
-            <td><strong>8월/26일</strong></td>
-            <td><strong>8월/27일</strong></td>
-            <td><strong>8월/28일</strong></td>
-            <td><strong>${dateInfo.beginDate}</strong></td> 
-          </tr>
-          <tr>
-            <td>10:00~16:00</td>
-            <td rowspan="3">예약 마감</td>
-            <td><input type="radio" name="checkBox" />예약가능</td>
-            <td><input type="radio" name="checkBox" />예약가능</td>
-            <td><input type="radio" name="checkBox" />예약가능</td>
-          </tr>
-          <tr>
-            <td>15:00~19:00</td>
-            <td><input type="radio" name="checkBox" />예약가능</td>
-            <td><input type="radio" name="checkBox" />예약가능</td>
-            <td><input type="radio" name="checkBox" />예약가능</td>
-          </tr>
-          <tr>
-            <td>17:00~21:00</td>
-            <td><input type="radio" name="checkBox" />예약가능</td>
-            <td><input type="radio" name="checkBox" />예약가능</td>
-            <td><input type="radio" name="checkBox" />예약가능</td>
-          </tr>
-        </table>
+        <div class="reserveChoice">
+        <c:if test="${deliveryStatus eq 'reserve'}">
+          <c:set var="dateInfo" value="${userInfo.dateInfo}" />
+          <div class="dvtext01">
+            <ul>
+              <h5>예약 배송 일자 및 시간 선택</h5>
+            </ul>
+          </div>
+          <table class="dvtb">
+            <tr>
+              <td></td>
+              <c:forEach var="list" items="${dateInfo}">
+                <td><strong>${list}</strong></td> 
+              </c:forEach>
+            </tr>
+            <tr>
+              <td>10:00~16:00</td>
+              <td rowspan="3">예약 마감</td>
+              <c:forEach var="i" begin="1" end="4">
+                <td><input type="radio" name="radioBox" value="${dateInfo[i]},10:00~16:00"/>예약가능</td>
+              </c:forEach>
+            </tr>
+            <tr>
+              <td>15:00~19:00</td>
+              <c:forEach var="i" begin="1" end="4">
+                <td><input type="radio" name="radioBox" value="${dateInfo[i]},15:00~19:00"/>예약가능</td>
+              </c:forEach>
+            </tr>
+            <tr>
+              <td>17:00~21:00</td>
+              <c:forEach var="i" begin="1" end="4">
+                <td><input type="radio" name="radioBox" value="${dateInfo[i]},17:00~21:00"/>예약가능</td>
+              </c:forEach>
+            </tr>
+          </table>
+        </c:if>
+      </div>
          <!--수령자 배송지및 이름 전화번호 처음에는 기본배송지 회원가입시 적었던 배송지 표시 배송지 변경시에 변경가능-->
          
         <div class="payDeliveryInfo">
@@ -418,16 +402,24 @@ function discountInfo(status, discount){
                   <td class="css0930">배송주소</td>
                   <td id="addressText">
                     ${deliveryAddressVO.zipcode}<br>
+                    <span id="address">
                     ${deliveryAddressVO.address}
                     <c:if test="${not empty deliveryAddressVO.address2}">
                       <span id="address2">${deliveryAddressVO.address2}</span>
                     </c:if>
+                    </span>
                     ${deliveryAddressVO.address_detail}
                   </td>
                 </tr>
                 <tr>
                   <td class="css0930">연락처</td>
-                  <td>${deliveryAddressVO.receiver_hp1}-${deliveryAddressVO.receiver_hp2}-${deliveryAddressVO.receiver_hp3}</td>
+                  <td>
+                    ${deliveryAddressVO.receiver_hp1}-${deliveryAddressVO.receiver_hp2}-${deliveryAddressVO.receiver_hp3}
+                    <input type="hidden" name="receiverName" value="${deliveryAddressVO.receiver_name}" />
+                    <input type="hidden" name="receiverHp" value="${deliveryAddressVO.receiver_hp1}-${deliveryAddressVO.receiver_hp2}-${deliveryAddressVO.receiver_hp3}" />
+                    <input type="hidden" name="zipcode" value="${deliveryAddressVO.zipcode}" />
+                    <input type="hidden" name="addressDetail" value="${deliveryAddressVO.address_detail}" />
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -456,7 +448,7 @@ function discountInfo(status, discount){
           <span class="payTwoTitleText">배송 요청 사항</span>
 
           <input
-            type="text" class="form-control payTwoInput" name="delivery_request"id="deliveryRequest"  />
+            type="text" class="form-control payTwoInput" name="delivery_request" id="deliveryRequest"  />
 
           <select
             class="form-select deliveryRequest_select"
@@ -482,10 +474,6 @@ function discountInfo(status, discount){
           <div class="payTwoTitleText">휴대폰</div>
           <div class="payTwoOrderInfo" id="orderHp">${memberVO.hp1}-${memberVO.hp2}-${memberVO.hp3}</div>
         </div>
-    <!-- <div class="payDeliveryInfo">
-          <div class="payTwoTitleText">이메일</div>
-          <div class="payTwoOrderInfo">${order.email}</div>
-        </div>-->
       </div>
       <!--end payDeliveryInfoMain(배송지정보)-->
 
@@ -510,11 +498,13 @@ function discountInfo(status, discount){
             <span id="priceTextArea_${item.productId}"><fmt:formatNumber value="${item.productPrice * item.productQty}" type="number" /></span>
             <input type="hidden" value="${item.productPrice * item.productQty}" name="oneProductPrice" id="productPrice_${item.productId}"/> 
             <input type="hidden" value="${item.productPrice * item.productQty}" id="originalPrice_${item.productId}" />
+            <input type="hidden"  class="h_couponDiscount" id="h_couponDiscount_${item.productId}"/>
            <br />
             수량 ${item.productQty}개
           </div>
         </div>
         </c:forEach>
+        <!--대표 상품 저장-->
         <input type="hidden" name="productId" value="${allEating[0].productId}" />
         <input type="hidden" name="productName" value="${allEating[0].productName}" />
         <input type="hidden" name="fileName" value="${allEating[0].fileName}" />
@@ -531,11 +521,11 @@ function discountInfo(status, discount){
         <div class="payDeliveryInfo payTwoborderTop">
           <div class="payTwoTitleText">현재 보유중인 적립금</div>
           <div class="payTwoPoint">
-            <fmt:formatNumber value="${userPointVO.userPoint}" type="number" />원
-            <input type="hidden" value="" id="userPoint1">
-            <input type="hidden" value="${userPointVO.userPoint}" id="originalUserPoint">
+            <span id="payPoint">
+              <fmt:formatNumber value="${userPointVO.userPoint}" type="number" />
+            </span>원
           </div>
-          <input type="hidden" name="userPoint" value="" id="pointuse"/>
+          <input type="hidden" value="${userPointVO.userPoint}" id="originalUserPoint">
         </div>
         <div class="payDeliveryInfo">
           <div class="payTwoTitleText">사용할 적립금</div>
@@ -546,6 +536,7 @@ function discountInfo(status, discount){
               class="form-control"
               id="payUsePointInput"  
             />원
+            <input type="hidden" name="userPoint" value="" id="pointuse"/>
           </div>
           <button class="btn btn-primary payTwoCouponBtn" onclick="fn_usePoint()">사용</button>
         </div>
@@ -555,7 +546,7 @@ function discountInfo(status, discount){
             <input type="hidden" id="couponId" value=""/>
             -<span id="couponDiscount">0</span>원[할인]
           
-            <button onclick="fn_selectCoupon()">
+            <button class="btn btn-primary payTwoCouponBtn" id="couponBtn" onclick="fn_selectCoupon()">
               쿠폰 선택
             </button>
           </div>
@@ -576,8 +567,14 @@ function discountInfo(status, discount){
             </tr>
             <tr>
               <td>주문 금액</td>
-              <td><span style="font-size: 20px; font-weight: bold" id="totalPrice">${totalPrice+deliveryPrice}원</span>   (상품가 ${totalPrice}원+배송비 ${deliveryPrice}원)</td>
-              <input type="hidden" name="totalPrice" value="${totalPrice+deliveryPrice}" />
+              <td>
+                  <span style="font-size: 20px; font-weight: bold" id="totalPrice">
+                    <fmt:formatNumber value="${totalPrice+deliveryPrice}" type="number" /> 
+                  </span> 원   
+              (상품가 <span id="totalPrices"><fmt:formatNumber value="${totalPrice}" type="number" /></span>원+배송비 <span id="deliveryPrice"><fmt:formatNumber value="${deliveryPrice}" type="number" /></span>원)</td>
+              <input type="hidden" id="h_totalProductPrice" value="${totalPrice}" />
+              <input type="hidden" id="h_deliveryPrice" value="${deliveryPrice}" />
+              <input type="hidden" name="totalPrice" id="finalTotalPrice" value="${totalPrice+deliveryPrice}" />
             </tr>
             </tbody>
           </table>
@@ -622,7 +619,7 @@ function discountInfo(status, discount){
       </div>
       <!--end payOptionInfo(결제수단선택)-->
       <div>
-        <button id="payTwoLastbtn" onclick="fn_pay()"><span>결제하기</span></button>
+        <button id="payTwoLastbtn" onclick="fn_pay('${deliveryStatus}')"><span>결제하기</span></button>
       </div>
      
      

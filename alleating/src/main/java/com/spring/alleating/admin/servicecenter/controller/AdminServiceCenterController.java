@@ -1,4 +1,4 @@
-package com.spring.alleating.servicecenter.controller;
+package com.spring.alleating.admin.servicecenter.controller;
 
 import java.util.Map;
 
@@ -12,18 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.alleating.servicecenter.vo.BoardVO;
 
-public interface ServiceCenterController {
+public interface AdminServiceCenterController {
 	/* 공지사항 목록 */
 	public ModelAndView getBoardList(@RequestParam Map<String, ?> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
-	
-	
-
-	/*상품문의 페이지 이동*/
-	public ModelAndView personalQ (HttpServletRequest request)throws Exception;
-	/*상품문의 페이지 작성*/
-	public ModelAndView addPersonalQ (HttpServletRequest request)throws Exception;
-
-	//상품 문의
-	public ModelAndView productQnAList(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	/* 공지사항 작성 */
+	public String addBoard(@RequestBody BoardVO boardVO, HttpServletRequest request)throws Exception;
+	/* 공지사항 수정 */
+	public ResponseEntity<?> updateBoard(@RequestParam BoardVO boardVO, HttpServletRequest request)throws Exception;
+	/* 공지사항 삭제 */
+	public String deleteBoard(@RequestParam String articleNO) throws Exception;
 }

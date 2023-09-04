@@ -23,27 +23,6 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
 		
 		return null;
 	}
-	
-	/* 공지사항 작성 */
-	@Override
-	public int addBoard(BoardVO boardVO) throws DataAccessException {
-		
-		return 0;
-	}
-	
-	/* 공지사항 수정 */
-	@Override
-	public int updateBoard(BoardVO boardVO) throws DataAccessException {
-		
-		return 0;
-	}
-	
-	/* 공지사항 삭제 */
-	@Override
-	public int deleteBoard(String articleNO) throws DataAccessException {
-		
-		return 0;
-	}
 
 	
 	

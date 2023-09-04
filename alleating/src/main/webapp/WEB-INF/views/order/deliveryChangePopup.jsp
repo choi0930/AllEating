@@ -47,12 +47,15 @@ var address2 = $('#address2_'+num).val();
 var address_detail = $('#address_detail_'+num).val();
 var receiver_hp = $('#receiver_hp_'+num).val();
  console.log(deliveryName);
-var _address = zipcode+"</br>"+address+address2+"</br>"+address_detail
+ var _zipcode = zipcode;
+ var _address = address+address2;
+ var _address_detail = address_detail;
 resArr.push(deliveryName);
+resArr.push(_zipcode);
 resArr.push(_address);
+resArr.push(_address_detail);
 resArr.push(receiver_hp);
 
-console.log(resArr);
 });
 window.opener.setResList(resArr);
 window.close();

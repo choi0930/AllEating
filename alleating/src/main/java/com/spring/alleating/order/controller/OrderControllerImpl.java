@@ -82,7 +82,8 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		String viewName =(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
-		Map dateInfo = calcSearchPeriod("four_day");
+		
+		
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		List<AllEatingOrderDetailVO> allEatingOrderDetailes = (List<AllEatingOrderDetailVO>) session.getAttribute("allEating");
@@ -92,19 +93,22 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		cartMap.put("allEating",allEatingOrderDetailes);
 		
 		Map userInfo = orderService.userInfoToPay(cartMap);
-		List<UserCouponVO> couponList = (List<UserCouponVO>) userInfo.get("couponList");
-		UserPointVO userPointVO = (UserPointVO) userInfo.get("userPointVO");
-		int totalPrice = (int) userInfo.get("totalPrice");
-		int deliveryPrice = (int) userInfo.get("deliveryPrice");
-		DeliveryAddressVO dliveryAddressVO = (DeliveryAddressVO) userInfo.get("dliveryAddressVO");
+//		List<UserCouponVO> couponList = (List<UserCouponVO>) userInfo.get("couponList");
+//		UserPointVO userPointVO = (UserPointVO) userInfo.get("userPointVO");
+//		int totalPrice = (int) userInfo.get("totalPrice");
+//		int deliveryPrice = (int) userInfo.get("deliveryPrice");
+//		DeliveryAddressVO dliveryAddressVO = (DeliveryAddressVO) userInfo.get("dliveryAddressVO");
+//		String deliveryStatus = (String) userInfo.get("deliveryStatus");
 		
-		mav.addObject("dateInfo", dateInfo);
-		mav.addObject("deliveryPrice", deliveryPrice);
-		mav.addObject("totalPrice", totalPrice);
-		mav.addObject("memberVO",memberVO);
-		mav.addObject("userPointVO",userPointVO);
-		mav.addObject("couponList",couponList);
-		mav.addObject("deliveryAddressVO",dliveryAddressVO);
+//		mav.addObject("deliveryStatus", deliveryStatus);
+//		mav.addObject("deliveryPrice", deliveryPrice);
+//		mav.addObject("totalPrice", totalPrice);
+//		mav.addObject("memberVO",memberVO);
+//		mav.addObject("userPointVO",userPointVO);
+//		mav.addObject("couponList",couponList);
+//		mav.addObject("deliveryAddressVO",dliveryAddressVO);
+		
+		mav.addObject("userInfo", userInfo);
 		
 		return mav;	
 	}
