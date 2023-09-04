@@ -21,4 +21,9 @@ public interface ServiceCenterController {
 	public ResponseEntity<?> updateBoard(@RequestParam BoardVO boardVO, HttpServletRequest request)throws Exception;
 	/* 공지사항 삭제 */
 	public String deleteBoard(@RequestParam String articleNO) throws Exception;
+	
+	/*상품문의 페이지 이동*/
+	public ModelAndView personalQ (HttpServletRequest request)throws Exception;
+	/*상품문의 페이지 작성*/
+	public ModelAndView addPersonalQ (HttpServletRequest request)throws Exception;
 }

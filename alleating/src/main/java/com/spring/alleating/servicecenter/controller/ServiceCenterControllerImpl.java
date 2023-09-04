@@ -81,4 +81,24 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 		return null;
 	}
 
+	@Override
+	@RequestMapping(value="/serviceCenter/personal_q_01.do", method = RequestMethod.GET)
+	public ModelAndView personalQ(HttpServletRequest request) throws Exception {
+		String viewName = (String)request.getParameter("viewName");
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/serviceCenter/addPersonal.do", method = RequestMethod.GET)
+	public ModelAndView addPersonalQ(HttpServletRequest request) throws Exception {
+		String viewName = (String)request.getParameter("viewName");
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName(viewName);
+		return mav;
+	}
+
 }

@@ -12,4 +12,14 @@
 	<put-attribute name="body" value="/WEB-INF/views/serviceCenter/announcement.jsp"/>      
 </definition>
 
+<definition name="/serviceCenter/personal_q_01" extends="baseLayout2">
+	<put-attribute name="title" value="상품문의 페이지"/>
+	<put-attribute name="body" value="/WEB-INF/views/serviceCenter/personal_q_01.jsp"/>      
+</definition>
+
+<definition name="/serviceCenter/addPersonal" extends="baseLayout2">
+	<put-attribute name="title" value="상품문의 작성 페이지"/>
+	<put-attribute name="body" value="/WEB-INF/views/serviceCenter/addPersonal.jsp"/>      
+</definition>
+
 </tiles-definitions>

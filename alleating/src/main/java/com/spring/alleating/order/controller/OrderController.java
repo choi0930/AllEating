@@ -29,4 +29,6 @@ public interface OrderController {
     public ModelAndView selectUserReview(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception;
     /*배송지 변경 팝업창*/
     public void deliveryChangePopUp(Model model, HttpServletRequest request)throws Exception;
+    /*팝업창에서 선택한 쿠폰 적용*/
+    public Map<String, Object> couponApply(@RequestBody Map<String, Object>couponInfo, HttpServletRequest request)throws Exception;
 }

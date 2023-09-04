@@ -12,6 +12,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.spring.alleating.coupon.dao.CouponDAO;
+import com.spring.alleating.coupon.vo.CouponVO;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
@@ -21,7 +22,6 @@ import com.spring.alleating.order.vo.AllEatingOrderVO;
 import com.spring.alleating.point.dao.PointDAO;
 import com.spring.alleating.point.vo.UserPointVO;
 import com.spring.alleating.product.dao.ProductDAO;
-import com.spring.alleating.product.vo.ProductImgVO;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService{
@@ -193,6 +193,34 @@ public class OrderServiceImpl implements OrderService{
 		userReviewInfo.put("reviewList", reviewList);
 		
 		return userReviewInfo;
+	}
+	/*선택한 쿠폰 상품에 적용*/
+	@Override
+	public Map<String, Object> couponApply(Map dataMap) throws DataAccessException {
+		String couponId = (String) dataMap.get("couponId");
+		String _productPrice = (String) dataMap.get("productPrice");
+		String productId = (String) dataMap.get("productId");
+		System.out.println(couponId);
+		System.out.println(_productPrice);
+		System.out.println(productId);
+		int productPrice = Integer.parseInt(_productPrice);
+		
+		CouponVO couponVO = orderDAO.selectApplyCoupon(couponId);
+		int couponDiscountRate = couponVO.getCouponDiscountRate();
+		
+		double productDiscountFactor = couponDiscountRate / 100.0; // 나눗셈 결과를 실수로 얻기 위해 100.0으로 나눔
+		int productRound = (int) (productPrice * (1 - productDiscountFactor)); // 할인율을 올바르게 적용하여 할인 가격 계산
+		int lastDigit = productRound % 10; // product의 숫자의 마지막 자릿수 추출
+		int productSalesPrice = productRound + ( 10 - lastDigit); //다음 10의 배수로 올림
+		
+		Map resMap =  new HashMap<>();
+		
+		resMap.put("couponId", couponId);
+		resMap.put("productPrice", productSalesPrice);
+		resMap.put("productId",productId);
+		resMap.put("couponDiscountRate", couponDiscountRate);
+		
+		return resMap;
 	}
 
 	

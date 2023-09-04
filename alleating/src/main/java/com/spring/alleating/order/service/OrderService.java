@@ -11,7 +11,7 @@ import com.spring.alleating.order.vo.AllEatingOrderVO;
 
 
 public interface OrderService {
-	/*寃곗젣�뿉 �븘�슂�븳 �쑀�� �쟻由쎄툑 荑좏룿 議고쉶*/
+	/*결제 페이지 이동*/
 	public Map userInfoToPay(Map info)throws DataAccessException;
 	
 	public String pay(Map userOrder)throws DataAccessException;
@@ -25,4 +25,6 @@ public interface OrderService {
 	public Map selectUserReview(String id) throws DataAccessException; //마이페이지 작성가능한후기 조회
 	
 	public List<DeliveryAddressVO> getDeliveryAddressList(String id)throws DataAccessException; //배송지 목록 가져오기
+	/* 쿠폰 할인율 상품 가격에 적용 */
+	public Map<String, Object> couponApply(Map dataMap)throws DataAccessException;
 }
