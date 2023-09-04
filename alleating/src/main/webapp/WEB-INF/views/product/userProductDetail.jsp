@@ -349,11 +349,12 @@ function fn_goToPay(){
 </div>
 
 <div class="result">
-<button type="button" class="resultbutton" width="56" height="56" radius="3">
-<span class="heart">
+<a href="${contextPath }/myPage/myPage_addWish.do">
+
 <img src="${contextPath}/img/image_logo/heart_icon.png" class="heartimg">
-</span>
-</button>
+
+</a>
+
 <div class="cart">
 <button type="button"   radius="3" class="cartbutton" onclick="add_cart('${userProductVO.productId}')">
 <span class="cart-2">장바구니 담기</span>
@@ -433,7 +434,7 @@ function fn_goToPay(){
 </a>
 </li>
 <li class="info-3">
-<a class="info-4">
+<a class="info-4" href="${contextPath }/serviceCenter/productQnA.do">
 <span class="info-5">상품문의</span>
 </a>
 </li>

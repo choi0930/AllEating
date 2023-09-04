@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -81,4 +82,22 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 		return null;
 	}
 
+	
+
+	
+	//상품 문의
+	@Override
+	@RequestMapping (value = "/serviceCenter/productQnA.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView productQnAList(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+			HttpSession session = request.getSession();
+			session.setAttribute("side_menuType", "customer_service_center");
+			
+			String viewName = (String) request.getAttribute("viewName");
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName(viewName);
+			
+		
+			return mav;
+}
 }

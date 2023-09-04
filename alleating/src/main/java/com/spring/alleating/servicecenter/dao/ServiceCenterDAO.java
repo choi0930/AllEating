@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.spring.alleating.servicecenter.vo.BoardVO;
+import com.spring.alleating.servicecenter.vo.InqueryBoardVO;
 @Mapper
 @Repository("serviceCenterDAO")
 public interface ServiceCenterDAO {
@@ -20,4 +21,7 @@ public interface ServiceCenterDAO {
 	public int updateBoard(BoardVO boardVO)throws DataAccessException;
 	/* 공지사항 삭제 */
 	public int deleteBoard(String articleNO)throws DataAccessException;
+	
+	//상품 문의 목록
+	public List<InqueryBoardVO> selectProductQnA (Map productQnAInfo) throws DataAccessException;
 }

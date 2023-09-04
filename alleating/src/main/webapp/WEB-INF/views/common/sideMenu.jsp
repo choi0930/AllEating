@@ -243,7 +243,7 @@ text-decoration:none;}
                         </a>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="${contextPath}/myPage/myPage_04.do">상품 문의
+                        <a class="side_aTag" href="${contextPath}/myPage/myPage_productQnA.do">상품 문의
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
@@ -376,6 +376,11 @@ text-decoration:none;}
                     </li>
                     <li class="side_tap">
                         <a class="side_aTag" href="#">1:1문의
+                            <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
+                        </a>
+                    </li>
+                    <li class="side_tap">
+                        <a class="side_aTag" href="${cotextPath }/serviceCenter/productQnA.do">상품 문의
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
