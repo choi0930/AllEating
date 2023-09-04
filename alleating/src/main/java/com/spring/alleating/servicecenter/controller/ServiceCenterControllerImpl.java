@@ -92,9 +92,12 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 			throws Exception {
 			HttpSession session = request.getSession();
 			session.setAttribute("side_menuType", "customer_service_center");
+			
 			String viewName = (String) request.getAttribute("viewName");
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName(viewName);
+			
+		
 			return mav;
 }
 }
