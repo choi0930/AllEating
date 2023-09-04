@@ -434,7 +434,7 @@ function fn_goToPay(){
 </a>
 </li>
 <li class="info-3">
-<a class="info-4" href="${contextPath }/serviceCenter/productQnA.do">
+<a class="info-4" href="${contextPath }/serviceCenter/productQnA.do?productId=${userProductVO.productId}">
 <span class="info-5">상품문의</span>
 </a>
 </li>

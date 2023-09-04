@@ -10,6 +10,7 @@
 <style>
 	.admin_personal_q_addall{
 	width:840px;
+	padding-top: 15px;
 }
 	.admin_personal_q_adda{
 	display: flex;
@@ -44,6 +45,7 @@
     width: 840px;
     padding: 4px 20px;
     border-top: 2px solid rgb(51, 51, 51);
+        padding-top: 25px;
 }
 
 	.admin_personal_q_adde{
@@ -520,6 +522,9 @@
     -webkit-box-align: center;
     align-items: center;
     padding-top: 40px;
+    margin-top: -75px;
+    margin-bottom: 130px;
+        padding-left: 665px;
 }
 	button[disabled], input[disabled] {
     cursor: default;
@@ -541,17 +546,28 @@
     border-radius: 3px !important;
 }
 
+.add_submit_btn{
+border:none;
+width:100px;
+height:40px;
+background:#000060;
+color:white;}
+
 
 </style>
 
 <div class="admin_personal_q_addall">
 <div class="admin_personal_q_adda">
 <div class="admin_personal_q_addb">
-<h3 class="admin_personal_q_addc">1:1 문의</h3>
+<h3 class="admin_personal_q_addc">상품 문의</h3>
 </div>
 </div>
 <div class="admin_personal_q_addd">
-<form>
+<form action="${contextPath }/serviceCenter/addQnA.do">
+<input type="hidden" name="productId" value="<%= request.getParameter("productId") %>">
+<input type="hidden" name="id" value="<%= request.getParameter("id") %>">
+
+
 <div class="admin_personal_q_adde">
 <div class="admin_personal_q_adde1">
 <label data-testid="label-text">
@@ -566,26 +582,13 @@
 
 <div>
 <div class="admin_personal_q_adde6">
-<div variant="outlined" class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl jss2 css-eg1co4">
-<div tabindex="0" role="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Without label" class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input css-qiwgdb">
-<select>
-<option>주문/결제/반품/교환문의</option>
-<option>이벤트/쿠폰/적립금문의</option>
-<option>상품문의</option>
-<option>배송문의</option>
-<option>상품 누락 문의</option>
-<option>기타</option>
-</select>
+
+
+<input data-testid="input-box" id="inquiry-subject" name="subject" disabled placeholder="상품 문의" type="text" height="44" class="css-1quw3ub e1uzxhvi2" value="">
+
 </div>
-<input aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-1k3x8v3" value="">
-<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1636szt" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
-<path d="M7 10l5 5 5-5z"></path></svg>
-<fieldset aria-hidden="true" class="MuiOutlinedInput-notchedOutline css-igs3ac">
-<legend class="css-nnbavb"><span class="notranslate">​</span>
-</legend>
-</fieldset>
-</div>
-</div>
+
+
 </div>
 </div>
 <div class="admin_personal_q_adde5">
@@ -594,7 +597,7 @@
 <div variant="outlined" class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl jss2 css-eg1co4">
 
 <input aria-hidden="true" tabindex="-1" disabled="" class="MuiSelect-nativeInput css-1k3x8v3" value="">
-<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined Mui-disabled css-1636szt" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
+
 <path d="M7 10l5 5 5-5z"></path></svg>
 
 <legend class="css-nnbavb">
@@ -651,23 +654,13 @@
 <div class="admin_personal_q_addh4">
 <div class="admin_personal_q_addh5">
 <div class="admin_personal_q_addh6">
-<label for="photo-picker" class="css-0 e1l8vpkx2">
-<button type="button" class="css-j9ybaa e1l8vpkx0">
-<span class="css-113ip0v e1tcjz8t0"></span>
-</button><input multiple="" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp" class="css-eivff4 e1l8vpkx1"></label>
+
+
 </div>
 </div>
 <div class="admin_personal_q_addh7">
 
-<div class="admin_personal_q_addh8">
-	<span class="css-1xbds45 edd8l6o0"></span>
-	30MB 이하의 이미지만 업로드 가능합니다.
-</div>
 
-<div class="admin_personal_q_addi">
-	<span class="css-1xbds45 edd8l6o0"></span>
-	상품과 무관한 내용이거나 음란 및 불법적인 내용은 통보없이 삭제 될 수 있습니다.
-</div>
 
 
 
@@ -677,7 +670,7 @@
 </div>
 </div>
 <div class="admin_personal_q_addi2">
-<button type="submit" disabled="" class="css-13kn1it ebvrvv10">등록</button>
+<button type="submit" class="add_submit_btn">등록</button>
 </div>
 
 </form>

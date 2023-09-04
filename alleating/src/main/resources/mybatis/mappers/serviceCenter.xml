@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.spring.alleating.servicecenter.dao.ServiceCenterDAO">
+  <resultMap id="boardResult" type="boardVO">
+  	<result property="articleNO" column="articleNO" />
+  	<result property="id" column="id" />
+  	<result property="title" column="title" />
+  	<result property="content" column="content" />
+  	<result property="writeDate" column="writeDate" />
+
+  </resultMap>
+  <resultMap id="inquiryBoardResult" type="inquiryBoardVO">
+  <result property="articleNO" column="articleNO"/>
+  <result property="parentNO" column="parentNO"/>
+  <result property="productId" column="productId"/>
+  <result property="id" column="id"/>
+  <result property="board_status" column="board_status"/>
+  <result property="title" column="title"/>
+  <result property="content" column="content"/>
+  <result property="writeDate" column="writeDate"/>
+  
+  <!-- inquery + product -->
+  <result property="fileName" column="fileName"/>
+  <result property="cateCode" column="cateCode"/>
+  <result property="productBrand" column="productBrand"/>
+  <result property="productName" column="productName"/>
+  
+ 
+         
+  </resultMap>
+  
+ 
+
+  
+  <!-- 공지사항 리스트 가져오기 -->
+  <select id="boardList" resultMap="boardResult" parameterType="java.util.Map">
+  		select * from board
+  </select>
+  <!-- 공지사항 작성 -->
+  <insert id="insertBoard" parameterType="boardVO">
+  	insert into board (articleNO, id, title, content) values (#{articleNO}, #{id}, #{title}, #{content})
+  </insert>
+  
+   <!-- 공지사항 수정 -->
+  <update id="updateBoard" parameterType="boardVO">
+  	update board set title = #{title}, content = #{content} where articleNO = #{articleNO}
+  </update>
+  
+  <!-- 공지사항 삭제 -->
+  <delete id="deleteBoard" parameterType="String">
+  	delete from board where articleNo = #{articleNO}
+  </delete>
+  
+  <!-- 상품 문의 목록 -->
+ <select id="productQnAList" resultMap="inquiryBoardResult" parameterType="java.util.Map">
+
+ select i.*, p.cateCode, p.productBrand, p.productName, p.deliveryType, a.fileName, a.fileType
+ from inquiry_board i
+ inner join product p on i.productId = p.productId inner join product_img a on p.productId = a.productId
+ where a.fileType = 'main_image'
+ </select>
+ 
+ <!-- 상품 문의 등록 -->
+ <insert id="insertQnA" parameterType="java.util.Map">
+ <selectKey resultType="String" keyProperty="articleNO"
+			order="BEFORE">
+			select ifnull(max(articleNO),0)+1 from inquiry_board
+		</selectKey>
+		
+ insert into inquiry_board(
+  articleNO,
+  productId,
+  id,
+  title,
+  content)
+  values (
+  #{articleNO},
+  #{productId},
+  #{id},
+  #{title},
+  #{content})
+      
+  
+ </insert>
+ </mapper>

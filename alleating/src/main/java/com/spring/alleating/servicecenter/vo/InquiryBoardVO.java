@@ -4,18 +4,59 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component("inqueryBoardVO")
+
+@Component("inquiryBoardVO")
 public class InquiryBoardVO {
 	private int level;
 	private String articleNO;
 	private String parentNO;
 	private String id;
+
+	private int productId;
+
 	private String board_status;
 	private String title;
 	private String content;
 	private Date writeDate;
+
+	private String fileName;
+	private String cateCode;
+	private String productBrand;
+	private String productName;
 	
 	
+	
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getCateCode() {
+		return cateCode;
+	}
+	public void setCateCode(String cateCode) {
+		this.cateCode = cateCode;
+	}
+	public String getProductBrand() {
+		return productBrand;
+	}
+	public void setProductBrand(String productBrand) {
+		this.productBrand = productBrand;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
 	public int getLevel() {
 		return level;
 	}

@@ -26,7 +26,9 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	@Autowired
 	private ProductDAO productDAO;
 	@Autowired
-	private InquiryBoardVO inquiryboardVO;
+
+	private InquiryBoardVO inqueryboardVO;
+
 
 	@Override
 	public int addNewProduct(Map productInfo) throws Exception {

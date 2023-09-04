@@ -64,7 +64,7 @@ public class CommunityControllerImpl  implements CommunityController {
 	}
 
 	
-/////////////////////////////////// 게시물 작성 페이지로 이동하기/////////////////
+/////////////////////////////////// 후기 작성 페이지로 이동하기/////////////////
 	@Override
 	public String addreview(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
