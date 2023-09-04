@@ -13,6 +13,7 @@
 	 		<mapper resource = "mybatis/mappers/admin_member.xml" />
 	 		<mapper resource = "mybatis/mappers/admin_coupon.xml" />
 	 		<mapper resource = "mybatis/mappers/admin_order.xml" />
+	 		<mapper resource = "mybatis/mappers/admin_servicecenter.xml" />
 			<mapper resource = "mybatis/mappers/product.xml" />
 	 		<mapper resource = "mybatis/mappers/main.xml" />
 	 		<mapper resource = "mybatis/mappers/cart.xml" />

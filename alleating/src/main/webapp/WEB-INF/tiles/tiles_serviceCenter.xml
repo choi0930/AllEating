@@ -20,6 +20,7 @@
   
 <!--<put-attribute name="body" value="/WEB-INF/views/serviceCenter/addPersonal.jsp"/>-->
   
+
 <definition name="/serviceCenter/productQnA" extends="baseLayout2">
 	<put-attribute name="title" value="상품 문의 페이지"/>
 	<put-attribute name="body" value="/WEB-INF/views/serviceCenter/productQnA.jsp"/>      

@@ -1,6 +1,7 @@
 package com.spring.alleating.order.service;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -78,17 +79,27 @@ public class OrderServiceImpl implements OrderService{
 		int productPrice =0;
 		int totalPrice = 0;
 		int deliveryPrice = 0;
+		String deliveryStatus = "normal";
 		for(AllEatingOrderDetailVO vo: allEatingOrderDetailes) {
 			int price = vo.getProductPrice();
 			int qty = vo.getProductQty();
+			String deliveryType = vo.getDeliveryType();
+			if(deliveryType.equals("reserve")) {
+				deliveryStatus = "reserve";
+			}
 			productPrice = price*qty;
 			totalPrice+=productPrice;
-		
+			
 		}
-		
 			deliveryPrice = 3000;
-		
+			
 		Map<String, Object> userInfo = new HashMap<String, Object>();
+		if(deliveryStatus.equals("reserve")) {
+			List dateInfo = getResrveDate();
+			userInfo.put("dateInfo", dateInfo);
+		}	
+		
+		userInfo.put("deliveryStatus", deliveryStatus);
 		userInfo.put("dliveryAddressVO", dliveryAddressVO);
 		userInfo.put("deliveryPrice", deliveryPrice);
 		userInfo.put("totalPrice", totalPrice);
@@ -117,14 +128,59 @@ public class OrderServiceImpl implements OrderService{
 		
 		orderDAO.insertOrderProduct(orderInfo);
 		
+		
+		Map delInfo = new HashMap<>();
+		delInfo.put("id", id);
 		List<AllEatingOrderDetailVO> orderDetailes = (List<AllEatingOrderDetailVO>) order.get("allEating");
 		for(AllEatingOrderDetailVO vo: orderDetailes) {
 			vo.setOrderId(orderId);
 			orderDAO.insertOrderDetail(vo);
+			
+			int productId = vo.getProductId();
+			delInfo.put("productId", productId);
+			orderDAO.orderProductDelCart(delInfo); //주문한 상품 장바구니에서 삭제
 		}
+		delInfo.remove("productId");
+		
+		String couponId = (String) orderInfo.get("couponId");
+		System.out.println(couponId);
 		
 		
+		if(couponId != null) {
+			delInfo.put("couponId", couponId);
+			orderDAO.orderUserDelCoupon(delInfo); //주문시 사용한 쿠폰 삭제
+		}
+		delInfo.remove("couponId");
 		
+		String point = (String)orderInfo.get("userPoint");
+		System.out.println(point);
+		if(point != null) {
+				UserPointVO userPointVO = orderDAO.selectUserPoint(id);
+				System.out.println("userPointVO : " + userPointVO);
+				
+				int userPoint = userPointVO.getUserPoint();
+				System.out.println("userPoint : " + userPoint);
+				
+				
+				int _point = Integer.parseInt(point);
+				System.out.println("_point : " + _point);
+				
+				int calculatePoint = userPoint - _point; //사용한 포인트 마이너스
+				
+				
+				delInfo.put("userPoint", calculatePoint);
+				
+				orderDAO.orderUserPoint(delInfo); //사용한 포인트 마이너스후 갱신
+				
+				delInfo.remove("userPoint");
+				
+				String hisPoint = "-"+point;
+				
+				delInfo.put("usePoint", hisPoint);
+				orderDAO.orderUserPointHistory(delInfo); // 사용한 포인트 기록 남김
+				
+		}
+		delInfo.clear();
 		
 		return orderId;
 	}
@@ -222,7 +278,31 @@ public class OrderServiceImpl implements OrderService{
 		
 		return resMap;
 	}
-
-	
+	//예약 배송 날짜 뽑기
+	private List<String> getResrveDate() {
+		int startMonth;
+		String startDay;
+		String dateInfo;
+		
+		Calendar cal=Calendar.getInstance();
+		DecimalFormat df = new DecimalFormat("00");
+		//Calender.MONTH는 0~11이 반환되므로 현재 월을 알기위해 +1  DecimalFormat으로 빈자리에 0을 채움 7 -> 07 
+		startMonth  = cal.get(Calendar.MONTH) + 1;
+		//현재 날짜 구함 DecimalFormat으로 빈자리에 0을 채움 7 -> 07
+		List<String> startDayList = new ArrayList<String>();
+		
+		
+		for(int i = 0; i<5; i++) {
+			startDay = df.format(cal.get(Calendar.DATE)+i);
+			startDayList.add(startDay);
+		}
+		List<String> dateInfoList = new ArrayList<String>();
+		for(String day : startDayList) {
+			dateInfo = startMonth+"/"+day+"일";
+			dateInfoList.add(dateInfo);
+		}
+		
+		return dateInfoList;
+	}
 	
 }

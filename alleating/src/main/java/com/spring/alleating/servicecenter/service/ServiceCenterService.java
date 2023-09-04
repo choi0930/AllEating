@@ -11,12 +11,7 @@ import com.spring.alleating.servicecenter.vo.InquiryBoardVO;
 public interface ServiceCenterService {
 	/* 공지사항 목록 가져오기 */
 	public Map<String, ?> boardList(Map<String, ?> dataMap)throws DataAccessException;
-	/* 공지사항 작성 */
-	public int addBoard(BoardVO boardVO)throws DataAccessException;
-	/* 공지사항 수정 */
-	public int updateBoard(BoardVO boardVO)throws DataAccessException;
-	/* 공지사항 삭제 */
-	public int deleteBoard(String articleNO)throws DataAccessException;
+
 	
 	//상품 문의 목록
 	public Map selectProductQnA() throws DataAccessException;
