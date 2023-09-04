@@ -1,5 +1,6 @@
 package com.spring.alleating.servicecenter.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.alleating.servicecenter.dao.ServiceCenterDAO;
 import com.spring.alleating.servicecenter.vo.BoardVO;
+import com.spring.alleating.servicecenter.vo.InqueryBoardVO;
 
 @Service("serviceCenterService")
 public class ServiceCenterServiceImpl implements ServiceCenterService{
@@ -41,6 +43,15 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
 	public int deleteBoard(String articleNO) throws DataAccessException {
 		
 		return 0;
+	}
+
+	
+	
+	//상품 문의 목록
+	@Override
+	public List selectProductQnA(Map _productQnAInfo) throws DataAccessException {
+		List<InqueryBoardVO> inqueryBoardVO = serviceCenterDAO.selectProductQnA(_productQnAInfo);
+		return inqueryBoardVO;
 	}
 
 }

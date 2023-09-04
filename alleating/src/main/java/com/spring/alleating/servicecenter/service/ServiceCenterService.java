@@ -1,5 +1,6 @@
 package com.spring.alleating.servicecenter.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
@@ -15,4 +16,7 @@ public interface ServiceCenterService {
 	public int updateBoard(BoardVO boardVO)throws DataAccessException;
 	/* 공지사항 삭제 */
 	public int deleteBoard(String articleNO)throws DataAccessException;
+	
+	//상품 문의 목록
+	public List selectProductQnA(Map _productQnAInfo) throws DataAccessException;
 }

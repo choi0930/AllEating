@@ -42,12 +42,10 @@ public interface MyPageDAO {
 	public List<WishVO> selectWishList(Map wishMap) throws DataAccessException;
 	//마이페이지-찜하기
 	public int insertWish(WishVO wishVO) throws DataAccessException;
-	//마이페이지 찜 업데이트
-	public int updateWish(WishVO wishVO) throws DataAccessException;
+	
 	//마이페이지-찜 삭제
 	public int deleteWish(WishVO wishVO ) throws DataAccessException;
-	//마이페이지-관리자나 사업자가 상품 삭제 시 그 상품에 대한 찜 전체 삭제
-    public int deleteAllWish(WishVO wishVO) throws DataAccessException;
+	
 
 
 }
