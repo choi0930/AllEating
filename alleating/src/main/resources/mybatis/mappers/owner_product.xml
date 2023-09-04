@@ -193,31 +193,34 @@
 	
 	<!-- 사업자 상품문의 게시판 (미완) -->
 
-<!-- 	<select id="selectAllArticlesList" resultMap="ownerInquiryResult">
+<select id="selectAllArticlesList" resultMap="ownerInquiryResult">
 <![CDATA[
-	SELECT CASE WHEN LEVEL-1 > 0 then CONCAT(CONCAT(REPEAT(' ', level-1),'< '), board.title) 
-		   ELSE board.title 
-		   END AS title, 
-		   board.articleNO, 
-		   board.parentNO, 
-		   result.level, 
-		   board.content, 
-		   board.id, 
-		   board.writeDate 
-		   FROM (
-		   			SELECT 
-		   			function_hierarchical() AS articleNO, 
-		   			@level AS level 
-		   FROM (
-		   			SELECT 
-		   			@start_with:=0,
-		   			@articleNO:=@start_with, 
-		   			@level:=0
-		   		) tbl 
-		   JOIN inquiry_board
-		   ) result 
-		   JOIN inquiry_board board ON board.articleNO = result.articleNO
-]]>	</select> -->
+SELECT
+    CASE
+        WHEN `LEVEL` - 1 > 0 THEN CONCAT(REPEAT(' ', `LEVEL` - 1), ' < ', board.title)
+        ELSE board.title
+    END AS title,
+    board.articleNO,
+    board.parentNO,
+    `LEVEL` AS result_level,
+    board.board_status,
+    board.content,
+    board.id,
+    board.writeDate
+FROM (
+    SELECT
+        function_hierarchical() AS articleNO,
+        @level AS `LEVEL`
+    FROM (
+        SELECT
+            @start_with := 0,
+            @articleNO := @start_with,
+            @level := 0
+    ) tbl
+    JOIN inquiry_board
+) result
+JOIN inquiry_board board ON board.articleNO = result.articleNO;
+]]>	</select>  
 
 	<insert id="insertNewOwnerInquiry" parameterType="java.util.Map">
 	<![CDATA[
@@ -240,10 +243,20 @@
 		SELECT ifnull(max(articleNO), 0)+1 from inquiry_board
 	</select>
 
-	<select id="selectAllArticlesList" resultMap="ownerInquiryResult">
+<!--  	<select id="selectAllArticlesList" resultMap="ownerInquiryResult">
 <![CDATA[
-		select * from inquiry_board order by articleNO desc
-]]>	</select>
+		select * from inquiry_board order by articleNO asc
+]]>
+	</select> -->
+	
+	<select id="selectArticle" resultType="InquiryBoardVO" parameterType="int">
+	<![CDATA[
+		SELECT * from inquiry_board
+		where articleNO = #{articleNO}
+	]]>
+	</select>
+	
+	
 	
 	
 </mapper>

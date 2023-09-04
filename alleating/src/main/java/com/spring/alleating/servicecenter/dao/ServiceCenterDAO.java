@@ -22,7 +22,11 @@ public interface ServiceCenterDAO {
 	/* 공지사항 삭제 */
 	public int deleteBoard(String articleNO)throws DataAccessException;
 	//상품 문의 목록
+
 	public List<InquiryBoardVO> productQnAList (Map productQnAInfo) throws DataAccessException;
    //상품 문의 등록
 	public int insertQnA(Map QnAMap) throws DataAccessException;
+
+	public List<InquiryBoardVO> selectProductQnA (Map productQnAInfo) throws DataAccessException;
+
 }

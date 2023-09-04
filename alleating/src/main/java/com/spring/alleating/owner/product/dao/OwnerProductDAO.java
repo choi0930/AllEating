@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.alleating.product.vo.ProductImgVO;
 import com.spring.alleating.product.vo.ProductVO;
+import com.spring.alleating.servicecenter.vo.InquiryBoardVO;
 
 @Mapper
 @Repository("ownerProductDAO")
@@ -38,6 +39,8 @@ public interface OwnerProductDAO {
 	public int insertNewOwnerInquiry(Map articleMap) throws DataAccessException;
 	
 	public int selectNewArticleNO() throws DataAccessException;
+	
+	public InquiryBoardVO selectArticle(int articleNO) throws DataAccessException;
 }
 
   

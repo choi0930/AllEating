@@ -4,18 +4,21 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+
 @Component("inquiryBoardVO")
 public class InquiryBoardVO {
 	private int level;
 	private String articleNO;
 	private String parentNO;
 	private String id;
+
 	private int productId;
+
 	private String board_status;
 	private String title;
 	private String content;
 	private Date writeDate;
-	
+
 	private String fileName;
 	private String cateCode;
 	private String productBrand;
@@ -53,6 +56,7 @@ public class InquiryBoardVO {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+
 	public int getLevel() {
 		return level;
 	}

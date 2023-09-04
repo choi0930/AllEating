@@ -52,6 +52,7 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
 	
 	//상품 문의 목록
 	@Override
+
 	public Map selectProductQnA() throws DataAccessException {
 		Map QnAInfo = new HashMap<>();
 		
@@ -63,6 +64,12 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
 	@Override
 	public int insertQnA(Map QnAMap) throws DataAccessException {
 		return serviceCenterDAO.insertQnA(QnAMap);
+  }
+
+	public List selectProductQnA(Map _productQnAInfo) throws DataAccessException {
+		List<InquiryBoardVO> inqueryBoardVO = serviceCenterDAO.selectProductQnA(_productQnAInfo);
+		return inqueryBoardVO;
+
 	}
 
 	

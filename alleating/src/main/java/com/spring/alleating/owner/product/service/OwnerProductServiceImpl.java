@@ -26,7 +26,9 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	@Autowired
 	private ProductDAO productDAO;
 	@Autowired
+
 	private InquiryBoardVO inqueryboardVO;
+
 
 	@Override
 	public int addNewProduct(Map productInfo) throws Exception {
@@ -127,7 +129,13 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 		ownerProductDAO.insertNewOwnerInquiry(articleMap);
 		return articleNO;
 	}
-	 
+
+	@Override
+	public InquiryBoardVO viewArticle(int articleNO) throws Exception {
+		InquiryBoardVO inquiryVO = ownerProductDAO.selectArticle(articleNO);
+		return inquiryVO;
+	}
+
 
 	/*
 	 * @Override public int addProduct(Map productMap) throws Exception {

@@ -27,6 +27,7 @@ import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.owner.product.service.OwnerProductService;
 import com.spring.alleating.product.vo.ProductImgVO;
 import com.spring.alleating.product.vo.ProductVO;
+import com.spring.alleating.servicecenter.vo.InquiryBoardVO;
 
 
 @Controller("ownerProductController")
@@ -36,6 +37,8 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	private OwnerProductService ownerProductService;
 	@Autowired
 	private ProductVO productVO;
+	@Autowired
+	private InquiryBoardVO inquiryBoardVO;
 	
 	@RequestMapping(value="/owner/productMain.do", method = RequestMethod.GET)
 	public ModelAndView ownerProductMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -212,6 +215,46 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			return mav;
 		}
 		
+			@RequestMapping(value="/owner/viewArticle.do", method = RequestMethod.GET)
+			public ModelAndView viewArticle(@RequestParam("articleNO")int articleNO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+			String viewName = (String)request.getAttribute("viewName");
+			inquiryBoardVO = ownerProductService.viewArticle(articleNO);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName(viewName);
+			mav.addObject("inquiryBoardVO", inquiryBoardVO);
+			return mav;
+		}
+			
+			@RequestMapping(value="/owner/memviewArticle.do", method = RequestMethod.GET)
+			public ModelAndView memviewArticle(@RequestParam("articleNO")int articleNO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+			String viewName = (String)request.getAttribute("viewName");
+	
+			
+			
+			inquiryBoardVO = ownerProductService.viewArticle(articleNO);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName(viewName);
+			mav.addObject("inquiryBoardVO", inquiryBoardVO);
+			return mav;
+		}
+			
+			@Override 
+			@RequestMapping(value="/owner/addReply.do", method = {RequestMethod.POST,RequestMethod.GET})
+			public ModelAndView addReply(Map<String, String> articleMap, HttpServletRequest request,
+					HttpServletResponse response) throws Exception {
+			
+				String viewName = (String)request.getAttribute("viewName");
+				System.out.println(viewName); 
+				
+				ownerProductService.addNewArticle(articleMap);
+				
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("redirect:/owner/ownerinquirylist.do"); //add
+				return mav;
+			}	
+		
 	
 	/*
 	 * @Override
@@ -256,15 +299,23 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	 */
 
 
-
-
-
 	//�뤌�씠�룞
 	@RequestMapping(value="/owner/*Form.do",method = RequestMethod.GET)
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
+		HttpSession session = request.getSession();	
+		session.setAttribute("ownerinquiry", inquiryBoardVO);
+		
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");	
+		InquiryBoardVO inquiryboardVO = (InquiryBoardVO)session.getAttribute("ownerinquiry");
+		
+		String parentNO = inquiryboardVO.getParentNO();
+		String id = memberVO.getId();
+		System.out.println("작성자"+ id);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
+
 		return mav;
 	}
 
