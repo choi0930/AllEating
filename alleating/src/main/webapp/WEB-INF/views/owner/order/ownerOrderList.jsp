@@ -21,6 +21,10 @@ request.setCharacterEncoding("utf-8"); %>
   <head>
     <title>사업자 배송/주문 관리 페이지</title>
     <script>
+    function showAlert() {
+        alert("배송 정보가 수정되었습니다."); // 적용 버튼을 누르면 알림창이 표시됩니다.
+    }
+
       function fn_sub(obj) {
         obj.submit();
       }
@@ -311,7 +315,7 @@ request.setCharacterEncoding("utf-8"); %>
                             </select>
                           </td>
                           <td>
-                            <button type="submit" class="product_apply_btn">
+                            <button type="submit" class="product_apply_btn" onclick="showAlert()">
                               적용
                             </button>
                           </td>
