@@ -160,7 +160,8 @@ color:white;}
 <body>
 
  
-<form action="${contextPath}/serviceCenter/addQnAForm.do?productId=${productId}">
+<form action="${contextPath}/serviceCenter/addQnAForm.do?productId=<%= request.getParameter("productId") %>">
+    <input type="hidden" name="productId" value="<%= request.getParameter("productId") %>"/>
 <div class="frequent_q_all">
 	<div class="frequent_q_01a">
 	
@@ -205,7 +206,7 @@ color:white;}
 <li class="qnaDate">${qna.writeDate }</li>
 
 </ul>
-<input type="hidden" name="productId" value="${qna.productId }"/>
+<!--<input type="hidden" name="productId" value="${qna.productId }"/>-->
 
 
 </div>

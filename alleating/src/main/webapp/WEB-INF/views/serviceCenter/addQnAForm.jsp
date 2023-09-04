@@ -565,7 +565,9 @@ color:white;}
 <div class="admin_personal_q_addd">
 <form action="${contextPath }/serviceCenter/addQnA.do">
 <input type="hidden" name="productId" value="<%= request.getParameter("productId") %>">
-<input type="hidden" name="id" value="<%= request.getParameter("id") %>">
+<input type="hidden" name="id" value="${loginMember.id}">
+
+
 
 
 <div class="admin_personal_q_adde">
@@ -584,7 +586,7 @@ color:white;}
 <div class="admin_personal_q_adde6">
 
 
-<input data-testid="input-box" id="inquiry-subject" name="subject" disabled placeholder="상품 문의" type="text" height="44" class="css-1quw3ub e1uzxhvi2" value="">
+<input data-testid="input-box" id="inquiry-subject"  disabled placeholder="상품 문의" type="text" height="44" class="css-1quw3ub e1uzxhvi2" value="">
 
 </div>
 
@@ -622,7 +624,7 @@ color:white;}
 <div class="admin_personal_q_addf4">
 
 <div height="44" class="css-t7kbxx e1uzxhvi3">
-<input data-testid="input-box" id="inquiry-subject" name="subject" placeholder="제목을 입력해주세요" type="text" height="44" class="css-1quw3ub e1uzxhvi2" value="">
+<input data-testid="input-box" id="inquiry-subject" name="title" placeholder="제목을 입력해주세요" type="text" height="44" class="css-1quw3ub e1uzxhvi2" value="">
 </div>
 </div>
 </div>
@@ -639,7 +641,7 @@ color:white;}
 <div class="admin_personal_q_addg4">
 <div class="admin_personal_q_addg5">
 
-<textarea id="inquiry-contents" inputmode="text" aria-label="textarea-message" name="contents" class="css-5etceh e1tjt2bn1"></textarea>
+<textarea id="inquiry-contents" inputmode="text" aria-label="textarea-message" name="content" class="css-5etceh e1tjt2bn1"></textarea>
 </div>
 </div>
 </div>

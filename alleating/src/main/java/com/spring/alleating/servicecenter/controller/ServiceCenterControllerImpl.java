@@ -117,21 +117,30 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		String id= memberVO.getId();
 		
+		int productId = inquiryBoardVO.getProductId();
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
 		
+		Map _QnAMap = new HashMap<>();
+		_QnAMap.put("id", id);
+		_QnAMap.put("productId", productId);
+		_QnAMap.put("title", title);
+		_QnAMap.put("content", content);
 	
-		serviceCenterService.insertQnA(QnAMap);
+	    serviceCenterService.insertQnA(_QnAMap);
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
-	
+        
+		mav.addObject("_QnAMap", _QnAMap);
 	
 	
 	
 		return mav;
 	}
 	
-	@RequestMapping(value="/serviceCenter/*Form.do",method = RequestMethod.GET)
+	@RequestMapping(value="/serviceCenter/addQnAForm.do",method = RequestMethod.GET)
 	public ModelAndView form(@RequestParam ("productId") int productId,HttpServletRequest request, HttpServletResponse response)throws Exception{
 		HttpSession session = request.getSession();
           session.setAttribute("productId", productId);
@@ -146,6 +155,22 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 	
 		return mav;
 	}
+	/*
+	 * @RequestMapping(value="/serviceCenter/Form.do",method = RequestMethod.GET)
+	 * public ModelAndView form(@RequestParam ("productId") int
+	 * productId,HttpServletRequest request, HttpServletResponse response)throws
+	 * Exception{ HttpSession session = request.getSession();
+	 * session.setAttribute("productId", productId);
+	 * 
+	 * 
+	 * 
+	 * 
+	 * String viewName = (String) request.getAttribute("viewName"); ModelAndView mav
+	 * = new ModelAndView(); mav.setViewName(viewName); mav.addObject("productId",
+	 * productId);
+	 * 
+	 * return mav; }
+	 */
 
 
 
