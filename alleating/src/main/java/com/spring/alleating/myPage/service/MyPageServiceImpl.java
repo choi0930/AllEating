@@ -131,22 +131,11 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public void updateWish(WishVO wishVO) throws DataAccessException {
-		myPageDAO.updateWish(wishVO);
-		
-	}
-
-	@Override
 	public int deleteWish(WishVO wishVO) throws DataAccessException {
 		int deleteWish = myPageDAO.deleteWish(wishVO);
 		return deleteWish;
 	}
 
-	@Override
-	public int deleteAllWish(WishVO wishVO) throws DataAccessException {
-		int deleteAllWish = myPageDAO.deleteAllWish(wishVO);
-		return deleteAllWish;
-	}
 	
 
 	

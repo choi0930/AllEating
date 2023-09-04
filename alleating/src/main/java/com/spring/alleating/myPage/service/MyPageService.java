@@ -26,10 +26,8 @@ public interface MyPageService {
 	public List selectWishList(Map _wishMap) throws DataAccessException;
 	//마이페이지 찜목록 추가
 	public int insertWish(WishVO wishVO) throws DataAccessException;
-	//마이페이지 찜 업데이트
-	public void updateWish(WishVO wishVO) throws DataAccessException;
+	
 	//마이페이지 찜목록 삭제
 	public int deleteWish(WishVO wishVO) throws DataAccessException;
-	//마이페이지 - 관리자나 사업자가 상품 삭제 시 그 상품 찜 전체 삭제
-	public int deleteAllWish(WishVO wishVO) throws DataAccessException;
+	
 }

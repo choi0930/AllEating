@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("wishVO")
 public class WishVO {
-private String wishId;
+private int wishId;
 private String id;
 private int productId;
 private Date wish_date;
@@ -59,10 +59,10 @@ public String getWish_ny() {
 public void setWish_ny(String wish_ny) {
 	this.wish_ny = wish_ny;
 }
-public String getWishId() {
+public int getWishId() {
 	return wishId;
 }
-public void setWishId(String wishId) {
+public void setWishId(int wishId) {
 	this.wishId = wishId;
 }
 public String getId() {

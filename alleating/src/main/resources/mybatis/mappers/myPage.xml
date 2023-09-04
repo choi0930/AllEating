@@ -126,32 +126,16 @@
 
 <!-- 찜  추가 -->
 <insert id="insertWish" parameterType="wishVO">
-<selectKey resultType="String" keyProperty="wishId"
-			order="BEFORE">
-			select ifnull(max(wishId),0)+1 from wish
-			</selectKey>
 <![CDATA[
  insert into wish (wishId, id, productId, wish_ny) values(#{wishId}, #{id}, #{productId}, #{wish_ny})
 ]]>
 </insert>
 
-<!-- 찜 업데이트 -->
-<update id="updateWish" parameterType="wishVO">
-<![CDATA[
- update wish
- set wish_ny = 'y'
- where wishId = #{wishId] and wish_ny = 'n'
-]]>
-</update>	
 	
 <!-- 찜 삭제 -->
 <delete id="deleteWish" parameterType="wishVO">
 delete from wish where wishId=#{wishId}
 </delete>
 
-<!-- 관리자나 사업자가 상품 삭제 시 그 상품 찜 전체 삭제 -->
-<delete id="deleteAllWish" parameterType="wishVO">
-delete from wish where productId = #{productId}
-</delete>
 		
 </mapper>
