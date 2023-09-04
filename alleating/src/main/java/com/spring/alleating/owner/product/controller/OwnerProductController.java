@@ -23,6 +23,7 @@ public interface OwnerProductController {
 //	public ModelAndView ownerinquirylist(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView ownerinquirylist(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
+	public ModelAndView addOwnerInquiry(@RequestParam Map<String, String> articleMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
 	//public void  addNewProductImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
 }

@@ -6,13 +6,22 @@ import org.springframework.stereotype.Component;
 
 @Component("inqueryBoardVO")
 public class InqueryBoardVO {
+	private int level;
 	private String articleNO;
 	private String parentNO;
 	private String id;
 	private String board_status;
 	private String title;
 	private String content;
+	private Date writeDate;
 	
+	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
 	
 	public String getArticleNO() {
 		return articleNO;
@@ -56,5 +65,4 @@ public class InqueryBoardVO {
 	public void setWriteDate(Date writeDate) {
 		this.writeDate = writeDate;
 	}
-	private Date writeDate;
 }

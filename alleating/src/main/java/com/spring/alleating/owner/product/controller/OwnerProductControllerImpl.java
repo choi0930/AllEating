@@ -181,16 +181,34 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			return mav;
 		}
 	 
+		
+		/* 사업자 상품문의 관리(미완) */
 		@Override
 		@RequestMapping(value="/owner/ownerinquirylist.do", method = {RequestMethod.GET, RequestMethod.POST})
 		public ModelAndView ownerinquirylist(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			HttpSession session = request.getSession();
-			session.setAttribute("side_menuType", "owner");
+			session.setAttribute("side_menuType", "owner_page");
 			String viewName = (String) request.getAttribute("viewName");
 			List ownerinquirylist = ownerProductService.listArticles();
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName(viewName);
 			mav.addObject("ownerinquirylist", ownerinquirylist);
+			return mav;
+		}
+		
+		
+		@Override 
+		@RequestMapping(value="/owner/addOwnerInquiry.do", method = {RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView addOwnerInquiry(Map<String, String> articleMap, HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+		
+			String viewName = (String)request.getAttribute("viewName");
+			System.out.println(viewName); 
+			
+			ownerProductService.addNewArticle(articleMap);
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("redirect:/owner/ownerinquirylist.do"); //add
 			return mav;
 		}
 		

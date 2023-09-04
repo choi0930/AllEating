@@ -4,39 +4,52 @@
     
     <% request.setCharacterEncoding("utf-8"); %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+	<link
+  href="${contextPath}/css/ownerinquiry.css"
+  rel="stylesheet"
+  type="text/css"
+/>
     
 <!DOCTYPE html>
 <html>
 <head>
-	<style>
-	.cls1 
-	{
-	text-decoration:none;} 
-	.cls2 
-	{
-	text-align:center; 
-	font-size:30px;}
-	</style>
 	<meta charset="UTF-8">
 	<title>글목록창</title>
 </head>
-<script>
-	function fn_articleForm(isLogOn,articleForm,loginForm){
-		if(isLogOn != '' && isLogOn != 'false'){
-			location.href = articleForm;
-		} else{
-		  alert("로그인 후 글쓰기가 가능합니다.")
-		  location.href = loginForm+'?action=/board/articleForm.do';
-	}
-}
-</script>
 <body>
-	<table align = "center" border="1" width="80%" >
+<div class="ownerproductinquiry">	
+	<div class="adminProductMain_searchBarArea">
+		<!--상품관리 상단-->
+
+		<div class="adminProductMain_inputDateBOX">
+		  <!--조회할 일자 선택 및 검색 박스-->
+		  <div class="statusText">
+			<span>조회기간</span>
+		  </div>
+		  <div class="adminProductMain_dateArea">
+			<input type="date" class="adminProductMain_Dateinput" />
+			<span>~</span>
+			<input type="date" class="adminProductMain_Dateinput" />
+		  </div>
+		  <div>
+			<input type="text" class="form-control" />
+		  </div>
+		  <div>
+			<input
+			  class="adminProductMain_searchBTN"
+			  type="button"
+			  value="조회"
+			/>
+		  </div>
+		</div>
+	  </div>
+	  <!--상품관리 상단끝 end adminProductMain_searchBarArea-->
+	<table align = "center" border="1" width="99%" >
 		<tr height="10" align="center" bgcolor="lightgreen">
 			<td>번호</td>
 			<td>아이디</td>
 			<td>제목</td>
-			<td>작성일	</td>
+			<td>작성일</td>
 		</tr>
 	<c:choose>
 	 <c:when test="${ownerinquirylist == null }">
@@ -49,7 +62,7 @@
 	  </tr>	
 	 </c:when>
 	 <c:when test="${ownerinquirylist != null}" >
-	  <c:forEach var="article" items="${ownerinquirylist }" varStatus="articleNum">
+	  <c:forEach var="article" items="${ownerinquirylist}" varStatus="articleNum">
 	   <tr align="center">
 	    <td width="5%">${articleNum.count}</td>
 	    <td width="10%">${article.id}</td>
@@ -57,7 +70,7 @@
 	     <span style="padding-right:30px"></span>
 	      <c:choose>
 	       <c:when test='${article.level > 1 }'>
-	        <c:forEach begin="1" end="${article.level }" step="1">
+	        <c:forEach begin="1" end="${article.level}" step="1">
 	        	<span style="padding-left:20px"></span>
 	        </c:forEach>
 	        <span style="font-size:12px;">[답변]</span>
@@ -68,15 +81,18 @@
 	        </c:otherwise>
 	       </c:choose>
 	      </td>
-	      <td width="10%">${article.writeDate}"</td>
+	      <td width="10%">${article.writeDate}</td>
 	      </tr> 
 	  </c:forEach>
 	   </c:when>
 	   </c:choose>
 	</table>
-	<!-- <a class="cls1" href="#"><p class="cls2">글쓰기</p></a> -->
-	<a class="cls1" href="javascript:fn_articleForm('${isLogOn}','${contextPath}/board/articleForm.do',
-																 '${contextPath}/member/loginForm.do')"><p class="cls2">글쓰기</p></a>
+	<a
+	class="cls1"
+	href='${contextPath}/owner/OwnerInquiryForm.do'
+	><p class="cls2">글쓰기</p></a
+  >
+</div>
 </body>
 </html>
 
