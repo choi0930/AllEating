@@ -21,6 +21,7 @@
 <definition name="/serviceCenter/addPersonal" extends="baseLayout2">
 	<put-attribute name="title" value="상품문의 작성 페이지"/>
 	<put-attribute name="body" value="/WEB-INF/views/serviceCenter/addPersonal.jsp"/>      
+</definition>
 
 <definition name="/serviceCenter/productQnA" extends="baseLayout2">
 	<put-attribute name="title" value="상품 문의 페이지"/>

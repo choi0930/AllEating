@@ -38,4 +38,19 @@
 		<put-attribute name="title" value="사업자 문의관리 페이지2"/>
 		<put-attribute name="body" value="/WEB-INF/views/owner/inquiryboard/owneraddinquiryForm.jsp"/>      
 	</definition>
+	
+	<definition name="/owner/viewArticle" extends="baseLayout2">
+		<put-attribute name="title" value="사업자 문의관리 게시판 답글 보기"/>
+		<put-attribute name="body" value="/WEB-INF/views/owner/inquiryboard/ownerviewInquiry.jsp"/>      
+	</definition>
+	
+	<definition name="/owner/memviewArticle" extends="baseLayout2">
+		<put-attribute name="title" value="사업자 문의관리 게시판 내용 보기"/>
+		<put-attribute name="body" value="/WEB-INF/views/owner/inquiryboard/memberviewInquiry.jsp"/>      
+	</definition>
+	
+		<definition name="/owner/memberreplyForm" extends="baseLayout2">
+		<put-attribute name="title" value="사업자 답글쓰기 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/owner/inquiryboard/ownerreplyForm.jsp"/>      
+	</definition>
 </tiles-definitions>

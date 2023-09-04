@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.alleating.servicecenter.dao.ServiceCenterDAO;
 import com.spring.alleating.servicecenter.vo.BoardVO;
-import com.spring.alleating.servicecenter.vo.InqueryBoardVO;
+import com.spring.alleating.servicecenter.vo.InquiryBoardVO;
 
 @Service("serviceCenterService")
 public class ServiceCenterServiceImpl implements ServiceCenterService{
@@ -50,7 +50,7 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
 	//상품 문의 목록
 	@Override
 	public List selectProductQnA(Map _productQnAInfo) throws DataAccessException {
-		List<InqueryBoardVO> inqueryBoardVO = serviceCenterDAO.selectProductQnA(_productQnAInfo);
+		List<InquiryBoardVO> inqueryBoardVO = serviceCenterDAO.selectProductQnA(_productQnAInfo);
 		return inqueryBoardVO;
 	}
 
