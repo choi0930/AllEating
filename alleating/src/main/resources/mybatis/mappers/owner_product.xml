@@ -40,6 +40,7 @@
 	
 	<resultMap id="ownerInquiryResult" type="inqueryBoardVO">
 		<result property="articleNO" column="articleNO" />
+		<result property="level" column="level" />
 		<result property="parentNO" column="parentNO" />
 		<result property="id" column="id" />
 		<result property="board_status" column="board_status" />
@@ -189,7 +190,10 @@
 		]]>
 	</select>
 	
-		<select id="selectAllArticlesList" resultMap="ownerInquiryResult">
+	
+	<!-- 사업자 상품문의 게시판 (미완) -->
+
+<!-- 	<select id="selectAllArticlesList" resultMap="ownerInquiryResult">
 <![CDATA[
 	SELECT CASE WHEN LEVEL-1 > 0 then CONCAT(CONCAT(REPEAT(' ', level-1),'< '), board.title) 
 		   ELSE board.title 
@@ -213,6 +217,32 @@
 		   JOIN inquiry_board
 		   ) result 
 		   JOIN inquiry_board board ON board.articleNO = result.articleNO
+]]>	</select> -->
+
+	<insert id="insertNewOwnerInquiry" parameterType="java.util.Map">
+	<![CDATA[
+			INSERT into inquiry_board(
+									   articleNO, 
+									   title, 
+									   content,  
+									   board_status,
+									   writeDate)
+								VALUES(
+									   #{articleNO}, 
+									   #{title}, 
+									   #{content}, 
+									   #{board_status}, 
+									   now())			
+	]]>
+</insert>
+
+	<select id="selectNewArticleNO" resultType="int">
+		SELECT ifnull(max(articleNO), 0)+1 from inquiry_board
+	</select>
+
+	<select id="selectAllArticlesList" resultMap="ownerInquiryResult">
+<![CDATA[
+		select * from inquiry_board order by articleNO desc
 ]]>	</select>
 	
 	

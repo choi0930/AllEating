@@ -30,8 +30,14 @@ public interface OwnerProductDAO {
 	public ProductVO productEditdata(int productId) throws DataAccessException;
 	public List productEditdataImg(int productId) throws DataAccessException; 
 	
+	
+	
 	/* 사업자 상품문의 게시판 (미완) */
 	public List selectAllArticlesList() throws DataAccessException;
+	
+	public int insertNewOwnerInquiry(Map articleMap) throws DataAccessException;
+	
+	public int selectNewArticleNO() throws DataAccessException;
 }
 
   

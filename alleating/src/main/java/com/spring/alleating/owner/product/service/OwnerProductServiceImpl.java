@@ -116,9 +116,17 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 	@Override
 	public List<InqueryBoardVO> listArticles() throws Exception {
 		 List<InqueryBoardVO> ownerinquirylist = ownerProductDAO.selectAllArticlesList();
-		return null;
+		 System.out.println("상품문의 리스트:" + ownerinquirylist);
+		return ownerinquirylist;
 	}
   
+	@Override
+	public int addNewArticle(Map articleMap) throws Exception {
+		int articleNO = ownerProductDAO.selectNewArticleNO();
+		articleMap.put("articleNO", articleNO);
+		ownerProductDAO.insertNewOwnerInquiry(articleMap);
+		return articleNO;
+	}
 	 
 
 	/*

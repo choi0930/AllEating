@@ -75,17 +75,35 @@ public class OwnerOrderControllerImpl implements OwnerOrderController {
 			return mav;
 		}
 
+//		@Override
+//		@RequestMapping(value = "/owner/updateOwnerDelivery.do", method = RequestMethod.POST)
+//		public ModelAndView updateOwnerDelivery(Map odinfo, HttpServletRequest request,
+//				HttpServletResponse response) throws Exception {
+//				System.out.println(odinfo);
+//				ownerOrderService.updateOwnerDelivery(odinfo);
+//				
+//				ModelAndView mav = new ModelAndView("redirect:/owner/ownerOrderList.do");
+//				return mav;
+//		}
+
 		@Override
 		@RequestMapping(value = "/owner/updateOwnerDelivery.do", method = RequestMethod.POST)
 		public ModelAndView updateOwnerDelivery(Map odinfo, HttpServletRequest request,
 				HttpServletResponse response) throws Exception {
 				System.out.println(odinfo);
-				ownerOrderService.updateOwnerDelivery(odinfo);
+				request.setCharacterEncoding("utf-8");
+				String orderId = (String)odinfo.get("orderId");
+				String delivery = (String) odinfo.get("delivery_status");
+				//String delivery = request.getParameter("delivery");
+				
+				Map _odinfo = new HashMap<>();
+				_odinfo.put("delivery_status", delivery);
+				_odinfo.put("orderId", orderId);
+				ownerOrderService.updateOwnerDelivery(_odinfo);
 				
 				ModelAndView mav = new ModelAndView("redirect:/owner/ownerOrderList.do");
 				return mav;
 		}
-
 
 		
 

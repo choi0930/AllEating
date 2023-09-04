@@ -33,6 +33,8 @@ public interface OwnerProductService {
 	  
 		/* 사업자 상품문의 게시판(미완) */
 	  public List<InqueryBoardVO> listArticles() throws Exception;
+	  
+	  public int addNewArticle(Map articleMap) throws Exception;
 
 	  
 	 
