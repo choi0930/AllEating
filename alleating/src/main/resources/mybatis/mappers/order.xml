@@ -51,7 +51,7 @@
 		
 			<result property="review_ny" column="review_ny" />
 	</resultMap>
-	
+	<!-- 배송지 -->
 	<resultMap id="deliveryAddressResult" type="deliveryAddressVO">
 		<result property="num" column="num" />
 		<result property="id" column="id" />
@@ -65,6 +65,19 @@
 		<result property="address2" column="address2" />
 		<result property="address_detail" column="address_detail" />
 		<result property="default_address" column="default_address" />
+	</resultMap>
+		<!-- 쿠폰 -->
+	 <resultMap id="couponResult1" type="couponVO">
+		<result property="couponId" column="couponId" />
+		<result property="coupon_name" column="coupon_name" />
+		<result property="coupon_range" column="coupon_range" />
+		<result property="couponDiscountRate" column="couponDiscountRate" />
+		<result property="coupon_quantity" column="coupon_quantity" />
+		<result property="beginDate" column="beginDate" />
+		<result property="endDate" column="endDate" />
+		<result property="coupon_startDate" column="coupon_startDate" />
+		<result property="coupon_endDate" column="coupon_endDate" />
+		<result property="coupon_deleted" column="coupon_deleted" />
 	</resultMap>
 	<!-- 상품 상세페이지에서 바로 주문 -->
 	<insert id="insertOrderProduct" parameterType="java.util.Map">
@@ -202,5 +215,9 @@
 	<!-- 배송지 주소 -->
 	<select id="selectAddress" resultMap="deliveryAddressResult" parameterType="String">
 			select * from deliveryaddress where id = #{id}
+	</select>
+	<!-- 적용시킬 쿠폰 할인율 정보 가져오기 -->
+	<select id="selectApplyCoupon" resultMap="couponResult1" parameterType="String">
+		 select couponDiscountRate from coupon where couponId = #{couponId}
 	</select>
   </mapper>

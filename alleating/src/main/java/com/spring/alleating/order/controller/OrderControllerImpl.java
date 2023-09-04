@@ -257,6 +257,18 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		mav.addObject("userReviewInfo",userReviewInfo);
 		return mav;
 	}
+	/* 팝업창에서 선택한 쿠폰 적용 */
+	@Override
+	@PostMapping(value="/order/couponApply.do")
+	@ResponseBody
+	public Map<String, Object> couponApply(@RequestBody Map<String, Object> couponInfo, HttpServletRequest request)
+			throws Exception {
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		
+		responseMap =  orderService.couponApply(couponInfo);
+		
+		return responseMap;
+	}
 
 	
 	

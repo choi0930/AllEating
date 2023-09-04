@@ -16,13 +16,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
       type="text/css"
     />
     <script>
-     /*  function fn_deliveryMsgSelect(){
-        
-
-      }
       
-
-      } */
      
       $(document).ready(function() {
      	  // select 요소의 변경 이벤트 감지
@@ -151,32 +145,134 @@ pageEncoding="UTF-8" isELIgnored="false"%>
           let popOption = "width = 800px, height = 550px, top = 300px, left = 300px, scrollbars=yes";
         window.open(popUrl, "쿠폰 적용", popOption);
       }
+/* 배송지 변경 팝업창에서 가져온 정보 */
+  function setResList(resArr){
 
-      function setResList(resArr){
-        console.log(resArr);  
-console.log("넘어옴");
-var html = "";
-$('#deliveryTable > tbody').empty();
-html += '<tr>';  
-html += '<td class="css0930">받으실 분</td>';
-html += '<td>'+resArr[0]+'</td>';
-html += '</tr>';
-html += '<tr>';  
-html += '<td class="css0930">배송주소</td>';
-html += '<td id="addressText">'+resArr[1]+'</td>';
-html += '</tr>';
-html += '<tr>';  
-html += '<td class="css0930">연락처</td>';
-html += '<td>'+resArr[2]+'</td>';
-html += '</tr>';
-// for(i in resArr){
-//   $('#deliveryTable > tbody').empty();
-//     html += '<td id="addressText">'+ resArr[i] +'</td>';
-
-//   }
-  //html += '</tr>';
+    var html = "";
+    
+    $('#deliveryTable > tbody').empty();
+    
+    html += '<tr>';  
+    html += '<td class="css0930">받으실 분</td>';
+    html += '<td>'+resArr[0]+'</td>';
+    html += '</tr>';
+    html += '<tr>';  
+    html += '<td class="css0930">배송주소</td>';
+    html += '<td id="addressText">'+resArr[1]+'</td>';
+    html += '</tr>';
+    html += '<tr>';  
+    html += '<td class="css0930">연락처</td>';
+    html += '<td>'+resArr[2]+'</td>';
+    html += '</tr>';
 
   $('#deliveryTable').append(html);
+}
+
+/* 쿠폰 팝업창에서 가져온 정보 */
+function setCoupon(useCoupon){
+var discountPrice;
+var productId = useCoupon.productId;
+var productPrice = $('#originalPrice_'+productId).val();
+useCoupon.productPrice = productPrice;
+
+console.log(useCoupon);
+
+$.ajax({
+        type: "POST",
+        async: false,
+        url: "${contextPath}/order/couponApply.do",
+        data: JSON.stringify(useCoupon),
+        contentType: "application/json; charset=UTF-8",
+
+        success: function (response) {
+            alert('선택하신 쿠폰이 적용되었습니다. ');
+
+            var resCouponId = response.couponId;
+            var resProductId = response.productId;
+            var resProductPrice = response.productPrice;
+            var couponDiscountRate = response.couponDiscountRate;
+            var originalPrice = productPrice;
+
+            discountPrice = originalPrice - resProductPrice;
+            console.log("discount: "+discountPrice);
+            let _originalPrice = originalPrice
+                          .toString()
+                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            let _prdouctPrice = resProductPrice  .toString()
+                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            let _discountPrice = discountPrice.toString()
+                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            var html = '<strong class="redText"> 쿠폰 적용('+couponDiscountRate+'%) </strong> </br>';
+            html += '<sapn>'+_prdouctPrice+'</span> </br>';
+            html += '<span class="originalPriceText">'+_originalPrice+ '</span>';
+             
+            $('#productPrice_'+productId).attr("value",resProductPrice);
+            $('#priceTextArea_'+productId).empty();            
+            $('#priceTextArea_'+productId).html(html); 
+            $('#couponDiscount').text(_discountPrice);           
+
+        },
+        error: function (error) {
+            console.error("오류 발생:", error);
+        }
+}).done(function(){
+  discountInfo('coupon',discountPrice);
+});
+}
+/*--------------------------------쿠폰적용 끝-------------------------------------*/
+
+/* 포인트 전체사용 체크시 */
+$(function(){
+        $('#useAllPoint').click(function(){
+          if($('#useAllPoint').prop("checked")){
+            var allPoint = $('#originalUserPoint').val();
+            $('#payUsePointInput').attr("value",allPoint);
+          }else{
+            $('#payUsePointInput').attr("value","");
+          }
+        });
+      });
+/*----------------------------------------------------------*/
+
+/* 포인트 사용 */
+function fn_usePoint(){
+  var point = $('#payUsePointInput').val();
+  $('#pointuse').attr("value", point);
+
+  discountInfo('point',point);
+}
+
+function discountInfo(status, discount){
+  console.log(discount);
+ var _couponDiscount;
+ var coupondiscountText;
+
+ var _pointDiscount;
+ var pointDiscountText;
+
+ var totalDiscount;
+  if(status == 'coupon'){
+    const couponDiscount = discount;  
+    _couponDiscount = couponDiscount;
+    
+  }else{
+    const  pointDiscount = discount;
+    _pointDiscount = pointDiscount;
+    
+  }
+  if(_pointDiscount == null){
+    totalDiscount = _couponDiscount;
+  }else if(_couponDiscount == null){
+    totalDiscount = _pointDiscount;
+  }else if(_pointDiscount !=null && _couponDiscount !=null){
+    totalDiscount = _couponDiscount+_pointDiscount;
+  }
+  totalDiscountText = totalDiscount
+                          .toString()
+                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    
+  var html = totalDiscountText;
+  $('#discountPriceText').text(html);
 }
     </script>
     <style>
@@ -185,7 +281,6 @@ html += '</tr>';
       }
       #payTwoText  table{
         border:0;
-        
       }
 
       #deliveryTable tr td{
@@ -197,6 +292,10 @@ html += '</tr>';
       }
       .css0930{
         width: 120px;
+      }
+      .originalPriceText{
+        text-decoration: line-through;
+        color: #e1ddde;
       }
     </style>
   </head>
@@ -408,8 +507,9 @@ html += '</tr>';
             ${item.productName}
           </div>
           <div>
-            <fmt:formatNumber value="${item.productPrice * item.productQty}" type="number" />
-            <input type="hidden" value="${item.productPrice * item.productQty}" name="oneProductPrice"/> 
+            <span id="priceTextArea_${item.productId}"><fmt:formatNumber value="${item.productPrice * item.productQty}" type="number" /></span>
+            <input type="hidden" value="${item.productPrice * item.productQty}" name="oneProductPrice" id="productPrice_${item.productId}"/> 
+            <input type="hidden" value="${item.productPrice * item.productQty}" id="originalPrice_${item.productId}" />
            <br />
             수량 ${item.productQty}개
           </div>
@@ -430,33 +530,31 @@ html += '</tr>';
        
         <div class="payDeliveryInfo payTwoborderTop">
           <div class="payTwoTitleText">현재 보유중인 적립금</div>
-          <div class="payTwoPoint">${userPointVO.userPoint}원</div>
-          <input type="hidden" name="userPoint" value="${userPointVO.userPoint}" />
+          <div class="payTwoPoint">
+            <fmt:formatNumber value="${userPointVO.userPoint}" type="number" />원
+            <input type="hidden" value="" id="userPoint1">
+            <input type="hidden" value="${userPointVO.userPoint}" id="originalUserPoint">
+          </div>
+          <input type="hidden" name="userPoint" value="" id="pointuse"/>
         </div>
         <div class="payDeliveryInfo">
           <div class="payTwoTitleText">사용할 적립금</div>
           <div class="payTwoUsePoint">
-            전체사용 <input type="checkbox" class="form-check-input" /><input
+            전체사용 <input type="checkbox" id="useAllPoint" class="form-check-input"/>
+            <input
               type="text"
               class="form-control"
-              id="payUsePointInput"
-              
+              id="payUsePointInput"  
             />원
           </div>
-          <button class="btn btn-primary payTwoCouponBtn">사용</button>
+          <button class="btn btn-primary payTwoCouponBtn" onclick="fn_usePoint()">사용</button>
         </div>
         <div class="payDeliveryInfo">
           <div class="payTwoTitleText">쿠폰 적용</div>
           <div class="payTwoSalePriceText">
             <input type="hidden" id="couponId" value=""/>
-            <span id="couponDiscount">0원</span>[할인]
-            <!--<button
-              class="btn btn-primary payTwoCouponBtn"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              <span>쿠폰 선택</span>
-            </button>-->
+            -<span id="couponDiscount">0</span>원[할인]
+          
             <button onclick="fn_selectCoupon()">
               쿠폰 선택
             </button>
@@ -471,7 +569,10 @@ html += '</tr>';
             <tbody>
             <tr>
               <td>할인 금액</td>
-              <td>-0원</td>
+              <td>
+                -<span id="discountPriceText">0</span>원
+                <input type="hidden" id="discountPrice" />
+              </td>
             </tr>
             <tr>
               <td>주문 금액</td>

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.spring.alleating.coupon.vo.CouponVO;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
 import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
 import com.spring.alleating.order.vo.AllEatingOrderVO;
@@ -30,4 +31,6 @@ public interface OrderDAO {
 	public DeliveryAddressVO selectDefaultAddress(String id)throws DataAccessException;
 	/* 배송지 주소 목록 가져오기 */
 	public List<DeliveryAddressVO> selectAddress(String id)throws DataAccessException;
+	/* 적용시킬 쿠폰 할인율 가져오기 */
+	public CouponVO selectApplyCoupon(String couponId)throws DataAccessException;
 }

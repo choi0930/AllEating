@@ -8,6 +8,7 @@ request.setCharacterEncoding("utf-8"); %>
   <head>
     <title>배송지 변경 팝업창</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
       #addressTable{
         width: 700px;
@@ -27,6 +28,18 @@ request.setCharacterEncoding("utf-8"); %>
         text-align: center;
       }
     </style>
+    <script>
+      /* 결제 페이지로 사용할 쿠폰 정보 넘기기 */
+      function fn_useCoupon(productId){
+        var selectCoupon = $('#selectCoupon_'+productId+' option:selected').val();
+        var productId = productId;
+        var couponId = selectCoupon;
+        var useCoupon = {productId: productId, couponId: selectCoupon};
+
+        window.opener.setCoupon(useCoupon);
+        window.close();
+      }
+    </script>
   </head>
   <body>
     <div id="addressTitle">배송지 변경</div>
@@ -49,12 +62,14 @@ request.setCharacterEncoding("utf-8"); %>
               <tr height="60">
                <td>[${couponInfo.productBrand}]<br>${couponInfo.productName}</td>
                <td>
-           
-             <select>
+                <select id="selectCoupon_${couponInfo.productId}">
                   <c:forEach items="${couponInfo.couponList}" var="list">
-                    <option>${list.coupon_name}/${list.couponDiscountRate}%</option>
+                    <option value="${list.couponId}">${list.coupon_name}/${list.couponDiscountRate}%</option>
                   </c:forEach>
                 </select> 
+               </td>
+               <td>
+                  <button onclick="fn_useCoupon('${couponInfo.productId}')">적용</button>
                </td>
               </tr>
             </c:forEach>

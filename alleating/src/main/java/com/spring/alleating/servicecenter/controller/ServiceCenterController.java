@@ -22,6 +22,13 @@ public interface ServiceCenterController {
 	/* 공지사항 삭제 */
 	public String deleteBoard(@RequestParam String articleNO) throws Exception;
 	
+
+	/*상품문의 페이지 이동*/
+	public ModelAndView personalQ (HttpServletRequest request)throws Exception;
+	/*상품문의 페이지 작성*/
+	public ModelAndView addPersonalQ (HttpServletRequest request)throws Exception;
+
 	//상품 문의
 	public ModelAndView productQnAList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }
