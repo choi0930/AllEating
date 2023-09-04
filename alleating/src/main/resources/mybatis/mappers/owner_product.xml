@@ -38,7 +38,7 @@
 		<result property="creDate" column="creDate" />
 	</resultMap>
 	
-	<resultMap id="ownerInquiryResult" type="inqueryBoardVO">
+	<resultMap id="ownerInquiryResult" type="inquiryBoardVO">
 		<result property="articleNO" column="articleNO" />
 		<result property="level" column="level" />
 		<result property="parentNO" column="parentNO" />

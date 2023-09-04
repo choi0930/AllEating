@@ -20,6 +20,7 @@
 	 		<mapper resource = "mybatis/mappers/coupon.xml" />
 	 		<mapper resource = "mybatis/mappers/point.xml" />
 	 		<mapper resource = "mybatis/mappers/myPage.xml" />
+	 		<mapper resource = "mybatis/mappers/serviceCenter.xml" />
 	 </mappers>
  </configuration>
 

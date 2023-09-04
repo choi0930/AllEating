@@ -1,6 +1,7 @@
 package com.spring.alleating.servicecenter.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.servicecenter.service.ServiceCenterService;
 import com.spring.alleating.servicecenter.vo.BoardVO;
+import com.spring.alleating.servicecenter.vo.InquiryBoardVO;
 
 @Controller("serviceCenterController")
 public class ServiceCenterControllerImpl implements ServiceCenterController{
@@ -26,7 +29,10 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 	private ServiceCenterService serviceCenterService;
 	@Autowired
 	private BoardVO boardVO;
-	
+	@Autowired
+	private InquiryBoardVO inquiryBoardVO;
+	@Autowired
+	private MemberVO memberVO;
 	/* 공지사항 목록 가져오기 */
 	@Override
 	@RequestMapping(value="/serviceCenter/announcement.do", method = RequestMethod.GET)
@@ -93,15 +99,6 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 		return mav;
 	}
 	
-	@Override
-	@RequestMapping(value="/serviceCenter/addPersonal.do", method = RequestMethod.GET)
-	public ModelAndView addPersonalQ(HttpServletRequest request) throws Exception {
-		String viewName = (String)request.getParameter("viewName");
-		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName(viewName);
-		return mav;
-	}
 
 
 	
@@ -114,13 +111,67 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 			throws Exception {
 			HttpSession session = request.getSession();
 			session.setAttribute("side_menuType", "customer_service_center");
+			MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+			String id=memberVO.getId();
+			
+			Map userQnAInfo = new HashMap<>();
+			userQnAInfo = serviceCenterService.selectProductQnA();
 			
 			String viewName = (String) request.getAttribute("viewName");
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName(viewName);
 			
-		
+		   mav.addObject("userQnaInfo", userQnAInfo);
 			return mav;
 
 }
+
+
+	
+	
+	@Override
+	@RequestMapping (value = "/serviceCenter/addQnA.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView addQnA(Map QnAMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "customer_service_center");
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		String id= memberVO.getId();
+		
+		
+	
+		serviceCenterService.insertQnA(QnAMap);
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+	
+	
+	
+	
+		return mav;
+	}
+	
+	@RequestMapping(value="/serviceCenter/*Form.do",method = RequestMethod.GET)
+	public ModelAndView form(@RequestParam ("productId") int productId,HttpServletRequest request, HttpServletResponse response)throws Exception{
+		HttpSession session = request.getSession();
+          session.setAttribute("productId", productId);
+		
+      
+   
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		mav.addObject("productId", productId);
+	
+		return mav;
+	}
+
+
+
+	
+
 }
+	
+	
+	
