@@ -357,7 +357,7 @@ $(function(){$('.header_nav').hover(
             <li class="header_nav"><a href="${contextPath}/product/new_product_01.do">신상품</a></li>
             <li class="header_nav"><a href="${contextPath}/product/best_product_01.do">베스트</a></li>
             <li class="header_nav"><a href="${contextPath}/product/sale_product_01.do">할인상품</a></li>
-            <li class="header_nav"><a href="#">커뮤니티</a></li>
+            <li class="header_nav"><a href="${contextPath }/community/allReview.do">커뮤니티</a></li>
           </ul>
           <div>
             <div id="header_box">

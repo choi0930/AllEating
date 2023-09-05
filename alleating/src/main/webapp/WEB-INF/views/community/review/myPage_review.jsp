@@ -19,6 +19,7 @@ request.setCharacterEncoding("utf-8");
 	<style>
 		.reviewBox {
     padding-top: 15px;
+    padding-bottom: 100px;
 }
 .productNaming {
     border: none;

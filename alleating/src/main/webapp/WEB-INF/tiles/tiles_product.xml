@@ -41,6 +41,9 @@
 <put-attribute name="body" value="/WEB-INF/views/product/sale_product_01.jsp"/>      
 </definition>
 
-
+<definition name="/community/allReview" extends="baseLayout">
+		<put-attribute name="title" value="작성한 후기 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/community/review/allReview.jsp"/>      
+	</definition>
 
 </tiles-definitions>
