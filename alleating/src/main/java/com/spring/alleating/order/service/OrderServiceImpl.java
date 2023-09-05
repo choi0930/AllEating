@@ -146,7 +146,7 @@ public class OrderServiceImpl implements OrderService{
 		System.out.println(couponId);
 		
 		
-		if(couponId != null) {
+		if(couponId.length()>0) {
 			delInfo.put("couponId", couponId);
 			orderDAO.orderUserDelCoupon(delInfo); //주문시 사용한 쿠폰 삭제
 		}
@@ -154,7 +154,7 @@ public class OrderServiceImpl implements OrderService{
 		
 		String point = (String)orderInfo.get("userPoint");
 		System.out.println(point);
-		if(point != null) {
+		if(point.length()>0) {
 				UserPointVO userPointVO = orderDAO.selectUserPoint(id);
 				System.out.println("userPointVO : " + userPointVO);
 				

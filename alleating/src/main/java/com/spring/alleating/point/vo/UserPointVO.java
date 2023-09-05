@@ -1,5 +1,8 @@
 package com.spring.alleating.point.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component("userPointVO")
 public class UserPointVO {
 	private String id;
 	private int userPoint;

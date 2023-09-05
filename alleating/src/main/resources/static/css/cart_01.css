@@ -154,3 +154,7 @@ display: inline-flex;
     padding-top: 11px;
     background-color: #ABDFF1;
 }
+.cartDelBtn{
+	    display: flex;
+    align-items: center;
+}

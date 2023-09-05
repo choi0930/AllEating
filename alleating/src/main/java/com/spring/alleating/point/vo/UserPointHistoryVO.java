@@ -2,6 +2,8 @@ package com.spring.alleating.point.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+@Component("userPointHistotyVO")
 public class UserPointHistoryVO {
 	private int pointNum;
 	private String id;

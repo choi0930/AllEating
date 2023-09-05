@@ -3,6 +3,7 @@ package com.spring.alleating.myPage.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,6 +26,8 @@ public interface MyPageController {
 	public String myPage_delDlieveryAddress(@RequestBody DeliveryAddressVO deliveryAddressVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/* 마이페이지: 기본 배송지 변경 */
 	public String myPage_modDefaultDlieveryAddress(@RequestBody DeliveryAddressVO deliveryAddressVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	/* 마이페이지: 배송지 수정 */
+	public String myPage_modifyDlieveryAddress(Model model, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/* 마이페이지: 쿠폰 페이지 이동(로그인한 유저 쿠폰 목록 불러오기) */
 	public ModelAndView myPage_coupon(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/* 마이페이지: 쿠폰 등록 */

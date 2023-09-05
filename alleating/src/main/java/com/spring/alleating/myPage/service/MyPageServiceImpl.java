@@ -13,11 +13,31 @@ import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.myPage.dao.MyPageDAO;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
 import com.spring.alleating.myPage.vo.WishVO;
+import com.spring.alleating.point.vo.UserPointVO;
 @Service("myPageService")
 public class MyPageServiceImpl implements MyPageService{
 	
+
+
 	@Autowired
 	private MyPageDAO myPageDAO;
+	
+	
+	/*마이페이지: 유저가 가지고 있는 쿠폰 개수와 포인트 가져옴*/
+	@Override
+	public Map getUserPointAndCouponInfo(String id) throws DataAccessException {
+		int couponCount = myPageDAO.couponCount(id);
+		UserPointVO userPointVO = myPageDAO.selectUserPoint(id);
+		
+		int point = userPointVO.getUserPoint();
+		
+		Map info = new HashMap<>();
+		info.put("couponCount", couponCount);
+		info.put("point", point);
+		
+		
+		return info;
+	}
 	
 	/* 마이페이지 쿠폰 등록 */
 	@Override
@@ -113,8 +133,14 @@ public class MyPageServiceImpl implements MyPageService{
 		return result;
 	}
 	/*---------------------------------- 마이페이지 기본 배송지 변경 끝-------------------------------------*/
-
 	
+	/*마이페이지: 배송지 수정 팝업창*/
+	@Override
+	public DeliveryAddressVO addressInfo(Map info) throws DataAccessException {
+		DeliveryAddressVO deliveryAddressVO =  myPageDAO.selectAddressByNum(info);
+		return deliveryAddressVO;
+	}
+	/*---------------------------------- 마이페이지 배송지 수정 팝업창 끝-------------------------------------*/
 //////////////////////마이페이지 찜목록////////////////
 
 
@@ -139,12 +165,13 @@ public class MyPageServiceImpl implements MyPageService{
 	
 
 	
+
+	
 	
 	
 ////////////////////////마이페이지 - 찜목록 끝
 	
-
-
+	
 
 
 

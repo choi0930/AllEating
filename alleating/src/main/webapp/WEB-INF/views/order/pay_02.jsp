@@ -138,16 +138,20 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     });
       }
       /*----------------------주문페이지로 가기 끝--------------------*/
-      function fn_deliveryPopUp(){
+    
+      /*팝업창*/
+      function fn_deliveryPopUp(){ //배송지 주소 변경 팝업창
           let popUrl = "/order/deliveryChangePopup.do";
           let popOption = "width = 800px, height = 550px, top = 300px, left = 300px, scrollbars=yes";
         window.open(popUrl, "배송지 변경", popOption);
       }
-      function fn_selectCoupon(){
+
+      function fn_selectCoupon(){// 쿠폰 적용 팝업창
         let popUrl = "/coupon/couponPopUp.do";
           let popOption = "width = 800px, height = 550px, top = 300px, left = 300px, scrollbars=yes";
         window.open(popUrl, "쿠폰 적용", popOption);
       }
+/*-------------------------------------------------------------------------------------------------------------*/
 
 /* 배송지 변경 팝업창에서 가져온 정보 */
   function setResList(resArr){
@@ -175,6 +179,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 
   $('#deliveryTable').append(html);
 }
+/*---------------------------------------------------------------------------------------------------------------*/
 
 /* 쿠폰 팝업창에서 가져온 정보 */
 function setCoupon(useCoupon){
@@ -265,6 +270,7 @@ function fn_usePoint(){
   console.log(_finalPoint);
   discountInfo();
 }
+/*-------------------------------------------------------------------------------*/
 
 /* 쿠폰 포인트로 할인되는 금액계산 */
 function discountInfo(){
@@ -309,7 +315,7 @@ function fn_totalPrice(){
   $('#totalPrices').text(finalTotalProductPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
   $('#totalPrice').text(finalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
 }
-
+/*-------------------------------------------------------------------------------------------------------------------*/
     </script>
     <style>
       #addressText{
