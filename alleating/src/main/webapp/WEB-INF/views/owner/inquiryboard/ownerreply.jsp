@@ -43,10 +43,16 @@
                               type="hidden"
                               value="${parentNO}"
                               name="parentNO"
-                            /> 
+                            />  
+							<input
+							type="hidden"
+							value="${productId}"
+							name="productId"
+						  /> 
+
     <tr>
 		<td align="right"> 작성자:&nbsp; </td>
-		<td><input type="text" size="20" maxlength="100" name="writer" value="${loginMember.id}" readonly></input></td>
+		<td><input type="text" size="20" maxlength="100" name="id" value="${loginMember.id}" readonly></input></td>
 	</tr>	
 
     <tr>

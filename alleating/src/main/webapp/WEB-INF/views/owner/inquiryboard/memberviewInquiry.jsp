@@ -57,8 +57,7 @@
 		 	var form = document.createElement("form");
 		 	form.setAttribute("method", "get");
 		 	form.setAttribute("action", url);
-			alert(url);
-			
+		
 		 var parentNOInput = document.createElement("input");
 		 parentNOInput.setAttribute("type", "hidden");
 		 parentNOInput.setAttribute("name", "parentNO");
