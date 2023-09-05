@@ -194,20 +194,23 @@
 
 <select id="selectAllArticlesList" resultMap="ownerInquiryResult">
 <![CDATA[
-	SELECT CASE WHEN LEVEL-1 > 0 then CONCAT(CONCAT(REPEAT(' ', level-1),'< '), board.title) 
-		   ELSE board.title END AS title,
-		   						   board.articleNO, 
-		   						   board.parentNO, 
-		   						   result.level, 
-		   						   board.content, 
-		   						   board.id, 
-		   						   board.writeDate 
+	
+    
+    SELECT CASE WHEN LEVEL-1 > 0 then CONCAT(CONCAT(REPEAT(' ', level-1),'< '), board.title) 
+		   ELSE board.title END AS title, 
+           board.articleNO,
+           board.parentNO, 
+           result.level,
+           board.content, 
+           board.id,
+           board.writeDate 
 		   FROM (SELECT function_hierarchical() 
-		   							AS articleNO, @level AS level 
+           AS articleNO,
+           @level AS level 
 		   FROM (SELECT @start_with:=0, @articleNO:=@start_with, @level:=0) tbl 
 		   JOIN inquiry_board) result 
-		   JOIN inquiry_board board 
-		   ON board.articleNO = result.articleNO
+           JOIN inquiry_board board 
+           ON board.articleNO = result.articleNO
 ]]>	</select>  
 
 	<insert id="insertNewOwnerInquiry" parameterType="java.util.Map">
@@ -230,12 +233,16 @@
 			INSERT into inquiry_board(
 									   articleNO, 
 									   parentNO,
+									   id,
+									   productId,
 									   title, 
 									   content,  
 									   writeDate)
 								VALUES(
 									   #{articleNO}, 
 									   #{parentNO},
+									   #{id},
+									   #{productId},
 									   #{title}, 
 									   #{content}, 
 									   now())			

@@ -229,7 +229,7 @@ td.frequent_q_01f1_1 {
  <td class="frequent_q_01f1_1"><div>[${qna.productBrand}]</div> <div>${qna.productName}</div> </td>
 <td class="qnaInfo_under">
 <td class="qnaTitle">${qna.title }</td>
-<td class="qnaUser">${loginMember.name }</td>
+<td class="qnaUser">${qna.id }</td>
 <td class="qnaDate">${qna.writeDate }</td>
 
 </tr>
