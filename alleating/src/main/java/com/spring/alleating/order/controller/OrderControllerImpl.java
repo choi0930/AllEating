@@ -178,7 +178,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	}
 	/*------------------------------ 주문 끝 --------------------------------------*/
 
-	
+	///////////////////////////////주문 완료 페이지/////////////////////
 	@Override
 	@RequestMapping(value="/order/pay_complete.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView selectOrderNum(@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse response)
@@ -200,6 +200,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
+
 		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
 		String _id = memberVO.getId();
 		
@@ -219,6 +220,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		 * Map orderHistoryInfo = new HashMap<>(); orderHistoryInfo =
 		 * orderService.selectOrderHistory(id);
 		 */
+
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
@@ -227,8 +229,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		 Map fffInfo = new HashMap<>(); 
 			
-			 fffInfo.put("id", id); // "orderHistoryVO"로 사용자의 아이디를 담아서 전달합니다.?? 그럼 "id"가 맞는데
-				/* fffInfo.put("_id", _id); */
+		 fffInfo.put("id", id);
 			 
 		List orderHistoryResult = orderService.selectOrderHistory(fffInfo);
 	

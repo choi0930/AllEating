@@ -242,11 +242,7 @@ text-decoration:none;}
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
-                    <li class="side_tap">
-                        <a class="side_aTag" href="${contextPath}/myPage/myPage_productQnA.do">상품 문의
-                            <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
-                        </a>
-                    </li>
+          
                     <li class="side_tap">
                         <a class="side_aTag" href="${contextPath}/myPage/myPage_reserves.do">적립금
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">

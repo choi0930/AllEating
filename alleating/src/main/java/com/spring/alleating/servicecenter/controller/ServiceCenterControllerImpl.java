@@ -122,7 +122,7 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 	}
 
 	
-	
+	//상품 문의 등록
 	@Override
 	@RequestMapping (value = "/serviceCenter/addQnA.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView addQnA(Map QnAMap, HttpServletRequest request, HttpServletResponse response) throws Exception {

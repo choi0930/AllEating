@@ -45,9 +45,18 @@ public class AllEatingOrderVO {
 	private String delivery_status;
 	
 	private String reg_com_name;
+	
+	//alleating_order alleating_order_detail table join
+	private int order_seq_num;
 
 	
 	
+	public int getOrder_seq_num() {
+		return order_seq_num;
+	}
+	public void setOrder_seq_num(int order_seq_num) {
+		this.order_seq_num = order_seq_num;
+	}
 	public String getReg_com_name() {
 		return reg_com_name;
 	}

@@ -200,12 +200,10 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public List selectOrderHistory(Map fffInfo) throws DataAccessException {
 		 
-		
-		Map gggInfo = new HashMap();
+	
 		List<AllEatingOrderVO> orderHistoryVO = orderDAO.selectOrderHistory(fffInfo);
 		System.out.println(orderHistoryVO.size() );
-		/* orderHistoryInfo.put("orderHistyoryVO", orderHistoryVO); */
-		/* return orderHistoryInfo; */
+
 		return orderHistoryVO;
 	}
 
@@ -233,8 +231,7 @@ public class OrderServiceImpl implements OrderService{
 		orderDetailInfo.put("orderDetailVO", orderDetailVO);
 		orderDetailInfo.put("reserveList", reserveList);
 		orderDetailInfo.put("normalList", normalList);
-		System.out.println(reserveList.size() );
-		System.out.println(normalList.size() );
+
 		return orderDetailInfo;
 	}
 

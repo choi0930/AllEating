@@ -66,21 +66,5 @@ import com.spring.alleating.main.service.MainService;
 			mav.setViewName("/test"); //add
 			return mav;
 		}
-
-		/*
-		 * @Override
-		 * 
-		 * @RequestMapping(value= "/main.do", method = RequestMethod.GET) public
-		 * ModelAndView main(HttpServletRequest request, HttpServletResponse
-		 * response)throws Exception { String viewName =
-		 * (String)request.getAttribute("viewName"); System.out.println(viewName);
-		 * 
-		 * ModelAndView mav = new ModelAndView(); mav.setViewName(viewName); //add
-		 * return mav; }
-		 */
-			
-		
-		
-		
 	
 	}

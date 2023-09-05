@@ -26,22 +26,6 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 	@Autowired
 	ProductService productService;
 	
-	/*
-	 * @Override
-	 * 
-	 * @RequestMapping(value= "/product/product_detail_01.do", method =
-	 * RequestMethod.GET) public ModelAndView product_detail_01(HttpServletRequest
-	 * request, HttpServletResponse response)throws Exception{
-	 * 
-	 * 
-	 * String viewName = (String)request.getAttribute("viewName");
-	 * System.out.println(viewName);
-	 * 
-	 * ModelAndView mav = new ModelAndView(); mav.setViewName(viewName); //add
-	 * return mav; }
-	 */
-	
-	
 	/* 카테고리별 상품 목록 */
 	@Override
 	@RequestMapping(value= "/product/product_01.do", method = RequestMethod.GET)
@@ -55,12 +39,6 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName); 
 		
-		/*
-		 * String cateCode = request.getParameter("cateCode");
-		 * System.out.println(cateCode);
-		 */
-		
-		
 		Map bbbInfo = new HashMap<>();
 		bbbInfo.put("cateCode", category);
 		List cateResult = productService.selectCateProduct(bbbInfo);
@@ -70,28 +48,6 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 		
 		return mav;
 	}	
-
-	/*
-	 * @Override
-	 * 
-	 * @RequestMapping(value= "/product/product_01.do", method = RequestMethod.GET)
-	 * public ModelAndView product_01(@RequestParam("cateCode")String cateCode,
-	 * HttpServletRequest request, HttpServletResponse response)throws Exception {
-	 * HttpSession session = request.getSession();
-	 * session.setAttribute("side_menuType", "product_01");
-	 * session.setAttribute("cateCode", cateCode);
-	 * 
-	 * 
-	 * 
-	 * String viewName = (String)request.getAttribute("viewName");
-	 * System.out.println(viewName);
-	 * 
-	 * ModelAndView mav = new ModelAndView(); mav.setViewName(viewName);
-	 * 
-	 * 
-	 * 
-	 * return mav; }
-	 */
 	
 	/* 헤더 검색바 검색기능 */
 	@Override
@@ -200,7 +156,7 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 		return mav;
 	}
 	
-	//제품 상세페이지 연결 컨트롤러
+	//제품 상세페이지
 	@Override
 	@RequestMapping(value="/product/userProductDetail.do", method = RequestMethod.GET)
 	public ModelAndView userProductDetail(@RequestParam("productId") int productId, HttpServletRequest request, HttpServletResponse response)

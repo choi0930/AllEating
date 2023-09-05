@@ -54,11 +54,13 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
 		return serviceCenterDAO.insertQnA(QnAMap);
   }
 
-	public List selectProductQnA(Map _productQnAInfo) throws DataAccessException {
-		List<InquiryBoardVO> inqueryBoardVO = serviceCenterDAO.selectProductQnA(_productQnAInfo);
-		return inqueryBoardVO;
-
-	}
+	/*
+	 * public List selectProductQnA(Map _productQnAInfo) throws DataAccessException
+	 * { List<InquiryBoardVO> inqueryBoardVO =
+	 * serviceCenterDAO.selectProductQnA(_productQnAInfo); return inqueryBoardVO;
+	 * 
+	 * }
+	 */
 
 
 
