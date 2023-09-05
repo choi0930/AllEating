@@ -22,13 +22,22 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
 	
 	/* 공지사항 목록 가져오기 */
 	@Override
-	public Map<String, ?> boardList(Map<String, ?> dataMap) throws DataAccessException {
+	public Map<String, Object> boardList(Map<String, Object> dataMap) throws DataAccessException {
+		List<BoardVO>boardList =  serviceCenterDAO.boardList(dataMap);
+		int result = serviceCenterDAO.boardTotalCount();
 		
-		return null;
+		Map boardMap = new HashMap<>();
+		boardMap.put("boardList", boardList);
+		boardMap.put("total", result);
+		return boardMap;
 	}
 
-	
-	
+	/* 공지사항 상세 페이지 */
+	@Override
+	public BoardVO boardDetail(String articleNO) throws DataAccessException {
+		BoardVO boardVO = serviceCenterDAO.boardDetail(articleNO);
+		return boardVO;
+	}
 	//상품 문의 목록
 	@Override
 
@@ -50,6 +59,9 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
 		return inqueryBoardVO;
 
 	}
+
+
+
 
 	
 	

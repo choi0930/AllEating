@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-isELIgnored="false" pageEncoding="UTF-8"%> <%
-request.setCharacterEncoding("utf-8"); %> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fmt"
+uri="http://java.sun.com/jsp/jstl/fmt" %> <%
+request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<c:set var="boardList" value="${boardMap.boardList}" /> <!--공지사항 리스트-->
+	<c:set var="total" value="${boardMap.total}" /> <!--공지사항 총 개수-->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 페이지</title>
+<title>공지사항 관리 페이지</title>
 <style>
 	.announcement_01_1{
 		font-weight:500;
@@ -86,6 +89,7 @@ li {
 	.announcement_01_31 {
     display: flex;
     flex-direction: row;
+	align-items: center;
     border-bottom: 1px solid rgb(244, 244, 244);
 }
 
@@ -111,7 +115,7 @@ li {
 	.announcement_01_35 {
     text-align: center;
     padding: 20px 0px;
-    flex-basis: 100px;
+    
     color: rgb(153, 153, 153);
 }
 	.all{
@@ -121,72 +125,145 @@ li {
 	ul{
 	list-style:none;
 	}
-	
-</style> 
+	.emptyBoard{
+		display: flex;
+		height: 80px;
+		align-items: center;
+		justify-content: center;
+	}
+	.pageBottom{
+		margin-top: 10px;
+		text-align: center;
+	}
+	.boardAddBtn{
+		
+		background-color: #000060;
+    	width: 150px;
+    	height: 38px;
+    	color: white;
+    	border: none;
+    	border-radius: 6px;
+    	margin: 0px 8px;
+	}
+	.addBtnArea{
+		text-align: right;
+		margin-bottom: 15px;
+	}
+</style>
+<script>
+	function fn_goAddBoard(){
+		location.href = "/admin/addAnnouncementForm.do";
+	}
+	function fn_delBoard(articleNO){
+		$.ajax({
+			type:"POST",
+			async:true,
+			url: "/admin/delBoard.do",
+			data: {articleNO: articleNO},
+			success: function(data){
+				alert('공지사항 글이 삭제 되었습니다');
+				location.href="/admin/adminAnnouncement.do";
+			},
+			error: function(data){
+				alert("에러가 발생했습니다.");
+			}
+		});
+	}
+</script> 
 </head>
 <body>
+	<h2 class="announcement_01_1">공지사항</h2>
+	
+	<div class="announcement_01_2">
+	<div  class=".announcement_01_21">번호</div>
+	<div class="announcement_01_22">제목</div>
+	<div  class="announcement_01_23">작성자</div>
+	<div  class="announcement_01_24">작성일</div>
+	</div>
 
-<div class="all">
-<h2 class="announcement_01_1">공지사항</h2>
-
-<div class="announcement_01_2">
-<div width="50" class=".announcement_01_21">번호</div>
-<div class="announcement_01_22">제목</div>
-<div width="100" class="announcement_01_23">작성자</div>
-<div width="100" class="announcement_01_24">작성일</div>
-</div>
-<ul class="announcement_01_3">
-<li>
-<a href="">
-<div class="announcement_01_31">
-<div class="announcement_01_32">공지</div>
-<div class="announcement_01_33">[안내]8월 배송 휴무 일정</div>
-<div class="announcement_01_34">올잇팅</div>
-<div class="announcement_01_35">2023.08.16</div>
-</div>
-</a>
-</li>
-<li>
-<a href="">
-<div class="announcement_01_31">
-<div class="announcement_01_32">공지</div>
-<div class="announcement_01_33">[안내]8월 배송 휴무 일정</div>
-<div class="announcement_01_34">올잇팅</div>
-<div class="announcement_01_35">2023.08.16</div>
-</div>
-</a>
-<li>
-<a href="">
-<div class="announcement_01_31">
-<div class="announcement_01_32">공지</div>
-<div class="announcement_01_33">[안내]8월 배송 휴무 일정</div>
-<div class="announcement_01_34">올잇팅</div>
-<div class="announcement_01_35">2023.08.16</div>
-</div>
-</a>
-</li>
-<li>
-<a href="">
-<div class="announcement_01_31">
-<div class="announcement_01_32">공지</div>
-<div class="announcement_01_33">[안내]8월 배송 휴무 일정</div>
-<div class="announcement_01_34">올잇팅</div>
-<div class="announcement_01_35">2023.08.16</div>
-</div>
-</a>
-</li>
-<li>
-<a href="">
-<div class="announcement_01_31">
-<div class="announcement_01_32">공지</div>
-<div class="announcement_01_33">[안내]8월 배송 휴무 일정</div>
-<div class="announcement_01_34">올잇팅</div>
-<div class="announcement_01_35">2023.08.16</div>
-</div>
-</a>
-</li>
-</ul>
-</div>
+	<ul class="announcement_01_3">
+		<c:choose>
+			<c:when test="${empty boardList}">
+				<li>
+					<div class="announcement_01_31 emptyBoard">
+						공지사항이 없습니다.
+					</div>
+				</li>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="board" items="${boardList}">
+					<li>	
+						<a href="#">
+							<div class="announcement_01_31">
+								<div class="announcement_01_32"><a href="${contextPath}/serviceCenter/announcement_detail.do?articleNO=${board.articleNO}">${board.articleNO}</a></div>
+								<div class="announcement_01_33"><a href="${contextPath}/serviceCenter/announcement_detail.do?articleNO=${board.articleNO}">${board.title}</a></div>
+								<div class="announcement_01_34"><a href="${contextPath}/serviceCenter/announcement_detail.do?articleNO=${board.articleNO}">AllEating</a></div>
+								<div class="announcement_01_35">${board.writeDate}</div>
+							</div>
+						</a>
+					</li>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+	</ul>
+	<div class="pageBottom">
+		<c:if test="${total != null }">
+		  <c:choose>
+			<c:when test="${total > 200 }">
+			  <c:forEach var="page" begin="1" end="${(total/20)+1}" step="1">
+				<c:if test="${section >1 && page==1 }">
+				  <a
+					class="no-uline"
+					href="${contextPath}/admin/adminAnnouncement.do?section=${section-1}&pageNum=${(section-1)*10 +1}"
+					>&nbsp; pre</a
+				  >
+				</c:if>
+				<a
+				  class="no-uline"
+				  href="${contextPath}/admin/adminAnnouncement.do?section=${section}&pageNum=${page}"
+				  >${(section-1)*5 + page }</a
+				>
+				<c:if test="${page == (total/20)+1 }">
+				  <a
+					class="no-uline"
+					href="${contextPath}/admin/adminAnnouncement.do?section=${section+1}&pageNum=${section*10+1 }"
+					>&nbsp; next</a
+				  >
+				</c:if>
+			  </c:forEach>
+			</c:when>
+			<c:when test="${total == 200 }">
+			  <c:forEach var="page" begin="1" end="10" step="1">
+				<a
+				  class="no-uline"
+				  href="${contextPath}/admin/adminAnnouncement.do?section=${section }&pageNum=${page }"
+				  >${page }</a
+				>
+			  </c:forEach>
+			</c:when>
+			<c:when test="${total < 200 }">
+			  <c:forEach var="page" begin="1" end="${(total/20)+1}" step="1">
+				<c:choose>
+				  <c:when test="${page==pageNum }">
+					<a
+					  class="sel-page"
+					  href="${contextPath}/admin/adminAnnouncement.do?section=${section-1}&pageNum=${page}"
+					  >${page }</a
+					>
+				  </c:when>
+				  <c:otherwise>
+					<a
+					  class="no-uline"
+					  href="${contextPath}/admin/adminAnnouncement.do?section=${section+1}&pageNum=${page }"
+					  >${page }</a
+					>
+				  </c:otherwise>
+				</c:choose>
+			  </c:forEach>
+			</c:when>
+		  </c:choose>
+		</c:if>
+	  </div>
 
 </body>
 </html>

@@ -68,8 +68,13 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/serviceCenter/adminAnnouncement.jsp"/>      
 	</definition>
 	
-	<definition name="/admin/adminAnnouncement_02" extends="baseLayout2">
-		<put-attribute name="title" value="관리자페이지 공지사항 목록"/>
-		<put-attribute name="body" value="/WEB-INF/views/admin/serviceCenter/announcement_02.jsp"/>      
+	<definition name="/admin/adminAnnouncement_detail" extends="baseLayout2">
+		<put-attribute name="title" value="관리자페이지 공지사항 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/serviceCenter/adminAnnouncement_detail.jsp"/>      
+	</definition>
+	
+	<definition name="/admin/addAnnouncementForm" extends="baseLayout2">
+		<put-attribute name="title" value="관리자페이지 공지사항 등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/serviceCenter/addAnnouncementForm.jsp"/>      
 	</definition>
 </tiles-definitions>

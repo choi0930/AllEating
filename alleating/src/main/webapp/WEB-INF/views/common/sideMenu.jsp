@@ -343,7 +343,7 @@ text-decoration:none;}
                         </a>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="${contextPath}/admin/couponList.do">공지사항 관리
+                        <a class="side_aTag" href="${contextPath}/admin/adminAnnouncement.do">공지사항 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
@@ -490,7 +490,7 @@ text-decoration:none;}
                 <div class="side_cart_menu">
                     <div class="side_cart_menu2">
                         <div class="side_cart_top_menuBox">
-                            <c:set var="deliveryAddressVO" value="${product_map.deliveryAddressVO}" />
+                           
                             
                             <div>
                                 <c:choose>
@@ -500,6 +500,7 @@ text-decoration:none;}
                                         <span class="side_cart_deliveryAddressText">로그인을 하시면 지금 보고있는 상품을 나중에도 확인하실 수 있습니다.</span>
                                     </c:when>
                                     <c:otherwise>
+                                        <c:set var="deliveryAddressVO" value="${product_map.deliveryAddressVO}" />
                                         <img src="${contextPath}/img/side/icon-location.png" width="16px" alt="location">
                                         <strong class="side_cart_deliveryTitleText">기본배송지: ${deliveryAddressVO.deliveryName}</strong><br>
                                         <span class="side_cart_deliveryAddressText">[${deliveryAddressVO.zipcode}] ${deliveryAddressVO.address}

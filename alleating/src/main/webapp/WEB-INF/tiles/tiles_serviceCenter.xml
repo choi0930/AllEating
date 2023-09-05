@@ -12,6 +12,10 @@
 	<put-attribute name="body" value="/WEB-INF/views/serviceCenter/announcement.jsp"/>      
 </definition>
 
+<definition name="/serviceCenter/announcement_detail" extends="baseLayout2">
+	<put-attribute name="title" value="공지사항 상세 페이지"/>
+	<put-attribute name="body" value="/WEB-INF/views/serviceCenter/announcement_detail.jsp"/>      
+</definition>
 
 <definition name="/serviceCenter/addQnAForm" extends="baseLayout2">
 	<put-attribute name="title" value="상품문의 작성 페이지"/>

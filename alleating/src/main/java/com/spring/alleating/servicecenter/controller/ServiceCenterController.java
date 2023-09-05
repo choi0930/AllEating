@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,9 +16,9 @@ import com.spring.alleating.servicecenter.vo.InquiryBoardVO;
 
 public interface ServiceCenterController {
 	/* 공지사항 목록 */
-	public ModelAndView getBoardList(@RequestParam Map<String, ?> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
-	
-	
+	public ModelAndView getBoardList(@RequestParam Map<String, Object> dataMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	/* 공지사항 상세페이지 */
+	public ModelAndView boardDetail(@RequestParam("articleNO")String articleNO, HttpServletRequest request)throws Exception;
 
 
 	/* 상품문의 페이지 이동 */

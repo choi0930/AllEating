@@ -3,6 +3,7 @@ pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fmt"
 uri="http://java.sun.com/jsp/jstl/fmt" %> <%
 request.setCharacterEncoding("utf-8"); %>
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <c:set var="useCouponList" value="${couponMap.useCouponList}" />
 <c:set var="total" value="${couponMap.total}" />
 <c:set var="invalidCouponList" value="${couponMap.invalidCouponList}" />
