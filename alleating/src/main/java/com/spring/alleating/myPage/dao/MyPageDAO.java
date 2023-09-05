@@ -6,12 +6,12 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.alleating.coupon.vo.CouponVO;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
 import com.spring.alleating.myPage.vo.WishVO;
+import com.spring.alleating.point.vo.UserPointVO;
 
 @Mapper
 @Repository("myPageDAO")
@@ -38,13 +38,20 @@ public interface MyPageDAO {
 	public DeliveryAddressVO selectDefaultAddress(String id)throws DataAccessException;
 	/*마이페이지: 기본 배송지 변경*/
 	public int updateDefaultAddress(Map deliveryInfo)throws DataAccessException;
-    //마이페이지-찜목록
+	/*마이페이지: 수정할 배송지 가져오기 */
+	public DeliveryAddressVO selectAddressByNum(Map deliveryInfo)throws DataAccessException;
+    /*마이페이지: 가지고있는 쿠폰 개수*/
+	public int couponCount(String id)throws DataAccessException;
+	/*마이페이지: 유저가 가지고있는 포인트*/
+	public UserPointVO selectUserPoint(String id)throws DataAccessException;
+	//마이페이지-찜목록
 	public List<WishVO> selectWishList(Map wishMap) throws DataAccessException;
 	//마이페이지-찜하기
 	public int insertWish(WishVO wishVO) throws DataAccessException;
 	
 	//마이페이지-찜 삭제
 	public int deleteWish(WishVO wishVO ) throws DataAccessException;
+	
 	
 
 

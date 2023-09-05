@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -67,6 +69,11 @@ public class MyPageControllerImpl implements MyPageController {
 		userCouponVO.setCouponId(couponId);
 		userCouponVO.setId(id);
 		int result = myPageService.addUserCoupon(userCouponVO);
+		Map userInfo = myPageService.getUserPointAndCouponInfo(id);
+		
+		
+		int couponCount = (int) userInfo.get("couponCount");
+		session.setAttribute("couponCount", couponCount);
 		String msg = "";
 
 		switch (result) {
@@ -177,7 +184,29 @@ public class MyPageControllerImpl implements MyPageController {
 		return msg;
 	}
 	/*----------------------------------------마이페이지: 기본 배송지 변경 끝----------------------------------------------------------*/
-
+	
+	/*마이페이지: 배송지 수정*/
+	@Override
+	@GetMapping(value="/myPage/modDeliveryPop.do")
+	public String myPage_modifyDlieveryAddress(Model model, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		String num = request.getParameter("num");
+			int _num = Integer.parseInt(num);
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+			String id = memberVO.getId();
+			
+			Map info = new HashMap<>();
+			info.put("num",_num);
+			info.put("id", id);
+			
+			DeliveryAddressVO deliveryAddressVO = myPageService.addressInfo(info);
+			
+			model.addAttribute("deliveryAddressVO", deliveryAddressVO);
+		return "/myPage/modDeliveryPop";
+	}
+	/*----------------------------------------마이페이지: 배송지 수정 끝----------------------------------------------------------*/
 	@Override
 	@RequestMapping(value = "/myPage/myPage_productQnA.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView myPage_productQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -332,6 +361,7 @@ public class MyPageControllerImpl implements MyPageController {
 		int deleteWish = myPageService.deleteWish(wishVO);
 		return deleteWish;
 	}
+	
 
 
 	 
