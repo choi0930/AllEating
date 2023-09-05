@@ -91,6 +91,9 @@ public class MemberControllerImpl implements MemberController {
 		session.setAttribute("isLoginON",false);
 		session.removeAttribute("loginMember");
 		session.removeAttribute("loginType");
+		session.removeAttribute("couponCount");
+		session.removeAttribute("userPointInfo");
+		
 		mav.setViewName("redirect:/main.do");
 		return mav;
 	}

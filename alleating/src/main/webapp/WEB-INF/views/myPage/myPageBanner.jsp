@@ -51,11 +51,11 @@
         </div>
         <div class="myPageBannerValue myPageBannerMiddle">
             <div><span class="myPageBannerText">적립금</span></div>
-            <div><span class="myPageBannerText">0원</span></div>
+            <div><span class="myPageBannerText">${userPointInfo}원</span></div>
         </div>
         <div class="myPageBannerValue myPageBannerLast">
             <div><span class="myPageBannerText">쿠폰</span></div>
-            <div><span class="myPageBannerText">0개</span></div>
+            <div><span class="myPageBannerText">${couponCount}개</span></div>
         </div>
     </div>
 

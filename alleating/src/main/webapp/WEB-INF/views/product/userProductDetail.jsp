@@ -57,10 +57,14 @@ function add_cart(productId) {
       
       if(data === 'add_success'){   // 등록 성공시
         alert("장바구니에 등록되었습니다.");
-        $('#toDisplay').css('display','none');
+        $('#toDisplay').css('display','block');
 
       } else if(data === 'already_existed'){ //이미 등록된 상품일시
-        alert("이미 카트에 등록된 상품입니다.");	
+        alert("이미 장바구니에 등록된 상품입니다.");
+        var go = confirm("장바구니로 가시겠습니까?");
+        if(go){
+          location.href='/cart/myCart.do';
+        }
       }
 
     },
@@ -73,27 +77,74 @@ function add_cart(productId) {
   /*---------- 장바구니 담기 끝 ----------*/
 
 function fn_goToPay(){
-  var qty = $('#qty_choice').val();
+  // var qty = $('#qty_choice').val();
+  // var productId = $('#productId').val();
+
+  // var formObj = document.createElement("form");
+  // var i_product_id = document.createElement("input");
+  // var i_qty = document.createElement("input");
+
+  // i_product_id.name = "product_id";
+  // i_qty.name = "qty";
+
+  // formObj.appendChild(i_product_id);
+  // formObj.appendChild(i_qty);
+
+  // document.body.appendChild(formObj);
+  // formObj.method ="POST";
+  // formObj.action="${contextPath}/order/orderEachProduct.do";
+  // formObj.submit();
   var productId = $('#productId').val();
+  var productName = $('#h_productName').val();
+  var productPrice = $('#h_productPrice').val();
+  var productDiscount = $('#h_discount').val();
+  var productQty = $('#qty_choice').val();
+  var cateCode = $('#h_cateCode').val();
+  var fileName = $('#h_fileName').val();
+  var deliveryType  = $('#h_deliveryType').val();
+  var productBrand  = $('#h_productBrand').val();
+  var allEatingOrderDetailes = [];
 
-  var formObj = document.createElement("form");
-  var i_product_id = document.createElement("input");
-  var i_qty = document.createElement("input");
+  console.log("상품id"+productId);
+  console.log("상품이름"+productName);
+  console.log("상품가격"+productPrice);
+  console.log("상품할인율"+productDiscount);
+  console.log("상품개수"+productQty);
+  console.log("상품카테고리코드"+cateCode);
+  console.log("상품이미지파일이름"+fileName);
+  console.log("상품배송타입"+deliveryType);
+  console.log("상품브랜드"+productBrand);
 
-  i_product_id.name = "product_id";
-  i_qty.name = "qty";
+  allEatingOrderDetailes.push({
+    productId: productId,
+    productName: productName,
+    productPrice: productPrice,
+    productDiscount: productDiscount,
+    productQty: productQty,
+    cateCode: cateCode,
+    fileName :fileName,
+    deliveryType : deliveryType,
+    productBrand : productBrand
+  });
 
-  formObj.appendChild(i_product_id);
-  formObj.appendChild(i_qty);
+  $.ajax({
+         type: "POST",
+        url: "${contextPath}/order/orderAllCartProducts.do",
+        data: JSON.stringify(allEatingOrderDetailes),
+        contentType: "application/json;charset=UTF-8",
+        success: function (response) {
+            console.log("서버 응답 성공");
+          location.href="/order/pay_02.do";
+        },
+        error: function (error) {
+            console.error("오류 발생:", error);
+        }
+  });
 
-  document.body.appendChild(formObj);
-  formObj.method ="POST";
-  formObj.action="${contextPath}/order/orderEachProduct.do";
-  formObj.submit();
 }
 
  function fn_shopping(){
-  $('#toDisplay').css('display','block');
+  $('#toDisplay').css('display','none');
  }
 
  
@@ -117,7 +168,9 @@ function fn_goToPay(){
 	 /*  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); */
  }
 
- 
+ function fn_goCart(){
+  location.href = '/cart/myCart.do';
+ }
  
 </script>
 
@@ -134,6 +187,7 @@ function fn_goToPay(){
                <c:forEach var="pimg" items="${userProductImglist}">
                 <c:if test="${pimg.fileType =='main_image'}">
                   <img src="${contextPath}/download.do?fileName=${pimg.fileName}&productId=${userProductVO.productId}&cateCode=${userProductVO.cateCode}" alt="${pimg.fileName}" width="300px" height="300px">
+                  <input type="hidden" id="h_fileName" value="${pimg.fileName}" />
                 </c:if>
             </c:forEach>
 </div>
@@ -251,7 +305,11 @@ function fn_goToPay(){
 <div class="choice-8">
 <div class="choice-9">
 
-<input type="hidden" id="productId" value="${userProductVO.productId}">
+<input type="hidden" id="productId" value="${userProductVO.productId}" />
+<input type="hidden" id="h_productName" value="${userProductVO.productName}" />
+<input type="hidden" id="h_cateCode" value="${userProductVO.cateCode}" />
+<input type="hidden" id="h_deliveryType" value="${userProductVO.deliveryType}" />
+<input type="hidden" id="h_productBrand" value="${userProductVO.productBrand}" />
 
 <select class="form-select" id="qty_choice" aria-label="Default select example" onchange="qty_mod()" >
   <option selected value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1개</option>
@@ -275,11 +333,15 @@ function fn_goToPay(){
               <c:choose>
                     <c:when test="${userProductVO.productDiscount != 0}">
                               <fmt:formatNumber value='${userProductVO.productSalesPrice}' type='number' />원
+                              <input type="hidden" id="h_discount" value="${userProductVO.productDiscount}" />
+                              <input type="hidden" id="h_productPrice" value="${userProductVO.productSalesPrice}" />
                     </c:when>
                    
                    
                   <c:otherwise>
                           <fmt:formatNumber value="${userProductVO.productPrice}" type="number" />원
+                          <input type="hidden" id="h_discount" value="${userProductVO.productDiscount}" />
+                              <input type="hidden" id="h_productPrice" value="${userProductVO.productPrice}" />
                   </c:otherwise>
               </c:choose>
 
@@ -305,7 +367,7 @@ function fn_goToPay(){
         <div class="choice-button">
 
         <button type="button" class="choice-button-view" onclick="fn_shopping()">쇼핑 계속하기</button>
-        <button type="button" class="choice-button-view" >장바구니 가기</button>
+        <button type="button" class="choice-button-view" onclick="fn_goCart()">장바구니 가기</button>
 
         </div>
         </div> 
@@ -361,7 +423,7 @@ function fn_goToPay(){
 </button>
  <div class="buy">
 <button type="button"  radius="3" class="buybutton" onclick="fn_goToPay()">
-<span class="buy-2">구매하기</span>
+<span class="buy-2">바로구매하기</span>
 </button>
  </div>
 </div>

@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.alleating.common.base.BaseController;
 import com.spring.alleating.coupon.vo.UserCouponVO;
 import com.spring.alleating.member.vo.MemberVO;
+import com.spring.alleating.myPage.service.MyPageService;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
 import com.spring.alleating.myPage.vo.RefundVO;
 import com.spring.alleating.order.service.OrderService;
@@ -36,6 +37,9 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	private OrderService orderService;
 	@Autowired
 	private AllEatingOrderVO allEatingOrderVO;
+	@Autowired
+	private MyPageService myPageService;
+	
 	
 	@RequestMapping(value="/order/pay_01.do", method = RequestMethod.GET)
 	public ModelAndView thunderDelivery(HttpServletRequest request, HttpServletResponse response)throws Exception{
@@ -169,6 +173,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		order.put("allEating", allEatingOrderDetailes);
 		String orderId = orderService.pay(order);
 		
+		session.removeAttribute("allEating");
 		return orderId;
 	}
 	/*------------------------------ 주문 끝 --------------------------------------*/
@@ -195,6 +200,27 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "my_page");
+
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
+		String _id = memberVO.getId();
+		
+		/*마이페이지 상단에 필요한 로그인한 유저 쿠폰 개수와 포인트 가져옴*/
+		Map userInfo = myPageService.getUserPointAndCouponInfo(_id);
+		
+		int couponCount = (int) userInfo.get("couponCount");
+		int point = (int) userInfo.get("point");
+		
+		session.setAttribute("couponCount", couponCount);
+		session.setAttribute("userPointInfo", point);
+		////////////////////////////////////////////////////////////
+		
+		/* String _id = request.getParameter(id); */
+		
+		/*
+		 * Map orderHistoryInfo = new HashMap<>(); orderHistoryInfo =
+		 * orderService.selectOrderHistory(id);
+		 */
+
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();

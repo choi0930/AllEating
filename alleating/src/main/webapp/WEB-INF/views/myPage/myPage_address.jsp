@@ -150,6 +150,12 @@ request.setCharacterEncoding("utf-8"); %>
           },
         });
       }
+      /* 배송지 수정 팝업창 */
+      function fn_modDeliveryAddress(num){
+        let popUrl = "/myPage/modDeliveryPop.do?num="+num;
+        let popOption = "width = 500px, height = 550px, top = 300px, left = 300px, scrollbars=yes";
+        window.open(popUrl, "배송지 수정", popOption);
+      }
     </script>
     <style>
       .addressText {
@@ -177,6 +183,9 @@ request.setCharacterEncoding("utf-8"); %>
       }
       #title001 tr td{
         padding: 17px 10px;
+      }
+      .defaultAddressBtn{
+        margin-top: 20px;
       }
     </style>
   </head>
@@ -388,12 +397,12 @@ request.setCharacterEncoding("utf-8"); %>
 
               <c:choose>
                 <c:when test="${addressInfo.default_address == 'y'}">
-                  <td><button>수정</button></td>
+                  <td><button class="btn btn-outline-primary" onclick="fn_modDeliveryAddress('${addressInfo.num}')">수정</button></td>
                 </c:when>
                 <c:otherwise>
                   <td>
-                    <button>수정</button>
-                    <button onclick="fn_delete('${addressInfo.num}')">
+                    <button class="btn btn-outline-primary" onclick="fn_modDeliveryAddress('${addressInfo.num}')">수정</button>
+                    <button onclick="fn_delete('${addressInfo.num}')" class="btn btn-outline-danger">
                       삭제
                     </button>
                   </td>
@@ -404,7 +413,7 @@ request.setCharacterEncoding("utf-8"); %>
         </tbody>
       </table>
       <div>
-        <button onclick="fn_changeDefault()">기본배송지 설정</button>
+        <button class="btn btn-primary defaultAddressBtn" onclick="fn_changeDefault()">기본배송지 설정</button>
       </div>
     </div>
   </body>

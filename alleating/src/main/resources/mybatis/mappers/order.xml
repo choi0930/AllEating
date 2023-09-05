@@ -86,8 +86,12 @@
 		insert into alleating_order (
 					orderId,
 					delivery_request,
+					<if test="userPoint != ''">
 					userPoint,
+					</if>
+			<if test="couponId != ''">
 					couponId,
+			</if>
 					totalPrice,
 					id,
 					orderName,
@@ -109,8 +113,12 @@
 					values(
 					#{orderId},
 					#{delivery_request},
+					<if test="userPoint != ''">
 					#{userPoint},
+					</if>
+					<if test="couponId != ''">
 					#{couponId},
+					</if>
 					#{totalPrice},
 					#{id},
 					#{orderName},

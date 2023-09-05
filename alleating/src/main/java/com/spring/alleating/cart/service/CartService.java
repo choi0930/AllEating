@@ -13,6 +13,6 @@ public interface CartService {
 	public boolean findCartProducts(CartVO cartVO) throws DataAccessException;
 	public void addProductInCart(CartVO cartVO) throws DataAccessException;
 	public boolean modifyCartQty(CartVO cartVO) throws DataAccessException;
-	public void removeCartProducts(int cartId) throws DataAccessException;
+	public void removeCartProducts(String cartId) throws DataAccessException;
 	public void removeCartProductArray(List<CartVO> cartList)throws DataAccessException;
 }

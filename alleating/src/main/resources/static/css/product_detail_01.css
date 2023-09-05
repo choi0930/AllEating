@@ -522,7 +522,7 @@ width: 120px;
 }
 #toDisplay{
 	display:none;
-
+    background: white;
 }
 
 .qty_total{

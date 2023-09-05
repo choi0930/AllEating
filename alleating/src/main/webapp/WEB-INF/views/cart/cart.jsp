@@ -303,7 +303,9 @@ request.setCharacterEncoding("utf-8"); %>
           cartArray.push({"cartId":cartId});
         });
         console.log(cartArray);
-      
+        
+        var del = confirm("선택하신 상품을 장바구니에서 삭제하시겠습니까?");
+  if(del){
         $.ajax({
         type: "POST",
         url: "${contextPath}/cart/removeProductArray.do",
@@ -316,7 +318,9 @@ request.setCharacterEncoding("utf-8"); %>
         error: function (error) {
             console.error("오류 발생:", error);
         }
+      
     });
+  }//end if
       }   
       /*----------------------------------------------------------------------------*/
     </script>
@@ -509,6 +513,11 @@ request.setCharacterEncoding("utf-8"); %>
                           </c:choose>
                         </div>
                       </div>
+                      <div class="cartDelBtn">
+                        <a href="${contextPath}/cart/removeProduct.do?cartId=${res.cartId}">
+                          <img src="${contextPath}/img/image_icon/free-icon-x.png" width="30px" height="30px"/>
+                        </a>
+                      </div>
                     </div>
                   </c:forEach>
                 </c:otherwise>
@@ -670,6 +679,11 @@ request.setCharacterEncoding("utf-8"); %>
                             </c:otherwise>
                           </c:choose>
                         </div>
+                      </div>
+                      <div class="cartDelBtn">
+                        <a href="${contextPath}/cart/removeProduct.do?cartId=${normal.cartId}">
+                          <img src="${contextPath}/img/image_icon/free-icon-x.png" width="30px" height="30px"/>
+                        </a>
                       </div>
                     </div>
                   </c:forEach>

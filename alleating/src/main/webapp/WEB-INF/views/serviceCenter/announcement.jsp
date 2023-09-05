@@ -173,7 +173,6 @@ li {
 </head>
 <body>
 	<h2 class="announcement_01_1">공지사항</h2>
-	
 	<div class="announcement_01_2">
 	<div  class=".announcement_01_21">번호</div>
 	<div class="announcement_01_22">제목</div>

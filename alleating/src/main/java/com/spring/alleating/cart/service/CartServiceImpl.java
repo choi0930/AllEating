@@ -108,8 +108,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void removeCartProducts(int cartId) throws DataAccessException {
-		cartDAO.removeCart(cartId);
+	public void removeCartProducts(String cartId) throws DataAccessException {
+		int _cartId = Integer.parseInt(cartId);
+		cartDAO.removeCart(_cartId);
 		
 	}
 	/* 장바구니 상품 체크한것만 삭제 */

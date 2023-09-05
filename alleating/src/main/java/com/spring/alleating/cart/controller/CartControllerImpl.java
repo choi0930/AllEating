@@ -110,7 +110,7 @@ public class CartControllerImpl implements CartController{
 
 	@Override
 	@RequestMapping(value="/cart/removeProduct.do", method = {RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView removeCartProduct(int cartId, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView removeCartProduct(@RequestParam("cartId") String cartId, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		cartService.removeCartProducts(cartId);
 		
