@@ -33,10 +33,12 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 	private InquiryBoardVO inquiryBoardVO;
 	@Autowired
 	private MemberVO memberVO;
+	
+	
 	/* 공지사항 목록 가져오기 */
 	@Override
 	@RequestMapping(value="/serviceCenter/announcement.do", method = RequestMethod.GET)
-	public ModelAndView getBoardList(Map<String, ?> dataMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView getBoardList(Map<String, Object> dataMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("side_menuType", "customer_service_center");
 		
@@ -57,7 +59,7 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 			int _pageNum = Integer.parseInt(pageNum);
 		 int offset = (_section-1) * 100 +(_pageNum-1) * 5;
 		condMap.put("offset",offset);
-		Map boardMap = serviceCenterService.boardList(dataMap);
+		Map boardMap = serviceCenterService.boardList(condMap);
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -65,8 +67,20 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 		mav.addObject("boardMap", boardMap);
 		return mav;
 	}
-	
-	
+	/* 공지사항 상세 페이지 */
+	@Override
+	@RequestMapping(value="/serviceCenter/announcement_detail.do", method = RequestMethod.GET)
+	public ModelAndView boardDetail(String articleNO, HttpServletRequest request) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		boardVO = serviceCenterService.boardDetail(articleNO);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("boardVO", boardVO);
+		mav.setViewName(viewName);
+		
+		return mav;
+	}
+
 
 
 	@Override
@@ -172,6 +186,10 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 	 * return mav; }
 	 */
 
+
+
+
+	
 
 
 	

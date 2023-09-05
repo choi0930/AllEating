@@ -118,7 +118,7 @@ request.setCharacterEncoding("utf-8"); %>
 
         $.ajax({
           type: "POST",
-          async: false, // true로 변경
+          async: true, 
           url: "${contextPath}/cart/modifyCartQty.do",
           data: {
             cartId: cartId,
@@ -151,7 +151,7 @@ request.setCharacterEncoding("utf-8"); %>
 
         $.ajax({
           type: "POST",
-          async: false, // true로 변경
+          async: true, 
           url: "${contextPath}/cart/modifyCartQty.do",
           data: {
             cartId: cartId,

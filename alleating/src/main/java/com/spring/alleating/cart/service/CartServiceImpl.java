@@ -29,6 +29,9 @@ public class CartServiceImpl implements CartService {
 		Map<String, String> dataMap = new HashMap<>();
 		String id = cartVO.getId();
 		
+		//기본 배송지 가져오기
+		DeliveryAddressVO deliveryAddressVO = cartDAO.selectDefaultDeliveryAddress(cartVO);
+		cartMap.put("deliveryAddressVO", deliveryAddressVO);
 		
 		dataMap.put("id", id);
 		dataMap.put("deliveryType", "reserve");
@@ -79,12 +82,7 @@ public class CartServiceImpl implements CartService {
 		cartMap.put("normalProductList", normalProductList);
 		cartMap.put("normalCount", normalCount);
 		
-		//기본 배송지 가져오기
-		DeliveryAddressVO deliveryAddressVO = cartDAO.selectDefaultDeliveryAddress(cartVO);
-		cartMap.put("deliveryAddressVO", deliveryAddressVO);
-		
 		return cartMap;
-		
 		
 	}
 	/*------------------------------------- 로그인한 유저 카트 목록 가져오기 ----------------------------------------------*/

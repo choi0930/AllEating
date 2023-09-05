@@ -52,16 +52,24 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 		memberDAO.insertMember(memberInfo);
-		//회원가입시 기본 포인트 생성
+		
+		//회원가입시 기본 포인트 생성 회원가입 기념 +5000포인트
 		String id = memberInfo.get("id");
-		int point = 0;
+		int point = 5000;
 		
 		Map<String,Object> userInfo = new HashMap<String, Object>();
 		userInfo.put("id", id);
 		userInfo.put("userPoint", point);
 		
 		pointDAO.insertJoinUserPoint(userInfo);
+		userInfo.remove("userPoint");
 		
+		String _point = "+"+point;
+		
+		userInfo.put("content", "회원가입 기념 적립금");
+		userInfo.put("usePoint", _point);
+		
+		pointDAO.insertJoinUserPointHistory(userInfo);
 		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////회원가입시 입력한 주소가 기본배송지로 설정////////////////////

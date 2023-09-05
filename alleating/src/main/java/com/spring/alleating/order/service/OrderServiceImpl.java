@@ -175,7 +175,7 @@ public class OrderServiceImpl implements OrderService{
 				delInfo.remove("userPoint");
 				
 				String hisPoint = "-"+point;
-				
+				delInfo.put("content", "상품구매");
 				delInfo.put("usePoint", hisPoint);
 				orderDAO.orderUserPointHistory(delInfo); // 사용한 포인트 기록 남김
 				

@@ -9,7 +9,7 @@
 
 <style>
 	.announcement_02a {
-    	width: 1050px;
+    	width: 830px;
     	margin: 0px auto;
 }
 	.announcement_02a1{
@@ -89,6 +89,11 @@
 
 
 </style>
+<script>
+	function fn_returnBordList(){
+		location.href = "/serviceCenter/announcement.do";
+	}
+</script>
 <body>
 	<div class="announcement_02a">
 	<div class="announcement_02a1">
@@ -99,32 +104,32 @@
 	<div class="announcement_02b">
 	<div class="announcement_02b1">
 	<div class="announcement_02b2">제목</div>
-	<div class="announcement_02b3">[안내] 8월 배송 휴무 일정 안내</div>
+	<div class="announcement_02b3">${boardVO.title}</div>
 	</div>
 	
 	
 	<div class="announcement_02b1">
 	<div class="announcement_02b2">작성자</div>
-	<div class="announcement_02b3">올잇팅</div>
+	<div class="announcement_02b3">AllEating</div>
 	</div>
 
 	
 	<div class="announcement_02b1">
 	<div class="announcement_02b2">작성일</div>
-	<div class="announcement_02b3">2023.08.16</div>
+	<div class="announcement_02b3">${boardVO.writeDate}</div>
 	</div>
 	
 	<div class="announcement_02e">
 	<div>
 	<p>
-	(이미지 또는 DB입력)
+		${boardVO.content}
 	</p>
 	
 	</div>
 	</div>
 	
 	<div class="announcement_02f">
-	<button class="announcement_02_button" type="button" width="150" height="42" radius="0">
+	<button class="announcement_02_button" type="button" width="150" height="42" radius="0" onclick="fn_returnBordList()">
 	<span class="announcement_02_button1">목록</span>
 	</button>
 	</div>

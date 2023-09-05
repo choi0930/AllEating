@@ -114,7 +114,7 @@ public class MemberControllerImpl implements MemberController {
 	/*---------------------------------아이디 중목 확인 끝------------------------------------*/
 	
 	
-	/* 아이디 찾기화면으로 이동 */ //이름뒤에 form을 추가해 단순 페이지이동은 통일하는게 좋을듯 함
+	/* 아이디 찾기화면으로 이동 */ 
 	@Override
 	@RequestMapping(value="/member/find_id_01.do", method = RequestMethod.GET)
 	public ModelAndView find_id_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -139,7 +139,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 	/*---------------------------------아이디 찾기 끝------------------------------------*/
 	
-	/* 비밀번호 찾기 페이지 이동 */ //위 아이디찾기 페이지 이동과 동일
+	/* 비밀번호 찾기 페이지 이동 */ 
 	@Override //비밀번호 찾기
 	@RequestMapping(value= "/member/find_pwd_01.do", method = RequestMethod.GET)
 	public ModelAndView find_pwd_01(HttpServletRequest request, HttpServletResponse response) throws Exception{

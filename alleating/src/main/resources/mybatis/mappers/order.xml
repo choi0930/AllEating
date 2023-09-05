@@ -175,7 +175,7 @@
 	
 	<!-- 주문시 사용한 포인트 내역 -->
 	<insert id="orderUserPointHistory" parameterType="java.util.Map">
-		insert user_point_history (id, usePoint) values (#{id}, #{usePoint})
+		insert user_point_history (id, usePoint, content) values (#{id}, #{usePoint}, #{content})
 	</insert>
 	<!-- 주문 완료 -->
 	<select id="selectOrderNum" resultType="allEatingOrderVO" parameterType="String">

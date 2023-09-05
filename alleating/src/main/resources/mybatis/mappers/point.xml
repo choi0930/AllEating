@@ -8,6 +8,7 @@
 		<result property="id" column="id" />
 		<result property="usePoint" column="usePoint" />
 		<result property="creDate" column="creDate" />
+		<result property="content" column="content" />
 </resultMap>
 
  <resultMap id="userPointResult" type="userPointVO">
@@ -18,8 +19,12 @@
 	<select id="selectUserPoint" resultMap="userPointResult" parameterType="String">
 		select * from user_point where id = #{id}
 	</select>
-
+	<!-- 회원가입시 유저 포인트 생성 -->
 	<insert id="insertJoinUserPoint" parameterType="java.util.Map">
 		insert user_point(id, userPoint) values( #{id}, #{userPoint});
+	</insert>
+	<!-- 회원가입시 유저 포인트 +된 내역 저장 -->
+	<insert id="insertJoinUserPointHistory" parameterType="java.util.Map">
+		insert user_point_history(id, usePoint, content) values( #{id}, #{usePoint}, #{content});
 	</insert>
  </mapper>

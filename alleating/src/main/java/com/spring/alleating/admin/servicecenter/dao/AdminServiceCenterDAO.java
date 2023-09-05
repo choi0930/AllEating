@@ -12,6 +12,8 @@ import com.spring.alleating.servicecenter.vo.BoardVO;
 @Mapper
 @Repository("adminServiceCenterDAO")
 public interface AdminServiceCenterDAO {
+	/* 공지사항 총개수 가져오기 */
+	public int selectBoardCount()throws DataAccessException;
 	/* 공지사항 목록 가져오기 */
 	public List<BoardVO> boardList(Map dataMap)throws DataAccessException;
 	/* 공지사항 작성 */
@@ -20,4 +22,6 @@ public interface AdminServiceCenterDAO {
 	public int updateBoard(BoardVO boardVO)throws DataAccessException;
 	/* 공지사항 삭제 */
 	public int deleteBoard(String articleNO)throws DataAccessException;
+	/* 공지사항 상세페이지 */
+	public BoardVO boardDetail(String articleNO)throws DataAccessException;
 }
