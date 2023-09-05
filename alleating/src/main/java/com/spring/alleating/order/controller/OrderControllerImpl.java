@@ -68,9 +68,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		orderMap.put("memberVO", memberVO);
 		
 		
-		
-		
-		
+	
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/order/pay_02");
