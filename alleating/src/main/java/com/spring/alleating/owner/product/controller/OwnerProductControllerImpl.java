@@ -75,7 +75,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 
 
 
-
+	@Override 
 	@RequestMapping(value="/owner/addNewProduct.do" ,method={RequestMethod.POST})
 	public ResponseEntity addNewProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
@@ -200,7 +200,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		}
 		
 		
-		@Override 
+		
 		@RequestMapping(value="/owner/addOwnerInquiry.do", method = {RequestMethod.POST,RequestMethod.GET})
 		public ModelAndView addOwnerInquiry(Map<String, String> articleMap, HttpServletRequest request,
 				HttpServletResponse response) throws Exception {
@@ -215,6 +215,9 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			return mav;
 		}
 		
+		
+		
+			@Override 
 			@RequestMapping(value="/owner/viewArticle.do", method = RequestMethod.GET)
 			public ModelAndView viewArticle(@RequestParam("articleNO")int articleNO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -226,12 +229,17 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			return mav;
 		}
 			
+			@Override 
 			@RequestMapping(value="/owner/memviewArticle.do", method = RequestMethod.GET)
 			public ModelAndView memviewArticle(@RequestParam("articleNO")int articleNO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
-	
-			
+//			HttpSession session = request.getSession();
+//			session.setAttribute("ownerinquiry", inquiryBoardVO);
+//			
+//			InquiryBoardVO inquiryboardVO = (InquiryBoardVO)session.getAttribute("ownerinquiry");
+//			
+//			String parentNO = inquiryboardVO.getParentNO();
 			
 			inquiryBoardVO = ownerProductService.viewArticle(articleNO);
 			ModelAndView mav = new ModelAndView();
@@ -242,20 +250,35 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			
 			@Override 
 			@RequestMapping(value="/owner/addReply.do", method = {RequestMethod.POST,RequestMethod.GET})
-			public ModelAndView addReply(Map<String, String> articleMap, HttpServletRequest request,
+			public ModelAndView addReply(Map<String, String> replyMap, HttpServletRequest request,
 					HttpServletResponse response) throws Exception {
 			
 				String viewName = (String)request.getAttribute("viewName");
 				System.out.println(viewName); 
 				
-				ownerProductService.addNewArticle(articleMap);
+				ownerProductService.addReplyArticle(replyMap);
 				
 				ModelAndView mav = new ModelAndView();
-				mav.setViewName("redirect:/owner/ownerinquirylist.do"); //add
+				mav.setViewName("redirect:/owner/ownerinquirylist.do"); 
 				return mav;
 			}	
-		
+			
+			
+			
+			@Override 
+			@RequestMapping(value="/owner/memberreply.do",method = RequestMethod.GET)
+			public ModelAndView memberreply(HttpServletRequest request, HttpServletResponse response)throws Exception{
+				String viewName = (String) request.getAttribute("viewName");
 	
+				String parentNO = request.getParameter("parentNO");
+				
+				System.out.println(parentNO);
+
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName(viewName);
+				mav.addObject("parentNO",parentNO);
+				return mav;
+			}
 	/*
 	 * @Override
 	 * 
@@ -304,14 +327,20 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
 		HttpSession session = request.getSession();	
-		session.setAttribute("ownerinquiry", inquiryBoardVO);
+		/* session.setAttribute("ownerinquiry", inquiryBoardVO); */
 		
 		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");	
-		InquiryBoardVO inquiryboardVO = (InquiryBoardVO)session.getAttribute("ownerinquiry");
-		
-		String parentNO = inquiryboardVO.getParentNO();
+		/*
+		 * InquiryBoardVO inquiryboardVO =	
+		 * (InquiryBoardVO)session.getAttribute("ownerinquiry");
+		 * 
+		 * String parentNO = inquiryboardVO.getParentNO();
+		 */
+		String parentNO = request.getParameter("parentNO");
 		String id = memberVO.getId();
 		System.out.println("작성자"+ id);
+		System.out.println(parentNO);
+		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);

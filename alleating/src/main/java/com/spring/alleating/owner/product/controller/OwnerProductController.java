@@ -29,8 +29,10 @@ public interface OwnerProductController {
 	
 	public ModelAndView memviewArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView addReply(@RequestParam Map<String, String> articleMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	public ModelAndView addReply(@RequestParam Map<String, String> replyMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	//public void  addNewProductImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
+	
+	public ModelAndView memberreply(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
 
 	

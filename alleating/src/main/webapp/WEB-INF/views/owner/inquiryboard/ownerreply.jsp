@@ -13,7 +13,13 @@
 	<meta charset="UTF-8">
 	<title>답글쓰기 페이지</title>
 	<script src="//code.jquery.com/jquery-3.3.1.js"></script>
+
+	
 	<script type="text/javascript">
+
+		
+		var parentNOValue = document.getElementById("parentNO").value;
+		
 		function readURL(input) {
 			if(input.files && input.files[0]) {
 				var reader = new FileReader();
@@ -33,11 +39,11 @@
  <h1>답글쓰기</h1>
   <form name="frmReply" method="post" action="${contextPath}/owner/addReply.do">
    <table>
-	<input
+	 <input
                               type="hidden"
-                              value="${ownerinquiry.parentNO}"
+                              value="${parentNO}"
                               name="parentNO"
-                            />
+                            /> 
     <tr>
 		<td align="right"> 작성자:&nbsp; </td>
 		<td><input type="text" size="20" maxlength="100" name="writer" value="${loginMember.id}" readonly></input></td>
@@ -56,7 +62,7 @@
     	<td align="right"></td>
     	<td>
     		<input type=submit value="답글반영하기" />
-    		<input type=button value="취소'${ownerinquiry.parentNO}'"	onClick="backToList(this.form)"	/>
+    		<input type=button value="취소"	onClick="backToList(this.form)"	/>
     	</td>	
     </tr>
    </table>

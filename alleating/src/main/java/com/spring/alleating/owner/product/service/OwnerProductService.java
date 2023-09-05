@@ -37,6 +37,8 @@ public interface OwnerProductService {
 	  public int addNewArticle(Map articleMap) throws Exception;
 	  
 	  public InquiryBoardVO viewArticle(int articleNO) throws Exception;
+	  
+	  public int addReplyArticle(Map replyMap) throws Exception;
 
 	  
 	 
