@@ -314,6 +314,7 @@ function fn_totalPrice(){
     <style>
       #addressText{
         font-size: 12px;
+          
       }
       #payTwoText  table{
         border:0;
@@ -324,7 +325,7 @@ function fn_totalPrice(){
         border-left: none;
         border-right: none;
         border-top:  none;
-        border-bottom: 1px solid #e1ddde;
+    
       }
       .css0930{
         width: 120px;
@@ -339,7 +340,8 @@ function fn_totalPrice(){
       }
       .reserveChoice{
         width: 820px;
-        margin: 0 auto;
+            margin-left: 165px;
+            padding-top: 20px;
       }
     </style>
   </head>
@@ -353,9 +355,9 @@ function fn_totalPrice(){
         <c:if test="${deliveryStatus eq 'reserve'}">
           <c:set var="dateInfo" value="${userInfo.dateInfo}" />
           <div class="dvtext01">
-            <ul>
+            
               <h5>예약 배송 일자 및 시간 선택</h5>
-            </ul>
+           
           </div>
           <table class="dvtb">
             <tr>

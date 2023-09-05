@@ -60,11 +60,11 @@
  
  <!-- 상품 문의 등록 -->
  <insert id="insertQnA" parameterType="java.util.Map">
- <selectKey resultType="String" keyProperty="articleNO"
+<!--  <selectKey resultType="String" keyProperty="articleNO"
 			order="BEFORE">
 			select ifnull(max(articleNO),0)+1 from inquiry_board
 		</selectKey>
-		
+		 -->
  insert into inquiry_board(
   articleNO,
   productId,

@@ -20,6 +20,7 @@
         }
         .deliveryAddressText{
             margin-left: 168px;
+           padding-bottom: 15px;
         }
         .payTwoInput{
             width: 400px;
@@ -107,7 +108,7 @@
         
         .dvtb{
 			width: 800px;
-   			 margin: 14px;
+   			 
 		}
 
 		.dvtb input{

@@ -4,6 +4,9 @@
     .orderlistdetail-main{
         width:840px;
     }
+    .orderlistdetail {
+    padding-bottom: 100px;
+}
 .orderlistdetailview{
     display:flex;
     align-items: center;
@@ -53,10 +56,11 @@ display: flex;
 .product-orderdetail {
     padding-left: 20px;
     padding-top: 30px;
+    display:flex;
+margin-top: -20px;
+align-items: flex-end;
 }
-.product-orderdetail{
-display:flex;}
-   
+ 
    .product-orderdetail-line {
    padding-left: 20px;
     display: flex;
@@ -65,11 +69,15 @@ display:flex;}
 }
 
 .orderdetailview {
-    display: flex;
+ position: relative;
+    top: -120px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-left: 260px;
+}
+.product-orderdetail-line-2 {
+    margin-bottom: -10px;
 }
    
    .orderdetailview-2 {
@@ -173,3 +181,6 @@ padding-left: 25px;
     .orderlistdetailview-list-4{
     padding-top:20px;}
     
+    .orderBox {
+    padding-left: 15px;
+}

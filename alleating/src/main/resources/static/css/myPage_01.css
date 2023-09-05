@@ -23,13 +23,17 @@
     font-size: 15px;
     color: #d1d1e0;
 }
-.orderlist-detail-next{
-display:flex;
+
+.orderlist-detail-next {
+
     padding-left: 500px;
-    align-items: center;}
+    align-items: center;
+    position: relative;
+    top: -20px;
+        left: 40px;
+}
 .orderlistview-under{
-/*display: flex;
-    justify-content: space-around;*/
+
     padding-top:10px;}
     
     .orderlist-time {
@@ -62,24 +66,22 @@ display:flex;
 }
 
 .product-order {
-    padding-left: 20px;
+   padding-left: 20px;
     padding-top: 30px;
-    display: flex;
-    flex-direction: column;
-    margin-top: -35px;
+    margin-top: -50px;
+    margin-bottom: -160px;
 }
-.product-order{
-display:flex;}
    
    .product-order-line {
-    padding-left: 20px;
-    margin-top: 20px;
+       position: relative;
+    left: 160px;
+    top: -160px;
 }
 
 .dlcss{
 align-items: flex-start;
     display: flex;
-    margin-bottom: -4px;
+   margin-bottom: -15px;
     margin-left: 35px;
     padding-top: 10px;
     
@@ -124,4 +126,19 @@ padding-left: 15px;}
 .eng{
 	    margin-left: -5px;
 }
+dl, dt, dd {
+    text-indent: 15px;
+}
+
+  .exchange_refund {
+      
+        flex-direction: column;
+        margin-left: 500px;
+        margin-top: -120px;
+        position:relative;
+        top: -25px;
+    left: -135px;
+    }
+    .orderlist {
+    padding-bottom: 50px;
 }

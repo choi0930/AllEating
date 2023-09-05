@@ -100,26 +100,26 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 	
 	//상품 문의
 	@Override
-	@RequestMapping (value = "/serviceCenter/productQnA.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/serviceCenter/productQnA.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView productQnAList(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-			HttpSession session = request.getSession();
-			session.setAttribute("side_menuType", "customer_service_center");
-			MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
-			String id=memberVO.getId();
-			
-			Map userQnAInfo = new HashMap<>();
-			userQnAInfo = serviceCenterService.selectProductQnA();
-			
-			String viewName = (String) request.getAttribute("viewName");
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName(viewName);
-			
-		   mav.addObject("userQnaInfo", userQnAInfo);
-			return mav;
+	        throws Exception {
+	    HttpSession session = request.getSession();
+	    session.setAttribute("side_menuType", "customer_service_center");
+	    MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+	    String id = memberVO.getId();
 
-}
+	
 
+	    Map userQnAInfo = new HashMap<>();
+	    userQnAInfo = serviceCenterService.selectProductQnA();
+
+	    String viewName = (String) request.getAttribute("viewName");
+	    ModelAndView mav = new ModelAndView();
+	    mav.setViewName(viewName);
+
+	    mav.addObject("userQnaInfo", userQnAInfo);
+	    return mav;
+	}
 
 	
 	
@@ -160,9 +160,8 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 	public ModelAndView form(@RequestParam ("productId") int productId,HttpServletRequest request, HttpServletResponse response)throws Exception{
 		HttpSession session = request.getSession();
           session.setAttribute("productId", productId);
-		
-      
-   
+          
+          
 		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
