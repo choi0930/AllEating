@@ -129,6 +129,14 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 		ownerProductDAO.insertNewOwnerInquiry(articleMap);
 		return articleNO;
 	}
+	
+	@Override
+	public int addReplyArticle(Map replyMap) throws Exception {
+		int articleNO = ownerProductDAO.selectNewArticleNO();
+		replyMap.put("articleNO", articleNO);
+		ownerProductDAO.insertReplyOwnerInquiry(replyMap);
+		return articleNO;
+	}
 
 	@Override
 	public InquiryBoardVO viewArticle(int articleNO) throws Exception {

@@ -6,12 +6,19 @@ import org.springframework.stereotype.Component;
 @Component("boardVO")
 public class BoardVO {
 	private String articleNO;
+	private String parentNO;
 	private String id;
 	private String title;
 	private String content;
 	private Date writeDate;
 	
 	
+	public String getParentNO() {
+		return parentNO;
+	}
+	public void setParentNO(String parentNO) {
+		this.parentNO = parentNO;
+	}
 	public String getArticleNO() {
 		return articleNO;
 	}

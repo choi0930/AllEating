@@ -57,6 +57,8 @@
 		 	var form = document.createElement("form");
 		 	form.setAttribute("method", "get");
 		 	form.setAttribute("action", url);
+			alert(url);
+			
 		 var parentNOInput = document.createElement("input");
 		 parentNOInput.setAttribute("type", "hidden");
 		 parentNOInput.setAttribute("name", "parentNO");
@@ -79,7 +81,7 @@
 	</script>
 </head>
 <body>
- <form name="frmArticle" method="post" action="${contextPath}" >
+
  <table border="0" align="center" >
  	<tr>
  		<td width="150" align="center" bgcolor="#FF9933">
@@ -87,7 +89,7 @@
  		</td>
  		<td>
  		 <input type="text" value="${inquiryBoardVO.articleNO }" disabled />
- 		 <input type="hidden" name="articleNO" value="${inquiryBoardVO.articleNO}" />
+ 		 <input type="hidden" name="parentNO" value="${inquiryBoardVO.parentNO}" />
 		 
  		</td>
  	</tr>
@@ -123,16 +125,16 @@
   			등록일자
   		</td>
   		<td>
-  			<input type="text" value="<fmt:formatDate value="${inquiryBoardVO.writeDate}" />" disabled />
+  			<input type="text" value="<fmt:formatDate value='${inquiryBoardVO.writeDate}' />" disabled />
   		</td>
 
   	<tr id="tr_btn" >
   		<td colspan="2" align="center">
   		<input type="button" value="리스트로 돌아가기" onClick="backToList(this.form)">
-		<input type="button" value="답글쓰기" onClick="fn_reply_form('${contextPath}/owner/memberreplyForm.do', '${inquiryBoardVO.articleNO}')">
+		<input type="button" value="답글쓰기 " onClick="fn_reply_form('/owner/memberreply.do', '${inquiryBoardVO.articleNO}')">
   	    </td>
    </tr>
  </table>
- </form>
+
 </body>
 </html>

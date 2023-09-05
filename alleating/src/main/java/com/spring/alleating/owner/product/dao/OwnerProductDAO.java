@@ -41,6 +41,8 @@ public interface OwnerProductDAO {
 	public int selectNewArticleNO() throws DataAccessException;
 	
 	public InquiryBoardVO selectArticle(int articleNO) throws DataAccessException;
+	
+	public int insertReplyOwnerInquiry(Map replyMap) throws DataAccessException;
 }
 
   

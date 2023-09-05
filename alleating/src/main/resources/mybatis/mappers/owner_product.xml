@@ -43,7 +43,6 @@
 		<result property="level" column="level" />
 		<result property="parentNO" column="parentNO" />
 		<result property="id" column="id" />
-		<result property="board_status" column="board_status" />
 		<result property="title" column="title" />
 		<result property="content" column="content" />
 		<result property="writeDate" column="writeDate" />
@@ -195,31 +194,20 @@
 
 <select id="selectAllArticlesList" resultMap="ownerInquiryResult">
 <![CDATA[
-SELECT
-    CASE
-        WHEN `LEVEL` - 1 > 0 THEN CONCAT(REPEAT(' ', `LEVEL` - 1), ' < ', board.title)
-        ELSE board.title
-    END AS title,
-    board.articleNO,
-    board.parentNO,
-    `LEVEL` AS result_level,
-    board.board_status,
-    board.content,
-    board.id,
-    board.writeDate
-FROM (
-    SELECT
-        function_hierarchical() AS articleNO,
-        @level AS `LEVEL`
-    FROM (
-        SELECT
-            @start_with := 0,
-            @articleNO := @start_with,
-            @level := 0
-    ) tbl
-    JOIN inquiry_board
-) result
-JOIN inquiry_board board ON board.articleNO = result.articleNO;
+	SELECT CASE WHEN LEVEL-1 > 0 then CONCAT(CONCAT(REPEAT(' ', level-1),'< '), board.title) 
+		   ELSE board.title END AS title,
+		   						   board.articleNO, 
+		   						   board.parentNO, 
+		   						   result.level, 
+		   						   board.content, 
+		   						   board.id, 
+		   						   board.writeDate 
+		   FROM (SELECT function_hierarchical() 
+		   							AS articleNO, @level AS level 
+		   FROM (SELECT @start_with:=0, @articleNO:=@start_with, @level:=0) tbl 
+		   JOIN inquiry_board) result 
+		   JOIN inquiry_board board 
+		   ON board.articleNO = result.articleNO
 ]]>	</select>  
 
 	<insert id="insertNewOwnerInquiry" parameterType="java.util.Map">
@@ -228,13 +216,28 @@ JOIN inquiry_board board ON board.articleNO = result.articleNO;
 									   articleNO, 
 									   title, 
 									   content,  
-									   board_status,
 									   writeDate)
 								VALUES(
 									   #{articleNO}, 
 									   #{title}, 
 									   #{content}, 
-									   #{board_status}, 
+									   now())			
+	]]>
+</insert>
+
+	<insert id="insertReplyOwnerInquiry" parameterType="java.util.Map">
+	<![CDATA[
+			INSERT into inquiry_board(
+									   articleNO, 
+									   parentNO,
+									   title, 
+									   content,  
+									   writeDate)
+								VALUES(
+									   #{articleNO}, 
+									   #{parentNO},
+									   #{title}, 
+									   #{content}, 
 									   now())			
 	]]>
 </insert>

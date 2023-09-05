@@ -60,7 +60,7 @@ request.setCharacterEncoding("utf-8"); %>
       <div class="ownertext01"><h4>상품등록</h4></div>
       <form action="${contextPath}/owner/addNewProduct.do" method="post" encType="multipart/form-data">
       
-        <div class="ownertext02">
+      <div class="ownertext02">
           <div class="op01">
             <div class="fixed_join">상품종류</div>
             <div class="ownerbox">
@@ -224,7 +224,6 @@ request.setCharacterEncoding("utf-8"); %>
             <div class="ownerbox">
               <input name="productContentTitle" type="text" size="20" />
             </div>
-        
           </div>
   
           <div class="op01">
@@ -232,8 +231,6 @@ request.setCharacterEncoding("utf-8"); %>
             <div class="ownerbox">
               <input name="productContent" type="text" size="20" />
             </div>
-
-
         </div>
         <div class="tab_content" id="tab7">
           <div class="ownertext03"><h4>상품이미지</h4></div>
