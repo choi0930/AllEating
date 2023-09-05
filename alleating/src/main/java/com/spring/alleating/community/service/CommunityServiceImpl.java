@@ -44,6 +44,13 @@ public class CommunityServiceImpl implements CommunityService {
 		return reviewBoardVO;
 	}
 
+	@Override
+	public List selectAllReview(Map _allReviewInfo) throws DataAccessException {
+		List<ReviewBoardVO> allReviewBoardVO = communityDAO.selectAllReview(_allReviewInfo);
+		return allReviewBoardVO;
+	}
+
 	 
+	
     
 }

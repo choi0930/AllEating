@@ -263,11 +263,6 @@ text-decoration:none;}
                         </a>
                     </li>
                     <li class="side_tap">
-                        <a class="side_aTag" href="${contextPath}/myPage/myPage_review.do">1:1 문의하기
-                            <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
-                        </a>
-                    </li>
-                    <li class="side_tap">
                         <a class="side_aTag" href="${contextPath}/myPage/myPage_address.do">배송지 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>

@@ -158,7 +158,7 @@ public class CommunityControllerImpl  implements CommunityController {
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			message = "<script>";
-			message += " alert('성공');";
+			message += " alert('상품 후기가 등록되었습니다.');";
 			message += " location.href='" + multipartRequest.getContextPath()+ "/myPage/myPage_review.do?id=" + _id + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -167,7 +167,7 @@ public class CommunityControllerImpl  implements CommunityController {
 			srcFile.delete();
 
 			message = " <script>";
-			message += " alert('실패'); ";
+			message += " alert('상품 후기를 등록하는데 실패하였습니다.'); ";
 			message += " location.href='" + multipartRequest.getContextPath() + "/myPage/myPage_review.do?id=" + _id + "';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -227,4 +227,31 @@ public class CommunityControllerImpl  implements CommunityController {
 		mav.addObject("reviewWrittenList",reviewWrittenList);
 		return mav;
 	}
+	
+	
+	
+	 
+	
+
+
+	@Override
+	@RequestMapping(value="/community/allReview.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectAllReview(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		 String viewName = (String) request.getAttribute("viewName");
+		  ModelAndView mav = new ModelAndView();
+		 mav.setViewName(viewName);
+		 
+		 Map _allReviewInfo = new HashMap<>();
+		 List allReviewList = communityService.selectAllReview(_allReviewInfo);
+		 
+		 mav.addObject("allReviewList", allReviewList);
+		 
+	
+		
+		  
+		  return mav;
+	}
+	
+	
+	
 	}

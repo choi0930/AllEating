@@ -117,7 +117,8 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 		String id= memberVO.getId();
 		
-		int productId = inquiryBoardVO.getProductId();
+		/* int productId = inquiryBoardVO.getProductId(); */
+		String productId = request.getParameter("productId");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
@@ -134,6 +135,7 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 		mav.setViewName(viewName);
         
 		mav.addObject("_QnAMap", _QnAMap);
+		mav.setViewName("redirect:/serviceCenter/productQnA.do");
 	
 	
 	

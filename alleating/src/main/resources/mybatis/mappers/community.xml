@@ -78,14 +78,20 @@
 	
 	</insert>
 
-	<!-- 작성한 후기 목록 -->
+<!-- 작성한 후기 목록 -->
 <select id="selectWrittenReview" resultMap="communityResult" parameterType="java.util.Map">
- select r.*, a.cateCode, a.productId
+ select r.*, a.cateCode, a.productId, a.review_ny
 from review_board r
 inner join  alleating_order_detail a on r.productId = a.productId
-where r.id=#{id}
+where r.id=#{id} and a.review_ny = 'y'
 </select>
 	
-	
+<!-- 사용자가 작성한 후기들 목록-->
+<select id="selectAllReview" resultMap="communityResult" parameterType="java.util.Map">
+select r.*, a.cateCode, a.productId, a.review_ny
+from review_board r
+inner join  alleating_order_detail a on r.productId = a.productId
+where a.review_ny = 'y'
+</select>
 	
 	</mapper>

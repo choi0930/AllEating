@@ -18,8 +18,7 @@
 	    flex-direction: row;
 	    width: 100%;
 	    padding-bottom: 27px;
-	    -webkit-box-pack: justify;
-	    justify-content: space-between;
+	    align-items: center;
 }
 
 	.frequent_q_01c {
@@ -138,22 +137,43 @@
     align-items: center;
   
 }
-li.qnaTitle{ float: left;
-    padding-left: 50px;
+td.qnaTitle {
+    
+width: 345px;
 }
-li.qnaUser{ float: left;
-padding-left: 145px;
+td.qnaUser {
+    
 }
-li.qnaDate{float: left;
-padding-left: 30px;}
 
+td.qnaDate {
+    width: 185px;
+
+}
+th.th1 {
+    padding-left: 15px;
+}
+th.th2 {
+   padding-left: 330px;
+}
+th.th3 {
+        padding-left: 150px;
+}
+th.th4 {
+    padding-left: 65px;
+}
 .qna_add_btn{
 border:none;
 width:100px;
 height:40px;
 background:#000060;
-color:white;} 
+color:white;
+margin-left: 585px;} 
+td{
+text-align:center;}
+td.frequent_q_01f1_1 {
 
+   width: 170px;
+}
 	</style>
 <title>Insert title here</title>
 </head>
@@ -179,39 +199,47 @@ color:white;}
 	</div>
 	</div>
 
-	<div class="frequent_q_01e">
+<!-- 	<div class="frequent_q_01e">
 <div class="frequent_q_01e3">상품 정보</div>
 	<div width="200" class="frequent_q_01e2">제목</div>
 	<div class="frequent_q_01e3">작성자</div>
 	<div class="frequent_q_01e4">작성일</div>
-	</div>
+	</div> -->
 	
   <div class="qnaList">
-  
+  <table>
+  <tr>
+	<th class="th1">상품 정보</th>
+	<th class="th2">제목</th>
+	<th class="th3">작성자</th>
+	<th class="th4">작성일</th>
+	</tr>
+	</table>
 		<c:forEach var="qna" items="${QnAList}">
 		
    <div class="qnaList_detail">
 
 	<div class="frequent_q_01f">
-	<div class="frequent_q_01f1"><img src="${contextPath}/download.do?fileName=${qna.fileName}&productId=${qna.productId}&cateCode=${qna.cateCode}" alt="${qna.fileName}" width="70px" height="70px">
+	
 	
 	<div class="qnaInfo">
-	<ul>
- <li class="frequent_q_01f1">[${qna.productBrand}] </li>
-<li class="frequent_q_01f1">${qna.productName}</li>
-</ul>
-<ul class="qnaInfo_under">
-<li class="qnaTitle">${qna.title }</li>
-<li class="qnaUser">${loginMember.name }</li>
-<li class="qnaDate">${qna.writeDate }</li>
+	<table>
+	<tr>
+	<td class="frequent_q_01f1"><img src="${contextPath}/download.do?fileName=${qna.fileName}&productId=${qna.productId}&cateCode=${qna.cateCode}" alt="${qna.fileName}" width="70px" height="70px"></div></td>
+ <td class="frequent_q_01f1_1"><div>[${qna.productBrand}]</div> <div>${qna.productName}</div> </td>
+<td class="qnaInfo_under">
+<td class="qnaTitle">${qna.title }</td>
+<td class="qnaUser">${loginMember.name }</td>
+<td class="qnaDate">${qna.writeDate }</td>
 
-</ul>
+</tr>
+</table>
 <!--<input type="hidden" name="productId" value="${qna.productId }"/>-->
 
 
 </div>
 	
-	</div>	
+		
 
 
     </div>

@@ -57,9 +57,10 @@ request.setCharacterEncoding("utf-8");
 			</div>
 		</div>
 			<div>
-
+              <div>
+              
 				<c:forEach var="zlzl" items="${reviewWrittenList}">
-					<form action="/myPage/myPage_reviewForm.do" method="get" encType="multipart/form-data">
+					
 						<input type="hidden" name="productId" value="${zlzl.productId}">   
 					    <%-- <input type="hidden" name="order_seq_num" value="${zlzl.order_seq_num}">  --%>
 					   <%--  <input type="hidden" name="review_ny" value="${zlzl.review_ny}"> --%>
@@ -86,8 +87,10 @@ request.setCharacterEncoding("utf-8");
 								</button>
 							</div>
 						</div>
-					</form>
+					
 				</c:forEach>
+				
+				</div>
 
 
 			</div>
