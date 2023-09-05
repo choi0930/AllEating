@@ -13,12 +13,7 @@
 
   <style>
 
-    .exchange_refund {
-        display: flex;
-        flex-direction: column;
-        margin-left: 500px;
-        margin-top: -120px;
-    }
+  
       </style>
 
 
@@ -124,7 +119,7 @@ $("startDate").val(newDate)
      ${bbig.payDate}
      </div>
      <div class="orderlist-detail-next">
-      <a>
+      <a href="${contextPath }/myPage/myPage_02.do?orderId=${bbig.orderId}">
        주문 상세 보기
        <span>
         <button class="triangle-button">
@@ -141,7 +136,7 @@ $("startDate").val(newDate)
       
       <div class="product-order-pic">
      
-      <img src="${contextPath}/download.do?fileName=${bbig.fileName}&productId=${bbig.productId}&cateCode=${bbig.cateCode}" alt="${bbig.fileName}" width="240px" height="320px">
+      <img src="${contextPath}/download.do?fileName=${bbig.fileName}&productId=${bbig.productId}&cateCode=${bbig.cateCode}" alt="${bbig.fileName}" width="150px" height="150px">
       </div>
       <div class="product-order-line">
        
@@ -169,7 +164,7 @@ $("startDate").val(newDate)
        <dl class="dlcss" id="dlcss-2">
         <dt class="listcss-6">결제 금액</dt>
          <dd class="listcss-7">
-          <p>${bbig.totalPrice}</p>
+          <p>${bbig.totalPrice}원</p>
           </dd>
           </dl>
 
@@ -183,7 +178,7 @@ $("startDate").val(newDate)
              </div>
 
         </div>
-       
+       </div>
         </a>
       
 

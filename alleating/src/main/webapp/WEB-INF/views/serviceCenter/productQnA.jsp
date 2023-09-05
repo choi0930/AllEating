@@ -2,6 +2,8 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
      
+
+     
      <% request.setCharacterEncoding("utf-8"); %>
      <c:set var="contextPath" value="${pageContext.request.contextPath }" />
      <c:set var="QnAList" value="${userQnaInfo.QnAList}" />
@@ -81,14 +83,11 @@
 	}
 	
 	.frequent_q_01f {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
+  
     display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
+   
     flex-direction: column;
-    padding-top: 15px;
+    padding-top: 35px;
 }
 	.frequent_q_01f1 {
    /*  cursor: pointer; */
@@ -142,7 +141,8 @@ td.qnaTitle {
 width: 345px;
 }
 td.qnaUser {
-    
+    text-align: center;
+    width: 75px;
 }
 
 td.qnaDate {
@@ -150,16 +150,20 @@ td.qnaDate {
 
 }
 th.th1 {
-    padding-left: 15px;
+        width: 255px;
+    text-align: center;
 }
 th.th2 {
-   padding-left: 330px;
+  width: 345px;
+    text-align: center;
 }
 th.th3 {
-        padding-left: 150px;
+         width: 75px;
+    text-align: center;
 }
 th.th4 {
-    padding-left: 65px;
+      width:185px;
+    text-align: center;
 }
 .qna_add_btn{
 border:none;
@@ -174,7 +178,11 @@ td.frequent_q_01f1_1 {
 
    width: 170px;
 }
+
 	</style>
+	
+
+	
 <title>Insert title here</title>
 </head>
 <body>
@@ -229,7 +237,7 @@ td.frequent_q_01f1_1 {
  <td class="frequent_q_01f1_1"><div>[${qna.productBrand}]</div> <div>${qna.productName}</div> </td>
 <td class="qnaInfo_under">
 <td class="qnaTitle">${qna.title }</td>
-<td class="qnaUser">${qna.id }</td>
+<td class="qnaUser">${qna.id}</td> 
 <td class="qnaDate">${qna.writeDate }</td>
 
 </tr>

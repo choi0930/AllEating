@@ -71,12 +71,12 @@ function OrderDeleteCallback(obj){
      </div>
    
    
-    <div>
+    <div class="orderBox">
      
-     
-    <div class="product-orderdetail">
       <c:forEach var="reserve" items="${reserveList}">
-      <div>
+    <div class="product-orderdetail">
+     
+      
       <div class="product-orderdetail-pic">
    <img src="${contextPath}/download.do?fileName=${reserve.fileName}&productId=${reserve.productId}&cateCode=${reserve.cateCode}" alt="${reserve.fileName}" width="150px" height="150px">
       </div>
@@ -91,10 +91,10 @@ function OrderDeleteCallback(obj){
           <p>${reserve.productName}</p>
         </div>
         <div class="product-orderdetail-line-2">
-          <p>${reserve.productPrice}</p>
+          <p>${reserve.productPrice}원</p>
         </div>
         <div class="product-orderdetail-line-2">
-          <p>${reserve.productQty}</p>
+          <p>${reserve.productQty}개</p>
         </div>
       </div>
       
@@ -120,7 +120,7 @@ function OrderDeleteCallback(obj){
     </div>
     
     
-    <div>
+    <div class="orderBox">
      <c:forEach var="normal" items="${normalList}">
     
     <div class="product-orderdetail">
@@ -139,10 +139,10 @@ function OrderDeleteCallback(obj){
           <p>${normal.productName}</p>
         </div>
         <div class="product-orderdetail-line-2">
-          <p>${normal.productPrice}</p>
+          <p>${normal.productPrice}원</p>
         </div>
         <div class="product-orderdetail-line-2">
-          <p>${normal.productQty}</p>
+          <p>${normal.productQty}개</p>
         </div>
       </div>
       </div>
@@ -239,7 +239,7 @@ function OrderDeleteCallback(obj){
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">결제 일시</dt>
            <dd class="listcss-7">
-            <p>${orderDetailVO.card_payDate}</p>
+            <p>${orderDetailVO.payDate}</p>
            </dd>
          </dl>
        </div>
@@ -278,12 +278,16 @@ function OrderDeleteCallback(obj){
         </div>
           <div class="orderlistdetailview-list-4">
        
+       
+       
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">선택 배송 일자</dt>
            <dd class="listcss-7">
-            <p>???????</p>
+            <p>${orderDetailVO.reserveDate} ${orderDetailVO.reserveTime}</p>
            </dd>
          </dl>
+         
+         
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">수령인</dt>
            <dd class="listcss-7">

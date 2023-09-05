@@ -24,10 +24,10 @@
 
 	
 	<insert id="insertReview" parameterType="java.util.Map">
-	<selectKey resultType="String" keyProperty="articleNO"
+	<!-- <selectKey resultType="String" keyProperty="articleNO"
 			order="BEFORE">
 			select ifnull(max(articleNO),0)+1 from review_board
-		</selectKey>
+		</selectKey> -->
 	
 	
 	<![CDATA[
