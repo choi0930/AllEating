@@ -24,6 +24,8 @@ public interface MyPageService {
 	public int changeDefaultAddress(DeliveryAddressVO deliveryAddressVO)throws DataAccessException;
 	/*마이페이지: 배송지 수정 팝업창*/
 	public DeliveryAddressVO addressInfo(Map info)throws DataAccessException;
+	/*마이페이지: 배송지 수정*/
+	public int modAddress(Map info)throws DataAccessException;
 	/*마이페이지: 유저가 가지고 있는 쿠폰 개수와 포인트 가져옴*/
 	public Map getUserPointAndCouponInfo(String id)throws DataAccessException;
    //마이페이지 찜목록

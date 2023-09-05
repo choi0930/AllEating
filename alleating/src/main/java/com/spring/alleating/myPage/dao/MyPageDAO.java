@@ -40,6 +40,8 @@ public interface MyPageDAO {
 	public int updateDefaultAddress(Map deliveryInfo)throws DataAccessException;
 	/*마이페이지: 수정할 배송지 가져오기 */
 	public DeliveryAddressVO selectAddressByNum(Map deliveryInfo)throws DataAccessException;
+	/*마이페이지: 배송지 수정*/
+	public int updateAddress(Map modDeliveryInfo)throws DataAccessException;
     /*마이페이지: 가지고있는 쿠폰 개수*/
 	public int couponCount(String id)throws DataAccessException;
 	/*마이페이지: 유저가 가지고있는 포인트*/

@@ -1,5 +1,6 @@
 package com.spring.alleating.myPage.controller;
 
+import java.net.http.HttpRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -185,11 +188,10 @@ public class MyPageControllerImpl implements MyPageController {
 	}
 	/*----------------------------------------마이페이지: 기본 배송지 변경 끝----------------------------------------------------------*/
 	
-	/*마이페이지: 배송지 수정*/
+	/*마이페이지: 배송지 수정 팝업*/
 	@Override
 	@GetMapping(value="/myPage/modDeliveryPop.do")
-	public String myPage_modifyDlieveryAddress(Model model, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public String myPage_modifDlieveryAddress(Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
 		
 		String num = request.getParameter("num");
 			int _num = Integer.parseInt(num);
@@ -206,7 +208,30 @@ public class MyPageControllerImpl implements MyPageController {
 			model.addAttribute("deliveryAddressVO", deliveryAddressVO);
 		return "/myPage/modDeliveryPop";
 	}
+	/*----------------------------------------마이페이지: 배송지 수정 팝업 끝----------------------------------------------------------*/
+	
+	/*마이페이지: 배송지 수정*/
+	@Override
+	@ResponseBody
+	@PostMapping(value="/myPage/modAddress.do")
+	public String myPage_modAddress(@RequestBody Map<String, Object> deliveryInfo, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
+		String id = memberVO.getId();
+		
+		deliveryInfo.put("id", id);
+		
+		myPageService.modAddress(deliveryInfo);
+		String msg;
+		
+			msg="성공";
+	
+		return msg;
+	}
 	/*----------------------------------------마이페이지: 배송지 수정 끝----------------------------------------------------------*/
+	
+	
 	@Override
 	@RequestMapping(value = "/myPage/myPage_edit.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView myPage_edit(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -350,6 +375,10 @@ public class MyPageControllerImpl implements MyPageController {
 		int deleteWish = myPageService.deleteWish(wishVO);
 		return deleteWish;
 	}
+
+
+
+	
 	
 
 

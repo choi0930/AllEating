@@ -98,10 +98,10 @@ function sample6_execDaumPostcode() {
           .val("${deliveryAddressVO.receiver_hp1}")
           .attr("selected", "selected");
       });
-      /*결제창에 정보 보내기*/
+      /*정보 보내기*/
       function selectItem(){
 
-    var addressArr = [];
+    var addressArr;
     var num = $('#h_num').val();
     var deliveryName = $('input[name=deliveryName]').val();
     var receiver_name = $('input[name=receiver_name]').val();
@@ -112,17 +112,8 @@ function sample6_execDaumPostcode() {
     var address = $('input[name=address]').val();
     var address2 = $('input[name=address2]').val();
     var address_detail = $('input[name=address_detail]').val();
-    console.log(num);
-    console.log(deliveryName);
-    console.log(receiver_name);
-    console.log(receiver_hp1);
-    console.log(receiver_hp2);
-    console.log(receiver_hp3);
-    console.log(zipcode);
-    console.log(address);
-    console.log(address2);
-    console.log(address_detail);
-    addressArr.push({
+   
+    addressArr={
       num:num,
       deliveryName:deliveryName,
       receiver_name:receiver_name,
@@ -133,10 +124,10 @@ function sample6_execDaumPostcode() {
       address:address,
       address2:address2,
       address_detail:address_detail
-    });
-
-//window.opener.setResList(resArr);
-//window.close();
+    };
+console.log(addressArr);
+window.opener.fn_modAddress(addressArr);
+window.close();
 }
 /*-------------------------------------------------------------------------*/
     </script>
@@ -254,6 +245,6 @@ function sample6_execDaumPostcode() {
       </tr>
     </table>
   </div>
-  <button onclick="">수정하기</button>
+  <button onclick="selectItem()">수정하기</button>
   </body>
 </html>
