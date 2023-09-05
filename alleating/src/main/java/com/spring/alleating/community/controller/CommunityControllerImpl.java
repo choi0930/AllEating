@@ -179,7 +179,7 @@ public class CommunityControllerImpl  implements CommunityController {
 	
     
 
-		//upload method 
+/////////////////////////////////upload method ////////////////////////////
 	private String upload(MultipartHttpServletRequest multipartRequest) throws Exception {
 		String imageFileName = null;
 
@@ -200,8 +200,6 @@ public class CommunityControllerImpl  implements CommunityController {
 		}
 		return imageFileName;
 	}
-
-
 
 	/////////////////////작성한 후기 페이지 ///////////////////////////
 	@Override
@@ -228,12 +226,7 @@ public class CommunityControllerImpl  implements CommunityController {
 		return mav;
 	}
 	
-	
-	
-	 
-	
-
-
+///////////////////////////////사용자 모든 후기들 목록/////////////////////////
 	@Override
 	@RequestMapping(value="/community/allReview.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView selectAllReview(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -245,13 +238,8 @@ public class CommunityControllerImpl  implements CommunityController {
 		 List allReviewList = communityService.selectAllReview(_allReviewInfo);
 		 
 		 mav.addObject("allReviewList", allReviewList);
-		 
-	
-		
-		  
+	  
 		  return mav;
 	}
-	
-	
 	
 	}

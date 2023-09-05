@@ -11,8 +11,6 @@ import com.spring.alleating.myPage.vo.DeliveryAddressVO;
 import com.spring.alleating.myPage.vo.WishVO;
 
 public interface MyPageController {
-	//마이페이지 상품 문의
-	public ModelAndView myPage_productQnA (HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView myPage_edit(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView myPage_edit02(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView myPage_reserves(HttpServletRequest request, HttpServletResponse response)throws Exception;
@@ -34,11 +32,11 @@ public interface MyPageController {
 	public ModelAndView productExchange(HttpServletRequest request, HttpServletResponse response)throws Exception ;
 	public ModelAndView productReturn(HttpServletRequest request, HttpServletResponse response)throws Exception;
 
-	//마이페이지-찜목록 조회
+	//마이페이지 ( 찜목록 조회 )
 	public ModelAndView selectWishList(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	//마이페이지 - 찜 목록 추가
+	//마이페이지 ( 찜 목록 추가 )
 	public int insertWish (WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	//마이페이지 - 찜 목록 삭제
+	//마이페이지 ( 찜 목록 삭제 )
 	public int deleteWish( WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }

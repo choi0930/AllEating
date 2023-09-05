@@ -31,7 +31,9 @@
         <result property="productBrand" column="productBrand" />
 				
 		<result property="productDiscount" column="productDiscount" />
-			<result property="delivery_status" column="delivery_status" />
+		<result property="delivery_status" column="delivery_status" />
+	
+	<result property="order_seq_num" column="order_seq_num" />
 	</resultMap>
 	
 	<resultMap id="orderDetailResult" type="allEatingOrderDetailVO">
@@ -210,10 +212,21 @@
      <if test="deliveryType == 'normal'">
      		AND deliveryType = 'normal'
      </if>
-    
-     
 	</select>
 	
+		<!-- 주문내역 상세페이지( 한 개씩 주문 취소 ) -->
+	<update id="deliveryCancelUpdate" parameterType="java.util.Map">
+	update alleating_order_detail
+	set delivery_status = 'cancel'
+	where order_seq_num = #{ order_seq_num} and delivery_status = 'delivery_prepared'
+	</update>
+	
+	<!-- 주문내역 상세페이지( 전 상품 취소 )-->
+	<update id="deliveryCancelAllUpdate" parameterType="java.util.Map">
+	update alleating_order_detail
+	set delivery_status = 'cancel'
+	where orderId = #{orderId} and delivery_status = 'delivery_prepared'
+	</update>
 	
 	<!-- 상품 후기 조회 -->
 	<select id="selectUserReview" resultMap="orderDetailResult" parameterType="java.util.Map">

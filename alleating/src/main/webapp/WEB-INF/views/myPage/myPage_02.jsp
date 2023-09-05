@@ -70,6 +70,7 @@ function OrderDeleteCallback(obj){
      </div>
      </div>
    
+    <c:if test="${reserveList != null}">
    
     <div class="orderBox">
      
@@ -96,6 +97,20 @@ function OrderDeleteCallback(obj){
         <div class="product-orderdetail-line-2">
           <p>${reserve.productQty}개</p>
         </div>
+        <div class="product-orderdetail-line-3">
+         <c:choose>
+         <c:when test="${reserve.delivery_status == 'delivery_prepared'}">
+          <p>배송 준비중</p>
+         </c:when>
+          <c:when test="${reserve.delivery_status == 'delivery_complete'}">
+          <p>배송 완료</p>
+         </c:when>
+          <c:when test="${reserve.delivery_status == 'cancel'}">
+          <p>주문 취소</p>
+         </c:when>
+         </c:choose>
+        
+        </div>
       </div>
       
     </div>
@@ -103,21 +118,19 @@ function OrderDeleteCallback(obj){
       
    
       <div class="orderdetailview">
-       <div class="orderdetailview-2">
-
-        <a href="${contextPath }/myPage/myPage_review.do" class="orderdetailview-3" >후기 작성 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>   
-       </div>
+     
       
        <div class="orderdetailview-2">
         <a class="orderdetailview-3" >장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        </div>
-      
        	<div class="orderdetailview-2">
-        	<a class="orderdetailview-3" >주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+        	<a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do">주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        	</div> 
       </div>
     </c:forEach>
     </div>
+    
+  </c:if>
     
     
     <div class="orderBox">
@@ -144,20 +157,31 @@ function OrderDeleteCallback(obj){
         <div class="product-orderdetail-line-2">
           <p>${normal.productQty}개</p>
         </div>
+        <div class="product-orderdetail-line-3">
+         <c:choose>
+         <c:when test="${normal.delivery_status == 'delivery_prepared'}">
+          <p>배송 준비중</p>
+         </c:when>
+          <c:when test="${normal.delivery_status == 'delivery_complete'}">
+          <p>배송 완료</p>
+         </c:when>
+          <c:when test="${normal.delivery_status == 'cancel'}">
+          <p>주문 취소</p>
+         </c:when>
+         </c:choose>
+      </div>
       </div>
       </div>
       
    
       <div class="orderdetailview">
-       <div class="orderdetailview-2">
-        <a class="orderdetailview-3" >후기 작성 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>   
-       </div>
+      
        <div class="orderdetailview-2">
         <a class="orderdetailview-3" >장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        </div>
       
        	<div class="orderdetailview-2">
-        	<a class="orderdetailview-3" >주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+        	<a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do" >주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        	</div> 
       </div>
      
@@ -180,7 +204,7 @@ function OrderDeleteCallback(obj){
        </button>
        </div>
      <div class="allcancel">
-       <button type="button"  radius="3" class="allcancelbutton">
+       <button type="button"  radius="3" class="allcancelbutton" onclick="location.href='${cotextPath }/myPage/deliveryCancelAllUpdate.do'">
         <span class="allcancel-2">전체 상품 주문 취소</span>
         </button>
       </div>
@@ -279,13 +303,16 @@ function OrderDeleteCallback(obj){
           <div class="orderlistdetailview-list-4">
        
        
-       
+         <c:if test="${orderDetailVO.reserveDate != null }">
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">선택 배송 일자</dt>
            <dd class="listcss-7">
             <p>${orderDetailVO.reserveDate} ${orderDetailVO.reserveTime}</p>
            </dd>
          </dl>
+         </c:if>
+         
+         
          
          
          <dl class="dlcss" id="dlcss-2">

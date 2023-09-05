@@ -93,10 +93,10 @@ $("startDate").val(newDate)
     <div class="orderlistview">
      <div class="orderlistview-2">
      <h3>주문 내역</h3></div>
-     <div class="orderlistview-3"><h5 class="orderlisttext">최대 1년 간의 주문 내역을 확인할 수 있습니다.</h5>
+     <!-- <div class="orderlistview-3"><h5 class="orderlisttext">최대 1년 간의 주문 내역을 확인할 수 있습니다.</h5> -->
      </div>
 
-     <div class="order-period-select">
+     <!-- <div class="order-period-select">
     시작 날짜:  <input class="datepicker" id="startDate"/>
      <br/><br/>
     종료 날짜: <input class="datepicker" id="endDate"/>
@@ -107,7 +107,7 @@ $("startDate").val(newDate)
       <button name="filterDate" value="3">6개월</button>
       <button name="filterDate" value="4">1년</button>
     </div>
-      </div>
+      </div> -->
       </div>
 
 

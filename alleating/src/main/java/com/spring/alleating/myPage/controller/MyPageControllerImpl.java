@@ -179,17 +179,6 @@ public class MyPageControllerImpl implements MyPageController {
 	/*----------------------------------------마이페이지: 기본 배송지 변경 끝----------------------------------------------------------*/
 
 	@Override
-	@RequestMapping(value = "/myPage/myPage_productQnA.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView myPage_productQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		session.setAttribute("side_menuType", "my_page");
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
-	}
-
-	@Override
 	@RequestMapping(value = "/myPage/myPage_edit.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView myPage_edit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
@@ -336,5 +325,5 @@ public class MyPageControllerImpl implements MyPageController {
 
 	 
 
-	////////////////////// 마이페이지 - 찜목록 끝///////////////////////
+	////////////////////// 마이페이지 ( 찜목록 ) 끝///////////////////////
 }
