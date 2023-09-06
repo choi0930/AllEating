@@ -158,7 +158,8 @@ request.setCharacterEncoding("utf-8"); %>
         <div class="image-container3">
         <c:forEach var="saleProductInfo" items="${saleProduct}">
                <div class="qwerqwer">
-                  <img src="${contextPath}/download.do?fileName=${saleProductInfo.fileName}&productId=${saleProductInfo.productId}&cateCode=${saleProductInfo.cateCode}" alt="${saleProductInfo.fileName}" width="300px" height="300px">
+                <a href="${contextPath }/product/userProductDetail.do?productId=${saleProductInfo.productId}">  
+                <img src="${contextPath}/download.do?fileName=${saleProductInfo.fileName}&productId=${saleProductInfo.productId}&cateCode=${saleProductInfo.cateCode}" alt="${saleProductInfo.fileName}" width="300px" height="300px">
                  
                 <div class="test2">
         <div class=delivery_type_text>
@@ -185,11 +186,14 @@ request.setCharacterEncoding("utf-8"); %>
                   </div>
                   <div class="sale_result"> <fmt:formatNumber value="${saleProductInfo.productSalesPrice}" pattern="#,###"/>원 </div>
                 </div>
+              </a>  
+
            </div> 
             </c:forEach>
           
          
         </div>
+
         </div>
         </div>
   </body>

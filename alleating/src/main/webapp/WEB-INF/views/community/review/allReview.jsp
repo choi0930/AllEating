@@ -34,6 +34,7 @@ request.setCharacterEncoding("utf-8");
 
 h3.want01_text {
     padding-left: 405px;
+	padding-bottom: 25px;
 }
 .allReviewBox{
 padding-top:15px;

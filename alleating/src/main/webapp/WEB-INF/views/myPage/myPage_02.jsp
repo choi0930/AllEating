@@ -141,11 +141,10 @@ function fn_allCancel(orderId){
    
 
      <c:if test="${not empty reserveList}">
-   <div class="clear">
 
-   
+<div class="clear">
+  <div class="orderBox">
 
-    <div class="orderBox">
      
       <c:forEach var="reserve" items="${reserveList}">
         <input type="hidden" class="addAllProductId" value="${reserve.productId}" />
@@ -171,98 +170,97 @@ function fn_allCancel(orderId){
         <div class="product-orderdetail-line-2">
           <p>${reserve.productQty}개</p>
         </div>
-        <div class="product-orderdetail-line-3">
-         <c:choose>
-         <c:when test="${reserve.delivery_status == 'delivery_prepared'}">
-          <p>배송 준비중</p>
-         </c:when>
-          <c:when test="${reserve.delivery_status == 'delivery_complete'}">
-          <p>배송 완료</p>
-         </c:when>
-          <c:when test="${reserve.delivery_status == 'cancel'}">
-          <p>주문 취소</p>
-         </c:when>
-         </c:choose>
+       
         
-        </div>
       </div>
-      
-    </div>
-      
-      
-   
-      <div class="orderdetailview">
-     
-      
-       <div class="orderdetailview-2">
-        <a class="orderdetailview-3" href="javascript:fn_addcart('${reserve.productId}')">장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+    <div class="orderDeliveryBox">
+      <div class="product-orderdetail-line-3">
+        <c:choose>
+        <c:when test="${reserve.delivery_status == 'delivery_prepared'}">
+         <p class="orderStatusText">배송 준비중</p>
+        </c:when>
+         <c:when test="${reserve.delivery_status == 'delivery_complete'}">
+         <p class="orderStatusText" >배송 완료</p>
+        </c:when>
+         <c:when test="${reserve.delivery_status == 'cancel'}">
+         <p class="orderStatusText">주문 취소</p>
+        </c:when>
+        </c:choose>
        </div>
-       	<div class="orderdetailview-2">
-        	<a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do?order_seq_num=${reserve.order_seq_num}&orderId=${reserve.orderId}">주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
-       	</div> 
+      <div class="orderdetailview">
+        <div class="orderdetailview-2">
+        <a class="orderdetailview-3" href="javascript:fn_addcart('${reserve.productId}')">장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+        </div>
+        <div class="orderdetailview-2">
+          <a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do?order_seq_num=${reserve.order_seq_num}&orderId=${reserve.orderId}">주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+        </div> 
       </div>
-    </c:forEach>
+     </div> 
     </div>
-  </div>
+  </c:forEach>
+ </div>
+</div>
   </c:if>
     
-    <div>
-    <div class="orderBox">
-     <c:forEach var="normal" items="${normalList}">
-      <input type="hidden" class="addAllProductId" value="${normal.productId}" />
-    <div class="product-orderdetail">
+<div class="clear">
     
-      <div class="product-orderdetail-pic">
-   <img src="${contextPath}/download.do?fileName=${normal.fileName}&productId=${normal.productId}&cateCode=${normal.cateCode}" alt="${normal.fileName}" width="150px" height="150px">
-      </div>
-      <div class="product-orderdetail-line">
-      <div class="product-orderdetail-line-2">
-          <p>일반 배송</p>
-        </div>
-      <div class="product-orderdetail-line-2">
-          <p>[${normal.productBrand}]</p>
-        </div>
-       <div class="product-orderdetail-line-2">
-          <p>${normal.productName}</p>
-        </div>
-        <div class="product-orderdetail-line-2">
-          <p>${normal.productPrice}원</p>
-        </div>
-        <div class="product-orderdetail-line-2">
-          <p>${normal.productQty}개</p>
-        </div>
-        <div class="product-orderdetail-line-3">
-         <c:choose>
-         <c:when test="${normal.delivery_status == 'delivery_prepared'}">
-          <p>배송 준비중</p>
-         </c:when>
-          <c:when test="${normal.delivery_status == 'delivery_complete'}">
-          <p>배송 완료</p>
-         </c:when>
-          <c:when test="${normal.delivery_status == 'cancel'}">
-          <p>주문 취소</p>
-         </c:when>
-         </c:choose>
-      </div>
-      </div>
-      </div>
-      
-   
-      <div class="orderdetailview">
-      
-       <div class="orderdetailview-2">
-        <a class="orderdetailview-3" href="javascript:fn_addcart('${normal.productId}')">장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
-       </div>
-      
-       	<div class="orderdetailview-2">
-        	<a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do?order_seq_num=${normal.order_seq_num}&orderId=${normal.orderId}">주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
-       	</div> 
-      </div>
+      <div class="orderBox">
      
+        <c:forEach var="normal" items="${normalList}">
+          <input type="hidden" class="addAllProductId" value="${reserve.productId}" />
+      <div class="product-orderdetail">
+       
+        
+        <div class="product-orderdetail-pic">
+         <img src="${contextPath}/download.do?fileName=${normal.fileName}&productId=${normal.productId}&cateCode=${normal.cateCode}" alt="${normal.fileName}" width="150px" height="150px">
+        </div>
+        <div class="product-orderdetail-line">
+        <div class="product-orderdetail-line-2">
+            <p>예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;"></p>
+          </div>
+        <div class="product-orderdetail-line-2">
+            <p>[${normal.productBrand}]</p>
+          </div>
+         <div class="product-orderdetail-line-2">
+            <p>${normal.productName}</p>
+          </div>
+          <div class="product-orderdetail-line-2">
+            <p>${normal.productPrice}원</p>
+          </div>
+          <div class="product-orderdetail-line-2">
+            <p>${normal.productQty}개</p>
+          </div>
+         
+          
+        </div>
+      <div class="orderDeliveryBox">
+        <div class="product-orderdetail-line-3">
+          <c:choose>
+          <c:when test="${normal.delivery_status == 'delivery_prepared'}">
+           <p class="orderStatusText">배송 준비중</p>
+          </c:when>
+           <c:when test="${normal.delivery_status == 'delivery_complete'}">
+           <p class="orderStatusText">배송 완료</p>
+          </c:when>
+           <c:when test="${normal.delivery_status == 'cancel'}">
+           <p class="orderStatusText">주문 취소</p>
+          </c:when>
+          </c:choose>
+         </div>
+        <div class="orderdetailview">
+          <div class="orderdetailview-2">
+          <a class="orderdetailview-3" href="javascript:fn_addcart('${normal.productId}')">장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+          </div>
+          <div class="orderdetailview-2">
+            <a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do?order_seq_num=${normal.order_seq_num}&orderId=${normal.orderId}">주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+          </div> 
+        </div>
+       </div> 
+      </div>
       </c:forEach>
-    </div>
-    
+      </div>
   </div>
+
     
  
     
@@ -270,8 +268,8 @@ function fn_allCancel(orderId){
     
 
     
-    
-    <div class="orderresult">
+ <div class="clear2">  
+  <div class="orderresult">
      	<div class="readd">
        <button type="button" radius="3" class="readdbutton" onclick="fn_addAllCart()">
          <span class="readd-2">전체 상품 다시 담기</span>
@@ -282,16 +280,16 @@ function fn_allCancel(orderId){
         <span class="allcancel-2">전체 상품 주문 취소</span>
         </button>
       </div>
-    </div>
+   </div>
     
-    <div class="orderpotential">
+ <div class="orderpotential">
       <div class="orderpotential-view">
       <p class="orderpotential-text">주문 취소는 [배송 준비중]인 상태일 경우에만 가능합니다.</p>
       </div>
   </div>
+</div>     
     
-    
-    
+   <div class="clear3"> 
      <div class="orderlistdetailview-list">
       <div class="orderlistdetailview-list-2">
        <div class="orderlistdetailview-list-3">
@@ -419,6 +417,8 @@ function fn_allCancel(orderId){
        </div>
       </div>
      </div>
-   </div> 
+    </div>
+    
+</div> 
 </body>
 </html>

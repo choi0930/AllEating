@@ -113,7 +113,7 @@ $("startDate").val(newDate)
 
       
     <div class="orderlistview-under">
-      <div class="eng">
+      <div class="orderViewBox">
       <c:forEach var="bbig" items="${orderHistoryResult}">
      <div class="orderlist-time">
      ${bbig.payDate}
@@ -167,17 +167,16 @@ $("startDate").val(newDate)
           <p>${bbig.totalPrice}원</p>
           </dd>
           </dl>
-
-          <div class="exchange_refund">
-            <div class="orderview-3">
-              <button type="button" class="btn btn-outline-primary" id="order-refund-button">교환 신청</button>
-             </div>
-             <div class="orderview-3" >
-             <button type="button" class="btn btn-outline-primary"  id="order-refund-button2">반품 신청</button>
-             </div>
-             </div>
-
         </div>
+
+        <div class="exchange_refund">
+          <div class="orderview-3">
+            <button type="button" class="btn btn-outline-primary" id="order-refund-button">교환 신청</button>
+           </div>
+           <div class="orderview-3" >
+           <button type="button" class="btn btn-outline-primary"  id="order-refund-button2">반품 신청</button>
+           </div>
+           </div>
        </div>
       
         </a>

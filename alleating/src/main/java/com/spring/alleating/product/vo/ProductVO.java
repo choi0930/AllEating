@@ -30,6 +30,8 @@ public class ProductVO {
     private String reg_id;
     private String reg_com_name;
     private String join_type;
+    
+    //inner join
     private String fileName;
     
 	

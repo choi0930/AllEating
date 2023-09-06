@@ -25,7 +25,10 @@
 		<result property="creDate" column="creDate"/>
 		<result property="reg_id" column="reg_id"/>
 		<result property="join_type" column="join_type" />
-			<result property="fileName" column="fileName" />
+		<result property="reg_com_name" column="reg_com_name" />
+		
+		<!-- inner join -->
+		<result property="fileName" column="fileName" />
 	</resultMap>
 	
 	<resultMap id="productImgResult" type="productImgVO">
