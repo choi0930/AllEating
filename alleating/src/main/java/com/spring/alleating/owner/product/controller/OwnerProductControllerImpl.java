@@ -201,19 +201,19 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		
 		
 		
-		@RequestMapping(value="/owner/addOwnerInquiry.do", method = {RequestMethod.POST,RequestMethod.GET})
-		public ModelAndView addOwnerInquiry(Map<String, String> articleMap, HttpServletRequest request,
-				HttpServletResponse response) throws Exception {
-		
-			String viewName = (String)request.getAttribute("viewName");
-			System.out.println(viewName); 
-			
-			ownerProductService.addNewArticle(articleMap);
-			
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("redirect:/owner/ownerinquirylist.do"); //add
-			return mav;
-		}
+//		@RequestMapping(value="/owner/addOwnerInquiry.do", method = {RequestMethod.POST,RequestMethod.GET})
+//		public ModelAndView addOwnerInquiry(Map<String, String> articleMap, HttpServletRequest request,
+//				HttpServletResponse response) throws Exception {
+//		
+//			String viewName = (String)request.getAttribute("viewName");
+//			System.out.println(viewName); 
+//			
+//			ownerProductService.addNewArticle(articleMap);
+//			
+//			ModelAndView mav = new ModelAndView();
+//			mav.setViewName("redirect:/owner/ownerinquirylist.do"); //add
+//			return mav;
+//		}
 		
 		
 		
@@ -279,6 +279,29 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 				mav.addObject("parentNO",parentNO);
 				return mav;
 			}
+			
+			@Override 
+			@RequestMapping(value="/owner/removeArticle.do", method = RequestMethod.GET)
+			public ModelAndView removeArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+				System.out.println("asfasfafsafasfasfafasfsafasfafasfas");
+			ownerProductService.removeArticle(articleNO);
+			ModelAndView mav = new ModelAndView("redirect:/owner/ownerinquirylist.do");
+			return mav;
+		}
+	
+			@Override
+			@RequestMapping(value="/owner/updateArticle.do", method = RequestMethod.GET)
+			public ModelAndView updateArticle(Map<String, String> articleMap, HttpServletRequest request, HttpServletResponse response)
+					throws Exception {		
+				int result = 0;
+				result = ownerProductService.modArticle(articleMap);
+				ModelAndView mav = new ModelAndView("redirect:/owner/ownerinquirylist.do");
+				return mav;
+
+			}
+			
+			
 	/*
 	 * @Override
 	 * 

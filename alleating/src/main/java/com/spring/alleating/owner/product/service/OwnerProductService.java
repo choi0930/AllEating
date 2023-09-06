@@ -32,15 +32,17 @@ public interface OwnerProductService {
 	  public Map productEditService(int EService) throws Exception;
 	  
 		/* 사업자 상품문의 게시판(미완) */
-	  public List<InquiryBoardVO> listArticles() throws Exception;
-	  
-	  public int addNewArticle(Map articleMap) throws Exception;
+	  public List<InquiryBoardVO> listArticles() throws Exception; 
+	  	  
+//	  public int addNewArticle(Map articleMap) throws Exception;
 	  
 	  public InquiryBoardVO viewArticle(int articleNO) throws Exception;
 	  
 	  public int addReplyArticle(Map replyMap) throws Exception;
-
 	  
-	 
+	  public void removeArticle(int articleNO) throws Exception;
+	  
+	  public int modArticle(Map<String, String> articleMap) throws DataAccessException;
+
 
 }

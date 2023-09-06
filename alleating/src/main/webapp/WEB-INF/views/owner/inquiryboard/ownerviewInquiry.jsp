@@ -29,29 +29,14 @@
 	 function fn_enable(obj){
 		 document.getElementById("i_title").disabled=false;
 		 document.getElementById("i_content").disabled=false;
-		 document.getElementById("i_imageFileName").disabled=false;
-		 //document.getElementById("tr_btn_modify").style.display="block";
-		 //document.getElementById("tr_btn").style.display="none";
+
 	 }
 	
 	 function fn_modify_article(obj){
-		 obj.action="${contextPath}/board/modArticle.do";
+		 obj.action="${contextPath}/owner/updateArticle.do";
 		 obj.submit();
 	 }
 	 
-	 function fn_remove_article(url,articleNO){
-		 var form = document.createElement("form");
-		 form.setAttribute("method", "post");
-		 form.setAttribute("action", url);
-		 var articleNOInput = document.createElement("input");
-		 articleNOInput.setAttribute("type", "hidden");
-		 articleNOInput.setAttribute("name", "articleNO");
-		 articleNOInput.setAttribute("value", articleNO);
-		 
-		 form.appendChild(articleNOInput);
-		 document.body.appendChild(form);
-		 form.submit();
-	 }
 	 
 	 function fn_reply_form(url, parentNO) {
 		 	var form = document.createElement("form");
@@ -79,28 +64,20 @@
 	</script>
 </head>
 <body>
- <form name="frmArticle" method="post" action="${contextPath}" >
+ <form name="frmArticle" method="GET" action="${contextPath}/owner/updateArticle.do"" >
  <table border="0" align="center" >
- 	<tr>
- 		<td width="150" align="center" bgcolor="#FF9933">
- 		글번호
- 		</td>
- 		<td>
- 		 <input type="text" value="${inquiryBoardVO.articleNO }" disabled />
- 		 <input type="hidden" name="articleNO" value="${inquiryBoardVO.articleNO}" />
- 		</td>
- 	</tr>
+
  	<tr>
  		<td width="150" align="center" bgcolor="#FF9933" >
  			작성자 아이디
  		</td>
  		<td>
- 		<input type="text" value="${inquiryBoardVO.id }" name="writer" disabled />
+ 		<input type="text" value="${inquiryBoardVO.id}" name="writer" disabled />
  		</td>
  	</tr>
  	<tr>
  		<td width="150" align="center" bgcolor="#FF9933">
- 			이름
+ 			제목
  		</td>
  		<td>
  		 <input type="text" value="${inquiryBoardVO.title }" name="title" id="i_title" disabled />
@@ -112,7 +89,7 @@
 			내용
 		</td>
 		<td>
-		 <input type="text" value="${inquiryBoardVO.content }" name="content"  disabled />
+		 <input type="text" value="${inquiryBoardVO.content }" name="content" id="i_content" disabled />
 		</td>
 	</tr>
 
@@ -124,17 +101,11 @@
   		<td>
   			<input type="text" value="<fmt:formatDate value="${inquiryBoardVO.writeDate}" />" disabled />
   		</td>
-  	</tr>
-  	  	<tr id="tr_btn_modify" >
-  		<td colspan="2">
-  			<input type="button" value="수정반영하기" onClick="fn_modify_article(frmArticle)" >
-  			<input type="button" value="취소" onClick="backToList(frmArticle)" >
-  		</td>
-  	</tr>
   	<tr id="tr_btn" >
   		<td colspan="2" align="center">
   		<input type="button" value="수정하기" onClick="fn_enable(this.form)">
-  		<input type="button" value="삭제하기" onClick="fn_remove_article('${contextPath}/board/removeArticle.do', '${article.articleNO}')">
+		<input type="button" value="수정반영하기" onClick="fn_modify_article(frmArticle)" >
+		<a class="product_del_btn" href="${ContextPath}/owner/removeArticle.do?articleNO=${inquiryBoardVO.articleNO}">삭제</a>
   		<input type="button" value="리스트로 돌아가기" onClick="backToList(this.form)">
   	    </td>
    </tr>

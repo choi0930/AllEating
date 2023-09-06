@@ -36,9 +36,13 @@ public interface OwnerProductDAO {
 	/* 사업자 상품문의 게시판 (미완) */
 	public List selectAllArticlesList() throws DataAccessException;
 	
-	public int insertNewOwnerInquiry(Map articleMap) throws DataAccessException;
-	
+//	public int insertNewOwnerInquiry(Map articleMap) throws DataAccessException;
+//	
 	public int selectNewArticleNO() throws DataAccessException;
+	
+	public int updateArticle(Map articleMap) throws DataAccessException;
+	
+	public void deleteArticle(int articleNO) throws DataAccessException;
 	
 	public InquiryBoardVO selectArticle(int articleNO) throws DataAccessException;
 	
