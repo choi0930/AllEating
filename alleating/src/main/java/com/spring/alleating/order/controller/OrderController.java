@@ -31,4 +31,12 @@ public interface OrderController {
     public void deliveryChangePopUp(Model model, HttpServletRequest request)throws Exception;
     /*팝업창에서 선택한 쿠폰 적용*/
     public Map<String, Object> couponApply(@RequestBody Map<String, Object>couponInfo, HttpServletRequest request)throws Exception;
+    /* 한 개 상품 주문 취소 누를 시 상태 업데이트 */
+   public ModelAndView deliveryCancelUpdate(int order_seq_num, String orderId, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
+   /* 전체 상품 주문 취소 누를 시 상태 업데이트 */
+   public ModelAndView deliveryAllCancelUpdate(String orderId, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
 }

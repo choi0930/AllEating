@@ -48,10 +48,10 @@ public interface MyPageDAO {
 	public List<WishVO> selectWishList(Map wishMap) throws DataAccessException;
 	//마이페이지-찜하기
 	public int insertWish(WishVO wishVO) throws DataAccessException;
-	
 	//마이페이지-찜 삭제
 	public int deleteWish(WishVO wishVO ) throws DataAccessException;
-	
+	//마이페이지 ( 적립금 )
+	public List<UserPointVO> selectRewardHistory (Map rewardInfo)throws DataAccessException;
 	
 
 

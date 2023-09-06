@@ -30,6 +30,9 @@ function OrderDeleteCallback(obj){
 		}
 	}
 }
+function fn_allCancel(orderId){
+	location.href="/myPage/deliveryAllCancelUpdate.do?orderId="+orderId;
+}
 </script>
 
 
@@ -70,7 +73,7 @@ function OrderDeleteCallback(obj){
      </div>
      </div>
    
-    <c:if test="${reserveList != null}">
+    <c:if test="${not empty reserveList}">
    
     <div class="orderBox">
      
@@ -124,7 +127,7 @@ function OrderDeleteCallback(obj){
         <a class="orderdetailview-3" >장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        </div>
        	<div class="orderdetailview-2">
-        	<a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do">주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+        	<a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do?order_seq_num=${reserve.order_seq_num}&orderId=${reserve.orderId}">주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        	</div> 
       </div>
     </c:forEach>
@@ -181,7 +184,7 @@ function OrderDeleteCallback(obj){
        </div>
       
        	<div class="orderdetailview-2">
-        	<a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do" >주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+        	<a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do?order_seq_num=${normal.order_seq_num}&orderId=${normal.orderId}">주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        	</div> 
       </div>
      
@@ -204,7 +207,7 @@ function OrderDeleteCallback(obj){
        </button>
        </div>
      <div class="allcancel">
-       <button type="button"  radius="3" class="allcancelbutton" onclick="location.href='${cotextPath }/myPage/deliveryCancelAllUpdate.do'">
+       <button type="button"  radius="3" class="allcancelbutton" onclick="fn_allCancel('${orderDetailVO.orderId}')">
         <span class="allcancel-2">전체 상품 주문 취소</span>
         </button>
       </div>

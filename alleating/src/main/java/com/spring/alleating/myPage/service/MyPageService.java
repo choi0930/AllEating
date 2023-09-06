@@ -30,8 +30,9 @@ public interface MyPageService {
 	public List selectWishList(Map _wishMap) throws DataAccessException;
 	//마이페이지 찜목록 추가
 	public int insertWish(WishVO wishVO) throws DataAccessException;
-	
 	//마이페이지 찜목록 삭제
 	public int deleteWish(WishVO wishVO) throws DataAccessException;
+	//마이페이지 ( 적립금 )
+	public List selectRewardHistory(Map _rewardInfo) throws DataAccessException;
 	
 }

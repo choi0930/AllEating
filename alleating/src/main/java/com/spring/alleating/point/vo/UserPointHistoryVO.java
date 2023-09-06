@@ -7,10 +7,17 @@ import org.springframework.stereotype.Component;
 public class UserPointHistoryVO {
 	private int pointNum;
 	private String id;
-	private int usePoint;
+	private String usePoint;
+	private String content;
 	private Date creDate;
 	
 	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public int getPointNum() {
 		return pointNum;
 	}
@@ -23,10 +30,11 @@ public class UserPointHistoryVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getUsePoint() {
+	
+	public String getUsePoint() {
 		return usePoint;
 	}
-	public void setUsePoint(int usePoint) {
+	public void setUsePoint(String usePoint) {
 		this.usePoint = usePoint;
 	}
 	public Date getCreDate() {

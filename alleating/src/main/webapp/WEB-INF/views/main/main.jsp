@@ -61,7 +61,7 @@ request.setCharacterEncoding("utf-8"); %>
                <div class="qwerqwer">
                <a href="${contextPath }/product/userProductDetail.do?productId=${newProductInfo.productId}">
                   <img src="${contextPath}/download.do?fileName=${newProductInfo.fileName}&productId=${newProductInfo.productId}&cateCode=${newProductInfo.cateCode}" alt="${newProductInfo.fileName}" width="240px" height="320px">
-                 </a>
+                
                 <div class="test2">
         
         <div class=delivery_type_text>
@@ -100,7 +100,8 @@ request.setCharacterEncoding("utf-8"); %>
                    </c:choose>
                   
                 </div>
-           </div> 
+           </div>
+           </a> 
            </div>
             </c:forEach>
              
@@ -122,13 +123,13 @@ request.setCharacterEncoding("utf-8"); %>
             </c:forEach>
           </div> -->
           <div id="menu-title2">
-            <h3 class="newgoods">All Eating의 추천 recipe</h3>
+            <%-- <h3 class="newgoods">All Eating의 추천 recipe</h3>
             <div class="btn3">
               <button type="button" class="btn btn-outline-secondary" onclick="location.href='${ContextPath }/community/review_01.do'">
                 커뮤니티 바로가기
               </button>
-            </div>
-          <div class="image-container2">
+            </div> --%>
+         <%--  <div class="image-container2">
             <div>
               <img src="${contextPath}/img/image_food/jeayuk.png" alt="Image 1" />
               <div class="test3">
@@ -148,7 +149,9 @@ request.setCharacterEncoding("utf-8"); %>
                 <h5>달콤 짭쪼롬 계란조림</h5>
               </div>
             </div>
-          </div>
+          </div> --%>
+          
+          
         <div id="menu-title3">
           <h3 class="newgoods">할인 품목</h3>
         </div>

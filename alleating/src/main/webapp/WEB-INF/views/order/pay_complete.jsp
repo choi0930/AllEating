@@ -7,6 +7,13 @@ request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
   <head>
+  <style>
+  button.triangle-button {
+    position: relative;
+    left: 135px;
+    top: -35px;
+}
+  </style>
     <title>주문 완료</title>
     <link
       href="${contextPath}/css/pay_complete.css"

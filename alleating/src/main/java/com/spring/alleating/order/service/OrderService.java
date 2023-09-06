@@ -27,4 +27,8 @@ public interface OrderService {
 	public List<DeliveryAddressVO> getDeliveryAddressList(String id)throws DataAccessException; //배송지 목록 가져오기
 	/* 쿠폰 할인율 상품 가격에 적용 */
 	public Map<String, Object> couponApply(Map dataMap)throws DataAccessException;
+	/* 한 개 상품 주문 취소 누를 시 상태 업데이트 */
+    public int deliveryCancelUpdate(int order_seq_num)throws DataAccessException;
+	/* 전체 상품 취소 누를 시 상태 업데이트 */
+    public int deliveryAllCancelUpdate(String orderId)throws DataAccessException;
 }

@@ -19,6 +19,7 @@ request.setCharacterEncoding("utf-8");
 	<style>
 	input{border:none;
 	font-size:20px;}
+	input:focus {outline:none;}
 	</style>
 <meta charset="UTF-8" />
 <title>상품 후기</title>
@@ -61,21 +62,21 @@ request.setCharacterEncoding("utf-8");
               
 				<c:forEach var="zlzl" items="${reviewWrittenList}">
 					
-						<input type="hidden" name="productId" value="${zlzl.productId}">   
+						<input type="hidden" name="productId" value="${zlzl.productId}" readonly>   
 					    <%-- <input type="hidden" name="order_seq_num" value="${zlzl.order_seq_num}">  --%>
 					   <%--  <input type="hidden" name="review_ny" value="${zlzl.review_ny}"> --%>
 						<div class="want_02">
 							<div class="capture">
 
 								<img
-									src="${contextPath}/download.do?fileName=${zlzl.fileName}&productId=${zlzl.productId}&cateCode=${zlzl.cateCode}"
+									src="${contextPath}/download2.do?fileName=${zlzl.fileName}&articleNO=${zlzl.articleNO}"
 									alt="${zlzl.fileName}" width="150px" height="150px">
 							</div>
 						</div>
 						<div class="qwe">
-							<input type="text" class="productNaming" value="${zlzl.productBrand}" name="brand">
-								<input type="text" class="productNaming" value="${zlzl.productName}" name="naming">
-								<input type="text" class="productContent" value="${zlzl.content }" name="content">
+							<input type="text" class="productNaming" value="${zlzl.productBrand}" name="brand"readonly>
+								<input type="text" class="productNaming" value="${zlzl.productName}" name="naming"readonly>
+								<input type="text" class="productContent" value="${zlzl.content }" name="content"readonly>
 							<%--  <input type="hidden" class="detail_01" value="[${review.productBrand}]${review.productName}"> --%>
 						</div>
 

@@ -14,6 +14,7 @@ import com.spring.alleating.community.vo.ReviewBoardVO;
 import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.order.vo.AllEatingOrderDetailVO;
 import com.spring.alleating.order.vo.AllEatingOrderVO;
+import com.spring.alleating.point.vo.UserPointVO;
 import com.spring.alleating.product.vo.ProductImgVO;
 
 @Service("communityService")
@@ -23,14 +24,17 @@ public class CommunityServiceImpl implements CommunityService {
 	CommunityDAO communityDAO;
 	@Autowired
 	ReviewBoardVO reviewBoardVO;
+	@Autowired
+	UserPointVO userPointVO;
 	
 	@Override
 	public int insertReview(Map reviewInfo) throws Exception {
 		
 		communityDAO.insertReview(reviewInfo);
 		 communityDAO.updateReviewStatus(reviewInfo);
-		String _articleNO = (String) reviewInfo.get("articleNO");
-		int articleNO = Integer.parseInt(_articleNO);
+		int articleNO = (int) reviewInfo.get("articleNO");
+//		int articleNO = Integer.parseInt(_articleNO);
+		
 		return articleNO;
 	}
 
@@ -50,6 +54,10 @@ public class CommunityServiceImpl implements CommunityService {
 		return allReviewBoardVO;
 	}
 
+	
+	
+	/////////////////////////////////리뷰 작성 관련 포인트/////////////////////////////
+	
 	 
 	
     

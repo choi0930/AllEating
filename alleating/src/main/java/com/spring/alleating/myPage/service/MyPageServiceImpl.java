@@ -164,15 +164,15 @@ public class MyPageServiceImpl implements MyPageService{
 
 	
 
-	
-
-	
-	
-	
 ////////////////////////마이페이지 - 찜목록 끝
 	
 	
-
+	/* 마이페이지 ( 적립금 ) */
+	@Override
+	public List selectRewardHistory(Map _rewardInfo) throws DataAccessException {
+	 List<UserPointVO> userPointVO = myPageDAO.selectRewardHistory(_rewardInfo);
+		return userPointVO;
+	}
 
 
 

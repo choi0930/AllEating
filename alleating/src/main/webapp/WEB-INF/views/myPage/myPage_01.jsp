@@ -114,7 +114,7 @@ $("startDate").val(newDate)
       
     <div class="orderlistview-under">
       <div class="eng">
-      <c:forEach var="bbig" items="${orderHistoryResult}"> 
+      <c:forEach var="bbig" items="${orderHistoryResult}">
      <div class="orderlist-time">
      ${bbig.payDate}
      </div>
@@ -179,6 +179,7 @@ $("startDate").val(newDate)
 
         </div>
        </div>
+      
         </a>
       
 
@@ -189,7 +190,7 @@ $("startDate").val(newDate)
           
           
       </div>
-       </div>
+      
       
             
      
