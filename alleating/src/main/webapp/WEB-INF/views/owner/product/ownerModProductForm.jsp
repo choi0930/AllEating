@@ -130,8 +130,8 @@ function changeImageByType(imageType) {
       formData.append("imgId", imgId);
       formData.append("fileType", fileType);
       formData.append("cateCode", cateCode);
-      formData.append("originalFileName", originalFileName);
-
+      formData.append("original_img", originalFileName);
+    console.log($('#'+fileId)[0].files[0]);
       $.ajax({
         url: '${contextPath}/owner/modfiyImgInfo.do',
         processData: false,

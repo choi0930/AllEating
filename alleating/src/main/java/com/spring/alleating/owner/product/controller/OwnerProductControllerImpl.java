@@ -403,6 +403,8 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		
 		try {
 			imageFileList =upload(multipartRequest);
+			System.out.println("아:"+imageFileList.size());
+			
 			if(imageFileList!= null && imageFileList.size()!=0) {
 				for(ProductImgVO productImgVO : imageFileList) {
 					productId = Integer.parseInt((String)productMap.get("productId"));
@@ -412,10 +414,12 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 					productImgVO.setReg_id(reg_id);
 				}
 				String cateCode = (String) productMap.get("cateCode");
-				String originalFileName = (String)productMap.get("originalFileName");
+				String originalFileName = (String)productMap.get("original_img");
+				System.out.println("아:"+originalFileName);
 			    ownerProductService.modifyProductImage(imageFileList);
 				for(ProductImgVO  productImgVO:imageFileList) {
 					imageFileName = productImgVO.getFileName();
+					System.out.println(imageFileName);
 					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
 					File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId);
 					
@@ -441,6 +445,7 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 
 
 	@Override
+	
 	@RequestMapping(value="/owner/delImgInfo.do", method = RequestMethod.POST)
 	public void delProductImg(String productId, String imgId, String fileName, String cateCode,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -458,10 +463,12 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 
 
 	@Override
+	@ResponseBody
+	@RequestMapping(value="/owner/modProductInfo.do", method = RequestMethod.POST)
 	public String modProductInfo(ProductVO productVO, HttpServletRequest request, HttpServletResponse response)
 			throws DataAccessException {
-		
-		return null;
+		ownerProductService.modProductInfo(productVO);
+		return "상품이 수정되었습니다.";
 	}
 
 

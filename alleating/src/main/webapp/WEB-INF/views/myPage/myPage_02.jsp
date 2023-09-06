@@ -140,10 +140,10 @@ function fn_allCancel(orderId){
      </div>
    
 
-    <c:if test="${reserveList != null}">
+     <c:if test="${not empty reserveList}">
    <div class="clear">
 
-    <c:if test="${not empty reserveList}">
+   
 
     <div class="orderBox">
      
