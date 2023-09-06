@@ -141,8 +141,10 @@ function fn_allCancel(orderId){
    
 
      <c:if test="${not empty reserveList}">
+
 <div class="clear">
   <div class="orderBox">
+
      
       <c:forEach var="reserve" items="${reserveList}">
         <input type="hidden" class="addAllProductId" value="${reserve.productId}" />
