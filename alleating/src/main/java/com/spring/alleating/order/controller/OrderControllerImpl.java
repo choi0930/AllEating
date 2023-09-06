@@ -40,6 +40,9 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	@Autowired
 	private MyPageService myPageService;
 	
+	@Autowired
+	private AllEatingOrderDetailVO allEatingOrderDetailVO;
+	
 	
 	@RequestMapping(value="/order/pay_01.do", method = RequestMethod.GET)
 	public ModelAndView thunderDelivery(HttpServletRequest request, HttpServletResponse response)throws Exception{
@@ -242,7 +245,8 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	/* 마이페이지 주문내역 상세페이지 */
 	@Override
 	@RequestMapping(value="/myPage/myPage_02.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView OrderHistoryDetail(@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView OrderHistoryDetail(@RequestParam("orderId") String orderId,
+			 HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession(); //얘가 없으면
 		session.setAttribute("side_menuType", "my_page"); //세션에 키와 값을 줄 지정할 수 없음
@@ -251,13 +255,18 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		orderDetailInfo = orderService.OrderHistoryDetail(orderId);
 	
 		
+		
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		
 		mav.addObject("orderDetailInfo", orderDetailInfo);
+	
+		
+		
 		return mav;
 	}
+	
 
 	@Override
 	@RequestMapping(value="/myPage/myPage_review.do", method = { RequestMethod.POST, RequestMethod.GET })
@@ -291,7 +300,42 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		return responseMap;
 	}
-
+	/* 한 개 상품 주문 취소 누를 시 상태 업데이트 */
+	@Override
+	@RequestMapping(value="/myPage/deliveryCancelUpdate.do" , method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView deliveryCancelUpdate(@RequestParam("order_seq_num") int order_seq_num
+			,@RequestParam("orderId") String orderId, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession(); 
+		session.setAttribute("side_menuType", "my_page"); 
+	
+		orderService.deliveryCancelUpdate(order_seq_num);
+	
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		mav.setViewName("redirect:/myPage/myPage_02.do?orderId="+orderId);
+		return mav;
+	}
+/* 전체 상품 주문 취소 누를 시 상태 업데이트 */
+	@Override
+	@RequestMapping(value="/myPage/deliveryAllCancelUpdate.do", method ={ RequestMethod.POST, RequestMethod.GET } )
+	public ModelAndView deliveryAllCancelUpdate(String orderId, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession(); 
+		session.setAttribute("side_menuType", "my_page"); 
+		
+		orderService.deliveryAllCancelUpdate(orderId);
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		mav.setViewName("redirect:/myPage/myPage_02.do?orderId="+orderId);
+		return mav;
+	}
+	
 	
 	
 }
+
+	
+	

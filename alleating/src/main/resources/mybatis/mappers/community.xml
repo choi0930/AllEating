@@ -21,13 +21,16 @@
 		<result property="img_type" column="img_type" />
 		<result property="creDate" column="creDate" />
 	</resultMap>
-
+<resultMap id="userPointResult" type="userPointVO">
+		<result property="userPoint" column="userPoint" />
+		<result property="id" column="id" />
+</resultMap>
 	
 	<insert id="insertReview" parameterType="java.util.Map">
-	<!-- <selectKey resultType="String" keyProperty="articleNO"
+	 <selectKey resultType="int" keyProperty="articleNO"
 			order="BEFORE">
 			select ifnull(max(articleNO),0)+1 from review_board
-		</selectKey> -->
+		</selectKey> 
 	
 	
 	<![CDATA[
@@ -93,5 +96,21 @@ from review_board r
 inner join  alleating_order_detail a on r.productId = a.productId
 where a.review_ny = 'y'
 </select>
+
+
+<!-- 적립금 select -->
+<select id="selectReward" resultMap="userPointResult" parameterType="java.util.Map">
+select * from user_point where id=#{id}
+</select>
+
+<!-- 구매후기 작성후 적립금 업데이트 -->
+<update id="updateReward" parameterType="java.util.Map">
+update user_point set userPoint where id=#{id}
+</update>
+<!-- 구매후기 작성해서 받은 적립금 구매내역에 insert -->
+<insert id="insertRewardHistory" parameterType="userPointVO">
+insert into user_point (pointNum, id, usePoint, creDate, content)
+ values (#{pointNum}, #{id}, #{usePoint}, #{creDate}, #{content})
+</insert>
 	
 	</mapper>

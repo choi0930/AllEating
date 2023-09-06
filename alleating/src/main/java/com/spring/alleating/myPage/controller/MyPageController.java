@@ -18,7 +18,7 @@ import com.spring.alleating.myPage.vo.WishVO;
 public interface MyPageController {
 	public ModelAndView myPage_edit(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView myPage_edit02(HttpServletRequest request, HttpServletResponse response)throws Exception;
-	public ModelAndView myPage_reserves(HttpServletRequest request, HttpServletResponse response)throws Exception;
+	
 	public ModelAndView myPage_secession(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/* 마이페이지: 배송지관리 페이지 이동(로그인한 유저 배송지 목록 불러오기) */
 	public ModelAndView myPage_address(HttpServletRequest request, HttpServletResponse response)throws Exception;
@@ -47,5 +47,6 @@ public interface MyPageController {
 	public int insertWish (WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//마이페이지 ( 찜 목록 삭제 )
 	public int deleteWish( WishVO wishVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
+	//마이페이지 ( 적립금 )
+	public ModelAndView selectRewardHistory(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)throws Exception;
 }

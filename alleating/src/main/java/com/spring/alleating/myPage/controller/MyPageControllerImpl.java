@@ -256,17 +256,7 @@ public class MyPageControllerImpl implements MyPageController {
 		return mav;
 	}
 
-	@Override
-	@RequestMapping(value = "/myPage/myPage_reserves.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView myPage_reserves(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		session.setAttribute("side_menuType", "my_page");
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
-	}
-
+	
 	@Override
 	@RequestMapping(value = "/myPage/myPage_secession.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView myPage_secession(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -376,13 +366,27 @@ public class MyPageControllerImpl implements MyPageController {
 		return deleteWish;
 	}
 
+////////////////////// 마이페이지 ( 찜목록 ) 끝///////////////////////
+
+	@Override
+	@RequestMapping(value="/myPage/myPage_reserves.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectRewardHistory(@RequestParam ("id") String id, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		
+		Map _rewardMap = new HashMap<>();
+		_rewardMap.put("id", id);
+		
+		List UserRewardList = myPageService.selectRewardHistory(_rewardMap);
+		
+		mav.addObject("UserRewardList", UserRewardList);
+		return mav;
+	}
 
 
-	
-	
-
-
-	 
-
-	////////////////////// 마이페이지 ( 찜목록 ) 끝///////////////////////
 }

@@ -302,4 +302,20 @@ public class OrderServiceImpl implements OrderService{
 		return dateInfoList;
 	}
 	
+/* 한 개 상품 주문 취소 누를 시 상태 업데이트 */
+	@Override
+	public int deliveryCancelUpdate(int order_seq_num) throws DataAccessException {
+		return orderDAO.deliveryCancelUpdate(order_seq_num);
+	}
+
+	/* 전체 상품 주문 취소 누를 시 상태 업데이트 */
+		
+	@Override
+	public int deliveryAllCancelUpdate(String orderId) throws DataAccessException {
+		return orderDAO.deliveryAllCancelUpdate(orderId);
+	}
+
+	
+   
+	
 }

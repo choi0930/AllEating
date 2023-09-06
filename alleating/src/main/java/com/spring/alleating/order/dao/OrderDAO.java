@@ -44,4 +44,9 @@ public interface OrderDAO {
 	public void orderUserPointHistory(Map userPointHistoryInfo)throws DataAccessException;
 	/* 유저 포인트 가져오기 */
 	public UserPointVO selectUserPoint(String id)throws DataAccessException;
+	/* 한 개 상품 주문 취소 누를 시 상태 업데이트 */
+	public int deliveryCancelUpdate(int order_seq_num) throws DataAccessException;
+	/* 전체 상품 취소 누를 시 상태 업데이트 */
+	public int deliveryAllCancelUpdate(String orderId)throws DataAccessException;
+
 }

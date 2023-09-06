@@ -254,7 +254,7 @@ function fn_goToPay(){
 <dl class="dlcss">
 <dt class="listcss-6">판매자</dt>
 <dd class="listcss-7">
-<p>${userVO.owner_name}</p>
+<p>${userProductVO.reg_com_name}</p>
 </dd>
 </dl>
 
@@ -405,8 +405,8 @@ function fn_goToPay(){
 </div>
 <div class="circle">
 <span class="circle-2">적립</span>
-<span class="circle-3">구매 시 </span>
-<span class="circle-3">&nbsp;100원</span>
+<span class="circle-3">후기 작성 시 </span>
+<span class="circle-3">&nbsp;500원</span>
 <span class="circle-3">&nbsp;적립</span>
 </div>
 
