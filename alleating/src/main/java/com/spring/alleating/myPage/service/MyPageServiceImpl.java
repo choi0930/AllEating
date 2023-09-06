@@ -17,8 +17,6 @@ import com.spring.alleating.point.vo.UserPointVO;
 @Service("myPageService")
 public class MyPageServiceImpl implements MyPageService{
 	
-
-
 	@Autowired
 	private MyPageDAO myPageDAO;
 	
@@ -141,6 +139,16 @@ public class MyPageServiceImpl implements MyPageService{
 		return deliveryAddressVO;
 	}
 	/*---------------------------------- 마이페이지 배송지 수정 팝업창 끝-------------------------------------*/
+	
+	/*마이페이지: 배송지 수정*/
+	@Override
+	public int modAddress(Map info) throws DataAccessException {
+		int result = myPageDAO.updateAddress(info);
+		return result;
+	}
+	/*---------------------------------- 마이페이지 배송지 수정 끝-------------------------------------*/
+	
+	
 //////////////////////마이페이지 찜목록////////////////
 
 
@@ -161,8 +169,6 @@ public class MyPageServiceImpl implements MyPageService{
 		int deleteWish = myPageDAO.deleteWish(wishVO);
 		return deleteWish;
 	}
-
-	
 
 ////////////////////////마이페이지 - 찜목록 끝
 	

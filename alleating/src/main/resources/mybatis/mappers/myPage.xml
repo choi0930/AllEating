@@ -148,6 +148,13 @@
 		<select id="selectAddressByNum" resultMap="deliveryAddressResult" parameterType="java.util.Map">
 			select * from deliveryaddress where num = #{num} and id = #{id}
 		</select>
+		<!-- 마이페이지: 배송지 수정 -->
+		<update id="updateAddress" parameterType="java.util.Map">
+			update deliveryaddress set deliveryName = #{deliveryName}, receiver_name = #{receiver_name}, receiver_hp1 = #{receiver_hp1}, receiver_hp2 = #{receiver_hp2}, receiver_hp3 = #{receiver_hp3}, zipcode = #{zipcode}, address = #{address}
+			, address2=#{address2}, 
+			address_detail=#{address_detail} 
+			where num = #{num} and id = #{id}  
+		</update>
 		<!-- 배송지관리 -->
 		
 		

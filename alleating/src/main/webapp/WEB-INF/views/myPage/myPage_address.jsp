@@ -147,7 +147,7 @@ request.setCharacterEncoding("utf-8"); %>
           },
           error: function (data) {
             alert("에러가 발생했습니다.");
-          },
+          }
         });
       }
       /* 배송지 수정 팝업창 */
@@ -155,6 +155,26 @@ request.setCharacterEncoding("utf-8"); %>
         let popUrl = "/myPage/modDeliveryPop.do?num="+num;
         let popOption = "width = 500px, height = 550px, top = 300px, left = 300px, scrollbars=yes";
         window.open(popUrl, "배송지 수정", popOption);
+      }
+ 
+      function fn_modAddress(addressArr){
+        console.log(addressArr);
+        $.ajax({
+          type:"POST",
+          async : true,
+          url:"${contextPath}/myPage/modAddress.do",
+          data: JSON.stringify(addressArr),
+          contentType: "application/json",
+          dataType:"text",
+          success: function(data) {
+            alert("배송지 수정 완료");
+            console.log(data);
+            location.href = "/myPage/myPage_address.do";
+          },
+          error: function (data) {
+            alert("에러가 발생했습니다.");
+          }
+        });
       }
     </script>
     <style>
