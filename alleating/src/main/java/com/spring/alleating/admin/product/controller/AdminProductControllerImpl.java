@@ -308,19 +308,24 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 					productImgVO.setProductId(productId);
 					productImgVO.setImgId(imgId);
 					productImgVO.setReg_id(reg_id);
+					
 				}
+				
 				String cateCode = (String) productMap.get("cateCode");
-				String originalFileName = (String)productMap.get("originalFileName");
+				String originalFileName = (String)productMap.get("original");
 			    adminProductService.modifyProductImage(imageFileList);
+			    
+			   
 				for(ProductImgVO  productImgVO:imageFileList) {
 					imageFileName = productImgVO.getFileName();
 					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
-					File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId);
-					
+					File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId);	
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
+					System.out.println("아:"+originalFileName);
 				}
-				File delFile = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId+"\\"+originalFileName);
-				delFile.delete();
+				 File delFile = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId+"\\"+originalFileName);
+					delFile.delete();
+				    
 			}
 		}catch(Exception e) {
 			if(imageFileList!=null && imageFileList.size()!=0) {

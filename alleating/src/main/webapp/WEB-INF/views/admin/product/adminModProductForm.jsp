@@ -120,7 +120,7 @@ var cnt = $('.imgCount').length;
       formData.append("imgId", imgId);
       formData.append("fileType", fileType);
       formData.append("cateCode", cateCode);
-      formData.append("originalFileName", originalFileName);
+      formData.append("original", originalFileName);
 
       $.ajax({
         url: '${contextPath}/admin/modfiyImgInfo.do',

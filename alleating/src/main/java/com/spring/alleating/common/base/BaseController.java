@@ -37,7 +37,7 @@ import com.spring.alleating.product.vo.ProductImgVO;
 								file.createNewFile();
 						}
 					}
-					mFile.transferTo(new File(PRODUCT_IMAGE_REPO_PATH +"\\"+"temp"+ "\\"+originalFileName)); //�ӽ÷� ����� multipartFile�� ���� ���Ϸ� ����
+					mFile.transferTo(new File(PRODUCT_IMAGE_REPO_PATH +"\\"+"temp"+ "\\"+originalFileName)); 
 				}
 			}
 			return fileList;
