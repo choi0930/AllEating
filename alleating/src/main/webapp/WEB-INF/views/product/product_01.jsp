@@ -42,23 +42,25 @@
         </div>
         
   <div class="all-productview-list">
-  <a href="#" class="product-next">
+ 
    <c:forEach var="zzzzz" items="${cateResult}">
                <div class="qwerqwer">
-               <a href="${contextPath }/product/userProductDetail.do?cateCode=${zzzzz.cateCode}">
+               <a class="product-next" href="${contextPath }/product/userProductDetail.do?productId=${zzzzz.productId}">
                   <img src="${contextPath}/download.do?fileName=${zzzzz.fileName}&productId=${zzzzz.productId}&cateCode=${zzzzz.cateCode}" alt="${zzzzz.fileName}" width="300px" height="300px">
                  </a>
                 <div class="test2">
         
         <div class=delivery_type_text>
+            <a class="product-next" href="${contextPath }/product/userProductDetail.do?productId=${zzzzz.productId}">
        <c:choose>
          <c:when test="${zzzzz.deliveryType == 'reserve' }"> 예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
          </c:when> 
         <c:when test="${zzzzz.deliveryType == 'normal' }"> 일반배송
          </c:when>
          </c:choose>
-        
+         </a>
         </div>
+        <a class="product-next" href="${contextPath }/product/userProductDetail.do?productId=${zzzzz.productId}">
         <h5> 
         <c:choose>
          <c:when test="${zzzzz.deliveryType == 'reserve' }">[All Eating]
@@ -68,12 +70,9 @@
          </c:choose>
         </h5>
                   <h5> ${zzzzz.productName} </h5>
-                  
-                  
-                  
-                  
+            </a>
                   <div class="sale_text">  
-                  
+                    <a class="product-next" href="${contextPath }/product/userProductDetail.do?productId=${zzzzz.productId}">
                     <c:choose>
                     <c:when test="${zzzzz.productDiscount != 0}">
                  
@@ -84,24 +83,26 @@
                    
                    <c:otherwise> <h6 class="sale_text_3"><fmt:formatNumber value="${zzzzz.productPrice}" pattern="#,###"/>원</h6></c:otherwise>
                    </c:choose>
-                  
+                  </a>
                 </div>
            </div> 
            </div>
             </c:forEach>
-            </a>
+            
         
         
         
       
-      <div class="productpaging">
+   <!--   <div class="productpaging">
         <a class="productpaging-2"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAQAAABwkq/rAAAAHUlEQVR42mNgAIPi/8X/kWkwA8SE0UQIMJAsCKMBBzk27fqtkcYAAAAASUVORK5CYII=" alt="처음 페이지로 이동하기 아이콘"></a>
         <a class="productpaging-2"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAHCAQAAABqrk9lAAAAGElEQVR42mNgAIPi/8X/4QwwE5PBQJADAAKSG3cyVhtXAAAAAElFTkSuQmCC" alt="이전 페이지로 이동하기 아이콘"></a>
         <a class="productpaging-3">1</a>
         <a class="productpaging-2">2</a>
         <a class="productpaging-2"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAHCAQAAABqrk9lAAAAGUlEQVR42mMo/l/8nwECQEwCHEwGhAlRBgA2mht3SwgzrwAAAABJRU5ErkJggg==" alt="다음 페이지로 이동하기 아이콘"></a>
         <a class="productpaging-2"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAQAAABwkq/rAAAAIElEQVR42mMo/l/8n4GBgQFGQ5kgDowmQZCwAMImhDkAb0k27Zcisn8AAAAASUVORK5CYII=" alt="마지막 페이지로 이동하기 아이콘"></a>
-    </div>
+    </div>-->
+
+
  </div>
  </div>
 </body>

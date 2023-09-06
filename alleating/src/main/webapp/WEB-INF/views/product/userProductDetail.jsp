@@ -438,44 +438,33 @@ function fn_goToPay(){
 
 
 
-<div class="how">
+<!--<div class="how">
 <span>이런 상품은 어떠신가요</span>
 <div class="how-1" >
 
-<!-- <c:forEach var="dimg" items="${userProductImglist}">
+ <c:forEach var="dimg" items="${userProductImglist}">
                 <c:if test="${userProductVO.cateCode == '9002001' } ">
                   <img src="${contextPath}/download.do?fileName=${dimg.fileName}&productId=${userProductVO.productId}&cateCode=${userProductVO.cateCode}" alt="${dimg.fileName}" width="300px" height="300px">
                 </c:if>
             </c:forEach> 
--->
+
 <div class="how-2">
 <img src="${contextPath}/img/image_food/mygumi.jpg" width="300" height="300">
 <div class="howname">[오리온] 마이구미 청포도 번들팩(43.2g X 6봉지)</div>
 <div class="howname">2,980원</div>
 </div>
-
-
-
 <div class="how-3" >
 <img src="${contextPath}/img/image_food/sparklling.jpg" width="300" height="300">
 <div class="howname">[KF365]무라벨 청포도알로에 스파클링(350ml X 24개)</div>
 <div class="howname">11,900원</div>
 </div>
-
-
-
 <div class="how-4">
 <img src="${contextPath}/img/image_food/vitajelly.jpg" width="300" height="300">
 <div class="howname">[올키] 비타젤리 청포도맛(15일분)</div>
 <div class="howname">12,900원</div>
 </div>
-
-
-
 </div>
-
-
-</div>
+</div>-->
 
 
 <nav class="info">

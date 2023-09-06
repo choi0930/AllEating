@@ -15,22 +15,25 @@
 }
 
 .all-productview-list{
-    display:flex;
+  
+    display: grid;
+    grid-template-columns: repeat(auto-fill,249px);
+    gap: 31px 14px;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 30px;
 }
 .all-producttotalnum{
-	    margin-left: 30px;
+	 margin-left: 15px;
     padding-top: 70px;
-    padding-bottom: 30px;
-    padding-left: 15px;
-    
-    border-bottom: navy 1px solid;
-  
+   padding-bottom: 15px;
     font-size:20px;
     font-weight: 800px;
 }
 
 .all-productview-list{
     padding-bottom: 50px;
+    padding-left: 45px;
 }
 
 .productpaging{
@@ -78,7 +81,7 @@
     border-left: none;
     cursor: pointer;
     background-color: rgb(247, 247, 247);
-    color: navy;
+    color: #ABDFF1;
 }
 a{background-color: transparent;
     text-decoration: none;
@@ -119,5 +122,9 @@ div#search_01_toptext {
 	 display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px; /* 필요한 여백 추가 */
+ 
+  border-bottom: #ABDFF1 3px solid;
+}
+div#search_01_toptext {
+    margin-top: 50px;
 }
