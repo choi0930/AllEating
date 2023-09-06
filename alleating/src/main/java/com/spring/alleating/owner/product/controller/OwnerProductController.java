@@ -20,10 +20,9 @@ public interface OwnerProductController {
 	public ModelAndView ownerupdateproduct(@RequestParam("productId") int productId, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
 	/* 사업자 상품문의 게시판 (미완) */
-//	public ModelAndView ownerinquirylist(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView ownerinquirylist(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
-	public ModelAndView addOwnerInquiry(@RequestParam Map<String, String> articleMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
+//	public ModelAndView addOwnerInquiry(@RequestParam Map<String, String> articleMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
 	public ModelAndView viewArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
@@ -33,6 +32,11 @@ public interface OwnerProductController {
 	//public void  addNewProductImg(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
 	
 	public ModelAndView memberreply(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView removeArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView updateArticle(@RequestParam Map<String, String> articleMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
+
 }
 
 	

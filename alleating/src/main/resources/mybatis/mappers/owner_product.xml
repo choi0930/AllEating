@@ -42,6 +42,7 @@
 		<result property="articleNO" column="articleNO" />
 		<result property="level" column="level" />
 		<result property="parentNO" column="parentNO" />
+		<result property="productId" column="productId" />
 		<result property="id" column="id" />
 		<result property="title" column="title" />
 		<result property="content" column="content" />
@@ -191,15 +192,15 @@
 	
 	
 	<!-- 사업자 상품문의 게시판 (미완) -->
-
+	
+	<!-- 사업자 상품문의 리스트 -->
 <select id="selectAllArticlesList" resultMap="ownerInquiryResult">
 <![CDATA[
-	
-    
-    SELECT CASE WHEN LEVEL-1 > 0 then CONCAT(CONCAT(REPEAT(' ', level-1),'< '), board.title) 
+    SELECT CASE WHEN LEVEL-1 > 0 then CONCAT(CONCAT(REPEAT(' ', level-1),' '), board.title) 
 		   ELSE board.title END AS title, 
            board.articleNO,
-           board.parentNO, 
+           board.parentNO,
+           board.productId, 
            result.level,
            board.content, 
            board.id,
@@ -213,58 +214,52 @@
            ON board.articleNO = result.articleNO
 ]]>	</select>  
 
-	<insert id="insertNewOwnerInquiry" parameterType="java.util.Map">
-	<![CDATA[
-			INSERT into inquiry_board(
-									   articleNO, 
-									   title, 
-									   content,  
-									   writeDate)
-								VALUES(
-									   #{articleNO}, 
-									   #{title}, 
-									   #{content}, 
-									   now())			
-	]]>
-</insert>
-
+	<!-- 사업자 상품문의 답글달기 -->
 	<insert id="insertReplyOwnerInquiry" parameterType="java.util.Map">
 	<![CDATA[
 			INSERT into inquiry_board(
 									   articleNO, 
 									   parentNO,
-									   id,
 									   productId,
+									   id,
 									   title, 
-									   content,  
-									   writeDate)
+									   content
+									   )  
 								VALUES(
 									   #{articleNO}, 
 									   #{parentNO},
-									   #{id},
 									   #{productId},
+									   #{id},
 									   #{title}, 
-									   #{content}, 
-									   now())			
+									   #{content} 
+									   )
 	]]>
 </insert>
 
 	<select id="selectNewArticleNO" resultType="int">
 		SELECT ifnull(max(articleNO), 0)+1 from inquiry_board
 	</select>
-
-<!--  	<select id="selectAllArticlesList" resultMap="ownerInquiryResult">
-<![CDATA[
-		select * from inquiry_board order by articleNO asc
-]]>
-	</select> -->
 	
+		
 	<select id="selectArticle" resultType="InquiryBoardVO" parameterType="int">
 	<![CDATA[
 		SELECT * from inquiry_board
 		where articleNO = #{articleNO}
 	]]>
 	</select>
+	
+<update id="updateArticle" parameterType="java.util.Map">
+		update inquiry_board
+		set title=#{title}, 
+			content=#{content}
+		where articleNO=#{articleNO}
+</update>
+	
+	<delete id="deleteArticle" parameterType="int">
+	delete FROM inquiry_board where parentNO = #{articleNO} or articleNO = #{articleNO}
+	</delete>
+	
+	
 	
 	
 	

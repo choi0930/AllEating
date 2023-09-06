@@ -121,14 +121,15 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 		 System.out.println("상품문의 리스트:" + ownerinquirylist);
 		return ownerinquirylist;
 	}
+	
   
-	@Override
-	public int addNewArticle(Map articleMap) throws Exception {
-		int articleNO = ownerProductDAO.selectNewArticleNO();
-		articleMap.put("articleNO", articleNO);
-		ownerProductDAO.insertNewOwnerInquiry(articleMap);
-		return articleNO;
-	}
+//	@Override
+//	public int addNewArticle(Map articleMap) throws Exception {
+//		int articleNO = ownerProductDAO.selectNewArticleNO();
+//		articleMap.put("articleNO", articleNO);
+//		ownerProductDAO.insertNewOwnerInquiry(articleMap);
+//		return articleNO;
+//	}
 	
 	@Override
 	public int addReplyArticle(Map replyMap) throws Exception {
@@ -144,6 +145,16 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 		return inquiryVO;
 	}
 
+
+	@Override
+	public void removeArticle(int articleNO) throws Exception {
+		ownerProductDAO.deleteArticle(articleNO);
+	}
+	
+	@Override
+	public int modArticle(Map<String, String> articleMap) throws DataAccessException {
+		return ownerProductDAO.updateArticle(articleMap);
+	}
 
 	/*
 	 * @Override public int addProduct(Map productMap) throws Exception {
