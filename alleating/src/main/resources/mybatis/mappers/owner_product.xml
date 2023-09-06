@@ -146,7 +146,7 @@
   		productId=#{productId}
  	</delete>
  	
- 		<update id="updateproduct" parameterType="java.util.Map">
+ 		<!-- <update id="updateproduct" parameterType="java.util.Map">
   		update product
   		set deliveryType=#{deliveryType},
  			deliveryPrice=#{deliveryPrice},
@@ -178,7 +178,7 @@
   			where
   			imgId=#{imgId}
     </update>
-     
+      -->
     <select id="productEditdata" resultMap="productResult" parameterType="int">
 		<![CDATA[
 		select * from product where productId = #{productId}
@@ -248,6 +248,27 @@
 	]]>
 	</select>
 	
+
+	<!-- 상품 이미지 수정 -->
+	<update id="updateProductImg" parameterType="productImgVO">
+		update product_img set  fileName=#{fileName}
+		where
+		productId=#{productId} and imgId=#{imgId}
+	</update>
+	<!-- 상품 정보 수정 -->
+	<update id="updateProductInfo" parameterType="productVO">
+		update product set cateCode = #{cateCode}, productName=#{productName}, productPrice=#{productPrice}, productDiscount=#{productDiscount},
+		<if test="productDiscount>0">
+		productSalesPrice = #{productSalesPrice},
+		</if>
+		productUnit = #{productUnit}, productPackType = #{productPackType}, productWeight=#{productWeight}, productOrigin=#{productOrigin}, productTotal=#{productTotal},
+		productExpireDate= #{productExpireDate}, productContentTitle=#{productContentTitle}, productContent=#{productContent}, productBrand=#{productBrand}
+		where productId = #{productId}
+	</update>
+<delete id="deleteProductImg" parameterType="String">
+		delete from product_img where imgId = #{imgId}
+	</delete>
+
 <update id="updateArticle" parameterType="java.util.Map">
 		update inquiry_board
 		set title=#{title}, 

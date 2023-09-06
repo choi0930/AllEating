@@ -15,8 +15,74 @@
 <html>
 <head>
 <script>
+  /*장바구니 담기*/
+function fn_addcart(productId){
+  
+  var select_qty = 1;
+
+  $.ajax({
+    type: "POST",
+    async: true, // true로 변경
+    url: "/cart/addProduct.do",
+    data: {
+      productId: productId,
+      cart_product_qty: select_qty
+    },
+
+    success: function(data, textStatus) {
+      
+      if(data === 'add_success'){   // 등록 성공시
+        alert("상품을 장바구니에 담았습니다.");
+        
+      } else if(data === 'already_existed'){ //이미 등록된 상품일시
+        alert("이미 장바구니에 등록된 상품입니다.");
+        var go = confirm("장바구니로 가시겠습니까?");
+        if(go){
+          location.href='/cart/myCart.do';
+        }
+      }
+
+    },
+    error: function(data, textStatus) {
+      alert("에러가 발생했습니다." + data);
+    }
+  });
+}
+/*------------------------------------------------------------------*/
+
+/*모든 상품 장바구니 담기*/
+function fn_addAllCart(){
+  var cartList=[];
+  $('.addAllProductId').each(function(){
+    var productId = $(this).val();
+    var cart_product_qty = 1;
+    console.log(productId);
+    cartList.push({
+      productId:productId,
+      cart_product_qty:cart_product_qty
+    });
+  });
+  $.ajax({
+        type: "POST",
+        url: "${contextPath}/cart/addAllProduct.do",
+        data: JSON.stringify(cartList),
+        contentType: "application/json;charset=UTF-8",
+        success: function (response) {
+            alert("모든 상품을 장바구니에 담았습니다.");
+            var go = confirm("장바구니로 가시겠습니까?");
+        if(go){
+          location.href='/cart/myCart.do';
+        }
+        },
+        error: function (error) {
+            console.error("오류 발생:", error);
+        }
+    });
+}
+/*------------------------------------------------------------------*/
+
 function OrderDeleteCallback(obj){
-   
+  
 	if(obj != null){        
            
 		var result = obj.result;
@@ -73,16 +139,21 @@ function fn_allCancel(orderId){
      </div>
      </div>
    
+
+    <c:if test="${reserveList != null}">
+   <div class="clear">
+
     <c:if test="${not empty reserveList}">
-   
+
     <div class="orderBox">
      
       <c:forEach var="reserve" items="${reserveList}">
+        <input type="hidden" class="addAllProductId" value="${reserve.productId}" />
     <div class="product-orderdetail">
      
       
       <div class="product-orderdetail-pic">
-   <img src="${contextPath}/download.do?fileName=${reserve.fileName}&productId=${reserve.productId}&cateCode=${reserve.cateCode}" alt="${reserve.fileName}" width="150px" height="150px">
+       <img src="${contextPath}/download.do?fileName=${reserve.fileName}&productId=${reserve.productId}&cateCode=${reserve.cateCode}" alt="${reserve.fileName}" width="150px" height="150px">
       </div>
       <div class="product-orderdetail-line">
       <div class="product-orderdetail-line-2">
@@ -124,7 +195,7 @@ function fn_allCancel(orderId){
      
       
        <div class="orderdetailview-2">
-        <a class="orderdetailview-3" >장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+        <a class="orderdetailview-3" href="javascript:fn_addcart('${reserve.productId}')">장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        </div>
        	<div class="orderdetailview-2">
         	<a class="orderdetailview-3" href="${contextPath }/myPage/deliveryCancelUpdate.do?order_seq_num=${reserve.order_seq_num}&orderId=${reserve.orderId}">주문 취소 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
@@ -132,13 +203,13 @@ function fn_allCancel(orderId){
       </div>
     </c:forEach>
     </div>
-    
+  </div>
   </c:if>
     
-    
+    <div>
     <div class="orderBox">
      <c:forEach var="normal" items="${normalList}">
-    
+      <input type="hidden" class="addAllProductId" value="${normal.productId}" />
     <div class="product-orderdetail">
     
       <div class="product-orderdetail-pic">
@@ -180,7 +251,7 @@ function fn_allCancel(orderId){
       <div class="orderdetailview">
       
        <div class="orderdetailview-2">
-        <a class="orderdetailview-3" >장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
+        <a class="orderdetailview-3" href="javascript:fn_addcart('${normal.productId}')">장바구니 담기 <img src="${contextPath }/img/side/arrow-right-black.png" width="25px" height="25px"></a>    
        </div>
       
        	<div class="orderdetailview-2">
@@ -191,7 +262,7 @@ function fn_allCancel(orderId){
       </c:forEach>
     </div>
     
-    
+  </div>
     
  
     
@@ -202,7 +273,7 @@ function fn_allCancel(orderId){
     
     <div class="orderresult">
      	<div class="readd">
-       <button type="button"   radius="3" class="readdbutton">
+       <button type="button" radius="3" class="readdbutton" onclick="fn_addAllCart()">
          <span class="readd-2">전체 상품 다시 담기</span>
        </button>
        </div>

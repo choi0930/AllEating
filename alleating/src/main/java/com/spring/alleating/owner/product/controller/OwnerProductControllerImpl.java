@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -369,6 +371,97 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		mav.setViewName(viewName);
 
 		return mav;
+	}
+
+
+
+	//사업자 상품 수정
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/owner/modfiyImgInfo.do", method = RequestMethod.POST)
+	public void modImgInfo(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception {
+		multipartRequest.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		String imageFileName=null;
+		
+		Map productMap = new HashMap();
+		Enumeration enu=multipartRequest.getParameterNames();
+		while(enu.hasMoreElements()){
+			String name=(String)enu.nextElement();
+			String value=multipartRequest.getParameter(name);
+			productMap.put(name,value);
+		}
+		
+		HttpSession session = multipartRequest.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		String reg_id = memberVO.getId();
+		
+		List<ProductImgVO> imageFileList=null;
+		int productId=0;
+		int imgId=0;
+		
+		try {
+			imageFileList =upload(multipartRequest);
+			if(imageFileList!= null && imageFileList.size()!=0) {
+				for(ProductImgVO productImgVO : imageFileList) {
+					productId = Integer.parseInt((String)productMap.get("productId"));
+					imgId = Integer.parseInt((String)productMap.get("imgId"));
+					productImgVO.setProductId(productId);
+					productImgVO.setImgId(imgId);
+					productImgVO.setReg_id(reg_id);
+				}
+				String cateCode = (String) productMap.get("cateCode");
+				String originalFileName = (String)productMap.get("originalFileName");
+			    ownerProductService.modifyProductImage(imageFileList);
+				for(ProductImgVO  productImgVO:imageFileList) {
+					imageFileName = productImgVO.getFileName();
+					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+					File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId);
+					
+					FileUtils.moveFileToDirectory(srcFile, destDir,true);
+				}
+				File delFile = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId+"\\"+originalFileName);
+				delFile.delete();
+			}
+		}catch(Exception e) {
+			if(imageFileList!=null && imageFileList.size()!=0) {
+				for(ProductImgVO  productImgVO:imageFileList) {
+					imageFileName = productImgVO.getFileName();
+					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+					srcFile.delete();
+				}
+			}
+			e.printStackTrace();
+		}
+		
+	}
+
+
+
+
+	@Override
+	@RequestMapping(value="/owner/delImgInfo.do", method = RequestMethod.POST)
+	public void delProductImg(String productId, String imgId, String fileName, String cateCode,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ownerProductService.delProductImage(imgId);
+		try {
+			File delFile = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId+"\\"+fileName);
+			delFile.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+
+
+	@Override
+	public String modProductInfo(ProductVO productVO, HttpServletRequest request, HttpServletResponse response)
+			throws DataAccessException {
+		
+		return null;
 	}
 
 

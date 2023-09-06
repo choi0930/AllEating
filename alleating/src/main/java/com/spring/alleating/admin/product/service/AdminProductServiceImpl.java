@@ -136,6 +136,43 @@ public class AdminProductServiceImpl implements AdminProductService {
 		int result = adminProductDAO.delProduct(productVO);
 		return result;
 	}
+
+
+	/*관리자 상품 이미지 수정*/
+	@Override
+	public void modifyProductImage(List<ProductImgVO> imageFileList) throws DataAccessException {
+		for(ProductImgVO productImgVO: imageFileList) {
+			adminProductDAO.updateProductImg(productImgVO);
+		}
+	}
+
+
+	/*관리자 상품 이미지 삭제*/
+	@Override
+	public void delProductImage(String imgId) throws DataAccessException {
+		adminProductDAO.deleteProductImg(imgId);
+		
+	}
+
+
+	/*관리자 상품 정보 수정*/
+	@Override
+	public void modProductInfo(ProductVO productVO) throws DataAccessException {
+		
+		int productDiscount = productVO.getProductDiscount();
+		
+		if(productDiscount>0) {
+			int productPrice = productVO.getProductPrice();
+			double productDiscountFactor = productDiscount/ 100.0; // 나눗셈 결과를 실수로 얻기 위해 100.0으로 나눔
+			int productRound = (int) (productPrice * (1 - productDiscountFactor)); // 할인율을 올바르게 적용하여 할인 가격 계산
+			int lastDigit = productRound % 10; // product의 숫자의 마지막 자릿수 추출
+			int productSalesPrice = productRound + ( 10 - lastDigit); //다음 10의 배수로 올림
+			
+			productVO.setProductSalesPrice(productSalesPrice);
+		}
+		
+		adminProductDAO.updateProductInfo(productVO);
+	}
 	
 	
 }

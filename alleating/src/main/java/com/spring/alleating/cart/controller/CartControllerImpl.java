@@ -58,7 +58,9 @@ public class CartControllerImpl implements CartController{
 		mav.setViewName(viewName);
 		return mav;
 	}
-
+	/*------------------------------------------------------------------------*/
+	
+	/*장바구니 담기*/
 	@Override
 	@ResponseBody 
 	@RequestMapping(value="/cart/addProduct.do", method = RequestMethod.POST)
@@ -82,7 +84,27 @@ public class CartControllerImpl implements CartController{
 		}
 		
 	}
-
+	/*------------------------------------------------------------------------*/
+	
+	/*마이페이지에서 주문했던 상품 다시 모두 담기*/
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/cart/addAllProduct.do", method = RequestMethod.POST)
+	public String addAllProductInCart(@RequestBody List<CartVO> cartList, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("loginMember");
+		
+		Map<String, Object> cartMap = new HashMap<>();
+		cartMap.put("cartList", cartList);
+		cartMap.put("memberVO", memberVO);
+		
+		cartService.addAllProductInCart(cartMap);
+		
+		return "성공";
+	}
+	/*------------------------------------------------------------------------*/
+	
+	/*장바구니 수량 변경*/
 	@Override
 	@ResponseBody
 	@RequestMapping(value="/cart/modifyCartQty.do", method = RequestMethod.POST)
@@ -107,7 +129,9 @@ public class CartControllerImpl implements CartController{
 		String data = Boolean.toString(result);
 		return "s";
 	}
-
+	/*------------------------------------------------------------------------*/
+	
+	/*장바구니 상품 삭제*/
 	@Override
 	@RequestMapping(value="/cart/removeProduct.do", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView removeCartProduct(@RequestParam("cartId") String cartId, HttpServletRequest request, HttpServletResponse response)
@@ -118,6 +142,8 @@ public class CartControllerImpl implements CartController{
 		mav.setViewName("redirect:/cart/myCart.do");
 		return mav;
 	}
+	/*------------------------------------------------------------------------*/
+	
 	/* 장바구니 체크한 상품 여러개 삭제 */
 	@Override
 	@ResponseBody
@@ -129,4 +155,6 @@ public class CartControllerImpl implements CartController{
 		return msg;
 	}
 	/*------------------------------------------------------------------------------------------------*/
+
+	
 }

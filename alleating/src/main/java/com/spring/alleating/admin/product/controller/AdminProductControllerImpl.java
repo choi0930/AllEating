@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -181,7 +182,7 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 				}
 			message= "<script>";
 			message += " alert('등록실패');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/admin/adminAddProductForm.do;";
+			message +=" location.href='"+multipartRequest.getContextPath()+"/admin/adminAddProductForm.do';";
 			message +=("</script>");
 		}
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
@@ -271,6 +272,91 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
+	}
+	/*관리자 상품 이미지 수정*/
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/admin/modfiyImgInfo.do", method = RequestMethod.POST)
+	public void modImgInfo(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception {
+		multipartRequest.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		String imageFileName=null;
+		
+		Map productMap = new HashMap();
+		Enumeration enu=multipartRequest.getParameterNames();
+		while(enu.hasMoreElements()){
+			String name=(String)enu.nextElement();
+			String value=multipartRequest.getParameter(name);
+			productMap.put(name,value);
+		}
+		
+		HttpSession session = multipartRequest.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		String reg_id = memberVO.getId();
+		
+		List<ProductImgVO> imageFileList=null;
+		int productId=0;
+		int imgId=0;
+		
+		try {
+			imageFileList =upload(multipartRequest);
+			if(imageFileList!= null && imageFileList.size()!=0) {
+				for(ProductImgVO productImgVO : imageFileList) {
+					productId = Integer.parseInt((String)productMap.get("productId"));
+					imgId = Integer.parseInt((String)productMap.get("imgId"));
+					productImgVO.setProductId(productId);
+					productImgVO.setImgId(imgId);
+					productImgVO.setReg_id(reg_id);
+				}
+				String cateCode = (String) productMap.get("cateCode");
+				String originalFileName = (String)productMap.get("originalFileName");
+			    adminProductService.modifyProductImage(imageFileList);
+				for(ProductImgVO  productImgVO:imageFileList) {
+					imageFileName = productImgVO.getFileName();
+					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+					File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId);
+					
+					FileUtils.moveFileToDirectory(srcFile, destDir,true);
+				}
+				File delFile = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId+"\\"+originalFileName);
+				delFile.delete();
+			}
+		}catch(Exception e) {
+			if(imageFileList!=null && imageFileList.size()!=0) {
+				for(ProductImgVO  productImgVO:imageFileList) {
+					imageFileName = productImgVO.getFileName();
+					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+					srcFile.delete();
+				}
+			}
+			e.printStackTrace();
+		}
+		
+	}
+	/*상품 이미지 삭제*/
+	@Override
+	@RequestMapping(value="/admin/delImgInfo.do", method = RequestMethod.POST)
+	public void delProductImg(String productId, String imgId, String fileName, String cateCode,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		adminProductService.delProductImage(imgId);
+		try {
+			File delFile = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId+"\\"+fileName);
+			delFile.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	/*관리자 상품 정보 수정*/
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/admin/modProductInfo.do", method = RequestMethod.POST)
+	public String modProductInfo(@RequestBody ProductVO productVO, HttpServletRequest request, HttpServletResponse response)
+			throws DataAccessException {
+		adminProductService.modProductInfo(productVO);
+		
+		return "상품이 수정되었습니다.";
 	}
 	
 }

@@ -98,6 +98,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		cartMap.put("allEating",allEatingOrderDetailes);
 		
 		Map userInfo = orderService.userInfoToPay(cartMap);
+		
 //		List<UserCouponVO> couponList = (List<UserCouponVO>) userInfo.get("couponList");
 //		UserPointVO userPointVO = (UserPointVO) userInfo.get("userPointVO");
 //		int totalPrice = (int) userInfo.get("totalPrice");
@@ -286,6 +287,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		mav.addObject("userReviewInfo",userReviewInfo);
 		return mav;
 	}
+	
 	/* 팝업창에서 선택한 쿠폰 적용 */
 	@Override
 	@PostMapping(value="/order/couponApply.do")

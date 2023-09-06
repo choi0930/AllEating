@@ -42,7 +42,7 @@ public class MyPageControllerImpl implements MyPageController {
 	private ProductVO productVO;
 	
 
-	/* 마이페이지 쿠폰 등록페이지 */
+	/* 마이페이지 쿠폰 등록 및 목록 페이지 */
 	@Override
 	@RequestMapping(value = "/myPage/myPage_coupon.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView myPage_coupon(HttpServletRequest request, HttpServletResponse response) throws Exception {

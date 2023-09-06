@@ -12,15 +12,22 @@ public class CouponVO {
 	private String coupon_name;     //쿠폰 이름
 	private String coupon_range;    //쿠폰 적용 카테고리
 	private int couponDiscountRate; //쿠폰 할인 퍼센트
-	private int coupon_quantity; //쿠폰 수량
+	private int coupon_quantity;    //쿠폰 수량
 	private Date beginDate;         //쿠폰 배포 beginDate
 	private Date endDate;           //쿠폰 배포 endDate
 	private Date coupon_startDate;  //쿠폰 시작일
 	private Date coupon_endDate;    //쿠폰 만료일
 	private String coupon_deleted;  //쿠폰 삭제여부
 	
+	private String cateGoryName;    //카테고리 코드에 대한 이름
 	
 
+	public String getCateGoryName() {
+		return cateGoryName;
+	}
+	public void setCateGoryName(String cateGoryName) {
+		this.cateGoryName = cateGoryName;
+	}
 	public int getCoupon_quantity() {
 		return coupon_quantity;
 	}

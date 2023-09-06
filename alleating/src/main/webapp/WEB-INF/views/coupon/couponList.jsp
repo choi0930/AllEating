@@ -161,16 +161,16 @@ request.setCharacterEncoding("utf-8"); %>
             </div>
           </div>
           <div class="couponInfo">
-            <div>등록기간:</div>
+            <div>등록기간:&nbsp;</div>
             <div>~${coupon.endDate}까지</div>
           </div>
           <div class="couponInfo">
-            <div>사용기간:</div>
+            <div>사용기간:&nbsp;</div>
             <div>${coupon.coupon_startDate} ~ ${coupon.coupon_endDate}</div>
           </div>
           <div class="couponInfo">
             <div class="couponText">사용처:</div>
-            <div>${coupon.coupon_range}</div>
+            <div>${coupon.cateGoryName}</div>
           </div>
           <div class="couponInfo">
             <div class="couponText">할인율:</div>

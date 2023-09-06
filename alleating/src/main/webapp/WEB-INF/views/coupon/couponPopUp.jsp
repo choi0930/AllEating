@@ -27,6 +27,9 @@ request.setCharacterEncoding("utf-8"); %>
         font-weight: bold;
         text-align: center;
       }
+      .couponSelect{
+        width: 240px;
+      }
     </style>
     <script>
       /* 결제 페이지로 사용할 쿠폰 정보 넘기기 */
@@ -42,7 +45,7 @@ request.setCharacterEncoding("utf-8"); %>
     </script>
   </head>
   <body>
-    <div id="addressTitle">배송지 변경</div>
+    <div id="addressTitle">쿠폰 선택</div>
     <div id="addressTable">
     <table class="table table-hover" id="popuptitle" align="center" border="1" width="100%">
       <thead class="title">
@@ -62,14 +65,23 @@ request.setCharacterEncoding("utf-8"); %>
               <tr height="60">
                <td>[${couponInfo.productBrand}]<br>${couponInfo.productName}</td>
                <td>
-                <select id="selectCoupon_${couponInfo.productId}">
-                  <c:forEach items="${couponInfo.couponList}" var="list">
-                    <option value="${list.couponId}">${list.coupon_name}/${list.couponDiscountRate}%</option>
-                  </c:forEach>
-                </select> 
+                <c:choose>
+                  <c:when test="${empty couponInfo.couponList}">
+                    적용 가능한 상품 쿠폰이 없습니다.
+                  </c:when>
+                  <c:otherwise>
+                    <select class="form-select couponSelect" id="selectCoupon_${couponInfo.productId}">
+                      <c:forEach items="${couponInfo.couponList}" var="list">
+                        <option value="${list.couponId}">${list.coupon_name}&nbsp;/&nbsp;${list.couponDiscountRate}%</option>
+                      </c:forEach>
+                    </select> 
+                  </c:otherwise>
+                </c:choose>
                </td>
                <td>
-                  <button onclick="fn_useCoupon('${couponInfo.productId}')">적용</button>
+                  <c:if test="${not empty couponInfo.couponList}">
+                    <button class="btn btn-outline-success" onclick="fn_useCoupon('${couponInfo.productId}')">적용</button>
+                  </c:if>
                </td>
               </tr>
             </c:forEach>

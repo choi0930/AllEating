@@ -56,7 +56,7 @@ function add_cart(productId) {
     success: function(data, textStatus) {
       
       if(data === 'add_success'){   // 등록 성공시
-        alert("장바구니에 등록되었습니다.");
+        alert("상품을 장바구니에 담았습니다.");
         $('#toDisplay').css('display','block');
 
       } else if(data === 'already_existed'){ //이미 등록된 상품일시

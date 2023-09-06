@@ -521,7 +521,7 @@ text-decoration:none;}
                             <div class="side_cartMenu_bottom">
                                 <div class="side_cartMenu_bottom2">
                                     <div><span class="side_font_size">주문금액:</span></div>
-                                    <div><span class="side_font_size" ><input type="text" value="0" class="css0930" id="total_sum">원</span></div>
+                                    <div><span class="side_font_size" id="total_sum"><!--<input type="text" value="0" class="css0930" id="total_sum">--></span>원</div>
                                 </div>
                                 <!--<div class="side_cartMenu_bottom2">
                                     <div><span class="side_font_size">상품할인:</span></div>
@@ -529,11 +529,19 @@ text-decoration:none;}
                                 </div>-->
                                 <div class="side_cartMenu_bottom2">
                                     <div><span class="side_font_size">배송비:</span></div>
-                                    <div><span class="side_font_size"><input type="text" value="0" class="css0930" id="deliveryPrice">원</span></div>
+                                    <div><span class="side_font_size" id="deliveryPrice"><!--<input type="text" value="0" class="css0930" id="deliveryPrice">--></span>원</div>
                                 </div>
                                 <div class="side_cartMenu_bottom2 codr_opt_bx">
-                                    <div><span class="side_font_size side_font_OrgText">결제 예정 금액:</span></div>
-                                    <div><span class="side_font_size side_font_OrgText side_total_priceText" ><input type="text" value="0" class="css0930" id="td">원</span></div>
+                                    <div>
+                                        <span class="side_font_size side_font_OrgText">
+                                            결제 예정 금액:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="side_font_size side_font_OrgText side_total_priceText"  id="td">
+                                            <!--<input type="text" value="0" class="css0930" id="td">-->
+                                        </span>원
+                                    </div>
                                 </div>
                                 <button class="codr_btn_payment" onclick="getcheck()">주문하기</button>
                             </div>
