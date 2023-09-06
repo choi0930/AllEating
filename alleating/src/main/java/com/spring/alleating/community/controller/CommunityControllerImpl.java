@@ -150,7 +150,7 @@ public class CommunityControllerImpl  implements CommunityController {
 
 		try {
 			 int articleNO = communityService.insertReview(zzMap);
-			
+			System.out.println(articleNO);
 	        
 			if (imageFileName != null && imageFileName.length() != 0) {
 				File srcFile = new File(REVIEW_IMAGE_REPO + "\\" + "temp" + "\\" + imageFileName);

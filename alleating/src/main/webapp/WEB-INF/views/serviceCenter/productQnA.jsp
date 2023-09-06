@@ -244,19 +244,15 @@ td.frequent_q_01f1_1 {
 </table>
 <!--<input type="hidden" name="productId" value="${qna.productId }"/>-->
 
-
 </div>
 	
-		
-
-
     </div>
    </div>	
    
 	</c:forEach>
-	
+	 </div>
 	</form>
-  </div>
+ 
 	
 	
 <%-- 		<c:forEach var="qnaList" items="${productQnAResult}">
