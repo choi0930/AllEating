@@ -391,7 +391,7 @@ function fn_delProduct(productId){
                                 <td class="productDetailGOlink">${adminProduct.creDate}</td>
                                 <td>
                                     <div class="productTable_btn_group">
-                                            <a href="#">수정하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
+                                            <a href="${contextPath}/admin/adminModProductForm.do?productId=${adminProduct.productId}">수정하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
                                         <a href="javascript:fn_delProduct('${adminProduct.productId}')">삭제하기<img src="${contextPath}/img/side/arrow-right-black.png" width="15px" style="vertical-align:baseline;"></a>
                                     </div>
                                 </td>

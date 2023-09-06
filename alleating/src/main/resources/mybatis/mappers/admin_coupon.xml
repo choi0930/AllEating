@@ -14,11 +14,15 @@
 		<result property="coupon_startDate" column="coupon_startDate" />
 		<result property="coupon_endDate" column="coupon_endDate" />
 		<result property="coupon_deleted" column="coupon_deleted" />
+		<result property="cateGoryName" column="cateGoryName" />
 	</resultMap>
 	
 	<!-- 사용가능 및 배포중인 쿠폰 목록 -->
 	<select id="selectAllCoupons" resultMap="couponResult" parameterType="java.util.Map">
-		 select t.* from(select * from coupon where coupon_endDate >= CURDATE()
+		select t.* from(select c.*, g.cateGoryName from coupon c
+					inner join category g
+                    on c.coupon_range = g.cateCode
+					where coupon_endDate >= CURDATE()
  					and coupon_quantity > 0
  					and coupon_deleted='n'
  					order by creDate DESC) t limit 5 offset #{offset}
@@ -32,7 +36,10 @@
 	
 	<!-- 삭제 및 만료된 쿠폰 목록 -->
 	<select id="selectInvalidCoupons" resultMap="couponResult" parameterType="java.util.Map">
-		 select t.* from(select * from coupon where <![CDATA[coupon_endDate < CURDATE()]]>
+		 select t.* from(select c.*, g.cateGoryName from coupon c 
+		 			inner join category g
+                   	on c.coupon_range = g.cateCode
+		 		where <![CDATA[coupon_endDate < CURDATE()]]>
  				or coupon_quantity = 0
  				or coupon_deleted='y') t limit 5 offset #{offset2} 
 	</select>

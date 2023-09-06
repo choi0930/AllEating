@@ -15,6 +15,7 @@
 		<result property="coupon_startDate" column="coupon_startDate" />
 		<result property="coupon_endDate" column="coupon_endDate" />
 		<result property="coupon_deleted" column="coupon_deleted" />
+		<result property="cateGoryName" column="cateGoryName" />
 </resultMap>
 
 <resultMap id="userCouponResult" type="userCouponVO">
@@ -28,11 +29,13 @@
 	</select>
 	
 	<select id="selectAllCouponList" resultMap="couponResult">
-			SELECT * FROM coupon
+		SELECT c.*, g.cateGoryName FROM coupon c
+                    inner join category g
+					on c.coupon_range = g.cateCode
 					WHERE endDate >= CURDATE()
 				    AND coupon_quantity > 0
     				AND coupon_deleted = 'n'
-					ORDER BY creDate DESC;
+					ORDER BY creDate DESC
 	</select>
 	
 	<select id="selectPayToCoupon" resultMap="couponResult" parameterType="java.util.Map">
@@ -42,6 +45,7 @@
 			and c.coupon_range = #{coupon_range}
 			and c.endDate >= CURDATE()
 			and c.coupon_deleted = 'n'
+			and u.use_yn = 'n'
 	</select>
 	
  </mapper>

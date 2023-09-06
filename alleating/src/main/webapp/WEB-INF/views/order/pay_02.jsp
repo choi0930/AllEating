@@ -68,11 +68,19 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     	        }
     	    }
     	}); */
-    	/* 주문페이지로 가기 */
+    	/* 주문 */
       function fn_pay(deliveryStatus){
 
+        //예약 배송 상품이 있을때
         if(deliveryStatus == 'reserve'){
+        
           var radioCheck = $('input[name=radioBox]:checked').val();
+          
+          if(radioCheck == null){
+            alert('배송 일자를 선택해 주세요');
+            return false;
+          }
+
           var date = [];
           date = radioCheck.split(",");
 
@@ -100,6 +108,11 @@ pageEncoding="UTF-8" isELIgnored="false"%>
         var fileName = $('input[name=fileName]').val();
         address = address.trim();
        
+        if(card_com_name == 'none'){
+          alert('결제시 사용할 카드 회사를 선택해주세요');
+          return false;
+        }
+
         userOrder={
           reserveDate: reserveDate,
           reserveTime: reserveTime,
@@ -178,6 +191,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     html += '</tr>';
 
   $('#deliveryTable').append(html);
+  alert("배송지 주소가 변경되었습니다.");
 }
 /*---------------------------------------------------------------------------------------------------------------*/
 
@@ -350,6 +364,7 @@ function fn_totalPrice(){
             padding-top: 20px;
       }
     </style>
+     
   </head>
   <body>
  
@@ -501,6 +516,9 @@ function fn_totalPrice(){
           <div>
             [${item.productBrand}]<br>
             ${item.productName}
+            <c:if test="${item.deliveryType == 'reserve'}">
+              <img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
+            </c:if>
           </div>
           <div>
             <span id="priceTextArea_${item.productId}"><fmt:formatNumber value="${item.productPrice * item.productQty}" type="number" /></span>
@@ -598,7 +616,7 @@ function fn_totalPrice(){
         <div>
           <!--카드사 선택-->
           <select class="form-select dliveryRequest_select" name="card_com_name">
-            <option>카드 선택</option>
+            <option value="none">카드 선택</option>
             <option>국민카드</option>
             <option>삼성카드</option>
             <option>롯데카드</option>

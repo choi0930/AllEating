@@ -144,6 +144,37 @@ public class OwnerProductServiceImpl implements OwnerProductService {
 		return inquiryVO;
 	}
 
+	@Override
+	public void modifyProductImage(List<ProductImgVO> imageFileList) throws DataAccessException {
+		for(ProductImgVO productImgVO: imageFileList) {
+			ownerProductDAO.updateProductImg(productImgVO);
+		}
+		
+	}
+
+	@Override
+	public void delProductImage(String imgId) throws DataAccessException {
+		ownerProductDAO.deleteProductImg(imgId);
+		
+	}
+
+	@Override
+	public void modProductInfo(ProductVO productVO) throws DataAccessException {
+int productDiscount = productVO.getProductDiscount();
+		
+		if(productDiscount>0) {
+			int productPrice = productVO.getProductPrice();
+			double productDiscountFactor = productDiscount/ 100.0; // 나눗셈 결과를 실수로 얻기 위해 100.0으로 나눔
+			int productRound = (int) (productPrice * (1 - productDiscountFactor)); // 할인율을 올바르게 적용하여 할인 가격 계산
+			int lastDigit = productRound % 10; // product의 숫자의 마지막 자릿수 추출
+			int productSalesPrice = productRound + ( 10 - lastDigit); //다음 10의 배수로 올림
+			
+			productVO.setProductSalesPrice(productSalesPrice);
+		}
+		
+		ownerProductDAO.updateProductInfo(productVO);
+	}
+
 
 	/*
 	 * @Override public int addProduct(Map productMap) throws Exception {

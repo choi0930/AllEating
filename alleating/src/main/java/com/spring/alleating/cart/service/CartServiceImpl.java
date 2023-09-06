@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.spring.alleating.cart.dao.CartDAO;
 import com.spring.alleating.cart.vo.CartVO;
+import com.spring.alleating.member.vo.MemberVO;
 import com.spring.alleating.myPage.vo.DeliveryAddressVO;
-import com.spring.alleating.product.vo.ProductVO;
 
 @Service("cartService")
 public class CartServiceImpl implements CartService {
@@ -121,6 +121,27 @@ public class CartServiceImpl implements CartService {
 			cartDAO.removeCart(cartId);
 		}
 		
+	}
+	/*마이페이지에서 주문했던 상품 다시 모두 담기*/
+	@Override
+	public void addAllProductInCart(Map cartMap) throws DataAccessException {
+		List<CartVO> cartList = (List<CartVO>) cartMap.get("cartList");
+		MemberVO memberVO = (MemberVO)cartMap.get("memberVO");
+		String id = memberVO.getId();
+		
+		for(CartVO cartVO: cartList) {
+			cartVO.setId(id);
+			
+			Boolean check = Boolean.parseBoolean(cartDAO.selectCountInCart(cartVO)); //이미 장바구니에 있는지 확인
+			
+			if(check == false) { //장바구니에 없는 상품일때
+				int cartId =cartDAO.selectMaxCartId();
+				cartVO.setCartId(cartId);
+				cartDAO.insertProductInCart(cartVO);
+			}
+			
+		}
+	
 	}
 
 }

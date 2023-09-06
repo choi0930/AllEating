@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,4 +35,18 @@ public interface AdminProductController {
 	
 	/* 관리자 상품 삭제 */
 	public String delProduct(@RequestBody ProductVO productVO ,HttpServletRequest request, HttpServletResponse response)throws Exception;
+	
+	/*관리자 상품 이미지 수정*/
+	public void modImgInfo(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)throws Exception;
+	/*관리자 상품 이미지 삭제*/
+	public void delProductImg(@RequestParam("productId")String productId,
+							 @RequestParam("imgId")String imgId,
+							 @RequestParam("fileName")String fileName,
+							 @RequestParam("cateCode")String cateCode,
+							 HttpServletRequest request,
+							 HttpServletResponse response
+									)throws Exception;
+	/*관리자 상품 이미지 수정*/
+	public String modProductInfo(@RequestBody ProductVO productVO, HttpServletRequest request, HttpServletResponse response)throws DataAccessException;
+	
 }

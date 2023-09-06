@@ -25,8 +25,8 @@ public interface OwnerProductDAO {
 	
 	public void deleteproduct(int productIdMap)throws DataAccessException;
 	
-	public void updateproduct(Map goodsMap) throws DataAccessException;
-	public void updateproductimg(ProductImgVO productImageVO) throws DataAccessException;
+	//public void updateproduct(Map goodsMap) throws DataAccessException;
+	//public void updateproductimg(ProductImgVO productImageVO) throws DataAccessException;
 	
 	public ProductVO productEditdata(int productId) throws DataAccessException;
 	public List productEditdataImg(int productId) throws DataAccessException; 
@@ -43,6 +43,13 @@ public interface OwnerProductDAO {
 	public InquiryBoardVO selectArticle(int articleNO) throws DataAccessException;
 	
 	public int insertReplyOwnerInquiry(Map replyMap) throws DataAccessException;
+	
+	/*사업자 상품 이미지 수정*/
+	public void updateProductImg(ProductImgVO productImgVO)throws DataAccessException;
+	/*사업자 상품 이미지 삭제*/
+	public void deleteProductImg(String imgId)throws DataAccessException;
+	/*사업자 상품 정보 수정*/
+	public void updateProductInfo(ProductVO productVO)throws DataAccessException;
 }
 
   

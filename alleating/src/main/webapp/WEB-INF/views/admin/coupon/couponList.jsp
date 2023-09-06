@@ -62,6 +62,9 @@ request.setCharacterEncoding("utf-8"); %>
         border-radius: 6px;
         margin: 0px 8px;
       }
+      .adminCouponTable{
+        vertical-align: middle;
+      }
     </style>
     <script>
       function fn_addCoupon() {
@@ -110,8 +113,8 @@ request.setCharacterEncoding("utf-8"); %>
         총${total}개
         <div class="couponTable">
           <!--쿠폰 목록-->
-          <table class="table adminProductTable table-hover couponTables">
-            <thead class="table-dark">
+          <table class="table adminProductTable table-hover couponTables adminCouponTable">
+            <thead class="table-dark ">
               <tr>
                 <td>쿠폰ID</td>
                 <td>쿠폰이름</td>
@@ -135,7 +138,10 @@ request.setCharacterEncoding("utf-8"); %>
                     <tr>
                       <td>${coupon.couponId}</td>
                       <td>${coupon.coupon_name}</td>
-                      <td>${coupon.coupon_range}</td>
+                      <td>
+                        (${coupon.coupon_range})<br>
+                        ${coupon.cateGoryName}
+                      </td>
                       <td>${coupon.couponDiscountRate}%</td>
                       <td>${coupon.coupon_quantity}개</td>
                       <td>${coupon.beginDate}~${coupon.endDate}</td>
@@ -221,7 +227,7 @@ request.setCharacterEncoding("utf-8"); %>
         </div>
       </div>
       <div>
-        <div>쿠폰관리</div>
+        <div></div>
         <div class="topArea">
           <div>
             <span class="statusText">만료된 쿠폰</span>
@@ -235,8 +241,8 @@ request.setCharacterEncoding("utf-8"); %>
         총${total2}개
         <div class="couponTable">
           <!--사용기간 만료된 혹은 삭제된 쿠폰 목록-->
-          <table class="table adminProductTable table-hover couponTables">
-            <thead class="table-dark">
+          <table class="table adminProductTable table-hover couponTables adminCouponTable">
+            <thead class="table-dark ">
               <tr>
                 <td>쿠폰ID</td>
                 <td>쿠폰이름</td>
@@ -260,7 +266,10 @@ request.setCharacterEncoding("utf-8"); %>
                     <tr>
                       <td>${invalidCoupon.couponId}</td>
                       <td>${invalidCoupon.coupon_name}</td>
-                      <td>${invalidCoupon.coupon_range}</td>
+                      <td>
+                        (${invalidCoupon.coupon_range})<br>
+                        ${invalidCoupon.cateGoryName}
+                      </td>
                       <td>${invalidCoupon.couponDiscountRate}%</td>
                       <td>${invalidCoupon.coupon_quantity}개</td>
                       <td>

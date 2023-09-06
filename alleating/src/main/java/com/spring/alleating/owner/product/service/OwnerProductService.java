@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.spring.alleating.product.vo.ProductImgVO;
 import com.spring.alleating.product.vo.ProductVO;
 import com.spring.alleating.servicecenter.vo.InquiryBoardVO;
 
@@ -41,6 +42,11 @@ public interface OwnerProductService {
 	  public int addReplyArticle(Map replyMap) throws Exception;
 
 	  
-	 
+	  /*사업자 상품 이미지 수정*/
+		public void modifyProductImage(List<ProductImgVO> imageFileList)throws DataAccessException;
+		/*사업자 상품 이미지 삭제*/
+		public void delProductImage(String imgId)throws DataAccessException;
+		/*사업자 상품 정보 수정*/
+		public void modProductInfo(ProductVO productVO)throws DataAccessException;
 
 }

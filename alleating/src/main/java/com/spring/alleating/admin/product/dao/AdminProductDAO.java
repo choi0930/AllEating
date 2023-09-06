@@ -18,11 +18,18 @@ public interface AdminProductDAO {
 	public void insertProductImageFile(ProductImgVO productImgVO)throws DataAccessException;
 	public List<ProductVO> selectProduct(Map dataMap)throws DataAccessException;
 	public int selectTotalProduct(String join_type)throws DataAccessException;
+	/*상품 상세 보기*/
 	public ProductVO selectProductDetail(String productId)throws DataAccessException;
 	public List<ProductImgVO> selectProductDetailImage(String productId)throws DataAccessException;
 	public MemberVO selectMemberByRegId(String reg_id)throws DataAccessException;
-	public void updateProductStatus(ProductVO productVO)throws DataAccessException;
 	
+	public void updateProductStatus(ProductVO productVO)throws DataAccessException;
 	/*관리자 상품 삭제*/
 	public int delProduct(ProductVO productVO)throws DataAccessException;
+	/*관리자 상품 이미지 수정*/
+	public void updateProductImg(ProductImgVO productImgVO)throws DataAccessException;
+	/*관리자 상품 이미지 삭제*/
+	public void deleteProductImg(String imgId)throws DataAccessException;
+	/*관리자 상품 정보 수정*/
+	public void updateProductInfo(ProductVO productVO)throws DataAccessException;
 }

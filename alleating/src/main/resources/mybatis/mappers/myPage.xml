@@ -54,7 +54,12 @@
 	
 		<!-- 마이페이지 상단 유저가 가지고있는 포인트와 쿠폰 개수 -->
 			<select id="couponCount" resultType="int" parameterType="String">
-				select count(*) from usercoupon where id = #{id}
+				 select count(*) from usercoupon u
+            inner join coupon c on u.couponId = c.couponId
+            where id =  #{id}
+            and coupon_endDate >= curdate()
+            and c.coupon_deleted = 'n'
+            and u.use_yn='n';
 			</select>
 			
 			<select id="selectUserPoint" resultType="UserPointVO" parameterType="String">
@@ -75,11 +80,13 @@
 		</select>
 		<!-- 로그인한 유저 쿠폰목록 select -->
 		<select id="selectUserCoupon" resultMap="couponResult" parameterType="String">
-		select u.couponId, c.coupon_name, c.couponDiscountRate, c.coupon_startDate, c.coupon_endDate, g.cateGoryName  from usercoupon u
+	select u.couponId, c.coupon_name, c.couponDiscountRate, c.coupon_startDate, c.coupon_endDate, g.cateGoryName  from usercoupon u
 			inner join coupon c on u.couponId = c.couponId
 			inner join category g on c.coupon_range = g.cateCode
-			where u.id=#{id}
-			and c.coupon_deleted = 'n';
+			where u.id= #{id}
+			and c.coupon_deleted = 'n'
+            and u.use_yn='n'
+            and coupon_endDate >= curdate();
 		</select>
 		
 		<!-- 수량 줄일 쿠폰 가져오기 -->

@@ -3,9 +3,9 @@ pageEncoding="UTF-8" isELIgnored="false"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%
 request.setCharacterEncoding("utf-8"); %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
-<c:set var="pdVO" value="${producteditInfo.pdVO}" />
-<c:set var="pdlist" value="${producteditInfo.pdlist}" />
-<c:set var="ownerVO" value="${producteditInfo.ownerVO}" />
+<c:set var="productVO" value="${producteditInfo.pdVO}" />
+<c:set var="productImgList" value="${producteditInfo.pdlist}" />
+
 <link href="${contextPath}/css/Modowner.css" rel="stylesheet" type="text/css" />
 
 <!DOCTYPE html>
@@ -71,13 +71,11 @@ function changeImageByType(imageType) {
 });
 
       $(document).ready(function () {
-        $("#cateCode").val("${pdVO.cateCode}").attr("selected", "selected");
-      });
-
-      $(document).ready(function () {
         $("#uclass")
-          .val("${pdVO.productPackType}")
+          .val("${productVO.productPackType}")
           .attr("selected", "selected");
+
+          $("#cateCode").val("${productVO.cateCode}").attr("selected", "selected");
       });
 
       var cnt = 0;
@@ -110,29 +108,126 @@ function changeImageByType(imageType) {
         cnt++;
       }
 
-      function readURL(input, previewId) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $(previewId).attr("src", e.target.result);
-          };
-          reader.readAsDataURL(input.files[0]);
+      function readURL(input,preview) {
+	//  alert(preview);
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+preview).attr('src', e.target.result);
         }
-      }
+        reader.readAsDataURL(input.files[0]);
+    }
+  }  
+
+  /*이미지 수정*/
+  function modifyImageFile(fileId, productId, imgId, fileType, cateCode){
+    var originalFileName = $('#originalFileName_'+imgId).val();
+    
+    var form = $('#FILE_FORM')[0];
+      var formData = new FormData(form);
+      formData.append("fileName", $('#'+fileId)[0].files[0]);
+      formData.append("productId", productId);
+      formData.append("imgId", imgId);
+      formData.append("fileType", fileType);
+      formData.append("cateCode", cateCode);
+      formData.append("originalFileName", originalFileName);
+
+      $.ajax({
+        url: '${contextPath}/owner/modfiyImgInfo.do',
+        processData: false,
+        contentType: false,
+        data: formData,
+        type: 'post',
+	      success: function(result){
+	         alert("이미지가 수정되었습니다.");
+	       }
+      });	
+  }
+
+  /* 이미지 삭제 */
+  function deleteImageFile(productId,imgId,fileName,divId,cateCode){
+	var div = document.getElementById(divId);
+
+      	$.ajax({
+    		type : "post",
+    		async : true, 
+    		url : "${contextPath}/owner/delImgInfo.do",
+    		data: {productId:productId,
+                imgId:imgId,
+     	         fileName:fileName,
+                cateCode:cateCode},
+    		success : function(data, textStatus) {
+    			alert("이미지를 삭제하였습니다.");
+                tr.style.display = 'none';
+    		},
+    		error : function(data, textStatus) {
+    			alert("오류 발생");
+    		}
+    	}); //end ajax	
+  }
+  /* 상품 정보 수정 */
+  function fn_modProductInfo(){
+    var productId = $('input[name=productId]').val();
+    var cateCode = $('select[name=cateCode]').val();
+    var productBrand = $('input[name=productBrand]').val();
+    var productName = $('input[name=productName]').val();
+    var productPrice = $('input[name=productPrice]').val();
+    var discount = $('input[name=discount]').val();
+    if(discount=='y'){
+      var productDiscount = $('input[name=productDiscount]').val();
+    }else{
+      var productDiscount = 0;
+    }
+    var productUnit = $('input[name=productUnit]').val();
+    var productPackType = $('select[name=productPackType]').val();
+    var productWeight = $('input[name=productWeight]').val();
+    var productOrigin = $('input[name=productOrigin]').val();
+    var productTotal = $('input[name=productTotal]').val();
+    var productExpireDate = $('input[name=productExpireDate]').val();
+    var productContentTitle = $('input[name=productContentTitle]').val();
+    var productContent = $('input[name=productContent]').val();
+    
+    
+    var product={
+      productId:productId,
+      cateCode:cateCode,
+      productBrand:productBrand,
+      productName:productName,
+      productPrice:productPrice,
+      productDiscount:productDiscount,
+      productUnit:productUnit,
+      productPackType:productPackType,
+      productWeight:productWeight,
+      productOrigin:productOrigin,
+      productTotal:productTotal,
+      productExpireDate:productExpireDate,
+      productContentTitle:productContentTitle,
+      productContent:productContent
+    };
+    
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: "${contextPath}/owner/modProductInfo.do",
+        data: JSON.stringify(product),
+        contentType: "application/json; charset=UTF-8",
+        dataType:"text",
+        success: function (response) {
+          alert(response);
+        }
+      });
+
+  }
     </script>
   </head>
   <body>
     <div class="ownermain">
       <div class="ownertext01"><h4>상품 정보 수정</h4></div>
-      <form
-        action="${contextPath}/owner/ownerupdateproduct.do"
-        method="post"
-        encType="multipart/form-data"
-      >
         <div class="ownertext02">
           <div class="op01">
             <div class="fixed_join">상품종류</div>
             <div class="ownerbox">
+              <input type="hidden" name="productId" value="${productVO.productId}" />
               <select id="cateCode" name="cateCode">
                 <option selected>상품분류 선택</option>
                 <optgroup label="채소">
@@ -219,7 +314,7 @@ function changeImageByType(imageType) {
                 name="productBrand"
                 type="text"
                 size="20"
-                value="${pdVO.productBrand}"
+                value="${productVO.productBrand}"
               />
             </div>
           </div>
@@ -231,7 +326,7 @@ function changeImageByType(imageType) {
                 name="productName"
                 type="text"
                 size="20"
-                value="${pdVO.productName}"
+                value="${productVO.productName}"
               />
             </div>
             <div class="nonebox"></div>
@@ -243,24 +338,31 @@ function changeImageByType(imageType) {
                 name="productPrice"
                 type="text"
                 size="20"
-                value="${pdVO.productPrice}"
+                value="${productVO.productPrice}"
               />
             </div>
             <div class="dodo">
               원
-              <input
+              <c:choose>
+                <c:when test="${productVO.productDiscount>0}">
+                  <input
                 type="checkbox"
                 name="discount"
                 id="salecb"
                 value="y"
-                <c:choose>
-                  <c:when test="${pdVO.productDiscount > 0 }">
-                    checked="checked"
-                  </c:when>
-                  <c:when test="${pdVO.productDiscount == 0 }">
-                  </c:when>
-                </c:choose>
-              />할인율 입력
+                checked
+              />
+                </c:when>
+                <c:otherwise>
+                  <input
+                type="checkbox"
+                name="discount"
+                id="salecb"
+                value="y"
+              />
+                </c:otherwise>
+              </c:choose>
+              할인율 입력
             </div>
           </div>
           <div class="op10">
@@ -271,7 +373,7 @@ function changeImageByType(imageType) {
                 type="text"
                 name="productDiscount"
                 size="20"
-                value="${pdVO.productDiscount}"
+                value="${productVO.productDiscount}"
                 
               />
             </div>
@@ -284,7 +386,7 @@ function changeImageByType(imageType) {
                 name="productUnit"
                 type="text"
                 size="20"
-                value="${pdVO.productUnit}"
+                value="${productVO.productUnit}"
               />
             </div>
           </div>
@@ -305,7 +407,7 @@ function changeImageByType(imageType) {
                 name="productWeight"
                 type="text"
                 size="20"
-                value="${pdVO.productWeight}"
+                value="${productVO.productWeight}"
               />
             </div>
           </div>
@@ -316,7 +418,7 @@ function changeImageByType(imageType) {
                 name="productOrigin"
                 type="text"
                 size="20"
-                value="${pdVO.productOrigin}"
+                value="${productVO.productOrigin}"
               />
             </div>
           </div>
@@ -328,7 +430,7 @@ function changeImageByType(imageType) {
                 name="productTotal"
                 type="text"
                 size="20"
-                value="${pdVO.productTotal}"
+                value="${productVO.productTotal}"
               />
             </div>
           </div>
@@ -339,7 +441,7 @@ function changeImageByType(imageType) {
                 name="productExpireDate"
                 type="text"
                 size="20"
-                value="${pdVO.productExpireDate}"
+                value="${productVO.productExpireDate}"
               />
             </div>
             <div class="dodo"></div>
@@ -352,7 +454,7 @@ function changeImageByType(imageType) {
                 name="productContentTitle"
                 type="text"
                 size="20"
-                value="${pdVO.productContentTitle}"
+                value="${productVO.productContentTitle}"
               />
             </div>
           </div>
@@ -364,60 +466,83 @@ function changeImageByType(imageType) {
                 name="productContent"
                 type="text"
                 size="20"
-                value="${pdVO.productContent}"
+                value="${productVO.productContent}"
               />
             </div>
           </div>
+          <div class="form_end">
+          <button class="join_end_btn" onclick="fn_modProductInfo()">
+            <span id="join_btn_text">수정하기</span>
+          </button>
+        </div>
           <div class="tab_content" id="tab7">
             <div class="ownertext03"><h4>상품이미지</h4></div>
             <div class="ownertext04">
               <div>
                 <div class="op02">
                   <div class="op03">
-                    <div class="op06">
-                      <input
-                        type="button"
-                        id="opbt"
-                        value="파일 추가"
-                        onClick="fn_addFile()"
-                      />
-                      상세 이미지
-                    </div>
+                    <form id="FILE_FORM" method="post" enctype="multipart/form-data"  >
                     <div class="pdeditimg">
-                      <c:forEach var="imageFileName" items="${pdlist}" varStatus="i">
-                       <div class="pdimg"> 
-                        <img
-                          class="qwe_${i.index}"
-                          src="${contextPath}/download.do?fileName=${imageFileName.fileName}&productId=${pdVO.productId}&cateCode=${pdVO.cateCode}&fileType=${imageFileName.fileType}"
-                          width="200"
-                          height="200"
-                        /> 
+                      <c:forEach var="fileList" items="${productImgList}" varStatus="i">
                         <c:choose>
-                          <c:when test="${imageFileName.fileType == 'main_image' }">
-                            <input id="asd" type="button" value="수정하기(메인)" onClick="fn_enable01()">
+                          <c:when test="${fileList.fileType=='main_image'}">
+                            <div class="pdimg"> 
+                              <div>메인 이미지</div>
+                              <img
+                              id="preview${i.count}"
+                                class="qwe_${i.index}"
+                                src="${contextPath}/download.do?fileName=${fileList.fileName}&productId=${fileList.productId}&cateCode=${productVO.cateCode}&fileType=${fileList.fileType}"
+                                width="200"
+                                height="200"
+                              /> 
+                              <input type="file"  id="main_image"  name="main_image"  onchange="readURL(this,'preview${i.count}');" />
+                              <input type="hidden" id="originalFileName_${fileList.imgId}" value="${fileList.fileName}" />
+                              <input id="asd" type="button" value="수정하기(메인)" onClick="modifyImageFile('main_image','${fileList.productId}','${fileList.imgId}','${fileList.fileType}', '${productVO.cateCode}')">
+                            </div>
                           </c:when>
-                          <c:when test="${imageFileName.fileType == 'detail_image1' }">
-                            <input id="asd" type="button" value="수정하기(상세)" onClick="fn_enable02()">
-                          </c:when>
-                        </c:choose>
-                      </div>
+                          <c:otherwise>
+                            <div class="pdimg" id="${i.count-1}"> 
+                              <div>상세이미지${i.count-1}</div>
+                              <img
+                              id="preview${i.count}"
+                                class="qwe_${i.index}"
+                                src="${contextPath}/download.do?fileName=${fileList.fileName}&productId=${fileList.productId}&cateCode=${productVO.cateCode}&fileType=${fileList.fileType}"
+                                width="200"
+                                height="200"
+                              /> 
+
+                              <input type="file" name="detail_image"  id="detail_image${i.count-1}"   onchange="readURL(this,'preview${i.count}');" />
+                              <input type="hidden" id="originalFileName_${fileList.imgId}" value="${fileList.fileName}" />
+                              <input id="asd" type="button" value="수정하기(상세이미지)" onClick="modifyImageFile('detail_image${i.count-1}','${fileList.productId}','${fileList.imgId}','${fileList.fileType}', '${productVO.cateCode}')">
+                              <input  type="button" value="삭제하기"  onClick="deleteImageFile('${fileList.productId}','${fileList.imgId}','${fileList.fileName}','${i.count-1}','${productVO.cateCode}')"/>
+                            </div>
+                          </c:otherwise>
+                    </c:choose>
                       </c:forEach>
                     </div>
-                    <div>
-                      <div id="d_file"></div>
-                    </div>
+                  </form>
                   </div>
+                </div>
+                <div class="op06">
+                  <input
+                    type="button"
+                    id="opbt"
+                    value="파일 추가"
+                    onClick="fn_addFile()"
+                  />
+                  상세 이미지
+                </div>
+                <div>
+                  <div id="d_file"></div>
                 </div>
               </div>
             </div>
           </div>
           <div class="form_end">
-            <button class="join_end_btn" onclick="fn_loginGO()">
-              <span id="join_btn_text">수정하기</span>
-            </button>
+         
           </div>
         </div>
-      </form>
+      
     </div>
   </body>
 </html>

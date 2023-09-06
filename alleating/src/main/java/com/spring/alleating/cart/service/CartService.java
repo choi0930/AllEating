@@ -12,6 +12,9 @@ public interface CartService {
 	public Map myCartList(CartVO cartVO) throws DataAccessException;
 	public boolean findCartProducts(CartVO cartVO) throws DataAccessException;
 	public void addProductInCart(CartVO cartVO) throws DataAccessException;
+	/*마이페이지에서 주문했던 상품 다시 모두 담기*/
+	public void addAllProductInCart(Map cartMap)throws DataAccessException;
+	
 	public boolean modifyCartQty(CartVO cartVO) throws DataAccessException;
 	public void removeCartProducts(String cartId) throws DataAccessException;
 	public void removeCartProductArray(List<CartVO> cartList)throws DataAccessException;

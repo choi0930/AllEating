@@ -146,8 +146,27 @@
 	<update id="updateProductStatus" parameterType="productVO">
 	 	update product set productStatus = #{productStatus} where productId = #{productId}
 	</update>
+	<!-- 상품 이미지 수정 -->
+	<update id="updateProductImg" parameterType="productImgVO">
+		update product_img set  fileName=#{fileName}
+		where
+		productId=#{productId} and imgId=#{imgId}
+	</update>
+	<!-- 상품 정보 수정 -->
+	<update id="updateProductInfo" parameterType="productVO">
+		update product set cateCode = #{cateCode}, productName=#{productName}, productPrice=#{productPrice}, productDiscount=#{productDiscount},
+		<if test="productDiscount>0">
+		productSalesPrice = #{productSalesPrice},
+		</if>
+		productUnit = #{productUnit}, productPackType = #{productPackType}, productWeight=#{productWeight}, productOrigin=#{productOrigin}, productTotal=#{productTotal},
+		productExpireDate= #{productExpireDate}, productContentTitle=#{productContentTitle}, productContent=#{productContent}, productBrand=#{productBrand}
+		where productId = #{productId}
+	</update>
 	
 	<delete id="delProduct" parameterType="productVO">
 		delete from product where productId = #{productId}
+	</delete>
+	<delete id="deleteProductImg" parameterType="String">
+		delete from product_img where imgId = #{imgId}
 	</delete>
  </mapper>

@@ -187,7 +187,7 @@ request.setCharacterEncoding("utf-8"); %>
           .toString()
           .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
           $('#totalPrice'+cartId).val(total);
-        $("#total_price_" + cartId).val(result);
+        $("#total_price_" + cartId).text(result);
         fn_totalPrice();
       }
       /* 체크한 상품만 계산*/
@@ -218,10 +218,13 @@ request.setCharacterEncoding("utf-8"); %>
               });
                 var total = sum+deliveryPrice;
                 
+                var _total = total .toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+                var _sum = sum .toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+                var _deliveryPrice = deliveryPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); 
                 $('#productCount').attr('value',count);
-                $("#total_sum").attr('value',sum);
-                $('#deliveryPrice').attr('value', deliveryPrice);
-                $('#td').attr('value',total);
+                $("#total_sum").text(_sum);
+                $('#deliveryPrice').text(_deliveryPrice);
+                $('#td').text(_total);
 
                 $('#h_productCount').attr('value',count);
                 $("#h_total_sum").attr('value',sum);
@@ -479,9 +482,9 @@ request.setCharacterEncoding("utf-8"); %>
                               </div>
                               <div class="product_salesPrice">
                                 <span class="choice-12" id="total_price_${res.cartId}">
-                          <input  class="css0930" class="reservePrice" type="text"id="total_price_${res.cartId}"  value="${res.oneProductPrice}" readonly>
-                                <input type="hidden" id="totalPrice${res.cartId}" value="${res.oneProductPrice}">
+                                  <fmt:formatNumber value="${res.oneProductPrice}" type="number" />
                                 </span>
+                                <input type="hidden" id="totalPrice${res.cartId}" value="${res.oneProductPrice}">
                                 <span class="choice-12">원</span>
                               </div>
                               <span class="choice-12 line_text"
@@ -503,12 +506,11 @@ request.setCharacterEncoding("utf-8"); %>
                                 value="${res.productPrice}"
                               />
                              
-                              <span
-                                class="choice-12"
-                              
-                                ><input  class="css0930" class="reservePrice" type="text"id="total_price_${res.cartId}"  value="${res.oneProductPrice}" readonly>
-                              <input type="hidden" id="totalPrice${res.cartId}" value="${res.oneProductPrice}"> </span>
+                              <span class="choice-12" id="total_price_${res.cartId}">
+                                <fmt:formatNumber value="${res.oneProductPrice}" type="number" />
+                               </span>
                               <span class="choice-12">원</span>
+                              <input type="hidden" id="totalPrice${res.cartId}" value="${res.oneProductPrice}">
                             </c:otherwise>
                           </c:choose>
                         </div>
@@ -643,13 +645,10 @@ request.setCharacterEncoding("utf-8"); %>
                                 >
                               </div>
                               <div class="product_salesPrice">
-                                <span
-                                  class="choice-12"
-                                 
-                                >
-                                <input  class="css0930" type="text"id="total_price_${normal.cartId}"  value="${normal.oneProductPrice}" readonly>
-                                <input type="hidden" id="totalPrice${normal.cartId}" value="${normal.oneProductPrice}"></span>
+                                <span class="choice-12" id="total_price_${normal.cartId}">
+                                  <fmt:formatNumber value="${normal.oneProductPrice}" type="number" />
                                 </span>
+                                <input type="hidden" id="totalPrice${normal.cartId}" value="${normal.oneProductPrice}">
                                 <span class="choice-12">원</span>
                               </div>
                               <span class="choice-12 line_text"
@@ -670,11 +669,10 @@ request.setCharacterEncoding("utf-8"); %>
                                 type="hidden"
                                 value="${normal.productPrice}"
                               />
-                              <span
-                                class="choice-12"
-                              
-                                ><input  class="css0930" type="text"id="total_price_${normal.cartId}"  value="${normal.oneProductPrice}" readonly>
-                                <input type="hidden" id="totalPrice${normal.cartId}" value="${normal.oneProductPrice}"></span>
+                              <span class="choice-12" id="total_price_${normal.cartId}">
+                                <fmt:formatNumber value="${normal.oneProductPrice}" type="number" />
+                              </span>
+                              <input type="hidden" id="totalPrice${normal.cartId}" value="${normal.oneProductPrice}">
                               <span class="choice-12">원</span>
                             </c:otherwise>
                           </c:choose>
