@@ -42,7 +42,10 @@ request.setCharacterEncoding("utf-8");
 		<div class="pwant">
 			<div class="proW">
 				<div class="want01">
-					<h3>작성 가능한 후기</h3>
+					<h4>작성 가능한 후기</h4>
+					<div class="review_text">
+					<h6>배송 완료인 상품만 후기 작성이 가능합니다.</h6>
+					</div>
 				</div>
 			</div>
 			<div>

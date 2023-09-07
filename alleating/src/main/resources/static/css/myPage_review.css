@@ -1,4 +1,14 @@
-
+.want01 {
+    padding-bottom: 15px;
+}
+.review_text {
+    position: relative;
+    padding-left: 70px;
+    margin-top: -45px;
+    left: 125px;
+    color: lightgray;
+    top: 12px;
+}
 		.reviewBox {
     padding-top: 15px;
     padding-bottom: 100px;
@@ -16,19 +26,24 @@
     width: 260px;
 }
 .proW {
-	display: flex;
+    /* display: flex; */
     align-items: center;
     margin-top: 70px;
     margin-left: 16px;
     padding-left: 20px;
     padding-bottom: 10px;
+    position: relative;
+    top: 55px;
+    left: -15px;
 }
 
-.pwant{
-	display: flex;
-        border-bottom: #000060 2px solid;
+.pwant {
+    /* display: flex; */
+    border-bottom: #000060 2px solid;
+    position: relative;
+    top: -100px;
+width: 945px;
 }
-
 .review01{
 	width: 393px;
 }

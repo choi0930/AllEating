@@ -16,6 +16,11 @@
 <html>
 <head>
     <title>관리자 상품관리 페이지</title>
+    <style>
+    .pageBottom {
+    text-align: center;
+}
+    </style>
     <script>
         $(document).ready(function(){
   
