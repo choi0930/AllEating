@@ -37,6 +37,12 @@ public class CommunityServiceImpl implements CommunityService {
 		
 		return articleNO;
 	}
+	
+	//후기 삭제
+	@Override
+	public int deleteReward(int articleNO) throws DataAccessException {
+		return 	communityDAO.deleteReward(articleNO);
+	}
 
 	@Override
 	public void updateReviewStatus(Map reviewUpMap) throws Exception {

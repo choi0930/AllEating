@@ -21,6 +21,13 @@ request.setCharacterEncoding("utf-8");
 	font-size:20px;}
 	input:focus {outline:none;}
 	</style>
+	
+	<script>
+	function fn_deleteReward(articleNO){
+		location.href="/community/deleteReward.do?articleNO=" + articleNO;
+	}
+	
+	</script>
 <meta charset="UTF-8" />
 <title>상품 후기</title>
 <script>
@@ -58,10 +65,10 @@ request.setCharacterEncoding("utf-8");
 			</div>
 		</div>
 			<div>
-              <div>
+              <div class="reviewBox">
               
 				<c:forEach var="zlzl" items="${reviewWrittenList}">
-					
+					 <div class="reviewBoxDetail">
 						<input type="hidden" name="productId" value="${zlzl.productId}" readonly>   
 					    <%-- <input type="hidden" name="order_seq_num" value="${zlzl.order_seq_num}">  --%>
 					   <%--  <input type="hidden" name="review_ny" value="${zlzl.review_ny}"> --%>
@@ -77,18 +84,15 @@ request.setCharacterEncoding("utf-8");
 							<input type="text" class="productNaming" value="${zlzl.productBrand}" name="brand"readonly>
 								<input type="text" class="productNaming" value="${zlzl.productName}" name="naming"readonly>
 								<input type="text" class="productContent" value="${zlzl.content }" name="content"readonly>
-							<%--  <input type="hidden" class="detail_01" value="[${review.productBrand}]${review.productName}"> --%>
-						</div>
-
-
-						<div class="text04">
-							<div class="form_end">
-								<button type="submit" class="review_btn">
-									<span id="review_del_btn_text">후기 삭제</span>
+						 <div class="review_add_btn">
+								<button type="button" class="review_btn" onclick="fn_deleteReward('${zlzl.articleNO}')">후기 삭제
 								</button>
 							</div>
 						</div>
-					
+
+
+						
+				</div>	
 				</c:forEach>
 				
 				</div>

@@ -248,7 +248,7 @@
    				FROM alleating_order a
    				INNER JOIN alleating_order_detail b ON a.orderId = b.orderId
     			where a.id = #{id}
-    			and b.delivery_status = 'delivery_complete'
+    			and b.delivery_status = 'delivery_completed'
     			 and b.review_ny = 'n';
 				
 		

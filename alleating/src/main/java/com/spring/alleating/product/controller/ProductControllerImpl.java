@@ -39,10 +39,12 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName); 
 		
+		/* int cateCount = productService.selectCateCount(); */
+		
 		Map bbbInfo = new HashMap<>();
 		bbbInfo.put("cateCode", category);
+		/* bbbInfo.put("cateCount", cateCount); */
 		List cateResult = productService.selectCateProduct(bbbInfo);
-		
 		
 		mav.addObject("cateResult",cateResult);
 		
@@ -146,13 +148,22 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 	@RequestMapping(value= "/product/sale_product_01.do", method = RequestMethod.GET)
 	public ModelAndView sale_product_01(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		HttpSession session = request.getSession();
-		session.setAttribute("side_menuType", "sale_product_01");
+		session.setAttribute("side_menuType", "product_01");
+		
+	    Map saleProductInfo = new HashMap<>();
+		Map saleresult = productService.selectSaleProduct(saleProductInfo);
+		
 		
 		String viewName = (String)request.getAttribute("viewName");
 		System.out.println(viewName); 
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName); //add
+		mav.setViewName(viewName); 
+	
+		
+		
+		mav.addObject("saleresult",saleresult);
+		
 		return mav;
 	}
 	

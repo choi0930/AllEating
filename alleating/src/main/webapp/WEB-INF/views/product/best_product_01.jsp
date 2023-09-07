@@ -17,6 +17,24 @@
     justify-content: space-between;
     padding-top: 30px;
 }
+.product-text {
+    color: #C9C9C9;
+}
+.product-text_1 {
+    color: #C9C9C9;
+    margin: 5px;
+}
+.product-text_2 {
+    padding: 5px;
+    font-size: 20px;
+}
+.product-text_3 {
+    padding: 5px;
+}
+.product-text_4 {
+    padding: 5px;
+}
+
     </style>
 
 <title>베스트 목록  페이지</title>
@@ -41,12 +59,11 @@
     <a href="#" class="product-next">
     <div class="best-num">1</div>
    <img src="${contextPath}/img/image_food/shinemuscat.jpg" width="250px" height="320px">
-   <div class="product-text">예약배송 <img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
-   <div class="product-text">[All Eating]</div>
-   <div class="product-text">저탄소 샤인머스캣</div>
-   <div class="product-text">13,990원</div>
-     href="#" class="product-review">
-     <div class="product-text">후기</div>
+   <div class="product-text_1">예약배송 <img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
+   <div class="product-text_2">[All Eating]</div>
+   <div class="product-text_3">저탄소 샤인머스캣</div>
+   <div class="product-text_4">13,990원</div>
+ 
     </a>
   </div>
   
@@ -54,11 +71,10 @@
     <a href="#" class="product-next">
     <div class="best-num">2</div>
     <img src="${contextPath}/img/image_food/peach.jpg" width="250px" height="320px">
-    <div class="product-text">일반배송</div>
-    <div class="product-text">천중도 백도 복숭아</div>
-    <div class="product-text">18,900원</div>
-  
-        <div class="product-text">후기</div>
+    <div class="product-text_1">일반배송</div>
+     <div class="product-text_2">[서형이네]</div>
+    <div class="product-text_3">천중도 백도 복숭아</div>
+    <div class="product-text_4">18,900원</div>
        </a>
     </div>
     
@@ -66,9 +82,10 @@
     <a href="#" class="product-next">
     <div class="best-num">3</div>
         <img src="${contextPath}/img/image_food/muskmelon.jpg" width="250px" height="320px">
-        <div class="product-text">머스크 멜론 1.2kg</div> 
-        <div class="product-text">10,000원</div>
-            <div class="product-text">후기</div>
+          <div class="product-text_1">일반배송</div>
+          <div class="product-text_2">[승기네]</div>
+        <div class="product-text_3">머스크 멜론 1.2kg</div> 
+        <div class="product-text_4">10,000원</div>
            </a>
   </div>
 
@@ -79,11 +96,10 @@
     <a href="#" class="product-next">
     <div class="best-num">4</div>
     <img src="${contextPath}/img/image_food/shinemuscat.jpg" width="250px" height="320px">
-    <div class="product-text">예약배송 <img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
-    <div class="product-text">[All Eating]</div>
-    <div class="product-text">저탄소 샤인머스캣</div>
-    <div class="product-text">13,990원</div>
-        <div class="product-text">후기</div>
+    <div class="product-text_1">예약배송 <img src="${contextPath}/img/image_logo/thunder.png" width="20px"></div>
+    <div class="product-text_2">[All Eating]</div>
+    <div class="product-text_3">저탄소 샤인머스캣</div>
+    <div class="product-text_4">13,990원</div>
        </a>
    </div>
 
@@ -93,10 +109,11 @@
         <a href="#" class="product-next">
         <div class="best-num">6</div>
         <img src="${contextPath}/img/image_food/blueberry.jpg" width="250px" height="320px">
-        <div class="product-text">국산 블루베리 100g</div>
-        <div class="product-text">6,900원</div>
-       
-            <div class="product-text">후기</div>
+          <div class="product-text_1">일반배송</div>
+            <div class="product-text_2">[서형이네]</div>
+            <div class="product-text_3">국산 블루베리 100g</div>
+        <div class="product-text_4">6,900원</div>
+
            </a>
         </div>
        

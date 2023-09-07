@@ -16,15 +16,7 @@ request.setCharacterEncoding("utf-8");
 <!DOCTYPE html>
 <html>
 <head>
-	<style>
-		.reviewBox {
-    padding-top: 15px;
-    padding-bottom: 100px;
-}
-.productNaming {
-    border: none;
-    font-size: 30px;
-	</style>
+	
 <meta charset="UTF-8" />
 <title>상품 후기</title>
 <script>
@@ -61,9 +53,10 @@ request.setCharacterEncoding("utf-8");
 			</div>
 		</div>
 			<div class="reviewBox">
-
+              
 				<c:forEach var="review" items="${reviewList}">
 					<form action="/myPage/myPage_reviewForm.do" method="get" encType="multipart/form-data">
+					  <div class="reviewBoxDetail">
 						<input type="hidden" name="productId" value="${review.productId}">   
 					    <input type="hidden" name="order_seq_num" value="${review.order_seq_num}">
 					    <input type="hidden" name="review_ny" value="${review.review_ny}">
@@ -75,22 +68,24 @@ request.setCharacterEncoding("utf-8");
 									alt="${review.fileName}" width="150px" height="150px">
 							</div>
 						</div>
+					<div class="form">
 						<div class="qwe">
 							<input type="text" class="productNaming" value="[${review.productBrand}]" name="brand" readonly>
 								<input type="text" class="productNaming" value="${review.productName}" name="naming" readonly>
-				
-						</div>
-
-
-						<div class="text04">
-							<div class="form_end">
+				             <div class="review_add_btn">
 								<button type="submit" class="review_btn">
 									<span id="review_add_btn_text">후기 쓰기</span>
 								</button>
 							</div>
-						</div>
+							</div>
+					</div>
+
+
+						    
+				</div>	
 					</form>
 				</c:forEach>
+				
 
 
 			</div>

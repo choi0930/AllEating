@@ -33,7 +33,7 @@
 
 .all-productview-list{
     padding-bottom: 50px;
-    padding-left: 45px;
+
 }
 
 .productpaging{
@@ -109,10 +109,7 @@ a{background-color: transparent;
         margin: 0px 12px;
         background-color: #E1DDDB;
     }
-    .all-product-detail-list-main {
    
-   
-}
 div#search_01_toptext {
     display: flex;
     align-items: center;
@@ -127,4 +124,26 @@ div#search_01_toptext {
 }
 div#search_01_toptext {
     margin-top: 50px;
+}
+.delivery_type_text {
+	color:#C9C9C9; 
+	padding-bottom: 7px;
+}
+.sale_text_1 {
+color: #EF6C33;
+    font-weight: bold;
+    padding-right: 5px;
+    font-size: 35px;
+	}
+	.test2 {
+    padding-top: 10px;
+}
+.sale_text_2 {
+	text-decoration: line-through;
+    color: #C9C9C9;
+      margin-left: 80px;
+    margin-top: -45px;
+}
+.sale_result {
+    margin-left: 80px;
 }

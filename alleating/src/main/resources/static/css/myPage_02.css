@@ -59,6 +59,7 @@ display: flex;
 .product-orderdetail {
     display: flex;
     padding-left: 30px;
+padding-bottom: 50px;
 }
  
 .product-orderdetail-line {
@@ -197,7 +198,7 @@ padding-left: 25px;
     width: 420px;
 }
 .clear {
-    padding-top: 10px;
+
 }
 .orderStatusText{
 	color:blue;

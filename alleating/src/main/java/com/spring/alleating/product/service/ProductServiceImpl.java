@@ -36,9 +36,12 @@ public class ProductServiceImpl implements ProductService {
 	
 		
 		return userProductInfo;
-		
-		
 	}
+	
+	
+
+
+
 
 
 	/* 신상품 페이지 */
@@ -56,13 +59,33 @@ public class ProductServiceImpl implements ProductService {
 		return newproductInfo;
 	}
 	
-    //카테고리별 상품들
+	
+	//할인 상품 목록
+    @Override
+	public Map selectSaleProduct(Map saleProductMap) throws DataAccessException {
+		Map saleProductInfo = new HashMap();
+		List<ProductVO> saleProduct=productDAO.selectSaleProduct(saleProductMap);
+		
+		saleProductInfo.put("saleProduct", saleProduct);
+		return saleProductInfo;
+	}
+
+
+	//카테고리별 상품들
 	public List selectCateProduct(Map bbbInfo) throws DataAccessException {
 
 		List<ProductVO> cateCode = productDAO.selectCateProduct(bbbInfo);
 		
 		return  cateCode;
 	}
+	
+	
+
+	@Override
+	public int selectCateCount() throws DataAccessException {
+		return productDAO.selectCateCount();
+	}
+
 
 	/* 헤더 검색바 검색기능 */
 	@Override

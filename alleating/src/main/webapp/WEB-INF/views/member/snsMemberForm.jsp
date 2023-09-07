@@ -168,21 +168,15 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </div>
           <!--사업장 명 및 번호-->
           <!--아이디-->
-          <div class="form_info">
+          <!-- <div class="form_info">
             <div class="form_label_box">
               <label class="form_label">아이디</label>
               <span class="redText">*</span>
             </div>
             <div class="form_value_box">
               <div class="form_input_box">
-                <input
-                  type="hidden"
-                  class="form-control join_input_box"  
-                  value="${snsUserInfo.id}"
-                  placeholder="아이디를 입력해주세요"
-                  disabled
-                />
-                <input type="hidden" value="${snsUserInfo.id}" name="id" />
+               
+                
               </div>
               <span class="conditionText" id="join_id_ex"
                 >6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합</span
@@ -191,16 +185,18 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <div id="idCheckMessage2"></div>
             </div>
             <div class="form_button_box">
-             <!-- <button
+            
+             
+             <button
                 class="btn btn-outline-secondary"
                 type="button"
                 id="idCheckBtn"
                 onclick="fn_checkId();"
               >
                 ID중복확인
-              </button>-->
+              </button>
             </div>
-          </div>
+          </div> -->
           <!--비밀번호
           <div class="form_info">
             <div class="form_label_box">
@@ -246,6 +242,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </div>
         -->
           <!--이름-->
+          <input
+                  type="hidden"
+                  class="form-control join_input_box"  
+                  value="${snsUserInfo.id}"
+                  placeholder="아이디를 입력해주세요"
+                  disabled
+                />
+          <input type="hidden" value="${snsUserInfo.id}" name="id" />
           <div class="form_info">
             <div class="form_label_box">
               <label class="form_label">이름</label>

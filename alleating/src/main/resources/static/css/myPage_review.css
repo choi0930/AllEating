@@ -1,3 +1,20 @@
+
+		.reviewBox {
+    padding-top: 15px;
+    padding-bottom: 100px;
+    display:flex;
+}
+.reviewBoxDetail {
+    padding-left: 15px;
+    width:260px
+}
+.productNaming {
+    border: none;
+    font-size: 30px;
+    }
+    form {
+    width: 260px;
+}
 .proW {
 	display: flex;
     align-items: center;
@@ -9,7 +26,7 @@
 
 .pwant{
 	display: flex;
-    border-bottom: #ABDFF1 3px solid;
+        border-bottom: #000060 2px solid;
 }
 
 .review01{
@@ -59,7 +76,9 @@
 	margin-left: 20px;
 	display: flex;
     flex-direction: column;
-    padding-top:30px;
+   padding-top: 20px;
+    padding-bottom: 10px;
+    width: 260px;
 }
 
 .text04{
@@ -97,4 +116,12 @@
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+}
+input.productNaming {
+    font-size: 17px;
+    color: slategray;
+}
+input:focus {outline:none;}
+.review_add_btn {
+    padding-top: 10px;
 }
