@@ -30,4 +30,14 @@
 	<put-attribute name="body" value="/WEB-INF/views/serviceCenter/productQnA.jsp"/>      
 </definition>
 
+	<definition name="/serviceCenter/ownerviewArticle" extends="baseLayout2">
+		<put-attribute name="title" value="일반회원 상품문의 게시판 답글 보기"/>
+		<put-attribute name="body" value="/WEB-INF/views/serviceCenter/ownerInquiry.jsp"/>      
+	</definition>
+	
+	<definition name="/serviceCenter/memberviewArticle" extends="baseLayout2">
+		<put-attribute name="title" value="일반회원 상품문의 게시판 내용 보기"/>
+		<put-attribute name="body" value="/WEB-INF/views/serviceCenter/memberInquiry.jsp"/>      
+	</definition>
+
 </tiles-definitions>

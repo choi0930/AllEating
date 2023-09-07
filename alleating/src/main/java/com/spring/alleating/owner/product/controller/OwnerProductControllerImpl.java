@@ -236,12 +236,6 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 			public ModelAndView memviewArticle(@RequestParam("articleNO")int articleNO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
-//			HttpSession session = request.getSession();
-//			session.setAttribute("ownerinquiry", inquiryBoardVO);
-//			
-//			InquiryBoardVO inquiryboardVO = (InquiryBoardVO)session.getAttribute("ownerinquiry");
-//			
-//			String parentNO = inquiryboardVO.getParentNO();
 			
 			inquiryBoardVO = ownerProductService.viewArticle(articleNO);
 			ModelAndView mav = new ModelAndView();
@@ -293,14 +287,15 @@ public class OwnerProductControllerImpl extends BaseController implements OwnerP
 		}
 	
 			@Override
-			@RequestMapping(value="/owner/updateArticle.do", method = RequestMethod.GET)
-			public ModelAndView updateArticle(Map<String, String> articleMap, HttpServletRequest request, HttpServletResponse response)
-					throws Exception {		
-				int result = 0;
-				result = ownerProductService.modArticle(articleMap);
-				ModelAndView mav = new ModelAndView("redirect:/owner/ownerinquirylist.do");
-				return mav;
-
+			@RequestMapping(value = "/owner/modArticle.do", method = RequestMethod.POST)
+			public ModelAndView modArticle(Map articleMap, HttpServletRequest request,
+					HttpServletResponse response) throws Exception {
+					request.setCharacterEncoding("utf-8");
+					
+					ownerProductService.modArticle(articleMap);
+					System.out.println("asdasdasdasdasd");
+					ModelAndView mav = new ModelAndView("redirect:/owner/ownerinquirylist.do");
+					return mav;
 			}
 			
 			

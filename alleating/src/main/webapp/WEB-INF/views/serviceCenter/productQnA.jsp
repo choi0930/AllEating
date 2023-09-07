@@ -1,277 +1,329 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-     
-
-     
      <% request.setCharacterEncoding("utf-8"); %>
      <c:set var="contextPath" value="${pageContext.request.contextPath }" />
      <c:set var="QnAList" value="${userQnaInfo.QnAList}" />
-<!DOCTYPE html>
-<html>
-<head>
-<style>
+     <c:choose>
+        <c:when test="${total%30 == 0}">
+          <c:set var="totals2" value="${total/30}" />
+        </c:when>
+        <c:otherwise>
+          <c:set var="totals2" value="${total/30+1}" />
+        </c:otherwise>
+      </c:choose>
+      
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>사업자 상품관리 페이지</title>
+          <script>
+            $(document).ready(function () {
+              $("ul.tabs li").click(function () {
+                var tab_id = $(this).attr("data-tab");
+      
+                $("ul.tabs li").removeClass("active");
+                $(".tab-content").removeClass("active");
+      
+                $(this).addClass("active");
+                $("#" + tab_id).addClass("active");
+              });
+            });
+      
+            function fn_goAddProduct() {
+              location.href = "/admin/adminAddProductForm.do";
+            }
+          </script>
+          <style>
+            /* 탭 스타일 */
+            .tabs {
+              list-style: none;
+              padding: 0;
+            }
+            .tab-link {
+              display: inline-block;
+              padding: 10px 20px;
+              cursor: pointer;
+              border-bottom: 2px solid #000060;
+              margin-right: 5px;
+            }
+            .tab-link.active {
+              background-color: #e1dddb;
+            }
+            /* 탭 컨텐츠 스타일 */
+            .tab-content {
+              display: none;
+            }
+            .tab-content.active {
+              display: block;
+            }
+            .tabContainer {
+              width: 840px;
+              margin: 0 auto;
+            }
+           .frequent_q_01a {
+	        width: 820px;
+            }
+	        .frequent_q_01b {
+	           display: flex;
+	           flex-direction: row;
+	           width: 100%;
+	           padding-bottom: 14px;
+	          align-items: center;
+              margin-left: 10px;
+            }
 
-	.frequent_q_01a {
-	    width: 820px;
-}
-	.frequent_q_01b {
-	    display: flex;
-	    flex-direction: row;
-	    width: 100%;
-	    padding-bottom: 27px;
-	    align-items: center;
-}
+	        .frequent_q_01c {
+	          display: flex;
+	          flex-direction: row;
+	          -webkit-box-align: center;
+	          align-items: center;
+            }
 
-	.frequent_q_01c {
-	    display: flex;
-	    flex-direction: row;
-	    -webkit-box-align: center;
-	    align-items: center;
-}
-
-	.frequent_q_01d {
-    font-weight: 500;
-    font-size: 24px;
-    color: rgb(51, 51, 51);
-    letter-spacing: -0.5px;
-    line-height: 48px;
-    margin-bottom:1px;
-}
-
-	.frequent_q_01e {
-    display: flex;
-    width: 100%;
-    padding: 20px 0px;
-    border-bottom: 1px solid rgb(51, 51, 51);
-    border-top: 1px solid rgb(51, 51, 51);
-}
-
-
-
-	.frequent_q_01e2 {
-    flex-basis: 550px;
-    text-align: center;
-    line-height: 20px;
-    font-weight: 400;
-    color: rgb(51, 51, 51);
-}
-	.frequent_q_01e3 {
-    -webkit-box-flex: 1;
-    flex-grow: 1;
-    text-align: center;
-    line-height: 20px;
-    font-weight: 400;
-    color: rgb(51, 51, 51);
-}
-	.frequent_q_01e4 {
-    -webkit-box-flex: 1;
-    flex-grow: 1;
-    text-align: center;
-    line-height: 20px;
-    font-weight: 400;
-    color: rgb(51, 51, 51);
-}
-	.frequent_q_01f3 {
-    text-align: center;
-    padding: 20px 0px;
-    color: rgb(76, 76, 76);
-    flex-basis: 70px;
-    }
-	ul{
-	list-style:none;
-	}
+	        .frequent_q_01d {
+             font-weight: 500;
+            font-size: 24px;
+            color: rgb(51, 51, 51);
+            letter-spacing: -0.5px;
+            line-height: 48px;
+            margin-bottom:1px;
+            }
+            .qna_add_btn {
+            border:none;
+            width:100px;
+            height:40px;
+            background:#000060;
+            color:white;
+            margin-left: 617px;
+            }    
+            
+            .frequent_q_all{
+	        width:840px;
+	        }
 	
-	.frequent_q_01f {
-  
-    display: flex;
-   
-    flex-direction: column;
-    padding-top: 35px;
-}
-	.frequent_q_01f1 {
-   /*  cursor: pointer; */
-    display: flex;
-    align-items: center;
-}
-
-	.frequent_q_01f2 {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid rgb(244, 244, 244);
-    position: relative;
-    right: 42px;
-}
-	.frequent_q_01f3 {
-    text-align: center;
-    padding: 20px 22px;
-    color: rgb(76, 76, 76);
-    flex-basis: 497px;
-}
-	.frequent_q_01f4 {
-    text-align: center;
-    padding: 20px 20px;
-    color: rgb(76, 76, 76);
-    flex-basis: 130px;
-}
-	.frequent_q_01f5 {
-    padding: 20px 0px 20px 20px;
-    color: rgb(76, 76, 76);
-    flex: 1 1 0%;
-    text-align: left;
-    padding-left: 35px;
-}
-	
-	.frequent_q_all{
-	width:840px;
-	}
-	
-	dl.dlcss {
-    display: flex;
-    }
-    .qnaInfo {
-    padding-left: 15px;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-  
-}
-td.qnaTitle {
-    
-width: 345px;
-}
-td.qnaUser {
-    text-align: center;
-    width: 75px;
-}
-
-td.qnaDate {
-    width: 185px;
-
-}
-th.th1 {
-        width: 255px;
-    text-align: center;
-}
-th.th2 {
-  width: 345px;
-    text-align: center;
-}
-th.th3 {
-         width: 75px;
-    text-align: center;
-}
-th.th4 {
-      width:185px;
-    text-align: center;
-}
-.qna_add_btn{
-border:none;
-width:100px;
-height:40px;
-background:#000060;
-color:white;
-margin-left: 585px;} 
-td{
-text-align:center;}
-td.frequent_q_01f1_1 {
-
-   width: 170px;
-}
-
-	</style>
-	
-
-	
-<title>Insert title here</title>
-</head>
-<body>
-
- 
-<form action="${contextPath}/serviceCenter/addQnAForm.do?productId=<%= request.getParameter("productId") %>">
-    <input type="hidden" name="productId" value="<%= request.getParameter("productId") %>"/>
-<div class="frequent_q_all">
-	<div class="frequent_q_01a">
-	
-	<div class="frequent_q_01b">
-	
-	<div class="frequent_q_01c">
-	
-	<h2 class="frequent_q_01d">상품 문의</h2>
-	</div>
-	
-	
-<button class="qna_add_btn" type="submit">작성하기</button>
-
-	</div>
-	</div>
-	</div>
-
-<!-- 	<div class="frequent_q_01e">
-<div class="frequent_q_01e3">상품 정보</div>
-	<div width="200" class="frequent_q_01e2">제목</div>
-	<div class="frequent_q_01e3">작성자</div>
-	<div class="frequent_q_01e4">작성일</div>
-	</div> -->
-	
-  <div class="qnaList">
-  <table>
-  <tr>
-	<th class="th1">상품 정보</th>
-	<th class="th2">제목</th>
-	<th class="th3">작성자</th>
-	<th class="th4">작성일</th>
-	</tr>
-	</table>
-		<c:forEach var="qna" items="${QnAList}">
-		
-   <div class="qnaList_detail">
-
-	<div class="frequent_q_01f">
-	
-	
-	<div class="qnaInfo">
-	<table>
-	<tr>
-	<td class="frequent_q_01f1"><img src="${contextPath}/download.do?fileName=${qna.fileName}&productId=${qna.productId}&cateCode=${qna.cateCode}" alt="${qna.fileName}" width="70px" height="70px"></div></td>
- <td class="frequent_q_01f1_1"><div>[${qna.productBrand}]</div> <div>${qna.productName}</div> </td>
-<td class="qnaInfo_under">
-<td class="qnaTitle">${qna.title }</td>
-<td class="qnaUser">${qna.id}</td> 
-<td class="qnaDate">${qna.writeDate }</td>
-
-</tr>
-</table>
-<!--<input type="hidden" name="productId" value="${qna.productId }"/>-->
-
-</div>
-	
-    </div>
-   </div>	
-   
-	</c:forEach>
-	 </div>
-	</form>
- 
-	
-	
-<%-- 		<c:forEach var="qnaList" items="${productQnAResult}">
-	<div class="qnaList">
-
-	<ul class="frequent_q_01f">
-	<li class="frequent_q_01f1">
-	<div class="frequent_q_01f2"><img src="${contextPath}/download.do?fileName=${qnaList.fileName}&productId=${qnaList.productId}&cateCode=${qnaList.cateCode}" alt="${qnaList.fileName}" width="300px" height="300px"></div>	
-	<div class="frequent_q_01f3"><a href="#">${qnaList.productBrand}${qnaList.productName}</a></div>
-	<div class="frequent_q_01f4"> ${qnaList.productId } </div>
-	<div class="frequent_q_01f5">${qnaList.productId }</div>
-	</li>
-	</ul>
-	
-	</div>	
-	</c:forEach> --%>
-	
-	
-
-
-</body>
-</html>
+            .adminProductMain_status {
+              display: flex;
+            }
+            .adminProductMain_searchBarArea {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+            .adminProductMain_inputDateBOX {
+              display: flex;
+              align-items: center;
+            }
+            .adminProductMain_searchBTN {
+              background-color: #000060;
+              width: 50px;
+              height: 38px;
+              color: white;
+              border: none;
+              border-radius: 6px;
+              margin: 0px 8px;
+            }
+            .adminProductMain_Dateinput {
+              width: 120px;
+            }
+            .adminProductMain_dateArea {
+              margin: 0px 10px;
+            }
+            .statusText {
+              font-weight: 800;
+              padding: 0px 5px;
+            }
+            .adminProductMain_searchBarArea {
+              margin: 20px 0px;
+            }
+            .overflowText {
+              vertical-align: middle;
+              overflow: hidden;
+              white-space: nowrap;
+              word-break: break-all;
+              width: 190px;
+              text-overflow: ellipsis;
+            }
+            .productTable {
+              font-size: 14px;
+              padding: 10px 10px;
+              text-align: center;
+            }
+            .adminProductTable {
+              vertical-align: middle;
+            }
+            p {
+              margin: 0px;
+            }
+            .productTable_btn_group {
+              display: flex;
+              flex-direction: column;
+            }
+            .productDetailGOlink {
+              cursor: pointer;
+            }
+            #addProduct_BTN {
+              background-color: #000060;
+              width: 120px;
+              height: 36px;
+              color: white;
+              border: none;
+              border-radius: 6px;
+              margin: 0px 8px;
+              position: absolute;
+              top: -45px;
+              right: 0px;
+            }
+            .tab_contents {
+              position: relative;
+            }
+            .ownerProductMain_addBTN {
+              background-color: #000060;
+              width: 100px;
+              height: 38px;
+              color: white;
+              border: none;
+              border-radius: 6px;
+              margin: 0px 730px;
+            }
+            .product_mod_btn {
+              width: 50px;
+              height: 30px;
+              background-color: #000060;
+              border: none;
+              border-radius: 3px;
+              color: white;
+            }
+            .product_del_btn {
+              width: 50px;
+              height: 30px;
+              background-color: #ffffff;
+              border: 2px solid #f3f4f5;
+              border-radius: 3px;
+            }
+          </style>
+          <script></script>
+        </head>
+        <body>
+          <div class="tabContainer">
+            <ul class="tabs"></ul>
+      
+            <div id="tab-1" class="tab-content active">
+              <div class="tab_contents">
+                <form action="${contextPath}/serviceCenter/addQnAForm.do?productId=<%= request.getParameter("productId") %>">
+                    <input type="hidden" name="productId" value="<%= request.getParameter("productId") %>"/>
+                <div class="frequent_q_all">
+                    <div class="frequent_q_01a">
+                    
+                    <div class="frequent_q_01b">
+                    
+                    <div class="frequent_q_01c">
+                    
+                    <h2 class="frequent_q_01d">상품 문의</h2>
+                    </div>
+                    
+                    
+                <button class="qna_add_btn" type="submit">작성하기</button>
+                
+                    </div>
+                    </div>
+                    </div>
+                <!--상품관리 상단끝 end adminProductMain_searchBarArea-->
+      
+                <div class="productTable">
+                  <!--사업자가 등록한 상품 목록-->
+                  <table class="table adminProductTable table-hover">
+                    <thead class="table-dark">
+                      <tr>
+                        <td>작성자</td>
+                        <td>제목</td>
+                        <td>작성일</td>
+                      </tr>
+                    </thead>
+      
+                    <tbody>
+                      <c:forEach var="qna" items="${QnAList}" varStatus="articleNum">
+                          <tr style="cursor: pointer">
+                              <c:choose>
+                                  <c:when test="${qna.parentNO == 0}">
+                                       <td>${qna.id}</td>
+                                   </c:when>
+                                   <c:otherwise>
+                                       <td></td>
+                                   </c:otherwise>
+                              </c:choose>
+                                      <td class="qnaTitle">
+                                  <c:choose>
+                                     <c:when test='${qna.level > 1 }'>
+                                      <c:forEach begin="1" end="${qna.level}" step="1">
+                                          <span style="padding-left:30px"></span>
+                                      </c:forEach>
+                                          <span style="font-size:12px;">ㄴ [답변]</span>
+                                           <a class='cls1' href="${contextPath}/serviceCenter/ownerviewArticle.do?articleNO=${qna.articleNO}">${qna.title}</a>
+                                      </c:when>
+                                      <c:otherwise>
+                                           <a class='cls1' href="${contextPath}/serviceCenter/memberviewArticle.do?articleNO=${qna.articleNO}">${qna.title}</a>
+                                      </c:otherwise>
+                                  </c:choose>
+                                 </td>
+                                 <c:choose>
+                                  <c:when test="${qna.parentNO == 0}">
+                                      <td class="qnaDate">${qna.writeDate }</td>
+                                  </c:when>
+                                  <c:otherwise>
+                                      <td></td>
+                                  </c:otherwise>
+                              </c:choose>
+                          </tr>
+                      </c:forEach>
+                    </tbody>
+                  </table>
+                </div>
+                <!--사업자가 등록한 상품 목록-->
+      
+                <c:choose>
+                  <c:when test="${total>=40}">
+                    <div id="page_wrap">
+                      <c:forEach var="page" begin="1" end="10" step="1">
+                        <c:if test="${section >1 && page==1 }">
+                          <a
+                            href="${contextPath}/member/listMembers.do?section=${section-1}&pageNum=${(section-1)*10 +1 }"
+                            >&nbsp;pre &nbsp;</a
+                          >
+                        </c:if>
+                        <a
+                          href="${contextPath}/member/listMembers.do?section=${section}&pageNum=${page}"
+                          >${(section-1)*10 +page }
+                        </a>
+                        <c:if test="${page ==10 }">
+                          <a
+                            href="${contextPath}/member/listMembers.do?section=${section+1}&pageNum=${section*10+1}"
+                            >&nbsp; next</a
+                          >
+                        </c:if>
+                      </c:forEach>
+                    </div>
+                  </c:when>
+                  <c:when test="${total<40}">
+                    <c:forEach var="page" begin="1" end="${totals2}" step="1">
+                      <c:choose>
+                        <c:when test="${page==pageNum}">
+                          <a
+                            href="${contextPath}/member/listMembers.do?section=${section}&pageNum=${page}"
+                            >${(section-1)*10 +page }
+                          </a>
+                        </c:when>
+                        <c:otherwise>
+                          <a
+                            href="${contextPath}/member/listMembers.do?section=${section}&pageNum=${page}"
+                            >${(section-1)*10 +page }
+                          </a>
+                        </c:otherwise>
+                      </c:choose>
+                    </c:forEach>
+                  </c:when>
+                </c:choose>
+              </div>
+            </div>
+          </div>
+        </body>
+      </html>
