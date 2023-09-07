@@ -14,6 +14,9 @@ request.setCharacterEncoding("utf-8"); %>
     <title>관리자 쿠폰관리 페이지</title>
 
     <style>
+    .pageBottom {
+    text-align: center;
+}
       .topArea {
         display: flex;
       }

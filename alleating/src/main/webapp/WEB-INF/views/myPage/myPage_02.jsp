@@ -311,7 +311,7 @@ function fn_allCancel(orderId){
          <dl class="dlcss" id="dlcss-2">
           <dt class="listcss-6">적립금 사용</dt>
            <dd class="listcss-7">
-            <p>0원</p>
+            <p>${orderDetailVO.userPoint}원</p>
            </dd>
          </dl>
          <dl class="dlcss" id="dlcss-2">

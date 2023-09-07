@@ -7,9 +7,10 @@ request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>검색결과 페이지</title>
+    <title></title>
 
     <style>
+    
       .productList {
         display: grid;
         grid-template-columns: repeat(auto-fill, 420px);

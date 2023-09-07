@@ -367,7 +367,7 @@ request.setCharacterEncoding("utf-8"); %>
           </button>
         </div>
         <div class="text01">
-          배송지에 따라 상품정봉 및 배송유형이 달리질 수 있습니다.
+          배송지에 따라 상품 정보 및 배송유형이 달라질 수 있습니다.
         </div>
       </div>
 

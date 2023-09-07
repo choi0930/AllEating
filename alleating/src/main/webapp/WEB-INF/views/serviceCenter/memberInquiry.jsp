@@ -728,7 +728,7 @@
 <div class="admin_personal_q_addg4">
 <div class="admin_personal_q_addg5">
 
-<textarea id="i_content" inputmode="text" aria-label="textarea-message" name="content" class="css-5etceh e1tjt2bn1" disabled>${inquiryBoardVO.content }</textarea>>
+<textarea id="i_content" inputmode="text" aria-label="textarea-message" name="content" class="css-5etceh e1tjt2bn1" disabled>${inquiryBoardVO.content }</textarea>
 </div>
 </div>
 </div>
