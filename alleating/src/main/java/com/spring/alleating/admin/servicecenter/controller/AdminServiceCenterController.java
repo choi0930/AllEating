@@ -20,9 +20,11 @@ public interface AdminServiceCenterController {
 	/* 공지사항 작성 */
 	public ResponseEntity<?> addBoard(@ModelAttribute BoardVO boardVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/* 공지사항 수정 */
-	public ResponseEntity<?> updateBoard(@RequestParam BoardVO boardVO, HttpServletRequest request)throws Exception;
+	public ResponseEntity<?> updateBoard(@ModelAttribute BoardVO boardVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	/* 공지사항 삭제 */
 	public String deleteBoard(@RequestParam String articleNO) throws Exception;
 	/* 공지사항 상세 페이지 */
 	public ModelAndView boardDetail(@RequestParam("articleNO")String articleNO, HttpServletRequest request)throws DataAccessException;
+	/*공지사항 수정 페이지*/
+	public ModelAndView updateBoardForm(@RequestParam("articleNO")String articleNO, HttpServletRequest request, HttpServletResponse response)throws Exception;
 }

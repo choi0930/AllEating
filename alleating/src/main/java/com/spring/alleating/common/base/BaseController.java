@@ -21,12 +21,16 @@ import com.spring.alleating.product.vo.ProductImgVO;
 		protected List<ProductImgVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
 			List<ProductImgVO> fileList= new ArrayList<ProductImgVO>();
 			Iterator<String> fileNames = multipartRequest.getFileNames();
+			
 			while(fileNames.hasNext()){
 				ProductImgVO productImgVO =new ProductImgVO();
 				String fileName = fileNames.next();
 				productImgVO.setFileType(fileName);
+				
 				MultipartFile mFile = multipartRequest.getFile(fileName);
+				
 				String originalFileName=mFile.getOriginalFilename();
+				System.out.println("base:"+originalFileName);
 				productImgVO.setFileName(originalFileName);
 				fileList.add(productImgVO);
 				
@@ -42,6 +46,7 @@ import com.spring.alleating.product.vo.ProductImgVO;
 			}
 			return fileList;
 		}
+		
 		protected Map calcSearchPeriod(String fixedSearchPeriod){
 			String beginDate=null;
 			String endDate=null;

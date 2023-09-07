@@ -3,18 +3,21 @@ package com.spring.alleating.member.controller;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.LinkedTransferQueue;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -119,8 +122,9 @@ public class MemberControllerImpl implements MemberController {
 	
 	/* 아이디 찾기화면으로 이동 */ 
 	@Override
+	@ResponseBody
 	@RequestMapping(value="/member/find_id_01.do", method = RequestMethod.GET)
-	public ModelAndView find_id_01(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView find_id_01( HttpServletRequest request, HttpServletResponse response) throws Exception{
 
 		String viewName = (String)request.getAttribute("viewName");
 		System.out.println(viewName); 
@@ -132,15 +136,45 @@ public class MemberControllerImpl implements MemberController {
 	
 	/* 아이디 찾기 */
 	@Override
-	@RequestMapping(value= "/member/find_id_02.do", method = RequestMethod.GET)
-	public ModelAndView find_id_02(@RequestParam("name")String name,@RequestParam("email")String email, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String viewName = (String)request.getAttribute("viewName");
-
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName); //add
-		return mav;
+	@ResponseBody
+	@RequestMapping(value= "/member/find_id_02.do", method = RequestMethod.POST)
+	public String find_id_02(@RequestBody MemberVO memberVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	
+		
+		Map info = memberService.findId(memberVO);
+		String msg;
+		
+		Boolean check= (Boolean) info.get("check");
+		
+		if(check) {
+				msg="true";
+				String id = (String) info.get("id");
+				HttpSession session = request.getSession();
+				session.setAttribute("findUserId", id);
+		}else {
+				msg="false";
+		}
+		
+		return msg;
 	}
 	/*---------------------------------아이디 찾기 끝------------------------------------*/
+	/*아이디 찾기 결과창*/
+	@Override
+	@RequestMapping(value="/member/findIdView.do", method = RequestMethod.GET)
+	public ModelAndView findIdView(HttpServletRequest request, HttpServletResponse response)
+			throws DataAccessException {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("findUserId");
+		session.removeAttribute("findUserId");
+		System.out.println(id);
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("findUserId", id);
+		mav.setViewName(viewName);
+		
+		return mav;
+	}
+	/*---------------------------------아이디 찾기 결과창 끝------------------------------------*/
 	
 	/* 비밀번호 찾기 페이지 이동 */ 
 	@Override //비밀번호 찾기
@@ -157,18 +191,32 @@ public class MemberControllerImpl implements MemberController {
 	
 	/* 비밀번호 찾기 */
 	@Override
-	@RequestMapping(value= "/member/find_pwd_02.do", method = RequestMethod.GET)
-	public ModelAndView find_pwd_02(HttpServletRequest request, HttpServletResponse response) throws Exception{
-
+	@ResponseBody
+	@RequestMapping(value= "/member/find_pwd_02.do", method = RequestMethod.POST)
+	public String find_pwd_02(@RequestBody MemberVO memberVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		HttpSession session = request.getSession();
 		
-		String viewName = (String)request.getAttribute("viewName");
-		System.out.println(viewName); 
+		String a = request.getContextPath();
+		System.out.println(a);
+		String msg;
+		Map checkMap = memberService.findPwd(memberVO);
 		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName); //add
-		return mav;
+		Boolean check = (Boolean)checkMap.get("check");
+		if(check) {
+			MemberVO vo = (MemberVO)checkMap.get("memberVO");
+			session.setAttribute("findByPwdMemberInfo", vo);
+			emailService.updatePwdLinkSendMail(vo);
+			msg="true";
+		}else {
+			msg="false";
+		}
+		
+		
+		return msg;
 	}
 	/*---------------------------------비밀번호 찾기 끝------------------------------------*/
+	
+	
 	
 	/* 회원정보 수정전에 비밀번호 인증 */
 	 @PostMapping("/member/checkPasswordAndRedirect")
@@ -184,7 +232,7 @@ public class MemberControllerImpl implements MemberController {
 	        } else {
 	            // 비밀번호가 틀린 경우
 	        	message = "<script>";
-	        	message += 		"alert('에러다 에러');";
+	        	message += 		"alert('수정실패');";
 	        	message += "</script>";
 	            return "redirect:/myPage/myPage_edit.do";
 	        }
@@ -289,5 +337,59 @@ public class MemberControllerImpl implements MemberController {
 		
 	}
 	/*---------------------------------카카오 정보로 회원가입 끝------------------------------------*/
+
+	/*비밀번호 재설정창 이동*/
+	@Override
+	@RequestMapping(value="/member/updatePwd.do", method = RequestMethod.GET)
+	public ModelAndView updatePwdForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+
+		return mav;
+	}
+
+	/*비밀번호 재설정*/
+	@Override
+	@RequestMapping(value="/member/updatePwdInfo.do", method = RequestMethod.POST)
+	public ResponseEntity updatePwdInfo(String pwd, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("findByPwdMemberInfo");
+		
+		memberVO.setPwd(pwd);
+		memberService.findByPwdUpdate(memberVO);
+		
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		message= "<script>";
+			message += " alert('비밀번호를 재설정 하였습니다.');";
+			message +=" location.href='"+request.getContextPath()+"/main.do';";
+			message +=("</script>");
+			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
+	
+	}
+
+	/*비밀번호 재설정 이메일 보낸후 이동되는 페이지*/
+	@Override
+	@RequestMapping(value="/member/fin_pwd.do", method = RequestMethod.GET)
+	public ModelAndView msgPwd(HttpServletRequest request, HttpServletResponse response) throws DataAccessException {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("findByPwdMemberInfo");
+		String email = memberVO.getEmail();
+		
+		String viewName = (String) request.getAttribute("viewName");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("email", email);
+		mav.setViewName(viewName);
+		return mav;
+	}
+
+
+
 	
 }

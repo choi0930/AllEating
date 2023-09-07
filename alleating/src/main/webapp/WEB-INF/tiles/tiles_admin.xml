@@ -77,4 +77,9 @@
 		<put-attribute name="title" value="관리자페이지 공지사항 등록"/>
 		<put-attribute name="body" value="/WEB-INF/views/admin/serviceCenter/addAnnouncementForm.jsp"/>      
 	</definition>
+	
+	<definition name="/admin/updateBoardInfo" extends="baseLayout2">
+		<put-attribute name="title" value="관리자페이지 공지사항 수정 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/serviceCenter/updateBoardInfo.jsp"/>      
+	</definition>
 </tiles-definitions>

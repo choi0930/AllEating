@@ -5,6 +5,8 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import com.spring.alleating.member.vo.MemberVO;
 @Service("emailService")
 public class EmailService {
 	
@@ -39,16 +41,19 @@ public class EmailService {
 		}
 		return message;
 	}
-	public MimeMessage createFindIdMail(String email, String id) {
+	public MimeMessage createFindPwdMail(String email, String name) {
 		createNumber();
 		MimeMessage message = javaMailSender.createMimeMessage();
 		try {
 			message.setFrom(senderEmail);
 			message.setRecipients(MimeMessage.RecipientType.TO, email);
-			message.setSubject("AllEating 아이디");
+			message.setSubject("AllEating");
 			String body="";
-			body+="<h3>"+"회원님의 아이디 입니다."+"</h3>";
-			body+="<h1>"+id+"</h1>";
+			body+="<h3>"+name+"님 안녕하세요. 올잇팅입니다."+"</h3>";
+			body+="<h3>"+"아래 버튼을 눌러 비밀번호를 재설정해 주세요"+"</h3>";
+			body+="<a href='http://localhost:8080/member/updatePwd.do'>";
+			body+="<img src=\"https://res.kurly.com/images/edm/2021/1005/btn_password_change.png\" width=\"170\" height=\"44\" alt=\"비밀번호 재설정\" border=\"0\" style=\"display:block\" loading=\"lazy\">";
+			body+="</a>";
 			message.setText(body,"UTF-8","html");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,4 +71,12 @@ public class EmailService {
 		
 	}
 	
+	public void updatePwdLinkSendMail(MemberVO memberVO) {
+		String email = memberVO.getEmail();
+		String name = memberVO.getName();
+		MimeMessage message = createFindPwdMail(email, name);
+		javaMailSender.send(message);
+		
+		
+	}
 }

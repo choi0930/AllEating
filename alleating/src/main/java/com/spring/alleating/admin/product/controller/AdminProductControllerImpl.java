@@ -301,6 +301,7 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 		
 		try {
 			imageFileList =upload(multipartRequest);
+			System.out.println(imageFileList.size());
 			if(imageFileList!= null && imageFileList.size()!=0) {
 				for(ProductImgVO productImgVO : imageFileList) {
 					productId = Integer.parseInt((String)productMap.get("productId"));
@@ -316,8 +317,9 @@ public class AdminProductControllerImpl extends BaseController implements AdminP
 			    adminProductService.modifyProductImage(imageFileList);
 			    
 			   
-				for(ProductImgVO  productImgVO:imageFileList) {
+				for(ProductImgVO productImgVO : imageFileList) {
 					imageFileName = productImgVO.getFileName();
+					System.out.println("반복문:"+imageFileName);
 					File srcFile = new File(PRODUCT_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
 					File destDir = new File(PRODUCT_IMAGE_REPO+"\\"+cateCode+"\\"+productId);	
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);

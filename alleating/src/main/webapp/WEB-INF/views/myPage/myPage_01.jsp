@@ -13,7 +13,13 @@
 
   <style>
 
-  
+  .noOrderHistoryText{
+    font-size: 20px;
+    font-weight: bold;
+    color: #000060;
+    text-align: center;
+    margin: 40px;
+  }
       </style>
 
 
@@ -114,6 +120,11 @@ $("startDate").val(newDate)
       
     <div class="orderlistview-under">
       <div class="orderViewBox">
+        <c:choose>
+          <c:when test="${empty orderHistoryResult}">
+            <div class="noOrderHistoryText">주문내역이 없습니다.</div>
+          </c:when>
+          <c:otherwise>
       <c:forEach var="bbig" items="${orderHistoryResult}">
      <div class="orderlist-time">
      ${bbig.payDate}
@@ -183,6 +194,8 @@ $("startDate").val(newDate)
       
 
       </c:forEach>
+    </c:otherwise>
+    </c:choose>
     </div>
         </div>
         

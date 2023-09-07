@@ -85,7 +85,6 @@
 	.announcement_02_button1 {
     font-size: 13px;
 }
-
 .contentArea{
 	width: 100%;
 	height: 400px;
@@ -99,18 +98,21 @@
 	function fn_returnBordList(){
 		location.href = "/admin/adminAnnouncement.do";
 	}
+	
 </script>
 <body>
+	<form action="${contextPath}/admin/boardUpdateInfo.do" enctype="UTF-8" method="post">
 	<div class="announcement_02a">
-	<div class="announcement_02a1">
+
+	<!--<div class="announcement_02a1">
 	<div class="announcement_02a2">공지사항</div>
 	<div class="announcement_02a3">올잇팅의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</div>
-	</div>
+	</div>-->
 
 	<div class="announcement_02b">
 	<div class="announcement_02b1">
 	<div class="announcement_02b2">제목</div>
-	<div class="announcement_02b3">${boardVO.title}</div>
+	<div class="announcement_02b3" style="width: 400px;"><input class="boardInput form-control" type="text" name="title" value="${boardVO.title}"/></div>
 	</div>
 	
 	
@@ -127,17 +129,21 @@
 	
 	<div class="announcement_02e">
 	<div>
-		<textarea class="form-control contentArea" name="content" readonly>${boardVO.content}</textarea>
-
-	</div>
-	</div>
+		<textarea class="form-control contentArea" name="content" >${boardVO.content}</textarea>
 	
+	</div>
+	</div>
+
+	<input type="hidden" value="${boardVO.articleNO}" name="articleNO"/>
 	<div class="announcement_02f">
+	<button class="announcement_02_button" type="submit" width="150" height="42" radius="0" onclick="fn_modBoard()">
+		<span class="announcement_02_button1">수정하기</span>
+	</button>	
 	<button class="announcement_02_button" type="button" width="150" height="42" radius="0" onclick="fn_returnBordList()">
 	<span class="announcement_02_button1">목록</span>
 	</button>
 	</div>
-	
+</form>
 </body>
 </html>
 

@@ -8,11 +8,42 @@
     <!DOCTYPE html>
 <html>
 <head>
-    
-
     <title>아이디 찾기</title>
+    <script>
+      function fn_findId(){
+	      var name = $('input[name=name]').val();
+        var email = $('input[name=email]').val();
+        console.log(name);
+        
+        member={
+          name:name,
+          email:email
+        }
+        console.log(member);
+      	$.ajax({
+    		type : "POST",
+    		async : true, 
+    		url : "/member/find_id_02.do",
+    		data: JSON.stringify(member),
+        contentType: "application/json; charset=UTF-8",
+        dataType:"text",
+    		success : function(data) {
+          if(data=='true'){
+            location.href="/member/findIdView.do";
+          }else{
+            alert("가입 시 입력한 회원 정보가 맞는지 다시 한번 확인해 주세요.");
+          }
+               
+    		},
+    		error : function(data, textStatus) {
+    			alert("오류 발생");
+    		}
+    	}); //end ajax	
+  }
+    </script>
 </head>
 <body>
+ 
     <div class="findid">
 <div class="findid-detail">
 <h1 class="findid-title">아이디 찾기</h1>
@@ -28,7 +59,7 @@
   </div>
 
   <div class="findid-next">
-    <button type="button"  radius="3" class="findbutton" onclick="location.href='${contextPath}/member/find_id_02.do'">
+    <button type="button"  radius="3" class="findbutton" onclick="fn_findId()">
     <span class="findbutton-text">다음</span>
     </button>
      </div>

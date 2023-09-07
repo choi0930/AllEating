@@ -23,4 +23,14 @@ public interface MemberDAO {
 	public int selectCheckSnsId(Map snsUserMap)throws DataAccessException;
 	/*카카오 로그인*/
 	public MemberVO selectKaKaoLogin(Map snsLoginInfo)throws DataAccessException;
+	/*아이디 찾기*/
+	public String findUserId(MemberVO memberVO)throws DataAccessException;
+	
+	public int findUserIdCount(MemberVO memberVO)throws DataAccessException;
+	
+	public MemberVO findUserPwd(MemberVO memberVO)throws DataAccessException;
+	
+	public int findUserPwdCount(MemberVO memberVO)throws DataAccessException;
+	
+	public void updatePwdInfo(MemberVO memberVO)throws DataAccessException;
 }

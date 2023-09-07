@@ -169,6 +169,9 @@ li {
 			}
 		});
 	}
+	function fn_updateInfo(articleNO){
+		location.href = "/admin/updateBoardInfo.do?articleNO="+articleNO;
+	}
 </script> 
 </head>
 <body>
@@ -202,7 +205,7 @@ li {
 								<div class="announcement_01_33"><a href="${contextPath}/admin/adminAnnouncement_detail.do?articleNO=${board.articleNO}">${board.title}</a></div>
 								<div class="announcement_01_34"><a href="${contextPath}/admin/adminAnnouncement_detail.do?articleNO=${board.articleNO}">AllEating</a></div>
 								<div class="announcement_01_35">${board.writeDate}</div>
-								<div class="announcement_01_35"><button class="btn btn-outline-warning">수정</button><button  class="btn btn-outline-danger" onclick="fn_delBoard('${board.articleNO}')">삭제</button></div>
+								<div class="announcement_01_35"><button class="btn btn-outline-warning" onclick="fn_updateInfo('${board.articleNO}')">수정</button><button  class="btn btn-outline-danger" onclick="fn_delBoard('${board.articleNO}')">삭제</button></div>
 							</div>
 						</a>
 					</li>

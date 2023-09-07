@@ -105,12 +105,12 @@ select * from user_point where id=#{id}
 
 <!-- 구매후기 작성후 적립금 업데이트 -->
 <update id="updateReward" parameterType="java.util.Map">
-update user_point set userPoint where id=#{id}
+update user_point set userPoint=#{userPoint} where id=#{id}
 </update>
 <!-- 구매후기 작성해서 받은 적립금 구매내역에 insert -->
-<insert id="insertRewardHistory" parameterType="userPointVO">
-insert into user_point (pointNum, id, usePoint, creDate, content)
- values (#{pointNum}, #{id}, #{usePoint}, #{creDate}, #{content})
+<insert id="insertRewardHistory" parameterType="java.util.Map">
+insert into user_point_history (id, usePoint, content)
+ values (#{id}, #{usePoint}, #{content})
 </insert>
 
 <!-- 구매후기 삭제-->

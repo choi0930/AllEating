@@ -88,7 +88,9 @@ background-color:#E1DDDB;}
         </div>
     </div>
     <div id="footer">
+        
         <tiles:insertAttribute name="footer"/>
+    
     </div>
     
 </div>

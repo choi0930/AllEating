@@ -16,4 +16,11 @@ public interface MemberService {
 	//카카오 로그인
 	public String  getKakaoAccessToken (String code) throws Exception;
 	public Map createKakaoUser(String token) throws Exception;
+	
+	/*아이디 찾기*/
+	public Map findId(MemberVO memberVO)throws Exception;
+	/*비밀번호 찾기*/
+	public Map findPwd(MemberVO memberVO)throws Exception;
+	/*비밀번호 재설정*/
+	public void findByPwdUpdate(MemberVO memberVO)throws Exception;
 }

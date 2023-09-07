@@ -14,9 +14,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/findId/find_id_01.jsp"/>      
 	</definition>
 	
-	<definition name="/member/find_id_02" extends="baseLayout">
+	<definition name="/member/findIdView" extends="baseLayout">
 		<put-attribute name="title" value="아이디 찾기 결과 페이지"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/findId/find_id_02.jsp"/>      
+		<put-attribute name="body" value="/WEB-INF/views/member/findId/findIdView.jsp"/>      
 	</definition>
 	
 	<definition name="/member/find_pwd_01" extends="baseLayout">
@@ -24,9 +24,14 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/findPwd/find_pwd_01.jsp"/>      
 	</definition>
 	
-	<definition name="/member/find_pwd_02" extends="baseLayout">
+	<definition name="/member/updatePwd" extends="baseLayout">
 		<put-attribute name="title" value="비밀번호 재설정 페이지"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/findPwd/find_pwd_02.jsp"/>      
+		<put-attribute name="body" value="/WEB-INF/views/member/findPwd/updatePwdForm.jsp"/>      
+	</definition>
+	
+	<definition name="/member/fin_pwd" extends="baseLayout">
+		<put-attribute name="title" value="비밀번호"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/findPwd/fin_pwd.jsp"/>      
 	</definition>
 	
 	<definition name="/member/loginForm" extends="baseLayout">

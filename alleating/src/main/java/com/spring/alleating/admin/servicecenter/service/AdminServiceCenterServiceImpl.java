@@ -36,8 +36,8 @@ public class AdminServiceCenterServiceImpl implements AdminServiceCenterService{
 
 	@Override
 	public int updateBoard(BoardVO boardVO) throws DataAccessException {
-		
-		return 0;
+		int result = adminServiceCenterDAO.updateBoard(boardVO);
+		return result;
 	}
 
 	@Override
