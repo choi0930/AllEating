@@ -49,9 +49,7 @@ public interface OwnerProductController {
 
 	public ModelAndView removeArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView updateArticle(@RequestParam Map<String, String> articleMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
-
-}
+	public ModelAndView modArticle(@RequestParam Map articleMap, HttpServletRequest request, HttpServletResponse response)throws Exception;}
 
 	
 

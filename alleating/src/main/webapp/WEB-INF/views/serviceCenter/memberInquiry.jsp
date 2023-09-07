@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
+<%
+ request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,21 +14,33 @@
 <title>Insert title here</title>
 <script>
 	 function backToList(obj){
-		 obj.action="${contextPath}/owner/ownerinquirylist.do";
+		 obj.action="${contextPath}/serviceCenter/productQnA.do";
 		 obj.submit();
 	 }
 
-	 function fn_reply_form(url, parentNO) {
-		 	var form = document.createElement("form");
-		 	form.setAttribute("method", "get");
-		 	form.setAttribute("action", url);
-		
-		 var parentNOInput = document.createElement("input");
-		 parentNOInput.setAttribute("type", "hidden");
-		 parentNOInput.setAttribute("name", "parentNO");
-		 parentNOInput.setAttribute("value", parentNO);
+
+	 function fn_enable(obj){
+		 document.getElementById("i_title").disabled=false;
+		 document.getElementById("i_content").disabled=false;
+		 //document.getElementById("tr_btn_modify").style.display="block";
+		 //document.getElementById("tr_btn").style.display="none";
+	 }
+	
+     function fn_modify_article(obj){
+		 obj.action="${contextPath}/serviceCenter/membermodArticle.do";
+		 obj.submit();
+	 }
+	 
+	 function fn_remove_article(url,articleNO){
+		 var form = document.createElement("form");
+		 form.setAttribute("method", "get");
+		 form.setAttribute("action", url);
+		 var articleNOInput = document.createElement("input");
+		 articleNOInput.setAttribute("type", "hidden");
+		 articleNOInput.setAttribute("name", "articleNO");
+		 articleNOInput.setAttribute("value", articleNO);
 		 
-		 form.appendChild(parentNOInput);
+		 form.appendChild(articleNOInput);
 		 document.body.appendChild(form);
 		 form.submit();
 	 }
@@ -97,6 +116,7 @@
 	display:flex;
 	-webkit-box-pack: justify;
 	justify-content: space-between;	
+	
 }
 	.admin_personal_q_adde6 {
     display: inline-flex;
@@ -590,6 +610,29 @@
     bottom: 50px;
 }
 
+.add_submit_btn03{
+	border: none;
+    width: 100px;
+    font-size: 15px;
+    background: #000060;
+    color: white;
+    bottom: 50px;
+    position: relative;
+    top: 0px;
+    left: 230px;
+}
+
+.add_submit_btn04{
+	border: none;
+    width: 100px;
+    font-size: 15px;
+    background: #000060;
+    color: white;
+    position: relative;
+    bottom: 0px;
+    left: 235px;
+}
+
 
 
 </style>
@@ -603,23 +646,24 @@
 </div>
 </div>
 <div class="admin_personal_q_addd">
-<form action="${contextPath }/serviceCenter/addQnA.do">
-<input type="hidden" name="productId" value="<%= request.getParameter("productId") %>">
+<form  name="frmArticle" method="post" action="${contextPath}/serviceCenter/membermodArticle.do">
 <input type="hidden" name="id" value="${inquiryBoardVO.id}">
-<input type="hidden" name="parentNO" value="${inquiryBoardVO.parentNO}" />
+
+<input type="hidden" name="articleNO" value="${inquiryBoardVO.articleNO}" />
 
 
 
 
-<div class="admin_personal_q_adde">
-<div class="admin_personal_q_adde1">
-<label data-testid="label-text">
-아이디
-<span data-testid="label-required-text" class="admin_personal_q_adde2">*</span>
-</label>
-</div>
-<div class="admin_personal_q_adde3">
+	<div class="admin_personal_q_adde">
+		<div class="admin_personal_q_adde1">
+			<label data-testid="label-text">
+			아이디
+			<span data-testid="label-required-text" class="admin_personal_q_adde2">*</span>
+			</label>
+		</div>
+	<div class="admin_personal_q_adde3">
 <div class="admin_personal_q_adde4">
+	
 <div class="admin_personal_q_adde5">
 
 
@@ -635,6 +679,8 @@
 </div>
 </div>
 <div class="admin_personal_q_adde5">
+	<input type="button" value="수정하기" class="add_submit_btn03" onClick="fn_enable(this.form)">
+	<input type="button" value="반영하기" class="add_submit_btn04" onClick="fn_modify_article(frmArticle)" >
 <div>
 <div class="MuiFormControl-root css-tzsjye">
 <div variant="outlined" class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl jss2 css-eg1co4">
@@ -665,7 +711,7 @@
 <div class="admin_personal_q_addf4">
 
 <div height="44" class="css-t7kbxx e1uzxhvi3">
-<input data-testid="input-box" id="inquiry-subject" name="title" value="${inquiryBoardVO.title }" type="text" height="44" class="css-1quw3ub e1uzxhvi2" disabled>
+<input data-testid="input-box" id="i_title" name="title" value="${inquiryBoardVO.title }" type="text" height="44" class="css-1quw3ub e1uzxhvi2" disabled>
 </div>
 </div>
 </div>
@@ -682,7 +728,7 @@
 <div class="admin_personal_q_addg4">
 <div class="admin_personal_q_addg5">
 
-<textarea id="inquiry-contents" inputmode="text" aria-label="textarea-message" name="content" class="css-5etceh e1tjt2bn1" disabled>${inquiryBoardVO.content }</textarea>
+<textarea id="i_content" inputmode="text" aria-label="textarea-message" name="content" class="css-5etceh e1tjt2bn1" disabled>${inquiryBoardVO.content }</textarea>>
 </div>
 </div>
 </div>
@@ -709,10 +755,8 @@
 </div>
 <div class="admin_personal_q_addi2">
 	<input type="button" value="목록으로" class="add_submit_btn" onClick="backToList(this.form)" >
-	<input type="button" value="답글쓰기" class="add_submit_btn02" onClick="fn_reply_form('/owner/memberreply.do', '${inquiryBoardVO.articleNO}')">
+	<input type="button" value="삭제하기" class="add_submit_btn02" onClick="fn_remove_article('${contextPath}/serviceCenter/memberremoveArticle.do', ${inquiryBoardVO.articleNO})">
 </div>
-
-
 </form>
 </body>
 </html>

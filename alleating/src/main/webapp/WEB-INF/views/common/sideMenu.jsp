@@ -280,11 +280,11 @@ text-decoration:none;}
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
-                    <li class="side_tap">
+                    <!-- <li class="side_tap">
                         <a class="side_aTag" href="#">블랙리스트 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
-                    </li>
+                    </li> -->
                     <li class="side_tap">
                         <a class="side_aTag" href="${contextPath}/owner/ownerinquirylist.do">상품 문의 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">

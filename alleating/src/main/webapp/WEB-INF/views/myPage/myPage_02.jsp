@@ -179,7 +179,7 @@ function fn_allCancel(orderId){
         <c:when test="${reserve.delivery_status == 'delivery_prepared'}">
          <p class="orderStatusText">배송 준비중</p>
         </c:when>
-         <c:when test="${reserve.delivery_status == 'delivery_complete'}">
+         <c:when test="${reserve.delivery_status == 'delivery_completed'}">
          <p class="orderStatusText" >배송 완료</p>
         </c:when>
          <c:when test="${reserve.delivery_status == 'cancel'}">
@@ -239,7 +239,7 @@ function fn_allCancel(orderId){
           <c:when test="${normal.delivery_status == 'delivery_prepared'}">
            <p class="orderStatusText">배송 준비중</p>
           </c:when>
-           <c:when test="${normal.delivery_status == 'delivery_complete'}">
+           <c:when test="${normal.delivery_status == 'delivery_completed'}">
            <p class="orderStatusText">배송 완료</p>
           </c:when>
            <c:when test="${normal.delivery_status == 'cancel'}">

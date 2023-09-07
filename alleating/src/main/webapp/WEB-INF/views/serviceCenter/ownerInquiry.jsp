@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script>
 	 function backToList(obj){
-		 obj.action="${contextPath}/owner/ownerinquirylist.do";
+		 obj.action="${contextPath}/serviceCenter/productQnA.do";
 		 obj.submit();
 	 }
 
@@ -575,7 +575,7 @@
     background: #000060;
     color: white;
 	position: relative;
-    left: 192px;
+    left: 291px;
     bottom: 50px;
 }
 
@@ -709,7 +709,6 @@
 </div>
 <div class="admin_personal_q_addi2">
 	<input type="button" value="목록으로" class="add_submit_btn" onClick="backToList(this.form)" >
-	<input type="button" value="답글쓰기" class="add_submit_btn02" onClick="fn_reply_form('/owner/memberreply.do', '${inquiryBoardVO.articleNO}')">
 </div>
 
 
