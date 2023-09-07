@@ -246,7 +246,7 @@ request.setCharacterEncoding("utf-8"); %>
             <c:if test="${img.fileType != 'main_image' }">
               <div>제품 상세 이미지${itemNum.count-1}</div>
               <div>
-                <img src="${contextPath}/download.do?fileName=${img.fileName}&productId=${productVO.productId}&cateCode=${productVO.cateCode}" alt="${productImgVO.fileName}" style="margin-bottom:50px;">
+                <img src="${contextPath}/download.do?fileName=${img.fileName}&productId=${productVO.productId}&cateCode=${productVO.cateCode}" alt="${productImgVO.fileName}" style="margin-bottom:50px;" width="500px">
               </div>
             </c:if>
           

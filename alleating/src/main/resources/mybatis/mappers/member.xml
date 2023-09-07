@@ -60,6 +60,27 @@
 	</select>
 	<!-- 카카오 로그인 끝 -->
 	
+	
+	<!-- 아이디 찾기 -->
+	<select id="findUserIdCount" resultType="int" parameterType="memberVO">
+		select count(id) from member where name = #{name} and email = #{email}
+	</select>
+	<select id="findUserId" resultType="String" parameterType="memberVO">
+		select id from member where name = #{name} and email = #{email}
+	</select>
+	
+	<select id="findUserPwdCount" resultType="int" parameterType="memberVO">
+		select count(id) from member where id = #{id} and email = #{email}
+	</select>
+	
+	<select id="findUserPwd" resultMap="memResult" parameterType="memberVO">
+		select * from member where id = #{id} and email = #{email}
+	</select>
+	
+	<update id="updatePwdInfo" parameterType="memberVO">
+		update member set pwd = #{pwd} where id = #{id}
+	</update>
+	
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="java.util.Map">
  			insert into member(

@@ -263,6 +263,47 @@ public class MemberServiceImpl implements MemberService{
 	     }
 	    
 	}
+
+	@Override
+	public Map findId(MemberVO memberVO) throws Exception {
+		int count = memberDAO.findUserIdCount(memberVO);
+		String id;
+		Map resMap = new HashMap<>();
+		if(count>0) {
+			id = memberDAO.findUserId(memberVO);
+			Boolean check = true;
+			resMap.put("id", id);
+			resMap.put("check", check);
+		}else {
+			Boolean check = false;
+			resMap.put("check", check);
+		}
+		
+		return resMap;
+	}
+
+	@Override
+	public Map findPwd(MemberVO memberVO) throws Exception {
+		int count = memberDAO.findUserPwdCount(memberVO);
+		Map resMap = new HashMap<>();
+		if(count>0) {
+			MemberVO memVO = memberDAO.findUserPwd(memberVO);
+			Boolean check =true;
+			resMap.put("memberVO", memVO);
+			resMap.put("check", check);
+		}else {
+			Boolean check = false;
+			resMap.put("check", check);
+		}
+		
+		return resMap;
+	}
+	/*비밀번호 재설정*/
+	@Override
+	public void findByPwdUpdate(MemberVO memberVO) throws Exception {
+		memberDAO.updatePwdInfo(memberVO);
+		
+	}
 		
 	
 	

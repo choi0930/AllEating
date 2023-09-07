@@ -103,10 +103,30 @@ public class AdminServiceCenterControllerImpl implements AdminServiceCenterContr
 		return resEntity;
 	}
 	/*-------------------------------------------------------------------------------------*/
+	/*관리자 페이지 공지사항 수정*/
 	@Override
-	public ResponseEntity<?> updateBoard(BoardVO boardVO, HttpServletRequest request) throws Exception {
+	@RequestMapping(value="admin/boardUpdateInfo.do", method = RequestMethod.POST)
+	public ResponseEntity<?> updateBoard(@ModelAttribute BoardVO boardVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int result = adminServiceCenterService.updateBoard(boardVO);
+		response.setContentType("text/html; charset=UTF-8");
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		if(result>0) {
+			message= "<script>";
+			message += " alert('공지사항을 수정하였습니다.');";
+			message +=" location.href='"+request.getContextPath()+"/admin/adminAnnouncement.do';";
+			message +="</script>";
+		}else {
+			message= "<script>";
+			message += " alert('공지사항 수정실패 실패');";
+			message +=" location.href='"+request.getContextPath()+"/admin/adminAnnouncement.do';";
+			message +="</script>";
+		}
 		
-		return null;
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
 	}
 	
 	/* 공지사항 글 삭제 */
@@ -136,6 +156,21 @@ public class AdminServiceCenterControllerImpl implements AdminServiceCenterContr
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("boardVO", boardVO);
 		mav.setViewName(viewName);
+		return mav;
+	}
+
+	/*공지사항 수정 페이지 이동*/
+	@Override
+	@RequestMapping(value="/admin/updateBoardInfo.do",method = RequestMethod.GET)
+	public ModelAndView updateBoardForm(String articleNO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		
+		ModelAndView mav = new ModelAndView();
+		boardVO = adminServiceCenterService.boardDetail(articleNO);
+		mav.addObject("boardVO", boardVO);
+		mav.setViewName(viewName);
+		
 		return mav;
 	}
 	

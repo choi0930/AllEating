@@ -86,7 +86,12 @@
     font-size: 13px;
 }
 
-
+.contentArea{
+	width: 100%;
+	height: 400px;
+	border: none;
+	resize: none;
+}
 
 </style>
 <script>
@@ -121,9 +126,7 @@
 	
 	<div class="announcement_02e">
 	<div>
-	<p>
-		${boardVO.content}
-	</p>
+		<textarea class="form-control contentArea" name="content" readonly>${boardVO.content}</textarea>
 	
 	</div>
 	</div>
