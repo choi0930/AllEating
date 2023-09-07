@@ -241,5 +241,27 @@ public class CommunityControllerImpl  implements CommunityController {
 	  
 		  return mav;
 	}
+
+	//////////////////////////상품 삭제////////////////////////////////////
+	@Override
+	@RequestMapping(value="/community/deleteReward.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView deleteReward(@RequestParam("articleNO" ) int articleNO, HttpServletRequest request, HttpServletResponse response) {
+
+		HttpSession session = request.getSession();
+		session.setAttribute("side_menuType", "my_page");
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
+		String id= memberVO.getId();
+
+		communityService.deleteReward(articleNO);
+		
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		mav.setViewName("redirect:/myPage/myPage_writtenReview.do?id=" +id);
+		return mav;
+	}
+	
+	
+
 	
 	}

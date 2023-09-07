@@ -265,16 +265,20 @@
 		productExpireDate= #{productExpireDate}, productContentTitle=#{productContentTitle}, productContent=#{productContent}, productBrand=#{productBrand}
 		where productId = #{productId}
 	</update>
+	
+	
 <delete id="deleteProductImg" parameterType="String">
 		delete from product_img where imgId = #{imgId}
 	</delete>
 
+
 <update id="updateArticle" parameterType="java.util.Map">
 		update inquiry_board
-		set title=#{title}, 
-			content=#{content}
+						set title=#{title},
+		 					content=#{content}
 		where articleNO=#{articleNO}
 </update>
+	
 	
 	<delete id="deleteArticle" parameterType="int">
 	delete FROM inquiry_board where parentNO = #{articleNO} or articleNO = #{articleNO}

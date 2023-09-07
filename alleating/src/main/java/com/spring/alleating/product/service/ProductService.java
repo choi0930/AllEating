@@ -18,4 +18,10 @@ public interface ProductService {
 	public List selectCateProduct(Map bbbInfo)throws DataAccessException;
 	/* 헤더 검색바 검색기능 */
 	public Map<String,Object> searchProduct(Map dataMap)throws DataAccessException;
+	
+	public int selectCateCount () throws DataAccessException;
+	
+	/* 할인상품 목록 */
+	public Map selectSaleProduct(Map saleProductMap) throws DataAccessException;
+	
 }

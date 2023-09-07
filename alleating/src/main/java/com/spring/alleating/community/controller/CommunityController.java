@@ -23,5 +23,6 @@ public interface CommunityController {
 	//모든 사용자 후기들
 	public ModelAndView selectAllReview (HttpServletRequest request, HttpServletResponse response)throws Exception;
 
-	
+	/* 후기 삭제 */
+	public ModelAndView deleteReward(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response);
 }

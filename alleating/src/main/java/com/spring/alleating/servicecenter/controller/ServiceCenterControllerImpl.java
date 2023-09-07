@@ -98,7 +98,7 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 	
 
 	
-	//상품 문의
+	//상품 문의 리스트
 	@Override
 	@RequestMapping(value = "/serviceCenter/productQnA.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView productQnAList(HttpServletRequest request, HttpServletResponse response)
@@ -108,7 +108,6 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 	    MemberVO memberVO = (MemberVO) session.getAttribute("loginMember");
 	    String id = memberVO.getId();
 
-	
 
 	    Map userQnAInfo = new HashMap<>();
 	    userQnAInfo = serviceCenterService.selectProductQnA();
@@ -160,15 +159,60 @@ public class ServiceCenterControllerImpl implements ServiceCenterController{
 	public ModelAndView form(@RequestParam ("productId") int productId,HttpServletRequest request, HttpServletResponse response)throws Exception{
 		HttpSession session = request.getSession();
           session.setAttribute("productId", productId);
-          
-          
-		
+
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		mav.addObject("productId", productId);
 	
 		return mav;
+	}
+	
+	
+	@Override 
+	@RequestMapping(value="/serviceCenter/ownerviewArticle.do", method = RequestMethod.GET)
+	public ModelAndView ownerviewArticle(@RequestParam("articleNO")int articleNO, HttpServletRequest request, HttpServletResponse response)
+	throws Exception {
+	String viewName = (String)request.getAttribute("viewName");
+	inquiryBoardVO = serviceCenterService.memberviewArticle(articleNO);
+	ModelAndView mav = new ModelAndView();
+	mav.setViewName(viewName);
+	mav.addObject("inquiryBoardVO", inquiryBoardVO);
+	return mav;
+	}
+	
+	@Override 
+	@RequestMapping(value="/serviceCenter/memberviewArticle.do", method = RequestMethod.GET)
+	public ModelAndView memberviewArticle(@RequestParam("articleNO")int articleNO, HttpServletRequest request, HttpServletResponse response)
+	throws Exception {
+	String viewName = (String)request.getAttribute("viewName");
+	inquiryBoardVO = serviceCenterService.memberviewArticle(articleNO);
+	ModelAndView mav = new ModelAndView();
+	mav.setViewName(viewName);
+	mav.addObject("inquiryBoardVO", inquiryBoardVO);
+	return mav;
+	}
+	
+	@Override 
+	@RequestMapping(value="/serviceCenter/memberremoveArticle.do", method = RequestMethod.GET)
+	public ModelAndView memberremoveArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response)
+	throws Exception {
+		System.out.println("asfasfafsafasfasfafasfsafasfafasfas");
+		
+		serviceCenterService.memberremoveArticle(articleNO);
+		ModelAndView mav = new ModelAndView("redirect:/serviceCenter/productQnA.do");
+		return mav;
+		}
+
+	@Override
+	@RequestMapping(value = "/serviceCenter/membermodArticle.do", method = RequestMethod.POST)
+	public ModelAndView membermodArticle(Map articleMap, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+			request.setCharacterEncoding("utf-8");
+			
+			serviceCenterService.membermodArticle(articleMap);
+			ModelAndView mav = new ModelAndView("redirect:/serviceCenter/productQnA.do");
+			return mav;
 	}
 	/*
 	 * @RequestMapping(value="/serviceCenter/Form.do",method = RequestMethod.GET)

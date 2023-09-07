@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.spring.alleating.product.vo.ProductImgVO;
 import com.spring.alleating.servicecenter.dao.ServiceCenterDAO;
 import com.spring.alleating.servicecenter.vo.BoardVO;
 import com.spring.alleating.servicecenter.vo.InquiryBoardVO;
@@ -38,6 +39,8 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
 		BoardVO boardVO = serviceCenterDAO.boardDetail(articleNO);
 		return boardVO;
 	}
+	
+	
 	//상품 문의 목록
 	@Override
 
@@ -52,7 +55,24 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
 	@Override
 	public int insertQnA(Map QnAMap) throws DataAccessException {
 		return serviceCenterDAO.insertQnA(QnAMap);
-  }
+	}
+	
+	@Override
+	public InquiryBoardVO memberviewArticle(int articleNO) throws Exception {
+		InquiryBoardVO inquiryVO = serviceCenterDAO.memberselectArticle(articleNO);
+		return inquiryVO;
+	}
+
+	@Override
+	public void memberremoveArticle(int articleNO) throws Exception {
+		serviceCenterDAO.memberdeleteArticle(articleNO);
+	}
+	
+
+	@Override
+	public void membermodArticle(Map articleMap) throws Exception {
+		serviceCenterDAO.memberupdateArticle(articleMap);
+	}
 
 	/*
 	 * public List selectProductQnA(Map _productQnAInfo) throws DataAccessException

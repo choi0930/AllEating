@@ -52,10 +52,22 @@
   <!-- 상품 문의 목록 -->
  <select id="productQnAList" resultMap="inquiryBoardResult" parameterType="java.util.Map">
 
- select i.*, p.cateCode, p.productBrand, p.productName, p.deliveryType, a.fileName, a.fileType
- from inquiry_board i
- inner join product p on i.productId = p.productId inner join product_img a on p.productId = a.productId
- where a.fileType = 'main_image'
+    SELECT CASE WHEN LEVEL-1 > 0 then CONCAT(CONCAT(REPEAT(' ', level-1),' '), board.title) 
+		   ELSE board.title END AS title, 
+           board.articleNO,
+           board.parentNO,
+           board.productId, 
+           result.level,
+           board.content, 
+           board.id,
+           board.writeDate 
+		   FROM (SELECT function_hierarchical() 
+           AS articleNO,
+           @level AS level 
+		   FROM (SELECT @start_with:=0, @articleNO:=@start_with, @level:=0) tbl 
+		   JOIN inquiry_board) result 
+           JOIN inquiry_board board 
+           ON board.articleNO = result.articleNO
  </select>
  
  <!-- 상품 문의 등록 -->
@@ -77,7 +89,27 @@
   #{id},
   #{title},
   #{content})
-      
-  
  </insert>
+ 
+ 		<!-- 일반회원의 게시판 수정 -->
+	 <update id="memberupdateArticle" parameterType="java.util.Map">
+		update inquiry_board
+						set title=#{title},
+		 					content=#{content}
+		where articleNO=#{articleNO}
+	</update>
+	
+		<!-- 일반회원의 게시판 삭제 -->
+	<delete id="memberdeleteArticle" parameterType="int">
+	delete FROM inquiry_board where parentNO = #{articleNO} or articleNO = #{articleNO}
+	</delete>
+ 
+		<!-- 일반회원의 게시판 선택 --> 
+ 	<select id="memberselectArticle" resultType="InquiryBoardVO" parameterType="int">
+	<![CDATA[
+		SELECT * from inquiry_board
+		where articleNO = #{articleNO}
+	]]>
+	</select>
+ 
  </mapper>

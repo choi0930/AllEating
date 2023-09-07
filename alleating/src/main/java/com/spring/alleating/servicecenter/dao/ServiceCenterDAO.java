@@ -19,10 +19,18 @@ public interface ServiceCenterDAO {
 	public int boardTotalCount()throws DataAccessException;
 	/* 공지사항 상세페이지 */
 	public BoardVO boardDetail(String articleNO)throws DataAccessException;
+	
+	
 	//상품 문의 목록
 	public List<InquiryBoardVO> productQnAList (Map productQnAInfo) throws DataAccessException;
    //상품 문의 등록
 	public int insertQnA(Map QnAMap) throws DataAccessException;
+	
+	public void memberupdateArticle(Map articleMap) throws DataAccessException;
+	
+	public void memberdeleteArticle(int articleNO) throws DataAccessException;
+	
+	public InquiryBoardVO memberselectArticle(int articleNO) throws DataAccessException;
 
 	/*
 	 * public List<InquiryBoardVO> selectProductQnA (Map productQnAInfo) throws

@@ -83,7 +83,7 @@
 
 <!-- 작성한 후기 목록 -->
 <select id="selectWrittenReview" resultMap="communityResult" parameterType="java.util.Map">
- select r.*, a.cateCode, a.productId, a.review_ny
+ select DISTINCT r.*, a.cateCode, a.productId, a.review_ny
 from review_board r
 inner join  alleating_order_detail a on r.productId = a.productId
 where r.id=#{id} and a.review_ny = 'y'
@@ -91,7 +91,7 @@ where r.id=#{id} and a.review_ny = 'y'
 	
 <!-- 사용자가 작성한 후기들 목록-->
 <select id="selectAllReview" resultMap="communityResult" parameterType="java.util.Map">
-select r.*, a.cateCode, a.productId, a.review_ny
+select DISTINCT r.*, a.cateCode, a.productId, a.review_ny
 from review_board r
 inner join  alleating_order_detail a on r.productId = a.productId
 where a.review_ny = 'y'
@@ -112,5 +112,10 @@ update user_point set userPoint=#{userPoint} where id=#{id}
 insert into user_point_history (id, usePoint, content)
  values (#{id}, #{usePoint}, #{content})
 </insert>
+
+<!-- 구매후기 삭제-->
+<delete id="deleteReward" parameterType="java.util.Map">
+delete from review_board where articleNO=#{articleNO}
+</delete>
 	
 	</mapper>

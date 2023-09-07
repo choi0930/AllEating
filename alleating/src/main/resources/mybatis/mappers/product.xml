@@ -74,8 +74,10 @@
 				) t;
 				]]>
 	</select>
-	
-	
+	<!-- 카테고리 상품 수 -->
+	<select id="selectCateCount" resultType="int" parameterType="String">
+	select count(*) from product where cateCode = #{cateCode}
+	</select>
 	
 	<select id="selectnewProductDetailImage" resultMap="productImgResult" parameterType="String">
 		<![CDATA[
@@ -124,4 +126,14 @@
                  AND productStatus = 'sale' or 'sold_out'
            ]]>      
 	</select>
+	
+       <!-- 할인상품 페이지 상품 목록 -->
+     <select id="selectSaleProduct" resultMap="productResult" parameterType="java.util.Map">
+     select a.*, b.fileName
+     From product a
+     inner join product_img b on a.productId = b.productId
+     where b.fileType = 'main_image'
+     and a.productDiscount > 0
+     order by a.creDate DESC
+     </select>
  </mapper>

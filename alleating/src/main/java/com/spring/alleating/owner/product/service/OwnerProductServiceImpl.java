@@ -182,11 +182,11 @@ int productDiscount = productVO.getProductDiscount();
 		ownerProductDAO.deleteArticle(articleNO);
 	}
 	
-	@Override
-	public int modArticle(Map<String, String> articleMap) throws DataAccessException {
-		return ownerProductDAO.updateArticle(articleMap);
-	}
 
+	@Override
+	public void modArticle(Map articleMap) throws Exception {
+		ownerProductDAO.updateArticle(articleMap);
+	}
 	/*
 	 * @Override public int addProduct(Map productMap) throws Exception {
 	 * 

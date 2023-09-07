@@ -37,9 +37,13 @@ public interface OwnerProductService {
 	  	  
 //	  public int addNewArticle(Map articleMap) throws Exception;
 	  
+	  public int addReplyArticle(Map replyMap) throws Exception;
+	  
 	  public InquiryBoardVO viewArticle(int articleNO) throws Exception;
 	  
-	  public int addReplyArticle(Map replyMap) throws Exception;
+	  public void modArticle(Map articleMap) throws Exception;
+	  
+	  public void removeArticle(int articleNO) throws Exception;
 	  
 
 	  /*사업자 상품 이미지 수정*/
@@ -48,10 +52,6 @@ public interface OwnerProductService {
 		public void delProductImage(String imgId)throws DataAccessException;
 		/*사업자 상품 정보 수정*/
 		public void modProductInfo(ProductVO productVO)throws DataAccessException;
-
-	  public void removeArticle(int articleNO) throws Exception;
-	  
-	  public int modArticle(Map<String, String> articleMap) throws DataAccessException;
 
 
 

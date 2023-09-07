@@ -272,24 +272,11 @@ request.setCharacterEncoding("utf-8"); %>
                         >
                           수정
                         </a>
-                        <!--  <button type="button" class="product_mod_btn">
-                        수정
-                      </button> -->
                         <a
                           class="product_del_btn"
                           href="${ContextPath}/owner/deleteProduct.do?productId=${ownerProduct.productId}"
                         >
                           삭제
-                        </a>
-                        <%--
-                        <button
-                          type="button"
-                          class="product_del_btn"
-                          onclick="location.href='${ContextPath }/owner/deleteProduct.do'"
-                        >
-                          삭제
-                        </button>
-                        --%>
                       </td>
                     </tr>
                   </c:if>

@@ -28,13 +28,13 @@ request.setCharacterEncoding("utf-8");
 }
 	
 	.want01 {
-    border-bottom:solid 3px #ABDFF1;
-        padding-top: 75px;
+ /*    border-bottom:solid 3px #ABDFF1; */
+        padding-top: 60px;
 }
 
 h3.want01_text {
     padding-left: 405px;
-	padding-bottom: 25px;
+	    padding-bottom: 35px;
 }
 .allReviewBox{
 padding-top:15px;
@@ -48,6 +48,10 @@ padding-bottom: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+input.productNaming {
+    font-size: 15px;
+    color: slategray;
 }
 	</style>
 <meta charset="UTF-8" />

@@ -31,9 +31,14 @@ public interface ServiceCenterController {
 
 	// 상품 문의
 	public ModelAndView productQnAList(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
 	// 상품 등록
-	public ModelAndView addQnA(@RequestParam Map<String, String>  QnAMap,  HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
-
+	public ModelAndView addQnA(@RequestParam Map<String, String>  QnAMap,  HttpServletRequest request, HttpServletResponse response) throws Exception;
+	// 상품 삭제
+	public ModelAndView memberremoveArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	// 상품 수정
+	public ModelAndView membermodArticle(@RequestParam Map articleMap, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	// 사업자의 답글 보기
+	public ModelAndView ownerviewArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	// 일반 회원이 쓴 글보기
+	public ModelAndView memberviewArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

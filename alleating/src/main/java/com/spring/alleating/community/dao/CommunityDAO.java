@@ -23,18 +23,26 @@ public interface CommunityDAO {
 	
 	//후기 등록
 	public int insertReview(Map reviewMap)throws DataAccessException;
-    //후기 등록시 상태 업데이트
+	//후기 삭제
+	public int deleteReward (int articleNO) throws DataAccessException;
+	//후기 등록시 상태 업데이트
     public void updateReviewStatus(Map reviewUpMap)throws DataAccessException;  //상품 후기 업데이트
     //작성한 후기들 목록
     public List<ReviewBoardVO> selectWrittenReview (Map writtenReviewInfo) throws DataAccessException; //작성한 후기 목록 select
     //사용자들 전체 후기 목록
     public List<ReviewBoardVO> selectAllReview (Map allReviewInfo) throws DataAccessException;
+
     public UserPointVO selectReward(Map userInfo) throws DataAccessException; //사용자 적립금 가져오기
 	public void updateReward(Map userInfo)throws DataAccessException;
     
 	public void insertRewardHistory(Map Info)throws DataAccessException;
     /*
 	  
+
+    
+	/*
+	 * //적립금 select public List<UserPointVO> selectReward() throws
+
 	 * DataAccessException; //구매후기 작성후 적립금 업데이트 public int updateReward (String
 	 * id)throws DataAccessException; //구매후기 작성해서 받은 적립금 구매내역에 insert public int
 	 * insertRewardHistory(Map addRewardMap)throws DataAccessException;

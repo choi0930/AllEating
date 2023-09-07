@@ -40,13 +40,15 @@ public interface OwnerProductDAO {
 //	
 	public int selectNewArticleNO() throws DataAccessException;
 	
-	public int updateArticle(Map articleMap) throws DataAccessException;
+	public void updateArticle(Map articleMap) throws DataAccessException;
 	
 	public void deleteArticle(int articleNO) throws DataAccessException;
 	
 	public InquiryBoardVO selectArticle(int articleNO) throws DataAccessException;
 	
 	public int insertReplyOwnerInquiry(Map replyMap) throws DataAccessException;
+	
+	
 	
 	/*사업자 상품 이미지 수정*/
 	public void updateProductImg(ProductImgVO productImgVO)throws DataAccessException;
