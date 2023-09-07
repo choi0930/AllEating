@@ -17,34 +17,7 @@ request.setCharacterEncoding("utf-8"); %>
   <head>
     <meta charset="UTF-8" />
     <title>main.jsp</title>
-    <style>
-      .btn:hover {
-        color: var(--bs-btn-hover-color);
-        background-color: #0c4a60;
-        border-color: #0c4a60;
-      }
-      .delivery_type_text{
-      color:#C9C9C9;}
-      .sale_text{
-          display: flex;
-      }
-      .sale_text_1{
-      color:#EF6C33;
-      font-weight:bold;
-      padding-right:5px;
-      font-size:35px;}
-      .sale_text_2{
-      text-decoration:line-through;
-      color:#C9C9C9;
-      
-      }
-      .sale_text {
-    display: flex;
-}
-    .sale_text_2{
-    margin-right: 7px;
-    }
-    </style>
+   
   </head>
   <body>
   
@@ -92,6 +65,7 @@ request.setCharacterEncoding("utf-8"); %>
                     <c:when test="${newProductInfo.productDiscount != 0}">
                  
                    <div class="sale_text_1" >${newProductInfo.productDiscount}%</div>
+                  
                   
                    <div class="sale_text_2"> <fmt:formatNumber value="${newProductInfo.productPrice}" pattern="#,###"/>원</div>
                    <div class="sale_result"> <fmt:formatNumber value="${newProductInfo.productSalesPrice}" pattern="#,###"/>원 </div> </c:when>
@@ -161,7 +135,8 @@ request.setCharacterEncoding("utf-8"); %>
                 <a href="${contextPath }/product/userProductDetail.do?productId=${saleProductInfo.productId}">  
                 <img src="${contextPath}/download.do?fileName=${saleProductInfo.fileName}&productId=${saleProductInfo.productId}&cateCode=${saleProductInfo.cateCode}" alt="${saleProductInfo.fileName}" width="300px" height="300px">
                  
-                <div class="test2">
+         <div class="test2">
+          
         <div class=delivery_type_text>
        <c:choose>
          <c:when test="${saleProductInfo.deliveryType == 'reserve' }"> 예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;">
@@ -169,8 +144,8 @@ request.setCharacterEncoding("utf-8"); %>
         <c:when test="${saleProductInfo.deliveryType == 'normal' }"> 일반배송
          </c:when>
          </c:choose>
-        
         </div>
+        
         <h5> 
         <c:choose>
          <c:when test="${saleProductInfo.deliveryType == 'reserve' }">[${saleProductInfo.productBrand}]
@@ -183,11 +158,10 @@ request.setCharacterEncoding("utf-8"); %>
                   <div class="sale_text">  
                    <div class="sale_text_1" >${saleProductInfo.productDiscount}%</div>
                    <div class="sale_text_2"><fmt:formatNumber value="${saleProductInfo.productPrice}" pattern="#,###"/>원</div>
-                  </div>
                   <div class="sale_result"> <fmt:formatNumber value="${saleProductInfo.productSalesPrice}" pattern="#,###"/>원 </div>
                 </div>
+                </div>
               </a>  
-
            </div> 
             </c:forEach>
           

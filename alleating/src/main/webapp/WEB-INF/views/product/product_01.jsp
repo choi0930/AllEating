@@ -24,7 +24,7 @@
   <div class = "all-product-detail-list-main">
 
     <div class="product-top">
-        <div class="all-producttotalnum">총 9개</div>
+        <div class="all-producttotalnum">총 5개</div> 
         <div id="search_01_toptext">
             <div>
                 <a href="#">낮은가격순</a>
@@ -46,7 +46,7 @@
    <c:forEach var="zzzzz" items="${cateResult}">
                <div class="qwerqwer">
                <a class="product-next" href="${contextPath }/product/userProductDetail.do?productId=${zzzzz.productId}">
-                  <img src="${contextPath}/download.do?fileName=${zzzzz.fileName}&productId=${zzzzz.productId}&cateCode=${zzzzz.cateCode}" alt="${zzzzz.fileName}" width="300px" height="300px">
+                  <img src="${contextPath}/download.do?fileName=${zzzzz.fileName}&productId=${zzzzz.productId}&cateCode=${zzzzz.cateCode}" alt="${zzzzz.fileName}" width="250px" height="320px">
                  </a>
                 <div class="test2">
         

@@ -262,9 +262,9 @@ function kakaoLogout() {
   }  
 </script>
 			</div>
-			<div class="login_nomemberOderSearch">
+			<!-- <div class="login_nomemberOderSearch">
 				<a href="#"><span>비회원 조회하기</span></a>
-			</div>
+			</div> -->
 	
 		
 		

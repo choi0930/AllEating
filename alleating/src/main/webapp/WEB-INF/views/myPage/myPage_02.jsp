@@ -207,7 +207,7 @@ function fn_allCancel(orderId){
       <div class="orderBox">
      
         <c:forEach var="normal" items="${normalList}">
-          <input type="hidden" class="addAllProductId" value="${reserve.productId}" />
+          <input type="hidden" class="addAllProductId" value="${normal.productId}" />
       <div class="product-orderdetail">
        
         
@@ -216,7 +216,7 @@ function fn_allCancel(orderId){
         </div>
         <div class="product-orderdetail-line">
         <div class="product-orderdetail-line-2">
-            <p>예약배송<img src="${contextPath }/img/image_logo/thunder.png" style="width:20px;height:20px;"></p>
+            <p>일반배송</p>
           </div>
         <div class="product-orderdetail-line-2">
             <p>[${normal.productBrand}]</p>

@@ -12,6 +12,8 @@ import com.spring.alleating.point.vo.UserPointVO;
 public interface CommunityService {
     //사용자 후기 등록
 	public int insertReview(Map reviewMap) throws Exception;
+	/* 후기 삭제 */
+	public int deleteReward(int articleNO)throws DataAccessException;
 	//후기 쓰면 리뷰 유무 상태 업데이트 
 	public void updateReviewStatus(Map reviewUpMap)throws Exception; 
 	//사용자가 작성한 후기 목록

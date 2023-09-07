@@ -25,8 +25,13 @@ public interface ProductDAO {
 	public int selectBySearchCount(String searchWord)throws DataAccessException;
 	
 	public List<ProductImgVO> selectnewProductDetailImage()throws DataAccessException;
+	//카테고리 상품
+	public List<ProductVO> selectCateProduct(Map aaaInfo)throws DataAccessException; 
+    //카테고리 상품 count
+	public int selectCateCount () throws DataAccessException;
 	
-	public List<ProductVO> selectCateProduct(Map aaaInfo)throws DataAccessException; //카테고리
+	//할인 상품
+	public List<ProductVO> selectSaleProduct(Map saleProductMap) throws DataAccessException;
 	
-
+	
 }
