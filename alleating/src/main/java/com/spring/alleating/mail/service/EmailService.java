@@ -12,7 +12,7 @@ public class EmailService {
 	
 	private final JavaMailSender javaMailSender;
 	
-	private static final String senderEmail = "alan0930@naver.com";
+	private static final String senderEmail = "";
 	private static int number;
 	@Autowired
 	public EmailService(JavaMailSender javaMailSender) {
