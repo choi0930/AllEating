@@ -222,16 +222,16 @@ function fn_goToPay(){
                   </div> 
 
 </div>
-
+<!--
 <c:choose>
-            <c:when test="${isLoginON == true and loginMember != null}"><!--로그인 했을때-->
+            <c:when test="${isLoginON == true and loginMember != null}">
               <div id="listcss-5"></div>
             </c:when>
-            <c:otherwise><!--로그인 정보가 없을때-->
+            <c:otherwise>
               <div id="listcss-5">로그인 후, 적립 혜택이 제공됩니다.</div>
             </c:otherwise>
         </c:choose>
-
+      -->
 <!-- <div id="listcss-5">로그인 후, 적립 혜택이 제공됩니다.</div> -->
 
 
@@ -403,20 +403,22 @@ function fn_goToPay(){
 
 </div>
 </div>
+<!--
 <div class="circle">
 <span class="circle-2">적립</span>
 <span class="circle-3">후기 작성 시 </span>
 <span class="circle-3">&nbsp;500원</span>
 <span class="circle-3">&nbsp;적립</span>
 </div>
-
+-->
 <div class="result">
+  <!--
 <a href="${contextPath }/myPage/myPage_addWish.do">
 
 <img src="${contextPath}/img/image_logo/heart_icon.png" class="heartimg">
 
 </a>
-
+-->
 <div class="cart">
 <button type="button"   radius="3" class="cartbutton" onclick="add_cart('${userProductVO.productId}')">
 <span class="cart-2">장바구니 담기</span>

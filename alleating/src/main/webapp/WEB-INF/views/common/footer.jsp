@@ -84,7 +84,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </button>
         <button type="button" class="btn btn-outline-secondary">1:1문의</button>
       </div>
-      <div class="third">
+      <!--<div class="third">
         <img
           src="${contextPath}/img/image_sns/instagram_logo.png"
           width="50px"
@@ -100,8 +100,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           width="50px"
           height="50px"
         />
-      </div>
-    </div>
+      </div>-->    </div>
   </div>
   </body>
 </html>
