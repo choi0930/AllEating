@@ -237,11 +237,11 @@ text-decoration:none;}
                             </li>
                         </ul>
                     </li>
-                    <li class="side_tap">
+                    <!--<li class="side_tap">
                         <a class="side_aTag" href="${contextPath}/myPage/myPage_wish.do?id=${loginMember.id}">찜한 상품
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
-                    </li>
+                    </li>-->
           
                     <li class="side_tap">
                         <a class="side_aTag" href="${contextPath}/myPage/myPage_reserves.do?id=${loginMember.id}">적립금
@@ -328,11 +328,11 @@ text-decoration:none;}
                             </li>
                         </ul>
                     </li>
-                    <li class="side_tap">
+                   <!-- <li class="side_tap">
                         <a class="side_aTag" href="#">커뮤니티 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
-                    </li>
+                    </li>-->
                     <li class="side_tap">
                         <a class="side_aTag" href="${contextPath}/admin/couponList.do">쿠폰 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
@@ -343,11 +343,11 @@ text-decoration:none;}
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
                     </li>
-                    <li class="side_tap">
+                   <!-- <li class="side_tap">
                         <a class="side_aTag" href="#">상품문의/후기 관리
                             <img src="${contextPath}/img/side/arrow-right-gray.png" class="side_menu_icon" alt="우측화살표">
                         </a>
-                    </li>
+                    </li>-->
                 </ul>
             </c:when>
             

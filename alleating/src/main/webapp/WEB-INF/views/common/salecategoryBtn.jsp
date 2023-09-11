@@ -78,17 +78,17 @@
     <div id="btn_category_group_title">신상품</div>
     <div class="btn_category_container">
         <div class="btn_category_group">
-            <button class="btn_category">전체</button>
-            <button class="btn_category">채소</button>
-            <button class="btn_category">과일·견과·쌀</button>
-            <button class="btn_category">수산·해산·건어물</button>
-            <button class="btn_category">정육·계란</button>
+            <button class="btn_category" onclick="location.href='/product/new_product_01.do'">전체</button>
+            <button class="btn_category" onclick="location.href='/product/new_product_01.do?category=901'">채소</button>
+            <button class="btn_category" onclick="location.href='/product/new_product_01.do?category=902'">과일·견과·쌀</button>
+            <button class="btn_category" onclick="location.href='/product/new_product_01.do?category=903'">수산·해산·건어물</button>
+            <button class="btn_category" onclick="location.href='/product/new_product_01.do?category=904'">정육·계란</button>
         </div>
         <div class="btn_category_group">
-            <button class="btn_category">국·반찬·메인요리</button>
-            <button class="btn_category">샐러드·간편식</button>
-            <button class="btn_category">면·양념·요리</button>
-            <button class="btn_category">생수·음료·커피</button>
+            <button class="btn_category" onclick="location.href='/product/new_product_01.do?category=905'">국·반찬·메인요리</button>
+            <button class="btn_category" onclick="location.href='/product/new_product_01.do?category=906'">샐러드·간편식</button>
+            <button class="btn_category" onclick="location.href='/product/new_product_01.do?category=907'">면·양념·요리</button>
+            <button class="btn_category" onclick="location.href='/product/new_product_01.do?category=908'">생수·음료·커피</button>
             <button class="btn_category" disabled></button>
         </div>
 

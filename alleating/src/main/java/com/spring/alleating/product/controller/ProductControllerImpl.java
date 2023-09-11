@@ -98,8 +98,10 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 		
 		String section = dataMap.get("section");
 		String pageNum = dataMap.get("pageNum");
-
+		String cateCode = dataMap.get("category");
+		
 		Map<String,Object> condMap=new HashMap<String,Object>();
+		
 		if(section== null) {
 			section = "1";
 		}
@@ -112,7 +114,10 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 		 int _pageNum = Integer.parseInt(pageNum);
 		 int offset = (_section-1) * 100 +(_pageNum-1) * 20;
 		 condMap.put("offset",offset);
-		
+		 if(cateCode!=null) {
+			 condMap.put("cateCode", cateCode);
+			 System.out.println("들어옴?");
+		 }
 		Map newproresult = productService.selectnewProductDetail(condMap);
 		
 		

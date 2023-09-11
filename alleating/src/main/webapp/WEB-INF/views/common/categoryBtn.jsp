@@ -149,8 +149,8 @@ background-color: #E1DDDB;
             <button id="901005" class="btn_category" onclick="location.href='/product/product_01.do?category=901005'">양파·대파·마늘·배추</button>
           </div>
           <div class="btn_category_group">
-            <button id="901006" class="btn_category">오이·호박·고추</button>
-            <button id="901007" class="btn_category">콩나물·버섯</button>
+            <button id="901006" class="btn_category" onclick="location.href='/product/product_01.do?category=901006'">오이·호박·고추</button>
+            <button id="901007" class="btn_category" onclick="location.href='/product/product_01.do?category=901007'">콩나물·버섯</button>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>
             <div class="btn_category2"></div>

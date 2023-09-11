@@ -84,6 +84,7 @@ public class CommunityControllerImpl  implements CommunityController {
 		String viewName = (String)request.getAttribute("viewName");	
 		ModelAndView mav = new ModelAndView();
 		
+		
 		mav.addObject("productId", _productId);
 		mav.addObject("order_seq_num", _order_seq_num);
 		mav.addObject("review_ny", review_ny);

@@ -193,11 +193,11 @@ $(function(){$('.header_nav').hover(
             </c:choose>
             
           </div>
-          <div>
+          <!--<div>
             <a href="#" id="wish_icon">
               <img src="${contextPath}/img/headerImg/icon/free-icon-heart.png" alt="찜목록icon" width="29px" height="35px" />
             </a>
-          </div>
+          </div>-->
           <div>
             <a href="${contextPath}/coupon/couponList.do" id="coupon_icon">
               <img src="${contextPath}/img/headerImg/icon/icon-coupon.png" alt="쿠폰icon" width="29px" height="35px" />
