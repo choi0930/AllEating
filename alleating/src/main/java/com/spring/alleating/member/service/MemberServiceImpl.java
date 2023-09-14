@@ -224,12 +224,12 @@ public class MemberServiceImpl implements MemberService{
 	       JsonParser parser = new JsonParser();
 	       JsonElement element = parser.parse(result);
 
-	       String kakaoId = element.getAsJsonObject().get("id").getAsString();
-	       String nickName = element.getAsJsonObject().get("properties").getAsJsonObject().get("nickname").getAsString();
-	       boolean hasEmail = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsBoolean();
+	       String kakaoId = element.getAsJsonObject().get("id").getAsString(); //로그인 요청한 카카오 유저 ID식별 번호
+	       String nickName = element.getAsJsonObject().get("properties").getAsJsonObject().get("nickname").getAsString(); //로그인 요청한 카카오 유저 닉네임 
+	       boolean hasEmail = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsBoolean(); //로그인 요청한 카카오 유저 이메일 동의여부 확인
 	       String email = "";
 	       if(hasEmail){
-	           email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
+	           email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString(); //로그인 요청한 카카오 유저 이메일 
 	           
 	           	 String[] emailSplit = email.split("@");
 		    	 String email1 = emailSplit[0];
@@ -250,12 +250,12 @@ public class MemberServiceImpl implements MemberService{
 	            e.printStackTrace();
 	       }
 	    
-	     int result =  memberDAO.selectCheckSnsId(snsUserInfo);
+	     int result =  memberDAO.selectCheckSnsId(snsUserInfo); //이미 가입한 회원 인지 확인
 	     
-	     if(result == 0) {
+	     if(result == 0) { //가입한 회원이 아니면 회원가입 처리
 	    	 snsUserInfo.put("status", "addMemer");
 	    	 return snsUserInfo;
-	     }else {
+	     }else { //가입한 회원일시 로그인 처리
 	    	 MemberVO memberVO = memberDAO.selectKaKaoLogin(snsUserInfo);
 	    	 snsUserInfo.put("status", "login");
 	    	 snsUserInfo.put("memberVO", memberVO);
